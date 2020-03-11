@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "LAP - " + ViewResources.Report +
+    " - " + "Betting Tickets Center";
+    Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+}
+@using Fanex.Athena.Model.Core.DataDomain;
+@model bool
+@{
+    var baseCurrencyList = SystemConstants.BaseCurrencyList.Select(c =>
+    new { value = c.Value, label = c.Value }).ToList();
+}
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/betlist/index.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/bettingticketscenter/index.css")" rel="stylesheet" type="text/css" />
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/bettingticketscenter/refno.chunk.js")"></script>
+}
+
+@section globaljscode{
+    window.initialState = {
+    refno: "",
+    username: "",
+    selectedBaseCurrency: '@ViewBag.SelectedBaseCurrency',
+    isLoading: false,
+    isConvertAll: true,
+    hasExchange: '@ViewBag.HasExchange.ToString()' === 'True'
+    };
+    window._AppData = {
+    isAllowedCustomerComm: @Model.ToJson(),
+    baseCurrencyList:@Html.Raw(baseCurrencyList.ToJson()),
+    productsRequireUseNameNote: '@ViewBag.ProductsRequireUseNameNote',
+    tabList: @Html.Raw((ViewBag.TabList as IEnumerable<string>).ToJson())
+    };
+}
+<div id="app-container">
+</div>

@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "LAP - " + ViewResources.Report +
+    " - " + "Betting Tickets Center";
+    Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+}
+@using Fanex.Athena.Model.Core.DataDomain
+@model Fanex.Athena.Model.BetList.ViewModel.BettingTicketCenterViewModel
+@{
+    var productList = Model.ProductOptionList;
+    var selectedStatus = string.Join(",", Model.StatusList.Where(x => x.Checked).Select(x => x.ID).ToArray());
+    var selectedLiveStatus = string.Join(",", Model.LiveStatusList.Select(x => x.Key).ToArray());
+    var baseCurrencyList = SystemConstants.BaseCurrencyList.Select(c =>
+    new { value = c.Value, label = c.Value }).ToList();
+    var selectedCurrency = string.Join(",", Model.CurrencyList.Select(x => x.Key).ToArray());
+}
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/betlist/index.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/bettingticketscenter/index.css")" rel="stylesheet" type="text/css" />
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/bettingticketscenter/advancedsearch.chunk.js")"></script>
+}
+
+@section globaljscode{
+    window.initialState = {
+    dateRange: { fromDate: '@Model.FromDate.ToString("MM/dd/yyyy")', toDate: '@Model.ToDate.ToString("MM/dd/yyyy")'},
+    selectedProduct: '@Html.Raw(productList.First().Code)',
+    selectedCurrency:  '@(selectedCurrency)',
+    selectedBaseCurrency: '@(Model.SelectedBaseCurrency)',
+    isLoading: false,
+    selectedStatus: '@(selectedStatus)',
+    selectedLiveStatus: '@(selectedLiveStatus)',
+    sportList: [],
+    selectedSport: 0,
+    selectedMatch: 0,
+    selectedLeague: 0,
+    bettypeList: [],
+    selectedBettype: 0,
+    username: '',
+    isConvertAll: true,
+    hasExchange: '@Model.HasExchange.ToString()' === 'True'
+    };
+    window._AppData = {
+    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+    liveStatusList: @Html.Raw(Model.LiveStatusList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    statusList: @Html.Raw(Model.StatusList.Select(x => new { Id = x.ID, Value = x.Name, Status = x.Checked }).ToJson()),
+    isAllowedCustomerComm: @Model.IsAllowedCustomerComm.ToJson(),
+    productList: @Html.Raw(Model.ProductOptionList.Select(x => new { value = x.Code, label = x.Name }).ToJson()),
+    currencyList: @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    dateConstraint: { minDate: '@Model.MinDate.ToString("MM/dd/yyyy")', maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 3 },
+    tabList: @Html.Raw(Model.TabList.ToJson())
+    };
+}
+<div id="app-container">
+</div>

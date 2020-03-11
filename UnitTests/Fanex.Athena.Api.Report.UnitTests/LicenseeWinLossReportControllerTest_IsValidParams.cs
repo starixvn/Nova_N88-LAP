@@ -1,0 +1,136 @@
+﻿namespace Fanex.Athena.Api.Report.UnitTests
+{
+    using System;
+    using System.Collections.Generic;
+
+    using Base.UnitTests;
+
+    using DataAccess.Report.Interfaces;
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Core.MetaModel.Product;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+
+    using Model.Core.DTO.Configuration;
+    using Model.Report.MetaModel;
+
+    using NPOI.SS.UserModel;
+
+    using NSubstitute;
+
+    using NUnit.Framework;
+
+    public class LicenseeWinLossReportControllerTest_IsValidParams : BaseApiControllerHelperTest
+    {
+        private IReportSettingService _reportSettingService;
+
+        private ILicenseeWinLossDataAccess _dataAccess;
+
+        private LicenseeWinLossReportController _controller;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _dataAccess = Substitute.For<ILicenseeWinLossDataAccess>();
+            _reportSettingService = Substitute.For<IReportSettingService>();
+            CreateController();
+
+            MockSessionData();
+        }
+
+        private void CreateController()
+        {
+            _controller = Substitute.ForPartsOf<LicenseeWinLossReportController>(
+                            _reportSettingService,
+                            LangService,
+                            _dataAccess);
+            _controller.SessionService = SessionService;
+            _controller.ProductService = ProductService;
+
+            _controller.When(x => x.ExcelStream(Arg.Any<IWorkbook>(), Arg.Any<string>())).DoNotCallBase();
+        }
+
+        [Test]
+        public void IsValidParams_ReportSettingIsNull_ReturnTrue()
+        {
+            // Arrange
+            _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss, Arg.Any<string>()).Returns((ReportSetting)null);
+
+            // Action
+            var result = _controller.IsValidParams(new LicenseeWinLossMetaModel());
+
+            // Assert
+            Assert.That(result, Is.True);
+        }
+
+        [TestCase("2017/12/21", "2018/2/2", false)]
+        [TestCase("2018/2/2", "2018/9/9", false)]
+        [TestCase("2018/2/2", "2018/3/3", true)]
+        public void IsValidParams_DateRangeOnSummaryLevel_ReturnCorrectResult(
+            string fromDate,
+            string toDate,
+            bool expectedResult)
+        {
+            // Arrange
+            SetUpReportSetting();
+            var metaModel = new LicenseeWinLossMetaModel
+            {
+                FromDate = DateTime.Parse(fromDate),
+                ToDate = DateTime.Parse(toDate),
+                ProductOptions = new List<ProductOption> {
+                    new ProductOption {
+                        Code ="SB",
+                        Name ="SB",
+                        Status=true
+                    }
+                }
+            };
+
+            // Action
+            var result = _controller.IsValidParams(metaModel);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        [TestCase("2017/12/21", "2018/2/2", false)]
+        [TestCase("2018/2/2", "2018/9/9", false)]
+        [TestCase("2018/2/2", "2018/3/3", true)]
+        public void IsValidParams_DateRangeOnChildLevel_ReturnCorrectResult(
+            string fromDate,
+            string toDate,
+            bool expectedResult)
+        {
+            // Arrange
+            SetUpReportSetting();
+            var metaModel = new LicenseeWinLossMetaModel
+            {
+                DrillDownLevel = 1,
+                DrillDownFromDate = DateTime.Parse(fromDate),
+                DrillDownToDate = DateTime.Parse(toDate),
+                ProductOptions = new List<ProductOption> {
+                    new ProductOption {
+                        Code ="SB",
+                        Name ="SB",
+                        Status=true
+                    }
+                }
+            };
+
+            // Action
+            var result = _controller.IsValidParams(metaModel);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        private void SetUpReportSetting()
+        {
+            _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss, Arg.Any<string>())
+                            .Returns(new ReportSetting
+                            {
+                                MinDate = new DateTime(2018, 1, 1),
+                                MaxDate = new DateTime(2018, 5, 5)
+                            });
+        }
+    }
+}

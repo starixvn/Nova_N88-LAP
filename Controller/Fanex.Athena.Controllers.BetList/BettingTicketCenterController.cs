@@ -80,7 +80,6 @@
                 MinDate = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay,
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
-                HasExchange = tabList.Any() && HasExchange(),
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml", viewModel);
@@ -98,7 +97,6 @@
                 ProductOptionList = GetProductOptionList(),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
-                HasExchange = tabList.Any() && HasExchange(),
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml", viewModel);
@@ -114,7 +112,6 @@
                 GetProductsRequireUseName(),
                 _balanceUpDataAccess.GetBalanceUp().BalanceUpDay.ToString(FormatKey.DateFormat));
             ViewBag.SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency;
-            ViewBag.HasExchange = tabList.Any() && HasExchange();
             ViewBag.TabList = tabList;
 
             return View(
@@ -133,7 +130,6 @@
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterRunning),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
-                HasExchange = tabList.Any() && HasExchange(),
                 TabList = tabList
             };
 
@@ -254,11 +250,6 @@
                 Name = i.ProductName,
                 Status = true
             }).ToList();
-        }
-
-        private bool HasExchange()
-        {
-            return _authService.CheckProductBelongsTo(SessionServiceInstance.LicenseeSession.LicenseeName, ProductTypes.Exchange);
         }
     }
 }

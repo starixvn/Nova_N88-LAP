@@ -138,9 +138,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExchangeVoidedService.cs" />
     <Compile Include="Interfaces\IColossusBetsWinLossService.cs" />
-    <Compile Include="Interfaces\IExchangeVoidedService.cs" />
     <Compile Include="Interfaces\ISubsidiaryPerformanceService.cs" />
     <Compile Include="Interfaces\IWeeklyLiveMatchService.cs" />
     <Compile Include="ColossusBetsWinLossService.cs" />

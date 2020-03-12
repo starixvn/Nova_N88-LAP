@@ -36,8 +36,6 @@
         public string SelectedBaseCurrency { get; set; }
         public IDictionary<int, string> LiveStatusList { get; set; }
 
-        public bool HasExchange { get; set; }
-
         public IEnumerable<string> TabList { get; set; }
     }
 }

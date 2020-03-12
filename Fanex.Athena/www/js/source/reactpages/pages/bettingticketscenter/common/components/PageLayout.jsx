@@ -12,7 +12,7 @@ import AppData from '@jsroot/lib/AppData';
 
 export const PageLayout = (props) => {
     const { toggleLoader, isConvertAll, selectedBaseCurrency, selectedTabIndex, children, hasExchange } = props;
-    
+
     const getResource = (key) => {
         return LangHelper.getSingleResource(key);
     }
@@ -48,14 +48,8 @@ export const PageLayout = (props) => {
             >
                 <Tabs>
                     {
-                        activedTabList.map(item => 
+                        activedTabList.map(item =>
                             <Tab isActive={selectedTabIndex == item.displayOrder} label={item.label} url={item.url} />)
-                    }
-                    {
-                        hasExchange && 
-                        <Tab isActive={selectedTabIndex == 4} label={LangHelper.getSingleResource("Exchange")}
-                            url={Site.resolveClientUrl("ExchangeVoided")}>
-                        </Tab>
                     }
                 </Tabs>
                 <div>

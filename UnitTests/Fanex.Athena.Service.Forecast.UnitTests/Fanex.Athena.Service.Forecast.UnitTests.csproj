@@ -103,21 +103,9 @@
       <Project>{A6BE21E8-6895-4863-BA3A-E6B21D3CE78D}</Project>
       <Name>Fanex.Athena.DataAccess.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DataAccess\Fanex.Athena.DataAccess.Forecast\Fanex.Athena.DataAccess.Forecast.csproj">
-      <Project>{3C68D0D6-442D-4366-AB29-A793BBE92F49}</Project>
-      <Name>Fanex.Athena.DataAccess.Forecast</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Core\Fanex.Athena.Model.Core.csproj">
       <Project>{5f410090-94c0-46a5-9fec-b6c3b745b7a0}</Project>
       <Name>Fanex.Athena.Model.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Forecast\Fanex.Athena.Model.Forecast.csproj">
-      <Project>{C1417906-061A-4910-885F-6497A4EE8A15}</Project>
-      <Name>Fanex.Athena.Model.Forecast</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Service\Fanex.Athena.Service.Forecast\Fanex.Athena.Service.Forecast.csproj">
-      <Project>{e2ec4ea8-7955-4232-8b28-fbc3730eaeba}</Project>
-      <Name>Fanex.Athena.Service.Forecast</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

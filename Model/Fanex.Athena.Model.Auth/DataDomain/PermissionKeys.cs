@@ -2,35 +2,10 @@
 {
     public static class PermissionKeys
     {
-        public const string GroupTotalBet = "TOTALBETS1";
-        public const string GroupForecast = "FORECAST2";
         public const string GroupReport = "REPORTS3";
         public const string GroupCustomerReport = "CUSTOMERREPORTS52";
         public const string GroupCustomerInformation = "CUSTOMERINFORMATION4";
         public const string GroupAccountManagement = "ACCOUNTMANAGEMENT6";
-
-        /* Total Bet */
-
-        public const string TotalBetHandicapOverUnderLive = "HandicapOverUnderLive7";
-        public const string TotalBetMoneyLine = "MoneyLine8";
-        public const string TotalBetOddEven1x2DND = "OddEven1x2DND9";
-        public const string TotalBetCorrectScore = "CorrectScore10";
-        public const string TotalBetTotalGoal = "TotalGoal11";
-        public const string TotalBetMixParlay = "MixParlay12";
-        public const string TotalBetOutright = "Outright13";
-        public const string TotalBetHalfTimeFullTime = "HTFT14";
-        public const string TotalBetFirstGoalLastGoal = "FGLG15";
-        public const string TotalBetCleanSheet = "CleanSheet16";
-        public const string TotalBetDoubleChance = "DoubleChance17";
-        public const string TotalBetHomeDrawAwayNoBet = "HomeDrawAwayNoBet18";
-        public const string TotalBetBONTeamToScore = "BONteamtoscore19";
-        public const string TotalBetToWinToNil = "Towintonil20";
-        public const string TotalBet3WayHandicap = "3-WayHandicap21";
-
-        /* Forecast */
-
-        public const string ForecastHandicapOverUnderLive = "HandicapOverUnderLive24";
-        public const string ForecastOneXTwo = "1X225";
 
         /* Report */
 

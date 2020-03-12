@@ -151,14 +151,6 @@
       <Project>{255e120a-83bf-4f72-9e31-6050d5704069}</Project>
       <Name>Fanex.Athena.Controllers.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Controller\Fanex.Athena.Controllers.TotalBets\Fanex.Athena.Controllers.TotalBets.csproj">
-      <Project>{9d448f82-18c4-47f0-ab07-85da01fe2edc}</Project>
-      <Name>Fanex.Athena.Controllers.TotalBets</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DataAccess\Fanex.Athena.DataAccess.TotalBet\Fanex.Athena.DataAccess.TotalBet.csproj">
-      <Project>{152EBE71-ED5C-4F5C-8817-C3AA406E16B8}</Project>
-      <Name>Fanex.Athena.DataAccess.TotalBet</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Fanex.Athena.Extension\Fanex.Athena.Extension.csproj">
       <Project>{71F95E53-36D0-4091-828D-ED14C9939C35}</Project>
       <Name>Fanex.Athena.Extension</Name>
@@ -174,10 +166,6 @@
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Core\Fanex.Athena.Model.Core.csproj">
       <Project>{5F410090-94C0-46A5-9FEC-B6C3B745B7A0}</Project>
       <Name>Fanex.Athena.Model.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Model\Fanex.Athena.Model.TotalBet\Fanex.Athena.Model.TotalBet.csproj">
-      <Project>{F3530308-8F06-4EA1-856A-296B27614054}</Project>
-      <Name>Fanex.Athena.Model.TotalBet</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Resources\Fanex.Athena.Resources\Fanex.Athena.Resources.csproj">
       <Project>{17B0022C-4902-4C61-908A-5DB81568DC3A}</Project>

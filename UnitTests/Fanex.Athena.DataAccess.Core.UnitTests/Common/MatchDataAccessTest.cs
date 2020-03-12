@@ -27,48 +27,6 @@
             DataAccess = Substitute.ForPartsOf<MatchDataAccess>(Substitute.For<ICacheRefAdapter>(), _appSettings);
         }
 
-        [TestCase(1)]
-        [TestCase(2)]
-        [TestCase(100)]
-        public async Task GetForecastMatchListByLeague_WhenCall_ParametersPassedCorrectly(int leagueId)
-        {
-            // Arrange
-            dynamic param = new { LeagueId = 0 };
-            DataAccess.GetObjectDb(Arg.Is("Lrf_Forecast_MatchList")).Returns(ObjectDb);
-            ObjectDb.When(x => x.ExecuteReaderAsync(Arg.Any<object>())).Do(x => param = x[0]);
-
-            // Action
-            await DataAccess.GetForecastMatchListByLeague(leagueId);
-
-            // Assert
-            Assert.That(param.LeagueId, Is.EqualTo(leagueId));
-        }
-
-        [Test]
-        public async Task GetForecastMatchListByLeague_WhenCall_DataReturnedCorrectly()
-        {
-            // Arrange
-            const int LeagueId = 1;
-            var expectedMatch = GetFakeMatch();
-
-            DataAccess.GetObjectDb(Arg.Is("Lrf_Forecast_MatchList")).Returns(ObjectDb);
-            MapReaderData(expectedMatch);
-            Reader.Read().Returns(true, false);
-
-            // Action
-            var result = await DataAccess.GetForecastMatchListByLeague(LeagueId);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(result[0].MatchId, Is.EqualTo(expectedMatch.MatchId));
-                Assert.That(result[0].LeagueId, Is.EqualTo(LeagueId));
-                Assert.That(result[0].IsOutRight, Is.EqualTo(expectedMatch.IsNeutral));
-                Assert.That(result[0].HomeId, Is.EqualTo(expectedMatch.HomeId));
-                Assert.That(result[0].AwayId, Is.EqualTo(expectedMatch.AwayId));
-            });
-        }
-
         [TestCase(false)]
         [TestCase(true)]
         public async Task GetAllRunningMatch_WhenCall_ParametersPassedCorrectly(bool isProduction)

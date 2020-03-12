@@ -18,8 +18,6 @@
 
         IEnumerable<string> LicenseesWithLargeData { get; }
 
-        IEnumerable<int> LicenseeOfferNewForecast { get; }
-
         IEnumerable<int> LicenseeAllowCasinoTransfer { get; }
 
         IEnumerable<int> LicenseeOfferStatusFunction { get; }

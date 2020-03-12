@@ -444,21 +444,6 @@
     <Content Include="App_Data\UserGuide\CommissionGroupList\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\CommissionGroupList\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\ActiveCustomerSummary\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsMixParlay\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsMixParlay\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsMixParlay\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsCorrectScore\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsCorrectScore\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsCorrectScore\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\ForecastNewHdpOu\en-US.htm" />
-    <Content Include="App_Data\UserGuide\ForecastNewHdpOu\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\ForecastNewHdpOu\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\Forecast1x2\en-US.htm" />
-    <Content Include="App_Data\UserGuide\Forecast1x2\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\Forecast1x2\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\ForecastHdpOu\en-US.htm" />
-    <Content Include="App_Data\UserGuide\ForecastHdpOu\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\ForecastHdpOu\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\ManageAccount\en-US.htm" />
     <Content Include="App_Data\UserGuide\ManageAccount\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\ManageAccount\zh-TW.htm" />
@@ -496,45 +481,6 @@
     <Content Include="App_Data\UserGuide\MatchWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\MatchWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\LiveReport\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBets3WayHandicap\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBets3WayHandicap\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBets3WayHandicap\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsBON\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsBON\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsBON\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsCleanSheet\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsCleanSheet\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsCleanSheet\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsDoubleChance\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsDoubleChance\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsDoubleChance\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsFGLG\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsFGLG\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsFGLG\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHdpOu\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHdpOu\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHdpOu\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHomeDrawAwayNoBet\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHomeDrawAwayNoBet\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHomeDrawAwayNoBet\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHTFT\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHTFT\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsHTFT\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsMoneyLine\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsMoneyLine\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsMoneyLine\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsOddEven\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsOddEven\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsOddEven\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsOutright\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsOutright\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsOutright\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsTotalGoal\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsTotalGoal\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsTotalGoal\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsToWinToNil\en-US.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsToWinToNil\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\TotalBetsToWinToNil\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\Turnover\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\Turnover\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\Turnover\en-US.htm" />
@@ -651,7 +597,7 @@
     <Content Include="www\css\build\pro\reactpages\casinoturnover\index.chunk.js" />
     <Content Include="www\css\build\pro\reactpages\casinoturnover\index.css" />
     <Content Include="www\css\build\pro\reactpages\dailybets\index.css" />
-     <Content Include="www\css\build\pro\reactpages\exchangevoided\index.css" />
+    <Content Include="www\css\build\pro\reactpages\exchangevoided\index.css" />
     <Content Include="www\css\build\pro\reactpages\exchangewl\index.css" />
     <Content Include="www\css\build\pro\reactpages\licenseewlbytimezone\index.css" />
     <Content Include="www\css\build\pro\reactpages\notification\index.chunk.js" />
@@ -1934,11 +1880,6 @@
     <Content Include="www\js\source\pages\customer\customerlog\loginlog\loginlog.js" />
     <Content Include="www\js\source\pages\customer\customerlog\loginlog\loginlog.option.js" />
     <Content Include="www\js\source\pages\customer\customerlog\loginlog\main.js" />
-    <Content Include="www\js\source\pages\forecast\forecast.ah.main.js" />
-    <Content Include="www\js\source\pages\forecast\forecast.handicapoverunder.main.js" />
-    <Content Include="www\js\source\pages\forecast\forecast.handicapoverunder.js" />
-    <Content Include="www\js\source\pages\forecast\forecast.onextwo.main.js" />
-    <Content Include="www\js\source\pages\forecast\forecast.newforecasthdpou.js" />
     <Content Include="www\js\source\pages\home\home.js" />
     <Content Include="www\js\source\pages\home\main.js" />
     <Content Include="www\js\source\pages\home\recheckin.js" />
@@ -2008,23 +1949,6 @@
     <Content Include="www\js\source\pages\report\winlossbyproduct\winlossbyproduct.option.js" />
     <Content Include="www\js\source\pages\signin\main.js" />
     <Content Include="www\js\source\pages\signin\signin.js" />
-    <Content Include="www\js\source\pages\totalbet\firstgoallastgoal\firstgoallastgoal.js" />
-    <Content Include="www\js\source\pages\totalbet\firstgoallastgoal\main.js" />
-    <Content Include="www\js\source\pages\totalbet\halftimefulltime\halftimefulltime.js" />
-    <Content Include="www\js\source\pages\totalbet\halftimefulltime\main.js" />
-    <Content Include="www\js\source\pages\totalbet\handicapoverunder\handicapoverunder.js" />
-    <Content Include="www\js\source\pages\totalbet\handicapoverunder\main.js" />
-    <Content Include="www\js\source\pages\totalbet\homedrawawaynobet\homedrawawaynobet.js" />
-    <Content Include="www\js\source\pages\totalbet\homedrawawaynobet\main.js" />
-    <Content Include="www\js\source\pages\totalbet\moneyline\main.js" />
-    <Content Include="www\js\source\pages\totalbet\moneyline\moneyline.js" />
-    <Content Include="www\js\source\pages\totalbet\oddevendrawnodraw\main.js" />
-    <Content Include="www\js\source\pages\totalbet\oddevendrawnodraw\oddevendrawnodraw.js" />
-    <Content Include="www\js\source\pages\totalbet\outright\main.js" />
-    <Content Include="www\js\source\pages\totalbet\outright\outright.js" />
-    <Content Include="www\js\source\pages\totalbet\totalbetsbase.js" />
-    <Content Include="www\js\source\pages\totalbet\totalgoal\main.js" />
-    <Content Include="www\js\source\pages\totalbet\totalgoal\totalgoal.js" />
     <Content Include="www\js\source\vendors\materialize\materialize.js" />
     <Content Include="www\js\tests\common\popup-spec.js" />
     <Content Include="www\js\tests\common\querystring-spec.js" />
@@ -2130,8 +2054,6 @@
     <Content Include="www\js\tests\pages\totalbet\totalbetsbase-spec.js" />
     <Content Include="www\js\tests\pages\totalbet\totalgoal\totalgoal-spec.js" />
     <Content Include="www\js\tests\test-main.js" />
-    <Content Include="Views\Desktop\TotalBets\HandicapOverUnder\Filter.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HandicapOverUnder\Content.cshtml" />
     <Content Include="www\webpackconfig\build\utils.js" />
     <Content Include="www\webpackconfig\build\webpack.base.conf.js" />
     <Content Include="www\webpackconfig\build\webpack.dev.conf.js" />
@@ -2379,14 +2301,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Desktop\BetList\GlobalGamingDetail\Main.cshtml" />
-    <Content Include="Views\Desktop\Shared\_TotalBetsLayout.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HandicapOverUnder\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HandicapOverUnder\ContentData.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HandicapOverUnder\ContentDataBodog.cshtml" />
-    <Content Include="Views\Desktop\Forecast\ForecastAH\Main.cshtml" />
-    <Content Include="Views\Desktop\Forecast\ForecastAH\Content.cshtml" />
-    <Content Include="Views\Desktop\Forecast\ForecastAH\ContentHeader.cshtml" />
-    <Content Include="Views\Desktop\Forecast\ForecastAH\ContentData.cshtml" />
     <Content Include="Views\Desktop\BetList\RunningBetListOfMatch\Main.cshtml" />
     <Content Include="Views\Desktop\Shared\_BetListLayout.cshtml" />
     <Content Include="Views\Desktop\BetList\RunningBetList\Filter.cshtml" />
@@ -2395,38 +2309,6 @@
     <Content Include="Views\Desktop\BetList\RunningBetListMultipleBettypes\Main.cshtml" />
     <Content Include="Views\Desktop\BetList\CorrectScoreBetList\Filter.cshtml" />
     <Content Include="Views\Desktop\BetList\CorrectScoreBetList\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\MoneyLine\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\MoneyLine\Filter.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\MoneyLine\Content.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\MoneyLine\ContentData.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\OddEvenDrawNoDraw\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\OddEvenDrawNoDraw\Filter.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\OddEvenDrawNoDraw\Content.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\OddEvenDrawNoDraw\ContentData.cshtml" />
-    <Content Include="Views\Desktop\Forecast\Forecast1X2\Main.cshtml" />
-    <Content Include="Views\Desktop\Forecast\Forecast1X2\Content.cshtml" />
-    <Content Include="Views\Desktop\Forecast\Forecast1X2\Filter.cshtml" />
-    <Content Include="Views\Desktop\Forecast\Forecast1X2\ContentData.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\TotalGoal\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\TotalGoal\Filter.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\TotalGoal\Content.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\TotalGoal\ContentData.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\Outright\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\Outright\Filter.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\Outright\Content.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\Outright\ContentData.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HalfTimeFullTime\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HalfTimeFullTime\Filter.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HalfTimeFullTime\Content.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HalfTimeFullTime\ContentData.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\FirstGoalLastGoal\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\FirstGoalLastGoal\Filter.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\FirstGoalLastGoal\Content.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\FirstGoalLastGoal\ContentData.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HomeDrawAwayNoBet\Main.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HomeDrawAwayNoBet\Filter.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HomeDrawAwayNoBet\Content.cshtml" />
-    <Content Include="Views\Desktop\TotalBets\HomeDrawAwayNoBet\ContentData.cshtml" />
     <Content Include="Views\Desktop\BetList\RunningBettypesOfMatchBetList\Main.cshtml" />
     <Content Include="Views\Desktop\Shared\_ForecastLayout.cshtml" />
     <Content Include="www\css\build\dev\home.chunk.js.map" />
@@ -2461,17 +2343,8 @@
     <Content Include="www\css\build\dev\pages\totalbet\totalbetlayout.css.map" />
     <Content Include="www\css\build\dev\pages\utility\error.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\utility\error.css.map" />
-    <Content Include="Views\Desktop\Forecast\ForecastHDPOU\Content.cshtml" />
-    <Content Include="Views\Desktop\Forecast\ForecastHDPOU\ContentData.cshtml" />
-    <Content Include="Views\Desktop\Forecast\ForecastHDPOU\Filter.cshtml" />
-    <Content Include="Views\Desktop\Forecast\ForecastHDPOU\Main.cshtml" />
-    <Content Include="Views\Desktop\Forecast\NewForecastHdpOu\Main.cshtml" />
-    <Content Include="Views\Desktop\Forecast\NewForecastHdpOu\Filter.cshtml" />
-    <Content Include="Views\Desktop\Forecast\NewForecastHdpOu\Content.cshtml" />
     <Content Include="www\css\build\dev\pages\forecast\newforecast.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\forecast\newforecast.css.map" />
-    <Content Include="Views\Desktop\Forecast\NewForecastHdpOu\Content.ForecastItem.cshtml" />
-    <Content Include="Views\Desktop\Forecast\NewForecastHdpOu\MatchOptionList.cshtml" />
     <Content Include="Views\Desktop\BetList\NewForecastBetlist\Main.cshtml" />
     <Content Include="www\css\source\pages\betlist\betlistcommon.main.scss" />
     <Content Include="www\css\source\components\jqgrid\jqgrid.main.scss" />
@@ -2520,7 +2393,6 @@
     <Content Include="www\css\source\pages\utility\error.scss" />
     <Content Include="www\css\source\pages\totalbet\totalbet.scss" />
     <Content Include="www\css\source\pages\forecast\forecast.ah.scss" />
-    <Content Include="www\js\source\pages\forecast\forecast.ah.js" />
     <Content Include="www\css\source\components\refreshcountdown\refreshcountdown.scss" />
     <Content Include="www\css\source\extensions\popup-ex.scss" />
     <Content Include="www\js\build\dev\language.chunk.js.map" />
@@ -2541,7 +2413,6 @@
     <Content Include="www\css\source\pages\totalbet\mixparlay.scss" />
     <Content Include="www\js\build\dev\pages\betlist\betlistcorrectscore.chunk.js.map" />
     <Content Include="www\js\build\dev\pages\totalbet\homedrawawaynobet.chunk.js.map" />
-    <Content Include="www\js\source\pages\forecast\forecast.onextwo.js" />
     <Content Include="www\js\build\dev\pages\forecast\forecastonextwo.chunk.js.map" />
     <Content Include="www\css\source\pages\forecast\forecastonextwo.scss" />
     <Content Include="www\css\source\scss\layout\filter.scss" />
@@ -2587,7 +2458,6 @@
     <Content Include="www\css\source\vendors\materialize\_materialize-home.scss" />
     <Content Include="www\css\source\vendors\materialize\_materialize-content.scss" />
     <Content Include="www\css\source\pages\forecast\newforecast.scss" />
-    <Content Include="www\js\source\pages\forecast\forecast.newforecasthdpou.main.js" />
     <Content Include="www\js\build\dev\pages\forecast\newforecasthdpou.chunk.js.map" />
     <Content Include="www\js\build\dev\pages\forecast\forecasthdpou.chunk.js.map" />
     <Content Include="www\css\source\pages\common\reportcommon.main.scss" />
@@ -5653,17 +5523,9 @@
       <Project>{11985254-411e-45dc-9b50-8dcb8bd145ef}</Project>
       <Name>Fanex.Athena.Controllers.Customer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.Forecast\Fanex.Athena.Controllers.Forecast.csproj">
-      <Project>{392b39f4-3f95-40d2-a3e1-f08ad10ce6f7}</Project>
-      <Name>Fanex.Athena.Controllers.Forecast</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.Report\Fanex.Athena.Controllers.Report.csproj">
       <Project>{bc358f4a-b85d-43a2-a669-d2d2c9f2eedb}</Project>
       <Name>Fanex.Athena.Controllers.Report</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.TotalBets\Fanex.Athena.Controllers.TotalBets.csproj">
-      <Project>{9d448f82-18c4-47f0-ab07-85da01fe2edc}</Project>
-      <Name>Fanex.Athena.Controllers.TotalBets</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataAccess\Fanex.Athena.DataAccess.Report\Fanex.Athena.DataAccess.Report.csproj">
       <Project>{5653BC29-0843-4D75-9140-5B370DF2F88C}</Project>

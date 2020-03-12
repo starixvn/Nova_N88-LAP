@@ -28,40 +28,6 @@ namespace Fanex.Athena.DataAccess.Core.Common
             _appSettings = appSettings;
         }
 
-        public async Task<IList<Match>> GetForecastMatchListByLeague(int leagueId)
-        {
-            const string UspName = "Lrf_Forecast_MatchList";
-            IList<Match> result = new List<Match>();
-
-            var uspParam = new
-            {
-                LeagueId = leagueId
-            };
-
-            using (var db = GetObjectDb(UspName))
-            {
-                using (var reader = await db.ExecuteReaderAsync(uspParam).ConfigureAwait(false))
-                {
-                    while (reader.Read())
-                    {
-                        var match = new Match
-                        {
-                            LeagueId = leagueId,
-                            MatchId = reader.ToInt("matchid"),
-                            HomeId = reader.ToInt("homeid"),
-                            AwayId = reader.ToInt("awayid"),
-                            IsNeutral = reader.ToBool("IsNeutral"),
-                        };
-                        match.MatchName = GetMatchName(match);
-
-                        result.Add(match);
-                    }
-                }
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// Get all running matches.
         /// </summary>

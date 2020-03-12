@@ -16,8 +16,6 @@ namespace Fanex.Athena.Service.StatelessCore.Interfaces
     {
         Task<IList<Match>> GetAllRunningMatchAsync(int sportId, string languageCode);
 
-        Task<IList<Match>> GetForecastMatchListByLeagueAsync(int leagueId);
-
         Task<IList<Match>> GetMatchesByLeagueAsync(int leagueId, DateTime fromDate, DateTime toDate);
     }
 }

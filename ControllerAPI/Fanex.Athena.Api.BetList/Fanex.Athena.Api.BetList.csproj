@@ -170,25 +170,20 @@
     <Compile Include="MixParlayBetListController.cs" />
     <Compile Include="PlatformWinLossBetListController.cs" />
     <Compile Include="RNGCasinoBetListController.cs" />
-    <Compile Include="RunningMatchChoiceBetListController.cs" />
     <Compile Include="SingleMatchParlayBetListController.cs" />
     <Compile Include="VoidbridgeBetListController.cs" />
     <Compile Include="WinlossByBetTypeBetListController.cs" />
     <Compile Include="WinlossByLeagueBetListController.cs" />
     <Compile Include="RunningBettypesOfMatchBetListController.cs" />
-    <Compile Include="RunningBettypesBetListController.cs" />
     <Compile Include="OutstandingDailyStatementBetListController.cs" />
-    <Compile Include="RunningMatchBetListController.cs" />
     <Compile Include="LicenseeWinLossBetListController.cs" />
     <Compile Include="MatchWinLossBetListController.cs" />
     <Compile Include="CustomerWinLossBetListController.cs" />
     <Compile Include="LiveReportBetListController.cs" />
-    <Compile Include="CorrectScoreBetListController.cs" />
     <Compile Include="PendingFundsBetListController.cs" />
     <Compile Include="LastBetMonitoringBetListController.cs" />
     <Compile Include="OutStandingCompletedBetListController.cs" />
     <Compile Include="OutstandingRunningBetListController.cs" />
-    <Compile Include="RunningBetListController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

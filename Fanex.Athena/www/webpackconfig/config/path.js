@@ -14,8 +14,6 @@ var cssPaths = {
     betlistLayout: ["./www/css/source/pages/betlist/betlistcommon.main.scss"],
     betlistSimpleLayout: ["./www/css/source/pages/betlist/betlistcommon.main.scss", "./www/css/source/extensions/popup-ex.scss"],
 
-    totalbetlayout: ["./www/css/source/pages/totalbet/totalbet.scss"],
-
     colossusbetdetail: ["./www/css/source/pages/betlist/colossusbetdetail.scss"],
     systemparlaydetail: ["./www/css/source/pages/betlist/systemparlaydetail.scss"],
 
@@ -24,11 +22,6 @@ var cssPaths = {
     login: ["./www/css/source/pages/login/login-ex.scss"],
     livereport: ["./www/css/source/pages/report/livereport.scss"],
     licenseewinloss: ["./www/css/source/pages/report/licenseewinloss.scss"],
-
-    ahforecast: ["./www/css/source/pages/forecast/forecast.ah.scss"],
-    mixparlay: ["./www/css/source/pages/totalbet/mixparlay.scss"],
-    forecastonextwo: ["./www/css/source/pages/forecast/forecastonextwo.scss"],
-    newforecast: ["./www/css/source/pages/forecast/newforecast.scss"],
 
     settledmatchcount: ["./www/css/source/pages/report/settledmatchcount.scss"],
     weeklylivematch: ["./www/css/source/pages/report/weeklylivematch.scss"],
@@ -78,19 +71,6 @@ var scriptPaths = {
     betlistrunning: "./www/js/source/pages/betlist/main-betlistrunning.js",
     betlistrunningmultiplebettypes: "./www/js/source/pages/betlist/main-betlistrunning.multiplebettypes.js",
     betlistcorrectscore: "./www/js/source/pages/betlist/main-betlistcorrectscore.js",
-
-    handicapoverunder: "./www/js/source/pages/totalbet/handicapoverunder/main.js",
-    ahforecast: "./www/js/source/pages/forecast/forecast.ah.main.js",
-    moneyline: "./www/js/source/pages/totalbet/moneyline/main.js",
-    oddevendrawnodraw: "./www/js/source/pages/totalbet/oddevendrawnodraw/main.js",
-    totalgoal: "./www/js/source/pages/totalbet/totalgoal/main.js",
-    outright: "./www/js/source/pages/totalbet/outright/main.js",
-    halftimefulltime: "./www/js/source/pages/totalbet/halftimefulltime/main.js",
-    firstgoallastgoal: "./www/js/source/pages/totalbet/firstgoallastgoal/main.js",
-    homedrawawaynobet: "./www/js/source/pages/totalbet/homedrawawaynobet/main.js",
-    forecastonextwo: "./www/js/source/pages/forecast/forecast.onextwo.main.js",
-    forecasthdpou: "./www/js/source/pages/forecast/forecast.handicapoverunder.main.js",
-    newforecasthdpou: "./www/js/source/pages/forecast/forecast.newforecasthdpou.main.js",
 
     settledmatchcount: "./www/js/source/pages/report/settledmatchcount/main-settledmatchcount.js",
     weeklylivematch: "./www/js/source/pages/report/weeklylivematch/main-weeklylivematch.js",

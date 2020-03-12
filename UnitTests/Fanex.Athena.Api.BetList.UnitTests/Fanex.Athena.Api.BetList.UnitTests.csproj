@@ -112,7 +112,6 @@
     <Compile Include="ExchangeWinLossBetListControllerTest.cs" />
     <Compile Include="FakeApiBetListBaseController.cs" />
     <Compile Include="GlobalGamingBetListControllerTest.cs" />
-    <Compile Include="LastBetMonitoringBetListControllerTest.cs" />
     <Compile Include="LicenseeWinLossBetListControllerTest.cs" />
     <Compile Include="LiveReportBetListControllerTest.cs" />
     <Compile Include="MatchWinLossBetListControllerTest.cs" />

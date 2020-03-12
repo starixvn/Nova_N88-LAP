@@ -9,7 +9,6 @@
 
         /* Report */
 
-        public const string ReportLastBetsMonitoring = "LastBetsMonitoring26";
         public const string ReportLicenseeWinLoss = "LicenseeWinLoss27";
         public const string ReportSettledMatchCount = "SettledMatchCount28";
         public const string ReportCustomerWinLoss = "CustomerWinLoss29";

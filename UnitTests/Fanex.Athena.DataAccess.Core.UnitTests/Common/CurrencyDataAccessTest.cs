@@ -7,8 +7,6 @@
 
     using Fanex.Athena.Model.Auth;
 
-    using Model.Core.MetaModel.Account;
-
     using NSubstitute;
 
     using NUnit.Framework;
@@ -19,56 +17,6 @@
     {
         private const string AssignCurrenciesByUserSp = "Lrf_CurrencyCustIns";
         private const string GetCurrenciesByUser = "Lrf_SelCurrencyByLicenseeUser";
-
-        [Test]
-        public void AssignCurrenciesByUser_WhenCall_ParametersPassedCorrectly()
-        {
-            // Arrange
-            DataAccess.GetObjectDb(Arg.Is(AssignCurrenciesByUserSp)).Returns(ObjectDb);
-            var dataModel = new AssignCurrencyMetaModel
-            {
-                UserId = 1,
-                LicenseeId = 1,
-                CurrencyList = "USD, UUS, EUR",
-                ModifyBy = 2,
-                LangKey = "en-US",
-                IP = "IP"
-            };
-
-            // Action
-            DataAccess.AssignCurrenciesByUser(dataModel);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                ObjectDb.Received(1).SetParameterValue("UserID", dataModel.UserId);
-                ObjectDb.Received(1).SetParameterValue("LicenseeID", dataModel.LicenseeId);
-                ObjectDb.Received(1).SetParameterValue("CurrencyXML", dataModel.CurrencyList);
-                ObjectDb.Received(1).SetParameterValue("ModifyBy", dataModel.ModifyBy);
-                ObjectDb.Received(1).SetParameterValue("LangKey", dataModel.LangKey);
-                ObjectDb.Received(1).SetParameterValue("IP", dataModel.IP);
-                ObjectDb.Received(1).SetParameterValue("ErrCode", null);
-                ObjectDb.Received(1).SetParameterValue("ErrMsg", null);
-            });
-        }
-
-        [Test]
-        public void AssignCurrenciesByUser_WhenCall_ResultInfoReturnCorrectly()
-        {
-            // Arrange
-            DataAccess.GetObjectDb(Arg.Is(AssignCurrenciesByUserSp)).Returns(ObjectDb);
-            ResultInfoHelper.MockResultInfo(ObjectDb);
-
-            // Action
-            var result = DataAccess.AssignCurrenciesByUser(new AssignCurrencyMetaModel());
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(result.Code, Is.EqualTo(ResultInfoHelper.ResultCode));
-                Assert.That(result.Message, Is.EqualTo(ResultInfoHelper.ResultMessage));
-            });
-        }
 
         [Test]
         public void GetCurrenciesByUser_WhenCall_ParametersPassedCorrectly()

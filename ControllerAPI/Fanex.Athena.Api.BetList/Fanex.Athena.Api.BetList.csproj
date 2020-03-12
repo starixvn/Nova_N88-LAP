@@ -181,7 +181,6 @@
     <Compile Include="CustomerWinLossBetListController.cs" />
     <Compile Include="LiveReportBetListController.cs" />
     <Compile Include="PendingFundsBetListController.cs" />
-    <Compile Include="LastBetMonitoringBetListController.cs" />
     <Compile Include="OutStandingCompletedBetListController.cs" />
     <Compile Include="OutstandingRunningBetListController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

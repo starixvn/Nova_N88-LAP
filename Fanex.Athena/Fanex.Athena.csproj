@@ -1633,8 +1633,6 @@
     <Content Include="www\css\build\dev\pages\reports\winlossbybettype.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\winlossbybettype.css.map" />
     <Content Include="www\css\source\components\checkbox\_checkbox.scss" />
-    <Content Include="Views\Desktop\BetList\LastBetsMonitoringNew\Filter.cshtml" />
-    <Content Include="Views\Desktop\BetList\LastBetsMonitoringNew\Main.cshtml" />
     <Content Include="Views\Desktop\BetList\PlatformWinLoss\Main.cshtml" />
     <Content Include="www\css\source\pages\betlist\lastbetmonitoring.scss" />
     <Content Include="www\css\build\dev\pages\betlist\lastbetmonitoring.chunk.js.map" />
@@ -1803,11 +1801,8 @@
     <Content Include="www\js\source\pages\betlist\customer\customer.dailystatement.option.js" />
     <Content Include="www\js\source\pages\betlist\customer\customer.outstandingbetlist.js" />
     <Content Include="www\js\source\pages\betlist\customer\main.js" />
-    <Content Include="www\js\source\pages\betlist\lastbetmonitoring\lastbet.filter.js" />
     <Content Include="www\js\source\pages\betlist\commonbetlist.js" />
     <Content Include="www\js\source\pages\betlist\betlistcorrectscore.js" />
-    <Content Include="www\js\source\pages\betlist\lastbetmonitoring\lastbet.grid.js" />
-    <Content Include="www\js\source\pages\betlist\lastbetmonitoring\main.js" />
     <Content Include="www\js\source\pages\betlist\main-betlistcorrectscore.js" />
     <Content Include="www\js\source\pages\betlist\main-betlistrunning.multiplebettypes.js" />
     <Content Include="www\js\source\pages\betlist\main-betlistrunning.js" />
@@ -1962,8 +1957,6 @@
     <Content Include="www\js\tests\pages\betlist\betlistrunning-spec.js" />
     <Content Include="www\js\tests\pages\betlist\betlistcorrectscore-spec.js" />
     <Content Include="www\js\tests\pages\betlist\commonbetlist-spec.js" />
-    <Content Include="www\js\tests\pages\betlist\lastbetmonitoring\lastbet.filter-spec.js" />
-    <Content Include="www\js\tests\pages\betlist\lastbetmonitoring\lastbet.grid-spec.js" />
     <Content Include="www\js\tests\pages\customer\betsetting\common\betsetting.copy-spec.js" />
     <Content Include="www\js\tests\pages\customer\betsetting\common\betsetting.helper-spec.js" />
     <Content Include="www\js\tests\pages\customer\betsetting\common\betsetting.status-spec.js" />

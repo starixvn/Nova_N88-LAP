@@ -110,7 +110,6 @@
     <Compile Include="CustomerOutstandingBetListControllerTest.cs" />
     <Compile Include="CustomerWinLossBetListControllerTest.cs" />
     <Compile Include="GlobalGamingBetListControllerTest.cs" />
-    <Compile Include="LastBetsMonitoringBetListControllerTest.cs" />
     <Compile Include="LicenseeWinLossBetListControllerTest.cs" />
     <Compile Include="LiveReportBetListControllerTest.cs" />
     <Compile Include="MatchWinLossBetListControllerTest.cs" />

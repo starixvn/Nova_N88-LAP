@@ -157,12 +157,21 @@ namespace Fanex.Athena.Service.StatelessCore
         public IDictionary<int, IEnumerable<Function>> GetSubMenus(IEnumerable<Function> functionList)
         {
             const int activeCusSumFunctionID = 64;
+            const int licWLFunctionID = 27;
+            const int cashoutWLFunctionID = 72;
+            
             var detailFunctions = new Dictionary<int, IEnumerable<Function>>();
             foreach (var function in MasterFunctions)
             {
                 var subFuntions = functionList.Where(f => f.ParentId == function.FunctionId && f.IsMenu && f.FunctionId != activeCusSumFunctionID)
                                               .OrderBy(f => f.DisplayOrder)
                                               .ToList();
+
+                //if(function.FunctionId == 3)
+                //{
+                //    subFuntions = subFuntions.Where(f => f.FunctionId == licWLFunctionID || f.FunctionId == cashoutWLFunctionID).ToList();
+                //}
+
                 if (subFuntions.Count > 0)
                 {
                     detailFunctions.Add(function.FunctionId, subFuntions);

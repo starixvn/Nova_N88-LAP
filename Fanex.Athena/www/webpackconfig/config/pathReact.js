@@ -6,7 +6,6 @@ var cssPaths = {
     build: "www/css/build",
     layout: "./www/css/source/reactpages/main.scss",
     subsidiaryperformance: "./www/css/source/reactpages/pages/subsidiaryperformance/index.scss",
-    licenseewlbytimezone: "./www/css/source/reactpages/pages/licenseewl-by-timezone/index.scss",
     notification: "./www/css/source/reactpages/pages/notification/index.scss",
     exchangewl: "./www/css/source/reactpages/pages/exchangewl/index.scss",
     speciallicenseewl: "./www/css/source/reactpages/pages/speciallicenseewl/index.scss",
@@ -34,7 +33,6 @@ var scriptPaths = {
     langTW: "./www/js/source/common/languages/ViewResources.zh-TW.js",
     /*React page*/
     subsidiaryperformance: "./www/js/source/reactpages/pages/subsidiaryperformance/components/index.jsx",
-    licenseewlbytimezone: "./www/js/source/reactpages/pages/licenseewl-by-timezone/components/index.jsx",
     notification: "./www/js/source/reactpages/pages/notification/components/resultAmendment/index.jsx",
     exchangewl: "./www/js/source/reactpages/pages/exchangewl/components/index.jsx",
     speciallicenseewl: "./www/js/source/reactpages/pages/speciallicenseewl/components/index.jsx",

@@ -110,7 +110,6 @@
     <Compile Include="Interfaces\IColossusBetsWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IExchangeVoidedDataAccess.cs" />
     <Compile Include="Interfaces\IExchangeWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\ILicenseeWinLossByTimeZoneDataAccess.cs" />
     <Compile Include="Interfaces\ISpecialLicenseeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ISubsidiaryPerformanceDataAccess.cs" />
     <Compile Include="Interfaces\IGoldDeluxeWinLossDataAccess.cs" />
@@ -118,7 +117,6 @@
     <Compile Include="SpecialLicenseeWinLossDataAccess.cs" />
     <Compile Include="AgCasinoBalanceDataAccess.cs" />
     <Compile Include="ColossusBetsWinLossDataAccess.cs" />
-    <Compile Include="LicenseeWinLossByTimeZoneDataAccess.cs" />
     <Compile Include="SubsidiaryPerformanceDataAccess.cs" />
     <Compile Include="GoldDeluxeWinLossDataAccess.cs" />
     <Compile Include="ThirdPartyWinLossDataAccess.cs" />

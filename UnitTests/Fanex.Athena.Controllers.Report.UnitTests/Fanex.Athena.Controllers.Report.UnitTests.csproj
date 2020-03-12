@@ -181,7 +181,6 @@
     <Compile Include="Result\ResultReport\PPResultPopupControllerTest.cs" />
     <Compile Include="SubsidiaryPerformanceReportControllerTest.cs" />
     <Compile Include="WeeklyLiveMatchReportControllerTest.cs" />
-    <Compile Include="LicenseeWinLossByTimeZoneReportControllerTest.cs" />
     <Compile Include="ExchangeWinLossReportControllerTest.cs" />
     <Compile Include="MatchWinLossReportControllerTest.Excel.cs" />
     <Compile Include="MatchWinLossReportControllerTest.Index.cs" />

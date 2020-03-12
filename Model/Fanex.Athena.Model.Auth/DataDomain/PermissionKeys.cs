@@ -33,7 +33,6 @@
         public const string ReportColossusBetsWinLoss = "ColossusBetsWinLoss71";
         public const string ReportCashOutWinLoss = "CashOutWinLoss72";
         public const string ReportSubsidiaryPerformance = "SubsidiaryPerformance73";
-        public const string ReportLicenseeWinLossByTimeZone = "LicenseeWinLossByTimeZone76";
         public const string ReportExchangeWinLoss = "ExchangeWinloss77";
         public const string ReportCasinoTurnover = "CasinoTurnover80";
         public const string ReportDailyBets = "DailyBets81";
@@ -45,10 +44,6 @@
         public const string CustomerInfoCommissionGroupList = "CommissionGroupList55";
         public const string CustomerInfoCustomerLog = "CustomerLog56";
         public const string CustomerInfoEditBetSetting = "EditBetSetting70";
-
-        /* Account. */
-
-        public const string AccountManageAccount = "ManageAccount46";
 
         /*Notification*/
 

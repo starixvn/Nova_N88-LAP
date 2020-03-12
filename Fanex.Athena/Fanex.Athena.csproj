@@ -303,8 +303,6 @@
     <Content Include="App_Data\UserGuide\LicenseeWLByTimeZone\en-US.htm" />
     <Content Include="App_Data\UserGuide\WeeklyLiveMatches\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\WeeklyLiveMatches\zh-TW.htm" />
-    <Content Include="Content\Account\AccountManagement.css" />
-    <Content Include="Content\Account\Permission.css" />
     <Content Include="Content\Fanex.Result\Allbet\css\button.css" />
     <Content Include="Content\Fanex.Result\Allbet\css\images\layout\btn_UI04.png" />
     <Content Include="Content\Fanex.Result\Allbet\css\images\layout\icon_UI02.png" />
@@ -5352,10 +5350,6 @@
     <Content Include="Resources\Images\loader.gif" />
     <Content Include="Resources\Images\null.png" />
     <Content Include="Resources\Images\tree-branch.gif" />
-    <Content Include="Scripts\Account\EditPermission.js" />
-    <Content Include="Scripts\Account\EditAccount.js" />
-    <Content Include="Scripts\Account\ResetPassword.js" />
-    <Content Include="Scripts\Account\ManageAccount.js" />
     <Content Include="Scripts\Global\jquery.jqgrid.additional.js" />
     <Content Include="Scripts\Extension\jquery.extension.js" />
     <Content Include="Scripts\Global\prototype.js" />
@@ -5461,12 +5455,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ViewResources.txt</LastGenOutput>
     </None>
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\EditAccount.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\EditPermission.cshtml" />
-    <Content Include="Views\Account\AssignCurrency.cshtml" />
-    <Content Include="Views\Account\PermissionPage.cshtml" />
     <Content Include="Views\Shared\_AccountLayout.cshtml" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Views\Authorization\ChangePass.cshtml" />

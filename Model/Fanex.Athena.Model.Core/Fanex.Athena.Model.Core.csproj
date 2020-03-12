@@ -141,10 +141,6 @@
     <Compile Include="MetaModel\IMetaModelAgent.cs" />
     <Compile Include="MetaModel\IMetaModelBalanceUpAndMoveBet.cs" />
     <Compile Include="MetaModel\IMetaModelCurrency.cs" />
-    <Compile Include="MetaModel\Account\AssignCurrencyMetaModel.cs" />
-    <Compile Include="MetaModel\Account\EditAccountMetaModel.cs" />
-    <Compile Include="MetaModel\Account\EditPermissionMetaModel.cs" />
-    <Compile Include="MetaModel\Account\ResetPasswordMetaModel.cs" />
     <Compile Include="MetaModel\BaseMetaModel.cs" />
     <Compile Include="MetaModel\Common\LeagueMetaModel.cs" />
     <Compile Include="MetaModel\IMetaModelCurrencyIdList.cs" />

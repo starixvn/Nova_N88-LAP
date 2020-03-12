@@ -148,7 +148,8 @@ namespace Fanex.Athena.Service.StatelessCore
         {
             const int totalBetFunctionID = 1;
             const int forecastFunctionID = 2;
-            IList<int> unusedFunction = new List<int>() { totalBetFunctionID, forecastFunctionID };
+            const int accManageFunctionID = 6;
+            IList<int> unusedFunction = new List<int>() { totalBetFunctionID, forecastFunctionID, accManageFunctionID };
 
             return MasterFunctions.Where(f => unusedFunction.All(unf => unf != f.FunctionId)).ToList();
         }

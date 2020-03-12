@@ -124,10 +124,7 @@
     <Compile Include="PlatformWinLossBetListControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RNGCasinoBetListControllerTest.cs" />
-    <Compile Include="RunningBetListControllerTest.cs" />
-    <Compile Include="RunningBettypesBetListControllerTest.cs" />
     <Compile Include="RunningBettypesOfMatchBetListControllerTest.cs" />
-    <Compile Include="RunningMatchBetListControllerTest.cs" />
     <Compile Include="SingleMatchParlayBetListControllerTest.cs" />
     <Compile Include="VoidbridgeBetListControllerTest.cs" />
     <Compile Include="WinlossByBetTypeBetListControllerTest.cs" />

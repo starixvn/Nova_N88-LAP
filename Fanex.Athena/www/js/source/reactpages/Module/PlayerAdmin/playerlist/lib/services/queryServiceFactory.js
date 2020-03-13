@@ -6,13 +6,10 @@ import LrfPlayerQueryService from './lrfPlayerQueryService';
 
 export default class QueryServiceFactory {
     static getPlayerListService(param) {
-        const { bankAccountNumber, email } = param;
-        if (bankAccountNumber || email) {
-            return LapPlayerQueryService;
-        } else if (this._isChangeAdvancedSearch(param)) {
+        if (this._isChangeAdvancedSearch(param)) {
             return LrfPlayerQueryService;
         } else {
-            return PlayerMultipleQueryService;
+            return LapPlayerQueryService;
         }
     }
 

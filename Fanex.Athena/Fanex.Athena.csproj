@@ -409,6 +409,7 @@
     <Content Include="karma-new-bypage.conf.js" />
     <Content Include="SpNameConfig\FanexSpName.BACKUPMNL.xml">
       <DependentUpon>FanexSpName.xml.tt</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="SpNameConfig\FanexSpName.LOCAL.xml">
       <DependentUpon>FanexSpName.xml.tt</DependentUpon>
@@ -5478,6 +5479,10 @@
       <Project>{a765275a-f566-4122-8e8e-47defab7b56b}</Project>
       <Name>Fanex.Athena.Api.CustomerLog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ControllerAPI\Fanex.Athena.Api.PlayerManagement\Fanex.Athena.Api.PlayerManagement.csproj">
+      <Project>{43241df7-54d9-4107-a6b3-ed89495c4f0b}</Project>
+      <Name>Fanex.Athena.Api.PlayerManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ControllerAPI\Fanex.Athena.Api.Report\Fanex.Athena.Api.Report.csproj">
       <Project>{8efb14a8-0a10-4095-a857-c6496e830458}</Project>
       <Name>Fanex.Athena.Api.Report</Name>
@@ -5502,6 +5507,10 @@
       <Project>{11985254-411e-45dc-9b50-8dcb8bd145ef}</Project>
       <Name>Fanex.Athena.Controllers.Customer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.PlayerManagement\Fanex.Athena.Controllers.PlayerManagement.csproj">
+      <Project>{63366e90-05d9-44da-8fca-2eac6b0377d3}</Project>
+      <Name>Fanex.Athena.Controllers.PlayerManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.Report\Fanex.Athena.Controllers.Report.csproj">
       <Project>{bc358f4a-b85d-43a2-a669-d2d2c9f2eedb}</Project>
       <Name>Fanex.Athena.Controllers.Report</Name>
@@ -5521,6 +5530,10 @@
     <ProjectReference Include="..\Model\Fanex.Athena.Model.Core\Fanex.Athena.Model.Core.csproj">
       <Project>{5f410090-94c0-46a5-9fec-b6c3b745b7a0}</Project>
       <Name>Fanex.Athena.Model.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Fanex.Athena.Model.PlayerManagement\Fanex.Athena.Model.PlayerManagement.csproj">
+      <Project>{12121414-6686-4286-86d3-328ebbf6bc8c}</Project>
+      <Name>Fanex.Athena.Model.PlayerManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Fanex.Athena.Model.Report\Fanex.Athena.Model.Report.csproj">
       <Project>{3AA658FF-B635-4990-A49C-AE886841A1CA}</Project>

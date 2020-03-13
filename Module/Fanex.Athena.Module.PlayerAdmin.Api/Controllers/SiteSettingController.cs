@@ -8,7 +8,6 @@ using Fanex.Athena.Service.StatelessCore.Interfaces;
 
 namespace Fanex.Athena.Module.PlayerAdmin.Api.Controllers
 {
-    [ApiOneAuthorization(AllowFunctionKeys = PermissionKeys.PlayerAdmin)]
     public class SiteSettingController : ExternalApiBaseController
     {
         private readonly ILicenseeSettingService _licenseeSettingService;

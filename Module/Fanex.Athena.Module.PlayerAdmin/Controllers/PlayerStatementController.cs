@@ -11,9 +11,6 @@
     using Fanex.Athena.Module.PlayerAdmin.MetaModel;
     using Fanex.Athena.Module.PlayerAdmin.Services.Interfaces;
     using Fanex.Athena.Module.PlayerAdmin.ViewModels;
-    using Fanex.Athena.Resources;
-    using Fanex.Athena.Service.Core.Common.Interfaces;
-    using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using ONEbook.UM.Filters;
 
@@ -61,6 +58,5 @@
             metaModel.Language = SessionServiceInstance.UserSession.Language;
             return Content(await _playerStatementService.GetUrl(metaModel).ConfigureAwait(false));
         }
-
     }
 }

@@ -1,13 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { DropdownMenu, DropdownItem } from '@jsroot/components/dropdown';
 import Timer from '@jsroot/components/utils/timer';
 
 export const UserNameInput = React.forwardRef((props, userNameRef) => {
     const { onSelectItem, minChar, getSuggestionList, searchOption, onChange, ...inputAttributes } = props;
-
-    const [isOpenSuggestion, setIsOpenSuggestion] = useState(false);
-    const [suggestionList, setSuggestionList] = useState([]);
-    const [dropdownStyle, setDropdownStyle] = useState(null);
 
     const cachedDataRef = useRef({});
 
@@ -53,7 +48,6 @@ export const UserNameInput = React.forwardRef((props, userNameRef) => {
             }
         }
         else {
-            setIsOpenSuggestion(false);
             setSuggestionList([]);
         }
 
@@ -62,28 +56,10 @@ export const UserNameInput = React.forwardRef((props, userNameRef) => {
 
     const debounceChange = Timer.debounce(handleChange, 300);
 
-    const handleSelectSuggestionItem = (value) => {
-        onSelectItem && onSelectItem(value);
-        handleCloseDropdown();
-    }
-
-    const handleCloseDropdown = () => {
-        setIsOpenSuggestion(false);
-    }
-
     return (
         <div className="pa-username">
             <input className="input-text" id="userName" name="userName" type="text" ref={userNameRef}
                 autoComplete="off" onChange={debounceChange} {...inputAttributes} />
-            <div className="dropdown">
-                <DropdownMenu isOpen={isOpenSuggestion} style={dropdownStyle}>
-                    {
-                        suggestionList.map(item => {
-                            return <DropdownItem key={item} onClick={() => handleSelectSuggestionItem(item)}>{item}</DropdownItem>
-                        })
-                    }
-                </DropdownMenu>
-            </div>
         </div>
     )
 });

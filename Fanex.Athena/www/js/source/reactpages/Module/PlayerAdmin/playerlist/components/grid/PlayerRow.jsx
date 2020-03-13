@@ -35,20 +35,19 @@ export const PlayerRow = (props) => {
     } = dataItem;
     const canShowMainColumn = IsDeposit && !IsArchived;
 
+    console.log(dataItem)
+
     return (
         <Row key={LicenseeCustId}>
             {displayedColumn[fields.Status] && <Cell><StatusCell dataItem={dataItem} /></Cell>}
             {displayedColumn[fields.UserName] && <Cell><UserNameCell dataItem={dataItem} /></Cell>}
             {displayedColumn[fields.SystemId] && <Cell>{SystemId}</Cell>}
-            {displayedColumn[fields.RealName] && <Cell>{RealName}</Cell>}
             {displayedColumn[fields.Currency] && <Cell className="center-align">{Currency}</Cell>}
             {displayedColumn[fields.CurrentBalance] && <Cell className="right-align">{canShowMainColumn && NumberFormat.formatDecimal(CurrentBalance)}</Cell>}
             {displayedColumn[fields.OutstandingBalance] && <Cell className="right-align">{canShowMainColumn && NumberFormat.formatDecimal(OutstandingBalance)}</Cell>}
             {displayedColumn[fields.OddsGroup] && <Cell className="center-align">{canShowMainColumn && OddsGroup !== undefined && <OddsGroupCell dataItem={dataItem} />}</Cell>}
             {displayedColumn[fields.BaStatus] && <BaStatusCell dataItem={dataItem} />}
             {displayedColumn[fields.SpecialLevel] && <Cell className="center-align">{canShowMainColumn && SpecialLevel !== undefined && <SpecialLevelCell dataItem={dataItem} />}</Cell>}
-            {displayedColumn[fields.LastTransaction] && <Cell>{LastTransaction}</Cell>}
-            {displayedColumn[fields.Email] && <Cell>{Email}</Cell>}
         </Row>
     )
 }

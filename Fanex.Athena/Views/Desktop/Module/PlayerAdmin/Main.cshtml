@@ -1,19 +1,37 @@
 ﻿@{
     ViewBag.Title = "LAP - Customer Administration";
     Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+
+    var serializer = new JavaScriptSerializer();
 }
+@model Fanex.Athena.Model.PlayerManagement.ViewModel.PlayerAdminViewModel
+@using System.Web.Script.Serialization
 
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/playeradmin/index.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 }
 @section pagejs {
     <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/playeradmin/playerlist.chunk.js")"></script>
+    <script src="@Url.ContentLinkByEnv("www/js/build/reactpages/lib/xlsx-style-sparta.chunk.js")" async></script>
 }
 
 @section globaljscode{
     window.initialState = {
-        isLoading: false
-    }
+    isLoading: false,
+    type: 1,
+    currencyList:  @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    isSubsidiary:  0
+    };
+
+    window._pConfig = {
+    hostUrl: '@Url.Content("~/" + Model.SiteName + "/")',
+    applyApiTokenUrl: '@Url.Action("ApplyApiToken", "Verify")',
+    hasBaPermission: @((bool)Model.IsAllowedBA ? 1 : 0),
+    hasOddsGroupPermission: 1,
+    hasSpecialLevelPermission: 1,
+    isAllowedCustomerComm: @((bool)Model.IsAllowedCustomerComm ? 1 : 0)
+    };
 }
 <div id="app-container">
 </div>

@@ -32,7 +32,9 @@ export class DataGrid extends PureComponent {
                 dataItem,
                 displayedColumn
             }
-            dataRows.push(<PlayerRow key={dataItem.LicenseeCustId} {...rowProps} />);
+
+            console.log(dataItem)
+            dataRows.push(<PlayerRow key={dataItem.IbcCustId} {...rowProps} />);
         }
 
         return dataRows;
@@ -40,6 +42,7 @@ export class DataGrid extends PureComponent {
 
     handleSort = (sortBy, sortOrder) => {
         const { playerList, setPlayerList } = this.props;
+        console.log(playerList)
         const sortedPlayerList = GridInteractionService.sortPlayerList(playerList, sortBy, sortOrder);
         setPlayerList(sortedPlayerList);
     }

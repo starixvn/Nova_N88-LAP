@@ -21,7 +21,7 @@ class LapCommonService extends BaseCommonService {
         const { baseUrl, applyLinkTokenUrl, applyApiTokenUrl, tabList } = initialConfig;
         this._applyLinkTokenUrl = applyLinkTokenUrl;
         this._applyApiTokenUrl = applyApiTokenUrl;
-        this._baseUrl = baseUrl;
+        this._baseUrl = '/';
         this._tabList = tabList || [];
     }
 
@@ -62,11 +62,14 @@ class LapCommonService extends BaseCommonService {
     _fetchDataWithToken(sysType, action, params, configOption) {
         const apiToken = `${this._applyApiTokenUrl}?${this._buildApplyTokenQueryString(sysType, action)}`;
 
+        console.log(this._applyApiTokenUrl);
         return axios.get(apiToken)
             .then(response => {
                 const { Token, ApiUrl } = response.data;
+                console.log(Token);
                 const apiActionUrl = `${ApiUrl}/${action}`;
 
+                
                 const commonAjaxConfig = this._buildCommonAjaxConfig(configOption, apiActionUrl, params);
                 const headerConfig = {
                     ...configOption.headers,
@@ -80,9 +83,11 @@ class LapCommonService extends BaseCommonService {
     }
 
     fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
+        console.log(this._baseUrl + action)
         const config = {...defaultAjaxConfig, ...configOption };
         if (sysType === systemType.newAdmin) {
             const relativeUrl = this._baseUrl + action;
+            
             const ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
 
             return axios(ajaxConfig);

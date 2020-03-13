@@ -159,11 +159,11 @@ namespace Fanex.Athena.Service.StatelessCore
             const int activeCusSumFunctionID = 64;
             const int licWLFunctionID = 27;
             const int cashoutWLFunctionID = 72;
-            
+
             var detailFunctions = new Dictionary<int, IEnumerable<Function>>();
             foreach (var function in MasterFunctions)
             {
-                var subFuntions = functionList.Where(f => f.ParentId == function.FunctionId && f.IsMenu && f.FunctionId != activeCusSumFunctionID)
+                var subFuntions = functionList.Where(f => f.ParentId == function.FunctionId && f.IsMenu && f.FunctionId != activeCusSumFunctionID && f.FunctionId != 79)
                                               .OrderBy(f => f.DisplayOrder)
                                               .ToList();
 

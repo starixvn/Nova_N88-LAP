@@ -8,12 +8,11 @@ using Fanex.Athena.Module.PlayerAdmin.Api.ViewModels;
 
 namespace Fanex.Athena.Module.PlayerAdmin.Api.Controllers
 {
-    [ApiOneAuthorization(AllowFunctionKeys = PermissionKeys.PlayerAdmin)]
-    public class PlayerListController : ExternalApiBaseController
+    public class PlayerList22Controller : ExternalApiBaseController
     {
         private readonly IPlayerListService _playerListService;
 
-        public PlayerListController(IPlayerListService playerListService)
+        public PlayerList22Controller(IPlayerListService playerListService)
         {
             _playerListService = playerListService;
         }

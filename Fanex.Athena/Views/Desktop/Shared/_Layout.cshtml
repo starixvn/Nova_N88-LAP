@@ -5,15 +5,14 @@
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var appSettings = DependencyResolver.Current.GetService<IAppSettings>();
     var licenseeSettingService = DependencyResolver.Current.GetService<ILicenseeSettingService>();
-    var userSession = sessionService.UserSession;
-    var licSession = sessionService.LicenseeSession;
+    var userSession = sessionService.UserSessionInfo;
     var userCurrencies = userSession == null || userSession.CurrencyList == null ?
         new Dictionary<string, string>() :
         userSession.CurrencyList.ToDictionary(x => x.Key.ToString(), x => x.Value);
 
-    var hasCustComm = licSession != null && licSession.IsAllowedCustomerComm;
-    var isParasiticMode = userSession != null && userSession.ApplicationMode == AppMode.Parasitic;
-    var isFakeLicensee = licenseeSettingService.IsFakeLicensee(licSession.LicenseeName);
+    var hasCustComm = appSettings.IsAllowedCustomerComm;
+    var isParasiticMode = true; // NEED REVIEWS
+    var isFakeLicensee = licenseeSettingService.IsFakeLicensee(appSettings.LicenseeName);
     var langCode = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
 }
 <!DOCTYPE html>

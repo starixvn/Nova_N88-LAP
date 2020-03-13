@@ -177,6 +177,23 @@ namespace Fanex.Athena.Extension.Utility
 
         #endregion Assign Currency
 
+        #region Licensee
+        public int LicenseeId
+        {
+            get { return int.Parse(GetValue("LicenseeId")); }
+        }
+
+        public string LicenseeName
+        {
+            get { return GetValue("LicenseeName"); }
+        }
+        #endregion Licensee
+
+        public bool IsAllowedCustomerComm
+        {
+            get { return bool.Parse(GetValue("IsAllowedCustomerComm")); }
+        }
+
         public string GetValue(string key)
         {
             return ConfigurationManager.AppSettings[key];

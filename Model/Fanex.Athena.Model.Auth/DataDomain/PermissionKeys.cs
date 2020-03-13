@@ -5,6 +5,8 @@
 
         /*NAP Menu Permission*/
         public const string UserManagement = "User Management";
+        public const string ReportLicenseeWinLoss = "LicenseeWinLoss";
+
 
         public const string GroupTotalBet = "TOTALBETS1";
         public const string GroupForecast = "FORECAST2";
@@ -39,7 +41,6 @@
         /* Report */
 
         public const string ReportLastBetsMonitoring = "LastBetsMonitoring26";
-        public const string ReportLicenseeWinLoss = "LicenseeWinLoss27";
         public const string ReportSettledMatchCount = "SettledMatchCount28";
         public const string ReportCustomerWinLoss = "CustomerWinLoss29";
         public const string ReportCustomerPendingFunds = "CustomerPendingFunds30";

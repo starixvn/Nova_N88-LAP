@@ -240,8 +240,7 @@ namespace Fanex.Athena.Controllers
             currentSession.OnUserId = onlineUserId;
             currentSession.SessionId = Session.SessionID;
             currentSession.MenuItemList = (userService1.GetMenuItem(user.Id, NapSettings.Settings.SiteId,
-                NapSettings.Settings.Environment, true)).Where(x => !string.IsNullOrWhiteSpace(x.Url))
-                .OrderBy(x => x.DisplayOrder).ToList();
+                NapSettings.Settings.Environment, true)).OrderBy(x => x.DisplayOrder).ToList();
 
             return onlineUserId;
         }
@@ -461,13 +460,24 @@ namespace Fanex.Athena.Controllers
                 NapSettings.Settings.Environment, true)
                 .OrderBy(x => x.DisplayOrder).ToList();
 
+            //GET user setting
+            var defaultCurrency = "EUR";
+            var currencyList = new Dictionary<int, string>();
+            currencyList.Add(1, defaultCurrency);
+
             UserSessionInfo userSession = new UserSessionInfo {
                 Username = user.Username,
                 UserId = user.Id,
                 OnUserId = onUserId,
                 SessionId = Session.SessionID,
-                MenuItemList = menuItems
+                MenuItemList = menuItems,
+                DefaultBaseCurrency = defaultCurrency,
+                CurrencyList = currencyList
             };
+
+            currentSession.UserId = user.Id;
+            currentSession.Username = user.Username;
+            currentSession.OnUserId = onUserId;
 
             SessionServiceInstance.AssignSessions(userSession);
 

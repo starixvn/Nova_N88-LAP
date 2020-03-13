@@ -9,24 +9,18 @@ namespace Fanex.Athena.Model.Core.ViewModel
     using System.Collections.Generic;
 
     using Fanex.Athena.Model.Auth;
+    using Fanex.NAP.Core.Models;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class MenuViewModel
     {
-        public IEnumerable<Function> UserFunctions { get; set; }
+        public MenuViewModel()
+        {
+            MenuItems = new List<MenuItem>();
+        }
 
-        public IEnumerable<Function> MasterFunctions { get; set; }
-
-        public IDictionary<int, IEnumerable<Function>> UserDetailFunctions { get; set; }
-
-        public bool IsAllowedCustonmerCommission { get; set; }
-
-        public bool IsInternalLogin { get; set; }
-
-        public bool IsAllowedManagementMember { get; set; }
-
-        public bool IsFakeLicensee { get; set; }
+        public IList<MenuItem> MenuItems { get; set; }
     }
 }

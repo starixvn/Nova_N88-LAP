@@ -6,24 +6,6 @@
 
 namespace Fanex.Athena
 {
-    using Api.Base.Attributes;
-
-    using Data;
-
-    using Fanex.Athena.Extension.Helpers;
-    using Fanex.Athena.Web.ActionFilter;
-    using Fanex.Athena.Web.RouterConfig;
-    using Fanex.Data.SqlServer;
-    using Fanex.Logging.Sentry.RavenClient;
-
-    using Logging;
-
-    using MessagePack.Resolvers;
-
-    using RemotingRef;
-
-    using SharpRaven;
-
     using System;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
@@ -33,6 +15,17 @@ namespace Fanex.Athena
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using Api.Base.Attributes;
+    using Data;
+    using Fanex.Athena.Extension.Helpers;
+    using Fanex.Athena.Web.ActionFilter;
+    using Fanex.Athena.Web.RouterConfig;
+    using Fanex.Data.SqlServer;
+    using Fanex.Logging.Sentry.RavenClient;
+    using Logging;
+    using MessagePack.Resolvers;
+    using RemotingRef;
+    using SharpRaven;
 
     public class MvcApplication : HttpApplication
     {

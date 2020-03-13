@@ -31,6 +31,15 @@
             }
         }
 
+        public UserSessionInfo UserSessionInfo
+        {
+            get
+            {
+                var temp = HttpContext.Current.Session[UserSessionKey];
+                return temp as UserSessionInfo;
+            }
+        }
+
         public string CaptchaCode
         {
             get { return HttpContext.Current.Session[CaptchaCodeKey] as string; }
@@ -41,6 +50,11 @@
         {
             HttpContext.Current.Session[UserSessionKey] = userAuthInfo;
             HttpContext.Current.Session[LicenseeSessionKey] = licenseeAuthInfo;
+        }
+
+        public void AssignSessions(UserSessionInfo userSession)
+        {
+            HttpContext.Current.Session[UserSessionKey] = userSession;
         }
     }
 }

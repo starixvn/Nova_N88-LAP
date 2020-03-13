@@ -17,13 +17,8 @@ define([
             Site.initialize();
             initVariables();
             initEvent();
-            checkMoveBetNotification();
             Notification.add();
             activeDefaultMenuItem();
-            setTimeout(function () {
-                const $mainFrame = $('#mainFrame');
-                $mainFrame.attr('src', $mainFrame.data('src'));
-            }, 100);
 
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();

@@ -2,7 +2,7 @@
 @{
     Layout = null;
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var licenseeName = sessionService.LicenseeSession.LicenseeName;
+    var licenseeName = "N88";
     var langCode = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
 }
 <!DOCTYPE html>
@@ -38,9 +38,9 @@
     <main class="main">
         @if (ViewBag.IsEnabledMoveBetNotification)
         {
-        <div class="notification-marquee-container" style="display: none">
-            <div id="notification-marquee" style="color: #C02603"></div>
-        </div>
+            <div class="notification-marquee-container" style="display: none">
+                <div id="notification-marquee" style="color: #C02603"></div>
+            </div>
         }
         <iframe id="mainFrame" name="main" data-src="@Url.Content("~/" + ViewBag.DefaultReportUrl)" frameborder="0" scrolling="auto"></iframe>
     </main>

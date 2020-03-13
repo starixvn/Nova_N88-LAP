@@ -10,31 +10,6 @@ define(['jquery', 'crypto-js'], function ($, CryptoJS) {
         errValidCode: 'You must input validation code.'
     };
 
-    function getUserSalt() {
-        let salt;
-        const userName = $('#userName').val();
-        if (userName) {
-            const url = window.resolveClientUrl('Authorization/GetUserSalt?userName=' + userName);
-            $.ajax({
-                url: url,
-                type: 'GET',
-                async: false,
-                contentType: 'application/json; charset=utf-8',
-                cache: false,
-                beforeSend: function () {
-                },
-                success: function (result) {
-                    salt = result;
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ': ' + thrownError);
-                }
-            });
-        }
-
-        return salt;
-    }
-
     function getValidateImage() {
         const url = $('#captchaUrl').val();
         $('#imgCode').attr('src', url);
@@ -97,11 +72,9 @@ define(['jquery', 'crypto-js'], function ($, CryptoJS) {
             const $loginToken = $('#LogInToken');
             const $loginTokenTemp = $('#LogInTokenTemp');
 
-            const userSalt = getUserSalt();
-
             $loginToken.val($loginTokenTemp.val());
             const $password = $('#passWord');
-            const hashPassword = CryptoJS.SHA1($password.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
+            const hashPassword = CryptoJS.SHA1($password.val()).toString(CryptoJS.enc.Hex).toUpperCase();
             const encryptedPass = CryptoJS.SHA1(hashPassword + $loginToken.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
             $password.val(encryptedPass);
             return true;

@@ -6,27 +6,13 @@
 
 namespace Fanex.Athena.Controllers
 {
-    using Extension.Utility.Interfaces;
-
-    using Fanex.Athena.Extension.Utility;
-    using Fanex.Athena.Model.Auth.MetaModel;
-    using Fanex.Athena.Model.Core.DataDomain;
-    using Fanex.Athena.Model.Core.DTO.Common;
-    using Fanex.Athena.Model.Core.DTO.Users;
-    using Fanex.Athena.Service.Core.Users.Interfaces;
-    using Fanex.Athena.Web.ActionFilter;
-
-    using ONEbook.UM.Filters;
-    using ONEbook.UM.Services;
-
-    using Resources;
-
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Web;
@@ -34,6 +20,22 @@ namespace Fanex.Athena.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.UI;
+    using Extension.Utility.Interfaces;
+    using Fanex.Athena.Extension.Utility;
+    using Fanex.Athena.Model.Auth;
+    using Fanex.Athena.Model.Auth.MetaModel;
+    using Fanex.Athena.Model.Core.DataDomain;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Web.ActionFilter;
+    using Fanex.Common;
+    using Fanex.NAP.Core.Configuration;
+    using Fanex.NAP.Core.Models;
+    using Fanex.NAP.Core.Models.ParameterObject;
+    using Fanex.NAP.Core.Web.Auth;
+    using Fanex.NAP.Core.Web.Session;
+    using ONEbook.UM.Filters;
+    using ONEbook.UM.Services;
+    using Resources;
 
     public class AuthorizationController : CultureBaseController
     {
@@ -42,6 +44,7 @@ namespace Fanex.Athena.Controllers
         private const int InvalidCaptchaError = 101;
         private const int InvalidUserNameError = 102;
         private const int InvalidPasswordError = 103;
+        private const int UserNotExistError = 104;
 
         #endregion Constant
 
@@ -49,6 +52,10 @@ namespace Fanex.Athena.Controllers
         private readonly IAuthService _authService;
         private readonly IMaintenanceService _maintenanceService;
         private readonly IFormsAuthenticationService _formAuthenticationService;
+        private readonly NAP.Core.Service.Interface.IUserService userService1;
+        private readonly NAP.Core.Service.Interface.IGroupService groupService;
+        private readonly NAP.Core.Service.Interface.ISecurityService securityService;
+        private readonly ICurrentSession currentSession;
 
 #pragma warning disable S107 // Methods should not have too many parameters
 
@@ -56,13 +63,21 @@ namespace Fanex.Athena.Controllers
             IMaintenanceService maintenanceService,
             IUserService userService,
             IAuthService authService,
-            IFormsAuthenticationService formAuthenticationService
+            IFormsAuthenticationService formAuthenticationService,
+            NAP.Core.Service.Interface.IUserService userService1,
+            NAP.Core.Service.Interface.IGroupService groupService,
+            NAP.Core.Service.Interface.ISecurityService securityService,
+            ICurrentSession currentSession
             )
         {
             _maintenanceService = maintenanceService;
             _userService = userService;
             _authService = authService;
             _formAuthenticationService = formAuthenticationService;
+            this.userService1 = userService1;
+            this.groupService = groupService;
+            this.securityService = securityService;
+            this.currentSession = currentSession;
         }
 
         [CheckUMFilter]
@@ -108,36 +123,147 @@ namespace Fanex.Athena.Controllers
             }
             else
             {
-                var requestUser = new User
+                var user = userService1.Get(model.UserName.Trim());
+                if (user != null)
                 {
-                    Username = model.UserName,
-                    Password = model.PassWord,
-                    Request = new Request { Ip = Request.UserHostAddress },
-                };
-
-                var resultInfo = _authService.ValidateUserForLrf(requestUser, model.LogInToken);
-
-                if (resultInfo.IsSuccessful)
-                {
-                    var user = resultInfo.ExtendedData;
-                    CreateSession(user);
-                    if (user.IsInRole(UserRole.Admin.ToString()))
+                    var password = Cryptography.CfsEnCode(model.PassWord);
+                    if (password == user.Password)
                     {
-                        return RedirectToAction("Index", "LicenseeList");
-                    }
-                    else
-                    {
-                        FormsAuthentication.RedirectFromLoginPage(user.Username, false);
+                        if (!IsExistNapSite(user) || !IsExistNapGroup(user))
+                        {
+                            SetErrorForView(UserNotExistError, ViewResources.UserNotExist);
+                        }
+                        else
+                        {
+                            var onUserId = LoginCheckIn(user);
+                            if(userService1.HasAnyPermission(user.Id, NapSettings.Settings.SiteId))
+                            {
+                                CreateSession(user, onUserId);
+                                CreateAuthInfo(user, onUserId);
+
+                                return RedirectToAction("Index", "Home");
+                            }
+                        }
                     }
                 }
-                else
-                {
-                    SetErrorForView(resultInfo.Code, resultInfo.Message);
-                }
+
+                //var requestUser = new User
+                //{
+                //    Username = model.UserName,
+                //    Password = model.PassWord,
+                //    Request = new Request { Ip = Request.UserHostAddress },
+                //};
+
+                //var resultInfo = _authService.ValidateUserForLrf(requestUser, model.LogInToken);
+
+                //if (resultInfo.IsSuccessful)
+                //{
+                //    var user = resultInfo.ExtendedData;
+                //    CreateSession(user);
+                //    if (user.IsInRole(UserRole.Admin.ToString()))
+                //    {
+                //        return RedirectToAction("Index", "LicenseeList");
+                //    }
+                //    else
+                //    {
+                //      FormsAuthentication.RedirectFromLoginPage(user.Username, false);
+                //    }
+                //}
+                //else
+                //{
+                //    SetErrorForView(resultInfo.Code, resultInfo.Message);
+                //}
             }
 
             ViewBag.LogInToken = CreateToken();
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
+        }
+
+        private void CreateAuthInfo(NAP.Core.Models.User user, int onlineUserId)
+        {
+            var authInfo = new AuthInfo
+            {
+                UserId = user.Id,
+                OnUserId = onlineUserId
+            };
+
+            var cookiePath = HttpContext.Request.ApplicationPath;
+            var authTicket = new FormsAuthenticationTicket(
+                 1,
+                user.Username,
+                DateTime.Now,
+                DateTime.Now.AddMinutes(20000),
+                false,
+                authInfo.ToXml(),
+                cookiePath);
+
+            string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+            {
+                HttpOnly = true,
+                Path = cookiePath,
+                Name = FormsAuthentication.FormsCookieName
+            };
+
+            Response.Cookies.Add(authCookie);
+        }
+
+        private int LoginCheckIn(NAP.Core.Models.User user)
+        {
+            //var loginParameter = new LoginParameter
+            //{
+            //    UserId = user.Id,
+            //    SiteId = NapSettings.Settings.SiteId,
+            //    NetSessionId = Session.SessionID,
+            //    Ip = HttpContext.Request.ServerVariables["REMOTE_ADDR"],
+            //    LoginDate = DateTime.Now,
+            //    BrowserName = CurrentContext.BrowserName,
+            //    CountryCode = CurrentContext.CountryCode,
+            //    Domain = CurrentContext.DomainName,
+            //    Platform = CurrentContext.Platform
+            //};
+
+            var loginParam = new LoginParameter
+            {
+                UserId = user.Id,
+                SiteId = NapSettings.Settings.SiteId,
+                NetSessionId = HttpContext.Session.SessionID,
+                Ip = HttpContext.Request.ServerVariables["REMOTE_ADDR"],
+                LoginDate = DateTime.Now
+            };
+
+            var onlineUserId = securityService.Login(loginParam);
+
+            currentSession.Level = userService1.GetUserLevel(user.Id, NapSettings.Settings.SiteId);
+            currentSession.UserId = user.Id;
+            currentSession.Username = user.Username;
+            currentSession.OnUserId = onlineUserId;
+            currentSession.SessionId = Session.SessionID;
+            currentSession.MenuItemList = (userService1.GetMenuItem(user.Id, NapSettings.Settings.SiteId,
+                NapSettings.Settings.Environment, true)).Where(x => !string.IsNullOrWhiteSpace(x.Url))
+                .OrderBy(x => x.DisplayOrder).ToList();
+
+            return onlineUserId;
+        }
+
+        private bool IsExistNapSite(NAP.Core.Models.User user)
+        {
+            return (userService1.GetSiteLevel(user.Id, NapSettings.Settings.Environment)).Any(s => s.Site.Id == NapSettings.Settings.SiteId && s.IsActive);
+        }
+
+        private bool IsExistNapGroup(NAP.Core.Models.User user)
+        {
+            if (user.Group != null)
+            {
+                var group = groupService.Get(user.Group.Id);
+
+                if (group != null && !group.IsActive)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         [HttpGet]
@@ -329,15 +455,21 @@ namespace Fanex.Athena.Controllers
                  Regex.IsMatch(Request.UserHostAddress, AppSettingInstance.GetValue("CompanyIP"));
         }
 
-        private void CreateSession(User user)
+        private void CreateSession(User user, int onUserId)
         {
-            var onuserId = _authService.LoginOnUser(user, Session.SessionID, user.ServerId, Request.UserHostAddress);
-            SessionServiceInstance.CreateNewSession(
-                user.UserID,
-                onuserId,
-                user.Username,
-                user.IsInternal,
-                user.Licensee.Id);
+            var menuItems = userService1.GetMenuItem(user.Id, NapSettings.Settings.SiteId,
+                NapSettings.Settings.Environment, true)
+                .OrderBy(x => x.DisplayOrder).ToList();
+
+            UserSessionInfo userSession = new UserSessionInfo {
+                Username = user.Username,
+                UserId = user.Id,
+                OnUserId = onUserId,
+                SessionId = Session.SessionID,
+                MenuItemList = menuItems
+            };
+
+            SessionServiceInstance.AssignSessions(userSession);
 
             _formAuthenticationService.SetAuthCookie(user.Username, false);
         }

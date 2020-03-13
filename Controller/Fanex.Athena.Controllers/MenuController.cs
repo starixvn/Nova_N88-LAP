@@ -6,50 +6,34 @@
 
 namespace Fanex.Athena.Controllers
 {
-    using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Model.Auth.Enum;
-    using Fanex.Athena.Model.Core.ViewModel;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-
-    using System.Linq;
     using System.Web.Mvc;
+    using Fanex.Athena.Model.Core.ViewModel;
+    using Fanex.NAP.Core.Web.Session;
 
-    using Web.ActionFilter;
-
-    [AuthorizeRestriction(AppMode.Self)]
+    //[AuthorizeRestriction(AppMode.Self)]
     public class MenuController : CultureBaseController
     {
-        private readonly IFunctionService _functionService;
+        //private readonly IFunctionService _functionService;
+        private readonly ICurrentSession currentSession;
 
         public MenuController(
-            IFunctionService functionService
+            //IFunctionService functionService
+            ICurrentSession currentSession
             )
         {
-            _functionService = functionService;
+            //_functionService = functionService;
+            this.currentSession = currentSession;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var userSession = SessionServiceInstance.UserSession;
-            var licenseeSession = SessionServiceInstance.LicenseeSession;
-            var systemFunctions = userSession.FunctionList;
+            return View("~/Views/Desktop/Menu/Index.cshtml", SessionServiceInstance.UserSessionInfo.MenuItemList);
+        }
 
-            var canManageMember = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.CustomerInfoCustomerList);
-
-            var viewModel = new MenuViewModel
-            {
-                UserFunctions = _functionService.Functions.Where(i => systemFunctions.Any(x => x.FunctionKey == i.FunctionKey)).ToList(),
-                IsAllowedCustonmerCommission = licenseeSession.IsAllowedCustomerComm,
-                IsInternalLogin = userSession.IsInternal,
-                IsAllowedManagementMember = canManageMember,
-                IsFakeLicensee = IsFakeLicensee(licenseeSession.LicenseeName)
-            };
-
-            viewModel.MasterFunctions = _functionService.GetMasterFunctions(viewModel.UserFunctions);
-            viewModel.UserDetailFunctions = _functionService.GetSubMenus(viewModel.UserFunctions);
-
-            return View("~/Views/Desktop/Menu/Index.cshtml", viewModel);
+        public ActionResult Test()
+        {
+            return View();
         }
     }
 }

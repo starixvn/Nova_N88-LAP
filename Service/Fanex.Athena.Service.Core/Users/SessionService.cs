@@ -73,10 +73,23 @@ namespace Fanex.Athena.Service.Core.Users
             }
         }
 
+        public UserSessionInfo UserSessionInfo
+        {
+            get
+            {
+                return _sessionStorage.UserSessionInfo; 
+            }
+        }
+
         public string CaptchaCode
         {
             get { return _sessionStorage.CaptchaCode; }
             set { _sessionStorage.CaptchaCode = value; }
+        }
+
+        public void AssignSessions(UserSessionInfo userSession)
+        {
+            _sessionStorage.AssignSessions(userSession);
         }
 
         public void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession)

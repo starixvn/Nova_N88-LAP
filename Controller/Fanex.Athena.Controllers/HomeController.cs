@@ -40,9 +40,9 @@ namespace Fanex.Athena.Controllers
         {
             if (!HttpContext.Response.IsRequestBeingRedirected)
             {
-                var user = SessionServiceInstance.UserSession;
+                var user = SessionServiceInstance.UserSessionInfo;
                 if (user == null || user.UserId <= 0
-                    || string.IsNullOrEmpty(user.UserName) || SessionServiceInstance.LicenseeSession == null)
+                    || string.IsNullOrEmpty(user.Username))
                 {
                     Session.Clear();
                     return RedirectToAction("LocationRestriction", "Utility");
@@ -55,7 +55,7 @@ namespace Fanex.Athena.Controllers
         private void AssignViewBagData()
         {
             var returnPath = TempData["ReturnPath"];
-            var userSession = SessionServiceInstance.UserSession;
+            var userSession = SessionServiceInstance.UserSessionInfo;
             ViewBag.DefaultReportUrl = returnPath == null ? userSession.DefaultReportUrl : returnPath.ToString();
             ViewBag.OnUserId = userSession.OnUserId;
             ViewBag.IsInternal = userSession.IsInternal ? "1" : "0";

@@ -12,12 +12,8 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Fanex.Athena.Api.StatelessBase.Logger;
-using Fanex.Athena.DataAccess.Report;
-using Fanex.Athena.DataAccess.Report.Interfaces;
 using Fanex.Athena.Extension;
 using Fanex.Athena.Extension.Utility.Internal;
-using Fanex.Athena.Module.PlayerAdmin;
-using Fanex.Athena.Module.PlayerAdmin.Api;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.StatelessCore;
@@ -46,9 +42,6 @@ namespace Fanex.Athena
             builder.RegisterFilterProvider();
             builder.RegisterWebApiFilterProvider(config);
             // generic types
-            builder.RegisterGeneric(typeof(ThirdPartyWinLossDataAccess<>))
-                .As(typeof(IThirdPartyWinLossDataAccess<>));
-
             RegisterThirdpartyServices(builder);
 
             RegisterSingleton(builder);
@@ -60,6 +53,11 @@ namespace Fanex.Athena
             builder.RegisterControllers(controllerAssemblies).PropertiesAutowired();
             builder.RegisterApiControllers(apiControllerAssemblies).PropertiesAutowired();
 
+            builder.RegisterType<NAP.Core.Service.Impl.UserService>().As<NAP.Core.Service.Interface.IUserService>();
+            builder.RegisterType<NAP.Core.Service.Impl.GroupService>().As<NAP.Core.Service.Interface.IGroupService>();
+            builder.RegisterType<NAP.Core.Service.Impl.SiteService>().As<NAP.Core.Service.Interface.ISiteService>();
+            builder.RegisterType<NAP.Core.Service.Impl.SecurityService>().As<NAP.Core.Service.Interface.ISecurityService>();
+            builder.RegisterType<NAP.Core.Web.Session.CurrentSession>().As<NAP.Core.Web.Session.ICurrentSession>();
 
             builder.RegisterType<ApiExceptionLogger>().As<IExceptionLogger>();
 
@@ -75,9 +73,6 @@ namespace Fanex.Athena
 
             builder.RegisteModuleApiModule(moduleAssemblies, "Fanex.Athena.Module.Dashboard");
             builder.RegisteModuleModuleAndApi(moduleAssemblies, "Fanex.Athena.Module.Notification");
-
-            builder.RegisteModulePlayerAdminApi(moduleAssemblies);
-            builder.RegisteModulePlayerAdmin(moduleAssemblies);
         }
 
         private static void RegisterHttpClient(ContainerBuilder builder)

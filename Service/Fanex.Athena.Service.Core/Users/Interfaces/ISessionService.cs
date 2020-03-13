@@ -21,7 +21,11 @@ namespace Fanex.Athena.Service.Core.Users.Interfaces
 
         UserAuthInfo UserSession { get; }
 
+        UserSessionInfo UserSessionInfo { get; }
+
         void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession);
+
+        void AssignSessions(UserSessionInfo userSession);
 
         void CreateNewSession(
             int userId,

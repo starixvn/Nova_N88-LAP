@@ -12,7 +12,7 @@ namespace Fanex.Athena.Controllers
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.ViewModel;
-
+    using Fanex.NAP.Core.Configuration;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -32,21 +32,19 @@ namespace Fanex.Athena.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var userSession = SessionServiceInstance.UserSession;
-            var licensee = SessionServiceInstance.LicenseeSession;
+            var userSession = SessionServiceInstance.UserSessionInfo;
             var viewModel = new HeaderPageViewModel
             {
-                Language = userSession.Language,
+                Language = string.IsNullOrEmpty(userSession.Language) ? DefaultLanguage : userSession.Language,
                 OnUserId = userSession.OnUserId,
-                LicenseeList = _licenseeDataAccess.GetByUser(userSession.UserId),
                 IsInternalLogin = userSession.IsInternal,
                 HasRecheckIn = !AppSettingInstance.LocalTest,
                 SupportedLanguageList = Util.SupportedLanguages,
-                UserName = userSession.UserName,
-                CurrentLicenseeId = licensee.LicenseeId,
-                IsAllowedManagementMember = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.CustomerInfoCustomerList),
-                IsFakeLicensee = IsFakeLicensee(licensee.LicenseeName),
-                IsAllowedNotification = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ResultAmendmentNotificationReport)
+                UserName = userSession.Username,
+                CurrentLicenseeId = NapSettings.Settings.SiteId,
+                IsAllowedManagementMember = userSession.MenuItemList.Any(x => x.Name == PermissionKeys.UserManagement),
+                IsFakeLicensee = false,
+                IsAllowedNotification = false
             };
             return View("~/Views/Desktop/Header/Index.cshtml", viewModel);
         }

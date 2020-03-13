@@ -2,6 +2,10 @@
 {
     public static class PermissionKeys
     {
+
+        /*NAP Menu Permission*/
+        public const string UserManagement = "User Management";
+
         public const string GroupTotalBet = "TOTALBETS1";
         public const string GroupForecast = "FORECAST2";
         public const string GroupReport = "REPORTS3";

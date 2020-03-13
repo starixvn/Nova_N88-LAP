@@ -23095,27 +23095,11 @@ function () {
         throw new Error("Missing applyApiTokenUrl in window._pConfig");
       }
 
-      if (!window.Identity) {
-        throw new Error("Missing Identity object");
-      }
-
-      var _window$Identity = window.Identity,
-          RootUrl = _window$Identity.RootUrl,
-          ApplyTokenUrl = _window$Identity.ApplyTokenUrl;
-
-      if (!RootUrl) {
-        throw new Error("Missing Identity.RootUrl");
-      }
-
-      if (!ApplyTokenUrl) {
-        throw new Error("Missing Identity.ApplyTokenUrl");
-      }
-
       var initialConfig = {
         tabList: tabList,
-        baseUrl: RootUrl,
+        baseUrl: pageConfig.hostUrl,
         applyApiTokenUrl: applyApiTokenUrl,
-        applyLinkTokenUrl: ApplyTokenUrl
+        applyLinkTokenUrl: pageConfig.applyApiTokenUrl
       };
       return new _lapCommonService__WEBPACK_IMPORTED_MODULE_0__["default"](initialConfig);
     }
@@ -23207,7 +23191,7 @@ function (_BaseCommonService) {
         tabList = initialConfig.tabList;
     _this._applyLinkTokenUrl = applyLinkTokenUrl;
     _this._applyApiTokenUrl = applyApiTokenUrl;
-    _this._baseUrl = baseUrl;
+    _this._baseUrl = '/';
     _this._tabList = tabList || [];
     return _this;
   }
@@ -23255,10 +23239,12 @@ function (_BaseCommonService) {
       var _this2 = this;
 
       var apiToken = "".concat(this._applyApiTokenUrl, "?").concat(this._buildApplyTokenQueryString(sysType, action));
+      console.log(this._applyApiTokenUrl);
       return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(apiToken).then(function (response) {
         var _response$data = response.data,
             Token = _response$data.Token,
             ApiUrl = _response$data.ApiUrl;
+        console.log(Token);
         var apiActionUrl = "".concat(ApiUrl, "/").concat(action);
 
         var commonAjaxConfig = _this2._buildCommonAjaxConfig(configOption, apiActionUrl, params);
@@ -23278,6 +23264,7 @@ function (_BaseCommonService) {
     key: "fetchData",
     value: function fetchData(sysType, action, params) {
       var configOption = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : defaultAjaxConfig;
+      console.log(this._baseUrl + action);
 
       var config = _objectSpread({}, defaultAjaxConfig, {}, configOption);
 

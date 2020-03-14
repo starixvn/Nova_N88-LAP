@@ -20,7 +20,6 @@
         public const string ReportDailyBetList = "DailyBetList37";
         public const string ReportLiveReport = "LiveReport38";
         public const string ReportTurnover = "Turnover39";
-        public const string ReportCustomerBalance = "CustomerBalance40";
         public const string ReportResults = "Results41";
         public const string ReportWinLossByLeague = "WinLossByLeague59";
         public const string ReportGoldDeluxeWinloss = "GoldDeluxeWinloss65";

@@ -276,6 +276,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Code\DesktopLiveReportRazorHelper.cshtml" />
+    <Content Include="App_Data\UserGuide\ActiveCustomerSummary\en-US.htm" />
+    <Content Include="App_Data\UserGuide\ActiveCustomerSummary\zh-CN.htm" />
+    <Content Include="App_Data\UserGuide\ActiveCustomerSummary\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterRefno\en-US.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterRefno\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterRefno\zh-Hans.htm" />
@@ -1420,10 +1423,6 @@
     <Content Include="Views\Desktop\Customer\BetSetting\VirtualSports.cshtml" />
     <Content Include="Views\Desktop\BetList\LiveReport\VirtualSports.cshtml" />
     <Content Include="Views\Desktop\Customer\BetSetting\Lottery.cshtml" />
-    <Content Include="Views\Desktop\Report\CustomerBalance\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\CustomerBalance\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\CustomerBalance\Main.cshtml" />
-    <Content Include="www\css\source\pages\report\customerbalance.scss" />
     <Content Include="www\css\build\dev\pages\reports\activecustomersummary.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\activecustomersummary.css.map" />
     <Content Include="www\css\build\dev\pages\reports\customerbalance.chunk.js.map" />
@@ -1850,9 +1849,6 @@
     <Content Include="www\js\source\pages\report\cashoutwinloss\cashoutwinloss.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\cashoutwinloss.option.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\main.js" />
-    <Content Include="www\js\source\pages\report\customerbalance\customerbalance.js" />
-    <Content Include="www\js\source\pages\report\customerbalance\customerbalance.option.js" />
-    <Content Include="www\js\source\pages\report\customerbalance\main.js" />
     <Content Include="www\js\source\pages\report\customerpendingfunds\customerpendingfunds.js" />
     <Content Include="www\js\source\pages\report\customerpendingfunds\customerpendingfunds.option.js" />
     <Content Include="www\js\source\pages\report\customerpendingfunds\main.js" />
@@ -1959,8 +1955,6 @@
     <Content Include="www\js\tests\pages\forecast\forecast.ah-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss.option-spec.js" />
-    <Content Include="www\js\tests\pages\report\customerbalance\customerbalance-spec.js" />
-    <Content Include="www\js\tests\pages\report\customerbalance\customerbalance.option-spec.js" />
     <Content Include="www\js\tests\pages\report\customerpendingfunds\customerpendingfunds-spec.js" />
     <Content Include="www\js\tests\pages\report\customerpendingfunds\customerpendingfunds.option-spec.js" />
     <Content Include="www\js\tests\pages\report\customerturnover\customerturnover-spec.js" />

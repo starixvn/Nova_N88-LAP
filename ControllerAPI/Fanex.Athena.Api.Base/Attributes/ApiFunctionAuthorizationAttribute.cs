@@ -110,7 +110,7 @@
         {
             var sessionService = scope.Resolve<ISessionService>();
             var licenseeSession = sessionService.LicenseeSession;
-            var userSession = sessionService.UserSession;
+            var userSession = sessionService.UserSessionInfo;
             var authorized = userSession != null && licenseeSession != null;
             if (authorized)
             {

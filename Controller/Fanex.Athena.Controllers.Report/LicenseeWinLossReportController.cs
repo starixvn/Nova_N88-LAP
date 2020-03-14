@@ -17,12 +17,11 @@ namespace Fanex.Athena.Controllers.Report
     using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.NAP.Core.Web.Attribute;
+    using Fanex.Athena.Web.ActionFilter;
     using Model.Core.DTO.Common;
     using Model.Core.DTO.Configuration;
-    using static Fanex.NAP.Core.Business.Constant;
 
-    [NapAuth(FunctionKey = PermissionKeys.ReportLicenseeWinLoss, Policy = Policy.Read)]
+    [FunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss)]
     public class LicenseeWinLossReportController : ReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;

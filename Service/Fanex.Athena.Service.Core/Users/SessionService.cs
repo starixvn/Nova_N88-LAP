@@ -11,11 +11,13 @@
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
+    using Fanex.Athena.Model.Core.DTO.Users;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.NAP.Core.Configuration;
     using Fanex.NAP.Core.Models;
+    using Fanex.NAP.Core.Models.ValueObject;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
 
@@ -104,7 +106,7 @@
                 OnUserId = onuserId,
                 Username = userName,
                 Language = language,
-                FunctionList = functions,
+                Functions = GetUserFunction(functions).ToList(),
                 DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
             };
 
@@ -229,6 +231,22 @@
 
             userSession.CurrencyList = currencyList;
             userSession.CurrencyAgentList = currencyAgentList;
+        }
+
+        private IEnumerable<UserFunction> GetUserFunction(List<FunctionPolicy> functionPolicies)
+        {
+            var functions = new List<UserFunction>();
+
+            functionPolicies.ForEach(function =>
+            {
+                functions.Add(new UserFunction
+                {
+                    FunctionKey = function.Function.Key,
+                    Policy = function.Policy
+                });
+            });
+
+            return functions;
         }
     }
 

@@ -38,7 +38,7 @@ namespace Fanex.Athena.Web.ActionFilter
             var context = filterContext.HttpContext;
 
             var licenseeSession = SessionStorage.LicenseeAuthInfo;
-            var userSession = SessionStorage.UserAuthInfo;
+            var userSession = SessionStorage.UserSessionInfo;
             var authorized = userSession != null && licenseeSession != null;
             if (authorized)
             {

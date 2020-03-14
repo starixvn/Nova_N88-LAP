@@ -19,7 +19,7 @@ namespace Fanex.Athena.Model.Auth
         public bool IsInternal { get; set; }
         public IList<MenuItem> MenuItemList { get; set; }
 
-        public List<FunctionPolicy> FunctionList { get; set; }
+        public IList<UserFunction> Functions { get; set; }
 
         public IDictionary<int, string> CurrencyList { get; set; }
         

@@ -1434,9 +1434,6 @@
     <Content Include="www\css\build\dev\pages\reports\golddeluxewinloss.css.map" />
     <Content Include="www\css\build\dev\pages\reports\colossusbetswinloss.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\colossusbetswinloss.css.map" />
-    <Content Include="Views\Desktop\Report\CustomerPendingFunds\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\CustomerPendingFunds\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\CustomerPendingFunds\Main.cshtml" />
     <Content Include="www\css\build\dev\pages\reports\customerpendingfunds.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\customerpendingfunds.css.map" />
     <Content Include="Views\Desktop\Report\CustomerTurnover\Content.cshtml" />
@@ -1482,7 +1479,6 @@
     <Content Include="www\css\source\pages\report\activecustomersummary.scss" />
     <Content Include="www\css\source\pages\report\golddeluxewinloss.scss" />
     <Content Include="www\css\source\pages\report\thirdpartywinloss.scss" />
-    <Content Include="www\css\source\pages\report\customerpendingfunds.scss" />
     <Content Include="www\css\source\pages\report\customerturnover.scss" />
     <Content Include="www\css\source\pages\report\customerwinloss.scss" />
     <Content Include="Views\Desktop\BetList\BonusDetail\Main.cshtml" />
@@ -1849,9 +1845,6 @@
     <Content Include="www\js\source\pages\report\cashoutwinloss\cashoutwinloss.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\cashoutwinloss.option.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\main.js" />
-    <Content Include="www\js\source\pages\report\customerpendingfunds\customerpendingfunds.js" />
-    <Content Include="www\js\source\pages\report\customerpendingfunds\customerpendingfunds.option.js" />
-    <Content Include="www\js\source\pages\report\customerpendingfunds\main.js" />
     <Content Include="www\js\source\pages\report\customerturnover\customerturnover.js" />
     <Content Include="www\js\source\pages\report\customerturnover\customerturnover.option.js" />
     <Content Include="www\js\source\pages\report\customerturnover\main.js" />
@@ -1955,8 +1948,6 @@
     <Content Include="www\js\tests\pages\forecast\forecast.ah-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss.option-spec.js" />
-    <Content Include="www\js\tests\pages\report\customerpendingfunds\customerpendingfunds-spec.js" />
-    <Content Include="www\js\tests\pages\report\customerpendingfunds\customerpendingfunds.option-spec.js" />
     <Content Include="www\js\tests\pages\report\customerturnover\customerturnover-spec.js" />
     <Content Include="www\js\tests\pages\report\customerturnover\customerturnover.option-spec.js" />
     <Content Include="www\js\tests\pages\report\customerwinloss\customerwinloss-spec.js" />
@@ -5362,7 +5353,6 @@
     <Content Include="App_Browsers\ie.browser" />
     <Content Include="App_Browsers\firefox.browser" />
     <Content Include="App_Data\Template\CustomerGroup\CustomerCommGroup.xls" />
-    <Content Include="App_Data\Template\CustomerReports\CustomerPendingFunds.xls" />
     <Content Include="App_Data\Template\CustomerReports\CustomerTurnover.xls" />
     <Content Include="App_Data\Template\CustomerReports\CustomerWinLoss.xls" />
     <Content Include="App_Data\Template\Customers\CustomerList.xls" />

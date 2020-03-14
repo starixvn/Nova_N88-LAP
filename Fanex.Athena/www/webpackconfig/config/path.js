@@ -42,9 +42,7 @@ var cssPaths = {
     customeroutstanding: ["./www/css/source/pages/betlist/customeroutstanding.scss"],
     betsetting: ["./www/css/source/pages/customer/betsetting.scss"],
     licenseelist: ["./www/css/source/pages/utility/licenseelist.scss"],
-    customerbalance: ["./www/css/source/pages/report/customerbalance.scss"],
     golddeluxewinloss: ["./www/css/source/pages/report/golddeluxewinloss.scss"],
-    customerpendingfunds: ["./www/css/source/pages/report/customerpendingfunds.scss"],
     customerturnover: ["./www/css/source/pages/report/customerturnover.scss"],
     customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"]
 };
@@ -96,9 +94,7 @@ var scriptPaths = {
     numbergamebetsetting: "./www/js/source/pages/customer/betsetting/main-numbergame.js",
     exchangebetsetting: "./www/js/source/pages/customer/betsetting/main-exchange.js",
 
-    customerbalance: "./www/js/source/pages/report/customerbalance/main.js",
     golddeluxewinloss: "./www/js/source/pages/report/thirdpartywinloss/main-golddeluxewinloss.js",
-    customerpendingfunds: "./www/js/source/pages/report/customerpendingfunds/main.js",
     customerturnover: "./www/js/source/pages/report/customerturnover/main.js",
     customerwinloss: "./www/js/source/pages/report/customerwinloss/main.js"
 };

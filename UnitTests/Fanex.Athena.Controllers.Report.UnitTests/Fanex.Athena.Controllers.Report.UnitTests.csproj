@@ -196,7 +196,6 @@
     <Compile Include="GoldDeluxeWinLossReportControllerTest.cs" />
     <Compile Include="CustomerWinLossReportControllerTest.cs" />
     <Compile Include="CustomerTurnoverReportControllerTest.cs" />
-    <Compile Include="CustomerPendingFundsReportControllerTest.cs" />
     <Compile Include="CashOutWinLossReportControllerTest.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

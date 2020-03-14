@@ -116,7 +116,6 @@
     <Compile Include="WinLossByLeagueDataAccess.cs" />
     <Compile Include="Interfaces\IThirdPartyWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IWinLossByLeagueDataAccess.cs" />
-    <Compile Include="CustomerPendingFundsDataAccess.cs" />
     <Compile Include="CustomerTurnoverDataAccess.cs" />
     <Compile Include="WinLossByProductDataAccess.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
@@ -128,7 +127,6 @@
     <Compile Include="TurnoverDataAccess.cs" />
     <Compile Include="WinLossByBetTypeDataAccess.cs" />
     <Compile Include="MatchWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\ICustPendingFundsDataAccess.cs" />
     <Compile Include="Interfaces\ICustomerTurnoverDataAccess.cs" />
     <Compile Include="Interfaces\ISettledMatchCountDataAccess.cs" />
     <Compile Include="Interfaces\ITurnoverDataAccess.cs" />

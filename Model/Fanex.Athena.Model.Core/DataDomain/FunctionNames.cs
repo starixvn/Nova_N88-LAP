@@ -2,8 +2,6 @@
 {
     public static class FunctionNames
     {
-        public const string CustomerPendingFunds = "CustomerPendingFunds";
-
         public const string CustomerWinLoss = "CustomerWinLoss";
 
         public const string LicenseeWinLoss = "LicenseeWinLoss";

@@ -156,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CashOutWinLossReportController.cs" />
-    <Compile Include="CustomerPendingFundsReportController.cs" />
     <Compile Include="ExchangeWinLossReportController.cs" />
     <Compile Include="GoldDeluxeWinLossReportController.cs" />
     <Compile Include="SpecialLicenseeWinLossReportController.cs" />

@@ -131,14 +131,12 @@
   <ItemGroup>
     <Compile Include="CashOutWinLossExcel.cs" />
     <Compile Include="Helpers\ReportExcelHelper.cs" />
-    <Compile Include="Models\CustomerPendingFundsExcelModel.cs" />
     <Compile Include="Models\LicenseeWinLossExcelModel.cs" />
     <Compile Include="Models\WinLossByProductExcelModel.cs" />
     <Compile Include="GoldDeluxeWinLossExcel.cs" />
     <Compile Include="ThirdPartyWinLossExcel.cs" />
     <Compile Include="WeeklyLiveMatchExcel.cs" />
     <Compile Include="WinlossByLeagueExcel.cs" />
-    <Compile Include="CustomerPendingFundsExcel.cs" />
     <Compile Include="CustomerTurnoverExcel.cs" />
     <Compile Include="LicenseeWinLossExcel.cs" />
     <Compile Include="MatchWinLossExcel.cs" />

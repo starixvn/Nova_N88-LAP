@@ -556,9 +556,6 @@
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
   </data>
-  <data name="LiveReport" xml:space="preserve">
-    <value>Live Report</value>
-  </data>
   <data name="LiveReportTitle" xml:space="preserve">
     <value>Live Report - {0}, {1} --&gt; {2} - {3}</value>
   </data>
@@ -1727,9 +1724,6 @@
   <data name="CannotUpdateBetLimitForProduct" xml:space="preserve">
     <value>You cannot update member bet limit for product {0}.</value>
     <comment>#32647</comment>
-  </data>
-  <data name="GoldDeluxeWinLoss" xml:space="preserve">
-    <value>Gold Deluxe Win Loss</value>
   </data>
   <data name="ProductBT" xml:space="preserve">
     <value>Bet Trade</value>

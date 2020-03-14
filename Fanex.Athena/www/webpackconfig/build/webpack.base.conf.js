@@ -27,8 +27,6 @@ function generateConfig(environment) {
             [`${jsPath}/language-zh-Hans`]: pathConfig.scriptPaths.languageHans,
             [`${jsPath}/pages/home/home`]: pathConfig.scriptPaths.home,
             [`${jsPath}/pages/signin/signin`]: pathConfig.scriptPaths.signin,
-            [`${jsPath}/pages/reports/livereport`]: [pathConfig.scriptPaths.livereport],
-            [`${jsPath}/pages/reports/livereportmatchlist`]: [pathConfig.scriptPaths.livereportmatchlist],
             [`${jsPath}/pages/reports/licenseewinloss`]: [pathConfig.scriptPaths.licenseewinloss],
             [`${jsPath}/pages/betlist/betlist`]: [pathConfig.scriptPaths.betlist],
             [`${jsPath}/pages/betlist/betlistsimple`]: [pathConfig.scriptPaths.betlistsimple],
@@ -62,11 +60,9 @@ function generateConfig(environment) {
             [`${jsPath}/pages/customer/numbergamebetsetting`]: [pathConfig.scriptPaths.numbergamebetsetting],
             [`${jsPath}/pages/customer/exchangebetsetting`]: [pathConfig.scriptPaths.exchangebetsetting],
 
-            [`${jsPath}/pages/reports/golddeluxewinloss`]: [pathConfig.scriptPaths.golddeluxewinloss],
             [`${jsPath}/pages/reports/customerwinloss`]: [pathConfig.scriptPaths.customerwinloss],
 
             [`${cssPath}/pages/reports/reportjqgridlayout`]: pathConfig.cssPaths.reportjqgridlayout,
-            [`${cssPath}/pages/reports/livereport`]: pathConfig.cssPaths.livereport,
             [`${cssPath}/main`]: pathConfig.cssPaths.main,
             [`${cssPath}/pages/utility/error`]: pathConfig.cssPaths.error,
             [`${cssPath}/home`]: pathConfig.cssPaths.home,
@@ -97,7 +93,6 @@ function generateConfig(environment) {
             [`${cssPath}/pages/betlist/customeroutstanding`]: pathConfig.cssPaths.customeroutstanding,
             [`${cssPath}/pages/customer/betsetting`]: pathConfig.cssPaths.betsetting,
             [`${cssPath}/pages/utility/licenseelist`]: pathConfig.cssPaths.licenseelist,
-            [`${cssPath}/pages/reports/golddeluxewinloss`]: pathConfig.cssPaths.golddeluxewinloss,
             [`${cssPath}/pages/reports/customerwinloss`]: pathConfig.cssPaths.customerwinloss
         },
         output: {

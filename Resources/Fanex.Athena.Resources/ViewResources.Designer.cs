@@ -2536,15 +2536,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gold Deluxe Win Loss.
-        /// </summary>
-        public static string GoldDeluxeWinLoss {
-            get {
-                return ResourceManager.GetString("GoldDeluxeWinLoss", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Any query before 4PM GMT-4 will return the data up to 4PM of the day before. You can filter data up to 3 months per query..
         /// </summary>
         public static string GoldDeluxeWinLossGuidelineContent {
@@ -3324,15 +3315,6 @@ namespace Fanex.Athena.Resources {
         public static string LiveGame {
             get {
                 return ResourceManager.GetString("LiveGame", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Live Report.
-        /// </summary>
-        public static string LiveReport {
-            get {
-                return ResourceManager.GetString("LiveReport", resourceCulture);
             }
         }
         

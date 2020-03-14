@@ -20,7 +20,6 @@ var cssPaths = {
     betlistResult: ["./www/css/source/pages/betlist/result/betlist.result.scss"],
 
     login: ["./www/css/source/pages/login/login-ex.scss"],
-    livereport: ["./www/css/source/pages/report/livereport.scss"],
     licenseewinloss: ["./www/css/source/pages/report/licenseewinloss.scss"],
 
     settledmatchcount: ["./www/css/source/pages/report/settledmatchcount.scss"],
@@ -42,7 +41,6 @@ var cssPaths = {
     customeroutstanding: ["./www/css/source/pages/betlist/customeroutstanding.scss"],
     betsetting: ["./www/css/source/pages/customer/betsetting.scss"],
     licenseelist: ["./www/css/source/pages/utility/licenseelist.scss"],
-    golddeluxewinloss: ["./www/css/source/pages/report/golddeluxewinloss.scss"],
     customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"]
 };
 
@@ -56,8 +54,6 @@ var scriptPaths = {
     home: ["./www/js/source/components/navbar.js", "./www/js/source/components/sidebar.js", "malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js", "./www/js/source/pages/home/main.js"],
     signin: ["./www/js/source/pages/signin/main.js"],
 
-    livereport: "./www/js/source/pages/report/livereport/main-livereport.js",
-    livereportmatchlist: "./www/js/source/pages/report/livereport/main-matchlist.js",
     licenseewinloss: "./www/js/source/pages/report/licenseewinloss/main.js",
     betlist: "./www/js/source/pages/betlist/betlist.js",
     betlistsimple: "./www/js/source/pages/betlist/main-simple.js",
@@ -93,7 +89,6 @@ var scriptPaths = {
     numbergamebetsetting: "./www/js/source/pages/customer/betsetting/main-numbergame.js",
     exchangebetsetting: "./www/js/source/pages/customer/betsetting/main-exchange.js",
 
-    golddeluxewinloss: "./www/js/source/pages/report/thirdpartywinloss/main-golddeluxewinloss.js",
     customerwinloss: "./www/js/source/pages/report/customerwinloss/main.js"
 };
 

@@ -188,8 +188,6 @@
     <Compile Include="SettledMatchCountReportControllerTest.cs" />
     <Compile Include="PlatformWinLossReportControllerTest.cs" />
     <Compile Include="MatchWinLossReportControllerTest.cs" />
-    <Compile Include="LiveReportControllerTest.cs" />
-    <Compile Include="GoldDeluxeWinLossReportControllerTest.cs" />
     <Compile Include="CustomerWinLossReportControllerTest.cs" />
     <Compile Include="CashOutWinLossReportControllerTest.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest.cs" />

@@ -11,12 +11,11 @@
     using Fanex.Athena.Model.Core.MetaModel.Product;
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.NAP.Core.Business;
+    using Fanex.Athena.Web.ActionFilter;
     using Fanex.NAP.Core.Configuration;
     using Fanex.NAP.Core.Service.Interface;
-    using Fanex.NAP.Core.Web.Attribute;
 
-    [NapAuth(FunctionKey = PermissionKeys.BetHistory, Policy = Constant.Policy.Read)]
+    [FunctionAuthorization(PermissionKeys.BetHistory)]
     public class BettingTicketCenterController : CultureBaseController
     {
         private readonly IProductService _productService;
@@ -59,7 +58,7 @@
             }
         }
 
-        [NapAuth(FunctionKey = PermissionKeys.BetHistoryAdvancedSearch, Policy = Constant.Policy.Read)]
+        [FunctionAuthorization(PermissionKeys.BetHistoryAdvancedSearch)]
         public ActionResult AdvancedSearch()
         {
             var tabList = GetEnableTabList();
@@ -72,13 +71,12 @@
                 MinDate = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay,
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
-                HasExchange = false,
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml", viewModel);
         }
 
-        [NapAuth(FunctionKey = PermissionKeys.BetHistorySingleCustomer, Policy = Constant.Policy.Read)]
+        [FunctionAuthorization(PermissionKeys.BetHistorySingleCustomer)]
         public ActionResult SingleCustomer()
         {
             var tabList = GetEnableTabList();
@@ -90,13 +88,12 @@
                 ProductOptionList = GetProductOptionList(),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
-                HasExchange = false,
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml", viewModel);
         }
 
-        [NapAuth(FunctionKey = PermissionKeys.BetHistoryRefNo, Policy = Constant.Policy.Read)]
+        [FunctionAuthorization(PermissionKeys.BetHistoryRefNo)]
         public ActionResult RefNo()
         {
             var tabList = GetEnableTabList();
@@ -106,7 +103,6 @@
                 GetProductsRequireUseName(),
                 _balanceUpDataAccess.GetBalanceUp().BalanceUpDay.ToString(FormatKey.DateFormat));
             ViewBag.SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency;
-            ViewBag.HasExchange = false;
             ViewBag.TabList = tabList;
 
             return View(
@@ -114,7 +110,7 @@
                 SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm);
         }
 
-        [NapAuth(FunctionKey = PermissionKeys.BetHistoryRunning, Policy = Constant.Policy.Read)]
+        [FunctionAuthorization(PermissionKeys.BetHistoryRunning)]
         public ActionResult Running()
         {
             var tabList = GetEnableTabList();
@@ -125,7 +121,6 @@
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterRunning),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
-                HasExchange = false,
                 TabList = tabList
             };
 

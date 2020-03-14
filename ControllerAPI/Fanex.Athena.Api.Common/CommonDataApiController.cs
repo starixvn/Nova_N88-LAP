@@ -9,8 +9,7 @@
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-    using Fanex.NAP.Core.Business;
-    using Fanex.NAP.Core.Web.Attribute;
+    using Fanex.Athena.Web.ActionFilter;
     using Model.Core.MetaModel.Common;
     using ONEbook.UM.Filters;
     using Service.Core.Common.Interfaces;
@@ -19,7 +18,7 @@
     [CLSCompliant(false)]
     [CheckUMFilter]
     [XFrameOptionApi]
-    [NapAPIAuth(FunctionKey = PermissionKeys.BetHistory, Policy = Constant.Policy.Read)]
+    [FunctionAuthorization(PermissionKeys.BetHistory)]
     public class CommonDataApiController : ApiController
     {
         private readonly ILanguageService _langService;

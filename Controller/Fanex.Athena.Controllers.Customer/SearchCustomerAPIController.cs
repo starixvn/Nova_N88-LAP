@@ -11,13 +11,13 @@
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
-    //[FunctionAuthorization(
-    //    PermissionKeys.ReportTurnover,
-    //    PermissionKeys.ReportWinLossByProduct,
-    //    PermissionKeys.ReportCustomerWinLoss,
-    //    PermissionKeys.CustomerInfoCustomerLog,
-    //    PermissionKeys.CustomerInfoCustomerList,
-    //    PermissionKeys.BettingTicketCenter)]
+    [FunctionAuthorization(
+        PermissionKeys.ReportTurnover,
+        PermissionKeys.ReportWinLossByProduct,
+        PermissionKeys.ReportCustomerWinLoss,
+        PermissionKeys.CustomerInfoCustomerLog,
+        PermissionKeys.CustomerInfoCustomerList,
+        PermissionKeys.BetHistory)]
     public class SearchCustomerAPIController : CultureBaseController
     {
         private readonly ISearchCustomerDataAccess _searchCustomerDataAccess;

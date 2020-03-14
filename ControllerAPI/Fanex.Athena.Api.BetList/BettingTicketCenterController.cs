@@ -10,10 +10,8 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-    using Fanex.NAP.Core.Business;
-    using Fanex.NAP.Core.Web.Attribute;
 
-    [NapAPIAuth(FunctionKey = PermissionKeys.BetHistory, Policy = Constant.Policy.Read)]
+    [ApiFunctionAuthorization(PermissionKeys.BetHistory)]
     public class BettingTicketCenterController : BaseApiController
     {
         private readonly IBetListApiClient _betListApiClient;
@@ -27,7 +25,7 @@
         }
 
         [HttpPost]
-        [NapAPIAuth(FunctionKey = PermissionKeys.BetHistorySingleCustomer, Policy = Constant.Policy.Read)]
+        [ApiFunctionAuthorization(PermissionKeys.BetHistorySingleCustomer)]
         [ValidationApiRequest]
         public async Task<dynamic> GetBySingleCustomer(SingleCustomersBetListMetaModel metaModel)
         {
@@ -42,7 +40,7 @@
         }
 
         [HttpPost]
-        [NapAPIAuth(FunctionKey = PermissionKeys.BetHistoryRefNo, Policy = Constant.Policy.Read)]
+        [ApiFunctionAuthorization(PermissionKeys.BetHistoryRefNo)]
         [ValidationApiRequest]
         public async Task<dynamic> GetByRefno(RefNoBetListMetaModel metaModel)
         {
@@ -57,7 +55,7 @@
         }
 
         [HttpPost]
-        [NapAPIAuth(FunctionKey = PermissionKeys.BetHistoryRunning, Policy = Constant.Policy.Read)]
+        [ApiFunctionAuthorization(PermissionKeys.BetHistoryRunning)]
         [ValidationApiRequest(IsValidCurrencyList = true)]
         public async Task<dynamic> GetByRunning(BaseBettingTicketMetaModel metaModel)
         {

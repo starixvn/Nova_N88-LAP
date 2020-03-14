@@ -12,10 +12,8 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-    using Fanex.NAP.Core.Business;
-    using Fanex.NAP.Core.Web.Attribute;
 
-    [NapAPIAuth(FunctionKey = PermissionKeys.BetHistoryAdvancedSearch, Policy = Constant.Policy.Read)]
+    [ApiFunctionAuthorization(PermissionKeys.BetHistoryAdvancedSearch)]
     public class BettingTicketCenterAdvancedSearchController : BaseApiController
     {
         private const int ServerBusyErrorCode = 1002;

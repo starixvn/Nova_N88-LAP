@@ -101,9 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CashOutWinLossDataAccess.cs" />
-    <Compile Include="ExchangeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ICashOutWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\IExchangeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ISpecialLicenseeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ISubsidiaryPerformanceDataAccess.cs" />
     <Compile Include="Interfaces\IGoldDeluxeWinLossDataAccess.cs" />

@@ -7,7 +7,6 @@ var cssPaths = {
     layout: "./www/css/source/reactpages/main.scss",
     subsidiaryperformance: "./www/css/source/reactpages/pages/subsidiaryperformance/index.scss",
     notification: "./www/css/source/reactpages/pages/notification/index.scss",
-    exchangewl: "./www/css/source/reactpages/pages/exchangewl/index.scss",
     speciallicenseewl: "./www/css/source/reactpages/pages/speciallicenseewl/index.scss",
     bettingticketscenter: "./www/css/source/reactpages/pages/bettingticketscenter/index.scss",
     betlist: "./www/css/source/reactpages/pages/betlist/index.scss",
@@ -31,7 +30,6 @@ var scriptPaths = {
     /*React page*/
     subsidiaryperformance: "./www/js/source/reactpages/pages/subsidiaryperformance/components/index.jsx",
     notification: "./www/js/source/reactpages/pages/notification/components/resultAmendment/index.jsx",
-    exchangewl: "./www/js/source/reactpages/pages/exchangewl/components/index.jsx",
     speciallicenseewl: "./www/js/source/reactpages/pages/speciallicenseewl/components/index.jsx",
     bettingticketscenter_advancedsearch: "./www/js/source/reactpages/pages/bettingticketscenter/advancedsearch/components/index.jsx",
     bettingticketscenter_singlecustomer: "./www/js/source/reactpages/pages/bettingticketscenter/singlecustomer/components/index.jsx",

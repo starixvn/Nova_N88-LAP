@@ -96,21 +96,23 @@
             string userName,
             string language = "en-US")
         {
+            var functions = _napUserService.GetPermissions(userId, NapSettings.Settings.SiteId, string.Empty, NapSettings.Settings.Environment).ToList();
+
             var userSession = new UserSessionInfo
             {
                 UserId = userId,
                 OnUserId = onuserId,
                 Username = userName,
                 Language = language,
+                FunctionList = functions,
                 DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
             };
 
-            var licensee = _licenseeDataAccess.GetLicenseeSettingById(_appSettings.LicenseeId);
             
             AssignMenuToUserSession(userSession);
-
             AssignCurrenciesToUserSession(userSession);
 
+            var licensee = _licenseeDataAccess.GetLicenseeSettingById(_appSettings.LicenseeId);
             AssignSessions(userSession, GenerateLicenseeInfo(licensee));
         }
 

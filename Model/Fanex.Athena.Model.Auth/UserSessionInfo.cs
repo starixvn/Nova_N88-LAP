@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fanex.NAP.Core.Models;
+using Fanex.NAP.Core.Models.ValueObject;
 using Fanex.NAP.Core.Web.Session;
 
 namespace Fanex.Athena.Model.Auth
@@ -18,7 +19,7 @@ namespace Fanex.Athena.Model.Auth
         public bool IsInternal { get; set; }
         public IList<MenuItem> MenuItemList { get; set; }
 
-        public List<Function> FunctionList { get; set; }
+        public List<FunctionPolicy> FunctionList { get; set; }
 
         public IDictionary<int, string> CurrencyList { get; set; }
         

@@ -448,10 +448,6 @@ namespace Fanex.Athena.Controllers
 
         private void CreateSession(User user, int onUserId)
         {
-            currentSession.UserId = user.Id;
-            currentSession.Username = user.Username;
-            currentSession.OnUserId = onUserId;
-
             SessionServiceInstance.CreateNewSession(user.Id, onUserId, user.Username);
 
             _formAuthenticationService.SetAuthCookie(user.Username, false);

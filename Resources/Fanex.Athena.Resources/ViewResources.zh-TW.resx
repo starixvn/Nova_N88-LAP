@@ -2023,4 +2023,7 @@
   <data name="DeepLink" xml:space="preserve">
     <value>深度鏈結</value>
   </data>
+  <data name="BetHistory" xml:space="preserve">
+    <value>Bet History</value>
+  </data>
 </root>

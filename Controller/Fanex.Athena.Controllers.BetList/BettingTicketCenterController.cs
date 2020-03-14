@@ -5,59 +5,51 @@
     using System.Web.Mvc;
     using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Model.Auth.Enum;
+    using Fanex.Athena.Model.BetList.ViewModel;
     using Fanex.Athena.Model.Core.DataDomain;
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.MetaModel.Product;
+    using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.NAP.Core.Business;
+    using Fanex.NAP.Core.Configuration;
+    using Fanex.NAP.Core.Service.Interface;
+    using Fanex.NAP.Core.Web.Attribute;
 
-    using Model.BetList.ViewModel;
-    using Model.Core.DTO.Common;
-    using Model.Core.MetaModel.Product;
-
-    using Resources;
-
-    using Web.ActionFilter;
-
-    [FunctionAuthorization(PermissionKeys.BettingTicketCenter)]
+    [NapAuth(FunctionKey = PermissionKeys.BetHistory, Policy = Constant.Policy.Read)]
     public class BettingTicketCenterController : CultureBaseController
     {
         private readonly IProductService _productService;
-
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
-
-        private readonly IAuthorizationService _authService;
+        private readonly IUserService userService;
 
         public BettingTicketCenterController(
             IProductService productService,
             IBalanceUpDataAccess balanceUpDataAccess,
-            IAuthorizationService authService)
+            IUserService userService)
         {
             _productService = productService;
             _balanceUpDataAccess = balanceUpDataAccess;
-            _authService = authService;
+            this.userService = userService;
         }
 
-        [FunctionAuthorization(
-            PermissionKeys.BtcSingleCustomer,
-            PermissionKeys.BtcRefNo,
-            PermissionKeys.BtcRunning,
-            PermissionKeys.BtcAdvancedSearch)]
         public ActionResult Index()
         {
             var tabList = GetEnableTabList();
 
-            if (tabList.Any(x => PermissionKeys.BtcSingleCustomer == x))
+            if (tabList.Any(x => PermissionKeys.BetHistorySingleCustomer == x))
             {
                 return SingleCustomer();
             }
-            else if (tabList.Any(x => PermissionKeys.BtcRefNo == x))
+            else if (tabList.Any(x => PermissionKeys.BetHistoryRefNo == x))
             {
                 return RefNo();
             }
-            else if (tabList.Any(x => PermissionKeys.BtcRunning == x))
+            else if (tabList.Any(x => PermissionKeys.BetHistoryRunning == x))
             {
                 return Running();
             }
-            else if (tabList.Any(x => PermissionKeys.BtcAdvancedSearch == x))
+            else if (tabList.Any(x => PermissionKeys.BetHistoryAdvancedSearch == x))
             {
                 return AdvancedSearch();
             }
@@ -67,7 +59,7 @@
             }
         }
 
-        [FunctionAuthorization(PermissionKeys.BtcAdvancedSearch)]
+        [NapAuth(FunctionKey = PermissionKeys.BetHistoryAdvancedSearch, Policy = Constant.Policy.Read)]
         public ActionResult AdvancedSearch()
         {
             var tabList = GetEnableTabList();
@@ -79,14 +71,14 @@
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterAdvancedSearch),
                 MinDate = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay,
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
-                SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
-                HasExchange = tabList.Any() && HasExchange(),
+                SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
+                HasExchange = false,
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml", viewModel);
         }
 
-        [FunctionAuthorization(PermissionKeys.BtcSingleCustomer)]
+        [NapAuth(FunctionKey = PermissionKeys.BetHistorySingleCustomer, Policy = Constant.Policy.Read)]
         public ActionResult SingleCustomer()
         {
             var tabList = GetEnableTabList();
@@ -97,14 +89,14 @@
                 PlatformList = GetPlatformList(),
                 ProductOptionList = GetProductOptionList(),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
-                SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
-                HasExchange = tabList.Any() && HasExchange(),
+                SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
+                HasExchange = false,
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml", viewModel);
         }
 
-        [FunctionAuthorization(PermissionKeys.BtcRefNo)]
+        [NapAuth(FunctionKey = PermissionKeys.BetHistoryRefNo, Policy = Constant.Policy.Read)]
         public ActionResult RefNo()
         {
             var tabList = GetEnableTabList();
@@ -113,8 +105,8 @@
                 ViewResources.BettingTicketCenter_RefnoTabNote2,
                 GetProductsRequireUseName(),
                 _balanceUpDataAccess.GetBalanceUp().BalanceUpDay.ToString(FormatKey.DateFormat));
-            ViewBag.SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency;
-            ViewBag.HasExchange = tabList.Any() && HasExchange();
+            ViewBag.SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency;
+            ViewBag.HasExchange = false;
             ViewBag.TabList = tabList;
 
             return View(
@@ -122,7 +114,7 @@
                 SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm);
         }
 
-        [FunctionAuthorization(PermissionKeys.BtcRunning)]
+        [NapAuth(FunctionKey = PermissionKeys.BetHistoryRunning, Policy = Constant.Policy.Read)]
         public ActionResult Running()
         {
             var tabList = GetEnableTabList();
@@ -132,8 +124,8 @@
                 CurrencyList = GetCurrencyList(),
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterRunning),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
-                SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
-                HasExchange = tabList.Any() && HasExchange(),
+                SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
+                HasExchange = false,
                 TabList = tabList
             };
 
@@ -142,17 +134,13 @@
 
         private IEnumerable<string> GetEnableTabList()
         {
-            var userSession = SessionServiceInstance.UserSession;
-            if (userSession.IsSuperAdmin)
-            {
-                return BtcViewInfo.TabList.ToList();
-            }
+            var functionKeys = userService.GetPermissions(
+                SessionServiceInstance.UserSessionInfo.UserId,
+                NapSettings.Settings.SiteId,
+                PermissionKeys.BetHistory,
+                NapSettings.Settings.Environment).Select(x => x.Function.Key);
 
-            var userFunctionKeyList = userSession.ApplicationMode == AppMode.Parasitic ?
-                userSession.PortalFunctionList.Select(x => x.FunctionKey) :
-                userSession.FunctionList.Select(x => x.FunctionKey);
-
-            return BtcViewInfo.TabList.Intersect(userFunctionKeyList);
+            return BtcViewInfo.TabList.Intersect(functionKeys);
         }
 
         private string GetProductsRequireUseName()
@@ -173,7 +161,7 @@
 
             var productAccess = _productService.GetSingleWalletProductAccess(
                 SessionServiceInstance.LicenseeSession.LicenseeId,
-                SessionServiceInstance.UserSession.Language);
+                SessionServiceInstance.UserSessionInfo.Language);
 
             var licProductsRequireUseName = productAccess.ProductList
                 .Where(product => productsRequireUseName.Contains(product.ProductCode))
@@ -238,14 +226,14 @@
 
         private IDictionary<int, string> GetCurrencyList()
         {
-            return SessionServiceInstance.UserSession.CurrencyList;
+            return SessionServiceInstance.UserSessionInfo.CurrencyList;
         }
 
         private IEnumerable<ProductOption> GetProductOptionList(string functionConfigKey = FunctionNames.BettingTicketCenter)
         {
             var productAccess = _productService.GetSingleWalletProductAccess(
                 SessionServiceInstance.LicenseeSession.LicenseeId,
-                SessionServiceInstance.UserSession.Language,
+                SessionServiceInstance.UserSessionInfo.Language,
                 functionConfigKey);
 
             return productAccess.ProductList.Select(i => new ProductOption
@@ -254,11 +242,6 @@
                 Name = i.ProductName,
                 Status = true
             }).ToList();
-        }
-
-        private bool HasExchange()
-        {
-            return _authService.CheckProductBelongsTo(SessionServiceInstance.LicenseeSession.LicenseeName, ProductTypes.Exchange);
         }
     }
 }

@@ -15,7 +15,7 @@ using Fanex.Athena.Web.ActionFilter;
 
 namespace Fanex.Athena.Controllers.Report
 {
-    [FunctionAuthorization(PermissionKeys.BettingTicketCenter)]
+    [FunctionAuthorization(PermissionKeys.BetHistory)]
     public class ExchangeVoidedController : ReportBaseController
     {
         private readonly IAppSettings _appSetting;

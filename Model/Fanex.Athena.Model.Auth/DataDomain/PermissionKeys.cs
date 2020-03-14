@@ -85,11 +85,11 @@
 
         public const string ResultAmendmentNotificationReport = "ResultAmendment_Recalculation75";
 
-        public const string BettingTicketCenter = "BTC79";
-        public const string BtcAdvancedSearch = "BTC_MultiCustomer";
-        public const string BtcSingleCustomer = "BTC_SingleCustomer";
-        public const string BtcRefNo = "BTC_RefNo";
-        public const string BtcRunning = "BTC_Running";
+        public const string BetHistory = "BetHistory";
+        public const string BetHistorySingleCustomer = "BetHistory_SingleCustomer";
+        public const string BetHistoryRefNo = "BetHistory_RefNo";
+        public const string BetHistoryRunning = "BetHistory_Running";
+        public const string BetHistoryAdvancedSearch = "BetHistory_AdvancedSearch";
 
         /*External*/
         public const string DashboardCustomerBalance = "n_customer_balance";

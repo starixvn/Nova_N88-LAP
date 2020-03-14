@@ -9,6 +9,6 @@ export default class Service {
 
         const baseCurrencyText = baseCurrency ? `, ${LangHelper.getSingleResource("BaseCurrency")}: ${baseCurrency}` : '';
 
-        return LangHelper.getSingleResource("BettingTicketCenter") + dateRangeText + baseCurrencyText;
+        return LangHelper.getSingleResource("BetHistory") + dateRangeText + baseCurrencyText;
     }
 }

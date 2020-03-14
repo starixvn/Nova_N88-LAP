@@ -1,4 +1,4 @@
-﻿// Generated at: 2/28/2020 11:54:49 AM
+﻿// Generated at: 3/14/2020 1:39:00 PM
 var _language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
@@ -55,6 +55,7 @@ BAUpdatedBy:"投注總計跟新由",
 BBAmtComm:"回購金額+即時兌現傭金",
 BetCount:"投注數",
 BetfromOthers:"其他",
+BetHistory:"Bet History",
 BetId:"投注單號",
 BetList:"投注歷史",
 BetListRunning:"投注歷史(進行中)",

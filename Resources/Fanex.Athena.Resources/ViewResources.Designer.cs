@@ -691,6 +691,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet History.
+        /// </summary>
+        public static string BetHistory {
+            get {
+                return ResourceManager.GetString("BetHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet ID.
         /// </summary>
         public static string BetId {

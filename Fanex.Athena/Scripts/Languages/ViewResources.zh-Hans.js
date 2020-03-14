@@ -1,4 +1,4 @@
-﻿// Generated at: 2/28/2020 11:54:49 AM
+﻿// Generated at: 3/14/2020 1:39:00 PM
 var _language_zh_Hans = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -56,6 +56,7 @@ BAUpdatedBy:"投注总计跟新由",
 BBAmtComm:"回购金额+即时兑现佣金",
 BetCount:"投注数",
 BetfromOthers:"其他",
+BetHistory:"Bet History",
 BetId:"投注单号",
 BetList:"投注历史",
 BetListRunning:"投注历史 (进行中)",

@@ -48,8 +48,8 @@ export const PageLayout = (props) => {
             >
                 <Tabs>
                     {
-                        activedTabList.map(item => 
-                            <Tab isActive={selectedTabIndex == item.displayOrder} label={item.label} url={item.url} />)
+                        activedTabList.map(item =>
+                            <Tab key={item.key} isActive={selectedTabIndex == item.displayOrder} label={item.label} url={item.url} />)
                     }
                     {
                         hasExchange && 

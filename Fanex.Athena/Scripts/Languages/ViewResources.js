@@ -1,4 +1,4 @@
-﻿// Generated at: 2/28/2020 11:54:49 AM
+﻿// Generated at: 3/14/2020 1:39:00 PM
 var _language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -70,6 +70,7 @@ BAUpdatedBy:"BA Updated By",
 BBAmtComm:"BB Amt + Comm",
 BetCount:"Bet Count",
 BetfromOthers:"Others",
+BetHistory:"Bet History",
 BetId:"Bet ID",
 BetLimit:"Bet Limit",
 BetList:"Bet List",

@@ -30,9 +30,7 @@ namespace Fanex.Athena.Service.Core.Utility
             var currencyList = _sessionService.UserSessionInfo.CurrencyList;
             if (isIncludeKeanOcean)
             {
-                return ValidateCurrencyWithKeanOceanOption(currencyId
-                    , currencyList
-                    , _appSettings.LicenseeId);
+                return ValidateCurrencyWithKeanOceanOption(currencyId, currencyList, _appSettings.LicenseeId);
             }
 
             return ValidateCurrency(currencyId, currencyList);
@@ -60,10 +58,9 @@ namespace Fanex.Athena.Service.Core.Utility
             {
                 return false;
             }
-            var items = currencyIdList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            int n;
-            return !items.Any(x => !int.TryParse(x, out n) || !_sessionService.UserSession.CurrencyList.ContainsKey(n));
+            var items = currencyIdList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            return !items.Any(x => !int.TryParse(x, out int n) || !_sessionService.UserSessionInfo.CurrencyList.ContainsKey(n));
         }
     }
 }

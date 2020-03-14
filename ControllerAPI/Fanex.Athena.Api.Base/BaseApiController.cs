@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BaseApiController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.Base
+﻿namespace Fanex.Athena.Api.Base
 {
     using System;
     using System.Collections.Generic;
@@ -12,13 +6,11 @@ namespace Fanex.Athena.Api.Base
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Web.Http;
-
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.NAP.Core.Web.Attribute;
     using NPOI.SS.UserModel;
-
     using ONEbook.UM.Filters;
 
     [CheckUMFilter]
@@ -27,6 +19,7 @@ namespace Fanex.Athena.Api.Base
     public class BaseApiController : ApiController
     {
         private readonly ILanguageService _langService;
+
         protected internal BaseApiController(ILanguageService languageService)
         {
             _langService = languageService ?? throw new ArgumentNullException(nameof(languageService));
@@ -37,7 +30,7 @@ namespace Fanex.Athena.Api.Base
         public IProductService ProductService { get; set; }
         public ISessionService SessionService { get; set; }
 
-        [System.CLSCompliant(false)]
+        [CLSCompliant(false)]
         protected internal virtual HttpResponseMessage ExcelStream(IWorkbook workbook, string fileName)
         {
             var result = new HttpResponseMessage(HttpStatusCode.OK)

@@ -1,30 +1,19 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UserGuideController.cs" company="">
-// Report controller
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers
+﻿namespace Fanex.Athena.Controllers
 {
-    using DataAccess.Core.Configuration.Interfaces;
-
-    using Extension.Utility.Interfaces;
-    using Fanex.Athena.Extension.Utility;
-    using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-
-    using Model.Core.DataDomain;
-    using Model.Core.DTO.Common;
-
-    using ONEbook.UM.Filters;
-
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Net.Mime;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using System.Web.SessionState;
-
+    using DataAccess.Core.Configuration.Interfaces;
+    using Extension.Utility.Interfaces;
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Model.Core.DataDomain;
+    using Model.Core.DTO.Common;
+    using ONEbook.UM.Filters;
     using Web.ActionFilter;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
@@ -39,30 +28,26 @@ namespace Fanex.Athena.Controllers
         };
 
         private readonly IProductService _productService;
-
         private readonly IFileSystem _fileSystem;
-
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
-
-        private readonly IAppSettings _appSettings;
 
         public UserGuideController(
             IFileSystem fileSystem,
             IProductService productService,
-            IBalanceUpDataAccess balanceUpDataAccess,
-            IAppSettings appSettings)
+            IBalanceUpDataAccess balanceUpDataAccess)
         {
             _productService = productService;
             _fileSystem = fileSystem;
             _balanceUpDataAccess = balanceUpDataAccess;
-            _appSettings = appSettings;
         }
 
         [AjaxRequest]
         public ActionResult Index(string resourceName)
         {
             var content = GetFileContent(resourceName);
-            var products = _productService.GetProductList(_appSettings.LicenseeId, SessionServiceInstance.UserSessionInfo.Language);
+            var products = _productService.GetProductList(
+                SessionServiceInstance.LicenseeSession.LicenseeId,
+                SessionServiceInstance.UserSessionInfo.Language);
 
             content = content.Replace("{rooturl}", Url.Content("~"));
             content = AddSpecialProducts(content, products);
@@ -78,7 +63,7 @@ namespace Fanex.Athena.Controllers
             var fileName = SessionServiceInstance.LicenseeSession.IsEnableBA ? "Odds Group Feature_Licensee_BA.pdf" : "Odds Group Feature_Licensee.pdf";
             var filePath = Server.MapPath(string.Format(@"~/App_Data/UserGuide/{0}/pdf/{1}/{2}", CustomerListResourceName, language, fileName));
             filePath = GetDefaultFilePathIfNotExist(language, filePath);
-            return File(filePath, System.Net.Mime.MediaTypeNames.Application.Pdf, Path.GetFileName(filePath));
+            return File(filePath, MediaTypeNames.Application.Pdf, Path.GetFileName(filePath));
         }
 
         [FunctionAuthorization(PermissionKeys.ReportCashOutWinLoss)]
@@ -88,7 +73,7 @@ namespace Fanex.Athena.Controllers
             var suffix = chineseCodes.Contains(SessionServiceInstance.UserSession.Language) ? "CN" : "EN";
             var fileName = $"Cash Out WL Report guideline_{suffix}.pdf";
             var filePath = Server.MapPath(string.Format(@"~/App_Data/UserGuide/CashOutWL/pdf/{0}", fileName));
-            return File(filePath, System.Net.Mime.MediaTypeNames.Application.Pdf, Path.GetFileName(filePath));
+            return File(filePath, MediaTypeNames.Application.Pdf, Path.GetFileName(filePath));
         }
 
         private static string AddCasinoProducts(string content, IEnumerable<Product> products)

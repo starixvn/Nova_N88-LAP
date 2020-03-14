@@ -75,10 +75,10 @@ namespace Fanex.Athena.Controllers.Report
             var userSession = SessionServiceInstance.UserSessionInfo;
             var licenseeSession = SessionServiceInstance.LicenseeSession;
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
-                licenseeSession.LicenseeName);
+                SessionServiceInstance.LicenseeSession.LicenseeName);
             var selectedDate = GetSelectedDate(reportSetting);
             var productAccess = ProductServiceInstance.GetSingleWalletProductAccess(
-                AppSettingInstance.LicenseeId,
+                SessionServiceInstance.LicenseeSession.LicenseeId,
                 userSession.Language,
                 FunctionNames.LicenseeWinLoss);
 
@@ -86,7 +86,7 @@ namespace Fanex.Athena.Controllers.Report
             {
                 FromDate = selectedDate,
                 ToDate = selectedDate,
-                LicenseeId = AppSettingInstance.LicenseeId,
+                LicenseeId = SessionServiceInstance.LicenseeSession.LicenseeId,
                 IsExcludedTestData = true,
                 DrawFilter = DrawFilterType.Normal,
                 ReportBy = ReportByType.Daily,
@@ -101,7 +101,7 @@ namespace Fanex.Athena.Controllers.Report
             {
                 Param = param,
                 CurrencyList = userSession.CurrencyList,
-                IsAllowedCustomerCommission = licenseeSession.IsAllowedCustomerComm,
+                IsAllowedCustomerCommission = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 ProductAccess = productAccess,
                 ReportSetting = reportSetting
             };

@@ -2518,10 +2518,6 @@
     <value>Total tickets</value>
     <comment>122789</comment>
   </data>
-  <data name="DailyBets" xml:space="preserve">
-    <value>Daily Bets</value>
-    <comment>122789</comment>
-  </data>
   <data name="PlayerName" xml:space="preserve">
     <value>Player Name</value>
     <comment>122789</comment>

@@ -650,7 +650,6 @@
     </Content>
     <Content Include="Views\Desktop\Module\PlayerAdmin\PlayerStatement\Statement.cshtml" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\statement.css.map" />
-    <Content Include="Views\Desktop\Report\DailyBets\Index.cshtml" />
     <Content Include="www\css\build\dev\reactpages\exchangevoided\index.css.map" />
     <Content Include="SiteConfig\WebConfigTransforms\BACKUPMNLStatic.config" />
     <Content Include="SiteConfig\Web.BACKUPMNLStatic.config" />
@@ -2482,7 +2481,6 @@
     <Content Include="www\js\build\dev\reactpages\playeradmin\single-customer.chunk.js.map" />
     <Content Include="www\css\source\reactpages\pages\playeradmin\statement.scss" />
     <Content Include="www\js\build\dev\reactpages\playeradmin\statement.chunk.js.map" />
-    <Content Include="www\css\source\reactpages\pages\dailybets\index.scss" />
     <Content Include="www\js\build\dev\reactpages\report\dailybets.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\exchangevoided\exchangevoided.chunk.js.map" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\advancedsearch\components\__tests__\__snapshots__\AppContainer.render.test.js.snap" />

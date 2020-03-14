@@ -270,7 +270,6 @@ window._language_en_US = {
   CustomerWinnings: "Customer&apos;s Winnings",
   DA: "DA",
   Daily: "Daily",
-  DailyBets: "Daily Bets",
   DailyStatement: "Daily Statement",
   DailyStatementMsg: "Support data up to 4 months only",
   Data: "data",

@@ -102,13 +102,10 @@
     <Compile Include="LicenseeWinLossExcelTest.AssignCommonData.cs" />
     <Compile Include="LicenseeWinLossExcelTest.ProcessUI.cs" />
     <Compile Include="LicenseeWinLossExcelTest.AssignHeader.cs" />
-    <Compile Include="MatchWinLossExcelTest.AssignMatchData.cs" />
     <Compile Include="TestableClasses\LicenseeWinLossExcelTestable.cs" />
-    <Compile Include="TestableClasses\MatchWinLossExcelTestable.cs" />
     <Compile Include="TestableClasses\WinlossByProductExcelTestable.cs" />
     <Compile Include="TestableClasses\WinlossByLeagueExcelTestable.cs" />
     <Compile Include="LicenseeWinLossExcelTest.cs" />
-    <Compile Include="MatchWinLossExcelTest.cs" />
     <Compile Include="WinlossByProductExcelTest.cs" />
     <Compile Include="WinlossByLeagueExcelTest.cs" />
     <Compile Include="WinLossByBetTypeExcelTest.cs" />

@@ -128,7 +128,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="SettledMatchCountServiceTest.cs" />
-    <Compile Include="MatchWinLossServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubsidiaryPerformanceServiceTest.cs" />
     <Compile Include="TurnoverServiceTest.cs" />

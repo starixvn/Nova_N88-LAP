@@ -1531,15 +1531,6 @@
     <Content Include="Views\Desktop\Report\WinLossByLeague\Content.cshtml" />
     <Content Include="Views\Desktop\Report\WinLossByLeague\Filter.cshtml" />
     <Content Include="Views\Desktop\Report\WinLossByLeague\Main.cshtml" />
-    <Content Include="Views\Desktop\Report\MatchWinLoss\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\MatchWinLoss\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\MatchWinLoss\Main.cshtml" />
-    <Content Include="Views\Desktop\Report\MatchWinLoss\Content.Header.cshtml" />
-    <Content Include="Views\Desktop\Report\MatchWinLoss\Content.Data.cshtml" />
-    <Content Include="Views\Desktop\Report\MatchWinLoss\Content.Data.Detail.cshtml" />
-    <Content Include="Views\Desktop\Report\MatchWinLoss\Content.GrandTotal.cshtml" />
-    <Content Include="Views\Desktop\Report\MatchWinLoss\Content.Total.cshtml" />
-    <Content Include="www\css\source\pages\report\matchwinloss.scss" />
     <Content Include="Views\Desktop\Report\PlatformWinLoss\Main.cshtml" />
     <Content Include="Views\Desktop\Report\PlatformWinLoss\Content.cshtml" />
     <Content Include="Views\Desktop\Report\PlatformWinLoss\Filter.cshtml" />
@@ -1820,8 +1811,6 @@
     <Content Include="www\js\source\pages\report\licenseewinloss\licenseewinloss.js" />
     <Content Include="www\js\source\pages\report\licenseewinloss\licenseewinloss.option.js" />
     <Content Include="www\js\source\pages\report\licenseewinloss\main.js" />
-    <Content Include="www\js\source\pages\report\matchwinloss\main.js" />
-    <Content Include="www\js\source\pages\report\matchwinloss\matchwinloss.js" />
     <Content Include="www\js\source\pages\report\platformwinloss\main-platformwinloss.js" />
     <Content Include="www\js\source\pages\report\platformwinloss\platformwinloss.js" />
     <Content Include="www\js\source\pages\report\platformwinloss\platformwinloss.option.js" />
@@ -1907,7 +1896,6 @@
     <Content Include="www\js\tests\pages\report\licenseewinloss\licenseewinloss.goback-spec.js" />
     <Content Include="www\js\tests\pages\report\licenseewinloss\licenseewinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\licenseewinloss\licenseewinloss.option-spec.js" />
-    <Content Include="www\js\tests\pages\report\matchwinloss\matchwinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\platformwinloss\platformwinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\platformwinloss\platformwinloss.option-spec.js" />
     <Content Include="www\js\tests\pages\report\report-spec.js" />
@@ -5277,7 +5265,6 @@
     <Content Include="App_Data\Template\Customers\CustomerList.xls" />
     <Content Include="App_Data\Template\Reports\WinLossByLeagues.xls" />
     <Content Include="App_Data\Template\Reports\LicenseeWinLoss.xls" />
-    <Content Include="App_Data\Template\Reports\MatchWinLoss.xls" />
     <Content Include="App_Data\Template\Reports\Turnover.xls" />
     <Content Include="App_Data\Template\Reports\WinLossByBetType.xls" />
     <Content Include="App_Data\Template\Reports\WinLossByProducts.xls" />

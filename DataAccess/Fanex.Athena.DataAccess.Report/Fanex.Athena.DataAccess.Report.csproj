@@ -118,12 +118,10 @@
     <Compile Include="SettledMatchCountDataAccess.cs" />
     <Compile Include="TurnoverDataAccess.cs" />
     <Compile Include="WinLossByBetTypeDataAccess.cs" />
-    <Compile Include="MatchWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ISettledMatchCountDataAccess.cs" />
     <Compile Include="Interfaces\ITurnoverDataAccess.cs" />
     <Compile Include="Interfaces\ILicenseeWinLossDataAccess.cs" />
     <Compile Include="LicenseeWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\IMatchWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IWinLossByBetTypeDataAccess.cs" />
     <Compile Include="Interfaces\IWinLossByProductDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -164,8 +164,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="MatchWinLossReportControllerTest_AssignLeagueName.cs" />
-    <Compile Include="MatchWinLossReportControllerTest_AssignMatchName.cs" />
     <Compile Include="PromotionPrizeReportControllerTest.cs" />
     <Compile Include="Result\ResultKenoReportControllerTest.cs" />
     <Compile Include="Result\ResultReportControllerTest.cs" />
@@ -178,8 +176,6 @@
     <Compile Include="Result\ResultReport\PPResultPopupControllerTest.cs" />
     <Compile Include="SubsidiaryPerformanceReportControllerTest.cs" />
     <Compile Include="WeeklyLiveMatchReportControllerTest.cs" />
-    <Compile Include="MatchWinLossReportControllerTest.Excel.cs" />
-    <Compile Include="MatchWinLossReportControllerTest.Index.cs" />
     <Compile Include="NoteControllerTest.cs" />
     <Compile Include="WinLossByProductReportControllerTest.cs" />
     <Compile Include="WinLossByLeagueReportControllerTest.cs" />
@@ -187,7 +183,6 @@
     <Compile Include="TurnoverReportControllerTest.cs" />
     <Compile Include="SettledMatchCountReportControllerTest.cs" />
     <Compile Include="PlatformWinLossReportControllerTest.cs" />
-    <Compile Include="MatchWinLossReportControllerTest.cs" />
     <Compile Include="CustomerWinLossReportControllerTest.cs" />
     <Compile Include="CashOutWinLossReportControllerTest.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest.cs" />

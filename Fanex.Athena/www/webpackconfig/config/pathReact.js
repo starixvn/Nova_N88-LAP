@@ -11,7 +11,6 @@ var cssPaths = {
     speciallicenseewl: "./www/css/source/reactpages/pages/speciallicenseewl/index.scss",
     bettingticketscenter: "./www/css/source/reactpages/pages/bettingticketscenter/index.scss",
     betlist: "./www/css/source/reactpages/pages/betlist/index.scss",
-    casinoturnover: "./www/css/source/reactpages/pages/casinoturnover/index.scss",
     playeradmin: "./www/css/source/reactpages/pages/playeradmin/index.scss",
     accountInfo: "./www/css/source/reactpages/pages/playeradmin/account-info.scss",
     playerrunningbetlist: "./www/css/source/reactpages/pages/playeradmin/running-betlist.scss",
@@ -39,7 +38,6 @@ var scriptPaths = {
     bettingticketscenter_singlecustomer: "./www/js/source/reactpages/pages/bettingticketscenter/singlecustomer/components/index.jsx",
     bettingticketscenter_refno: "./www/js/source/reactpages/pages/bettingticketscenter/refno/components/index.jsx",
     bettingticketscenter_running: "./www/js/source/reactpages/pages/bettingticketscenter/running/components/index.jsx",
-    casinoturnover: "./www/js/source/reactpages/pages/casinoturnover/components/index.jsx",
 
     playerlist: "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/index.jsx",
     accountinfo: "./www/js/source/reactpages/Module/PlayerAdmin/account-info/components/index.jsx",

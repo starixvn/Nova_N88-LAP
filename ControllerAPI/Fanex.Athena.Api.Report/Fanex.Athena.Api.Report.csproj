@@ -159,7 +159,6 @@
     <Compile Include="CustomerPendingFundsReportController.cs" />
     <Compile Include="ExchangeWinLossReportController.cs" />
     <Compile Include="GoldDeluxeWinLossReportController.cs" />
-    <Compile Include="CasinoTurnoverReportController.cs" />
     <Compile Include="SpecialLicenseeWinLossReportController.cs" />
     <Compile Include="SubsidiaryPerformanceReportController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

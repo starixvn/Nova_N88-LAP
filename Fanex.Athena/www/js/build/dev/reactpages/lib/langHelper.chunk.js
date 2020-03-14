@@ -209,7 +209,6 @@ window._language_en_US = {
   CashOutValue: "Cash Out Value",
   CashOutWinLoss: "Cash Out Win Loss",
   CasinoTransfer: "Casino Transfer",
-  CasinoTurnover: "Casino Turnover",
   ChangePassword: "Change Password",
   ChangeStatus: "Change {0}&apos;s status",
   ChangeStatusOfThisCustomerMsg: "Are you sure you want to change status of this customer?",

@@ -30,8 +30,6 @@
 
         public const string BettingTicketCenterAdvancedSearch = "BettingTicketCenter_AdvancedSearch";
 
-        public const string CasinoTurnover = "CasinoTurnover";
-
         public const string DailyBets = "DailyBets";
     }
 }

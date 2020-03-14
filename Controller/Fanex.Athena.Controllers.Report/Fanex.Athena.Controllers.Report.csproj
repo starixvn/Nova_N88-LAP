@@ -151,7 +151,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CasinoTurnoverController.cs" />
     <Compile Include="ColossusBetsWinLossReportController.cs" />
     <Compile Include="CashOutWinLossReportController.cs" />
     <Compile Include="DailyBetsReportController.cs" />

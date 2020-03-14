@@ -101,10 +101,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CashOutWinLossDataAccess.cs" />
-    <Compile Include="CasinoTurnoverDataAccess.cs" />
     <Compile Include="ExchangeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ICashOutWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\ICasinoTurnoverDataAccess.cs" />
     <Compile Include="Interfaces\IColossusBetsWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IExchangeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ISpecialLicenseeWinLossDataAccess.cs" />

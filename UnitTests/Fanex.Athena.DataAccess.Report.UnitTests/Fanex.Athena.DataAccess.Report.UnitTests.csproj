@@ -109,7 +109,6 @@
   <ItemGroup>
     <Compile Include="CashOutWinLossDataAccessTest.cs" />
     <Compile Include="ColossusBetsWinLossDataAccessTest.cs" />
-    <Compile Include="CasinoTurnoverDataAccessTest.cs" />
     <Compile Include="CustomerPendingFundsDataAccessTest.cs" />
     <Compile Include="CustomerTurnoverDataAccessTest.cs" />
     <Compile Include="ExchangeWinLossDataAccessTest.cs" />

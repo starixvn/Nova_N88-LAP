@@ -241,7 +241,6 @@ window._language_zh_TW = {
   CustomersBelongGroupsBeRemovedMsg: "只有屬於組的會員將從他們所屬的組中移除。",
   CustomerSetting: "會員設定",
   CustomersExistedinGroupMsg: "選擇的會員已經出現在此組",
-  CustomerTurnover: "會員交易額",
   CustomerW_L: "會員輸贏",
   CustomerWinLoss: "會員輸贏",
   CustomerWinLossTitle: "會員輸贏，{0} --&gt; {1} - {2}",

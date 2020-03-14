@@ -1595,9 +1595,6 @@
   <data name="Odd_MY" xml:space="preserve">
     <value>马来盘</value>
   </data>
-  <data name="CustomerTurnover" xml:space="preserve">
-    <value>会员交易额</value>
-  </data>
   <data name="TotalTurnover" xml:space="preserve">
     <value>总交易额</value>
   </data>

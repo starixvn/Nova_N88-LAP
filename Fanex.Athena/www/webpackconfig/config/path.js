@@ -43,7 +43,6 @@ var cssPaths = {
     betsetting: ["./www/css/source/pages/customer/betsetting.scss"],
     licenseelist: ["./www/css/source/pages/utility/licenseelist.scss"],
     golddeluxewinloss: ["./www/css/source/pages/report/golddeluxewinloss.scss"],
-    customerturnover: ["./www/css/source/pages/report/customerturnover.scss"],
     customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"]
 };
 
@@ -95,7 +94,6 @@ var scriptPaths = {
     exchangebetsetting: "./www/js/source/pages/customer/betsetting/main-exchange.js",
 
     golddeluxewinloss: "./www/js/source/pages/report/thirdpartywinloss/main-golddeluxewinloss.js",
-    customerturnover: "./www/js/source/pages/report/customerturnover/main.js",
     customerwinloss: "./www/js/source/pages/report/customerwinloss/main.js"
 };
 

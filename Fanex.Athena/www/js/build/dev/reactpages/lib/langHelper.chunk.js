@@ -264,7 +264,6 @@ window._language_en_US = {
   CustomersBelongGroupsBeRemovedMsg: "Only customers belonging to groups will be removed from their groups.",
   CustomerSetting: "Customer setting",
   CustomersExistedinGroupMsg: "Selected customers already existed in this group.",
-  CustomerTurnover: "Customer Turnover",
   CustomerW_L: "Customer W/L",
   CustomerWinLoss: "Customer Win Loss",
   CustomerWinLossTitle: "Customer Win/Loss, {0} --&gt; {1} - {2}",

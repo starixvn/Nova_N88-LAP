@@ -24,7 +24,6 @@
         public const string ReportWinLossByLeague = "WinLossByLeague59";
         public const string ReportGoldDeluxeWinloss = "GoldDeluxeWinloss65";
         public const string ReportWeeklyLiveMatches = "WeeklyLiveMatches69";
-        public const string ReportCustomerTurnover = "CustomerTurnover51";
         public const string ReportPlatformWinLoss = "MobileWinLoss53";
         public const string ReportColossusBetsWinLoss = "ColossusBetsWinLoss71";
         public const string ReportCashOutWinLoss = "CashOutWinLoss72";

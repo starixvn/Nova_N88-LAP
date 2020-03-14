@@ -1573,15 +1573,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customer Turnover     .
-        /// </summary>
-        public static string CustomerTurnover {
-            get {
-                return ResourceManager.GetString("CustomerTurnover", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Customer W/L.
         /// </summary>
         public static string CustomerW_L {

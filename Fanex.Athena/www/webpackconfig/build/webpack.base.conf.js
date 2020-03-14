@@ -63,7 +63,6 @@ function generateConfig(environment) {
             [`${jsPath}/pages/customer/exchangebetsetting`]: [pathConfig.scriptPaths.exchangebetsetting],
 
             [`${jsPath}/pages/reports/golddeluxewinloss`]: [pathConfig.scriptPaths.golddeluxewinloss],
-            [`${jsPath}/pages/reports/customerturnover`]: [pathConfig.scriptPaths.customerturnover],
             [`${jsPath}/pages/reports/customerwinloss`]: [pathConfig.scriptPaths.customerwinloss],
 
             [`${cssPath}/pages/reports/reportjqgridlayout`]: pathConfig.cssPaths.reportjqgridlayout,
@@ -99,7 +98,6 @@ function generateConfig(environment) {
             [`${cssPath}/pages/customer/betsetting`]: pathConfig.cssPaths.betsetting,
             [`${cssPath}/pages/utility/licenseelist`]: pathConfig.cssPaths.licenseelist,
             [`${cssPath}/pages/reports/golddeluxewinloss`]: pathConfig.cssPaths.golddeluxewinloss,
-            [`${cssPath}/pages/reports/customerturnover`]: pathConfig.cssPaths.customerturnover,
             [`${cssPath}/pages/reports/customerwinloss`]: pathConfig.cssPaths.customerwinloss
         },
         output: {

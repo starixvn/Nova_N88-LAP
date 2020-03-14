@@ -19,14 +19,16 @@
 @section globaljscode{
     window.initialState = {
     isLoading: false,
-    type: 1,
+    type: 0,
     currencyList:  @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
     isSubsidiary:  0
     };
 
     window._pConfig = {
-    hostUrl: '@Url.Content("~/" + Model.SiteName + "/")',
+    hostUrl: '@Url.Content("~/")',
     applyApiTokenUrl: '@Url.Action("ApplyApiToken", "Verify")',
+    applyLinkTokenUrl: '@Url.Action("ApplyToken", "Verify")',
+    tabList: @Html.Raw(Model.PlayerTabItems),
     hasBaPermission: @((bool)Model.IsAllowedBA ? 1 : 0),
     hasOddsGroupPermission: 1,
     hasSpecialLevelPermission: 1,

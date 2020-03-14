@@ -32,8 +32,6 @@ export class DataGrid extends PureComponent {
                 dataItem,
                 displayedColumn
             }
-
-            console.log(dataItem)
             dataRows.push(<PlayerRow key={dataItem.IbcCustId} {...rowProps} />);
         }
 
@@ -42,7 +40,6 @@ export class DataGrid extends PureComponent {
 
     handleSort = (sortBy, sortOrder) => {
         const { playerList, setPlayerList } = this.props;
-        console.log(playerList)
         const sortedPlayerList = GridInteractionService.sortPlayerList(playerList, sortBy, sortOrder);
         setPlayerList(sortedPlayerList);
     }
@@ -57,7 +54,8 @@ export class DataGrid extends PureComponent {
             return <NoDataTitle />;
         }
 
-        const dataList = selectedPlayer ? [playerList.find(item => item.LicenseeCustId === selectedPlayer.licenseeCustId)] : playerList;
+        const dataList = selectedPlayer ? [playerList.find(item => item.IbcCustId === selectedPlayer.ibcCustId)] : playerList;
+        console.log(dataList)
         const displayedColumn = buildDisplayedColumnObject(displayedColumnList);
 
         return (

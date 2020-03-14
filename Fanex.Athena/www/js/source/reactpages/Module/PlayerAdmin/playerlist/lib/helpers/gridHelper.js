@@ -11,7 +11,6 @@ export default class GridHelper {
             <HeaderRow style={{ height: 32 }}>
                 {/* For Phase 2 */}
                 {/* <HeaderCell colWidth={30}><input type="checkbox" /></HeaderCell> */}
-                {displayedColumn[Status] && <HeaderCell colWidth={80} sortBy={Status}>{headerText.Status}</HeaderCell>}
                 {displayedColumn[UserName] && <HeaderCell colWidth={160} sortBy={UserName}>{headerText.UserName}</HeaderCell>}
                 {displayedColumn[SystemId] && <HeaderCell colWidth={100}>{headerText.SystemId}</HeaderCell>}
                 {displayedColumn[Currency] && <HeaderCell colWidth={60} sortBy={Currency}>{headerText.Currency}</HeaderCell>}

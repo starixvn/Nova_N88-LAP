@@ -2,9 +2,11 @@
 {
     using System.Web.Mvc;
     using Fanex.Athena.Model.Core.DataDomain;
+    using Fanex.Athena.Model.PlayerManagement.Constants;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
     using Fanex.Athena.Module.PlayerAdmin.Api.MetaModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Newtonsoft.Json;
 
     public class PlayerAdminController : CultureBaseController
     {
@@ -32,6 +34,7 @@
             playerAdmin.IsAllowedCustomerComm = licenseeSession.LicenseeName != null && licenseeInfo.IsAllowedCustomerComm;
             playerAdmin.IsAllowedBA = licenseeInfo != null && licenseeInfo.IsEnableBA &&
                 _authService.CheckProductBelongsTo(licenseeSession.LicenseeName, ProductTypes.BA);
+            playerAdmin.PlayerTabItems = JsonConvert.SerializeObject(PlayerAdminTab.CommonTabList);
 
             return View("~/Views/Desktop/Module/PlayerAdmin/Main.cshtml", playerAdmin);
         }

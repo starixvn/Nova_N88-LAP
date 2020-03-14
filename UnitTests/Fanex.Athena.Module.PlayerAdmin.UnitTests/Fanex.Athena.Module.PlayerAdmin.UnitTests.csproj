@@ -142,6 +142,10 @@
       <Project>{255E120A-83BF-4F72-9E31-6050D5704069}</Project>
       <Name>Fanex.Athena.Controllers.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Controller\Fanex.Athena.Controllers.PlayerManagement\Fanex.Athena.Controllers.PlayerManagement.csproj">
+      <Project>{63366e90-05d9-44da-8fca-2eac6b0377d3}</Project>
+      <Name>Fanex.Athena.Controllers.PlayerManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\Fanex.Athena.DataAccess.Core\Fanex.Athena.DataAccess.Core.csproj">
       <Project>{A6BE21E8-6895-4863-BA3A-E6B21D3CE78D}</Project>
       <Name>Fanex.Athena.DataAccess.Core</Name>

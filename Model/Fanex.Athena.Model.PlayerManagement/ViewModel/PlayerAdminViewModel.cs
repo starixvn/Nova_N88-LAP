@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Athena.Model.PlayerManagement.ViewModel
 {
     using System.Collections.Generic;
+    using Fanex.Athena.Model.PlayerManagement.DTO;
 
     public class PlayerAdminViewModel
     {
@@ -13,5 +14,7 @@
         public bool IsAllowedBA { get; set; }
 
         public string SiteName { get; set; }
+
+        public string PlayerTabItems { get; set; }
     }
 }

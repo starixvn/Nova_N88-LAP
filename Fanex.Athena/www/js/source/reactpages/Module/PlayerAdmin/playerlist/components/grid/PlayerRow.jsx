@@ -22,32 +22,23 @@ export const PlayerRow = (props) => {
     const { 
         LicenseeCustId, 
         SystemId, 
-        RealName, 
         Currency, 
         CurrentBalance, 
         OutstandingBalance,
-        LastTransaction,
-        Email, 
         OddsGroup, 
-        SpecialLevel, 
-        IsDeposit, 
-        IsArchived 
+        SpecialLevel,
     } = dataItem;
-    const canShowMainColumn = IsDeposit && !IsArchived;
-
-    console.log(dataItem)
 
     return (
         <Row key={LicenseeCustId}>
-            {displayedColumn[fields.Status] && <Cell><StatusCell dataItem={dataItem} /></Cell>}
             {displayedColumn[fields.UserName] && <Cell><UserNameCell dataItem={dataItem} /></Cell>}
             {displayedColumn[fields.SystemId] && <Cell>{SystemId}</Cell>}
             {displayedColumn[fields.Currency] && <Cell className="center-align">{Currency}</Cell>}
-            {displayedColumn[fields.CurrentBalance] && <Cell className="right-align">{canShowMainColumn && NumberFormat.formatDecimal(CurrentBalance)}</Cell>}
-            {displayedColumn[fields.OutstandingBalance] && <Cell className="right-align">{canShowMainColumn && NumberFormat.formatDecimal(OutstandingBalance)}</Cell>}
-            {displayedColumn[fields.OddsGroup] && <Cell className="center-align">{canShowMainColumn && OddsGroup !== undefined && <OddsGroupCell dataItem={dataItem} />}</Cell>}
+            {displayedColumn[fields.CurrentBalance] && <Cell className="right-align">{NumberFormat.formatDecimal(CurrentBalance)}</Cell>}
+            {displayedColumn[fields.OutstandingBalance] && <Cell className="right-align">{NumberFormat.formatDecimal(OutstandingBalance)}</Cell>}
+            {displayedColumn[fields.OddsGroup] && <Cell className="center-align">{OddsGroup !== undefined && <OddsGroupCell dataItem={dataItem} />}</Cell>}
             {displayedColumn[fields.BaStatus] && <BaStatusCell dataItem={dataItem} />}
-            {displayedColumn[fields.SpecialLevel] && <Cell className="center-align">{canShowMainColumn && SpecialLevel !== undefined && <SpecialLevelCell dataItem={dataItem} />}</Cell>}
+            {displayedColumn[fields.SpecialLevel] && <Cell className="center-align">{SpecialLevel !== undefined && <SpecialLevelCell dataItem={dataItem} />}</Cell>}
         </Row>
     )
 }

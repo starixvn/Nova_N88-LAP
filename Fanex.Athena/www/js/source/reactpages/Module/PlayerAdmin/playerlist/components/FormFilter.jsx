@@ -4,11 +4,10 @@ import { ActionCreators } from '../actions/index.js';
 import { bindActionCreators } from 'redux';
 import CheckBox from '@jsroot/components/CheckBox';
 import AdvancedSearch from './filter/AdvancedSearch';
-import { licenseeType } from '../lib/constants';
 import CollapsiblePanel from '@jsroot/components/collapsible-panel';
 import UserGuide from '@jsroot/components/UserGuide';
 import LangHelper from '@jsroot/lib/langHelper';
-import { searchOptions, baStatusList, specialLevelListWithColor, emailPattern, oddsGroupListWithStyle } from '../lib/constants';
+import { searchOptions, baStatusList, specialLevelListWithColor, oddsGroupListWithStyle } from '../lib/constants';
 import QueryString from '@jsroot/lib/QueryString';
 import { encode } from '@jsroot/lib/htmlHelper';
 
@@ -45,6 +44,9 @@ export class FormFilter extends PureComponent {
             this.userNameRef.current.value = userName;
             this.setState({ isValidUserName: !!userName });
         }
+
+        const { type, isSubsidiary } = this.props;
+        this.props.getSiteSetting(type, isSubsidiary);
     }
 
     componentDidUpdate(prevProps, prevState) {

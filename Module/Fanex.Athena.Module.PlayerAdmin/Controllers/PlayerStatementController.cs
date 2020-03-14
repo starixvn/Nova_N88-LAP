@@ -6,7 +6,6 @@
     using System.Web.SessionState;
     using System.Web.UI;
     using Fanex.Athena.Controllers;
-    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Module.PlayerAdmin.MetaModel;
     using Fanex.Athena.Module.PlayerAdmin.Services.Interfaces;
@@ -16,8 +15,6 @@
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
-    [AuthorizeRestriction(AppMode.Parasitic)]
-    [FunctionAuthorization(PermissionKeys.PlayerAdminStatement)]
     public class PlayerStatementController : CultureBaseController
     {
         private readonly IPlayerStatementService _playerStatementService;
@@ -30,7 +27,6 @@
         }
 
         [HttpGet]
-        [ValidatePermissionOnData]
         public ViewResult Index(int custId, int currencyId)
         {
             var today = DateTime.Today;
@@ -49,7 +45,6 @@
         [HttpPost]
         [AjaxRequest]
         [CustomValidateAntiForgery]
-        [ValidatePermissionOnData(isObject: true)]
         [ValidationWebRequest]
         [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
         public async Task<ActionResult> GetStatementUrl(PlayerStatementMetaModel metaModel)

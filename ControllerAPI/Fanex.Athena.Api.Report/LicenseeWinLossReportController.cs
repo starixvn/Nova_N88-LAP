@@ -31,15 +31,13 @@ namespace Fanex.Athena.Api.Report
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-    using Fanex.NAP.Core.Web.Attribute;
     using Model.Core.DataDomain;
     using Model.Core.MetaModel.Product;
     using Model.Core.ResultModel;
 
     using Service.Core.Common.Interfaces;
-    using static Fanex.NAP.Core.Business.Constant;
 
-    [NapAPIAuth(FunctionKey = PermissionKeys.ReportLicenseeWinLoss, Policy = Policy.Read)]
+    [ApiFunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss)]
     public class LicenseeWinLossReportController : ApiReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;

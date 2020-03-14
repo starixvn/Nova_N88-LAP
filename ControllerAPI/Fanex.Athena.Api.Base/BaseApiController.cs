@@ -15,7 +15,6 @@
 
     [CheckUMFilter]
     [XFrameOptionApi]
-    [NapAPISuperAuth]
     public class BaseApiController : ApiController
     {
         private readonly ILanguageService _langService;

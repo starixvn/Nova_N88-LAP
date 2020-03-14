@@ -169,7 +169,6 @@
     <Compile Include="ReportAPI\ReportAPIController.CustomerTurnover.cs" />
     <Compile Include="ReportAPI\ReportAPIController.Turnover.cs" />
     <Compile Include="ReportBaseController.cs" />
-    <Compile Include="AgCasinoBalanceReportController.cs" />
     <Compile Include="AgCasinoWinLossReportController.cs" />
     <Compile Include="CustomerBalanceReportController.cs" />
     <Compile Include="CustomerPendingFundsReportController.cs" />

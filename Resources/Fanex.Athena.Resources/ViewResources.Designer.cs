@@ -196,15 +196,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AG Casino Balance.
-        /// </summary>
-        public static string AGCasinoBalance {
-            get {
-                return ResourceManager.GetString("AGCasinoBalance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AG Casino is not offered for this currency..
         /// </summary>
         public static string AGCasinoNotOfferCurrency {

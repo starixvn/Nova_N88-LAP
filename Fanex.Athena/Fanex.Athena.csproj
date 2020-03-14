@@ -2048,7 +2048,6 @@
     </None>
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
-    <Content Include="Content\Report\agcasinobalance.css" />
     <Content Include="Content\Report\images\expand_collapse.png" />
     <Content Include="Content\UserGuide\Images\icon_add.jpg" />
     <Content Include="Content\UserGuide\Images\team-to-score-guide1.png" />
@@ -2064,7 +2063,6 @@
     <Content Include="App_Data\Template\Reports\GoldDeluxeWinLoss.xls" />
     <Content Include="App_Data\Template\Reports\ThirdPartyWinLoss.xls" />
     <Content Include="App_Data\Template\RNGCasino\HandHistory.xls" />
-    <Content Include="App_Data\Template\Reports\AgCasinoBalance.xls" />
     <Content Include="GruntFilters.json" />
     <Content Include="App_Data\Template\Reports\WeeklyLiveMatch.xls" />
     <Content Include="App_Data\UserGuide\CustomerList\pdf\en-US\Odds Group Feature_Licensee.pdf" />
@@ -2121,8 +2119,6 @@
     <Content Include="jasmine-specs\Global\prototype-test.js" />
     <Content Include="jasmine-specs\Global\query.string-test.js" />
     <Content Include="jasmine-specs\Global\site-test.js" />
-    <Content Include="jasmine-specs\Report\agcasinobalance-test.js" />
-    <Content Include="jasmine-specs\Report\agcasinobalance.option-test.js" />
     <Content Include="jasmine-specs\Report\report-test.js" />
     <Content Include="jasmine-specs\setup.js" />
     <Content Include="Jasmine\SpecRunner.html" />
@@ -2152,8 +2148,6 @@
     <Content Include="Scripts\Library\moment.min.js" />
     <Content Include="Scripts\Plugin\FlatPopup\jquery.custom-scrollbar.js" />
     <Content Include="Scripts\Plugin\FlatPopup\jquery.flatpopup.js" />
-    <Content Include="Scripts\Report\agcasinobalance.js" />
-    <Content Include="Scripts\Report\agcasinobalance.option.js" />
     <Content Include="SiteConfig\Web.LOCAL.config">
       <DependentUpon>Web.config.tt</DependentUpon>
       <SubType>Designer</SubType>
@@ -2173,9 +2167,6 @@
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
     <Content Include="Views\UserGuide\Index.cshtml" />
-    <Content Include="Views\Report\AgCasinoBalance\Content.cshtml" />
-    <Content Include="Views\Report\AgCasinoBalance\Filter.cshtml" />
-    <Content Include="Views\Report\AgCasinoBalance\Main.cshtml" />
     <Content Include="SiteConfig\WebConfigTransforms\BACKUPMNL.config" />
     <Content Include="SiteConfig\WebConfigTransforms\LOCAL.config" />
     <Content Include="SiteConfig\WebConfigTransforms\PRO.config" />
@@ -5584,6 +5575,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="Views\Report\" />
     <Folder Include="www\js\source\reactpages\pages\bettingticketscenter\common\components\__tests__\" />
   </ItemGroup>
   <ItemGroup>

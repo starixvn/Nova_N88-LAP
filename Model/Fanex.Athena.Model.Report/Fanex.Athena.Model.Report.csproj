@@ -132,7 +132,6 @@
     <Compile Include="DTO\CashOutWinLoss.cs" />
     <Compile Include="DTO\CasinoTurnover.cs" />
     <Compile Include="DTO\ExchangeWinLoss.cs" />
-    <Compile Include="DTO\AgCasinoBalance.cs" />
     <Compile Include="DTO\ColossusBetWinLoss.cs" />
     <Compile Include="DTO\Result\KenoExtendedToken.cs" />
     <Compile Include="DTO\SubsidiaryPerformance\SubsidiaryPerformanceGroup.cs" />
@@ -204,7 +203,6 @@
     <Compile Include="ViewModel\SubsidiaryPerformanceViewModel.cs" />
     <Compile Include="ViewModel\ThirdPartyWinLossViewModel.cs" />
     <Compile Include="ViewModel\WinLossByLeagueViewModel.cs" />
-    <Compile Include="ViewModel\AgCasinoBalanceViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossGridViewModel.cs" />
     <Compile Include="ViewModel\WinLossByProductViewModel.cs" />
     <Compile Include="ViewModel\CustomerBalanceViewModel.cs" />

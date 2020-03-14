@@ -131,7 +131,6 @@
   <ItemGroup>
     <Compile Include="CashOutWinLossExcel.cs" />
     <Compile Include="Helpers\ReportExcelHelper.cs" />
-    <Compile Include="AgCasinoBalanceExcel.cs" />
     <Compile Include="Models\CustomerPendingFundsExcelModel.cs" />
     <Compile Include="Models\LicenseeWinLossExcelModel.cs" />
     <Compile Include="Models\WinLossByProductExcelModel.cs" />

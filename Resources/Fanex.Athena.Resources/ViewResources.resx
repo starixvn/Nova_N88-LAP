@@ -1683,10 +1683,6 @@
     <value>Customer Log</value>
     <comment>26174</comment>
   </data>
-  <data name="AGCasinoBalance" xml:space="preserve">
-    <value>AG Casino Balance</value>
-    <comment>#26990</comment>
-  </data>
   <data name="TransferIn" xml:space="preserve">
     <value>Transfer In</value>
     <comment>#26990</comment>

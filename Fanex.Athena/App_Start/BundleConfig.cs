@@ -38,8 +38,6 @@
             RegisterAccountLayoutStyles(bundles);
 
             RegisterjqGridLayoutStyles(bundles);
-
-            RegisterViewAgCasinoBalance(bundles);
         }
 
         #region JavaScripts Shared Layout
@@ -134,27 +132,6 @@
         }
 
         #endregion CSS Shared Layout
-
-        #region Scripts & Styles Views
-
-        private static void RegisterViewAgCasinoBalance(BundleCollection bundles)
-        {
-            var bundle = new ScriptBundle("~/bundles/AgCasinoBalanceScripts")
-                .Include(
-                        "~/Scripts/Global/Paging.js",
-                        "~/Scripts/Report/agcasinobalance.js",
-                        "~/Scripts/Report/agcasinobalance.option.js");
-            AddNewScriptBundle(bundles, bundle);
-
-            AddStyleBundle(
-               bundles,
-               "~/bundles/AgCasinoBalanceStyles",
-               "~/Content/Report/agcasinobalance.css",
-               "~/Content/Plugin/Common/bread-crumb.css",
-               "~/Content/Global/Paging.css");
-        }
-
-        #endregion Scripts & Styles Views
 
         #region CSS Views
 

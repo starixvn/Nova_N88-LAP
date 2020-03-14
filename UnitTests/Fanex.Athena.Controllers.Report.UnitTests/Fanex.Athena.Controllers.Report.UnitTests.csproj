@@ -202,7 +202,6 @@
     <Compile Include="ColossusBetsWinLossReportControllerTest.cs" />
     <Compile Include="CashOutWinLossReportControllerTest.cs" />
     <Compile Include="AgCasinoWinLossReportControllerTest.cs" />
-    <Compile Include="AgCasinoBalanceReportControllerTest.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

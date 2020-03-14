@@ -23087,17 +23087,13 @@ var FactoryCommonService = /*#__PURE__*/function () {
       }
 
       var applyApiTokenUrl = pageConfig.applyApiTokenUrl,
+          applyLinkTokenUrl = pageConfig.applyLinkTokenUrl,
           tabList = pageConfig.tabList;
-
-      if (!applyApiTokenUrl) {
-        throw new Error("Missing applyApiTokenUrl in window._pConfig");
-      }
-
       var initialConfig = {
         tabList: tabList,
         baseUrl: pageConfig.hostUrl,
         applyApiTokenUrl: applyApiTokenUrl,
-        applyLinkTokenUrl: pageConfig.applyApiTokenUrl
+        applyLinkTokenUrl: applyLinkTokenUrl
       };
       return new _lapCommonService__WEBPACK_IMPORTED_MODULE_0__["default"](initialConfig);
     }
@@ -23235,12 +23231,10 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
       var _this2 = this;
 
       var apiToken = "".concat(this._applyApiTokenUrl, "?").concat(this._buildApplyTokenQueryString(sysType, action));
-      console.log(this._applyApiTokenUrl);
       return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(apiToken).then(function (response) {
         var _response$data = response.data,
             Token = _response$data.Token,
             ApiUrl = _response$data.ApiUrl;
-        console.log(Token);
         var apiActionUrl = "".concat(ApiUrl, "/").concat(action);
 
         var commonAjaxConfig = _this2._buildCommonAjaxConfig(configOption, apiActionUrl, params);
@@ -23260,7 +23254,6 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
     key: "fetchData",
     value: function fetchData(sysType, action, params) {
       var configOption = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : defaultAjaxConfig;
-      console.log(this._baseUrl + action);
 
       var config = _objectSpread({}, defaultAjaxConfig, {}, configOption);
 

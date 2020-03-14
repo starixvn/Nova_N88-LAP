@@ -1010,7 +1010,6 @@ var DataGrid = /*#__PURE__*/function (_PureComponent) {
       var _this$props = _this.props,
           playerList = _this$props.playerList,
           setPlayerList = _this$props.setPlayerList;
-      console.log(playerList);
       var sortedPlayerList = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_8__["default"].sortPlayerList(playerList, sortBy, sortOrder);
       setPlayerList(sortedPlayerList);
     });
@@ -1030,7 +1029,6 @@ var DataGrid = /*#__PURE__*/function (_PureComponent) {
           dataItem: dataItem,
           displayedColumn: displayedColumn
         };
-        console.log(dataItem);
         dataRows.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_PlayerRow__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({
           key: dataItem.IbcCustId
         }, rowProps)));
@@ -1057,8 +1055,9 @@ var DataGrid = /*#__PURE__*/function (_PureComponent) {
       }
 
       var dataList = selectedPlayer ? [playerList.find(function (item) {
-        return item.LicenseeCustId === selectedPlayer.licenseeCustId;
+        return item.IbcCustId === selectedPlayer.ibcCustId;
       })] : playerList;
+      console.log(dataList);
       var displayedColumn = Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_12__["buildDisplayedColumnObject"])(displayedColumnList);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__["Table"], {
         minWidth: 650,
@@ -1121,10 +1120,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/components/CheckBox */ "./www/js/source/reactpages/components/CheckBox.jsx");
 /* harmony import */ var _filter_AdvancedSearch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./filter/AdvancedSearch */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/AdvancedSearch.jsx");
-/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-/* harmony import */ var _jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/components/collapsible-panel */ "./www/js/source/reactpages/components/collapsible-panel/index.jsx");
-/* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/components/collapsible-panel */ "./www/js/source/reactpages/components/collapsible-panel/index.jsx");
+/* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
 /* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
 /* harmony import */ var _jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/lib/htmlHelper */ "./www/js/source/reactpages/lib/htmlHelper.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1154,7 +1153,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -1213,11 +1211,11 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
       });
     });
 
-    _this.allOddsGroupString = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_6__["oddsGroupListWithStyle"]).join(',');
+    _this.allOddsGroupString = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["oddsGroupListWithStyle"]).join(',');
     _this.allCurrencyString = props.currencyList.map(function (c) {
       return c.Id;
     }).join(',');
-    _this.allSpecialLevel = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_6__["specialLevelListWithColor"]).map(function (item) {
+    _this.allSpecialLevel = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["specialLevelListWithColor"]).map(function (item) {
       return item;
     }).join(',');
     _this.userGuide = _this._renderUserGuide();
@@ -1228,8 +1226,8 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
       currencyIdList: _this.allCurrencyString,
       oddsGroup: _this.allOddsGroupString,
       specialLevel: _this.allSpecialLevel,
-      baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_6__["baStatusList"].All,
-      searchOption: _lib_constants__WEBPACK_IMPORTED_MODULE_6__["searchOptions"].matchPrefix
+      baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["baStatusList"].All,
+      searchOption: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["searchOptions"].matchPrefix
     };
     return _this;
   }
@@ -1252,6 +1250,11 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
           isValidUserName: !!userName
         });
       }
+
+      var _this$props = this.props,
+          type = _this$props.type,
+          isSubsidiary = _this$props.isSubsidiary;
+      this.props.getSiteSetting(type, isSubsidiary);
     }
   }, {
     key: "componentDidUpdate",
@@ -1263,7 +1266,7 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
           currencyIdList: this.allCurrencyString,
           oddsGroup: this.allOddsGroupString,
           specialLevel: this.allSpecialLevel,
-          baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_6__["baStatusList"].All
+          baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["baStatusList"].All
         });
       }
     }
@@ -1271,10 +1274,10 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
     key: "searchPlayer",
     value: function searchPlayer() {
       var userName = this.state.userName;
-      var _this$props = this.props,
-          pagingOption = _this$props.pagingOption,
-          searchPlayer = _this$props.searchPlayer,
-          currencyList = _this$props.currencyList;
+      var _this$props2 = this.props,
+          pagingOption = _this$props2.pagingOption,
+          searchPlayer = _this$props2.searchPlayer,
+          currencyList = _this$props2.currencyList;
 
       var _this$state = this.state,
           specialLevel = _this$state.specialLevel,
@@ -1285,7 +1288,7 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
 
       var actualSpecialLevel = specialLevel.trim();
       var isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
-      var isSelectAllOddsGroup = oddsGroup.trim().split(',').length === Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_6__["oddsGroupListWithStyle"]).length;
+      var isSelectAllOddsGroup = oddsGroup.trim().split(',').length === Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["oddsGroupListWithStyle"]).length;
 
       var param = _objectSpread({}, restParam, {
         userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(userName),
@@ -1302,9 +1305,9 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
     key: "_renderUserGuide",
     value: function _renderUserGuide() {
       var userGuideContent = 'Player Admin User Guide';
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("UserGuide"),
-        contentTitle: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("PlayerAdmin"),
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("UserGuide"),
+        contentTitle: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("PlayerAdmin"),
         onClick: this.showUserGuide,
         content: userGuideContent
       });
@@ -1321,12 +1324,12 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
           isValidUserName = _this$state2.isValidUserName,
           advancedSearchParam = _objectWithoutProperties(_this$state2, ["bankAccountNumber", "email", "searchOption", "isValidUserName"]);
 
-      var _this$props2 = this.props,
-          type = _this$props2.type,
-          isAdvancedSearch = _this$props2.isAdvancedSearch,
-          isFilterCollapsing = _this$props2.isFilterCollapsing,
-          currencyList = _this$props2.currencyList,
-          hasBaPermission = _this$props2.hasBaPermission;
+      var _this$props3 = this.props,
+          type = _this$props3.type,
+          isAdvancedSearch = _this$props3.isAdvancedSearch,
+          isFilterCollapsing = _this$props3.isFilterCollapsing,
+          currencyList = _this$props3.currencyList,
+          hasBaPermission = _this$props3.hasBaPermission;
       var currencyIdList = advancedSearchParam.currencyIdList,
           oddsGroup = advancedSearchParam.oddsGroup,
           specialLevel = advancedSearchParam.specialLevel;
@@ -1336,7 +1339,7 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
         className: isFilterCollapsing ? 'chevron down' : 'chevron up',
         style: {}
       };
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_6__["default"], {
         className: "page-filter",
         iconToggle: iconToggle,
         stickyFooter: this.userGuide,
@@ -1390,7 +1393,7 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
         className: "btn btn-submit",
         disabled: !isValidParam,
         onClick: this.handleSubmit
-      }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("Submit"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("Submit"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -1400,7 +1403,7 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
         onChange: function onChange(checked) {
           return _this2.props.setAdvancedSearch(checked);
         },
-        label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("AdvancedSearch")
+        label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("AdvancedSearch")
       })))));
     }
   }]);
@@ -1541,15 +1544,9 @@ var PlayerDetail = /*#__PURE__*/function (_PureComponent) {
     value: function _renderTabList(tabList) {
       var _this2 = this;
 
-      var selectedPlayer = this.props.selectedPlayer;
-
       var selectedTabName = this.props.selectedTabName || this._getDefaultSelectedTab();
 
-      var isDeposit = selectedPlayer.isDeposit,
-          isArchived = selectedPlayer.isArchived;
-      var renderedTabList = !isDeposit || isArchived ? tabList.filter(function (item) {
-        return !_lib_constants__WEBPACK_IMPORTED_MODULE_4__["excludedTabNameWithNonDepositAndArchived"].includes(item.Name);
-      }) : tabList;
+      var renderedTabList = tabList;
       return renderedTabList.map(function (item) {
         var actionUrl = _this2._buildActionUrl(item.SystemType, item.Action, item.Name);
 
@@ -2632,39 +2629,30 @@ var PlayerRow = function PlayerRow(props) {
       displayedColumn = props.displayedColumn;
   var LicenseeCustId = dataItem.LicenseeCustId,
       SystemId = dataItem.SystemId,
-      RealName = dataItem.RealName,
       Currency = dataItem.Currency,
       CurrentBalance = dataItem.CurrentBalance,
       OutstandingBalance = dataItem.OutstandingBalance,
-      LastTransaction = dataItem.LastTransaction,
-      Email = dataItem.Email,
       OddsGroup = dataItem.OddsGroup,
-      SpecialLevel = dataItem.SpecialLevel,
-      IsDeposit = dataItem.IsDeposit,
-      IsArchived = dataItem.IsArchived;
-  var canShowMainColumn = IsDeposit && !IsArchived;
-  console.log(dataItem);
+      SpecialLevel = dataItem.SpecialLevel;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
     key: LicenseeCustId
-  }, displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].Status] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StatusCell__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    dataItem: dataItem
-  })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].UserName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserNameCell__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].UserName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserNameCell__WEBPACK_IMPORTED_MODULE_7__["default"], {
     dataItem: dataItem
   })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].SystemId] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, SystemId), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].Currency] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "center-align"
   }, Currency), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].CurrentBalance] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "right-align"
-  }, canShowMainColumn && _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_6__["default"].formatDecimal(CurrentBalance)), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].OutstandingBalance] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_6__["default"].formatDecimal(CurrentBalance)), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].OutstandingBalance] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "right-align"
-  }, canShowMainColumn && _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_6__["default"].formatDecimal(OutstandingBalance)), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].OddsGroup] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_6__["default"].formatDecimal(OutstandingBalance)), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].OddsGroup] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "center-align"
-  }, canShowMainColumn && OddsGroup !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OddsGroupCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, OddsGroup !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OddsGroupCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     dataItem: dataItem
   })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].BaStatus] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaStatusCell__WEBPACK_IMPORTED_MODULE_11__["default"], {
     dataItem: dataItem
   }), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].SpecialLevel] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "center-align"
-  }, canShowMainColumn && SpecialLevel !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SpecialLevelCell__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, SpecialLevel !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SpecialLevelCell__WEBPACK_IMPORTED_MODULE_9__["default"], {
     dataItem: dataItem
   })));
 };
@@ -3275,9 +3263,7 @@ var UserNameCell = function UserNameCell(props) {
     className: "btn-default btn-link btn-icon cell-menu",
     onMouseEnter: handleEnterContextMenu,
     onMouseLeave: handleLeaveContextMenu
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "material-icons"
-  }, "edit")));
+  }));
 };
 
 function mapDispatchToProps(dispatch) {
@@ -3347,10 +3333,15 @@ var hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission === 1;
 var hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission === 1;
 var isAllowedCustomerComm = window._pConfig.isAllowedCustomerComm === 1;
 var displayedColumnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__["buildDefaultColumnList"])(type);
+var siteSetting = {
+  isAllowedCustomerComm: false,
+  isAllowedBA: false
+};
 
 var defaultState = _objectSpread({}, window.initialState, {
   displayedColumnList: displayedColumnList,
   hasBaPermission: hasBaPermission,
+  siteSetting: siteSetting,
   hasOddsGroupPermission: hasOddsGroupPermission,
   hasSpecialLevelPermission: hasSpecialLevelPermission,
   isAllowedCustomerComm: isAllowedCustomerComm
@@ -3737,22 +3728,17 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-var excludedKeyForApiType = [_constants__WEBPACK_IMPORTED_MODULE_0__["fields"].RealName, _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].Email, _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].LastTransaction];
 var buildDefaultColumnList = function buildDefaultColumnList(licType) {
-  var isApiType = licType === _constants__WEBPACK_IMPORTED_MODULE_0__["licenseeType"].api;
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(function (item) {
-    return item.key !== _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus && (!isApiType || !excludedKeyForApiType.includes(item.key));
+    return item.key !== _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus;
   }).map(function (item) {
     return _objectSpread({}, item);
   });
 };
 var buildColumnList = function buildColumnList(licType, isAllowedBA) {
-  var isApiType = licType === _constants__WEBPACK_IMPORTED_MODULE_0__["licenseeType"].api;
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(function (item) {
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
       return isAllowedBA;
-    } else if (isApiType) {
-      return !excludedKeyForApiType.includes(item.key);
     } else {
       return true;
     }
@@ -3812,10 +3798,7 @@ var GridHelper = /*#__PURE__*/function () {
         style: {
           height: 32
         }
-      }, displayedColumn[Status] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-        colWidth: 80,
-        sortBy: Status
-      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].Status), displayedColumn[UserName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
+      }, displayedColumn[UserName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
         colWidth: 160,
         sortBy: UserName
       }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].UserName), displayedColumn[SystemId] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
@@ -5652,17 +5635,13 @@ var FactoryCommonService = /*#__PURE__*/function () {
       }
 
       var applyApiTokenUrl = pageConfig.applyApiTokenUrl,
+          applyLinkTokenUrl = pageConfig.applyLinkTokenUrl,
           tabList = pageConfig.tabList;
-
-      if (!applyApiTokenUrl) {
-        throw new Error("Missing applyApiTokenUrl in window._pConfig");
-      }
-
       var initialConfig = {
         tabList: tabList,
         baseUrl: pageConfig.hostUrl,
         applyApiTokenUrl: applyApiTokenUrl,
-        applyLinkTokenUrl: pageConfig.applyApiTokenUrl
+        applyLinkTokenUrl: applyLinkTokenUrl
       };
       return new _lapCommonService__WEBPACK_IMPORTED_MODULE_0__["default"](initialConfig);
     }
@@ -5800,12 +5779,10 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
       var _this2 = this;
 
       var apiToken = "".concat(this._applyApiTokenUrl, "?").concat(this._buildApplyTokenQueryString(sysType, action));
-      console.log(this._applyApiTokenUrl);
       return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(apiToken).then(function (response) {
         var _response$data = response.data,
             Token = _response$data.Token,
             ApiUrl = _response$data.ApiUrl;
-        console.log(Token);
         var apiActionUrl = "".concat(ApiUrl, "/").concat(action);
 
         var commonAjaxConfig = _this2._buildCommonAjaxConfig(configOption, apiActionUrl, params);
@@ -5825,7 +5802,6 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
     key: "fetchData",
     value: function fetchData(sysType, action, params) {
       var configOption = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : defaultAjaxConfig;
-      console.log(this._baseUrl + action);
 
       var config = _objectSpread({}, defaultAjaxConfig, {}, configOption);
 

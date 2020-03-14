@@ -42,7 +42,6 @@ var cssPaths = {
     customeroutstanding: ["./www/css/source/pages/betlist/customeroutstanding.scss"],
     betsetting: ["./www/css/source/pages/customer/betsetting.scss"],
     licenseelist: ["./www/css/source/pages/utility/licenseelist.scss"],
-    activecustomersummary: ["./www/css/source/pages/report/activecustomersummary.scss"],
     agcasinowinloss: ["./www/css/source/pages/report/agcasinowinloss.scss"],
     customerbalance: ["./www/css/source/pages/report/customerbalance.scss"],
     golddeluxewinloss: ["./www/css/source/pages/report/golddeluxewinloss.scss"],
@@ -99,7 +98,6 @@ var scriptPaths = {
     numbergamebetsetting: "./www/js/source/pages/customer/betsetting/main-numbergame.js",
     exchangebetsetting: "./www/js/source/pages/customer/betsetting/main-exchange.js",
 
-    activecustomersummary: "./www/js/source/pages/report/activecustomersummary/main.js",
     agcasinowinloss: "./www/js/source/pages/report/agcasinowinloss/main.js",
     customerbalance: "./www/js/source/pages/report/customerbalance/main.js",
     golddeluxewinloss: "./www/js/source/pages/report/thirdpartywinloss/main-golddeluxewinloss.js",

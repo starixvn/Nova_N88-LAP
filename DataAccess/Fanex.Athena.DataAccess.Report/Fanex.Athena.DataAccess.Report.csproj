@@ -101,7 +101,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CashOutWinLossDataAccess.cs" />
-    <Compile Include="ActiveCustomerSummaryDataAccess.cs" />
     <Compile Include="CasinoTurnoverDataAccess.cs" />
     <Compile Include="ExchangeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ICashOutWinLossDataAccess.cs" />
@@ -120,7 +119,6 @@
     <Compile Include="ThirdPartyWinLossDataAccess.cs" />
     <Compile Include="WeeklyLiveMatchDataAccess.cs" />
     <Compile Include="WinLossByLeagueDataAccess.cs" />
-    <Compile Include="Interfaces\IActiveCustomerSummaryDataAccess.cs" />
     <Compile Include="Interfaces\IAgCasinoBalanceDataAccess.cs" />
     <Compile Include="Interfaces\IThirdPartyWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IWinLossByLeagueDataAccess.cs" />

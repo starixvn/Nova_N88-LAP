@@ -434,15 +434,12 @@
       <DependentUpon>FanexSpName.xml.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\UserGuide\ActiveCustomerSummary\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\ActiveCustomerSummary\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\AGCasinoWL\en-US.htm" />
     <Content Include="App_Data\UserGuide\AGCasinoWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\AGCasinoWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\CommissionGroupList\en-US.htm" />
     <Content Include="App_Data\UserGuide\CommissionGroupList\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\CommissionGroupList\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\ActiveCustomerSummary\en-US.htm" />
     <Content Include="App_Data\UserGuide\ManageAccount\en-US.htm" />
     <Content Include="App_Data\UserGuide\ManageAccount\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\ManageAccount\zh-TW.htm" />
@@ -1437,9 +1434,6 @@
     <Content Include="Views\Desktop\Customer\BetSetting\VirtualSports.cshtml" />
     <Content Include="Views\Desktop\BetList\LiveReport\VirtualSports.cshtml" />
     <Content Include="Views\Desktop\Customer\BetSetting\Lottery.cshtml" />
-    <Content Include="Views\Desktop\Report\ActiveCustomerSummary\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\ActiveCustomerSummary\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\ActiveCustomerSummary\Main.cshtml" />
     <Content Include="Views\Desktop\Report\AgCasinoWinLoss\Content.cshtml" />
     <Content Include="Views\Desktop\Report\AgCasinoWinLoss\Filter.cshtml" />
     <Content Include="Views\Desktop\Report\AgCasinoWinLoss\Main.cshtml" />
@@ -1875,9 +1869,6 @@
     <Content Include="www\js\source\pages\home\home.js" />
     <Content Include="www\js\source\pages\home\main.js" />
     <Content Include="www\js\source\pages\home\recheckin.js" />
-    <Content Include="www\js\source\pages\report\activecustomersummary\activecustomersummary.js" />
-    <Content Include="www\js\source\pages\report\activecustomersummary\activecustomersummary.option.js" />
-    <Content Include="www\js\source\pages\report\activecustomersummary\main.js" />
     <Content Include="www\js\source\pages\report\agcasinowinloss\agcasinowinloss.js" />
     <Content Include="www\js\source\pages\report\agcasinowinloss\agcasinowinloss.option.js" />
     <Content Include="www\js\source\pages\report\agcasinowinloss\main.js" />
@@ -1994,8 +1985,6 @@
     <Content Include="www\js\tests\pages\forecast\forecast.newforecasthdpou-spec.js" />
     <Content Include="www\js\tests\pages\forecast\forecast.onextwo-spec.js" />
     <Content Include="www\js\tests\pages\forecast\forecast.ah-spec.js" />
-    <Content Include="www\js\tests\pages\report\activecustomersummary\activecustomersummary-spec.js" />
-    <Content Include="www\js\tests\pages\report\activecustomersummary\activecustomersummary.option-spec.js" />
     <Content Include="www\js\tests\pages\report\agcasinowinloss\agcasinowinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\agcasinowinloss\agcasinowinloss.option-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss-spec.js" />
@@ -2072,7 +2061,6 @@
       <LastGenOutput>FanexSpName.xml1.txt</LastGenOutput>
     </None>
     <None Include="SpNameConfig\SpNameConfiguration.ttinclude" />
-    <Content Include="App_Data\Template\Reports\ActiveCustomerSummary.xls" />
     <Content Include="App_Data\Template\Reports\GoldDeluxeWinLoss.xls" />
     <Content Include="App_Data\Template\Reports\ThirdPartyWinLoss.xls" />
     <Content Include="App_Data\Template\RNGCasino\HandHistory.xls" />

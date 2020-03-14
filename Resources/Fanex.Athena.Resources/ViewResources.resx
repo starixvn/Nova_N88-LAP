@@ -1711,10 +1711,6 @@
     <value>Are you sure you want to move this customer to odds group {0}?</value>
     <comment>#26561</comment>
   </data>
-  <data name="ActiveCustomerSummary" xml:space="preserve">
-    <value>Active Customer Summary</value>
-    <comment>#29219</comment>
-  </data>
   <data name="TotalActiveCustomer" xml:space="preserve">
     <value>Total active customers</value>
     <comment>#29219</comment>

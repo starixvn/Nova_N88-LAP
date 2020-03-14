@@ -133,15 +133,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Active Customer Summary.
-        /// </summary>
-        public static string ActiveCustomerSummary {
-            get {
-                return ResourceManager.GetString("ActiveCustomerSummary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Actual Stake.
         /// </summary>
         public static string ActualStake {

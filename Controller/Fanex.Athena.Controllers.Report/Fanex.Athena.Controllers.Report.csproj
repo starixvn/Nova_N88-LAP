@@ -164,7 +164,6 @@
     <Compile Include="ReportAPI\ReportAPIController.Turnover.cs" />
     <Compile Include="ReportBaseController.cs" />
     <Compile Include="CustomerWinLossReportController.cs" />
-    <Compile Include="PlatformWinLossReportController.cs" />
     <Compile Include="Result\ResultKenoReportController.cs" />
     <Compile Include="Result\ResultReportController.cs" />
     <Compile Include="SettledMatchCountReportController.cs" />

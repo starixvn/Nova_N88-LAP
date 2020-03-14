@@ -164,7 +164,6 @@
     <Compile Include="MetaModel\WinLossByProductMetaModel.cs" />
     <Compile Include="MetaModel\CustomerWinlossMetaModel.cs" />
     <Compile Include="MetaModel\LicenseeWinLossMetaModel.cs" />
-    <Compile Include="MetaModel\PlatformWinLossMetaModel.cs" />
     <Compile Include="MetaModel\TurnoverMetaModel.cs" />
     <Compile Include="MetaModel\WinLossByBetTypeMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -182,7 +181,6 @@
     <Compile Include="ViewModel\LicenseeWinLossGridViewModel.cs" />
     <Compile Include="ViewModel\WinLossByProductViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossViewModel.cs" />
-    <Compile Include="ViewModel\PlatformWinLossViewModel.cs" />
     <Compile Include="ViewModel\SettledMatchCountViewModel.cs" />
     <Compile Include="ViewModel\WinLossByBetTypeViewModel.cs" />
     <Compile Include="ViewModel\TurnoverViewModel.cs" />

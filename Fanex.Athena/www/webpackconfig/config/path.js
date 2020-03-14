@@ -31,7 +31,6 @@ var cssPaths = {
 
     winlossbyproduct: ["./www/css/source/pages/report/winlossbyproduct.scss"],
     winlossbyleague: ["./www/css/source/pages/report/winlossbyleague.scss"],
-    platformwinloss: ["./www/css/source/pages/report/platformwinloss.scss"],
     winlossbybettype: ["./www/css/source/pages/report/winlossbybettype.scss"],
     customercommgrouplist: ["./www/css/source/pages/customer/commgrouplist.scss"],
     customercommgroupdetail: ["./www/css/source/pages/customer/commgrouplist-detail.scss"],
@@ -68,7 +67,6 @@ var scriptPaths = {
 
     winlossbyproduct: "./www/js/source/pages/report/winlossbyproduct/main-winlossbyproduct.js",
     winlossbyleague: "./www/js/source/pages/report/winlossbyleague/main.js",
-    platformwinloss: "./www/js/source/pages/report/platformwinloss/main-platformwinloss.js",
     winlossbybettype: "./www/js/source/pages/report/winlossbybettype/main.js",
     customercommgrouplist: "./www/js/source/pages/customer/customercomm/main-commgrouplist.js",
     customercommgroupadd: "./www/js/source/pages/customer/customercomm/main-commgroupadd.js",

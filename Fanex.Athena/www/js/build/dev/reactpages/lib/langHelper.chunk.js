@@ -103,7 +103,6 @@ window._language_en_US = {
   Action: "Action",
   Active: "Active",
   ActiveCustomers: "Active Customers",
-  ActiveCustomerSummary: "Active Customer Summary",
   ActualStake: "Actual Stake",
   AD: "AD",
   Adjustment: "Adjustment",
@@ -111,7 +110,6 @@ window._language_en_US = {
   AdvancedSearch: "Advanced Search",
   AffiliateTransfer: "Affiliate Transfer",
   AGCasino: "AG Casino",
-  AGCasinoBalance: "AG Casino Balance",
   AGCasinoNotOfferCurrency: "AG Casino is not offered for this currency.",
   AGCasinoWinLoss: "AG Casino Win Loss",
   AGClosingBalance: "AG Closing Balance",
@@ -872,9 +870,7 @@ var DEFAULT_RESOURCE_NAME = "_language_en_US";
 var langCode = window.PageLanguage || "en-US";
 var resourceName = "_language_".concat(langCode.replace("-", "_"));
 
-var LangHelper =
-/*#__PURE__*/
-function () {
+var LangHelper = /*#__PURE__*/function () {
   function LangHelper() {
     _classCallCheck(this, LangHelper);
   }

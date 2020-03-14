@@ -22,11 +22,14 @@ namespace Fanex.Athena.Controllers
     public class HeaderController : CultureBaseController
     {
         private readonly ILicenseeDataAccess _licenseeDataAccess;
+        private readonly IAppSettings _appSettings;
 
         public HeaderController(
-            ILicenseeDataAccess licenseeDataAccess)
+            ILicenseeDataAccess licenseeDataAccess,
+            IAppSettings appSettings)
         {
             _licenseeDataAccess = licenseeDataAccess;
+            _appSettings = appSettings;
         }
 
         [HttpGet]
@@ -41,7 +44,7 @@ namespace Fanex.Athena.Controllers
                 HasRecheckIn = !AppSettingInstance.LocalTest,
                 SupportedLanguageList = Util.SupportedLanguages,
                 UserName = userSession.Username,
-                CurrentLicenseeId = NapSettings.Settings.SiteId,
+                CurrentLicenseeId = _appSettings.LicenseeId,
                 IsAllowedManagementMember = userSession.MenuItemList.Any(x => x.Name == PermissionKeys.UserManagement),
                 IsFakeLicensee = false,
                 IsAllowedNotification = false

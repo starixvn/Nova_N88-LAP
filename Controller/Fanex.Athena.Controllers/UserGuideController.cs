@@ -163,7 +163,7 @@ namespace Fanex.Athena.Controllers
 
         private string GetFileContent(string resourceName)
         {
-            var language = SessionServiceInstance.UserSession.Language;
+            var language = SessionServiceInstance.UserSessionInfo.Language;
 
             var filePath = Server.MapPath(string.Format(@"~/App_Data/UserGuide/{0}/{1}.htm", resourceName, language));
             filePath = GetDefaultFilePathIfNotExist(language, filePath);

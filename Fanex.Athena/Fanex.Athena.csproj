@@ -1434,9 +1434,6 @@
     <Content Include="Views\Desktop\Customer\BetSetting\VirtualSports.cshtml" />
     <Content Include="Views\Desktop\BetList\LiveReport\VirtualSports.cshtml" />
     <Content Include="Views\Desktop\Customer\BetSetting\Lottery.cshtml" />
-    <Content Include="Views\Desktop\Report\AgCasinoWinLoss\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\AgCasinoWinLoss\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\AgCasinoWinLoss\Main.cshtml" />
     <Content Include="Views\Desktop\Report\CustomerBalance\Content.cshtml" />
     <Content Include="Views\Desktop\Report\CustomerBalance\Filter.cshtml" />
     <Content Include="Views\Desktop\Report\CustomerBalance\Main.cshtml" />
@@ -1501,7 +1498,6 @@
     <Content Include="www\css\build\dev\pages\customer\commgroupdetail.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\customer\commgroupdetail.css.map" />
     <Content Include="www\css\source\pages\report\activecustomersummary.scss" />
-    <Content Include="www\css\source\pages\report\agcasinowinloss.scss" />
     <Content Include="www\css\source\pages\report\golddeluxewinloss.scss" />
     <Content Include="www\css\source\pages\report\thirdpartywinloss.scss" />
     <Content Include="www\css\source\pages\report\colossusbetswinLoss.scss" />
@@ -1869,9 +1865,6 @@
     <Content Include="www\js\source\pages\home\home.js" />
     <Content Include="www\js\source\pages\home\main.js" />
     <Content Include="www\js\source\pages\home\recheckin.js" />
-    <Content Include="www\js\source\pages\report\agcasinowinloss\agcasinowinloss.js" />
-    <Content Include="www\js\source\pages\report\agcasinowinloss\agcasinowinloss.option.js" />
-    <Content Include="www\js\source\pages\report\agcasinowinloss\main.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\cashoutwinloss.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\cashoutwinloss.option.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\main.js" />
@@ -1985,8 +1978,6 @@
     <Content Include="www\js\tests\pages\forecast\forecast.newforecasthdpou-spec.js" />
     <Content Include="www\js\tests\pages\forecast\forecast.onextwo-spec.js" />
     <Content Include="www\js\tests\pages\forecast\forecast.ah-spec.js" />
-    <Content Include="www\js\tests\pages\report\agcasinowinloss\agcasinowinloss-spec.js" />
-    <Content Include="www\js\tests\pages\report\agcasinowinloss\agcasinowinloss.option-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss.option-spec.js" />
     <Content Include="www\js\tests\pages\report\customerbalance\customerbalance-spec.js" />

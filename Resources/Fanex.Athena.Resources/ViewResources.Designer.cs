@@ -205,15 +205,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AG Casino Win Loss.
-        /// </summary>
-        public static string AGCasinoWinLoss {
-            get {
-                return ResourceManager.GetString("AGCasinoWinLoss", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AG Closing Balance.
         /// </summary>
         public static string AGClosingBalance {

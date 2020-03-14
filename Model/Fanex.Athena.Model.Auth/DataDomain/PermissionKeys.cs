@@ -23,7 +23,6 @@
         public const string ReportCustomerBalance = "CustomerBalance40";
         public const string ReportResults = "Results41";
         public const string ReportWinLossByLeague = "WinLossByLeague59";
-        public const string ReportAGCasinoWinLoss = "AGCasinoWinLoss62";
         public const string ReportGoldDeluxeWinloss = "GoldDeluxeWinloss65";
         public const string ReportWeeklyLiveMatches = "WeeklyLiveMatches69";
         public const string ReportCustomerTurnover = "CustomerTurnover51";

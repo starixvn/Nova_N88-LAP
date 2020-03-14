@@ -31,7 +31,7 @@ namespace Fanex.Athena.Api.Base
             _langService = languageService ?? throw new ArgumentNullException(nameof(languageService));
         }
 
-        protected IDictionary<int, string> UserCurrencyList => SessionService.UserSession.CurrencyList;
+        protected IDictionary<int, string> UserCurrencyList => SessionService.UserSessionInfo.CurrencyList;
 
         public IProductService ProductService { get; set; }
         public ISessionService SessionService { get; set; }

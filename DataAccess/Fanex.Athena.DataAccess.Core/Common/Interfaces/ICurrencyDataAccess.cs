@@ -17,5 +17,7 @@ namespace Fanex.Athena.DataAccess.Core.Common.Interfaces
         IList<CurrencyUser> GetCurrenciesByUser(int licenseeId, int userId);
 
         IResultInfo AssignCurrenciesByUser(AssignCurrencyMetaModel request);
+
+        IList<CurrencyUser> GetCurrenciesByLicensee(int licenseeId);
     }
 }

@@ -83,5 +83,7 @@ namespace Fanex.Athena.DataAccess.Core.Users
                 return db.QueryEntity<Licensee>(uspParams);
             }
         }
+
+
     }
 }

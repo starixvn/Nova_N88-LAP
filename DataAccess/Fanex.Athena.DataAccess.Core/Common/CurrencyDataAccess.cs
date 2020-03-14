@@ -40,6 +40,18 @@ namespace Fanex.Athena.DataAccess.Core.Common
             }
         }
 
+        public IList<CurrencyUser> GetCurrenciesByLicensee(int licenseeId)
+        {
+            const string UspName = "Lrf_SelAgentListByLicensee";
+
+            using (var db = this.GetObjectDb(UspName))
+            {
+                db.SetParameterValue("LicenseeID", licenseeId);
+
+                return BindCurrencyUser(db);
+            }
+        }
+
         public IList<CurrencyUser> GetCurrenciesByUser(int licenseeId, int userId)
         {
             const string UspName = "Lrf_SelCurrencyByLicenseeUser";

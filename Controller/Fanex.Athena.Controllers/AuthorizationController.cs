@@ -456,30 +456,11 @@ namespace Fanex.Athena.Controllers
 
         private void CreateSession(User user, int onUserId)
         {
-            var menuItems = userService1.GetMenuItem(user.Id, NapSettings.Settings.SiteId,
-                NapSettings.Settings.Environment, true)
-                .OrderBy(x => x.DisplayOrder).ToList();
-
-            //GET user setting
-            var defaultCurrency = "EUR";
-            var currencyList = new Dictionary<int, string>();
-            currencyList.Add(1, defaultCurrency);
-
-            UserSessionInfo userSession = new UserSessionInfo {
-                Username = user.Username,
-                UserId = user.Id,
-                OnUserId = onUserId,
-                SessionId = Session.SessionID,
-                MenuItemList = menuItems,
-                DefaultBaseCurrency = defaultCurrency,
-                CurrencyList = currencyList
-            };
-
             currentSession.UserId = user.Id;
             currentSession.Username = user.Username;
             currentSession.OnUserId = onUserId;
 
-            SessionServiceInstance.AssignSessions(userSession);
+            SessionServiceInstance.CreateNewSession(user.Id, onUserId, user.Username);
 
             _formAuthenticationService.SetAuthCookie(user.Username, false);
         }

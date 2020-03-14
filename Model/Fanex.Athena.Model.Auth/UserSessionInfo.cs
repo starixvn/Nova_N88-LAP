@@ -21,7 +21,8 @@ namespace Fanex.Athena.Model.Auth
         public List<Function> FunctionList { get; set; }
 
         public IDictionary<int, string> CurrencyList { get; set; }
-
+        
+        public IDictionary<int, int[]> CurrencyAgentList { get; set; }
         public string DefaultBaseCurrency { get; set; } = string.Empty;
 
         public void ClearAll()

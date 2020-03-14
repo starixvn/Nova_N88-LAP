@@ -24,7 +24,8 @@ namespace Fanex.Athena.Service.Core.Users
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-
+    using Fanex.NAP.Core.Configuration;
+    using Fanex.NAP.Core.Models;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
 
@@ -37,7 +38,7 @@ namespace Fanex.Athena.Service.Core.Users
         private readonly IFunctionService _functionService;
         private readonly ILicenseeDataAccess _licenseeDataAccess;
         private readonly ICurrencyDataAccess _currencyDataAccess;
-
+        NAP.Core.Service.Interface.IUserService _napUserService;
         private readonly ISessionStorage _sessionStorage;
         private readonly IAppSettings _appSettings;
 
@@ -45,6 +46,7 @@ namespace Fanex.Athena.Service.Core.Users
             IFunctionService functionService,
             ILicenseeDataAccess licenseeDataAccess,
             ICurrencyDataAccess currencyDataAccess,
+            NAP.Core.Service.Interface.IUserService napUserService,
             IAppSettings appSettings,
             ISessionStorage sessionStorage)
         {
@@ -53,6 +55,7 @@ namespace Fanex.Athena.Service.Core.Users
             _currencyDataAccess = currencyDataAccess;
             _sessionStorage = sessionStorage;
             _appSettings = appSettings;
+            _napUserService = napUserService;
         }
 
         #region Public Properties
@@ -101,32 +104,22 @@ namespace Fanex.Athena.Service.Core.Users
             int userId,
             int onuserId,
             string userName,
-            bool isInternal,
-            int licenseeId = 0,
             string language = "en-US")
         {
-            var licenseeList = _licenseeDataAccess.GetByUser(userId);
-            var functionList = _functionService.GetUserFunctionList(licenseeId, userId).ToList();
-            var userSession = new UserAuthInfo
+            var userSession = new UserSessionInfo
             {
-                UserLevel = UserLevelType.Licensee,
-                SubsidiaryViewType = (byte)SubsidiaryViewType.NotManagement,
                 UserId = userId,
                 OnUserId = onuserId,
-                UserName = userName,
-                IsInternal = isInternal,
-                FunctionList = functionList,
+                Username = userName,
                 Language = language,
-                DefaultReportUrl = GetDefaultReportUrl(functionList),
-                ApplicationMode = AppMode.Self,
                 DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
             };
 
-            AssignCurrenciesToUserSession(userSession, licenseeId);
-            var selectedLicensee = licenseeList.SingleOrDefault(i => i.Id == licenseeId);
-            var licenseeSession = licenseeId > 0 && selectedLicensee != null ? GenerateLicenseeInfo(selectedLicensee) : null;
+            AssignMenuToUserSession(userSession);
 
-            AssignSessions(userSession, licenseeSession);
+            AssignCurrenciesToUserSession(userSession);
+
+            AssignSessions(userSession);
         }
 
         public void UpdateLiceseeSession(int licenseeId)
@@ -164,7 +157,7 @@ namespace Fanex.Athena.Service.Core.Users
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3995:UriReturnValuesShouldNotBeStrings",
            Justification = "Reviewed. Suppression is OK here.")]
-        private static string GetDefaultReportUrl(IEnumerable<Function> functionList)
+        private static string GetDefaultReportUrl(IEnumerable<Model.Auth.Function> functionList)
         {
             if (!functionList.Any(x => x.FunctionKey.Equals(PermissionKeys.ReportLicenseeWinLoss)))
             {
@@ -187,6 +180,38 @@ namespace Fanex.Athena.Service.Core.Users
                 IsAllowedCustomerComm = selectedLicensee.IsAllowedCustomerComm,
                 IsEnableBA = selectedLicensee.IsEnableBA
             };
+        }
+
+        public void AssignCurrenciesToUserSession(UserSessionInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null)
+        {
+            var currencyUsers = currencyUserList ?? _currencyDataAccess.GetCurrenciesByLicensee(_appSettings.LicenseeId);
+
+            //if (licenseeId == LicenseeIdentity.KeenOcean)
+            //{
+            //    currencyUsers = KeanOceanBusinessHelper.ModifyCurrenciesForKeenOcean(currencyUsers);
+            //}
+
+            var currencyList = currencyUsers
+                .Where(x => x.IsActive)
+                .Select(x => new { x.CurrencyId, x.CurrencyName })
+                .ToDictionary(x => x.CurrencyId, x => x.CurrencyName);
+
+            var currencyAgentList = currencyUsers
+                .Where(x => x.IsActive)
+                .Select(x => new { x.CurrencyId, x.AgentIdList })
+                .ToDictionary(x => x.CurrencyId, x => x.AgentIdList.ToArray());
+
+            userSession.CurrencyList = currencyList;
+            userSession.CurrencyAgentList = currencyAgentList;
+        }
+
+        private void AssignMenuToUserSession(UserSessionInfo userSessionInfo)
+        {
+            var menuItems = _napUserService.GetMenuItem(userSessionInfo.UserId, NapSettings.Settings.SiteId,
+                NapSettings.Settings.Environment, true)
+                .OrderBy(x => x.DisplayOrder).ToList();
+
+            userSessionInfo.MenuItemList = menuItems;
         }
 
         public void AssignCurrenciesToUserSession(UserAuthInfo userSession, int licenseeId, IEnumerable<CurrencyUser> currencyUserList = null)

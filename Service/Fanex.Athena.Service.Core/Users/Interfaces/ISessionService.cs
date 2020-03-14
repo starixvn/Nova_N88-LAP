@@ -31,13 +31,13 @@ namespace Fanex.Athena.Service.Core.Users.Interfaces
             int userId,
             int onuserId,
             string userName,
-            bool isInternal,
-            int licenseeId = 0,
             string language = "en-US");
 
         void UpdateLiceseeSession(int licenseeId);
 
         bool UpdateLanguage(string languageCode);
+
+        void AssignCurrenciesToUserSession(UserSessionInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null);
 
         void AssignCurrenciesToUserSession(UserAuthInfo userSession, int licenseeId, IEnumerable<CurrencyUser> currencyUserList = null);
     }

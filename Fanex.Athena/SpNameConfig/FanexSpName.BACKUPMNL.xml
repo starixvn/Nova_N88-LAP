@@ -33,6 +33,9 @@
       <Mapping DataField="EnableBA" ObjectProperty="IsEnableBA" />
     </Setting>
     <Setting Key="Lrf_SyncInternalUser" SpName="Lrf_SyncInternalUser" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" />
+    <Setting Key="Lrf_SelAgentListByLicensee" SpName="N88_SelAgentListByLicensee" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet">
+      <Mapping DataField="Currency" ObjectProperty="CurrencyId" />
+    </Setting>
   </Function>
 
   <Function Name="Authorization">

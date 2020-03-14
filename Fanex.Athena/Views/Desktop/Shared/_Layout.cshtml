@@ -10,9 +10,9 @@
         new Dictionary<string, string>() :
         userSession.CurrencyList.ToDictionary(x => x.Key.ToString(), x => x.Value);
 
-    var hasCustComm = appSettings.IsAllowedCustomerComm;
+    var hasCustComm = sessionService.LicenseeSession.IsAllowedCustomerComm;
     var isParasiticMode = true; // NEED REVIEWS
-    var isFakeLicensee = licenseeSettingService.IsFakeLicensee(appSettings.LicenseeName);
+    var isFakeLicensee = licenseeSettingService.IsFakeLicensee(sessionService.LicenseeSession.LicenseeName);
     var langCode = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
 }
 <!DOCTYPE html>

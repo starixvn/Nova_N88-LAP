@@ -80,9 +80,9 @@
             set { _sessionStorage.CaptchaCode = value; }
         }
 
-        public void AssignSessions(UserSessionInfo userSession)
+        public void AssignSessions(UserSessionInfo userSession, LicenseeAuthInfo licenseeSession)
         {
-            _sessionStorage.AssignSessions(userSession);
+            _sessionStorage.AssignSessions(userSession, licenseeSession);
         }
 
         public void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession)
@@ -105,11 +105,13 @@
                 DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
             };
 
+            var licensee = _licenseeDataAccess.GetLicenseeSettingById(_appSettings.LicenseeId);
+            
             AssignMenuToUserSession(userSession);
 
             AssignCurrenciesToUserSession(userSession);
 
-            AssignSessions(userSession);
+            AssignSessions(userSession, GenerateLicenseeInfo(licensee));
         }
 
         public void UpdateLiceseeSession(int licenseeId)

@@ -21,5 +21,7 @@ namespace Fanex.Athena.DataAccess.Core.Users.Interfaces
         IList<Licensee> GetByUser(int userId);
 
         Licensee GetLicenseeByName(string licenseeName);
+
+        Licensee GetLicenseeSettingById(int licenseeId);
     }
 }

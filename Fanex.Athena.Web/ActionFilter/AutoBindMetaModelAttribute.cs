@@ -32,7 +32,7 @@ namespace Fanex.Athena.Web.ActionFilter
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var userSession = _sessionStorage.UserAuthInfo;
+            var userSession = _sessionStorage.UserSessionInfo;
 
             var actionArgument = filterContext.ActionParameters;
             if (BindAgent)

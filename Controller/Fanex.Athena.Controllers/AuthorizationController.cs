@@ -234,14 +234,6 @@ namespace Fanex.Athena.Controllers
 
             var onlineUserId = securityService.Login(loginParam);
 
-            currentSession.Level = userService1.GetUserLevel(user.Id, NapSettings.Settings.SiteId);
-            currentSession.UserId = user.Id;
-            currentSession.Username = user.Username;
-            currentSession.OnUserId = onlineUserId;
-            currentSession.SessionId = Session.SessionID;
-            currentSession.MenuItemList = (userService1.GetMenuItem(user.Id, NapSettings.Settings.SiteId,
-                NapSettings.Settings.Environment, true)).OrderBy(x => x.DisplayOrder).ToList();
-
             return onlineUserId;
         }
 
@@ -473,6 +465,7 @@ namespace Fanex.Athena.Controllers
                 _authService.Logout(userSession.OnUserId);
             }
 
+            currentSession.ClearAll();
             Session.Clear();
             ClearCookies();
             _formAuthenticationService.SignOut();

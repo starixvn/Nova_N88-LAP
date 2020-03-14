@@ -25,7 +25,7 @@ namespace Fanex.Athena.Service.Core.Users.Interfaces
 
         void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession);
 
-        void AssignSessions(UserSessionInfo userSession);
+        void AssignSessions(UserSessionInfo userSession, LicenseeAuthInfo licenseeSession);
 
         void CreateNewSession(
             int userId,

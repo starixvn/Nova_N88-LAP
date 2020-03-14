@@ -52,9 +52,10 @@
             HttpContext.Current.Session[LicenseeSessionKey] = licenseeAuthInfo;
         }
 
-        public void AssignSessions(UserSessionInfo userSession)
+        public void AssignSessions(UserSessionInfo userSession, LicenseeAuthInfo licenseeAuthInfo)
         {
             HttpContext.Current.Session[UserSessionKey] = userSession;
+            HttpContext.Current.Session[LicenseeSessionKey] = licenseeAuthInfo;
         }
     }
 }

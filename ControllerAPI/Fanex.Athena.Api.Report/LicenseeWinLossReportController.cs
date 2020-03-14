@@ -252,7 +252,7 @@ namespace Fanex.Athena.Api.Report
                 BTVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.BT),
                 COVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.CO),
                 BAVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.BA),
-                CustomerCommVisible = _appSettings.IsAllowedCustomerComm
+                CustomerCommVisible = SessionService.LicenseeSession.IsAllowedCustomerComm
             };
 
             var excel = CreateExcel(templatePath, excelModel);
@@ -349,8 +349,9 @@ namespace Fanex.Athena.Api.Report
 
         protected internal virtual bool IsValidParams(LicenseeWinLossMetaModel metaModel)
         {
+            var licenseeInfo = SessionService.LicenseeSession;
             var setting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
-                _appSettings.LicenseeName);
+                licenseeInfo.LicenseeName);
             if (setting == null)
             {
                 return true;

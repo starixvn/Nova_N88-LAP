@@ -37,6 +37,11 @@ namespace Fanex.Athena.Controllers.Report
         [HttpGet]
         public ActionResult Index()
         {
+            if (IsFakeLicensee(SessionServiceInstance.LicenseeSession.LicenseeName))
+            {
+                return MapToFakeView();
+            }
+
             return MapToView();
         }
 
@@ -68,8 +73,9 @@ namespace Fanex.Athena.Controllers.Report
         private ActionResult MapToView()
         {
             var userSession = SessionServiceInstance.UserSessionInfo;
+            var licenseeSession = SessionServiceInstance.LicenseeSession;
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
-                AppSettingInstance.LicenseeName);
+                licenseeSession.LicenseeName);
             var selectedDate = GetSelectedDate(reportSetting);
             var productAccess = ProductServiceInstance.GetSingleWalletProductAccess(
                 AppSettingInstance.LicenseeId,
@@ -95,7 +101,7 @@ namespace Fanex.Athena.Controllers.Report
             {
                 Param = param,
                 CurrencyList = userSession.CurrencyList,
-                IsAllowedCustomerCommission = AppSettingInstance.IsAllowedCustomerComm,
+                IsAllowedCustomerCommission = licenseeSession.IsAllowedCustomerComm,
                 ProductAccess = productAccess,
                 ReportSetting = reportSetting
             };

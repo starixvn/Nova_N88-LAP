@@ -73,9 +73,5 @@
         int BetListApiClientTimeOutMinutes { get; }
 
         int LicenseeId { get; }
-
-        string LicenseeName { get; }
-
-        bool IsAllowedCustomerComm { get; }
     }
 }

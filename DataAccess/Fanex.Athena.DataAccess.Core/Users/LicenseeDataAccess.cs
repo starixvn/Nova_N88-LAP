@@ -84,6 +84,15 @@ namespace Fanex.Athena.DataAccess.Core.Users
             }
         }
 
+        public Licensee GetLicenseeSettingById(int licenseeId)
+        {
+            const string UspName = "N88_SelLicenseeInfo";
+            var uspParams = new { LicenseeId = licenseeId };
 
+            using (var db = this.GetObjectDb(UspName))
+            {
+                return db.QueryEntity<Licensee>(uspParams);
+            }
+        }
     }
 }

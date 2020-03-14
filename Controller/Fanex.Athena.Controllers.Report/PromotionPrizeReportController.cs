@@ -7,8 +7,11 @@
     using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
+    using Fanex.NAP.Core.Web.Attribute;
+    using static Fanex.NAP.Core.Business.Constant;
 
-    [FunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss, PermissionKeys.ReportCustomerWinLoss)]
+    //[FunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss, PermissionKeys.ReportCustomerWinLoss)]
+    [NapAuth(FunctionKey = PermissionKeys.ReportLicenseeWinLoss, Policy = Policy.Read)]
     public class PromotionPrizeReportController : CultureBaseController
     {
         private readonly IReportAPIClient _reportAPIClient;

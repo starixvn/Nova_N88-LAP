@@ -36,6 +36,12 @@
     <Setting Key="Lrf_SelAgentListByLicensee" SpName="N88_SelAgentListByLicensee" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet">
       <Mapping DataField="Currency" ObjectProperty="CurrencyId" />
     </Setting>
+    <Setting Key="N88_SelLicenseeInfo" SpName="N88_SelLicenseeInfo" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet">
+      <Mapping DataField="LicenseeId" ObjectProperty="Id" />
+      <Mapping DataField="LicenseeName" ObjectProperty="Name" />
+      <Mapping DataField="IsAllowedMemberComm" ObjectProperty="IsAllowedCustomerComm" />
+      <Mapping DataField="EnableBA" ObjectProperty="IsEnableBA" />
+    </Setting>
   </Function>
 
   <Function Name="Authorization">

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Fanex.Athena.Extension.Utility;
 using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.Helper;
 using Fanex.Athena.Service.Core.Users.Interfaces;
@@ -12,10 +12,12 @@ namespace Fanex.Athena.Service.Core.Utility
     public class CurrencyValidation : ICurrencyValidation
     {
         private readonly ISessionService _sessionService;
+        private readonly IAppSettings _appSettings;
 
-        public CurrencyValidation(ISessionService sessionService)
+        public CurrencyValidation(ISessionService sessionService, IAppSettings appSettings)
         {
             _sessionService = sessionService;
+            _appSettings = appSettings;
         }
 
         public bool IsValidBaseCurrency(string baseCurrency, bool isAllowEmpty = true)
@@ -25,12 +27,12 @@ namespace Fanex.Athena.Service.Core.Utility
 
         public bool IsValidCurrency(int currencyId, bool isIncludeKeanOcean = false)
         {
-            var currencyList = _sessionService.UserSession.CurrencyList;
+            var currencyList = _sessionService.UserSessionInfo.CurrencyList;
             if (isIncludeKeanOcean)
             {
                 return ValidateCurrencyWithKeanOceanOption(currencyId
                     , currencyList
-                    , _sessionService.LicenseeSession.LicenseeId);
+                    , _appSettings.LicenseeId);
             }
 
             return ValidateCurrency(currencyId, currencyList);

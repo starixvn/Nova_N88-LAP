@@ -16,13 +16,14 @@ namespace Fanex.Athena.Api.Base
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+    using Fanex.NAP.Core.Web.Attribute;
     using NPOI.SS.UserModel;
 
     using ONEbook.UM.Filters;
 
     [CheckUMFilter]
     [XFrameOptionApi]
+    [NapAPISuperAuth]
     public class BaseApiController : ApiController
     {
         private readonly ILanguageService _langService;

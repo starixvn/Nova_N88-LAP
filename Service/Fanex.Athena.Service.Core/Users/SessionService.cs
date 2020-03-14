@@ -1,14 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-//
-// <copyright file="SessionService.cs" company="">
-// The session service.
-// </copyright>
-// <summary>
-//   The session service.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Fanex.Athena.Service.Core.Users
+﻿namespace Fanex.Athena.Service.Core.Users
 {
     using System.Collections.Generic;
     using System.Linq;

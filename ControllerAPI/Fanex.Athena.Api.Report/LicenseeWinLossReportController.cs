@@ -31,28 +31,33 @@ namespace Fanex.Athena.Api.Report
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-
+    using Fanex.NAP.Core.Web.Attribute;
     using Model.Core.DataDomain;
     using Model.Core.MetaModel.Product;
     using Model.Core.ResultModel;
 
     using Service.Core.Common.Interfaces;
+    using static Fanex.NAP.Core.Business.Constant;
 
-    [ApiFunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss)]
+    [NapAPIAuth(FunctionKey = PermissionKeys.ReportLicenseeWinLoss, Policy = Policy.Read)]
     public class LicenseeWinLossReportController : ApiReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;
 
         private readonly ILicenseeWinLossDataAccess _licenseeWinLossDataAccess;
 
+        private readonly IAppSettings _appSettings;
+
         public LicenseeWinLossReportController(
             IReportSettingService reportSettingService,
             ILanguageService langService,
+            IAppSettings appSettings,
             ILicenseeWinLossDataAccess licenseeWinLossDataAccess)
             : base(langService)
         {
             _reportSettingService = reportSettingService;
             _licenseeWinLossDataAccess = licenseeWinLossDataAccess;
+            _appSettings = appSettings;
         }
 
         [HttpPost]
@@ -212,11 +217,10 @@ namespace Fanex.Athena.Api.Report
             LicenseeWinLossMetaModel metaModel,
             SortableReportResultModel<LicenseeWinLoss> data)
         {
-            var licenseeSession = SessionService.LicenseeSession;
-            var userSession = SessionService.UserSession;
+            var userSession = SessionService.UserSessionInfo;
             const string FileName = "LicenseeWinLoss.xls";
             var templatePath = HostingEnvironment.MapPath(@"~/App_Data/Template/Reports/LicenseeWinLoss.xls");
-            var productAccess = ProductService.GetProductAccess(licenseeSession.LicenseeId, userSession.Language);
+            var productAccess = ProductService.GetProductAccess(_appSettings.LicenseeId, userSession.Language);
 
             if (metaModel.DrillDownLevel > 0)
             {
@@ -248,7 +252,7 @@ namespace Fanex.Athena.Api.Report
                 BTVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.BT),
                 COVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.CO),
                 BAVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.BA),
-                CustomerCommVisible = licenseeSession.IsAllowedCustomerComm
+                CustomerCommVisible = _appSettings.IsAllowedCustomerComm
             };
 
             var excel = CreateExcel(templatePath, excelModel);
@@ -267,7 +271,7 @@ namespace Fanex.Athena.Api.Report
         {
             if (metaModel.IsValid)
             {
-                var userCurrencyList = SessionService.UserSession.CurrencyList;
+                var userCurrencyList = SessionService.UserSessionInfo.CurrencyList;
                 SortableReportResultModel<LicenseeWinLoss> result;
                 if (metaModel.DrillDownLevel == 0)
                 {
@@ -302,7 +306,7 @@ namespace Fanex.Athena.Api.Report
             int custId = 0,
             string currencyName = null)
         {
-            var userSession = SessionService.UserSession;
+            var userSession = SessionService.UserSessionInfo;
             metaModel.DefaultBaseCurrency = userSession.DefaultBaseCurrency;
             metaModel.DrillDownLevel = level;
             metaModel.DrillDownFromDate = fdate ?? metaModel.DrillDownFromDate;
@@ -310,7 +314,7 @@ namespace Fanex.Athena.Api.Report
 
             if (IsValidParams(metaModel))
             {
-                metaModel.LicenseeId = SessionService.LicenseeSession.LicenseeId;
+                metaModel.LicenseeId = _appSettings.LicenseeId;
                 metaModel.DrillDownCurrencyId = currencyId;
                 metaModel.DrillDownCurrencyName = currencyName;
                 metaModel.DrillDownCustomerId = custId;
@@ -346,7 +350,7 @@ namespace Fanex.Athena.Api.Report
         protected internal virtual bool IsValidParams(LicenseeWinLossMetaModel metaModel)
         {
             var setting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
-                SessionService.LicenseeSession.LicenseeName);
+                _appSettings.LicenseeName);
             if (setting == null)
             {
                 return true;

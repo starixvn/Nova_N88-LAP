@@ -74,7 +74,7 @@ namespace Fanex.Athena
                 BundleConfig.RegisterBundles(BundleTable.Bundles);
                 /*Web API*/
                 GlobalConfiguration.Configuration.EnableCors();
-                GlobalConfiguration.Configuration.Filters.Add(new CustomApiAuthorizeAttribute());
+                //GlobalConfiguration.Configuration.Filters.Add(new CustomApiAuthorizeAttribute());
                 GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
                 /*End Web API*/
 

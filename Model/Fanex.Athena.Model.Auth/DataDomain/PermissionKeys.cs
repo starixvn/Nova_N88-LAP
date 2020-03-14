@@ -31,7 +31,6 @@
         public const string ReportCashOutWinLoss = "CashOutWinLoss72";
         public const string ReportSubsidiaryPerformance = "SubsidiaryPerformance73";
         public const string ReportExchangeWinLoss = "ExchangeWinloss77";
-        public const string ReportCasinoTurnover = "CasinoTurnover80";
         public const string ReportDailyBets = "DailyBets81";
 
         /* Customer Info. */

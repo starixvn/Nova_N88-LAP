@@ -103,14 +103,12 @@
     <Compile Include="CashOutWinLossDataAccess.cs" />
     <Compile Include="ExchangeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ICashOutWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\IColossusBetsWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IExchangeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ISpecialLicenseeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ISubsidiaryPerformanceDataAccess.cs" />
     <Compile Include="Interfaces\IGoldDeluxeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IWeeklyLiveMatchDataAccess.cs" />
     <Compile Include="SpecialLicenseeWinLossDataAccess.cs" />
-    <Compile Include="ColossusBetsWinLossDataAccess.cs" />
     <Compile Include="SubsidiaryPerformanceDataAccess.cs" />
     <Compile Include="GoldDeluxeWinLossDataAccess.cs" />
     <Compile Include="ThirdPartyWinLossDataAccess.cs" />

@@ -111,7 +111,6 @@
     <Compile Include="ExchangeWinLossReportControllerTest.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest_IsValidParams.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest.cs" />
-    <Compile Include="ColossusBetsWinLossReportControllerTest.cs" />
     <Compile Include="CustomerPendingFundsReportControllerTest.cs" />
     <Compile Include="SpecialLicenseeWinLossReportControllerTest.cs" />
     <Compile Include="SubsidiaryPerformanceReportControllerTest.Detail.cs" />

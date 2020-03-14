@@ -224,7 +224,6 @@ window._language_en_US = {
   Closed: "Closed",
   ClosingBalance: "Closing Balance",
   ColossusBetBetListDetailMsg: "Member owned {0}% of this ticket&lt;br/&gt;Member sold {1}% of this ticket for {2}",
-  ColossusBetsWinLoss: "Colossus Bets Win Loss",
   Columns: "Columns",
   Comm: "Comm",
   CommIsClear: "Commission of customers is cleared.",

@@ -1213,15 +1213,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Colossus Bets Win Loss.
-        /// </summary>
-        public static string ColossusBetsWinLoss {
-            get {
-                return ResourceManager.GetString("ColossusBetsWinLoss", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Columns.
         /// </summary>
         public static string Columns {

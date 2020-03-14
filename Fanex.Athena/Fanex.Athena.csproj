@@ -1433,9 +1433,6 @@
     <Content Include="Views\Desktop\Report\GoldDeluxeWinLoss\Main.cshtml" />
     <Content Include="www\css\build\dev\pages\reports\golddeluxewinloss.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\golddeluxewinloss.css.map" />
-    <Content Include="Views\Desktop\Report\ColossusBetsWinLoss\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\ColossusBetsWinLoss\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\ColossusBetsWinLoss\Main.cshtml" />
     <Content Include="www\css\build\dev\pages\reports\colossusbetswinloss.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\colossusbetswinloss.css.map" />
     <Content Include="Views\Desktop\Report\CustomerPendingFunds\Content.cshtml" />
@@ -1486,7 +1483,6 @@
     <Content Include="www\css\source\pages\report\activecustomersummary.scss" />
     <Content Include="www\css\source\pages\report\golddeluxewinloss.scss" />
     <Content Include="www\css\source\pages\report\thirdpartywinloss.scss" />
-    <Content Include="www\css\source\pages\report\colossusbetswinLoss.scss" />
     <Content Include="www\css\source\pages\report\customerpendingfunds.scss" />
     <Content Include="www\css\source\pages\report\customerturnover.scss" />
     <Content Include="www\css\source\pages\report\customerwinloss.scss" />
@@ -1868,9 +1864,6 @@
     <Content Include="www\js\source\pages\report\customerwinloss\main.js" />
     <Content Include="www\js\source\pages\report\thirdpartywinloss\common\thirdpartywinloss.js" />
     <Content Include="www\js\source\pages\report\thirdpartywinloss\common\thirdpartywinloss.option.js" />
-    <Content Include="www\js\source\pages\report\thirdpartywinloss\main-colossusbetswinloss.js" />
-    <Content Include="www\js\source\pages\report\thirdpartywinloss\reports\colossusbetswinloss.js" />
-    <Content Include="www\js\source\pages\report\thirdpartywinloss\reports\colossusbetswinloss.option.js" />
     <Content Include="www\js\source\pages\report\thirdpartywinloss\reports\golddeluxewinloss.js" />
     <Content Include="www\js\source\pages\report\thirdpartywinloss\main-golddeluxewinloss.js" />
     <Content Include="www\js\source\pages\report\livereport\helper.js" />
@@ -1987,8 +1980,6 @@
     <Content Include="www\js\tests\pages\report\settledmatchcount\settledmatchcount-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\common\thirdpartywinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\common\thirdpartywinloss.option-spec.js" />
-    <Content Include="www\js\tests\pages\report\thirdpartywinloss\reports\colossusbetswinloss-spec.js" />
-    <Content Include="www\js\tests\pages\report\thirdpartywinloss\reports\colossusbetswinloss.option-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\reports\golddeluxewinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\reports\golddeluxewinloss.option.-spec.js" />
     <Content Include="www\js\tests\pages\report\turnover\turnover-spec.js" />
@@ -2048,7 +2039,6 @@
     <Content Include="App_Data\UserGuide\CustomerList\pdf\zh-TW\Odds Group Feature_Licensee.pdf" />
     <Content Include="App_Data\UserGuide\CustomerList\pdf\zh-TW\Odds Group Feature_Licensee_BA.pdf" />
     <Content Include="App_Data\UserGuide\CustomerList\pdf\en-US\Odds Group Feature_Licensee_BA.pdf" />
-    <Content Include="App_Data\Template\Reports\ColossusBetsWinLoss.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

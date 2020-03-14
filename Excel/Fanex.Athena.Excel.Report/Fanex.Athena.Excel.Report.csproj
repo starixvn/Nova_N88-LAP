@@ -134,7 +134,6 @@
     <Compile Include="Models\CustomerPendingFundsExcelModel.cs" />
     <Compile Include="Models\LicenseeWinLossExcelModel.cs" />
     <Compile Include="Models\WinLossByProductExcelModel.cs" />
-    <Compile Include="ColossusBetsWinLossExcel.cs" />
     <Compile Include="GoldDeluxeWinLossExcel.cs" />
     <Compile Include="ThirdPartyWinLossExcel.cs" />
     <Compile Include="WeeklyLiveMatchExcel.cs" />

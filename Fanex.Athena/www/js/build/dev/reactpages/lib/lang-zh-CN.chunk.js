@@ -210,7 +210,6 @@ window._language_zh_CN = {
   Close: "关闭",
   Closed: "关闭",
   ClosingBalance: "期末余额",
-  ColossusBetsWinLoss: "CB足彩输赢",
   Columns: "Columns",
   Comm: "佣金",
   CommIsClear: "会员的佣金已清空",

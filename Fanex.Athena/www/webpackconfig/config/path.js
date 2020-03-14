@@ -44,7 +44,6 @@ var cssPaths = {
     licenseelist: ["./www/css/source/pages/utility/licenseelist.scss"],
     customerbalance: ["./www/css/source/pages/report/customerbalance.scss"],
     golddeluxewinloss: ["./www/css/source/pages/report/golddeluxewinloss.scss"],
-    colossusbetswinloss: ["./www/css/source/pages/report/colossusbetswinloss.scss"],
     customerpendingfunds: ["./www/css/source/pages/report/customerpendingfunds.scss"],
     customerturnover: ["./www/css/source/pages/report/customerturnover.scss"],
     customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"]
@@ -99,7 +98,6 @@ var scriptPaths = {
 
     customerbalance: "./www/js/source/pages/report/customerbalance/main.js",
     golddeluxewinloss: "./www/js/source/pages/report/thirdpartywinloss/main-golddeluxewinloss.js",
-    colossusbetswinloss: "./www/js/source/pages/report/thirdpartywinloss/main-colossusbetswinloss.js",
     customerpendingfunds: "./www/js/source/pages/report/customerpendingfunds/main.js",
     customerturnover: "./www/js/source/pages/report/customerturnover/main.js",
     customerwinloss: "./www/js/source/pages/report/customerwinloss/main.js"

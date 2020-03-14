@@ -198,7 +198,6 @@
     <Compile Include="CustomerTurnoverReportControllerTest.cs" />
     <Compile Include="CustomerPendingFundsReportControllerTest.cs" />
     <Compile Include="CustomerBalanceReportControllerTest.cs" />
-    <Compile Include="ColossusBetsWinLossReportControllerTest.cs" />
     <Compile Include="CashOutWinLossReportControllerTest.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1727,9 +1727,6 @@
   <data name="Amount" xml:space="preserve">
     <value>金額</value>
   </data>
-  <data name="ColossusBetsWinLoss" xml:space="preserve">
-    <value>CB足彩輸贏</value>
-  </data>
   <data name="CustomerWinnings" xml:space="preserve">
     <value>會員總贏</value>
   </data>

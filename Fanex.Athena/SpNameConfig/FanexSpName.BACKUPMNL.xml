@@ -82,8 +82,6 @@
     <Setting Key="Lrf_Rpt_GoldDeluxeWinloss_Ag" SpName="Lrf_Rpt_GoldDeluxeWinloss_Ag" DbName="DBEXT.bodb02.bodbLicenseeNet" />
     <Setting Key="Lrf_Rpt_GoldDeluxeWinloss_Mem" SpName="Lrf_Rpt_GoldDeluxeWinloss_Mem" DbName="DBEXT.bodb02.bodbLicenseeNet" />
     <Setting Key="Lrf_Rpt_LiveMatchWeekly" SpName="Lrf_Rpt_LiveMatchWeekly" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-    <Setting Key="Lrf_Rpt_ColossusBetsWinloss" SpName="Lrf_Rpt_ColossusBetsWinloss" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-    <Setting Key="Lrf_Rpt_ColossusBetsWinloss_detail" SpName="Lrf_Rpt_ColossusBetsWinloss_detail" DbName="DBEXT.bodb02.bodbLicenseeNet" />
     <Setting Key="Lrf_Rpt_CashoutWinloss" SpName="Lrf_Rpt_CashoutWinloss" DbName="DBEXT.bodb02.bodbLicenseeNet" />
     <Setting Key="Lrf_Rpt_CashoutWinloss_Detail" SpName="Lrf_Rpt_CashoutWinloss_Detail" DbName="DBEXT.bodb02.bodbLicenseeNet" />
     <Setting Key="Lrf_Rpt_SubsidiaryWinloss" SpName="Lrf_Rpt_SubsidiaryWinloss" DbName="DBEXT.bodb02.bodbLicenseeNet" />

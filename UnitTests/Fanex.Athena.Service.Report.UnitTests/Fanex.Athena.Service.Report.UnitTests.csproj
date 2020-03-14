@@ -127,7 +127,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ColossusBetsWinLossServiceTest.cs" />
     <Compile Include="LiveReportServiceTest.cs" />
     <Compile Include="SettledMatchCountServiceTest.cs" />
     <Compile Include="CustomerTurnoverServiceTest.cs" />

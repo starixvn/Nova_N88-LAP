@@ -64,7 +64,6 @@ function generateConfig(environment) {
 
             [`${jsPath}/pages/reports/customerbalance`]: [pathConfig.scriptPaths.customerbalance],
             [`${jsPath}/pages/reports/golddeluxewinloss`]: [pathConfig.scriptPaths.golddeluxewinloss],
-            [`${jsPath}/pages/reports/colossusbetswinloss`]: [pathConfig.scriptPaths.colossusbetswinloss],
             [`${jsPath}/pages/reports/customerpendingfunds`]: [pathConfig.scriptPaths.customerpendingfunds],
             [`${jsPath}/pages/reports/customerturnover`]: [pathConfig.scriptPaths.customerturnover],
             [`${jsPath}/pages/reports/customerwinloss`]: [pathConfig.scriptPaths.customerwinloss],

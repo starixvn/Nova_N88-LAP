@@ -291,14 +291,6 @@
     <Content Include="App_Data\UserGuide\CashOutWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\CashOutWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\CashOutWL\en-US.htm" />
-    <Content Include="App_Data\UserGuide\CustomerList\zh-Hans.htm" />
-    <Content Include="App_Data\UserGuide\GoldDeluxeWL\en-US.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWLByTimeZone\zh-Hans.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWLByTimeZone\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWLByTimeZone\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWLByTimeZone\en-US.htm" />
-    <Content Include="App_Data\UserGuide\WeeklyLiveMatches\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\WeeklyLiveMatches\zh-TW.htm" />
     <Content Include="Content\Fanex.Result\Allbet\css\button.css" />
     <Content Include="Content\Fanex.Result\Allbet\css\images\layout\btn_UI04.png" />
     <Content Include="Content\Fanex.Result\Allbet\css\images\layout\icon_UI02.png" />
@@ -430,18 +422,6 @@
       <DependentUpon>FanexSpName.xml.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\UserGuide\CommissionGroupList\en-US.htm" />
-    <Content Include="App_Data\UserGuide\CommissionGroupList\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\CommissionGroupList\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\ManageAccount\en-US.htm" />
-    <Content Include="App_Data\UserGuide\ManageAccount\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\ManageAccount\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\CustomerList\en-US.htm" />
-    <Content Include="App_Data\UserGuide\CustomerList\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\CustomerList\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\CustomerLog\en-US.htm" />
-    <Content Include="App_Data\UserGuide\CustomerLog\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\CustomerLog\zh-TW.htm" />
     <Content Include="SpNameConfig\FanexSpName.xml1.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -456,16 +436,9 @@
     <Content Include="App_Data\UserGuide\CustomerWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\CustomerWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\CustomerWL\en-US.htm" />
-    <Content Include="App_Data\UserGuide\LastBetsMonitoring\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\LastBetsMonitoring\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\LicenseeWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\LicenseeWL\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\SettledMatchCount\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\SettledMatchCount\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\SettledMatchCount\en-US.htm" />
-    <Content Include="App_Data\UserGuide\LastBetsMonitoring\en-US.htm" />
     <Content Include="App_Data\UserGuide\LicenseeWL\en-US.htm" />
-    <Content Include="App_Data\UserGuide\WeeklyLiveMatches\en-US.htm" />
     <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
     <Content Include="Content\FlatPopup\book.png" />
     <Content Include="Content\FlatPopup\close_pop.png" />
@@ -583,8 +556,6 @@
     </Content>
     <Content Include="SiteConfig\WebConfigTransforms\UATTW.config" />
     <Content Include="SiteConfig\Web.UATTW.config" />
-    <Content Include="App_Data\UserGuide\CustomerList\pdf\zh-Hans\Odds Group Feature_Licensee.pdf" />
-    <Content Include="App_Data\UserGuide\CustomerList\pdf\zh-Hans\Odds Group Feature_Licensee_BA.pdf" />
     <Content Include="SiteConfig\WebConfigTransforms\Staging.config" />
     <Content Include="SiteConfig\Web.AppSettings.Staging.config">
       <SubType>Designer</SubType>
@@ -599,16 +570,12 @@
     <Content Include="www\css\build\dev\reactpages\playeradmin\index.css.map" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\account-info.chunk.js.map" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\account-info.css.map" />
-    <Content Include="Views\Desktop\Module\PlayerAdmin\PlayerBetList\Running.cshtml" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\running-betlist.chunk.js.map" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\running-betlist.css.map" />
     <Content Include="www\css\source\reactpages\components\alert\index.scss" />
     <Content Include="www\css\source\reactpages\components\alert\icons.scss" />
-    <Content Include="Views\Desktop\Module\PlayerAdmin\PlayerBetLimit\Index.cshtml" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\betlimit.css.map" />
     <Content Include="www\css\source\components\balloon\balloon.scss" />
-    <Content Include="Views\Desktop\Module\PlayerAdmin\SingleCustomer\Index.cshtml" />
-    <Content Include="Views\Desktop\Module\PlayerAdmin\PlayerWinLoss\Index.cshtml" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\playerwinloss.css.map" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1753,14 +1720,7 @@
     </None>
     <None Include="SpNameConfig\SpNameConfiguration.ttinclude" />
     <Content Include="App_Data\Template\Reports\ThirdPartyWinLoss.xls" />
-    <Content Include="App_Data\Template\RNGCasino\HandHistory.xls" />
     <Content Include="GruntFilters.json" />
-    <Content Include="App_Data\UserGuide\CustomerList\pdf\en-US\Odds Group Feature_Licensee.pdf" />
-    <Content Include="App_Data\UserGuide\CustomerList\pdf\zh-CN\Odds Group Feature_Licensee.pdf" />
-    <Content Include="App_Data\UserGuide\CustomerList\pdf\zh-CN\Odds Group Feature_Licensee_BA.pdf" />
-    <Content Include="App_Data\UserGuide\CustomerList\pdf\zh-TW\Odds Group Feature_Licensee.pdf" />
-    <Content Include="App_Data\UserGuide\CustomerList\pdf\zh-TW\Odds Group Feature_Licensee_BA.pdf" />
-    <Content Include="App_Data\UserGuide\CustomerList\pdf\en-US\Odds Group Feature_Licensee_BA.pdf" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

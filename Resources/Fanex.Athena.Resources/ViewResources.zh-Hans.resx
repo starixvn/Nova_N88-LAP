@@ -1902,10 +1902,6 @@
     <value>子网站</value>
     <comment>95177</comment>
   </data>
-  <data name="SubsidiaryPerformance" xml:space="preserve">
-    <value>子网站报告</value>
-    <comment>95177</comment>
-  </data>
   <data name="SubsidiaryWL" xml:space="preserve">
     <value>子网站输赢</value>
     <comment>95177</comment>

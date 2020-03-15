@@ -138,9 +138,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ISubsidiaryPerformanceService.cs" />
     <Compile Include="Interfaces\IWeeklyLiveMatchService.cs" />
-    <Compile Include="SubsidiaryPerformanceService.cs" />
     <Compile Include="WeeklyLiveMatchService.cs" />
     <Compile Include="TurnoverService.cs" />
     <Compile Include="Interfaces\ITurnoverService.cs" />

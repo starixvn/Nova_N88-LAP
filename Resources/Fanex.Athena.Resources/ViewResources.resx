@@ -2045,9 +2045,6 @@
     <value>Tablet</value>
     <comment>80687</comment>
   </data>
-  <data name="SubsidiaryPerformance" xml:space="preserve">
-    <value>Subsidiary Performance</value>
-  </data>
   <data name="ConvertAllFiguresToBaseCurrency" xml:space="preserve">
     <value>Convert all figures to Base Currency</value>
     <comment>84932</comment>

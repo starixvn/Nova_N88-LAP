@@ -131,12 +131,6 @@
     <Compile Include="Constants\ResultVendorProductTypes.cs" />
     <Compile Include="DTO\CashOutWinLoss.cs" />
     <Compile Include="DTO\Result\KenoExtendedToken.cs" />
-    <Compile Include="DTO\SubsidiaryPerformance\SubsidiaryPerformanceGroup.cs" />
-    <Compile Include="DTO\SubsidiaryPerformance\SubsidiaryPerformanceSummary.cs" />
-    <Compile Include="DTO\SubsidiaryPerformance\SubsidiaryPerformanceDetail.cs" />
-    <Compile Include="DTO\SubsidiaryPerformance\SubsidiaryPerformance.cs" />
-    <Compile Include="DTO\SubsidiaryPerformance\SubsidiaryPerformanceBase.cs" />
-    <Compile Include="DTO\SubsidiaryPerformance\SubsidiaryResultViewModel.cs" />
     <Compile Include="DTO\ThirdPartyWinLoss.cs" />
     <Compile Include="DTO\WeeklyLiveMatch.cs" />
     <Compile Include="DTO\WinLossByLeague.cs" />
@@ -154,7 +148,6 @@
     <Compile Include="MetaModel\Result\GetSportResultMetaModel.cs" />
     <Compile Include="MetaModel\Result\ResultMetaModel.cs" />
     <Compile Include="MetaModel\SpecialLicenseeWinLossMetaModel.cs" />
-    <Compile Include="MetaModel\SubsidiaryPerformanceMetaModel.cs" />
     <Compile Include="MetaModel\ThirdPartyWinLossMetaModel.cs" />
     <Compile Include="MetaModel\WeeklyLiveMatchMetaModel.cs" />
     <Compile Include="MetaModel\WinLossByLeagueMetaModel.cs" />
@@ -173,7 +166,6 @@
     <Compile Include="ViewModel\SpecialLicenseeWinLossGridViewModel.cs" />
     <Compile Include="ViewModel\SpecialLicenseeWinLossViewModel.cs" />
     <Compile Include="ViewModel\Note\NoteViewModel.cs" />
-    <Compile Include="ViewModel\SubsidiaryPerformanceViewModel.cs" />
     <Compile Include="ViewModel\ThirdPartyWinLossViewModel.cs" />
     <Compile Include="ViewModel\WinLossByLeagueViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossGridViewModel.cs" />

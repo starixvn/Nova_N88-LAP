@@ -14,8 +14,6 @@
 
         public const string WinLossByProduct = "WinLossByProduct";
 
-        public const string SubsidiaryPerformance = "SubsidiaryPerformance";
-
         public const string SpecialLicenseeWinLoss = "SpecialLicenseeWinLoss";
 
         public const string BettingTicketCenter = "BettingTicketCenter";

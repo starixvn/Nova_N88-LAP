@@ -1079,8 +1079,6 @@
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\singlecustomer\reducers\index.js" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\running\actions\index.js" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\running\reducers\index.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\__tests__\AppContainer.redux.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\__tests__\AppContainer.test.js" />
     <Content Include="www\js\source\reactpages\reducers\convertAllReducer.js" />
     <Content Include="www\js\source\reactpages\reducers\pagingOptionReducer.js" />
     <Content Include="www\js\source\reactpages\reducers\requestParamReducer.js" />
@@ -1130,21 +1128,6 @@
     <Content Include="www\js\source\reactpages\pages\speciallicenseewl\lib\service.js" />
     <Content Include="www\js\source\reactpages\pages\speciallicenseewl\reducers\filterHandlerReducer.js" />
     <Content Include="www\js\source\reactpages\pages\speciallicenseewl\reducers\index.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\actions\filterHandlerAction.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\actions\__tests__\filterHandlerAction.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\__tests__\DataGrid.redux.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\__tests__\DataGrid.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\__tests__\fakeData.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\__tests__\FormFilter.eventhandler.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\__tests__\FormFilter.redux.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\__tests__\FormFilter.render.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\lib\service.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\lib\reportExcel.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\lib\__tests__\fakeData.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\lib\__tests__\reportExcel.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\lib\__tests__\service.test.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\reducers\filterHandlerReducer.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\reducers\__tests__\filterHandlerReducer.test.js" />
     <Content Include="www\js\source\reactpages\reducers\dateRangeReducer.js" />
     <Content Include="www\js\source\reactpages\reducers\excludeTestReducer.js" />
     <Content Include="www\js\source\reactpages\reducers\currencyReducer.js" />
@@ -1182,7 +1165,6 @@
     <Content Include="www\webpackconfig\config\pathReact.js" />
     <Content Include="www\webpackconfig\config\pluginReact.js" />
     <None Include="bundleconfig.json" />
-    <Content Include="Views\Desktop\Report\SubsidiaryPerformance\Main.cshtml" />
     <Content Include="Views\Desktop\Shared\_ReactPageLayout.cshtml" />
     <Content Include="www\css\build\dev\reactpages\vendor.css.map" />
     <Content Include="www\css\source\reactpages\layout\_filter.scss" />
@@ -1213,12 +1195,6 @@
     <Content Include="www\js\build\dev\reactpages\lib\langHelper.chunk.js" />
     <Content Include="www\js\source\reactpages\actions\types.js" />
     <Content Include="www\js\source\reactpages\lib\createReducer.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\actions\index.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\actions\types.js" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\AppContainer.jsx" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\DataGrid.jsx" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\FormFilter.jsx" />
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\reducers\index.js" />
     <Content Include="www\webpackconfig\build\webpack.react.base.conf.js" />
     <Content Include="www\webpackconfig\build\webpack.react.dev.conf.js" />
     <Content Include="www\assets\images\15.jpg" />
@@ -2329,7 +2305,6 @@
     <Content Include="www\js\build\dev\pages\reports\customerwinloss.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\lib\langHelper.chunk.js.map" />
     <Content Include="www\css\source\reactpages\components\date-range\styles.scss" />
-    <Content Include="www\css\source\reactpages\pages\subsidiaryperformance\index.scss" />
     <Content Include="www\js\source\reactpages\components\Loader.jsx" />
     <Content Include="www\js\source\reactpages\components\NoDataTitle.jsx" />
     <Content Include="www\js\source\reactpages\components\ReportTitle.jsx" />
@@ -5414,9 +5389,6 @@
     <Folder Include="www\js\source\pages\report\thirdpartywinloss\reports\" />
     <Folder Include="www\js\source\reactpages\pages\bettingticketscenter\common\components\__tests__\" />
     <Folder Include="www\js\tests\pages\report\thirdpartywinloss\reports\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="www\js\source\reactpages\pages\subsidiaryperformance\components\index.jsx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

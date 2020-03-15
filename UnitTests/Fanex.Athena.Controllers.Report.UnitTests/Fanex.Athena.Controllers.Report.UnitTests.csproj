@@ -173,7 +173,6 @@
     <Compile Include="Result\ResultReport\CardClubResultPopupControllerTest.cs" />
     <Compile Include="Result\ResultReport\SGResultPopupControllerTest.cs" />
     <Compile Include="Result\ResultReport\PPResultPopupControllerTest.cs" />
-    <Compile Include="SubsidiaryPerformanceReportControllerTest.cs" />
     <Compile Include="WeeklyLiveMatchReportControllerTest.cs" />
     <Compile Include="NoteControllerTest.cs" />
     <Compile Include="WinLossByProductReportControllerTest.cs" />

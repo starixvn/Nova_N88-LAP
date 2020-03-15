@@ -20,7 +20,6 @@ function generateConfig(environment) {
             [`${jsPath}/lib/lang-zh-Hans`]: pathConfig.scriptPaths.langHans,
             [`${jsPath}/lib/lang-zh-TW`]: pathConfig.scriptPaths.langTW,
 
-            [`${jsPath}/subsidiaryperformance/subsidiaryperformance`]: pathConfig.scriptPaths.subsidiaryperformance,
             [`${jsPath}/notification/notification`]: pathConfig.scriptPaths.notification,
             [`${jsPath}/report/speciallicenseewl`]: pathConfig.scriptPaths.speciallicenseewl,
             [`${jsPath}/bettingticketscenter/advancedsearch`]: pathConfig.scriptPaths.bettingticketscenter_advancedsearch,
@@ -37,7 +36,6 @@ function generateConfig(environment) {
 
             /*css*/
             [`${cssPath}/vendor`]: pathConfig.cssPaths.layout,
-            [`${cssPath}/subsidiaryperformance/index`]: pathConfig.cssPaths.subsidiaryperformance,
             [`${cssPath}/notification/index`]: pathConfig.cssPaths.notification,
             [`${cssPath}/speciallicenseewl/index`]: pathConfig.cssPaths.speciallicenseewl,
             [`${cssPath}/bettingticketscenter/index`]: pathConfig.cssPaths.bettingticketscenter,

@@ -5479,15 +5479,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subsidiary Performance.
-        /// </summary>
-        public static string SubsidiaryPerformance {
-            get {
-                return ResourceManager.GetString("SubsidiaryPerformance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Subsidiary Search.
         /// </summary>
         public static string SubsidiarySearch {

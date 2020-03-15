@@ -5,7 +5,6 @@ var projectRoot = path.resolve(__dirname, '../../../');
 var cssPaths = {
     build: "www/css/build",
     layout: "./www/css/source/reactpages/main.scss",
-    subsidiaryperformance: "./www/css/source/reactpages/pages/subsidiaryperformance/index.scss",
     notification: "./www/css/source/reactpages/pages/notification/index.scss",
     speciallicenseewl: "./www/css/source/reactpages/pages/speciallicenseewl/index.scss",
     bettingticketscenter: "./www/css/source/reactpages/pages/bettingticketscenter/index.scss",
@@ -28,7 +27,6 @@ var scriptPaths = {
     langHans: "./www/js/source/common/languages/ViewResources.zh-Hans.js",
     langTW: "./www/js/source/common/languages/ViewResources.zh-TW.js",
     /*React page*/
-    subsidiaryperformance: "./www/js/source/reactpages/pages/subsidiaryperformance/components/index.jsx",
     notification: "./www/js/source/reactpages/pages/notification/components/resultAmendment/index.jsx",
     speciallicenseewl: "./www/js/source/reactpages/pages/speciallicenseewl/components/index.jsx",
     bettingticketscenter_advancedsearch: "./www/js/source/reactpages/pages/bettingticketscenter/advancedsearch/components/index.jsx",

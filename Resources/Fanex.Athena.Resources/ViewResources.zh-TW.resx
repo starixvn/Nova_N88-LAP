@@ -1908,10 +1908,6 @@
     <value>子網站</value>
     <comment>95177</comment>
   </data>
-  <data name="SubsidiaryPerformance" xml:space="preserve">
-    <value>子網站報告</value>
-    <comment>95177</comment>
-  </data>
   <data name="SubsidiaryWL" xml:space="preserve">
     <value>子網站輸贏</value>
     <comment>95177</comment>

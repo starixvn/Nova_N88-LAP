@@ -49,7 +49,7 @@ namespace Fanex.Athena.Api.BetList
         protected void CheckDataPermission(int custId, long transId)
         {
             if (!_authorizationService.HasPermissionOnData(
-                SessionService.UserSession.CurrencyAgentList,
+                SessionService.UserSessionInfo.CurrencyAgentList,
                 custId,
                 transId))
             {
@@ -66,7 +66,7 @@ namespace Fanex.Athena.Api.BetList
 
             var licenseeSession = SessionService.LicenseeSession;
             var balanceUp = GetBalanceUp();
-            var userSession = SessionService.UserSession;
+            var userSession = SessionService.UserSessionInfo;
             metaModel.PageIndex = 1;
             metaModel.PageSize = int.MaxValue - 1;
             metaModel.LicenseeId = licenseeSession.LicenseeId;

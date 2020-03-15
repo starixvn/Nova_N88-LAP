@@ -96,7 +96,7 @@ namespace Fanex.Athena.Api.Report
             IEnumerable<CashOutWinLoss> totalData,
             IDictionary<string, CashOutWinLoss> summaryTotal)
         {
-            var userSession = SessionService.UserSession;
+            var userSession = SessionService.UserSessionInfo;
             var templatePath = HostingEnvironment.MapPath(@"~/App_Data/Template/Reports/CashOutWinLoss.xls");
 
             var currencyList = userSession.CurrencyList;
@@ -175,7 +175,7 @@ namespace Fanex.Athena.Api.Report
             int currencyId,
             int custId)
         {
-            var userSession = SessionService.UserSession;
+            var userSession = SessionService.UserSessionInfo;
             metaModel.DrillDownCurrencyId = currencyId;
             metaModel.DrillDownLevel = level;
             metaModel.DrillDownCustomerId = custId;
@@ -188,7 +188,7 @@ namespace Fanex.Athena.Api.Report
 
         private async Task<SortableReportResultModel<CashOutWinLoss>> GetData(ThirdPartyWinLossMetaModel metaModel)
         {
-            var userCurrencyList = SessionService.UserSession.CurrencyList;
+            var userCurrencyList = SessionService.UserSessionInfo.CurrencyList;
             return metaModel.DrillDownLevel == 0 ?
                 await _cashOutWinLossDataAccess.GetSummary(metaModel, userCurrencyList).ConfigureAwait(false) :
                 await _cashOutWinLossDataAccess.GetDetail(metaModel, userCurrencyList).ConfigureAwait(false);

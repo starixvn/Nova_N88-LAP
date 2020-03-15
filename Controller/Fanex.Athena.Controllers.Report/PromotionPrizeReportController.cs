@@ -28,7 +28,7 @@
             var result = await _reportAPIClient.PostAsync(
                 "api/PromotionPrize/Export",
                 metaModel,
-                SessionServiceInstance.UserSession.Language,
+                SessionServiceInstance.UserSessionInfo.Language,
                 MediaType.MsgPack).ConfigureAwait(false);
             return File(result.Item1, result.Item2);
         }

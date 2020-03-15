@@ -10,7 +10,7 @@
     "MaxDateString": ""
   },
   {
-    "ReportKey": "CustomerWinLoss29",
+    "ReportKey": "CustomerWinLoss",
     "MinDateString": "",
     "MaxDateString": "today",
     "LimitRecentDays": 90

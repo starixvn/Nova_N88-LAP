@@ -45,7 +45,7 @@ namespace Fanex.Athena.Controllers
                 SupportedLanguageList = Util.SupportedLanguages,
                 UserName = userSession.Username,
                 CurrentLicenseeId = _appSettings.LicenseeId,
-                IsAllowedManagementMember = userSession.MenuItemList.Any(x => x.Name == PermissionKeys.UserManagement),
+                IsAllowedManagementMember = userSession.Functions.Any(x => x.FunctionKey == PermissionKeys.UserManagement),
                 IsFakeLicensee = false,
                 IsAllowedNotification = false
             };

@@ -4,8 +4,10 @@
     {
 
         /*NAP Menu Permission*/
-        public const string UserManagement = "User Management";
+        public const string UserManagement = "UserManagement";
         public const string ReportLicenseeWinLoss = "LicenseeWinLoss";
+        public const string ReportCustomerWinLoss = "CustomerWinLoss";
+        public const string ReportCashOutWinLoss = "CashOutWinLoss";
 
 
         public const string GroupTotalBet = "TOTALBETS1";
@@ -42,7 +44,6 @@
 
         public const string ReportLastBetsMonitoring = "LastBetsMonitoring26";
         public const string ReportSettledMatchCount = "SettledMatchCount28";
-        public const string ReportCustomerWinLoss = "CustomerWinLoss29";
         public const string ReportCustomerPendingFunds = "CustomerPendingFunds30";
         public const string ReportMatchWinLoss = "MatchWinLoss31";
         public const string ReportWinLossByProduct = "WinLossByProducts32";
@@ -62,7 +63,6 @@
         public const string ReportCustomerTurnover = "CustomerTurnover51";
         public const string ReportPlatformWinLoss = "MobileWinLoss53";
         public const string ReportColossusBetsWinLoss = "ColossusBetsWinLoss71";
-        public const string ReportCashOutWinLoss = "CashOutWinLoss72";
         public const string ReportSubsidiaryPerformance = "SubsidiaryPerformance73";
         public const string ReportLicenseeWinLossByTimeZone = "LicenseeWinLossByTimeZone76";
         public const string ReportExchangeWinLoss = "ExchangeWinloss77";

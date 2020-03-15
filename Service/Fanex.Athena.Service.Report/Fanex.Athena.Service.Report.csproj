@@ -140,8 +140,6 @@
   <ItemGroup>
     <Compile Include="Interfaces\IWeeklyLiveMatchService.cs" />
     <Compile Include="WeeklyLiveMatchService.cs" />
-    <Compile Include="TurnoverService.cs" />
-    <Compile Include="Interfaces\ITurnoverService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

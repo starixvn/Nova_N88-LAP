@@ -1514,7 +1514,6 @@
     <Content Include="www\css\build\fonts\roboto\Roboto-Regular.ttf" />
     <Content Include="www\css\build\fonts\roboto\Roboto-Regular.woff" />
     <Content Include="www\css\build\fonts\roboto\Roboto-Regular.woff2" />
-    <None Include="www\css\source\pages\report\turnover.scss" />
     <Content Include="www\css\source\pages\report\winlossbybettype.scss" />
     <None Include="www\css\source\pages\report\winlossbyleague.scss" />
     <None Include="www\css\source\pages\utility\licenseelist.scss" />
@@ -1745,9 +1744,6 @@
     <Content Include="www\js\source\pages\report\report.js" />
     <Content Include="www\js\source\pages\report\result\main-result.js" />
     <Content Include="www\js\source\pages\report\result\result.js" />
-    <Content Include="www\js\source\pages\report\turnover\main.js" />
-    <Content Include="www\js\source\pages\report\turnover\turnover.js" />
-    <Content Include="www\js\source\pages\report\turnover\turnover.option.js" />
     <Content Include="www\js\source\pages\report\weeklylivematch\main-weeklylivematch.js" />
     <Content Include="www\js\source\pages\report\weeklylivematch\weeklylivematch.js" />
     <Content Include="www\js\source\pages\report\weeklylivematch\weeklylivematch.option.js" />
@@ -1826,7 +1822,6 @@
     <Content Include="www\js\tests\pages\report\result\result-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\common\thirdpartywinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\common\thirdpartywinloss.option-spec.js" />
-    <Content Include="www\js\tests\pages\report\turnover\turnover-spec.js" />
     <Content Include="www\js\tests\pages\report\weeklylivematch\weeklylivematch-spec.js" />
     <Content Include="www\js\tests\pages\report\weeklylivematch\weeklylivematch.option-spec.js" />
     <Content Include="www\js\tests\pages\report\winlossbybettype\winlossbybettype-spec.js" />
@@ -2125,9 +2120,6 @@
     <Content Include="www\css\build\dev\pages\reports\weeklylivematch.css.map" />
     <Content Include="www\css\source\components\scrollablegrid\scrollablegrid.scss" />
     <Content Include="www\css\source\components\paging\paging.scss" />
-    <Content Include="Views\Desktop\Report\Turnover\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\Turnover\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\Turnover\Main.cshtml" />
     <Content Include="Views\Desktop\Report\Result\Main.cshtml" />
     <Content Include="Views\Desktop\Report\Result\Filter.cshtml" />
     <Content Include="Views\Desktop\Report\Result\Content.cshtml" />
@@ -2228,7 +2220,6 @@
     <Content Include="www\js\build\dev\pages\reports\result.chunk.js.map" />
     <Content Include="www\js\build\dev\pages\reports\turnover.chunk.js.map" />
     <Content Include="www\css\source\scss\components\_radio-button.scss" />
-    <Content Include="www\js\tests\pages\report\turnover\turnover.option-spec.js" />
     <Content Include="www\js\build\dev\pages\reports\cashoutwinloss.chunk.js.map" />
     <Content Include="www\css\source\pages\report\winlossbyproduct.scss" />
     <Content Include="www\js\build\dev\pages\reports\winlossbyproduct.chunk.js.map" />
@@ -5183,7 +5174,6 @@
     <Content Include="App_Data\Template\Customers\CustomerList.xls" />
     <Content Include="App_Data\Template\Reports\WinLossByLeagues.xls" />
     <Content Include="App_Data\Template\Reports\LicenseeWinLoss.xls" />
-    <Content Include="App_Data\Template\Reports\Turnover.xls" />
     <Content Include="App_Data\Template\Reports\WinLossByBetType.xls" />
     <Content Include="App_Data\Template\Reports\WinLossByProducts.xls" />
     <Content Include="Content\Web.config" />

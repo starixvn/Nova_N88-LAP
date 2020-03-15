@@ -141,7 +141,6 @@
     <Compile Include="DTO\ITurnOver.cs" />
     <Compile Include="DTO\LicenseeWinLoss.cs" />
     <Compile Include="DTO\WinLossByBetType.cs" />
-    <Compile Include="DTO\TurnoverDTO.cs" />
     <Compile Include="DTO\WinLossByProduct.cs" />
     <Compile Include="MetaModel\BaseDrilldownReportMetaModel.cs" />
     <Compile Include="MetaModel\BaseReportMetaModel.cs" />
@@ -155,7 +154,6 @@
     <Compile Include="MetaModel\WinLossByProductMetaModel.cs" />
     <Compile Include="MetaModel\CustomerWinlossMetaModel.cs" />
     <Compile Include="MetaModel\LicenseeWinLossMetaModel.cs" />
-    <Compile Include="MetaModel\TurnoverMetaModel.cs" />
     <Compile Include="MetaModel\WinLossByBetTypeMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultModel\WeeklyLiveMatchResultModel.cs" />
@@ -172,7 +170,6 @@
     <Compile Include="ViewModel\WinLossByProductViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossViewModel.cs" />
     <Compile Include="ViewModel\WinLossByBetTypeViewModel.cs" />
-    <Compile Include="ViewModel\TurnoverViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

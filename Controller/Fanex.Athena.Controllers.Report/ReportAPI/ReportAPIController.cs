@@ -13,17 +13,13 @@ namespace Fanex.Athena.Controllers.Report
     public partial class ReportAPIController : NonCultureBaseController
     {
         private readonly IBetTypeService _betTypeService;
-
-        private readonly ITurnoverService _turnoverService;
         private readonly ILicenseeSettingService _licenseeSettingService;
 
         public ReportAPIController(
             IBetTypeService betTypeService,
-            ITurnoverService turnoverService,
             ILicenseeSettingService licenseeSettingService)
         {
             _betTypeService = betTypeService;
-            _turnoverService = turnoverService;
             _licenseeSettingService = licenseeSettingService;
         }
 

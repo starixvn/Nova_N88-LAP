@@ -134,8 +134,6 @@
     <Compile Include="Models\LicenseeWinLossExcelModel.cs" />
     <Compile Include="Models\WinLossByProductExcelModel.cs" />
     <Compile Include="ThirdPartyWinLossExcel.cs" />
-    <Compile Include="WeeklyLiveMatchExcel.cs" />
-    <Compile Include="WinlossByLeagueExcel.cs" />
     <Compile Include="LicenseeWinLossExcel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinlossByProductExcel.cs" />

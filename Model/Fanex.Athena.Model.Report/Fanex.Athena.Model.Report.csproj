@@ -132,15 +132,12 @@
     <Compile Include="DTO\CashOutWinLoss.cs" />
     <Compile Include="DTO\Result\KenoExtendedToken.cs" />
     <Compile Include="DTO\ThirdPartyWinLoss.cs" />
-    <Compile Include="DTO\WeeklyLiveMatch.cs" />
-    <Compile Include="DTO\WinLossByLeague.cs" />
     <Compile Include="DTO\CustTurnover.cs" />
     <Compile Include="DTO\CustomerWinLoss.cs" />
     <Compile Include="DTO\ICustomerWinLoss.cs" />
     <Compile Include="DTO\ILicenseeWL.cs" />
     <Compile Include="DTO\ITurnOver.cs" />
     <Compile Include="DTO\LicenseeWinLoss.cs" />
-    <Compile Include="DTO\WinLossByBetType.cs" />
     <Compile Include="DTO\WinLossByProduct.cs" />
     <Compile Include="MetaModel\BaseDrilldownReportMetaModel.cs" />
     <Compile Include="MetaModel\BaseReportMetaModel.cs" />
@@ -149,14 +146,11 @@
     <Compile Include="MetaModel\SpecialLicenseeWinLossMetaModel.cs" />
     <Compile Include="MetaModel\ThirdPartyWinLossMetaModel.cs" />
     <Compile Include="MetaModel\WeeklyLiveMatchMetaModel.cs" />
-    <Compile Include="MetaModel\WinLossByLeagueMetaModel.cs" />
     <Compile Include="MetaModel\ResultPopupMetalModel.cs" />
     <Compile Include="MetaModel\WinLossByProductMetaModel.cs" />
     <Compile Include="MetaModel\CustomerWinlossMetaModel.cs" />
     <Compile Include="MetaModel\LicenseeWinLossMetaModel.cs" />
-    <Compile Include="MetaModel\WinLossByBetTypeMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResultModel\WeeklyLiveMatchResultModel.cs" />
     <Compile Include="ResultModel\WinLossByProductResultModel.cs" />
     <Compile Include="ViewModel\CashOutWinLossViewModel.cs" />
     <Compile Include="ViewModel\CustomerWinlossViewModel.cs" />
@@ -165,11 +159,9 @@
     <Compile Include="ViewModel\SpecialLicenseeWinLossViewModel.cs" />
     <Compile Include="ViewModel\Note\NoteViewModel.cs" />
     <Compile Include="ViewModel\ThirdPartyWinLossViewModel.cs" />
-    <Compile Include="ViewModel\WinLossByLeagueViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossGridViewModel.cs" />
     <Compile Include="ViewModel\WinLossByProductViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossViewModel.cs" />
-    <Compile Include="ViewModel\WinLossByBetTypeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

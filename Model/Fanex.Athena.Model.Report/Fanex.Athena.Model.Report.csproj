@@ -144,7 +144,6 @@
     <Compile Include="MetaModel\Result\ResultMetaModel.cs" />
     <Compile Include="MetaModel\SpecialLicenseeWinLossMetaModel.cs" />
     <Compile Include="MetaModel\ThirdPartyWinLossMetaModel.cs" />
-    <Compile Include="MetaModel\WeeklyLiveMatchMetaModel.cs" />
     <Compile Include="MetaModel\ResultPopupMetalModel.cs" />
     <Compile Include="MetaModel\CustomerWinlossMetaModel.cs" />
     <Compile Include="MetaModel\LicenseeWinLossMetaModel.cs" />

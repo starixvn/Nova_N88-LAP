@@ -33,7 +33,6 @@ function generateConfig(environment) {
             [`${jsPath}/pages/betlist/betlistrunning`]: [pathConfig.scriptPaths.betlistrunning],
             [`${jsPath}/pages/betlist/betlistrunningmultiplebettypes`]: [pathConfig.scriptPaths.betlistrunningmultiplebettypes],
             [`${jsPath}/pages/betlist/betlistcorrectscore`]: [pathConfig.scriptPaths.betlistcorrectscore],
-            [`${jsPath}/pages/reports/weeklylivematch`]: [pathConfig.scriptPaths.weeklylivematch],
             [`${jsPath}/pages/reports/result`]: [pathConfig.scriptPaths.result],
             [`${jsPath}/pages/reports/cashoutwinloss`]: [pathConfig.scriptPaths.cashoutwinloss],
             [`${jsPath}/pages/customer/commgrouplist`]: [pathConfig.scriptPaths.customercommgrouplist],

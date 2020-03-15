@@ -21,7 +21,6 @@
         public const string ReportTurnover = "Turnover39";
         public const string ReportResults = "Results41";
         public const string ReportWinLossByLeague = "WinLossByLeague59";
-        public const string ReportWeeklyLiveMatches = "WeeklyLiveMatches69";
         public const string ReportPlatformWinLoss = "MobileWinLoss53";
         public const string ReportColossusBetsWinLoss = "ColossusBetsWinLoss71";
         public const string ReportCashOutWinLoss = "CashOutWinLoss72";

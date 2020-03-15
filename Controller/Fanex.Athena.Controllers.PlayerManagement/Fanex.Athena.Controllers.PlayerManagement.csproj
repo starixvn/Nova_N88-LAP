@@ -98,10 +98,6 @@
       <Project>{5F410090-94C0-46A5-9FEC-B6C3B745B7A0}</Project>
       <Name>Fanex.Athena.Model.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Customer\Fanex.Athena.Model.Customer.csproj">
-      <Project>{3B212F2F-4DEB-449B-9AE0-36F6E4F49F5F}</Project>
-      <Name>Fanex.Athena.Model.Customer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.PlayerManagement\Fanex.Athena.Model.PlayerManagement.csproj">
       <Project>{12121414-6686-4286-86D3-328EBBF6BC8C}</Project>
       <Name>Fanex.Athena.Model.PlayerManagement</Name>
@@ -109,10 +105,6 @@
     <ProjectReference Include="..\..\Service\Fanex.Athena.Service.Core\Fanex.Athena.Service.Core.csproj">
       <Project>{FCFD7434-085B-4C93-848F-E1CBCEDCC5A0}</Project>
       <Name>Fanex.Athena.Service.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Service\Fanex.Athena.Service.Customer\Fanex.Athena.Service.Customer.csproj">
-      <Project>{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}</Project>
-      <Name>Fanex.Athena.Service.Customer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Service\Fanex.Athena.Service.PlayerManagement\Fanex.Athena.Service.PlayerManagement.csproj">
       <Project>{20699CA3-3E0F-4575-B6A6-8E642374E8A9}</Project>

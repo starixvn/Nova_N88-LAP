@@ -706,8 +706,6 @@
     <Content Include="www\js\source\extensions\ajaxBinaryTransporting.js" />
     <Content Include="www\js\source\helpers\datahelper.js" />
     <Content Include="www\js\source\helpers\downloader.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.gridoption.dormant.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.service.dormant.js" />
     <Content Include="www\js\source\reactpages\actions\pagingOptionAction.js" />
     <Content Include="www\js\source\reactpages\actions\reportTitleAction.js" />
     <Content Include="www\js\source\reactpages\actions\requestParamAction.js" />
@@ -1266,9 +1264,6 @@
     <Content Include="www\css\build\fonts\flags\flags\tw.svg" />
     <Content Include="www\css\build\fonts\font-icon\fonts\icomoon.svg" />
     <Content Include="www\css\build\dev\um.css.map" />
-    <Content Include="Views\Desktop\Customer\CustomerComm\GroupCommList.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerComm\Header.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerComm\Content.cshtml" />
     <Content Include="www\css\build\fonts\font-icon\icomoon\selection.json" />
     <Content Include="www\css\build\images\checked-dark.png" />
     <Content Include="www\css\build\images\checked-light.png" />
@@ -1294,14 +1289,10 @@
     <Content Include="www\css\build\dev\pages\customer\commgrouplist.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\customer\commgrouplist.css.map" />
     <Content Include="Views\Desktop\Shared\_CustomerLogLayout.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Menu.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\LoginLog\Main.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\LoginLog\Filter.cshtml" />
     <Content Include="www\css\build\dev\pages\customer\customerlist.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\customer\customerlist.css.map" />
     <Content Include="www\css\build\dev\pages\customer\customerlog.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\customer\customerlog.css.map" />
-    <Content Include="Views\Desktop\Customer\CustomerComm\UpdateGroup.cshtml" />
     <Content Include="www\css\source\components\switch\_switch.scss" />
     <Content Include="www\css\source\components\griddropdown\_griddropdown.scss" />
     <Content Include="Views\Desktop\BetList\CustomerOutstanding\Filter.cshtml" />
@@ -1345,24 +1336,7 @@
     <Content Include="www\css\source\pages\customer\customerlog.scss" />
     <Content Include="www\css\source\components\tab\_tab.scss" />
     <Content Include="www\css\source\components\autocomplete\_autocomplete.scss" />
-    <Content Include="Views\Desktop\Customer\ContextMenu.cshtml" />
-    <Content Include="Views\Desktop\Customer\Customers.cshtml" />
-    <Content Include="Views\Desktop\Customer\Filter.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\CustomerSettingLog\Main.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\CustomerSettingLog\Filter.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Action\2200.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Action\2612.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Action\2407.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Action\2201.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Action\2609.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Action\2610.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Action\2611.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\Action\2801.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\GroupCommLog\Main.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerLog\GroupCommLog\Filter.cshtml" />
     <Content Include="www\css\source\pages\customer\commgrouplist-detail.scss" />
-    <Content Include="Views\Desktop\Customer\CustomerComm\CommGroup.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerComm\CreateNewGroup.cshtml" />
     <Content Include="www\css\build\dev\pages\customer\commgroupdetail.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\customer\commgroupdetail.css.map" />
     <Content Include="www\css\source\pages\report\activecustomersummary.scss" />
@@ -1649,35 +1623,6 @@
     <Content Include="www\js\source\components\navbar.js" />
     <Content Include="www\js\source\components\refreshcountdown.js" />
     <Content Include="www\js\source\components\sidebar.js" />
-    <Content Include="www\js\source\pages\customer\customercomm\commgroup.js" />
-    <Content Include="www\js\source\pages\customer\customercomm\commgroupadd.js" />
-    <Content Include="www\js\source\pages\customer\customercomm\commgroupdetail.js" />
-    <Content Include="www\js\source\pages\customer\customercomm\commgroupedit.js" />
-    <Content Include="www\js\source\pages\customer\customercomm\commgrouplist.js" />
-    <Content Include="www\js\source\pages\customer\customercomm\main-commgroupadd.js" />
-    <Content Include="www\js\source\pages\customer\customercomm\main-commgroupedit.js" />
-    <Content Include="www\js\source\pages\customer\customercomm\main-commgrouplist.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.custstatus.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.filter.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.grid.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.bastatus.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.commision.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.custoption.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.oddsgroup.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.gridoption.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.state.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.service.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\customerlist.speciallevel.js" />
-    <Content Include="www\js\source\pages\customer\customerlist\main.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\common.option.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\customerlog.service.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\customersetting\customersetting.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\customersetting\main.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\groupcommission\groupcommission.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\groupcommission\main.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\loginlog\loginlog.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\loginlog\loginlog.option.js" />
-    <Content Include="www\js\source\pages\customer\customerlog\loginlog\main.js" />
     <Content Include="www\js\source\pages\home\home.js" />
     <Content Include="www\js\source\pages\home\main.js" />
     <Content Include="www\js\source\pages\home\recheckin.js" />
@@ -5094,8 +5039,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Code\RazorHelper.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerDialog\MoveToGroup.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerDialog\UpdateCustComm.cshtml" />
     <Content Include="App_Code\DatePickerHelper.cshtml" />
     <Content Include="WhoAmI.aspx" />
     <Content Include="packages.config">
@@ -5109,8 +5052,6 @@
     <Content Include="App_Data\Template\Reports\LicenseeWinLoss.xls" />
     <Content Include="Content\Web.config" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
-    <Content Include="Views\Desktop\Customer\CustomerDialog\RemoveFromGroup.cshtml" />
-    <Content Include="Views\Desktop\Customer\CustomerDialog\LogInfo.cshtml" />
     <Content Include="Views\Shared\_Report.jqGridLayout.cshtml" />
     <None Include="Scripts\Languages\ViewResources.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -5144,10 +5085,6 @@
       <Project>{f97f88e3-5fe2-4ebd-afa2-d7aec0f655e4}</Project>
       <Name>Fanex.Athena.Api.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ControllerAPI\Fanex.Athena.Api.CustomerLog\Fanex.Athena.Api.CustomerLog.csproj">
-      <Project>{a765275a-f566-4122-8e8e-47defab7b56b}</Project>
-      <Name>Fanex.Athena.Api.CustomerLog</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ControllerAPI\Fanex.Athena.Api.PlayerManagement\Fanex.Athena.Api.PlayerManagement.csproj">
       <Project>{43241df7-54d9-4107-a6b3-ed89495c4f0b}</Project>
       <Name>Fanex.Athena.Api.PlayerManagement</Name>
@@ -5167,10 +5104,6 @@
     <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.BetList\Fanex.Athena.Controllers.BetList.csproj">
       <Project>{83f7dc5c-e81c-45e5-bc83-b58e45198a2e}</Project>
       <Name>Fanex.Athena.Controllers.BetList</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.Customer\Fanex.Athena.Controllers.Customer.csproj">
-      <Project>{11985254-411e-45dc-9b50-8dcb8bd145ef}</Project>
-      <Name>Fanex.Athena.Controllers.Customer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.PlayerManagement\Fanex.Athena.Controllers.PlayerManagement.csproj">
       <Project>{63366e90-05d9-44da-8fca-2eac6b0377d3}</Project>

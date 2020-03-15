@@ -7,17 +7,10 @@
 namespace Fanex.Athena.Controllers.BetList
 {
     using System.Threading.Tasks;
-
-    #region Using
-
     using System.Web.Mvc;
-
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common;
-
     using Model.BetList.MetaModel;
-
-    #endregion Using
 
     public class RunningBettypesOfMatchBetListController : BetListBaseController
     {

@@ -1,14 +1,10 @@
 ﻿namespace Fanex.Athena.Controllers.BetList
 {
-    using Fanex.Athena.Model.Auth.DataDomain;
-
-    using Model.BetList.MetaModel;
-
-    using Resources;
-
     using System.Threading.Tasks;
     using System.Web.Mvc;
-
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Model.BetList.MetaModel;
+    using Resources;
     using Web.ActionFilter;
 
     [FunctionAuthorization(PermissionKeys.ReportLiveReport)]

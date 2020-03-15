@@ -6,21 +6,6 @@
 
 namespace Fanex.Athena.Controllers
 {
-    using Extension.Utility.Interfaces;
-
-    using Fanex.Athena.Extension.Utility;
-    using Fanex.Athena.Model.Auth.MetaModel;
-    using Fanex.Athena.Model.Core.DataDomain;
-    using Fanex.Athena.Model.Core.DTO.Common;
-    using Fanex.Athena.Model.Core.DTO.Users;
-    using Fanex.Athena.Service.Core.Users.Interfaces;
-    using Fanex.Athena.Web.ActionFilter;
-
-    using ONEbook.UM.Filters;
-    using ONEbook.UM.Services;
-
-    using Resources;
-
     using System;
     using System.Collections.Generic;
     using System.Drawing;
@@ -34,6 +19,17 @@ namespace Fanex.Athena.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.UI;
+    using Extension.Utility.Interfaces;
+    using Fanex.Athena.Extension.Utility;
+    using Fanex.Athena.Model.Auth.MetaModel;
+    using Fanex.Athena.Model.Core.DataDomain;
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.DTO.Users;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Web.ActionFilter;
+    using ONEbook.UM.Filters;
+    using ONEbook.UM.Services;
+    using Resources;
 
     public class AuthorizationController : CultureBaseController
     {

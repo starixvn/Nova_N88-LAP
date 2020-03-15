@@ -1,26 +1,19 @@
 ﻿namespace Fanex.Athena.Controllers.BetList
 {
-    using DataAccess.Core.Configuration.Interfaces;
-
-    using Excel.Base.Helpers;
-
-    using Fanex.Athena.Model.Core.DataDomain;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Utility;
-
-    using Model.BetList.MetaModel;
-    using Model.Core.DTO.Configuration;
-
-    using ONEbook.UM.Filters;
-
-    using Resources;
-
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
-
+    using DataAccess.Core.Configuration.Interfaces;
+    using Excel.Base.Helpers;
+    using Fanex.Athena.Model.Core.DataDomain;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Utility;
+    using Model.BetList.MetaModel;
+    using Model.Core.DTO.Configuration;
+    using ONEbook.UM.Filters;
+    using Resources;
     using VendorAdapter.Interfaces;
 
     [SessionState(SessionStateBehavior.ReadOnly)]

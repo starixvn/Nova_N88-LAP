@@ -6,25 +6,19 @@
 
 namespace Fanex.Athena.Controllers
 {
-    using DataAccess.Core.Configuration.Interfaces;
-
-    using Extension.Utility.Interfaces;
-
-    using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-
-    using Model.Core.DataDomain;
-    using Model.Core.DTO.Common;
-
-    using ONEbook.UM.Filters;
-
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using System.Web.SessionState;
-
+    using DataAccess.Core.Configuration.Interfaces;
+    using Extension.Utility.Interfaces;
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Model.Core.DataDomain;
+    using Model.Core.DTO.Common;
+    using ONEbook.UM.Filters;
     using Web.ActionFilter;
 
     [SessionState(SessionStateBehavior.ReadOnly)]

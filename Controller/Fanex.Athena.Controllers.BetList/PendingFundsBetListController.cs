@@ -6,21 +6,13 @@
 
 namespace Fanex.Athena.Controllers.BetList
 {
-    #region Using
-
-    using Fanex.Athena.Model.Auth.DataDomain;
-
-    using Model.BetList.MetaModel;
-
-    using Resources;
-
     using System;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Model.BetList.MetaModel;
+    using Resources;
     using Web.ActionFilter;
-
-    #endregion Using
 
     [FunctionAuthorization(PermissionKeys.ReportCustomerPendingFunds)]
     public class PendingFundsBetListController : BetListBaseController

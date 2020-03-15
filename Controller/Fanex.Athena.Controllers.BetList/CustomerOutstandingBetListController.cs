@@ -6,20 +6,16 @@
 
 namespace Fanex.Athena.Controllers.BetList
 {
-    using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Model.Core.MetaModel.Product;
-
-    using Model.BetList.MetaModel;
-    using Model.BetList.ViewModel;
-    using Model.Core.DTO.Common;
-
-    using Resources;
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Core.MetaModel.Product;
+    using Model.BetList.MetaModel;
+    using Model.BetList.ViewModel;
+    using Model.Core.DTO.Common;
+    using Resources;
     using Web.ActionFilter;
 
     [FunctionAuthorization(PermissionKeys.CustomerInfoCustomerList)]

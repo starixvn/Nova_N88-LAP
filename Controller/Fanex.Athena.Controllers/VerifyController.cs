@@ -42,12 +42,11 @@ namespace Fanex.Athena.Controllers
             var token = GetToken(vendorID, actionLink);
 
             return Json(new { Token = token, ApiUrl = "" }, JsonRequestBehavior.AllowGet);
-         }
+        }
 
         public ActionResult ApplyToken(string vendorID, string actionLink)
         {
             return Redirect(actionLink);
         }
-
     }
 }

@@ -6,16 +6,13 @@
 
 namespace Fanex.Athena.Controllers
 {
+    using System.Web.Mvc;
     using Extension.Utility;
-
     using Fanex.Athena.Controllers.Base;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
-
     using Service.Core.Users.Interfaces;
-
-    using System.Web.Mvc;
 
     [CustomAuthorize]
     [XFrameOption]

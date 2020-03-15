@@ -18,6 +18,7 @@ using Fanex.Athena.Api.StatelessBase.Logger;
 using Fanex.Athena.DataAccess.Report;
 using Fanex.Athena.DataAccess.Report.Interfaces;
 using Fanex.Athena.Extension;
+using Fanex.Athena.Extension.Utility;
 using Fanex.Athena.Extension.Utility.Internal;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
@@ -111,6 +112,10 @@ namespace Fanex.Athena
             builder.RegisterType<CommonCustomerSettingLogFactory>()
                 .As<IBusinessLogBuilderFactory>()
                 .Keyed<IBusinessLogBuilderFactory>("PlayerAdminCommonCustomerSettingLogFactory");
+
+            builder.Register<PlayerStatementService>(x => new PlayerStatementService(x.Resolve<IAppSettings>(), x.ResolveNamed<HttpClient>("EXTServiceTokenClient")))
+                .As<IPlayerStatementService>()
+                .InstancePerDependency();
 
             builder.RegisterType<BusinessLogService>()
                 .WithParameter(

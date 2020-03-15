@@ -111,8 +111,6 @@
     <Compile Include="SpecialLicenseeWinLossDataAccessTest.cs" />
     <Compile Include="WinLossByProductDataAccessTest.cs" />
     <Compile Include="WinLossByLeagueDataAccessTest.cs" />
-    <Compile Include="WinLossByBetTypeDataAccessTest.cs" />
-    <Compile Include="WeeklyLiveMatchDataAccessTest.cs" />
     <Compile Include="ThirdPartyWinLossDataAccessTest.cs" />
     <Compile Include="LicenseeWinLossDataAccessTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

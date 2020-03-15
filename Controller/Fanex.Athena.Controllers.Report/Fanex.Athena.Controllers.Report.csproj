@@ -163,7 +163,6 @@
     <Compile Include="CustomerWinLossReportController.cs" />
     <Compile Include="Result\ResultKenoReportController.cs" />
     <Compile Include="Result\ResultReportController.cs" />
-    <Compile Include="WinLossByBetTypeReportController.cs" />
     <Compile Include="WinLossByLeagueReportController.cs" />
     <Compile Include="WinLossByProductReportController.cs" />
     <Compile Include="WeeklyLiveMatchReportController.cs" />

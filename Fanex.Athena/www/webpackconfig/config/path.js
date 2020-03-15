@@ -27,7 +27,6 @@ var cssPaths = {
     cashoutwinloss: ["./www/css/source/pages/report/cashoutwinloss.scss"],
     cashouthistory: ["./www/css/source/pages/betlist/cashouthistory.main.scss", "./www/css/source/extensions/popup-ex.scss"],
 
-    winlossbyproduct: ["./www/css/source/pages/report/winlossbyproduct.scss"],
     customercommgrouplist: ["./www/css/source/pages/customer/commgrouplist.scss"],
     customercommgroupdetail: ["./www/css/source/pages/customer/commgrouplist-detail.scss"],
     customerlog: ["./www/css/source/pages/customer/customerlog.scss"],
@@ -59,7 +58,6 @@ var scriptPaths = {
     result: "./www/js/source/pages/report/result/main-result.js",
     cashoutwinloss: "./www/js/source/pages/report/cashoutwinloss/main.js",
 
-    winlossbyproduct: "./www/js/source/pages/report/winlossbyproduct/main-winlossbyproduct.js",
     customercommgrouplist: "./www/js/source/pages/customer/customercomm/main-commgrouplist.js",
     customercommgroupadd: "./www/js/source/pages/customer/customercomm/main-commgroupadd.js",
     customercommgroupedit: "./www/js/source/pages/customer/customercomm/main-commgroupedit.js",

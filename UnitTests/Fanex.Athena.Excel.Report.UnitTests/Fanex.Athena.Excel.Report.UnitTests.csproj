@@ -103,9 +103,7 @@
     <Compile Include="LicenseeWinLossExcelTest.ProcessUI.cs" />
     <Compile Include="LicenseeWinLossExcelTest.AssignHeader.cs" />
     <Compile Include="TestableClasses\LicenseeWinLossExcelTestable.cs" />
-    <Compile Include="TestableClasses\WinlossByProductExcelTestable.cs" />
     <Compile Include="LicenseeWinLossExcelTest.cs" />
-    <Compile Include="WinlossByProductExcelTest.cs" />
     <Compile Include="ThirdPartyWinLossExcelTest.cs" />
     <Compile Include="CashOutWinLossExcelTest.cs" />
     <Compile Include="TestableClasses\ThirdPartyWinLossExcelTestable.cs" />

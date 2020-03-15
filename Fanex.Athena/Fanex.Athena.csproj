@@ -1478,9 +1478,6 @@
     <Content Include="www\css\build\dev\pages\betlist\cashouthistory.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\cashouthistory.css.map" />
     <Content Include="Views\Desktop\BetList\CustomerWl\Main.cshtml" />
-    <Content Include="Views\Desktop\Report\WinLossByProduct\Main.cshtml" />
-    <Content Include="Views\Desktop\Report\WinLossByProduct\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\WinLossByProduct\Content.cshtml" />
     <Content Include="www\css\build\dev\pages\reports\winlossbyproduct.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\winlossbyproduct.css.map" />
     <Content Include="Views\Desktop\BetList\MatchWl\MatchBetType.cshtml" />
@@ -1737,9 +1734,6 @@
     <Content Include="www\js\source\pages\report\winlossbyleague\winlossbyleague.filter.js" />
     <Content Include="www\js\source\pages\report\winlossbyleague\winlossbyleague.js" />
     <Content Include="www\js\source\pages\report\winlossbyleague\winlossbyleague.option.js" />
-    <Content Include="www\js\source\pages\report\winlossbyproduct\main-winlossbyproduct.js" />
-    <Content Include="www\js\source\pages\report\winlossbyproduct\winlossbyproduct.js" />
-    <Content Include="www\js\source\pages\report\winlossbyproduct\winlossbyproduct.option.js" />
     <Content Include="www\js\source\pages\signin\main.js" />
     <Content Include="www\js\source\pages\signin\signin.js" />
     <Content Include="www\js\source\vendors\materialize\materialize.js" />
@@ -1811,8 +1805,6 @@
     <Content Include="www\js\tests\pages\report\winlossbyleague\winlossbyleague-spec.js" />
     <Content Include="www\js\tests\pages\report\winlossbyleague\winlossbyleague.filter-spec.js" />
     <Content Include="www\js\tests\pages\report\winlossbyleague\winlossbyleague.option-spec.js" />
-    <Content Include="www\js\tests\pages\report\winlossbyproduct\winlossbyproduct-spec.js" />
-    <Content Include="www\js\tests\pages\report\winlossbyproduct\winlossbyproduct.option-spec.js" />
     <Content Include="www\js\tests\pages\totalbet\firstgoallastgoal\firstgoallastgoal-spec.js" />
     <Content Include="www\js\tests\pages\totalbet\halftimefulltime\halftimefulltime-spec.js" />
     <Content Include="www\js\tests\pages\totalbet\handicapoverunder\handicapoverunder-spec.js" />
@@ -2204,7 +2196,6 @@
     <Content Include="www\js\build\dev\pages\reports\turnover.chunk.js.map" />
     <Content Include="www\css\source\scss\components\_radio-button.scss" />
     <Content Include="www\js\build\dev\pages\reports\cashoutwinloss.chunk.js.map" />
-    <Content Include="www\css\source\pages\report\winlossbyproduct.scss" />
     <Content Include="www\js\build\dev\pages\reports\winlossbyproduct.chunk.js.map" />
     <Content Include="www\js\build\dev\pages\reports\matchwinloss.chunk.js.map" />
     <Content Include="www\js\build\dev\pages\reports\platformwinloss.chunk.js.map" />
@@ -5156,7 +5147,6 @@
     <Content Include="App_Data\Template\CustomerReports\CustomerWinLoss.xls" />
     <Content Include="App_Data\Template\Customers\CustomerList.xls" />
     <Content Include="App_Data\Template\Reports\LicenseeWinLoss.xls" />
-    <Content Include="App_Data\Template\Reports\WinLossByProducts.xls" />
     <Content Include="Content\Web.config" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <Content Include="Views\Desktop\Customer\CustomerDialog\RemoveFromGroup.cshtml" />

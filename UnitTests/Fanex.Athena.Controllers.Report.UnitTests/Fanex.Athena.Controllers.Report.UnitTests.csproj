@@ -175,7 +175,6 @@
     <Compile Include="Result\ResultReport\PPResultPopupControllerTest.cs" />
     <Compile Include="WeeklyLiveMatchReportControllerTest.cs" />
     <Compile Include="NoteControllerTest.cs" />
-    <Compile Include="WinLossByProductReportControllerTest.cs" />
     <Compile Include="CustomerWinLossReportControllerTest.cs" />
     <Compile Include="CashOutWinLossReportControllerTest.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest.cs" />

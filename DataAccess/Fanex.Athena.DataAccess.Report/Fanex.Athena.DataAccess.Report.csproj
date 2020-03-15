@@ -106,12 +106,8 @@
     <Compile Include="SpecialLicenseeWinLossDataAccess.cs" />
     <Compile Include="ThirdPartyWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IThirdPartyWinLossDataAccess.cs" />
-    <Compile Include="WinLossByProductDataAccess.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="Interfaces\ILicenseeWinLossDataAccess.cs" />
     <Compile Include="LicenseeWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\IWinLossByProductDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

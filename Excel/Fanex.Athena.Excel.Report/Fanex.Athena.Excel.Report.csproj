@@ -132,11 +132,9 @@
     <Compile Include="CashOutWinLossExcel.cs" />
     <Compile Include="Helpers\ReportExcelHelper.cs" />
     <Compile Include="Models\LicenseeWinLossExcelModel.cs" />
-    <Compile Include="Models\WinLossByProductExcelModel.cs" />
     <Compile Include="ThirdPartyWinLossExcel.cs" />
     <Compile Include="LicenseeWinLossExcel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinlossByProductExcel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fanex.Athena.Extension\Fanex.Athena.Extension.csproj">

@@ -1009,9 +1009,6 @@
   <data name="WinLossByBetTypeTitle" xml:space="preserve">
     <value>Win Loss By Bet Type, {0} --&gt; {1} - {2}</value>
   </data>
-  <data name="WinLossByProduct" xml:space="preserve">
-    <value>Win Loss By Products</value>
-  </data>
   <data name="WinLossByProductTitle" xml:space="preserve">
     <value>Win Loss By Products, {0} --&gt; {1}, {2}</value>
   </data>

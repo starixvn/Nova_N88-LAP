@@ -109,7 +109,6 @@
   <ItemGroup>
     <Compile Include="CashOutWinLossDataAccessTest.cs" />
     <Compile Include="SpecialLicenseeWinLossDataAccessTest.cs" />
-    <Compile Include="WinLossByProductDataAccessTest.cs" />
     <Compile Include="ThirdPartyWinLossDataAccessTest.cs" />
     <Compile Include="LicenseeWinLossDataAccessTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

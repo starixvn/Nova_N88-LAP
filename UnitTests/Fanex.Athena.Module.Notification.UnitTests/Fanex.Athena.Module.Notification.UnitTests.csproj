@@ -86,10 +86,6 @@
       <Project>{5F410090-94C0-46A5-9FEC-B6C3B745B7A0}</Project>
       <Name>Fanex.Athena.Model.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Module\Fanex.Athena.Module.Notification\Fanex.Athena.Module.Notification.csproj">
-      <Project>{0110A9BD-5EE9-4222-9503-58BF070C3377}</Project>
-      <Name>Fanex.Athena.Module.Notification</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Resources\Fanex.Athena.Resources\Fanex.Athena.Resources.csproj">
       <Project>{17B0022C-4902-4C61-908A-5DB81568DC3A}</Project>
       <Name>Fanex.Athena.Resources</Name>

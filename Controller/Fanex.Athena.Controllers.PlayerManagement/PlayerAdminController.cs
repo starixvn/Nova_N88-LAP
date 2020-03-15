@@ -4,7 +4,6 @@
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.Constants;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
-    using Fanex.Athena.Module.PlayerAdmin.Api.MetaModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Newtonsoft.Json;
 

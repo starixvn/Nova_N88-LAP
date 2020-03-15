@@ -9,8 +9,11 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Mvc;
 using Autofac;
+using Autofac.Core;
+using Autofac.Features.AttributeFilters;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using Fanex.Athena.Api.PlayerManagement.Extensions;
 using Fanex.Athena.Api.StatelessBase.Logger;
 using Fanex.Athena.DataAccess.Report;
 using Fanex.Athena.DataAccess.Report.Interfaces;
@@ -20,6 +23,8 @@ using Fanex.Athena.Module.PlayerAdmin;
 using Fanex.Athena.Module.PlayerAdmin.Api;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
+using Fanex.Athena.Service.PlayerManagement;
+using Fanex.Athena.Service.PlayerManagement.Interfaces;
 using Fanex.Athena.Service.StatelessCore;
 using Fanex.Athena.Service.StatelessCore.Extensions;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
@@ -73,11 +78,7 @@ namespace Fanex.Athena
         {
             var moduleAssemblies = GetModuleAssemblies(assemblies);
 
-            builder.RegisteModuleApiModule(moduleAssemblies, "Fanex.Athena.Module.Dashboard");
-            builder.RegisteModuleModuleAndApi(moduleAssemblies, "Fanex.Athena.Module.Notification");
-
             builder.RegisteModulePlayerAdminApi(moduleAssemblies);
-            builder.RegisteModulePlayerAdmin(moduleAssemblies);
         }
 
         private static void RegisterHttpClient(ContainerBuilder builder)
@@ -105,6 +106,26 @@ namespace Fanex.Athena
 
             builder.RegisterInstance(Logger.Log).As<Logging.ILogger>();
             builder.RegisterType<RestSharp.RestClient>().As<RestSharp.IRestClient>().InstancePerDependency();
+        }
+
+        public static void RegisteModulePlayerAdminApi(this ContainerBuilder builder,
+         IEnumerable<Assembly> assemblies)
+        {
+            builder.RegisterType<CommonCustomerSettingLogFactory>()
+                .As<IBusinessLogBuilderFactory>()
+                .Keyed<IBusinessLogBuilderFactory>("PlayerAdminCommonCustomerSettingLogFactory");
+
+            builder.RegisterType<BusinessLogService>()
+                .WithParameter(
+                new ResolvedParameter(
+                   (pi, ctx) => pi.ParameterType == typeof(IBusinessLogBuilderFactory),
+                   (pi, ctx) => ctx.ResolveKeyed<IBusinessLogBuilderFactory>("PlayerAdminCommonCustomerSettingLogFactory")))
+                   .Keyed<IBusinessLogService>("PlayerAdminCommonCustomerSettingLogService");
+
+            // Specify WithAttributeFiltering for the consumer
+            builder.RegisterType<PlayerBaStatusService>().As<IPlayerBaStatusService>().WithAttributeFiltering();
+            builder.RegisterType<PlayerOddsGroupService>().As<IPlayerOddsGroupService>().WithAttributeFiltering();
+            builder.RegisterType<PlayerSpecialLevelService>().As<IPlayerSpecialLevelService>().WithAttributeFiltering();
         }
 
         private static Assembly[] GetAssemblies()

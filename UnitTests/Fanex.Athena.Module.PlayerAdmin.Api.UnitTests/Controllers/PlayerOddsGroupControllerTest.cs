@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Net.Http;
+using Fanex.Athena.Api.PlayerManagement;
 using Fanex.Athena.Model.Core.ViewModel;
-using Fanex.Athena.Module.PlayerAdmin.Api.Controllers;
-using Fanex.Athena.Module.PlayerAdmin.Api.MetaModel;
-using Fanex.Athena.Module.PlayerAdmin.Api.Services.Interfaces;
-using Fanex.Athena.Module.PlayerAdmin.Api.Utilities;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
 using Fanex.Athena.UnitTest.Common.Helpers;
 using Fanex.Athena.UnitTest.Common.NUnitExtensions;

@@ -6,10 +6,10 @@ using Fanex.Athena.Api.Base;
 using Fanex.Athena.Api.StatelessBase.Attributes;
 using Fanex.Athena.DataAccess.Core.Users.Interfaces;
 using Fanex.Athena.Model.Auth;
-using Fanex.Athena.Module.PlayerAdmin.Api.MetaModel;
-using Fanex.Athena.Module.PlayerAdmin.Api.Services.Interfaces;
-using Fanex.Athena.Module.PlayerAdmin.Api.ViewModels;
+using Fanex.Athena.Model.PlayerManagement.MetaModel;
+using Fanex.Athena.Model.PlayerManagement.ViewModel;
 using Fanex.Athena.Service.Core.Common.Interfaces;
+using Fanex.Athena.Service.PlayerManagement.Interfaces;
 
 namespace Fanex.Athena.Module.PlayerAdmin.Api.Controllers
 {
@@ -19,7 +19,10 @@ namespace Fanex.Athena.Module.PlayerAdmin.Api.Controllers
 
         private readonly ILicenseeDataAccess _licenseeDataAccess;
 
-        public PlayerListController(ILanguageService languageService, ILicenseeDataAccess licenseeDataAccess, IPlayerListService playerListService) : base(languageService)
+        public PlayerListController(
+            ILanguageService languageService, 
+            ILicenseeDataAccess licenseeDataAccess, 
+            IPlayerListService playerListService) : base(languageService)
         {
             _playerListService = playerListService;
             _licenseeDataAccess = licenseeDataAccess;

@@ -103,14 +103,6 @@
       <Project>{5F410090-94C0-46A5-9FEC-B6C3B745B7A0}</Project>
       <Name>Fanex.Athena.Model.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Module\Fanex.Athena.Module.Notification.Api\Fanex.Athena.Module.Notification.Api.csproj">
-      <Project>{43a8ee11-7aa4-4af2-a77f-fa4ebc32298c}</Project>
-      <Name>Fanex.Athena.Module.Notification.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Module\Fanex.Athena.Module.Notification\Fanex.Athena.Module.Notification.csproj">
-      <Project>{0110A9BD-5EE9-4222-9503-58BF070C3377}</Project>
-      <Name>Fanex.Athena.Module.Notification</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Service\Fanex.Athena.Service.StatelessCore\Fanex.Athena.Service.StatelessCore.csproj">
       <Project>{DA9A50E3-C62D-4F12-96C2-3AC289D423FE}</Project>
       <Name>Fanex.Athena.Service.StatelessCore</Name>

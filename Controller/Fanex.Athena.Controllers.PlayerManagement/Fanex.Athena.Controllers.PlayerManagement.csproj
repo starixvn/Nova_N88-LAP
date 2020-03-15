@@ -107,10 +107,6 @@
       <Project>{12121414-6686-4286-86D3-328EBBF6BC8C}</Project>
       <Name>Fanex.Athena.Model.PlayerManagement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Module\Fanex.Athena.Module.PlayerAdmin.Api\Fanex.Athena.Module.PlayerAdmin.Api.csproj">
-      <Project>{831FFA8D-8F5E-4ABD-AC6A-5660B71B1795}</Project>
-      <Name>Fanex.Athena.Module.PlayerAdmin.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Service\Fanex.Athena.Service.Core\Fanex.Athena.Service.Core.csproj">
       <Project>{FCFD7434-085B-4C93-848F-E1CBCEDCC5A0}</Project>
       <Name>Fanex.Athena.Service.Core</Name>

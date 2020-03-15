@@ -33,6 +33,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Module\Fanex.Athena.Module.PlayerAdmin.Api\bin\Debug\Newtonsoft.Json.dll</HintPath>
@@ -47,7 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IPlayerBaStatusService.cs" />
+    <Compile Include="Interfaces\IPlayerListService.cs" />
+    <Compile Include="Interfaces\IPlayerOddsGroupService.cs" />
+    <Compile Include="Interfaces\IPlayerSpecialLevelService.cs" />
     <Compile Include="Interfaces\IPlayerStatementService.cs" />
+    <Compile Include="PlayerBaStatusService.cs" />
+    <Compile Include="PlayerListService.cs" />
+    <Compile Include="PlayerOddsGroupService.cs" />
+    <Compile Include="PlayerSpecialLevelService.cs" />
     <Compile Include="PlayerStatementService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,10 +72,22 @@
       <Project>{794C0345-2DDD-4FFD-A605-BB96FBB37DE8}</Project>
       <Name>Fanex.Athena.Model.Auth</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Core\Fanex.Athena.Model.Core.csproj">
+      <Project>{5F410090-94C0-46A5-9FEC-B6C3B745B7A0}</Project>
+      <Name>Fanex.Athena.Model.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.PlayerManagement\Fanex.Athena.Model.PlayerManagement.csproj">
       <Project>{12121414-6686-4286-86D3-328EBBF6BC8C}</Project>
       <Name>Fanex.Athena.Model.PlayerManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Athena.Service.StatelessCore\Fanex.Athena.Service.StatelessCore.csproj">
+      <Project>{DA9A50E3-C62D-4F12-96C2-3AC289D423FE}</Project>
+      <Name>Fanex.Athena.Service.StatelessCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

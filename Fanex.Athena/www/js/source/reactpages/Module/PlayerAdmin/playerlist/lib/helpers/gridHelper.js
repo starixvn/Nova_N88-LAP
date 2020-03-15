@@ -4,8 +4,8 @@ import { fields, headerText } from '../constants';
 
 export default class GridHelper {
     static renderHeader(displayedColumn) {
-        const { Status, UserName, SystemId, RealName, Currency, CurrentBalance, OutstandingBalance,
-            OddsGroup, BaStatus, SpecialLevel, LastTransaction, Email } = fields;
+        const { UserName, SystemId, Currency, CurrentBalance, OutstandingBalance,
+            OddsGroup, BaStatus, SpecialLevel} = fields;
 
         return (
             <HeaderRow style={{ height: 32 }}>

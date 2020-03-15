@@ -5329,26 +5329,6 @@
       <Name>Fanex.Athena.Model.Report</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Athena.Module.Dashboard\Fanex.Athena.Module.Dashboard.csproj">
-      <Project>{b5c8656b-6c30-4c82-bdb9-85b1c71b00c3}</Project>
-      <Name>Fanex.Athena.Module.Dashboard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Athena.Module.Notification.Api\Fanex.Athena.Module.Notification.Api.csproj">
-      <Project>{43a8ee11-7aa4-4af2-a77f-fa4ebc32298c}</Project>
-      <Name>Fanex.Athena.Module.Notification.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Athena.Module.Notification.Report\Fanex.Athena.Module.Notification.Report.csproj">
-      <Project>{eaa832b4-1501-4a05-b459-aeef528b521f}</Project>
-      <Name>Fanex.Athena.Module.Notification.Report</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Athena.Module.PlayerAdmin.Api\Fanex.Athena.Module.PlayerAdmin.Api.csproj">
-      <Project>{831ffa8d-8f5e-4abd-ac6a-5660b71b1795}</Project>
-      <Name>Fanex.Athena.Module.PlayerAdmin.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Athena.Module.PlayerAdmin\Fanex.Athena.Module.PlayerAdmin.csproj">
-      <Project>{19150cd4-08fc-4bec-800a-57abd7744c41}</Project>
-      <Name>Fanex.Athena.Module.PlayerAdmin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Resources\Fanex.Athena.Resources\Fanex.Athena.Resources.csproj">
       <Project>{17b0022c-4902-4c61-908a-5db81568dc3a}</Project>
       <Name>Fanex.Athena.Resources</Name>
@@ -5356,6 +5336,10 @@
     <ProjectReference Include="..\Service\Fanex.Athena.Service.Core\Fanex.Athena.Service.Core.csproj">
       <Project>{fcfd7434-085b-4c93-848f-e1cbcedcc5a0}</Project>
       <Name>Fanex.Athena.Service.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Fanex.Athena.Service.PlayerManagement\Fanex.Athena.Service.PlayerManagement.csproj">
+      <Project>{20699CA3-3E0F-4575-B6A6-8E642374E8A9}</Project>
+      <Name>Fanex.Athena.Service.PlayerManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\Service\Fanex.Athena.Service.Report\Fanex.Athena.Service.Report.csproj">
       <Project>{AE7D3FED-BFFF-4AD6-816B-3A1644940511}</Project>

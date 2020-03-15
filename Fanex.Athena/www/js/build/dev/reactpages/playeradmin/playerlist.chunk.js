@@ -3426,15 +3426,12 @@ var fields = {
   Status: 'Status',
   UserName: 'UserName',
   SystemId: 'SystemId',
-  RealName: 'RealName',
   Currency: 'Currency',
   CurrentBalance: 'CurrentBalance',
   OutstandingBalance: 'OutstandingBalance',
   OddsGroup: 'OddsGroup',
   BaStatus: 'BaStatus',
-  SpecialLevel: 'SpecialLevel',
-  LastTransaction: 'LastTransaction',
-  Email: 'Email'
+  SpecialLevel: 'SpecialLevel'
 };
 var columnList = [{
   key: fields.Status,
@@ -3447,10 +3444,6 @@ var columnList = [{
 }, {
   key: fields.SystemId,
   value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SystemId'),
-  show: true
-}, {
-  key: fields.RealName,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('RealName'),
   show: true
 }, {
   key: fields.Currency,
@@ -3475,14 +3468,6 @@ var columnList = [{
 }, {
   key: fields.SpecialLevel,
   value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SpecialLevel'),
-  show: true
-}, {
-  key: fields.LastTransaction,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('LastTransfer'),
-  show: true
-}, {
-  key: fields.Email,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Email'),
   show: true
 }];
 var contextMenuKeys = {
@@ -3571,15 +3556,12 @@ var headerText = {
   Status: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Status'),
   UserName: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Username'),
   SystemId: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SystemId'),
-  RealName: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('RealName'),
   Currency: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Currency'),
   CurrentBalance: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CurrentBalance'),
   OutstandingBalance: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OutstandingBalance'),
   OddsGroup: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OddsGroup'),
   BaStatus: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BAStatus'),
-  SpecialLevel: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SpecialLevel'),
-  LastTransaction: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('LastTransfer'),
-  Email: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Email')
+  SpecialLevel: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SpecialLevel')
 };
 var gridItemDropdownHeight = {
   'specialLevelDropdown': 231,
@@ -3768,18 +3750,14 @@ function () {
   _createClass(GridHelper, null, [{
     key: "renderHeader",
     value: function renderHeader(displayedColumn) {
-      var Status = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Status,
-          UserName = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].UserName,
+      var UserName = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].UserName,
           SystemId = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SystemId,
-          RealName = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].RealName,
           Currency = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Currency,
           CurrentBalance = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].CurrentBalance,
           OutstandingBalance = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OutstandingBalance,
           OddsGroup = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OddsGroup,
           BaStatus = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].BaStatus,
-          SpecialLevel = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel,
-          LastTransaction = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].LastTransaction,
-          Email = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Email;
+          SpecialLevel = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
         style: {
           height: 32

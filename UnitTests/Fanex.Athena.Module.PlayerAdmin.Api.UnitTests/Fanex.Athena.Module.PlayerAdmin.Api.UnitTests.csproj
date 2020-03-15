@@ -95,12 +95,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\IPlayerOddsGroupService.cs" />
     <Compile Include="Extensions\CommonCustomerSettingLogBuilderTest.cs" />
     <Compile Include="Extensions\CommonCustomerSettingLogFactoryTest.cs" />
     <Compile Include="Controllers\PlayerActivityRecordControllerTest.cs" />
     <Compile Include="Controllers\PlayerBaStatusControllerTest.cs" />
     <Compile Include="Controllers\PlayerBettingStatisticsControllerTest.cs" />
-    <Compile Include="Controllers\PlayerListControllerTest.cs" />
     <Compile Include="Controllers\PlayerOddsGroupControllerTest.cs" />
     <Compile Include="Controllers\PlayerSpecialLevelControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,10 +144,6 @@
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Core\Fanex.Athena.Model.Core.csproj">
       <Project>{5F410090-94C0-46A5-9FEC-B6C3B745B7A0}</Project>
       <Name>Fanex.Athena.Model.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Module\Fanex.Athena.Module.PlayerAdmin.Api\Fanex.Athena.Module.PlayerAdmin.Api.csproj">
-      <Project>{831FFA8D-8F5E-4ABD-AC6A-5660B71B1795}</Project>
-      <Name>Fanex.Athena.Module.PlayerAdmin.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Service\Fanex.Athena.Service.StatelessCore\Fanex.Athena.Service.StatelessCore.csproj">
       <Project>{DA9A50E3-C62D-4F12-96C2-3AC289D423FE}</Project>

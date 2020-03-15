@@ -3,6 +3,7 @@
     using System;
     using System.Web.Http;
     using Fanex.Athena.Api.Base;
+    using Fanex.Athena.Api.Base.Attributes;
     using Fanex.Athena.Api.PlayerManagement.Utilities;
     using Fanex.Athena.Extension.Helpers;
     using Fanex.Athena.Model.Core.ViewModel;
@@ -30,12 +31,9 @@
         }
 
         [HttpPost]
+        [ApiAutoBindMetaModelAttribute(BindUserId = true, BindIp = true, BindLanguage = true, BindSiteName = true)]
         public ResultViewModel Update(OddsGroupUpdatingMetaModel metaModel)
         {
-            var userSession = SessionService.UserSession;
-            var licenseeSession = SessionService.LicenseeSession;
-            metaModel.UserId = userSession.UserId;
-            metaModel.SiteName = licenseeSession.LicenseeName;
             try
             {
                 return _playerOddsGroupService.Update(metaModel);

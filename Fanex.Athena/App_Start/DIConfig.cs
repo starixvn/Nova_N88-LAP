@@ -19,8 +19,6 @@ using Fanex.Athena.DataAccess.Report;
 using Fanex.Athena.DataAccess.Report.Interfaces;
 using Fanex.Athena.Extension;
 using Fanex.Athena.Extension.Utility.Internal;
-using Fanex.Athena.Module.PlayerAdmin;
-using Fanex.Athena.Module.PlayerAdmin.Api;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.PlayerManagement;
@@ -64,7 +62,6 @@ namespace Fanex.Athena
 
             builder.RegisterControllers(controllerAssemblies).PropertiesAutowired();
             builder.RegisterApiControllers(apiControllerAssemblies).PropertiesAutowired();
-
 
             builder.RegisterType<ApiExceptionLogger>().As<IExceptionLogger>();
 

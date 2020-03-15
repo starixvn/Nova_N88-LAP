@@ -2,6 +2,7 @@
 {
     using System.Web.Http;
     using Fanex.Athena.Api.Base;
+    using Fanex.Athena.Api.Base.Attributes;
     using Fanex.Athena.Model.Core.ViewModel;
     using Fanex.Athena.Model.PlayerManagement.MetaModel;
     using Fanex.Athena.Service.Core.Common.Interfaces;
@@ -17,10 +18,9 @@
         }
 
         [HttpPost]
+        [ApiAutoBindMetaModelAttribute(BindSiteName = true, BindUserId = true, BindLanguage = true, BindIp = true)]
         public ResultViewModel Update(BaStatusUpdatingMetaModel metaModel)
         {
-            metaModel.SiteName = SessionService.LicenseeSession.LicenseeName;
-            metaModel.UserId = SessionService.UserSession.UserId;
             return _playerBaStatusService.Update(metaModel);
         }
     }

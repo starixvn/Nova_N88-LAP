@@ -20,7 +20,7 @@
     window.initialState = {
     isLoading: false,
     type: 0,
-    currencyList:  @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    currencyList:  @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key.ToString(), Value = x.Value, Status = true }).ToJson()),
     isSubsidiary:  0
     };
 

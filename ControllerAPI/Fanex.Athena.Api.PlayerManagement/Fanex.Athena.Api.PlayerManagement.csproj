@@ -36,6 +36,9 @@
     <Reference Include="System.Web.Http">
       <HintPath>..\..\Module\Fanex.Athena.Module.PlayerAdmin.Api\bin\Debug\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\Fanex.Athena.UnitTest.Common\bin\Debug\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +52,18 @@
     <Compile Include="SiteSettingController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Controller\Fanex.Athena.Controllers.Base\Fanex.Athena.Controllers.Base.csproj">
+      <Project>{255E120A-83BF-4F72-9E31-6050D5704069}</Project>
+      <Name>Fanex.Athena.Controllers.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccess\Fanex.Athena.DataAccess.Core\Fanex.Athena.DataAccess.Core.csproj">
+      <Project>{A6BE21E8-6895-4863-BA3A-E6B21D3CE78D}</Project>
+      <Name>Fanex.Athena.DataAccess.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fanex.Athena.Extension\Fanex.Athena.Extension.csproj">
+      <Project>{71F95E53-36D0-4091-828D-ED14C9939C35}</Project>
+      <Name>Fanex.Athena.Extension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Auth\Fanex.Athena.Model.Auth.csproj">
       <Project>{794C0345-2DDD-4FFD-A605-BB96FBB37DE8}</Project>
       <Name>Fanex.Athena.Model.Auth</Name>
@@ -57,6 +72,10 @@
       <Project>{5F410090-94C0-46A5-9FEC-B6C3B745B7A0}</Project>
       <Name>Fanex.Athena.Model.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Customer\Fanex.Athena.Model.Customer.csproj">
+      <Project>{3B212F2F-4DEB-449B-9AE0-36F6E4F49F5F}</Project>
+      <Name>Fanex.Athena.Model.Customer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Module\Fanex.Athena.Module.PlayerAdmin.Api\Fanex.Athena.Module.PlayerAdmin.Api.csproj">
       <Project>{831FFA8D-8F5E-4ABD-AC6A-5660B71B1795}</Project>
       <Name>Fanex.Athena.Module.PlayerAdmin.Api</Name>
@@ -64,6 +83,10 @@
     <ProjectReference Include="..\..\Service\Fanex.Athena.Service.Core\Fanex.Athena.Service.Core.csproj">
       <Project>{FCFD7434-085B-4C93-848F-E1CBCEDCC5A0}</Project>
       <Name>Fanex.Athena.Service.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Service\Fanex.Athena.Service.Customer\Fanex.Athena.Service.Customer.csproj">
+      <Project>{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}</Project>
+      <Name>Fanex.Athena.Service.Customer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Service\Fanex.Athena.Service.StatelessCore\Fanex.Athena.Service.StatelessCore.csproj">
       <Project>{DA9A50E3-C62D-4F12-96C2-3AC289D423FE}</Project>

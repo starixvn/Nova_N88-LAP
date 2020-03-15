@@ -8,8 +8,6 @@ import { buildSelectedPlayer } from '../lib/helpers/playerDataBuilder';
 import PlayerSuggestionService from '../lib/services/playerSuggestionService';
 import { setSelectedTabName } from './playerDetailHandlerAction';
 
-const testData = {"DataList":[{"IbcCustId":1411402,"UserName":"simo2912","SystemId":"12BETAUD02001","CurrencyId":9,"Currency":"AUD","CurrentBalance":209780.7810,"OutstandingBalance":415202.7100,"OddsGroup":"C","BaStatus":false,"SpecialLevel":0},{"IbcCustId":14766371,"UserName":"Demo01","SystemId":"SPONUUS01258","CurrencyId":20,"Currency":"UUS","CurrentBalance":2100269976.4493,"OutstandingBalance":0.0000,"OddsGroup":"C","BaStatus":true,"SpecialLevel":10}],"TotalItem":2}
-
 const processBeforeGettingData = (dispatch) => {
     dispatch(setSelectedPlayer(null));
     dispatch(setIsFetchingData(true));
@@ -24,8 +22,8 @@ export const searchPlayer = (param) => (dispatch) => {
     dispatch(setParam(param));
 
     service.getPlayerList(param).then(result => {
-        const { DataList, totalItem } = testData;
-        dispatch(setPlayerList(DataList));
+        const { playerList, totalItem } = result;
+        dispatch(setPlayerList(playerList));
         dispatch(setIsFetchingData(false));
 
         const pagingOption = {
@@ -36,8 +34,8 @@ export const searchPlayer = (param) => (dispatch) => {
         }
         dispatch(setPagingOption(pagingOption));
 
-        if (DataList.length === 1) {
-            const selectedPlayer = buildSelectedPlayer(DataList[0]);
+        if (playerList.length === 1) {
+            const selectedPlayer = buildSelectedPlayer(playerList[0]);
             dispatch(setSelectedPlayer(selectedPlayer));
         }
 

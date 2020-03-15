@@ -5317,15 +5317,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settled Match Count.
-        /// </summary>
-        public static string SettledMatchCount {
-            get {
-                return ResourceManager.GetString("SettledMatchCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show.
         /// </summary>
         public static string Show {

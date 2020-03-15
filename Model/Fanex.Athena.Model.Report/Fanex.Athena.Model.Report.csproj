@@ -146,7 +146,6 @@
     <Compile Include="DTO\ILicenseeWL.cs" />
     <Compile Include="DTO\ITurnOver.cs" />
     <Compile Include="DTO\LicenseeWinLoss.cs" />
-    <Compile Include="DTO\SettledMatchCount.cs" />
     <Compile Include="DTO\WinLossByBetType.cs" />
     <Compile Include="DTO\TurnoverDTO.cs" />
     <Compile Include="DTO\WinLossByProduct.cs" />
@@ -180,7 +179,6 @@
     <Compile Include="ViewModel\LicenseeWinLossGridViewModel.cs" />
     <Compile Include="ViewModel\WinLossByProductViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossViewModel.cs" />
-    <Compile Include="ViewModel\SettledMatchCountViewModel.cs" />
     <Compile Include="ViewModel\WinLossByBetTypeViewModel.cs" />
     <Compile Include="ViewModel\TurnoverViewModel.cs" />
   </ItemGroup>

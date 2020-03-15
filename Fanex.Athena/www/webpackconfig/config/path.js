@@ -22,7 +22,6 @@ var cssPaths = {
     login: ["./www/css/source/pages/login/login-ex.scss"],
     licenseewinloss: ["./www/css/source/pages/report/licenseewinloss.scss"],
 
-    settledmatchcount: ["./www/css/source/pages/report/settledmatchcount.scss"],
     weeklylivematch: ["./www/css/source/pages/report/weeklylivematch.scss"],
     turnover: ["./www/css/source/pages/report/turnover.scss"],
     result: ["./www/css/source/pages/report/result.scss"],
@@ -59,7 +58,6 @@ var scriptPaths = {
     betlistrunningmultiplebettypes: "./www/js/source/pages/betlist/main-betlistrunning.multiplebettypes.js",
     betlistcorrectscore: "./www/js/source/pages/betlist/main-betlistcorrectscore.js",
 
-    settledmatchcount: "./www/js/source/pages/report/settledmatchcount/main-settledmatchcount.js",
     weeklylivematch: "./www/js/source/pages/report/weeklylivematch/main-weeklylivematch.js",
     turnover: "./www/js/source/pages/report/turnover/main.js",
     result: "./www/js/source/pages/report/result/main-result.js",

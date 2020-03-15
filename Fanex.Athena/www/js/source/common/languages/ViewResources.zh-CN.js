@@ -516,7 +516,6 @@ ServerBusyMessage:"由于服务器繁忙，您的请求现在无法处理。请�
 SessionLoggedMsg:"您已从另一会话登入或您的登入会话已过期",
 SetAsDefaultGroup:"设置为默认组",
 SettleAmount:"结算总额",
-SettledMatchCount:"已结算赛事计数",
 Show:"显示",
 ShowAllLeagues:"显示所有联赛",
 ShowOldValue:"显示旧值",

@@ -142,9 +142,7 @@
     <Compile Include="Interfaces\IWeeklyLiveMatchService.cs" />
     <Compile Include="SubsidiaryPerformanceService.cs" />
     <Compile Include="WeeklyLiveMatchService.cs" />
-    <Compile Include="SettledMatchCountService.cs" />
     <Compile Include="TurnoverService.cs" />
-    <Compile Include="Interfaces\ISettledMatchCountService.cs" />
     <Compile Include="Interfaces\ITurnoverService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

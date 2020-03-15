@@ -10,7 +10,6 @@
         /* Report */
 
         public const string ReportLicenseeWinLoss = "LicenseeWinLoss27";
-        public const string ReportSettledMatchCount = "SettledMatchCount28";
         public const string ReportCustomerWinLoss = "CustomerWinLoss29";
         public const string ReportCustomerPendingFunds = "CustomerPendingFunds30";
         public const string ReportMatchWinLoss = "MatchWinLoss31";

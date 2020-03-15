@@ -1810,8 +1810,6 @@
     <Content Include="www\js\source\pages\report\report.js" />
     <Content Include="www\js\source\pages\report\result\main-result.js" />
     <Content Include="www\js\source\pages\report\result\result.js" />
-    <Content Include="www\js\source\pages\report\settledmatchcount\main-settledmatchcount.js" />
-    <Content Include="www\js\source\pages\report\settledmatchcount\settledmatchcount.js" />
     <Content Include="www\js\source\pages\report\turnover\main.js" />
     <Content Include="www\js\source\pages\report\turnover\turnover.js" />
     <Content Include="www\js\source\pages\report\turnover\turnover.option.js" />
@@ -1891,7 +1889,6 @@
     <Content Include="www\js\tests\pages\report\licenseewinloss\licenseewinloss.option-spec.js" />
     <Content Include="www\js\tests\pages\report\report-spec.js" />
     <Content Include="www\js\tests\pages\report\result\result-spec.js" />
-    <Content Include="www\js\tests\pages\report\settledmatchcount\settledmatchcount-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\common\thirdpartywinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\common\thirdpartywinloss.option-spec.js" />
     <Content Include="www\js\tests\pages\report\turnover\turnover-spec.js" />
@@ -2184,9 +2181,6 @@
     <Content Include="Views\Desktop\BetList\LiveReport\NumberGame.cshtml" />
     <Content Include="www\css\source\components\select2\select2.main.scss" />
     <Content Include="www\css\source\components\select2\select2-ex.scss" />
-    <Content Include="Views\Desktop\Report\SettledMatchCount\Main.cshtml" />
-    <Content Include="Views\Desktop\Report\SettledMatchCount\ContentHeader.cshtml" />
-    <Content Include="Views\Desktop\Report\SettledMatchCount\ContentData.cshtml" />
     <Content Include="www\css\build\dev\pages\reports\settledmatchcount.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\settledmatchcount.css.map" />
     <Content Include="Views\Desktop\Report\WeeklyLiveMatch\Main.cshtml" />
@@ -2289,7 +2283,6 @@
     <Content Include="www\js\build\dev\pages\forecast\forecasthdpou.chunk.js.map" />
     <Content Include="www\css\source\pages\common\reportcommon.main.scss" />
     <Content Include="www\css\source\pages\common\reportjqgridlayout.main.scss" />
-    <Content Include="www\css\source\pages\report\settledmatchcount.scss" />
     <Content Include="www\js\build\dev\pages\reports\licenseewinloss.chunk.js.map" />
     <Content Include="www\js\build\dev\pages\reports\livereport.chunk.js.map" />
     <Content Include="www\js\build\dev\pages\reports\livereportmatchlist.chunk.js.map" />

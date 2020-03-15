@@ -1199,9 +1199,6 @@
   <data name="SetAsDefaultGroup" xml:space="preserve">
     <value>設置為默認組</value>
   </data>
-  <data name="SettledMatchCount" xml:space="preserve">
-    <value>已結算賽事計數</value>
-  </data>
   <data name="ShowAllLeagues" xml:space="preserve">
     <value>顯示所有聯賽</value>
   </data>

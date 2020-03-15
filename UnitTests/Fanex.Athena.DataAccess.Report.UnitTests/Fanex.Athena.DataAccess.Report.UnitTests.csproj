@@ -116,7 +116,6 @@
     <Compile Include="WeeklyLiveMatchDataAccessTest.cs" />
     <Compile Include="TurnoverDataAccessTest.cs" />
     <Compile Include="ThirdPartyWinLossDataAccessTest.cs" />
-    <Compile Include="SettledMatchCountDataAccessTest.cs" />
     <Compile Include="LicenseeWinLossDataAccessTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

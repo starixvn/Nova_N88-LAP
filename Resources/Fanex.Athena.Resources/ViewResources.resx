@@ -867,9 +867,6 @@
   <data name="SetAsDefaultGroup" xml:space="preserve">
     <value>Set as default group</value>
   </data>
-  <data name="SettledMatchCount" xml:space="preserve">
-    <value>Settled Match Count</value>
-  </data>
   <data name="ShowAllLeagues" xml:space="preserve">
     <value>Show All Leagues</value>
   </data>

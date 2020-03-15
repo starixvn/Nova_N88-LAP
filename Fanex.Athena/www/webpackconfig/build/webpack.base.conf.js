@@ -33,7 +33,6 @@ function generateConfig(environment) {
             [`${jsPath}/pages/betlist/betlistrunning`]: [pathConfig.scriptPaths.betlistrunning],
             [`${jsPath}/pages/betlist/betlistrunningmultiplebettypes`]: [pathConfig.scriptPaths.betlistrunningmultiplebettypes],
             [`${jsPath}/pages/betlist/betlistcorrectscore`]: [pathConfig.scriptPaths.betlistcorrectscore],
-            [`${jsPath}/pages/reports/settledmatchcount`]: [pathConfig.scriptPaths.settledmatchcount],
             [`${jsPath}/pages/reports/weeklylivematch`]: [pathConfig.scriptPaths.weeklylivematch],
             [`${jsPath}/pages/reports/turnover`]: [pathConfig.scriptPaths.turnover],
             [`${jsPath}/pages/reports/result`]: [pathConfig.scriptPaths.result],
@@ -74,7 +73,6 @@ function generateConfig(environment) {
             [`${cssPath}/pages/betlist/colossusbetdetail`]: pathConfig.cssPaths.colossusbetdetail,
             [`${cssPath}/pages/betlist/systemparlaydetail`]: pathConfig.cssPaths.systemparlaydetail,
 
-            [`${cssPath}/pages/reports/settledmatchcount`]: pathConfig.cssPaths.settledmatchcount,
             [`${cssPath}/pages/reports/turnover`]: pathConfig.cssPaths.turnover,
             [`${cssPath}/pages/reports/result`]: pathConfig.cssPaths.result,
             [`${cssPath}/pages/reports/cashoutwinloss`]: pathConfig.cssPaths.cashoutwinloss,

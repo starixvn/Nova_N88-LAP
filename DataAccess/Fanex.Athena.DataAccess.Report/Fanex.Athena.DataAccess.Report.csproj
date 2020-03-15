@@ -115,10 +115,8 @@
     <Compile Include="WinLossByProductDataAccess.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="SettledMatchCountDataAccess.cs" />
     <Compile Include="TurnoverDataAccess.cs" />
     <Compile Include="WinLossByBetTypeDataAccess.cs" />
-    <Compile Include="Interfaces\ISettledMatchCountDataAccess.cs" />
     <Compile Include="Interfaces\ITurnoverDataAccess.cs" />
     <Compile Include="Interfaces\ILicenseeWinLossDataAccess.cs" />
     <Compile Include="LicenseeWinLossDataAccess.cs" />

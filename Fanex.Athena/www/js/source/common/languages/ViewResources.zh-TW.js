@@ -476,7 +476,6 @@ ServerBusyMessage:"由於服務器繁忙，您的請求現在無法處理。請�
 SessionLoggedMsg:"您已從另一會話登入或您的登入會話已過期",
 SetAsDefaultGroup:"設置為默認組",
 SettleAmount:"結算總額",
-SettledMatchCount:"已結算賽事計數",
 Show:"顯示",
 ShowAllLeagues:"顯示所有聯賽",
 ShowOldValue:"顯示舊值",

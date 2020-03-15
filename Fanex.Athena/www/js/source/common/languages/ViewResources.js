@@ -587,7 +587,6 @@ ServerBusyMessage:"Your request can&apos;t be processed now due to busy server. 
 SessionLoggedMsg:"You have logged in from another session or your login session has expired",
 SetAsDefaultGroup:"Set as default group",
 SettleAmount:"Settle Amount",
-SettledMatchCount:"Settled Match Count",
 Show:"Show",
 ShowAllLeagues:"Show All Leagues",
 ShowOldValue:"Show old value",

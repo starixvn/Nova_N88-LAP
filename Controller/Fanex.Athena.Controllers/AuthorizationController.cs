@@ -145,6 +145,10 @@ namespace Fanex.Athena.Controllers
                             }
                         }
                     }
+                    else
+                    {
+                        SetErrorForView(InvalidPasswordError, ViewResources.WrongUserNamePassword);
+                    }
                 }
 
                 //var requestUser = new User

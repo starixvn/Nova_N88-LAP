@@ -522,7 +522,6 @@
     <Content Include="Scripts\Helper\ProductListHelper.js" />
     <Content Include="Scripts\Library\jquery.marquee.js" />
     <Content Include="Views\Desktop\BetList\PragmaticPlayDetail\Main.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\GoldDeluxe.cshtml" />
     <Content Include="www\assets\images\ajax-loader.gif" />
     <Content Include="www\assets\images\new-system.svg" />
     <Content Include="www\css\build\dev\pages\betlist\images\lotto_ball.png" />
@@ -750,8 +749,6 @@
     <Content Include="www\js\source\reactpages\actions\excludeTestAction.js" />
     <Content Include="www\js\source\reactpages\actions\currencyAction.js" />
     <Content Include="www\js\source\pages\home\notification.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\main-exchange.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\products\exchange.js" />
     <Content Include="www\js\source\reactpages\actions\baseCurrencyAction.js" />
     <Content Include="www\js\source\reactpages\actions\liveStatusAction.js" />
     <Content Include="www\js\source\reactpages\actions\loaderAction.js" />
@@ -807,7 +804,6 @@
     <Content Include="www\css\source\reactpages\pages\notification\index.scss" />
     <Content Include="www\css\source\reactpages\components\_collapsibleRow.scss" />
     <Content Include="www\css\source\reactpages\vendors\notification.scss" />
-    <Content Include="Views\Desktop\Customer\BetSetting\Exchange.cshtml" />
     <Content Include="www\css\source\reactpages\components\_breadcrumb.scss" />
     <Content Include="www\js\build\dev\reactpages\exchangewl\exchangewl.chunk.js.map" />
     <Content Include="www\css\build\dev\reactpages\exchangewl\index.chunk.js.map" />
@@ -857,7 +853,6 @@
     <Content Include="www\js\build\dev\pages\lib\jqgrid.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\lib\common.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\lib\xlsx-style-sparta.chunk.js.map" />
-    <Content Include="Views\Desktop\Customer\BetSetting\PP.cshtml" />
     <Content Include="www\css\source\reactpages\components\_tab.scss" />
     <Content Include="www\css\source\reactpages\components\_react-multiselect.scss" />
     <Content Include="www\css\source\reactpages\pages\betlist\index.scss" />
@@ -1345,20 +1340,7 @@
     <Content Include="Views\Desktop\BetList\CustomerOutstanding\Filter.cshtml" />
     <Content Include="Views\Desktop\BetList\CustomerOutstanding\Main.cshtml" />
     <Content Include="www\css\source\pages\betlist\customeroutstanding.scss" />
-    <Content Include="Views\Desktop\Customer\BetSetting\Main.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\_Menu.cshtml" />
     <Content Include="www\css\source\pages\customer\betsetting.scss" />
-    <Content Include="Views\Desktop\Customer\BetSetting\Macau.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\BetTrade.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\ColossusBets.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\AllBet.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\FishingWorld.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\Voidbridge.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\AgCasino.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\Keno.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\RngCasino.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\CashOut.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\NumberGame.cshtml" />
     <Content Include="Views\Desktop\Shared\_BetSettingLayout.cshtml" />
     <Content Include="www\css\build\dev\pages\customer\betsetting.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\customer\betsetting.css.map" />
@@ -1368,10 +1350,7 @@
     <Content Include="Views\Desktop\LicenseeList\Index.cshtml" />
     <Content Include="www\css\build\dev\pages\utility\licenseelist.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\utility\licenseelist.css.map" />
-    <Content Include="Views\Desktop\Customer\BetSetting\VirtualSports2.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\VirtualSports.cshtml" />
     <Content Include="Views\Desktop\BetList\LiveReport\VirtualSports.cshtml" />
-    <Content Include="Views\Desktop\Customer\BetSetting\Lottery.cshtml" />
     <Content Include="www\css\build\dev\pages\reports\activecustomersummary.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\activecustomersummary.css.map" />
     <Content Include="www\css\build\dev\pages\reports\customerbalance.chunk.js.map" />
@@ -1718,26 +1697,6 @@
     <Content Include="www\js\source\components\navbar.js" />
     <Content Include="www\js\source\components\refreshcountdown.js" />
     <Content Include="www\js\source\components\sidebar.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\common\betsetting.copy.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\common\betsetting.helper.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\common\betsetting.status.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\common\betsetting.validation.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\common\betsettingbase.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\common\constant.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\main-betsettingbygroup.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\main-betsetting.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\main-dcsbetsetting.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\main-keno.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\main-numbergame.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\main-rngcasino.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\main-thirdparty.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\products\betsettingbygroup.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\products\dcsbetsetting.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\products\betsettingmain.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\products\keno.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\products\numbergame.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\products\rngcasino.js" />
-    <Content Include="www\js\source\pages\customer\betsetting\products\thirdparty.js" />
     <Content Include="www\js\source\pages\customer\customercomm\commgroup.js" />
     <Content Include="www\js\source\pages\customer\customercomm\commgroupadd.js" />
     <Content Include="www\js\source\pages\customer\customercomm\commgroupdetail.js" />
@@ -5287,10 +5246,6 @@
     <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.BetList\Fanex.Athena.Controllers.BetList.csproj">
       <Project>{83f7dc5c-e81c-45e5-bc83-b58e45198a2e}</Project>
       <Name>Fanex.Athena.Controllers.BetList</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.BetSettings\Fanex.Athena.Controllers.BetSettings.csproj">
-      <Project>{bd14328f-0bca-43e4-a3df-ce166ac95135}</Project>
-      <Name>Fanex.Athena.Controllers.BetSettings</Name>
     </ProjectReference>
     <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.Customer\Fanex.Athena.Controllers.Customer.csproj">
       <Project>{11985254-411e-45dc-9b50-8dcb8bd145ef}</Project>

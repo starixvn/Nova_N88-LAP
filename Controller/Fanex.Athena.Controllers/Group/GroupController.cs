@@ -1,22 +1,8 @@
 ﻿namespace Fanex.N88.Admin.Areas.UserControl.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using Common.Extensions;
     using Fanex.Athena.Controllers;
-    using Fanex.N88.Admin.Core.Configuration;
     using Fanex.NAP.Core.Configuration;
-    using N88.Core.Business;
-    using N88.Core.Command;
-    using N88.Core.Criteria.Group;
-    using N88.Core.Domain;
-    using N88.Core.Model.ValueObject;
-    using N88.Core.Service.Impl;
-    using N88.Core.Service.Interface;
-    using N88.Core.Web;
-    using N88.Core.Web.Attribute;
+    using System.Web.Mvc;
 
     public class GroupController : CultureBaseController
     {

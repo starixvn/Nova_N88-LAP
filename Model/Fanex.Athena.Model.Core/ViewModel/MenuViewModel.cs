@@ -7,13 +7,8 @@
 namespace Fanex.Athena.Model.Core.ViewModel
 {
     using System.Collections.Generic;
+    using Fanex.N88.Core.Models;
 
-    using Fanex.Athena.Model.Auth;
-    using Fanex.NAP.Core.Models;
-
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class MenuViewModel
     {
         public MenuViewModel()

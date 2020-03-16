@@ -12,8 +12,8 @@
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
-    using Fanex.NAP.Core.Configuration;
-    using Fanex.NAP.Core.Service.Interface;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Service.Interface;
 
     [FunctionAuthorization(PermissionKeys.BetHistory)]
     public class BettingTicketCenterController : CultureBaseController
@@ -131,9 +131,9 @@
         {
             var functionKeys = userService.GetPermissions(
                 SessionServiceInstance.UserSession.UserId,
-                NapSettings.Settings.SiteId,
+                N88Settings.Settings.SiteId,
                 PermissionKeys.BetHistory,
-                NapSettings.Settings.Environment).Select(x => x.Function.Key);
+                N88Settings.Settings.Environment).Select(x => x.Function.Key);
 
             return BtcViewInfo.TabList.Intersect(functionKeys);
         }

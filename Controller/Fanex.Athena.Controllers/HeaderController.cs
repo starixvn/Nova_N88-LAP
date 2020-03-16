@@ -13,7 +13,6 @@ namespace Fanex.Athena.Controllers
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.ViewModel;
-    using Fanex.NAP.Core.Configuration;
     using Web.ActionFilter;
 
     [AuthorizeRestriction(AppMode.Self)]

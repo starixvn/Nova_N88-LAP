@@ -2,12 +2,12 @@
     Layout = null;
     var icons = new Dictionary<int, string>
 {
-    { 1, "totalbet" }, { 2, "chart-bar" }, { 3, "table" }, { 5, "table" }, { 6, "administration" }, { 52, "table" }, { 4, "customer" }
+{ 1, "totalbet" }, { 2, "chart-bar" }, { 3, "table" }, { 5, "table" }, { 6, "administration" }, { 52, "table" }, { 4, "customer" }
 };
 
     var menus = Model.Where(t => t.Parent == null);
 }
-@model IList<Fanex.NAP.Core.Models.MenuItem>
+@model IList<Fanex.N88.Core.Models.MenuItem>
 
 <ul class="collapsible2 collapsible-expandable" data-collapsible="accordion">
     @foreach (var menu in menus)
@@ -48,4 +48,3 @@
         </li>
     }
 </ul>
-

@@ -59,11 +59,11 @@ namespace Fanex.Athena
             builder.RegisterControllers(controllerAssemblies).PropertiesAutowired();
             builder.RegisterApiControllers(apiControllerAssemblies).PropertiesAutowired();
 
-            builder.RegisterType<NAP.Core.Service.Impl.UserService>().As<NAP.Core.Service.Interface.IUserService>();
-            builder.RegisterType<NAP.Core.Service.Impl.GroupService>().As<NAP.Core.Service.Interface.IGroupService>();
-            builder.RegisterType<NAP.Core.Service.Impl.SiteService>().As<NAP.Core.Service.Interface.ISiteService>();
-            builder.RegisterType<NAP.Core.Service.Impl.SecurityService>().As<NAP.Core.Service.Interface.ISecurityService>();
-            builder.RegisterType<NAP.Core.Web.Session.CurrentSession>().As<NAP.Core.Web.Session.ICurrentSession>();
+            builder.RegisterType<N88.Core.Service.Impl.UserService>().As<N88.Core.Service.Interface.IUserService>();
+            builder.RegisterType<N88.Core.Service.Impl.GroupService>().As<N88.Core.Service.Interface.IGroupService>();
+            builder.RegisterType<N88.Core.Service.Impl.SiteService>().As<N88.Core.Service.Interface.ISiteService>();
+            builder.RegisterType<N88.Core.Service.Impl.SecurityService>().As<N88.Core.Service.Interface.ISecurityService>();
+            builder.RegisterType<N88.Core.Web.Session.CurrentSession>().As<N88.Core.Web.Session.ICurrentSession>();
             builder.RegisterType<ApiExceptionLogger>().As<IExceptionLogger>();
 
             var container = builder.Build();
@@ -75,7 +75,6 @@ namespace Fanex.Athena
         private static void RegisterModule(ContainerBuilder builder, Assembly[] assemblies)
         {
             var moduleAssemblies = GetModuleAssemblies(assemblies);
-
         }
 
         private static void RegisterHttpClient(ContainerBuilder builder)

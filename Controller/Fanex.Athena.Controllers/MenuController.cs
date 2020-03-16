@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Athena.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
+
     public class MenuController : CultureBaseController
     {
         [HttpGet]

@@ -13,8 +13,8 @@
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-    using Fanex.NAP.Core.Configuration;
-    using Fanex.NAP.Core.Models.ValueObject;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Models.ValueObject;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
 
@@ -27,6 +27,7 @@
         private readonly IFunctionService _functionService;
         private readonly ILicenseeDataAccess _licenseeDataAccess;
         private readonly ICurrencyDataAccess _currencyDataAccess;
+        private N88.Core.Service.Interface.IUserService _napUserService;
         private readonly ISessionStorage _sessionStorage;
         private readonly Fanex.NAP.Core.Service.Interface.IUserService _napUserService;
         private readonly IAppSettings _appSettings;
@@ -35,6 +36,7 @@
             IFunctionService functionService,
             ILicenseeDataAccess licenseeDataAccess,
             ICurrencyDataAccess currencyDataAccess,
+            N88.Core.Service.Interface.IUserService napUserService,
             IAppSettings appSettings,
             ISessionStorage sessionStorage,
             Fanex.NAP.Core.Service.Interface.IUserService napUserService)
@@ -83,7 +85,7 @@
             string userName,
             string language = "en-US")
         {
-            var functions = _napUserService.GetPermissions(userId, NapSettings.Settings.SiteId, string.Empty, NapSettings.Settings.Environment).ToList();
+            var functions = _napUserService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment).ToList();
 
             var userSession = new UserAuthInfo
             {
@@ -95,7 +97,6 @@
                 DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
             };
 
-            
             AssignMenuToUserSession(userSession);
             AssignCurrenciesToUserSession(userSession);
 
@@ -188,8 +189,8 @@
 
         private void AssignMenuToUserSession(UserAuthInfo userSessionInfo)
         {
-            var menuItems = _napUserService.GetMenuItem(userSessionInfo.UserId, NapSettings.Settings.SiteId,
-                NapSettings.Settings.Environment, true)
+            var menuItems = _napUserService.GetMenuItem(userSessionInfo.UserId, N88Settings.Settings.SiteId,
+                N88Settings.Settings.Environment, true)
                 .OrderBy(x => x.DisplayOrder).ToList();
 
             userSessionInfo.MenuItemList = menuItems;

@@ -22,17 +22,16 @@ namespace Fanex.Athena.Controllers
     using System.Web.UI;
     using Extension.Utility.Interfaces;
     using Fanex.Athena.Extension.Utility;
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.MetaModel;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common;
-    using Fanex.NAP.Core.Configuration;
-    using Fanex.NAP.Core.Models;
-    using Fanex.NAP.Core.Models.ParameterObject;
-    using Fanex.NAP.Core.Web.Auth;
-    using Fanex.NAP.Core.Web.Session;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Models;
+    using Fanex.N88.Core.Models.ParameterObject;
+    using Fanex.N88.Core.Web.Auth;
+    using Fanex.N88.Core.Web.Session;
     using ONEbook.UM.Filters;
     using ONEbook.UM.Services;
     using Resources;
@@ -52,9 +51,9 @@ namespace Fanex.Athena.Controllers
         private readonly IAuthService _authService;
         private readonly IMaintenanceService _maintenanceService;
         private readonly IFormsAuthenticationService _formAuthenticationService;
-        private readonly NAP.Core.Service.Interface.IUserService userService1;
-        private readonly NAP.Core.Service.Interface.IGroupService groupService;
-        private readonly NAP.Core.Service.Interface.ISecurityService securityService;
+        private readonly N88.Core.Service.Interface.IUserService userService1;
+        private readonly N88.Core.Service.Interface.IGroupService groupService;
+        private readonly N88.Core.Service.Interface.ISecurityService securityService;
         private readonly ICurrentSession currentSession;
 
 #pragma warning disable S107 // Methods should not have too many parameters
@@ -64,9 +63,9 @@ namespace Fanex.Athena.Controllers
             IUserService userService,
             IAuthService authService,
             IFormsAuthenticationService formAuthenticationService,
-            NAP.Core.Service.Interface.IUserService userService1,
-            NAP.Core.Service.Interface.IGroupService groupService,
-            NAP.Core.Service.Interface.ISecurityService securityService,
+            N88.Core.Service.Interface.IUserService userService1,
+            N88.Core.Service.Interface.IGroupService groupService,
+            N88.Core.Service.Interface.ISecurityService securityService,
             ICurrentSession currentSession
             )
         {
@@ -123,7 +122,7 @@ namespace Fanex.Athena.Controllers
             }
             else
             {
-                var user = userService1.Get(model.UserName.Trim());
+                var user = userService1.Get(model.UserName.Trim(), N88Settings.Settings.SiteId);
                 if (user != null)
                 {
                     var password = Cryptography.CfsEnCode(model.PassWord);
@@ -136,7 +135,7 @@ namespace Fanex.Athena.Controllers
                         else
                         {
                             var onUserId = LoginCheckIn(user);
-                            if(userService1.HasAnyPermission(user.Id, NapSettings.Settings.SiteId))
+                            if (userService1.HasAnyPermission(user.Id, N88Settings.Settings.SiteId))
                             {
                                 CreateSession(user, onUserId);
                                 CreateAuthInfo(user, onUserId);
@@ -183,7 +182,7 @@ namespace Fanex.Athena.Controllers
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
 
-        private void CreateAuthInfo(NAP.Core.Models.User user, int onlineUserId)
+        private void CreateAuthInfo(N88.Core.Models.User user, int onlineUserId)
         {
             var authInfo = new AuthInfo
             {
@@ -212,12 +211,12 @@ namespace Fanex.Athena.Controllers
             Response.Cookies.Add(authCookie);
         }
 
-        private int LoginCheckIn(NAP.Core.Models.User user)
+        private int LoginCheckIn(N88.Core.Models.User user)
         {
             //var loginParameter = new LoginParameter
             //{
             //    UserId = user.Id,
-            //    SiteId = NapSettings.Settings.SiteId,
+            //    SiteId = N88Settings.Settings.SiteId,
             //    NetSessionId = Session.SessionID,
             //    Ip = HttpContext.Request.ServerVariables["REMOTE_ADDR"],
             //    LoginDate = DateTime.Now,
@@ -230,7 +229,7 @@ namespace Fanex.Athena.Controllers
             var loginParam = new LoginParameter
             {
                 UserId = user.Id,
-                SiteId = NapSettings.Settings.SiteId,
+                SiteId = N88Settings.Settings.SiteId,
                 NetSessionId = HttpContext.Session.SessionID,
                 Ip = HttpContext.Request.ServerVariables["REMOTE_ADDR"],
                 LoginDate = DateTime.Now
@@ -241,12 +240,12 @@ namespace Fanex.Athena.Controllers
             return onlineUserId;
         }
 
-        private bool IsExistNapSite(NAP.Core.Models.User user)
+        private bool IsExistNapSite(N88.Core.Models.User user)
         {
-            return (userService1.GetSiteLevel(user.Id, NapSettings.Settings.Environment)).Any(s => s.Site.Id == NapSettings.Settings.SiteId && s.IsActive);
+            return (userService1.GetSiteLevel(user.Id, N88Settings.Settings.Environment)).Any(s => s.Site.Id == N88Settings.Settings.SiteId && s.IsActive);
         }
 
-        private bool IsExistNapGroup(NAP.Core.Models.User user)
+        private bool IsExistNapGroup(N88.Core.Models.User user)
         {
             if (user.Group != null)
             {

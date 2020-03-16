@@ -397,10 +397,10 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-;(function (root, factory) {
+;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(/*! ./core */ "./node_modules/crypto-js/core.js"));
+		module.exports = exports = factory(__webpack_require__(/*! ./core */ "./node_modules/crypto-js/core.js"), __webpack_require__(/*! ./evpkdf */ "./node_modules/crypto-js/evpkdf.js"));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -858,11 +858,16 @@
 	                var modeCreator = mode.createEncryptor;
 	            } else /* if (this._xformMode == this._DEC_XFORM_MODE) */ {
 	                var modeCreator = mode.createDecryptor;
-
 	                // Keep at least one block in the buffer for unpadding
 	                this._minBufferSize = 1;
 	            }
-	            this._mode = modeCreator.call(mode, this, iv && iv.words);
+
+	            if (this._mode && this._mode.__creator == modeCreator) {
+	                this._mode.init(this, iv && iv.words);
+	            } else {
+	                this._mode = modeCreator.call(mode, this, iv && iv.words);
+	                this._mode.__creator = modeCreator;
+	            }
 	        },
 
 	        _doProcessBlock: function (words, offset) {
@@ -6867,31 +6872,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/*global _pag
         errValidCode: 'You must input validation code.'
     };
 
-    function getUserSalt() {
-        let salt;
-        const userName = $('#userName').val();
-        if (userName) {
-            const url = window.resolveClientUrl('Authorization/GetUserSalt?userName=' + userName);
-            $.ajax({
-                url: url,
-                type: 'GET',
-                async: false,
-                contentType: 'application/json; charset=utf-8',
-                cache: false,
-                beforeSend: function () {
-                },
-                success: function (result) {
-                    salt = result;
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ': ' + thrownError);
-                }
-            });
-        }
-
-        return salt;
-    }
-
     function getValidateImage() {
         const url = $('#captchaUrl').val();
         $('#imgCode').attr('src', url);
@@ -6954,11 +6934,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/*global _pag
             const $loginToken = $('#LogInToken');
             const $loginTokenTemp = $('#LogInTokenTemp');
 
-            const userSalt = getUserSalt();
-
             $loginToken.val($loginTokenTemp.val());
             const $password = $('#passWord');
-            const hashPassword = CryptoJS.SHA1($password.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
+            const hashPassword = CryptoJS.SHA1($password.val()).toString(CryptoJS.enc.Hex).toUpperCase();
             const encryptedPass = CryptoJS.SHA1(hashPassword + $loginToken.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
             $password.val(encryptedPass);
             return true;

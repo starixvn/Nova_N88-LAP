@@ -2490,13 +2490,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             Site.initialize();
             initVariables();
             initEvent();
-            checkMoveBetNotification();
             Notification.add();
             activeDefaultMenuItem();
-            setTimeout(function () {
-                const $mainFrame = $('#mainFrame');
-                $mainFrame.attr('src', $mainFrame.data('src'));
-            }, 100);
 
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();

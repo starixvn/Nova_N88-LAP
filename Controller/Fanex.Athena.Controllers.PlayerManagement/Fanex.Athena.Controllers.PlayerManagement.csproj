@@ -74,7 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlayerAdminController.cs" />
+    <Compile Include="PlayerAdministrationController.cs" />
     <Compile Include="PlayerStatementController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

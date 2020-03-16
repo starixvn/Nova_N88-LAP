@@ -7,13 +7,13 @@
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Newtonsoft.Json;
 
-    public class PlayerAdminController : CultureBaseController
+    public class PlayerAdministrationController : CultureBaseController
     {
         private readonly ILicenseeSettingService _licenseeSettingService;
 
         private readonly IAuthorizationService _authService;
 
-        public PlayerAdminController(ILicenseeSettingService licenseeSettingService, IAuthorizationService authService)
+        public PlayerAdministrationController(ILicenseeSettingService licenseeSettingService, IAuthorizationService authService)
         {
             _licenseeSettingService = licenseeSettingService;
             _authService = authService;

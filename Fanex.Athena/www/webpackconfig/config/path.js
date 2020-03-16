@@ -55,24 +55,7 @@ var scriptPaths = {
 
     result: "./www/js/source/pages/report/result/main-result.js",
     cashoutwinloss: "./www/js/source/pages/report/cashoutwinloss/main.js",
-
-    customercommgrouplist: "./www/js/source/pages/customer/customercomm/main-commgrouplist.js",
-    customercommgroupadd: "./www/js/source/pages/customer/customercomm/main-commgroupadd.js",
-    customercommgroupedit: "./www/js/source/pages/customer/customercomm/main-commgroupedit.js",
-    customerlist: "./www/js/source/pages/customer/customerlist/main.js",
-    loginlog: "./www/js/source/pages/customer/customerlog/loginlog/main.js",
-    customersetting: "./www/js/source/pages/customer/customerlog/customersetting/main.js",
-    groupcommission: "./www/js/source/pages/customer/customerlog/groupcommission/main.js",
     customeroutstanding: "./www/js/source/pages/betlist/customer/main.js",
-    rngcasinobetsetting: "./www/js/source/pages/customer/betsetting/main-rngcasino.js",
-    betsettingmain: "./www/js/source/pages/customer/betsetting/main-betsetting.js",
-    betsettingbygroup: "./www/js/source/pages/customer/betsetting/main-betsettingbygroup.js",
-    dcsbetsetting: "./www/js/source/pages/customer/betsetting/main-dcsbetsetting.js",
-    thirdpartybetsetting: "./www/js/source/pages/customer/betsetting/main-thirdparty.js",
-    kenobetsetting: "./www/js/source/pages/customer/betsetting/main-keno.js",
-    numbergamebetsetting: "./www/js/source/pages/customer/betsetting/main-numbergame.js",
-    exchangebetsetting: "./www/js/source/pages/customer/betsetting/main-exchange.js",
-
     customerwinloss: "./www/js/source/pages/report/customerwinloss/main.js"
 };
 

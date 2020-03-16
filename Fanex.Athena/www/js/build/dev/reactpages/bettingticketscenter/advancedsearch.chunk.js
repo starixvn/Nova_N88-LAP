@@ -8693,7 +8693,7 @@ var FormFilter = /*#__PURE__*/function (_Component) {
           if (response.status === NoContentStatusCode) {
             alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_13__["default"].getSingleResource("NoInfo"));
           } else {
-            var fileName = "BettingTicketsCenter_AdvancedSearch." + (response.headers["content-type"] === "application/zip" ? "zip" : "xls");
+            var fileName = "BetHistory_AdvancedSearch." + (response.headers["content-type"] === "application/zip" ? "zip" : "xls");
             _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_14__["default"].downloadFile(response.data, fileName);
           }
         }
@@ -9636,8 +9636,7 @@ var PageLayout = function PageLayout(props) {
       isConvertAll = props.isConvertAll,
       selectedBaseCurrency = props.selectedBaseCurrency,
       selectedTabIndex = props.selectedTabIndex,
-      children = props.children,
-      hasExchange = props.hasExchange;
+      children = props.children;
 
   var getResource = function getResource(key) {
     return _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource(key);
@@ -9688,12 +9687,10 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   var isConvertAll = state.isConvertAll,
-      selectedBaseCurrency = state.selectedBaseCurrency,
-      hasExchange = state.hasExchange;
+      selectedBaseCurrency = state.selectedBaseCurrency;
   return Object.assign({}, {
     isConvertAll: isConvertAll,
-    selectedBaseCurrency: selectedBaseCurrency,
-    hasExchange: hasExchange
+    selectedBaseCurrency: selectedBaseCurrency
   });
 }
 

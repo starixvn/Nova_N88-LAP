@@ -13,7 +13,7 @@
     @foreach (var menu in menus)
     {
         var subMenus = Model.Where(t => t.Parent != null && t.Parent.Id == menu.Id);
-        <li class="menu-item has-sub">
+        <li class="menu-item @(subMenus.Any() ? "has-sub" : string.Empty)">
             @if (menu.Url == "")
             {
                 <a class="collapsible-header waves-effect">
@@ -30,11 +30,11 @@
                 </a>
             }
 
-            <div class="collapsible-body">
-                <ul>
-                    @if (subMenus.Any())
-                    {
-                        foreach (var subMenu in subMenus)
+            @if (subMenus.Any())
+            {
+                <div class="collapsible-body">
+                    <ul>
+                        @foreach (var subMenu in subMenus)
                         {
                             <li>
                                 <a id="MenuItem@(subMenu.Id)" href="@Url.Content("~/" + subMenu.Url)" target="main">
@@ -42,9 +42,9 @@
                                 </a>
                             </li>
                         }
-                    }
-                </ul>
-            </div>
+                    </ul>
+                </div>
+            }
         </li>
     }
 </ul>

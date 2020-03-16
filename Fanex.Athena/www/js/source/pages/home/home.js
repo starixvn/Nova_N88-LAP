@@ -74,9 +74,16 @@ define([
                 }
             });
 
-            $('.collapsible2').on('click.menuevent', '.collapsible-body  a', function () {
+            $('.collapsible2').on('click.menuevent', '.menu-item.has-sub .collapsible-body a', function () {
                 const $currentMenuItem = $(this);
                 document.title = 'LAP' + ' - ' + $('.active > .menu-title').text() + ' - ' + $currentMenuItem.text();
+
+                $('#page-title').text($currentMenuItem.text());
+            });
+
+            $('.collapsible2').on('click.menuevent', '.menu-item:not(.has-sub) a', function () {
+                const $currentMenuItem = $(this);
+                document.title = 'LAP' + ' - ' + $currentMenuItem.text();
 
                 $('#page-title').text($currentMenuItem.text());
             });

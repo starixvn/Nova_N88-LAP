@@ -100,6 +100,7 @@ namespace Fanex.Athena.Controllers.Account
             return data.Select(i => new UserLevel
             {
                 Level = i.Level,
+                Status = i.Status,
                 User = new User
                 {
                     Id = i.UserId,

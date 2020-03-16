@@ -30,5 +30,7 @@ namespace Fanex.Athena.Controllers.Account
         public DateTime LastLoginDateUserSite { get; set; }
         public byte SiteId { get; set; }
         public string SiteName { get; set; }
+
+        public int Status { get; set; }
     }
 }

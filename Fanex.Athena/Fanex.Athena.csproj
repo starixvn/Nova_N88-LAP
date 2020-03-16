@@ -307,7 +307,10 @@
     <Content Include="App_Data\UserGuide\WeeklyLiveMatches\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\WeeklyLiveMatches\zh-TW.htm" />
     <Content Include="Content\Account\AccountManagement.css" />
+    <Content Include="Content\Account\NewUser.css" />
     <Content Include="Content\Account\Permission.css" />
+    <Content Include="Content\Account\reset.css" />
+    <Content Include="Content\Account\style.css" />
     <Content Include="Content\Fanex.Result\Allbet\css\button.css" />
     <Content Include="Content\Fanex.Result\Allbet\css\images\layout\btn_UI04.png" />
     <Content Include="Content\Fanex.Result\Allbet\css\images\layout\icon_UI02.png" />
@@ -411,7 +414,19 @@
     <Content Include="Content\Fanex.Result\Allbet\template\public\game_result\Sicbo\ScoreBoard_d4.png" />
     <Content Include="Content\Fanex.Result\Allbet\template\public\game_result\Sicbo\ScoreBoard_d5.png" />
     <Content Include="Content\Fanex.Result\Allbet\template\public\game_result\Sicbo\ScoreBoard_d6.png" />
+    <Content Include="Content\Plugin\tipsy\tipsy-1.0.0.css" />
+    <Content Include="Content\Plugin\tipsy\tipsy-1.0.0.min.css" />
+    <Content Include="img\Account\action-ico.png" />
+    <Content Include="img\Account\chgpwd-ico.png" />
+    <Content Include="img\Account\duplicate.png" />
+    <Content Include="img\Account\edit-ico.png" />
+    <Content Include="img\Account\permission-ico.png" />
+    <Content Include="img\Account\site-ico.png" />
+    <Content Include="img\Account\user-info-ico.png" />
     <Content Include="karma-new-bypage.conf.js" />
+    <Content Include="Scripts\Account\Manage.js" />
+    <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.js" />
+    <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.min.js" />
     <Content Include="SpNameConfig\FanexSpName.BACKUPMNL.xml">
       <DependentUpon>FanexSpName.xml.tt</DependentUpon>
     </Content>
@@ -715,6 +730,9 @@
     <Content Include="SiteConfig\Web.BACKUPMNLStatic.config" />
     <Content Include="www\css\build\dev\reactpages\dailybets\index.css.map" />
     <Content Include="Views\Desktop\BetList\SGDetail\Main.cshtml" />
+    <Content Include="Views\Account\AssignPermission.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\NewUser.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

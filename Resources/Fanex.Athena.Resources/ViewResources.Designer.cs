@@ -1339,6 +1339,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm_Password.
+        /// </summary>
+        public static string Confirm_Password {
+            get {
+                return ResourceManager.GetString("Confirm_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirmation.
         /// </summary>
         public static string Confirmation {
@@ -1362,6 +1371,15 @@ namespace Fanex.Athena.Resources {
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ConfirmUserPwd.
+        /// </summary>
+        public static string ConfirmUserPwd {
+            get {
+                return ResourceManager.GetString("ConfirmUserPwd", resourceCulture);
             }
         }
         
@@ -2113,6 +2131,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EmailFormatValidationMsg.
+        /// </summary>
+        public static string EmailFormatValidationMsg {
+            get {
+                return ResourceManager.GetString("EmailFormatValidationMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable AG Casino.
         /// </summary>
         public static string EnableAgCasino {
@@ -2388,6 +2415,15 @@ namespace Fanex.Athena.Resources {
         public static string FileIsNotReady {
             get {
                 return ResourceManager.GetString("FileIsNotReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First_Name.
+        /// </summary>
+        public static string First_Name {
+            get {
+                return ResourceManager.GetString("First_Name", resourceCulture);
             }
         }
         
@@ -2977,6 +3013,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to InputLengthValidationMsg.
+        /// </summary>
+        public static string InputLengthValidationMsg {
+            get {
+                return ResourceManager.GetString("InputLengthValidationMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internal System.
         /// </summary>
         public static string InternalSystem {
@@ -3018,6 +3063,15 @@ namespace Fanex.Athena.Resources {
         public static string InvalidEmail {
             get {
                 return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InvalidNameValidationMsg.
+        /// </summary>
+        public static string InvalidNameValidationMsg {
+            get {
+                return ResourceManager.GetString("InvalidNameValidationMsg", resourceCulture);
             }
         }
         
@@ -3135,6 +3189,15 @@ namespace Fanex.Athena.Resources {
         public static string Last {
             get {
                 return ResourceManager.GetString("Last", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last_Name.
+        /// </summary>
+        public static string Last_Name {
+            get {
+                return ResourceManager.GetString("Last_Name", resourceCulture);
             }
         }
         
@@ -4008,6 +4071,15 @@ namespace Fanex.Athena.Resources {
         public static string NetTurnover {
             get {
                 return ResourceManager.GetString("NetTurnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New_Password.
+        /// </summary>
+        public static string New_Password {
+            get {
+                return ResourceManager.GetString("New_Password", resourceCulture);
             }
         }
         
@@ -5020,6 +5092,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PropertiesMustMatchErrMsg.
+        /// </summary>
+        public static string PropertiesMustMatchErrMsg {
+            get {
+                return ResourceManager.GetString("PropertiesMustMatchErrMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RB.
         /// </summary>
         public static string RB {
@@ -5457,6 +5538,15 @@ namespace Fanex.Athena.Resources {
         public static string SingleCustomer {
             get {
                 return ResourceManager.GetString("SingleCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site.
+        /// </summary>
+        public static string Site {
+            get {
+                return ResourceManager.GetString("Site", resourceCulture);
             }
         }
         
@@ -6429,6 +6519,15 @@ namespace Fanex.Athena.Resources {
         public static string UserNotHaveCurrency {
             get {
                 return ResourceManager.GetString("UserNotHaveCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UserPwd.
+        /// </summary>
+        public static string UserPwd {
+            get {
+                return ResourceManager.GetString("UserPwd", resourceCulture);
             }
         }
         

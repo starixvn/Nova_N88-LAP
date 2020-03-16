@@ -161,6 +161,7 @@
     <Compile Include="ActionFilter\HandleAntiForgeryErrorAttribute.cs" />
     <Compile Include="ActionFilter\ValidationWebRequestAttribute.cs" />
     <Compile Include="ActionFilter\XFrameOptionAttribute.cs" />
+    <Compile Include="HtmlExtension\HtmlHelperExtensions.cs" />
     <Compile Include="HtmlExtension\UrlExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultExtension\ExcelResult.cs" />

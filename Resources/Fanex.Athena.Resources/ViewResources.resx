@@ -2594,4 +2594,37 @@
     <value>Bet History</value>
     <comment>80941</comment>
   </data>
+  <data name="ConfirmUserPwd" xml:space="preserve">
+    <value>ConfirmUserPwd</value>
+  </data>
+  <data name="Confirm_Password" xml:space="preserve">
+    <value>Confirm_Password</value>
+  </data>
+  <data name="EmailFormatValidationMsg" xml:space="preserve">
+    <value>EmailFormatValidationMsg</value>
+  </data>
+  <data name="First_Name" xml:space="preserve">
+    <value>First_Name</value>
+  </data>
+  <data name="InputLengthValidationMsg" xml:space="preserve">
+    <value>InputLengthValidationMsg</value>
+  </data>
+  <data name="InvalidNameValidationMsg" xml:space="preserve">
+    <value>InvalidNameValidationMsg</value>
+  </data>
+  <data name="Last_Name" xml:space="preserve">
+    <value>Last_Name</value>
+  </data>
+  <data name="New_Password" xml:space="preserve">
+    <value>New_Password</value>
+  </data>
+  <data name="PropertiesMustMatchErrMsg" xml:space="preserve">
+    <value>PropertiesMustMatchErrMsg</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="UserPwd" xml:space="preserve">
+    <value>UserPwd</value>
+  </data>
 </root>

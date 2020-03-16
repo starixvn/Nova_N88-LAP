@@ -8,6 +8,8 @@
         public const string ReportLicenseeWinLoss = "LicenseeWinLoss";
         public const string ReportCustomerWinLoss = "CustomerWinLoss";
         public const string ReportCashOutWinLoss = "CashOutWinLoss";
+        public const string BettingTicketCenter = "BettingTicketCenter";
+        public const string BtcAdvancedSearch = "BtcAdvancedSearch";
 
 
         public const string GroupTotalBet = "TOTALBETS1";

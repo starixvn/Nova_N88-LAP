@@ -294,7 +294,9 @@
     <Content Include="App_Data\UserGuide\CashOutWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\CashOutWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\CashOutWL\en-US.htm" />
+    <Content Include="Content\Account\AccountManagement.css" />
     <Content Include="Content\Account\NewUser.css" />
+    <Content Include="Content\Account\Permission.css" />
     <Content Include="Content\Account\reset.css" />
     <Content Include="Content\Account\style.css" />
     <Content Include="Content\Fanex.Result\Allbet\css\button.css" />
@@ -637,6 +639,8 @@
     <Content Include="Views\Group\Edit.cshtml" />
     <Content Include="Views\Group\GroupInfo.cshtml" />
     <Content Include="Views\Group\Manage.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

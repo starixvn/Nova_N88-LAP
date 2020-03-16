@@ -21,7 +21,7 @@ var NAP = (function ($) {
 
         initCoreValues: function () {
             NAP.NAPAdminRoot = $('#NapAdminRoot').val();
-            NAP.NAPRoot = $('#NapRoot').val();
+            NAP.NAPRoot = $('#RootPath').val();
             NAP.dialogPopup = $('<div id="dialog-popup"></div>').appendTo('body');
 
             NAP.msieVersion = NAP.getIeVersion();
@@ -30,7 +30,7 @@ var NAP = (function ($) {
             NAP.agentIsMobile = NAP.agentIs('mobile') != null;
         },
         resolveClientUrl: function (relativeUrl) {
-            return relativeUrl;//NAP.NAPAdminRoot + relativeUrl;
+            return NAP.NAPRoot + relativeUrl;//NAP.NAPAdminRoot + relativeUrl;
         },
         resolveRootUrl: function (relativeUrl) {
             return NAP.NAPRoot + relativeUrl;

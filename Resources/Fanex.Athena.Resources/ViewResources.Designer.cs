@@ -6235,6 +6235,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update_Permission_Success.
+        /// </summary>
+        public static string Update_Permission_Success {
+            get {
+                return ResourceManager.GetString("Update_Permission_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update account successfully!.
         /// </summary>
         public static string UpdateAccountSuccessMsg {

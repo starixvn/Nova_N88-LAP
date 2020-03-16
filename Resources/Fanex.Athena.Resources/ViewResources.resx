@@ -2648,4 +2648,7 @@
   <data name="Update_Password_Success" xml:space="preserve">
     <value>Update_Password_Success</value>
   </data>
+  <data name="Update_Permission_Success" xml:space="preserve">
+    <value>Update_Permission_Success</value>
+  </data>
 </root>

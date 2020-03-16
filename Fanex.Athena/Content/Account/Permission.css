@@ -46,3 +46,14 @@ img.icon
     width: 15px;
 }
 
+.common-form{
+    border: none;
+    padding: 0;
+}
+
+.common-form .summary {
+    width: 450px;
+}
+
+.common-form .summary .validation-summary-valid {
+}

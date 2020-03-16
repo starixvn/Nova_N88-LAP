@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 2/28/2020 11:51:19 AM
+// Generated at: 2/28/2020 11:54:17 AM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -103,7 +103,6 @@ window._language_en_US = {
   Action: "Action",
   Active: "Active",
   ActiveCustomers: "Active Customers",
-  ActiveCustomerSummary: "Active Customer Summary",
   ActualStake: "Actual Stake",
   AD: "AD",
   Adjustment: "Adjustment",
@@ -111,7 +110,6 @@ window._language_en_US = {
   AdvancedSearch: "Advanced Search",
   AffiliateTransfer: "Affiliate Transfer",
   AGCasino: "AG Casino",
-  AGCasinoBalance: "AG Casino Balance",
   AGCasinoNotOfferCurrency: "AG Casino is not offered for this currency.",
   AGCasinoWinLoss: "AG Casino Win Loss",
   AGClosingBalance: "AG Closing Balance",
@@ -211,7 +209,6 @@ window._language_en_US = {
   CashOutValue: "Cash Out Value",
   CashOutWinLoss: "Cash Out Win Loss",
   CasinoTransfer: "Casino Transfer",
-  CasinoTurnover: "Casino Turnover",
   ChangePassword: "Change Password",
   ChangeStatus: "Change {0}&apos;s status",
   ChangeStatusOfThisCustomerMsg: "Are you sure you want to change status of this customer?",
@@ -227,7 +224,6 @@ window._language_en_US = {
   Closed: "Closed",
   ClosingBalance: "Closing Balance",
   ColossusBetBetListDetailMsg: "Member owned {0}% of this ticket&lt;br/&gt;Member sold {1}% of this ticket for {2}",
-  ColossusBetsWinLoss: "Colossus Bets Win Loss",
   Columns: "Columns",
   Comm: "Comm",
   CommIsClear: "Commission of customers is cleared.",
@@ -268,14 +264,12 @@ window._language_en_US = {
   CustomersBelongGroupsBeRemovedMsg: "Only customers belonging to groups will be removed from their groups.",
   CustomerSetting: "Customer setting",
   CustomersExistedinGroupMsg: "Selected customers already existed in this group.",
-  CustomerTurnover: "Customer Turnover",
   CustomerW_L: "Customer W/L",
   CustomerWinLoss: "Customer Win Loss",
   CustomerWinLossTitle: "Customer Win/Loss, {0} --&gt; {1} - {2}",
   CustomerWinnings: "Customer&apos;s Winnings",
   DA: "DA",
   Daily: "Daily",
-  DailyBets: "Daily Bets",
   DailyStatement: "Daily Statement",
   DailyStatementMsg: "Support data up to 4 months only",
   Data: "data",
@@ -688,7 +682,6 @@ window._language_en_US = {
   SessionLoggedMsg: "You have logged in from another session or your login session has expired",
   SetAsDefaultGroup: "Set as default group",
   SettleAmount: "Settle Amount",
-  SettledMatchCount: "Settled Match Count",
   Show: "Show",
   ShowAllLeagues: "Show All Leagues",
   ShowOldValue: "Show old value",
@@ -707,7 +700,6 @@ window._language_en_US = {
   Subject: "Subject",
   Submit: "Submit",
   Subsidiary: "Subsidiary",
-  SubsidiaryPerformance: "Subsidiary Performance",
   SubsidiarySearch: "Subsidiary Search",
   SubsidiaryWL: "Subsidiary W/L",
   Summary: "Summary",
@@ -872,9 +864,7 @@ var DEFAULT_RESOURCE_NAME = "_language_en_US";
 var langCode = window.PageLanguage || "en-US";
 var resourceName = "_language_".concat(langCode.replace("-", "_"));
 
-var LangHelper =
-/*#__PURE__*/
-function () {
+var LangHelper = /*#__PURE__*/function () {
   function LangHelper() {
     _classCallCheck(this, LangHelper);
   }

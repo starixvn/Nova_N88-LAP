@@ -6,12 +6,9 @@
 
 namespace Fanex.Athena.Controllers
 {
-    using Fanex.Athena.Model.Auth.Enum;
-
-    using ONEbook.UM.Filters;
-
     using System.Web.Mvc;
-
+    using Fanex.Athena.Model.Auth.Enum;
+    using ONEbook.UM.Filters;
     using Web.ActionFilter;
 
     [CheckUMFilter]

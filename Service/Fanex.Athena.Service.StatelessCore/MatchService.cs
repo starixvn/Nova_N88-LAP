@@ -47,11 +47,6 @@ namespace Fanex.Athena.Service.StatelessCore
             }
         }
 
-        public async Task<IList<Match>> GetForecastMatchListByLeagueAsync(int leagueId)
-        {
-            return await _matchDataAccess.GetForecastMatchListByLeague(leagueId).ConfigureAwait(false);
-        }
-
         public async Task<IList<Match>> GetMatchesByLeagueAsync(int leagueId, DateTime fromDate, DateTime toDate)
         {
             return await _matchDataAccess.GetMatchesByLeague(leagueId, fromDate, toDate).ConfigureAwait(false);

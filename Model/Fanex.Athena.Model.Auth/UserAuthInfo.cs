@@ -7,8 +7,9 @@ using System;
 
 namespace Fanex.Athena.Model.Auth
 {
-    using Fanex.Athena.Model.Auth.Enum;
     using System.Collections.Generic;
+    using Fanex.Athena.Model.Auth.Enum;
+
     [Serializable]
     public class UserAuthInfo
     {
@@ -21,15 +22,15 @@ namespace Fanex.Athena.Model.Auth
         public string UserName { get; set; }
 
         public byte UserLevel { get; set; }
+
         public byte SubsidiaryViewType { get; set; }
+
         public int? WhiteLabelID { get; set; }
+
         public string OperatorId { get; set; }
+
         public bool IsSuperAdmin { get; set; }
-        /// <summary>
-        /// Gets or sets Language Code.
-        /// Default: en-US.
-        /// </summary>
-        /// <value>The Language Code.</value>
+
         public string Language { get; set; }
 
         /// <summary>

@@ -7,20 +7,11 @@
 namespace Fanex.Athena.Controllers.BetList
 {
     using System.Threading.Tasks;
-
-    #region Using
-
     using System.Web.Mvc;
-
     using Fanex.Athena.Model.Auth.DataDomain;
-
     using Model.BetList.MetaModel;
-
     using Resources;
-
     using Web.ActionFilter;
-
-    #endregion Using
 
     [FunctionAuthorization(PermissionKeys.ReportMatchWinLoss)]
     public class MatchWinLossBetListController : BetListBaseController

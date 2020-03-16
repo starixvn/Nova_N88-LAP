@@ -101,55 +101,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CashOutWinLossDataAccess.cs" />
-    <Compile Include="ActiveCustomerSummaryDataAccess.cs" />
-    <Compile Include="CasinoTurnoverDataAccess.cs" />
-    <Compile Include="ExchangeVoidedDataAccess.cs" />
-    <Compile Include="ExchangeWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ICashOutWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\ICasinoTurnoverDataAccess.cs" />
-    <Compile Include="Interfaces\IColossusBetsWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\IExchangeVoidedDataAccess.cs" />
-    <Compile Include="Interfaces\IExchangeWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\ILicenseeWinLossByTimeZoneDataAccess.cs" />
     <Compile Include="Interfaces\ISpecialLicenseeWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\ISubsidiaryPerformanceDataAccess.cs" />
-    <Compile Include="Interfaces\IGoldDeluxeWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\IWeeklyLiveMatchDataAccess.cs" />
     <Compile Include="SpecialLicenseeWinLossDataAccess.cs" />
-    <Compile Include="AgCasinoBalanceDataAccess.cs" />
-    <Compile Include="ColossusBetsWinLossDataAccess.cs" />
-    <Compile Include="LicenseeWinLossByTimeZoneDataAccess.cs" />
-    <Compile Include="SubsidiaryPerformanceDataAccess.cs" />
-    <Compile Include="GoldDeluxeWinLossDataAccess.cs" />
     <Compile Include="ThirdPartyWinLossDataAccess.cs" />
-    <Compile Include="WeeklyLiveMatchDataAccess.cs" />
-    <Compile Include="WinLossByLeagueDataAccess.cs" />
-    <Compile Include="Interfaces\IActiveCustomerSummaryDataAccess.cs" />
-    <Compile Include="Interfaces\IAgCasinoBalanceDataAccess.cs" />
     <Compile Include="Interfaces\IThirdPartyWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\IWinLossByLeagueDataAccess.cs" />
-    <Compile Include="CustomerPendingFundsDataAccess.cs" />
-    <Compile Include="CustomerTurnoverDataAccess.cs" />
-    <Compile Include="WinLossByProductDataAccess.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="LiveReportDataAccess.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="SettledMatchCountDataAccess.cs" />
-    <Compile Include="TurnoverDataAccess.cs" />
-    <Compile Include="WinLossByBetTypeDataAccess.cs" />
-    <Compile Include="MatchWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\ICustPendingFundsDataAccess.cs" />
-    <Compile Include="Interfaces\ICustomerTurnoverDataAccess.cs" />
-    <Compile Include="Interfaces\ISettledMatchCountDataAccess.cs" />
-    <Compile Include="Interfaces\ITurnoverDataAccess.cs" />
     <Compile Include="Interfaces\ILicenseeWinLossDataAccess.cs" />
     <Compile Include="LicenseeWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\ILiveReportDataAccess.cs" />
-    <Compile Include="Interfaces\IMatchWinLossDataAccess.cs" />
-    <Compile Include="Interfaces\IWinLossByBetTypeDataAccess.cs" />
-    <Compile Include="Interfaces\IWinLossByProductDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

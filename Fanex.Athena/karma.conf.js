@@ -46,10 +46,6 @@ module.exports = function (config) {
             //'Scripts/Global/*.js',
              'jasmine-specs/Global/*-test.js',
 
-             // --------- Report --------- //
-            'Scripts/Report/agcasinobalance*.js',
-            'jasmine-specs/Report/agcasinobalance*-test.js',
-
             //'Scripts/Report/report*.js',
              'jasmine-specs/Report/report*-test.js',
 

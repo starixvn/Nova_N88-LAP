@@ -6,10 +6,10 @@
 
 namespace Fanex.Athena.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using Fanex.Athena.Model.Core.ViewModel;
     using Fanex.NAP.Core.Web.Session;
-
     //[AuthorizeRestriction(AppMode.Self)]
     public class MenuController : CultureBaseController
     {

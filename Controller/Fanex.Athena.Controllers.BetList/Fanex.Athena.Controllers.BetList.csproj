@@ -148,12 +148,10 @@
     <Compile Include="AllBetBetListController.cs" />
     <Compile Include="BetListBaseController.cs" />
     <Compile Include="AGCasinoBetListController.cs" />
-    <Compile Include="CorrectScoreBetListController.cs" />
     <Compile Include="CustomerOutstandingBetListController.cs" />
     <Compile Include="CustomerWinLossBetListController.cs" />
     <Compile Include="CashOutBetListController.cs" />
     <Compile Include="GlobalGamingBetListController.cs" />
-    <Compile Include="LastBetsMonitoringBetListController.cs" />
     <Compile Include="LiveReportBetListController.cs" />
     <Compile Include="MatchWinLossBetListController.cs" />
     <Compile Include="PendingFundsBetListController.cs" />
@@ -162,11 +160,7 @@
     <Compile Include="SGBetListController.cs" />
     <Compile Include="PragmaticPlayBetListController.cs" />
     <Compile Include="RNGCasinoBetListController.cs" />
-    <Compile Include="RunningBetListController.cs" />
     <Compile Include="RunningBettypesOfMatchBetListController.cs" />
-    <Compile Include="RunningBettypesBetListController.cs" />
-    <Compile Include="RunningMatchBetListController.cs" />
-    <Compile Include="RunningMatchChoiceBetListController.cs" />
     <Compile Include="SystemParlayBetListController.cs" />
     <Compile Include="WinlossByLeagueBetListController.cs" />
     <Compile Include="VoidbridgeBetListController.cs" />

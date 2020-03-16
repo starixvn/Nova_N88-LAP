@@ -222,7 +222,6 @@
                     Assert.That(viewModel.CurrencyList, Is.EqualTo(DefaultUserSession.CurrencyList));
                     Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
-                    Assert.That(viewModel.HasExchange, Is.EqualTo(hasExchangePermission));
                 });
             }
         }
@@ -268,7 +267,6 @@
                     Assert.That(viewModel.PlatformList, Is.Not.Empty);
                     Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
-                    Assert.That(viewModel.HasExchange, Is.EqualTo(hasExchangePermission));
                 });
             }
         }
@@ -315,7 +313,6 @@
                     Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
                     Assert.That(viewModel.MinDate, Is.EqualTo(BalanceUpDate));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
-                    Assert.That(viewModel.HasExchange, Is.EqualTo(hasExchangePermission));
                 });
             }
         }

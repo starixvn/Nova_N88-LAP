@@ -21,7 +21,7 @@ class LapCommonService extends BaseCommonService {
         const { baseUrl, applyLinkTokenUrl, applyApiTokenUrl, tabList } = initialConfig;
         this._applyLinkTokenUrl = applyLinkTokenUrl;
         this._applyApiTokenUrl = applyApiTokenUrl;
-        this._baseUrl = baseUrl;
+        this._baseUrl = '/';
         this._tabList = tabList || [];
     }
 
@@ -81,8 +81,10 @@ class LapCommonService extends BaseCommonService {
 
     fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
         const config = {...defaultAjaxConfig, ...configOption };
+
         if (sysType === systemType.newAdmin) {
             const relativeUrl = this._baseUrl + action;
+            
             const ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
 
             return axios(ajaxConfig);

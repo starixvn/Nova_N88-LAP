@@ -11,5 +11,7 @@ namespace Fanex.Athena.DataAccess.Core.Users.Interfaces
         void Logout(int userId);
 
         IResultInfo<User> ValidateUserForLrf(User requestUser);
+
+        void ApplyToken(string Token, string PermissionData, int Expiry = 1);
     }
 }

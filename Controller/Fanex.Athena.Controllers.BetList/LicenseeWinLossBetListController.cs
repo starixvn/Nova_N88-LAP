@@ -6,13 +6,10 @@
 
 namespace Fanex.Athena.Controllers.BetList
 {
-    using Fanex.Athena.Model.Auth.DataDomain;
-
-    using Model.BetList.MetaModel;
-
     using System.Threading.Tasks;
     using System.Web.Mvc;
-
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Model.BetList.MetaModel;
     using Web.ActionFilter;
 
     [FunctionAuthorization(

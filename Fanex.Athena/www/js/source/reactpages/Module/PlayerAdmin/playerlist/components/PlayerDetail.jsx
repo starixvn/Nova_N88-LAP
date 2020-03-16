@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
-import { heightSlicing, excludedTabNameWithNonDepositAndArchived, tabNameByContextMenu, tabNames } from '../lib/constants';
+import { heightSlicing, tabNameByContextMenu, tabNames } from '../lib/constants';
 
 export class PlayerDetail extends PureComponent {
     constructor(props) {
@@ -35,13 +35,9 @@ export class PlayerDetail extends PureComponent {
     }
 
     _renderTabList(tabList) {
-        const { selectedPlayer } = this.props;
         const selectedTabName = this.props.selectedTabName || this._getDefaultSelectedTab();
-        const {isDeposit, isArchived} = selectedPlayer;
-        const renderedTabList = !isDeposit || isArchived ? 
-            tabList.filter(item => !excludedTabNameWithNonDepositAndArchived.includes(item.Name)) : tabList;
-
-        return (
+        const renderedTabList = tabList;
+        return (  
             renderedTabList.map((item) => {
                 const actionUrl = this._buildActionUrl(item.SystemType, item.Action, item.Name);
                 const tabNameBySelectedMenu = tabNameByContextMenu[selectedTabName];
@@ -84,8 +80,6 @@ export class PlayerDetail extends PureComponent {
 
         return tabItem && this._buildActionUrl(tabItem.SystemType, action, tabItem.Name);
     }
-
-    
 
     render() {
         const { selectedPlayer } = this.props;

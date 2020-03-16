@@ -1204,9 +1204,6 @@
   <data name="SetAsDefaultGroup" xml:space="preserve">
     <value>设置为默认组</value>
   </data>
-  <data name="SettledMatchCount" xml:space="preserve">
-    <value>已结算赛事计数</value>
-  </data>
   <data name="ShowAllLeagues" xml:space="preserve">
     <value>显示所有联赛</value>
   </data>
@@ -1595,9 +1592,6 @@
   <data name="Odd_MY" xml:space="preserve">
     <value>马来盘</value>
   </data>
-  <data name="CustomerTurnover" xml:space="preserve">
-    <value>会员交易额</value>
-  </data>
   <data name="TotalTurnover" xml:space="preserve">
     <value>总交易额</value>
   </data>
@@ -1647,15 +1641,8 @@
     <value>会员日志</value>
     <comment>26174</comment>
   </data>
-  <data name="ActiveCustomerSummary" xml:space="preserve">
-    <value>活跃会员人数摘要</value>
-  </data>
   <data name="TotalActiveCustomer" xml:space="preserve">
     <value>总活跃会员人数</value>
-  </data>
-  <data name="AGCasinoBalance" xml:space="preserve">
-    <value>AG Casino Balance</value>
-    <comment>#26990</comment>
   </data>
   <data name="TransferIn" xml:space="preserve">
     <value>Transfer In</value>
@@ -1695,9 +1682,6 @@
   </data>
   <data name="Amount" xml:space="preserve">
     <value>金额</value>
-  </data>
-  <data name="ColossusBetsWinLoss" xml:space="preserve">
-    <value>CB足彩输赢</value>
   </data>
   <data name="CustomerWinnings" xml:space="preserve">
     <value>会员总赢</value>
@@ -1916,10 +1900,6 @@
   </data>
   <data name="Subsidiary" xml:space="preserve">
     <value>子网站</value>
-    <comment>95177</comment>
-  </data>
-  <data name="SubsidiaryPerformance" xml:space="preserve">
-    <value>子网站报告</value>
     <comment>95177</comment>
   </data>
   <data name="SubsidiaryWL" xml:space="preserve">

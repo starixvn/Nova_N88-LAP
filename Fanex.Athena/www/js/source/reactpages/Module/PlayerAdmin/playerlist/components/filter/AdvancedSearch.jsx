@@ -45,6 +45,7 @@ export class AdvancedSearch extends React.Component {
         const specialLevelList = this._createSelectData(this.specialLevelList, specialLevel);
         const selectedBaStatus = isAllowedBA ? this.baStatusList.find(x => x.value === baFilter) : null;
 
+        console.log(isAllowedBA)
         return (
             <>
                 <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">

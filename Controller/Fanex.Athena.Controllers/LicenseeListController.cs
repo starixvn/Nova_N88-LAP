@@ -1,11 +1,8 @@
 ﻿namespace Fanex.Athena.Controllers
 {
-    using DataAccess.Core.Users.Interfaces;
-
-    using Fanex.Athena.Model.Auth.Enum;
-
     using System.Web.Mvc;
-
+    using DataAccess.Core.Users.Interfaces;
+    using Fanex.Athena.Model.Auth.Enum;
     using Web.ActionFilter;
 
     [AuthorizeRestriction(AppMode.Self)]

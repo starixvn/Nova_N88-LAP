@@ -33,30 +33,24 @@ export const fields = {
     Status: 'Status',
     UserName: 'UserName',
     SystemId: 'SystemId',
-    RealName: 'RealName',
     Currency: 'Currency',
     CurrentBalance: 'CurrentBalance',
     OutstandingBalance: 'OutstandingBalance',
     OddsGroup: 'OddsGroup',
     BaStatus: 'BaStatus',
     SpecialLevel: 'SpecialLevel',
-    LastTransaction: 'LastTransaction',
-    Email: 'Email'
 }
 
 export const columnList = [
     { key: fields.Status, value: LangHelper.getSingleResource('Status'), show: true },
     { key: fields.UserName, value: LangHelper.getSingleResource('Username'), show: true },
     { key: fields.SystemId, value: LangHelper.getSingleResource('SystemId'), show: true },
-    { key: fields.RealName, value: LangHelper.getSingleResource('RealName'), show: true },
     { key: fields.Currency, value: LangHelper.getSingleResource('Currency'), show: true },
     { key: fields.CurrentBalance, value: LangHelper.getSingleResource('CurrentBalance'), show: true },
     { key: fields.OutstandingBalance, value: LangHelper.getSingleResource('OutstandingBalance'), show: true },
     { key: fields.OddsGroup, value: LangHelper.getSingleResource('OddsGroup'), show: true },
     { key: fields.BaStatus, value: LangHelper.getSingleResource('BAStatus'), show: true },
     { key: fields.SpecialLevel, value: LangHelper.getSingleResource('SpecialLevel'), show: true },
-    { key: fields.LastTransaction, value: LangHelper.getSingleResource('LastTransfer'), show: true },
-    { key: fields.Email, value: LangHelper.getSingleResource('Email'), show: true }
 ];
 
 export const contextMenuKeys = {
@@ -146,15 +140,12 @@ export const headerText = {
     Status: LangHelper.getSingleResource('Status'),
     UserName: LangHelper.getSingleResource('Username'),
     SystemId: LangHelper.getSingleResource('SystemId'),
-    RealName: LangHelper.getSingleResource('RealName'),
     Currency: LangHelper.getSingleResource('Currency'),
     CurrentBalance: LangHelper.getSingleResource('CurrentBalance'),
     OutstandingBalance: LangHelper.getSingleResource('OutstandingBalance'),
     OddsGroup: LangHelper.getSingleResource('OddsGroup'),
     BaStatus: LangHelper.getSingleResource('BAStatus'),
     SpecialLevel: LangHelper.getSingleResource('SpecialLevel'),
-    LastTransaction: LangHelper.getSingleResource('LastTransfer'),
-    Email: LangHelper.getSingleResource('Email')
 }
 
 export const gridItemDropdownHeight = {
@@ -168,7 +159,7 @@ export const stringTypeFields = [fields.UserName, fields.RealName, fields.Curren
 export const apiInfo = {
     lrfSearch: { action: 'api/PlayerList/Search', type: systemType.lrf },
     lrfDataById: { action: 'api/PlayerList/GetPlayerListById', type: systemType.lrf },
-    lapSearch: { action: 'PlayerAdminContainer/Search', type: systemType.newAdmin },
+    lapSearch: { action: 'api/PlayerList/Search', type: systemType.newAdmin },
     lapDataById: { action: 'PlayerAdminContainer/GetPlayerListById', type: systemType.newAdmin },
     lapGetPlayerByLicenseeId: { action: 'PlayerAdminContainer/GetPlayerById', type: systemType.newAdmin }
 }

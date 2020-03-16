@@ -1,13 +1,11 @@
 ﻿namespace Fanex.Athena.Controllers.BetList
 {
-    using Fanex.Athena.Service.StatelessCore.Utility;
-    using Fanex.Athena.Web.ActionFilter;
-
-    using Model.BetList.MetaModel;
-    using Model.BetList.ViewModel;
-
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Fanex.Athena.Service.StatelessCore.Utility;
+    using Fanex.Athena.Web.ActionFilter;
+    using Model.BetList.MetaModel;
+    using Model.BetList.ViewModel;
 
     public class CashOutBetListController : BetListBaseController
     {

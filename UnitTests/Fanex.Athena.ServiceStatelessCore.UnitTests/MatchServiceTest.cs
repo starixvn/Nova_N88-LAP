@@ -101,20 +101,6 @@
         }
 
         [Test]
-        public async Task GetForecastMatchListByLeague_WhenCall_ReturnResultFromDataAccess()
-        {
-            // Arrange
-            var leagueId = FakeHelper.Create<int>();
-            _matchDataAccess.GetForecastMatchListByLeague(leagueId).Returns(ExpectedResultDataList);
-
-            // Action
-            var result = await _matchService.GetForecastMatchListByLeagueAsync(leagueId);
-
-            // Assert
-            Assert.That(result[0].MatchId, Is.EqualTo(ExpectedResultDataList[0].MatchId));
-        }
-
-        [Test]
         public async Task GetMatchesByLeague_WhenCall_ReturnResultFromDataAccess()
         {
             // Arrange

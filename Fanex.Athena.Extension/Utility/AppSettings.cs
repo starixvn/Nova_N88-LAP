@@ -52,14 +52,6 @@ namespace Fanex.Athena.Extension.Utility
             }
         }
 
-        public IEnumerable<int> LicenseeOfferNewForecast
-        {
-            get
-            {
-                return GetIntegers("LicenseeOfferNewForecast");
-            }
-        }
-
         public IEnumerable<int> LicenseeAllowCasinoTransfer
         {
             get

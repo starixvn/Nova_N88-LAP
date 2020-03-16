@@ -1,0 +1,53 @@
+﻿namespace Fanex.Athena.Api.PlayerManagement
+{
+    using System;
+    using System.Web.Http;
+    using Fanex.Athena.Api.Base;
+    using Fanex.Athena.Api.Base.Attributes;
+    using Fanex.Athena.Api.PlayerManagement.Utilities;
+    using Fanex.Athena.Extension.Helpers;
+    using Fanex.Athena.Model.Core.ViewModel;
+    using Fanex.Athena.Model.PlayerManagement.MetaModel;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
+    using Fanex.Athena.Service.PlayerManagement.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Logging;
+
+    public class PlayerSpecialLevelController : BaseApiController
+    {
+        private readonly IPlayerSpecialLevelService _playerSpecialLevelService;
+        private readonly ILicenseeSettingService _licenseeSettingService;
+        private readonly ILogger _logger;
+
+        public PlayerSpecialLevelController(
+            ILanguageService languageService,
+            IPlayerSpecialLevelService playerSpecialLevelService,
+            ILicenseeSettingService licenseeSettingService,
+            ILogger logger) : base(languageService)
+        {
+            _playerSpecialLevelService = playerSpecialLevelService;
+            _licenseeSettingService = licenseeSettingService;
+            _logger = logger;
+        }
+
+        [HttpPost]
+        [ApiAutoBindMetaModelAttribute(BindUserId = true, BindIp = true, BindLanguage = true, BindSiteName = true)]
+        public ResultViewModel Update(SpecialLevelUpdatingMetaModel metaModel)
+        {
+            try
+            {
+                return _playerSpecialLevelService.Update(metaModel);
+            }
+            catch (Exception exception)
+            {
+                _logger.Error(LogMessageHelper.GenerateMessage(exception));
+            }
+
+            return new ResultViewModel
+            {
+                Success = false,
+                ErrorMessage = ResourceKeyConstants.FunctionDenied
+            };
+        }
+    }
+}

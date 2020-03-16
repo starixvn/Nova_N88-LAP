@@ -9676,10 +9676,6 @@ var PageLayout = function PageLayout(props) {
       label: item.label,
       url: item.url
     });
-  }), hasExchange && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_simple_tab__WEBPACK_IMPORTED_MODULE_6__["Tab"], {
-    isActive: selectedTabIndex == 4,
-    label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("Exchange"),
-    url: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_8__["default"].resolveClientUrl("ExchangeVoided")
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, children)));
 };
 

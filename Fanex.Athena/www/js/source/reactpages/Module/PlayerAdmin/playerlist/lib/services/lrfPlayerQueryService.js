@@ -6,12 +6,15 @@ export default class LrfPlayerQueryService {
 
         return commonService.fetchData(lrfSearch.type, lrfSearch.action, {...param })
             .then(lrfResponse => {
-                const { DataList: lrfPlayerList, TotalItem } = lrfResponse.data;
-                if (!lrfPlayerList || !lrfPlayerList.length) {
+                const { DataList, TotalItem } = lrfResponse.data;
+                if (!DataList || !DataList.length) {
                     return PlayerListDataHelper.createEmptyResult();
                 }
 
-                return this._fetchFromLap(lrfPlayerList, lapDataById, commonService, TotalItem);
+                return {
+                    playerList : DataList,
+                    totalItem: TotalItem
+                };
             })
             .catch(() => PlayerListDataHelper.createEmptyResult());
     }

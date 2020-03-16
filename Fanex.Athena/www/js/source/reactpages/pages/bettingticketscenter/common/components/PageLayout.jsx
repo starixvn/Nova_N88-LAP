@@ -12,7 +12,7 @@ import AppData from '@jsroot/lib/AppData';
 
 export const PageLayout = (props) => {
     const { toggleLoader, isConvertAll, selectedBaseCurrency, selectedTabIndex, children } = props;
-    
+
     const getResource = (key) => {
         return LangHelper.getSingleResource(key);
     }

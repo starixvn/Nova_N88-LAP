@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 2/28/2020 11:51:19 AM
+// Generated at: 2/28/2020 11:54:17 AM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -102,13 +102,11 @@ window._language_zh_CN = {
   AccountManagement: "帐户管理",
   Action: "动作",
   Active: "活跃",
-  ActiveCustomerSummary: "活跃会员人数摘要",
   AD: "客和",
   Adjustment: "调整",
   AdvancedSearch: "进阶搜寻",
   AffiliateTransfer: "合作伙伴转账",
   AGCasino: "AG Casino",
-  AGCasinoBalance: "AG Casino Balance",
   AGCasinoNotOfferCurrency: "AG Casino is not offered for this currency.",
   AH: "客主",
   Alert: "Alert",
@@ -212,7 +210,6 @@ window._language_zh_CN = {
   Close: "关闭",
   Closed: "关闭",
   ClosingBalance: "期末余额",
-  ColossusBetsWinLoss: "CB足彩输赢",
   Columns: "Columns",
   Comm: "佣金",
   CommIsClear: "会员的佣金已清空",
@@ -252,7 +249,6 @@ window._language_zh_CN = {
   CustomersBelongGroupsBeRemovedMsg: "只有属于组的会员将从他们所属的组中移除。",
   CustomerSetting: "会员设定",
   CustomersExistedinGroupMsg: "选择的会员已经出现在此组",
-  CustomerTurnover: "会员交易额",
   CustomerW_L: "会员输赢",
   CustomerWinLoss: "会员輸贏",
   CustomerWinLossTitle: "会员输赢, {0} --&gt; {1} - {2}",
@@ -615,7 +611,6 @@ window._language_zh_CN = {
   SessionLoggedMsg: "您已从另一会话登入或您的登入会话已过期",
   SetAsDefaultGroup: "设置为默认组",
   SettleAmount: "结算总额",
-  SettledMatchCount: "已结算赛事计数",
   Show: "显示",
   ShowAllLeagues: "显示所有联赛",
   ShowOldValue: "显示旧值",
@@ -632,7 +627,6 @@ window._language_zh_CN = {
   Su: "Su",
   Submit: "提交",
   Subsidiary: "子网站",
-  SubsidiaryPerformance: "子网站报告",
   SubsidiaryWL: "子网站输赢",
   Summary: "总结",
   Sunday: "星期六",

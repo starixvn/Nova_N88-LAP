@@ -1,9 +1,11 @@
 ﻿using System;
 
 using Fanex.Athena.DataAccess.Core.Users.Interfaces;
+using Fanex.Athena.Model.Auth;
 using Fanex.Athena.Model.Core.DTO.Common;
 using Fanex.Athena.Model.Core.DTO.Users;
 using Fanex.Athena.Resources;
+using Fanex.Athena.Service.Core.Helper;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Common;
 
@@ -35,6 +37,18 @@ namespace Fanex.Athena.Service.Core.Users
         public void Logout(int onuserId)
         {
             this._authenticationDataAccess.Logout(onuserId);
+        }
+
+        public string ApplyToken(TokenInfo token, int Expiry = 1)
+        {
+            Guid g = Guid.NewGuid();
+            string GuidString = Convert.ToBase64String(g.ToByteArray());
+            GuidString = GuidString.Replace("=", "");
+            GuidString = GuidString.Replace("+", "");
+
+            this._authenticationDataAccess.ApplyToken(GuidString, JsonSerializerHelper.ToJson(token), Expiry);
+
+            return GuidString;
         }
 
         public IResultInfo<User> ValidateUserForLrf(User requestUser, string loginToken)

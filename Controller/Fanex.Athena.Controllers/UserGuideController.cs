@@ -47,7 +47,7 @@
             var content = GetFileContent(resourceName);
             var products = _productService.GetProductList(
                 SessionServiceInstance.LicenseeSession.LicenseeId,
-                SessionServiceInstance.UserSessionInfo.Language);
+                SessionServiceInstance.UserSession.Language);
 
             content = content.Replace("{rooturl}", Url.Content("~"));
             content = AddSpecialProducts(content, products);
@@ -59,7 +59,7 @@
         [FunctionAuthorization(PermissionKeys.CustomerInfoCustomerList)]
         public FilePathResult DownloadCustomerListPdf()
         {
-            var language = SessionServiceInstance.UserSessionInfo.Language;
+            var language = SessionServiceInstance.UserSession.Language;
             var fileName = SessionServiceInstance.LicenseeSession.IsEnableBA ? "Odds Group Feature_Licensee_BA.pdf" : "Odds Group Feature_Licensee.pdf";
             var filePath = Server.MapPath(string.Format(@"~/App_Data/UserGuide/{0}/pdf/{1}/{2}", CustomerListResourceName, language, fileName));
             filePath = GetDefaultFilePathIfNotExist(language, filePath);
@@ -152,7 +152,7 @@
 
         private string GetFileContent(string resourceName)
         {
-            var language = SessionServiceInstance.UserSessionInfo.Language;
+            var language = SessionServiceInstance.UserSession.Language;
 
             var filePath = Server.MapPath(string.Format(@"~/App_Data/UserGuide/{0}/{1}.htm", resourceName, language));
             filePath = GetDefaultFilePathIfNotExist(language, filePath);

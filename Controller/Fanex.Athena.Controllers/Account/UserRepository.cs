@@ -1,14 +1,11 @@
-﻿using Fanex.Common.Extensions;
-using Fanex.Data;
-using Fanex.Data.Repository;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
+using Fanex.Data;
+using Fanex.Data.Repository;
 
 namespace Fanex.Athena.Controllers.Account
 {

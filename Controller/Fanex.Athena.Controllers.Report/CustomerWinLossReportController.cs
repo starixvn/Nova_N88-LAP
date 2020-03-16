@@ -50,7 +50,7 @@ namespace Fanex.Athena.Controllers.Report
         [ValidationWebRequest(IsValidCurrency = true, IsIncludeKeanOcean = true)]
         public async Task<ActionResult> Index(CustomerWinLossMetaModel metaModel)
         {
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
             if (metaModel.IsExportExcel)
             {
                 const string FileName = "CustomerWinLoss";
@@ -66,7 +66,7 @@ namespace Fanex.Athena.Controllers.Report
         private ActionResult GetView(bool isHistory)
         {
             var licenseeSession = SessionServiceInstance.LicenseeSession;
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
             var metaModel = new CustomerWinLossMetaModel
             {
                 IsExcludedTestData = true,

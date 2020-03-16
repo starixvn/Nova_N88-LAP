@@ -31,26 +31,26 @@ namespace Fanex.Athena.Service.StatelessCore
             _cache = cache;
         }
 
+        //public bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
+        //{
+        //    if (userAuthInfo.ApplicationMode == AppMode.Parasitic)
+        //    {
+        //        if (userAuthInfo.IsSuperAdmin)
+        //        {
+        //            return true;
+        //        }
+
+        //        return userAuthInfo.PortalFunctionList.Any(i => permissionKeys.Contains(i.FunctionKey,
+        //            StringComparer.InvariantCultureIgnoreCase)
+        //        || (i.SubFunctionKeys != null && i.SubFunctionKeys.Intersect(permissionKeys).Any()));
+        //    }
+
+        //    return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
+        //}
+
         public bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
         {
-            if (userAuthInfo.ApplicationMode == AppMode.Parasitic)
-            {
-                if (userAuthInfo.IsSuperAdmin)
-                {
-                    return true;
-                }
-
-                return userAuthInfo.PortalFunctionList.Any(i => permissionKeys.Contains(i.FunctionKey,
-                    StringComparer.InvariantCultureIgnoreCase)
-                || (i.SubFunctionKeys != null && i.SubFunctionKeys.Intersect(permissionKeys).Any()));
-            }
-
             return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
-        }
-
-        public bool HasPermissions(UserSessionInfo userSessionInfo, params string[] permissionKeys)
-        {
-            return userSessionInfo.Functions.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
         }
 
         public bool IsAllowedEditCommission(UserAuthInfo userAuthInfo)

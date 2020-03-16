@@ -45,5 +45,7 @@ namespace Fanex.Athena.Model.Auth
         public string FunctionKey { get; set; }
 
         public bool IsFunction { get; set; }
+
+        public int Policy { get; set; }
     }
 }

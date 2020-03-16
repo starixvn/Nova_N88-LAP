@@ -20,7 +20,7 @@
         [AllowAnonymous]
         public ActionResult Index(int? licenseeId)
         {
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
             if (userSession == null || userSession.UserId <= 0)
             {
                 return RedirectToAction("SignIn", "Authorization");
@@ -44,7 +44,7 @@
                     return RedirectToHome(licenseeList[0].Id);
                 }
 
-                ViewBag.CurrentUsername = userSession.Username;
+                ViewBag.CurrentUsername = userSession.UserName;
                 ViewBag.LicenseeList = licenseeList;
             }
 

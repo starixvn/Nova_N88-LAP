@@ -29,7 +29,7 @@
         [ValidationApiRequest]
         public async Task<dynamic> GetBySingleCustomer(SingleCustomersBetListMetaModel metaModel)
         {
-            var userSession = SessionService.UserSessionInfo;
+            var userSession = SessionService.UserSession;
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList);
 
@@ -44,7 +44,7 @@
         [ValidationApiRequest]
         public async Task<dynamic> GetByRefno(RefNoBetListMetaModel metaModel)
         {
-            var userSession = SessionService.UserSessionInfo;
+            var userSession = SessionService.UserSession;
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
 
@@ -59,7 +59,7 @@
         [ValidationApiRequest(IsValidCurrencyList = true)]
         public async Task<dynamic> GetByRunning(BaseBettingTicketMetaModel metaModel)
         {
-            var userSession = SessionService.UserSessionInfo;
+            var userSession = SessionService.UserSession;
             var currencyList = metaModel.CurrencyIdList?.Split(',').Select(x => int.Parse(x)).ToArray();
 
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, currencyList);

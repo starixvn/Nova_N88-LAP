@@ -215,7 +215,7 @@ namespace Fanex.Athena.Api.Report
             LicenseeWinLossMetaModel metaModel,
             SortableReportResultModel<LicenseeWinLoss> data)
         {
-            var userSession = SessionService.UserSessionInfo;
+            var userSession = SessionService.UserSession;
             const string FileName = "LicenseeWinLoss.xls";
             var templatePath = HostingEnvironment.MapPath(@"~/App_Data/Template/Reports/LicenseeWinLoss.xls");
             var productAccess = ProductService.GetProductAccess(_appSettings.LicenseeId, userSession.Language);
@@ -269,7 +269,7 @@ namespace Fanex.Athena.Api.Report
         {
             if (metaModel.IsValid)
             {
-                var userCurrencyList = SessionService.UserSessionInfo.CurrencyList;
+                var userCurrencyList = SessionService.UserSession.CurrencyList;
                 SortableReportResultModel<LicenseeWinLoss> result;
                 if (metaModel.DrillDownLevel == 0)
                 {
@@ -304,7 +304,7 @@ namespace Fanex.Athena.Api.Report
             int custId = 0,
             string currencyName = null)
         {
-            var userSession = SessionService.UserSessionInfo;
+            var userSession = SessionService.UserSession;
             metaModel.DefaultBaseCurrency = userSession.DefaultBaseCurrency;
             metaModel.DrillDownLevel = level;
             metaModel.DrillDownFromDate = fdate ?? metaModel.DrillDownFromDate;

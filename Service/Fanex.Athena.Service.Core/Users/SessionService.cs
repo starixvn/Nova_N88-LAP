@@ -10,13 +10,10 @@
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Model.Auth.Enum;
-    using Fanex.Athena.Model.Core.DTO.Users;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.NAP.Core.Configuration;
-    using Fanex.NAP.Core.Models;
     using Fanex.NAP.Core.Models.ValueObject;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
@@ -30,17 +27,17 @@
         private readonly IFunctionService _functionService;
         private readonly ILicenseeDataAccess _licenseeDataAccess;
         private readonly ICurrencyDataAccess _currencyDataAccess;
-        NAP.Core.Service.Interface.IUserService _napUserService;
         private readonly ISessionStorage _sessionStorage;
+        private readonly Fanex.NAP.Core.Service.Interface.IUserService _napUserService;
         private readonly IAppSettings _appSettings;
 
         public SessionService(
             IFunctionService functionService,
             ILicenseeDataAccess licenseeDataAccess,
             ICurrencyDataAccess currencyDataAccess,
-            NAP.Core.Service.Interface.IUserService napUserService,
             IAppSettings appSettings,
-            ISessionStorage sessionStorage)
+            ISessionStorage sessionStorage,
+            Fanex.NAP.Core.Service.Interface.IUserService napUserService)
         {
             _functionService = functionService;
             _licenseeDataAccess = licenseeDataAccess;
@@ -68,24 +65,12 @@
             }
         }
 
-        public UserSessionInfo UserSessionInfo
-        {
-            get
-            {
-                return _sessionStorage.UserSessionInfo; 
-            }
-        }
-
         public string CaptchaCode
         {
             get { return _sessionStorage.CaptchaCode; }
             set { _sessionStorage.CaptchaCode = value; }
         }
 
-        public void AssignSessions(UserSessionInfo userSession, LicenseeAuthInfo licenseeSession)
-        {
-            _sessionStorage.AssignSessions(userSession, licenseeSession);
-        }
 
         public void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession)
         {
@@ -100,13 +85,13 @@
         {
             var functions = _napUserService.GetPermissions(userId, NapSettings.Settings.SiteId, string.Empty, NapSettings.Settings.Environment).ToList();
 
-            var userSession = new UserSessionInfo
+            var userSession = new UserAuthInfo
             {
                 UserId = userId,
                 OnUserId = onuserId,
-                Username = userName,
+                UserName = userName,
                 Language = language,
-                Functions = GetUserFunction(functions).ToList(),
+                FunctionList = GetUserFunction(functions).ToList(),
                 DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
             };
 
@@ -178,7 +163,7 @@
             };
         }
 
-        public void AssignCurrenciesToUserSession(UserSessionInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null)
+        public void AssignCurrenciesToUserSession(UserAuthInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null)
         {
             var currencyUsers = currencyUserList ?? _currencyDataAccess.GetCurrenciesByLicensee(_appSettings.LicenseeId);
 
@@ -201,7 +186,7 @@
             userSession.CurrencyAgentList = currencyAgentList;
         }
 
-        private void AssignMenuToUserSession(UserSessionInfo userSessionInfo)
+        private void AssignMenuToUserSession(UserAuthInfo userSessionInfo)
         {
             var menuItems = _napUserService.GetMenuItem(userSessionInfo.UserId, NapSettings.Settings.SiteId,
                 NapSettings.Settings.Environment, true)
@@ -233,13 +218,13 @@
             userSession.CurrencyAgentList = currencyAgentList;
         }
 
-        private IEnumerable<UserFunction> GetUserFunction(List<FunctionPolicy> functionPolicies)
+        private IEnumerable<Function> GetUserFunction(List<FunctionPolicy> functionPolicies)
         {
-            var functions = new List<UserFunction>();
+            var functions = new List<Function>();
 
             functionPolicies.ForEach(function =>
             {
-                functions.Add(new UserFunction
+                functions.Add(new Function
                 {
                     FunctionKey = function.Function.Key,
                     Policy = function.Policy

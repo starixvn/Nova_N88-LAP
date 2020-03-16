@@ -56,7 +56,7 @@
         {
             var sports = await _sportTypeDataAccess.GetSportsAndProducts(
                  _sessionService.LicenseeSession.LicenseeId,
-                 _sessionService.UserSessionInfo.Language,
+                 _sessionService.UserSession.Language,
                  productCode);
 
             return sports.Where(x => x.ParentId > -1).Select(x => new { value = x.ID, label = x.Name });
@@ -68,7 +68,7 @@
             var bettypes = await _betTypeService.GetBettypesByProduct(
                 _sessionService.LicenseeSession.LicenseeId,
                 productCode,
-                _sessionService.UserSessionInfo.Language);
+                _sessionService.UserSession.Language);
 
             return bettypes.Select(x => new { value = x.ID, label = x.Name });
         }
@@ -76,7 +76,7 @@
         [HttpGet]
         public async Task<IEnumerable<object>> GetLeagues(DateTime fromDate, DateTime toDate, int sportId = 0)
         {
-            var userSession = _sessionService.UserSessionInfo;
+            var userSession = _sessionService.UserSession;
             var metaModel = new LeagueMetaModel
             {
                 FromDate = fromDate,

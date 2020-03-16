@@ -33,7 +33,7 @@ namespace Fanex.Athena.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
             var viewModel = new HeaderPageViewModel
             {
                 Language = string.IsNullOrEmpty(userSession.Language) ? DefaultLanguage : userSession.Language,
@@ -41,9 +41,9 @@ namespace Fanex.Athena.Controllers
                 IsInternalLogin = userSession.IsInternal,
                 HasRecheckIn = !AppSettingInstance.LocalTest,
                 SupportedLanguageList = Util.SupportedLanguages,
-                UserName = userSession.Username,
+                UserName = userSession.UserName,
                 CurrentLicenseeId = _appSettings.LicenseeId,
-                IsAllowedManagementMember = userSession.Functions.Any(x => x.FunctionKey == PermissionKeys.UserManagement),
+                IsAllowedManagementMember = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.UserManagement),
                 IsFakeLicensee = false,
                 IsAllowedNotification = false
             };

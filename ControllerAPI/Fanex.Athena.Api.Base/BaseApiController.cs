@@ -23,7 +23,7 @@
             _langService = languageService ?? throw new ArgumentNullException(nameof(languageService));
         }
 
-        protected IDictionary<int, string> UserCurrencyList => SessionService.UserSessionInfo.CurrencyList;
+        protected IDictionary<int, string> UserCurrencyList => SessionService.UserSession.CurrencyList;
 
         public IProductService ProductService { get; set; }
         public ISessionService SessionService { get; set; }

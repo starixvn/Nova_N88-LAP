@@ -5,7 +5,7 @@
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var appSettings = DependencyResolver.Current.GetService<IAppSettings>();
     var licenseeSettingService = DependencyResolver.Current.GetService<ILicenseeSettingService>();
-    var userSession = sessionService.UserSessionInfo;
+    var userSession = sessionService.UserSession;
     var userCurrencies = userSession == null || userSession.CurrencyList == null ?
         new Dictionary<string, string>() :
         userSession.CurrencyList.ToDictionary(x => x.Key.ToString(), x => x.Value);

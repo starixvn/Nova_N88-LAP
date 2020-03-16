@@ -21,11 +21,7 @@ namespace Fanex.Athena.Service.Core.Users.Interfaces
 
         UserAuthInfo UserSession { get; }
 
-        UserSessionInfo UserSessionInfo { get; }
-
         void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession);
-
-        void AssignSessions(UserSessionInfo userSession, LicenseeAuthInfo licenseeSession);
 
         void CreateNewSession(
             int userId,
@@ -37,7 +33,7 @@ namespace Fanex.Athena.Service.Core.Users.Interfaces
 
         bool UpdateLanguage(string languageCode);
 
-        void AssignCurrenciesToUserSession(UserSessionInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null);
+        void AssignCurrenciesToUserSession(UserAuthInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null);
 
         void AssignCurrenciesToUserSession(UserAuthInfo userSession, int licenseeId, IEnumerable<CurrencyUser> currencyUserList = null);
     }

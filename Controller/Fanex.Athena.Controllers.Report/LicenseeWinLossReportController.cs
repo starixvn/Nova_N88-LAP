@@ -72,7 +72,7 @@ namespace Fanex.Athena.Controllers.Report
 
         private ActionResult MapToView()
         {
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
             var licenseeSession = SessionServiceInstance.LicenseeSession;
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
                 SessionServiceInstance.LicenseeSession.LicenseeName);
@@ -110,7 +110,7 @@ namespace Fanex.Athena.Controllers.Report
 
         private ActionResult MapToFakeView()
         {
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
                 SessionServiceInstance.LicenseeSession.LicenseeName);
             var selectedDate = GetSelectedDate(reportSetting);

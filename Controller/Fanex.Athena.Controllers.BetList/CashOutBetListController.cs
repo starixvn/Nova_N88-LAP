@@ -13,7 +13,7 @@
         [ValidationWebRequest]
         public async Task<ActionResult> Detail(CashOutBetListDetailMetaModel metaModel)
         {
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList);
             metaModel.HasPlayerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm;
 

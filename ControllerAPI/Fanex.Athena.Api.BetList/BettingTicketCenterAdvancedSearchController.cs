@@ -45,7 +45,7 @@
                 };
             }
 
-            var userSession = SessionService.UserSessionInfo;
+            var userSession = SessionService.UserSession;
             var currencyList = metaModel.CurrencyIdList?.Split(',').Select(x => int.Parse(x)).ToArray();
 
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, currencyList);

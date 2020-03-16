@@ -25,7 +25,7 @@ namespace Fanex.Athena.Controllers.Report
         public ActionResult Index()
         {
             var licenseeSession = this.SessionServiceInstance.LicenseeSession;
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
 
             var metaModel = new ThirdPartyWinLossMetaModel
             {

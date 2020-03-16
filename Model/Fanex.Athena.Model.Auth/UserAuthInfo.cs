@@ -9,6 +9,7 @@ namespace Fanex.Athena.Model.Auth
 {
     using System.Collections.Generic;
     using Fanex.Athena.Model.Auth.Enum;
+    using Fanex.NAP.Core.Models;
 
     [Serializable]
     public class UserAuthInfo
@@ -57,5 +58,7 @@ namespace Fanex.Athena.Model.Auth
 
         public AppMode ApplicationMode { get; set; }
         public string DefaultBaseCurrency { get; set; } = string.Empty;
+
+        public IList<MenuItem> MenuItemList { get; set; }
     }
 }

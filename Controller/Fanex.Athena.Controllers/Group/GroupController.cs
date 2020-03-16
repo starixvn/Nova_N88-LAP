@@ -23,7 +23,7 @@
             ViewBag.ViewFlags.HasAssignFunctionRight = true;
             ViewBag.ViewFlags.HasManageUserRight = true;
 
-            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(string.Empty, NapSettings.Settings.Environment, isLicenseeGroup: false,siteId: NapSettings.Settings.SiteId);
+            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(string.Empty, NapSettings.Settings.Environment, isLicenseeGroup: false, siteId: NapSettings.Settings.SiteId);
 
             return View(new GetAllWithNumOfUserGroupCriteria());
         }
@@ -45,6 +45,5 @@
 
             return View("~/View/Group/Manage", criteria);
         }
-
     }
 }

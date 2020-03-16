@@ -32,7 +32,7 @@
 
         public IBalanceUpDataAccess BalanceUpDataAccessInstance { get; set; }
 
-        protected IDictionary<int, string> UserCurrencyList => SessionServiceInstance.UserSessionInfo.CurrencyList;
+        protected IDictionary<int, string> UserCurrencyList => SessionServiceInstance.UserSession.CurrencyList;
 
         public IProductService ProductService { get; set; }
 
@@ -88,7 +88,7 @@
         protected BetListMetaModel CreateDefaultMetaModel(BetListMetaModel metaModel = null)
         {
             var licenseeSession = SessionServiceInstance.LicenseeSession;
-            var userSession = SessionServiceInstance.UserSessionInfo;
+            var userSession = SessionServiceInstance.UserSession;
             var defaultMetaModel = metaModel ?? new BetListMetaModel();
             defaultMetaModel.LicenseeId = licenseeSession.LicenseeId;
             defaultMetaModel.UserId = userSession.UserId;
@@ -112,7 +112,7 @@
             if (metaModel != null && string.IsNullOrEmpty(metaModel.BaseCurrency)
                 && metaModel.CurrencyId == 0)
             {
-                metaModel.BaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency;
+                metaModel.BaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency;
             }
         }
 
@@ -136,7 +136,7 @@
             string fileName,
             string apiPath = null)
         {
-            var data = await BetListApiClient.PostStreamAsync(apiPath ?? "/BetList/ExportExcel", metaModel, SessionServiceInstance.UserSessionInfo.Language).ConfigureAwait(false);
+            var data = await BetListApiClient.PostStreamAsync(apiPath ?? "/BetList/ExportExcel", metaModel, SessionServiceInstance.UserSession.Language).ConfigureAwait(false);
             return File(data, "application/vnd.ms-excel", fileName + ".xls");
         }
 

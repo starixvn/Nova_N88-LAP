@@ -67,7 +67,6 @@
     <Compile Include="TokenInfo.cs" />
     <Compile Include="UserAuthInfo.cs" />
     <Compile Include="UserFunction.cs" />
-    <Compile Include="UserSessionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Resources\Fanex.Athena.Resources\Fanex.Athena.Resources.csproj">

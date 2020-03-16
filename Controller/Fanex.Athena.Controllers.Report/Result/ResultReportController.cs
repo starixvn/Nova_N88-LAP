@@ -48,7 +48,7 @@ namespace Fanex.Athena.Controllers.Report.Result
                     BalanceUpDay = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay
                 }
             };
-            var productAccess = ProductServiceInstance.GetProductAccess(SessionServiceInstance.LicenseeSession.LicenseeId, SessionServiceInstance.UserSessionInfo.Language);
+            var productAccess = ProductServiceInstance.GetProductAccess(SessionServiceInstance.LicenseeSession.LicenseeId, SessionServiceInstance.UserSession.Language);
             ViewBag.IsAllowedRNG = productAccess.IsAllowCS;
             ViewBag.IsAllowedKeno = productAccess.IsAllowKN;
             ViewBag.IsAllowedLottery = productAccess.IsAllow(Product.LT);
@@ -66,7 +66,7 @@ namespace Fanex.Athena.Controllers.Report.Result
                 var data = await _betListApiClient.PostStringAsync(
                     "/ResultReport/Index",
                     metaModel,
-                    SessionServiceInstance.UserSessionInfo.Language);
+                    SessionServiceInstance.UserSession.Language);
 
                 return this.Content(data, "text/html");
             }
@@ -88,7 +88,7 @@ namespace Fanex.Athena.Controllers.Report.Result
             var stream = await _betListApiClient.PostStreamAsync(
                 "/ResultReport/ResultExcel",
                 metaModel,
-                SessionServiceInstance.UserSessionInfo.Language);
+                SessionServiceInstance.UserSession.Language);
             return File(stream, "application/vnd.ms-excel", FileName);
         }
 
@@ -100,7 +100,7 @@ namespace Fanex.Athena.Controllers.Report.Result
             if (ModelState.IsValid)
             {
                 metaModel.LicenseeId = SessionServiceInstance.LicenseeSession.LicenseeId;
-                var language = SessionServiceInstance.UserSessionInfo.Language;
+                var language = SessionServiceInstance.UserSession.Language;
                 var productAccess = ProductServiceInstance.GetProductAccess(
                    metaModel.LicenseeId,
                    language,
@@ -129,7 +129,7 @@ namespace Fanex.Athena.Controllers.Report.Result
                 var result = await _betListApiClient.PostStringAsync(
                     "/ResultReport/ResultPopup",
                     metaModel,
-                    SessionServiceInstance.UserSessionInfo.Language);
+                    SessionServiceInstance.UserSession.Language);
 
                 ViewBag.Data = result;
                 return View("~/Views/Desktop/Report/Result/Popup/Main.cshtml");
@@ -145,7 +145,7 @@ namespace Fanex.Athena.Controllers.Report.Result
             var result = await _betListApiClient.PostStringAsync(
                 "/ResultReport/ShowRngCasinoSingleWalletResult",
                 new { refNo },
-                SessionServiceInstance.UserSessionInfo.Language);
+                SessionServiceInstance.UserSession.Language);
 
             return this.Content(result, "application/json");
         }
@@ -153,7 +153,7 @@ namespace Fanex.Athena.Controllers.Report.Result
         [HttpGet]
         public async Task<string> VoidbridgeResult(string custId, string gamePlayId)
         {
-            var language = SessionServiceInstance.UserSessionInfo.Language;
+            var language = SessionServiceInstance.UserSession.Language;
             var model = new
             {
                 custId,
@@ -167,7 +167,7 @@ namespace Fanex.Athena.Controllers.Report.Result
         [HttpGet]
         public async Task<ActionResult> AllBetResult(string transDesc, string betCheck, string betType)
         {
-            var language = SessionServiceInstance.UserSessionInfo.Language;
+            var language = SessionServiceInstance.UserSession.Language;
             var model = new
             {
                 transDesc,
@@ -189,7 +189,7 @@ namespace Fanex.Athena.Controllers.Report.Result
                 gameId
             };
             return await _betListApiClient.PostStringAsync("/GlobalGamingResultPopup/Index",
-                model, SessionServiceInstance.UserSessionInfo.Language).ConfigureAwait(false);
+                model, SessionServiceInstance.UserSession.Language).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Fanex.Athena.Controllers.Report.Result
         [HttpGet]
         public async Task<ActionResult> ResultDetail(int matchId, int sportType)
         {
-            var language = SessionServiceInstance.UserSessionInfo.Language;
+            var language = SessionServiceInstance.UserSession.Language;
             var model = new
             {
                 matchId,

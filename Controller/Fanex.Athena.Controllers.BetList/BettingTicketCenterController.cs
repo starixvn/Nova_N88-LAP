@@ -70,7 +70,7 @@
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterAdvancedSearch),
                 MinDate = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay,
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
-                SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
+                SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml", viewModel);
@@ -87,7 +87,7 @@
                 PlatformList = GetPlatformList(),
                 ProductOptionList = GetProductOptionList(),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
-                SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
+                SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml", viewModel);
@@ -102,7 +102,7 @@
                 ViewResources.BettingTicketCenter_RefnoTabNote2,
                 GetProductsRequireUseName(),
                 _balanceUpDataAccess.GetBalanceUp().BalanceUpDay.ToString(FormatKey.DateFormat));
-            ViewBag.SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency;
+            ViewBag.SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency;
             ViewBag.TabList = tabList;
 
             return View(
@@ -120,7 +120,7 @@
                 CurrencyList = GetCurrencyList(),
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterRunning),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
-                SelectedBaseCurrency = SessionServiceInstance.UserSessionInfo.DefaultBaseCurrency,
+                SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
                 TabList = tabList
             };
 
@@ -130,7 +130,7 @@
         private IEnumerable<string> GetEnableTabList()
         {
             var functionKeys = userService.GetPermissions(
-                SessionServiceInstance.UserSessionInfo.UserId,
+                SessionServiceInstance.UserSession.UserId,
                 NapSettings.Settings.SiteId,
                 PermissionKeys.BetHistory,
                 NapSettings.Settings.Environment).Select(x => x.Function.Key);
@@ -156,7 +156,7 @@
 
             var productAccess = _productService.GetSingleWalletProductAccess(
                 SessionServiceInstance.LicenseeSession.LicenseeId,
-                SessionServiceInstance.UserSessionInfo.Language);
+                SessionServiceInstance.UserSession.Language);
 
             var licProductsRequireUseName = productAccess.ProductList
                 .Where(product => productsRequireUseName.Contains(product.ProductCode))
@@ -221,14 +221,14 @@
 
         private IDictionary<int, string> GetCurrencyList()
         {
-            return SessionServiceInstance.UserSessionInfo.CurrencyList;
+            return SessionServiceInstance.UserSession.CurrencyList;
         }
 
         private IEnumerable<ProductOption> GetProductOptionList(string functionConfigKey = FunctionNames.BettingTicketCenter)
         {
             var productAccess = _productService.GetSingleWalletProductAccess(
                 SessionServiceInstance.LicenseeSession.LicenseeId,
-                SessionServiceInstance.UserSessionInfo.Language,
+                SessionServiceInstance.UserSession.Language,
                 functionConfigKey);
 
             return productAccess.ProductList.Select(i => new ProductOption

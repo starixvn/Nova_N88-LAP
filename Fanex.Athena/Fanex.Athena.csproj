@@ -632,6 +632,11 @@
     <Content Include="Views\Account\AssignPermission.cshtml" />
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Account\NewUser.cshtml" />
+    <Content Include="Views\Group\AddNew.cshtml" />
+    <Content Include="Views\Group\AssignPermission.cshtml" />
+    <Content Include="Views\Group\Edit.cshtml" />
+    <Content Include="Views\Group\GroupInfo.cshtml" />
+    <Content Include="Views\Group\Manage.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

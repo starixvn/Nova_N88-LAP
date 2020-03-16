@@ -413,8 +413,12 @@
     <Content Include="img\Account\site-ico.png" />
     <Content Include="img\Account\user-info-ico.png" />
     <Content Include="karma-new-bypage.conf.js" />
+    <Content Include="Scripts\Account\EditAccount.js" />
+    <Content Include="Scripts\Account\EditPermission.js" />
     <Content Include="Scripts\Account\Manage.js" />
+    <Content Include="Scripts\Account\ManageAccount.js" />
     <Content Include="Scripts\Account\NAP.js" />
+    <Content Include="Scripts\Account\ResetPassword.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.min.js" />
     <Content Include="SpNameConfig\FanexSpName.BACKUPMNL.xml">
@@ -777,7 +781,6 @@
     <Content Include="www\css\build\dev\reactpages\licenseewlbytimezone\index.css.map" />
     <Content Include="www\css\source\reactpages\components\forms\_radio-buttons.scss" />
     <Content Include="www\css\source\reactpages\components\_popup.scss" />
-    <Content Include="Views\Desktop\Module\Notification\Notification.cshtml" />
     <Content Include="www\css\source\reactpages\pages\notification\index.scss" />
     <Content Include="www\css\source\reactpages\components\_collapsibleRow.scss" />
     <Content Include="www\css\source\reactpages\vendors\notification.scss" />

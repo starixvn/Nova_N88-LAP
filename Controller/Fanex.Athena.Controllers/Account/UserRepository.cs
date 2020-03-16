@@ -16,12 +16,12 @@ namespace Fanex.Athena.Controllers.Account
     {
         public IEnumerable<SelectListItem> GetSettingGroups(ICriteria criteria)
         {
-            var data = FetchData<Group>(criteria);
+            var data = FetchData<GroupData>(criteria);
             return data.Select(g => new SelectListItem
             {
-                Text = g.Name,
-                Value = g.Id.ToString(),
-                Selected = g.Id == 0
+                Text = g.GroupName,
+                Value = g.GroupId.ToString(),
+                Selected = g.GroupId == 0
             }).ToList();
         }
 

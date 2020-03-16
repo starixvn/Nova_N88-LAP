@@ -202,6 +202,7 @@
     <Compile Include="Account\GroupPolicy.cs" />
     <Compile Include="Group\GetAllWithNumOfUserGroupCriteria.cs" />
     <Compile Include="Group\GroupController.cs" />
+    <Compile Include="Account\GroupData.cs" />
     <Compile Include="Account\InsertCustCriteria.cs" />
     <Compile Include="Account\LogExecSpCriteria.cs" />
     <Compile Include="Account\ResetPasswordCustCriteria.cs" />

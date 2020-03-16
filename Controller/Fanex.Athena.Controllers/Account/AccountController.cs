@@ -216,13 +216,16 @@ namespace Fanex.Athena.Controllers.Account
         [HttpPost]
         public ActionResult ResetPassword(ResetPasswordCustCriteria criteria)
         {
-            var user = userService.GetById(criteria.CustId);
-            criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
-            var result = userService.UpdatePassword(criteria);
-
-            if (result != null && result.IsSuccessful)
+            if (ModelState.IsValid)
             {
-                ViewBag.Success = true;
+                //var user = userService.GetById(criteria.CustId);
+                criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
+                var result = userService.UpdatePassword(criteria);
+
+                if (result != null && result.IsSuccessful)
+                {
+                    ViewBag.Success = true;
+                }
             }
 
             criteria.Token = GenerateToken();

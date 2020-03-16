@@ -2645,5 +2645,7 @@
   </data>
   <data name="View_details_of" xml:space="preserve">
     <value>Details</value>
+  <data name="Update_Password_Success" xml:space="preserve">
+    <value>Update_Password_Success</value>
   </data>
 </root>

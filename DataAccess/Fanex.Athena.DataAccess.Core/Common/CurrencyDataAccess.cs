@@ -10,9 +10,6 @@
 
     public class CurrencyDataAccess : BaseDataAccess, ICurrencyDataAccess
     {
-            }
-        }
-
         public IList<CurrencyUser> GetCurrenciesByLicensee(int licenseeId)
         {
             const string UspName = "Lrf_SelAgentListByLicensee";
@@ -22,6 +19,9 @@
                 db.SetParameterValue("LicenseeID", licenseeId);
 
                 return BindCurrencyUser(db);
+            }
+        }
+
         public IList<CurrencyUser> GetCurrenciesByUser(int licenseeId, int userId)
         {
             const string UspName = "Lrf_SelCurrencyByLicenseeUser";

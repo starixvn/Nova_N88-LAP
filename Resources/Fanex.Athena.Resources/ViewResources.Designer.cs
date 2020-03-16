@@ -160,6 +160,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add_New_User_Success.
+        /// </summary>
+        public static string Add_New_User_Success {
+            get {
+                return ResourceManager.GetString("Add_New_User_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adjustment.
         /// </summary>
         public static string Adjustment {
@@ -2073,6 +2082,15 @@ namespace Fanex.Athena.Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit_User_Success.
+        /// </summary>
+        public static string Edit_User_Success {
+            get {
+                return ResourceManager.GetString("Edit_User_Success", resourceCulture);
             }
         }
         

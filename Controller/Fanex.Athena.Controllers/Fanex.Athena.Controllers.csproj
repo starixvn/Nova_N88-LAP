@@ -186,8 +186,10 @@
     <Compile Include="Account\AccountPermissionController.cs" />
     <Compile Include="Account\AccountController.cs" />
     <Compile Include="Account\AssignFunctionUserCriteria.cs" />
+    <Compile Include="Account\AssignSiteUserCriteria.cs" />
     <Compile Include="Account\CommandResult.cs" />
     <Compile Include="Account\Constant.cs" />
+    <Compile Include="Account\Consts.cs" />
     <Compile Include="Account\Function.cs" />
     <Compile Include="Account\FunctionData.cs" />
     <Compile Include="Account\FunctionPolicy.cs" />

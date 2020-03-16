@@ -426,6 +426,7 @@
     <Content Include="img\Account\user-info-ico.png" />
     <Content Include="karma-new-bypage.conf.js" />
     <Content Include="Scripts\Account\Manage.js" />
+    <Content Include="Scripts\Account\NAP.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.min.js" />
     <Content Include="SpNameConfig\FanexSpName.BACKUPMNL.xml">

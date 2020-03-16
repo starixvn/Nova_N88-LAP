@@ -2627,4 +2627,10 @@
   <data name="UserPwd" xml:space="preserve">
     <value>UserPwd</value>
   </data>
+  <data name="Add_New_User_Success" xml:space="preserve">
+    <value>Add_New_User_Success</value>
+  </data>
+  <data name="Edit_User_Success" xml:space="preserve">
+    <value>Edit_User_Success</value>
+  </data>
 </root>

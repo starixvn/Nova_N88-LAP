@@ -67,6 +67,16 @@ namespace Fanex.Athena.Controllers.Account
             return new CommandResult { Error = 1, Message = "Error" };
         }
 
+        public CommandResult AssignSite(AssignSiteUserCriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                return this.userRepository.ExecuteNonQueryAsync(criteria);
+            }
+
+            return new CommandResult { Error = 1, Message = "Error" };
+        }
+
         public bool CheckUsernameExist(string username)
         {
             var user = GetByUsername(username);

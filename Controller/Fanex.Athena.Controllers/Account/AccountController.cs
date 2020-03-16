@@ -50,6 +50,7 @@ namespace Fanex.Athena.Controllers.Account
             var groupCriteria = new GetAllGroupCriteria();
             ViewBag.GroupSelectList = userService.GetSettingGroups(groupCriteria);
             var criteria = new InsertCustCriteria();
+            ViewBag.Success = false;
             return View("~/Views/Account/NewUser.cshtml", criteria);
         }
 
@@ -76,11 +77,27 @@ namespace Fanex.Athena.Controllers.Account
                 var result = userService.Insert(criteria);
                 if (result != null && result.IsSuccessful)
                 {
-                    ViewBag.Success = true;
-                    //ViewBag.UserId = criteria.CustId;
+                    var assignSiteCriteria = new AssignSiteUserCriteria
+                    {
+                        CreatedBy = Consts.CurrentUserId,
+                        CreatedDate = DateTime.Now,
+                        UserId = criteria.CustId,
+                        SiteId = Consts.SiteId,
+                        Level = Consts.UserLevel,
+                        IsActive = true,
+                        IsNeverExpired = true,
+                    };
+                    var assignResult = userService.AssignSite(assignSiteCriteria);
+
+                    if (assignResult != null && assignResult.IsSuccessful)
+                    {
+                        ViewBag.Success = true;
+                        ViewBag.UserId = criteria.CustId;
+                    }
                 }
             }
 
+            
             return View("~/Views/Account/NewUser.cshtml", criteria);
         }
 

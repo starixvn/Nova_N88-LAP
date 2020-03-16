@@ -19,28 +19,7 @@ $(document).ready(function () {
 
     // shows tooltips when hovering on Usernames
     ManageUser.grid.find('.lnk-user-info').tipsy({ gravity: 'w' });
-
-    // shows "User Details" popup when clicking on Usernames
-    ManageUser.grid.on('click', '.lnk-user-info', function () {
-        var $this = $(this),
-            userId = $this.attr('uid'),
-            username = $this.text();
-
-        $.ajax({
-            url: NAP.resolveClientUrl("User/UserInfo/" + userId),
-            type: 'POST',
-            dataType: 'html',
-            cache: false,
-            success: function (result) {
-                if (result.length > 0) {
-                    NAP.popup("Details of '" + username + "'", result);
-                }
-            },
-            error: function (xhr, status, err) {
-                NAP.handleAjaxError(xhr, status, err);
-            }
-        });
-    });
+        
 
     // shows action-panel when clicking on the action buttons
     ManageUser.grid.on('click', '.btn-action', function (e) {

@@ -459,13 +459,12 @@ namespace Fanex.Athena.Controllers
 
         private void DoSignOut()
         {
-            var userSession = SessionServiceInstance.UserSession;
+            var userSession = SessionServiceInstance.UserSessionInfo;
             if (userSession != null)
             {
                 _authService.Logout(userSession.OnUserId);
             }
 
-            currentSession.ClearAll();
             Session.Clear();
             ClearCookies();
             _formAuthenticationService.SignOut();

@@ -414,6 +414,7 @@
     <Content Include="Content\Fanex.Result\Allbet\template\public\game_result\Sicbo\ScoreBoard_d4.png" />
     <Content Include="Content\Fanex.Result\Allbet\template\public\game_result\Sicbo\ScoreBoard_d5.png" />
     <Content Include="Content\Fanex.Result\Allbet\template\public\game_result\Sicbo\ScoreBoard_d6.png" />
+    <Content Include="Content\Plugin\bootstrap\bootstrap.css" />
     <Content Include="Content\Plugin\tipsy\tipsy-1.0.0.css" />
     <Content Include="Content\Plugin\tipsy\tipsy-1.0.0.min.css" />
     <Content Include="img\Account\action-ico.png" />

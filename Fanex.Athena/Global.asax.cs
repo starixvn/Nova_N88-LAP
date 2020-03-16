@@ -67,7 +67,7 @@ namespace Fanex.Athena
                 ViewEngines.Engines.Add(new RazorViewEngine());
 
                 AreaRegistration.RegisterAllAreas();
-                //GlobalFilters.Filters.Add(new CustomAuthorizeAttribute());
+                GlobalFilters.Filters.Add(new CustomAuthorizeAttribute());
                 RouteTable.Routes.IgnoreRoute("favicon.ico");
                 RouteConfig.RegisterRoutes(RouteTable.Routes);
 

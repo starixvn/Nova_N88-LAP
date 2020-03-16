@@ -112,7 +112,7 @@
                 bundles,
                 "~/bundles/AccountLayoutStyles",
                 JqueryUiMinCssPath,
-                LrfGlobalContentCssPath,
+                //LrfGlobalContentCssPath,
                 "~/Content/FlatPopup/jquery.custom-scrollbar.css",
                 "~/Content/FlatPopup/jquery.flatpopup.css");
         }

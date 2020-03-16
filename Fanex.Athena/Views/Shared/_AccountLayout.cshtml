@@ -28,5 +28,5 @@
     </div>
     @RenderBody()
 
-    @Html.Hidden("RootPath", Url.Content("~/"))
+    @Html.Hidden("RootPath", Request.Url.GetLeftPart(UriPartial.Authority)  + Url.Content("~/"))
 </div>

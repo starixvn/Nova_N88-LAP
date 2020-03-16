@@ -27,9 +27,8 @@
         private readonly IFunctionService _functionService;
         private readonly ILicenseeDataAccess _licenseeDataAccess;
         private readonly ICurrencyDataAccess _currencyDataAccess;
-        private N88.Core.Service.Interface.IUserService _napUserService;
+        private readonly N88.Core.Service.Interface.IUserService _napUserService;
         private readonly ISessionStorage _sessionStorage;
-        private readonly Fanex.NAP.Core.Service.Interface.IUserService _napUserService;
         private readonly IAppSettings _appSettings;
 
         public SessionService(
@@ -38,8 +37,7 @@
             ICurrencyDataAccess currencyDataAccess,
             N88.Core.Service.Interface.IUserService napUserService,
             IAppSettings appSettings,
-            ISessionStorage sessionStorage,
-            Fanex.NAP.Core.Service.Interface.IUserService napUserService)
+            ISessionStorage sessionStorage)
         {
             _functionService = functionService;
             _licenseeDataAccess = licenseeDataAccess;
@@ -72,7 +70,6 @@
             get { return _sessionStorage.CaptchaCode; }
             set { _sessionStorage.CaptchaCode = value; }
         }
-
 
         public void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession)
         {

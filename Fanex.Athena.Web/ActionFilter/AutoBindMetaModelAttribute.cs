@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Fanex.Athena.Model.Auth;
-using Fanex.Athena.Model.Core.MetaModel;
 using Fanex.Athena.Extension.Helper;
+using Fanex.Athena.Model.Core.MetaModel;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.StatelessCore.Interfaces;

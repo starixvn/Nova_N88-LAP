@@ -9,7 +9,7 @@ namespace Fanex.Athena.Model.Auth
 {
     using System.Collections.Generic;
     using Fanex.Athena.Model.Auth.Enum;
-    using Fanex.NAP.Core.Models;
+    using Fanex.N88.Core.Models;
 
     [Serializable]
     public class UserAuthInfo

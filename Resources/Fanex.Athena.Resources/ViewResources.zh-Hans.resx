@@ -2023,5 +2023,6 @@
   </data>
   <data name="BetHistory" xml:space="preserve">
     <value>Bet History</value>
+    <comment>80941</comment>
   </data>
 </root>

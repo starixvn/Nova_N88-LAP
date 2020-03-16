@@ -139,7 +139,7 @@ export class FormFilter extends Component {
                     alert(LangHelper.getSingleResource("NoInfo"));
                 }
                 else {
-                    const fileName = "BettingTicketsCenter_AdvancedSearch." +
+                    const fileName = "BetHistory_AdvancedSearch." +
                         (response.headers["content-type"] === "application/zip" ? "zip" : "xls");
 
                     Site.downloadFile(response.data, fileName);

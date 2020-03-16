@@ -55,7 +55,7 @@ export class FormFilter extends Component {
             if (response.status === NoContentStatusCode) {
                 alert(LangHelper.getSingleResource("NoInfo"));
             } else {
-                Site.downloadFile(response.data, 'BettingTicketsCenter_RefNo.xls');
+                Site.downloadFile(response.data, 'BetHistory_RefNo.xls');
             }
             this.props.toggleLoader(false);
         });

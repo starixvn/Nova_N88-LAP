@@ -95,7 +95,7 @@ describe('FormFilter - exportExcel', () => {
             expect(props.toggleLoader).toHaveBeenCalledWith(true);
             expect(DataService.getFile).toHaveBeenCalledWith(ApiUrl.ADVANCEDSEARCH_DATA_URL, params);
             Promise.resolve().then(() => {
-                expect(Site.downloadFile).toHaveBeenCalledWith(response.data, 'BettingTicketsCenter_AdvancedSearch.xls');
+                expect(Site.downloadFile).toHaveBeenCalledWith(response.data, 'BetHistory_AdvancedSearch.xls');
                 expect(props.toggleLoader).toHaveBeenCalledWith(false);
                 done();
             })

@@ -93,7 +93,7 @@ export class FormFilter extends Component {
             if (response.status === NoContentStatusCode) {
                 alert(LangHelper.getSingleResource("NoInfo"));
             } else {
-                Site.downloadFile(response.data, 'BettingTicketsCenter_SingleCustomer.xls');
+                Site.downloadFile(response.data, 'BetHistory_SingleCustomer.xls');
             }
             this.props.toggleLoader(false);
         });

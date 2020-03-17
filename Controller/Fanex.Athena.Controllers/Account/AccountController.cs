@@ -70,6 +70,7 @@
                 criteria.LastName = criteria.LastName ?? string.Empty;
                 criteria.Email = criteria.Email ?? string.Empty;
 
+                UpdateCriteria(criteria);
                 var result = userService.Insert(criteria);
                 if (result != null && result.IsSuccessful)
                 {
@@ -83,6 +84,7 @@
                         IsActive = true,
                         IsNeverExpired = true,
                     };
+                    UpdateCriteria(assignSiteCriteria);
                     var assignResult = userService.AssignSite(assignSiteCriteria);
 
                     if (assignResult != null && assignResult.IsSuccessful)
@@ -124,6 +126,7 @@
                 criteria.LastName = criteria.LastName ?? string.Empty;
                 criteria.Email = criteria.Email ?? string.Empty;
 
+                UpdateCriteria(criteria);
                 CommandResult result = userService.Update(criteria);
 
                 if (result != null && result.IsSuccessful)
@@ -160,7 +163,8 @@
             criteria.Username = user.Username;
             criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
             criteria.ModifiedDate = DateTime.Now;
-            
+
+            UpdateCriteria(criteria);
             var result = userService.AssignFunction(criteria);
 
             ViewBag.FunctionList = userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
@@ -200,6 +204,7 @@
             if (ModelState.IsValid)
             {
                 criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
+                UpdateCriteria(criteria);
                 var result = userService.UpdatePassword(criteria);
 
                 if (result != null && result.IsSuccessful)
@@ -226,6 +231,14 @@
             };
 
             return userService.GetSettingGroups(groupCriteria);
+        }
+
+        private void UpdateCriteria(LogExecSpCriteria criteria)
+        {
+            criteria.CurrentUserId = SessionServiceInstance.UserSession.UserId;
+            criteria.CurrentSiteId = N88Settings.Settings.SiteId;
+            criteria.LoginIp = string.Empty;
+            criteria.LogDate = DateTime.Now;
         }
     }
 }

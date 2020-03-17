@@ -10,14 +10,8 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.Controllers.Account
 {
-    public class AssignFunctionUserCriteria : NonQueryCommand
-    {
-
-        public AssignFunctionUserCriteria()
-        {
-            LogDate = DateTime.Now;
-        }
-
+    public class AssignFunctionUserCriteria : LogExecSpCriteria
+    {   
         private const string AssignPermissionTpl = "<FunctionPolicy SiteId='{0}' FunctionId='{1}' Policy='{2}'></FunctionPolicy>";
 
         public int UserId { get; set; }
@@ -72,15 +66,7 @@ namespace Fanex.Athena.Controllers.Account
 
         [SpParam(Ignored = true)]
         public int GroupId { get; set; }
-
-        public int CurrentUserId { get; set; }
-
-        public int CurrentSiteId { get; set; }
-
-        public DateTime LogDate { get; set; }
-
-        public string LoginIp { get; set; }
-
+        
         public override string GetSettingKey()
         {
             return "N88_User_AssignFunction";

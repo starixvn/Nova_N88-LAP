@@ -6,13 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Athena.Controllers.Account
 {
-    public class InsertCustCriteria : NonQueryCommand
-    {
-        public InsertCustCriteria()
-        {
-            LogDate = DateTime.Now;
-        }
-
+    public class InsertCustCriteria : LogExecSpCriteria
+    {   
         public int CustId { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(ViewResources))]
@@ -62,15 +57,7 @@ namespace Fanex.Athena.Controllers.Account
 
         [SpParam(Ignored = true)]
         public int RerturnGroupId { get; set; }
-
-        public int CurrentUserId { get; set; }
-
-        public int CurrentSiteId { get; set; }
-
-        public DateTime LogDate { get; set; }
-
-        public string LoginIp { get; set; }
-
+        
         public override string GetSettingKey()
         {
             return "N88_Cust_Insert";

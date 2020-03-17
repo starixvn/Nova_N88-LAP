@@ -1,18 +1,11 @@
 ﻿using Fanex.Athena.Resources;
 using Fanex.Data;
-using Fanex.Data.Repository;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Athena.Controllers.Account
 {
-    public class UpdateCustCriteria : NonQueryCommand
+    public class UpdateCustCriteria : LogExecSpCriteria
     {
-        public UpdateCustCriteria()
-        {
-            LogDate = DateTime.Now;
-        }
-
         public int CustId { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(ViewResources))]
@@ -47,15 +40,7 @@ namespace Fanex.Athena.Controllers.Account
 
         [SpParam(Ignored = true)]
         public int ReturnGroupId { get; set; }
-
-        public int CurrentUserId { get; set; }
-
-        public int CurrentSiteId { get; set; }
-
-        public DateTime LogDate { get; set; }
-
-        public string LoginIp { get; set; }
-
+        
         public override string GetSettingKey()
         {
             return "N88_Cust_Update";

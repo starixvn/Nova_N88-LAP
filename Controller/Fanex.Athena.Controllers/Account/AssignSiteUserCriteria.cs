@@ -3,13 +3,8 @@ using System;
 
 namespace Fanex.Athena.Controllers.Account
 {
-    public class AssignSiteUserCriteria : NonQueryCommand
+    public class AssignSiteUserCriteria : LogExecSpCriteria
     {
-        public AssignSiteUserCriteria()
-        {
-            LogDate = DateTime.Now;
-        }
-
         public int UserId { get; set; }
 
         public int SiteId { get; set; }
@@ -23,15 +18,7 @@ namespace Fanex.Athena.Controllers.Account
         public DateTime CreatedDate { get; set; }
 
         public bool IsNeverExpired { get; set; }
-
-        public int CurrentUserId { get; set; }
-
-        public int CurrentSiteId { get; set; }
-
-        public DateTime LogDate { get; set; }
-
-        public string LoginIp { get; set; }
-
+        
         public override string GetSettingKey()
         {
             return "N88_User_AssignNewSite";

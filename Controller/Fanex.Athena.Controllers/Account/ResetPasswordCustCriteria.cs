@@ -1,22 +1,11 @@
 ﻿using Fanex.Athena.Resources;
 using Fanex.Data;
-using Fanex.Data.Repository;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.Controllers.Account
 {
-    public class ResetPasswordCustCriteria : NonQueryCommand
-    {
-        public ResetPasswordCustCriteria()
-        {
-            LogDate = DateTime.Now;
-        }
-
+    public class ResetPasswordCustCriteria : LogExecSpCriteria
+    {      
         public int CustId { get; set; }
 
         [SpParam(Ignored = true)]
@@ -51,15 +40,7 @@ namespace Fanex.Athena.Controllers.Account
 
         [SpParam(Ignored = true)]
         public string Token { get; set; }
-
-        public int CurrentUserId { get; set; }
-
-        public int CurrentSiteId { get; set; }
-
-        public DateTime LogDate { get; set; }
-
-        public string LoginIp { get; set; }
-
+        
         public override string GetSettingKey()
         {
             return "N88_Cust_UpdatePassword";

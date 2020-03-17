@@ -57,6 +57,7 @@
     <Setting Key="Licensee_UserPasswordUpd" SpName="Licensee_UserPasswordUpd" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" />
     <Setting Key="Lrf_CurrencyCustIns" SpName="Lrf_CurrencyCustIns" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" />
     <Setting Key="Lrf_UserInfoSelByUserName" SpName="Lrf_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
+    <Setting Key="Dot_Auth_TokenIns" SpName="Dot_Auth_TokenIns" DbName="ConnectionString_ClearinghouseDB" />
   </Function>
 
   <Function Name="Report">
@@ -93,7 +94,7 @@
   </Function>
 
   <Function Name="PlayerAdmin">
-    <Setting Key="N88_CustomerSelByUsername" SpName="N88_CustomerSelByUsername" DbName="DBEXT.bodb02.bodbLicenseeNet" />
+    <Setting Key="Lrf_CustomerSelByUsername" SpName="Lrf_CustomerSelByUsername" DbName="DBEXT.bodb02.bodbLicenseeNet" />
     <Setting Key="Lrf_CustomerSelByCustid" SpName="Lrf_CustomerSelByCustid" DbName="DBEXT.bodb02.bodbLicenseeNet" />
     <Setting Key="Lrf_LicenseeProductByBetLimitSel" SpName="Lrf_LicenseeProductByBetLimitSel" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
     <Setting Key="Lrf_PlayerBettingStatistics" SpName="Lrf_PlayerBettingStatistics" DbName="DBACC.bodb02.bodbLicenseeNet" />
@@ -173,48 +174,18 @@
       <Mapping DataField="UserId" ObjectProperty="UserId" />
       <Mapping DataField="Username" ObjectProperty="username" />
     </Setting>
-    <Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBPOL.NAP_UserControl.bodbAdminNet">
-      <Mapping DataField="GroupId" ObjectProperty="Id" />
-      <Mapping DataField="GroupName" ObjectProperty="Name" />
-      <Mapping DataField="CreatorId" ObjectProperty="Id" />
-      <Mapping DataField="CreatorUsername" ObjectProperty="Username" />
-      <Mapping DataField="ModifierId" ObjectProperty="Id" />
-      <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
-    </Setting>
-    <Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBPOL.NAP_UserControl.bodbAdminNet">
-      <Mapping DataField="UserId" ObjectProperty="Id" />
-      <Mapping DataField="userpwd" ObjectProperty="Password" />
-      <Mapping DataField="GroupId" ObjectProperty="Id" />
-      <Mapping DataField="GroupName" ObjectProperty="Name" />
-      <Mapping DataField="CreatorId" ObjectProperty="Id" />
-      <Mapping DataField="CreatorUsername" ObjectProperty="Username" />
-      <Mapping DataField="ModifierId" ObjectProperty="Id" />
-      <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
-    </Setting>
+    <Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
     <Setting Key="N88_Cust_Insert" SpName="N88_Cust_Insert" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
     <Setting Key="N88_Cust_Update" SpName="N88_Cust_Update" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_GetById" SpName="N88_User_GetById" DbName="DBPOL.NAP_UserControl.bodbAdminNet">
-      <Mapping DataField="UserId" ObjectProperty="Id" />
-      <Mapping DataField="userpwd" ObjectProperty="Password" />
-      <Mapping DataField="GroupId" ObjectProperty="Id" />
-      <Mapping DataField="GroupName" ObjectProperty="Name" />
-      <Mapping DataField="CreatorId" ObjectProperty="Id" />
-      <Mapping DataField="CreatorUsername" ObjectProperty="Username" />
-      <Mapping DataField="ModifierId" ObjectProperty="Id" />
-      <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
-    </Setting>
-    <Setting Key="N88_Site_GetById" SpName="N88_Site_GetById" DbName="DBPOL.NAP_UserControl.bodbAdminNet">
-      <Mapping DataField="SiteId" ObjectProperty="Id" />
-      <Mapping DataField="SiteName" ObjectProperty="Name" />
-    </Setting>
+    <Setting Key="N88_User_GetById" SpName="N88_User_GetById" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
+    <Setting Key="N88_Site_GetById" SpName="N88_Site_GetById" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
     <Setting Key="N88_User_AssignFunction" SpName="N88_User_AssignFunction" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
     <Setting Key="N88_Function_GetByGroupAndSite" SpName="N88_Function_GetByGroupAndSite" DbName="DBPOL.NAP_UserControl.bodbAdminNet"></Setting>
     <Setting Key="N88_Function_GetBySite" SpName="N88_Function_GetBySite" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
     <Setting Key="N88_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBPOL.NAP_UserControl.bodbAdminNet"></Setting>
     <Setting Key="N88_Cust_UpdatePassword" SpName="N88_Cust_UpdatePassword" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
     <Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
-    
   </Function>
 
   <Function Name="Group">

@@ -6370,7 +6370,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; password has been reset successfully. .
+        ///   Looks up a localized string similar to Update_Password_Success.
         /// </summary>
         public static string Update_Password_Success {
             get {

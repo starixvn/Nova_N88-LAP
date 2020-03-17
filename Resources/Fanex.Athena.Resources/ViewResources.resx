@@ -2654,21 +2654,25 @@
   </data>
   <data name="NewUser" xml:space="preserve">
     <value>New User</value>
+  </data>
   <data name="Update_Password_Success" xml:space="preserve">
     <value>Update_Password_Success</value>
   </data>
   <data name="Read" xml:space="preserve">
     <value>Read</value>
+   </data>
   <data name="Update_Permission_Success" xml:space="preserve">
     <value>Update_Permission_Success</value>
   </data>
   <data name="UserPermission" xml:space="preserve">
     <value>User Permission</value>
+  </data>
   <data name="Group_Name" xml:space="preserve">
     <value>Group Name</value>
   </data>
   <data name="Your_changes_were_saved" xml:space="preserve">
     <value>Your changes were saved</value>
+  </data>
   <data name="AddSuccessMsg" xml:space="preserve">
     <value>{0} has been added successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
   </data>

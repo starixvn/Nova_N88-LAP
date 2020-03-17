@@ -75,6 +75,7 @@ namespace Fanex.Athena
         private static void RegisterModule(ContainerBuilder builder, Assembly[] assemblies)
         {
             var moduleAssemblies = GetModuleAssemblies(assemblies);
+            builder.RegisteModulePlayerAdminApi(moduleAssemblies);
         }
 
         private static void RegisterHttpClient(ContainerBuilder builder)

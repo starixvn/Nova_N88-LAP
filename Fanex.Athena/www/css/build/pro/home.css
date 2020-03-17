@@ -5687,8 +5687,8 @@ button.btn-floating {
     background: #4c6375; }
 
 header nav {
-  background: #4C6375;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15); }
+  background: #0F3630;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); }
 
 .button-collapse {
   width: 3rem;
@@ -5716,7 +5716,8 @@ header nav {
   height: 64px;
   line-height: 64px;
   float: left;
-  background: #314453; }
+  background: #164F46;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); }
   .logo img {
     vertical-align: middle; }
   .logo .logo-image {
@@ -6078,7 +6079,7 @@ header nav {
 .side-nav {
   width: 260px;
   box-shadow: none;
-  background: #314453;
+  background: #0C2924;
   top: 64px;
   z-index: 997; }
   .side-nav .logo-block {
@@ -6097,7 +6098,7 @@ header nav {
     line-height: 4rem;
     text-transform: uppercase;
     display: block;
-    color: #dbdbdb; }
+    color: #989898; }
     .side-nav.fixed .collapsible-header:hover {
       background: none; }
     .side-nav.fixed .collapsible-header .icon-arrow {
@@ -6121,7 +6122,7 @@ header nav {
   .side-nav.fixed .menu-item.active {
     background: rgba(0, 0, 0, 0.1); }
     .side-nav.fixed .menu-item.active > .collapsible-header {
-      color: #f05b1f;
+      color: #fff;
       font-weight: bold; }
       .side-nav.fixed .menu-item.active > .collapsible-header i.icon-arrow {
         transform: rotate(0);
@@ -6138,17 +6139,17 @@ header nav {
         padding-right: 0;
         height: 25px;
         line-height: 25px;
-        color: #dbdbdb;
+        color: #989898;
         width: 220px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; }
       .side-nav.fixed .collapsible-body li:hover a {
-        color: #f05b1f; }
+        color: #fff; }
       .side-nav.fixed .collapsible-body li img {
         vertical-align: middle; }
       .side-nav.fixed .collapsible-body li.active {
-        background: #f05b1f; }
+        background: none; }
         .side-nav.fixed .collapsible-body li.active a {
           color: #fff; }
       .side-nav.fixed .collapsible-body li:last-child {

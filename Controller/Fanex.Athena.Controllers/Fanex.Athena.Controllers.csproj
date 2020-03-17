@@ -202,7 +202,6 @@
     <Compile Include="Account\CommandResult.cs" />
     <Compile Include="Account\CommonRepository.cs" />
     <Compile Include="Account\Constant.cs" />
-    <Compile Include="Account\Consts.cs" />
     <Compile Include="Account\Function.cs" />
     <Compile Include="Account\FunctionData.cs" />
     <Compile Include="Account\FunctionPolicy.cs" />
@@ -221,7 +220,6 @@
     <Compile Include="Group\GroupController.cs" />
     <Compile Include="Account\GroupData.cs" />
     <Compile Include="Account\InsertCustCriteria.cs" />
-    <Compile Include="Account\LogExecSpCriteria.cs" />
     <Compile Include="Account\ResetPasswordCustCriteria.cs" />
     <Compile Include="Account\SearchUserCriteria.cs" />
     <Compile Include="Account\Site.cs" />

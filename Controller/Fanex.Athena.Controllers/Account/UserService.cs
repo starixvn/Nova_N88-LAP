@@ -1,9 +1,6 @@
 ﻿using Fanex.Data.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Fanex.Athena.Controllers.Account
@@ -143,7 +140,7 @@ namespace Fanex.Athena.Controllers.Account
                 return this.userRepository.GetByGroupAndSite(criteria).ToList();
             }
 
-            return null;
+            return new List<FunctionPolicy>();
         }
 
         public List<AccFunction> GetBySiteInHierarchy(int siteId, string env = Constant.Uat, bool? isActive = null)
@@ -162,7 +159,7 @@ namespace Fanex.Athena.Controllers.Account
                 return this.SortFunctionsInHierarchy(functionList.ToList());
             }
 
-            return null;
+            return new List<AccFunction>();
         }
 
         public List<FunctionPolicy> GetByUserAndSite(int userId, int siteId, string env = Constant.Uat)
@@ -179,7 +176,7 @@ namespace Fanex.Athena.Controllers.Account
                 return this.userRepository.GetByGroupAndSite(criteria).ToList();
             }
 
-            return null;
+            return new List<FunctionPolicy>();
         }
 
         public int GetUserSiteLevel(int userId, int siteId)

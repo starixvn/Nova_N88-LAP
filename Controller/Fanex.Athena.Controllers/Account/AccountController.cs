@@ -79,7 +79,7 @@
                         CreatedDate = DateTime.Now,
                         UserId = criteria.CustId,
                         SiteId = N88Settings.Settings.SiteId,
-                        Level = Consts.UserLevel,
+                        Level = (int)Constant.Level.User,
                         IsActive = true,
                         IsNeverExpired = true,
                     };

@@ -71,10 +71,6 @@ namespace Fanex.Athena.Controllers.Account
 
         public string LoginIp { get; set; }
 
-        /// <summary>
-        /// Get setting key.
-        /// </summary>
-        /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
             return "N88_Cust_Insert";

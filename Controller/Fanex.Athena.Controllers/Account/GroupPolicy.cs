@@ -2,9 +2,6 @@
 {
     using System;
 
-    /// <summary>
-    /// Group policy model.
-    /// </summary>
     public class GroupPolicy
     {
         public int Policy { get; set; }

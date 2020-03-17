@@ -20,19 +20,11 @@ namespace Fanex.Athena.Controllers.Account
 
         public string Environment { get; set; }
 
-        /// <summary>
-        /// Get setting key.
-        /// </summary>
-        /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
             return "N88_User_Search";
         }
 
-        /// <summary>
-        /// Check data constraints.
-        /// </summary>
-        /// <returns>True: valid; False: invalid.</returns>
         public override bool IsValid()
         {
             return true;

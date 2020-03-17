@@ -2,11 +2,7 @@
 using Fanex.Data;
 using Fanex.Data.Repository;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.Controllers.Account
 {

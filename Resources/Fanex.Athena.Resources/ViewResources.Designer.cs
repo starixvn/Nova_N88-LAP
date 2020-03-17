@@ -19,7 +19,7 @@ namespace Fanex.Athena.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ViewResources {
@@ -156,6 +156,15 @@ namespace Fanex.Athena.Resources {
         public static string Add_New_User_Success {
             get {
                 return ResourceManager.GetString("Add_New_User_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} has been added successfully. You will be redirected in &lt;span class=&apos;msec&apos;&gt;{1}&lt;/span&gt; seconds..
+        /// </summary>
+        public static string AddSuccessMsg {
+            get {
+                return ResourceManager.GetString("AddSuccessMsg", resourceCulture);
             }
         }
         
@@ -570,6 +579,15 @@ namespace Fanex.Athena.Resources {
         public static string Back {
             get {
                 return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back To List.
+        /// </summary>
+        public static string Back_To_List {
+            get {
+                return ResourceManager.GetString("Back_To_List", resourceCulture);
             }
         }
         
@@ -1402,6 +1420,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create New Group.
+        /// </summary>
+        public static string Create_New_Group {
+            get {
+                return ResourceManager.GetString("Create_New_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created Date.
         /// </summary>
         public static string CreatedDate {
@@ -2059,6 +2086,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; already exists. Please choose another!.
+        /// </summary>
+        public static string DuplicateMsg {
+            get {
+                return ResourceManager.GetString("DuplicateMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
@@ -2703,6 +2739,15 @@ namespace Fanex.Athena.Resources {
         public static string Group {
             get {
                 return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Name.
+        /// </summary>
+        public static string Group_Name {
+            get {
+                return ResourceManager.GetString("Group_Name", resourceCulture);
             }
         }
         

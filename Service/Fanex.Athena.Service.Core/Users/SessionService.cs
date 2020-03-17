@@ -225,7 +225,8 @@
                 functions.Add(new Function
                 {
                     FunctionKey = function.Function.Key,
-                    Policy = function.Policy
+                    Policy = function.Policy,
+                    ParentId = function.Function.Parent != null ? function.Function.Parent.Id : 0
                 });
             });
 

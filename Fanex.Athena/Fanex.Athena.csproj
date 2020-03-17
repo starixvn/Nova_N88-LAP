@@ -450,6 +450,8 @@
     <Content Include="Scripts\Account\ManageAccount.js" />
     <Content Include="Scripts\Account\NAP.js" />
     <Content Include="Scripts\Account\ResetPassword.js" />
+    <Content Include="Scripts\Group\AssignPermission.js" />
+    <Content Include="Scripts\Group\Manage.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.min.js" />
     <Content Include="SpNameConfig\FanexSpName.BACKUPMNL.xml">
@@ -679,6 +681,7 @@
     <Content Include="Views\Group\Manage.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="www\css\source\pages\user\usermanagement.scss" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

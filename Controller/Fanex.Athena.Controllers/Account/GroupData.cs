@@ -14,5 +14,6 @@ namespace Fanex.Athena.Controllers.Account
         public string CreatorUsername { get; set; }
         public int ModifierId { get; set; }
         public string ModifierUsername { get; set; }
+        public int NumOfUser { get; set; }
     }
 }

@@ -232,6 +232,7 @@
     <Compile Include="AuthorizationController.cs" />
     <Compile Include="Group\GroupRepository.cs" />
     <Compile Include="Group\GroupService.cs" />
+    <Compile Include="Group\InsertGroupCriteria.cs" />
     <Compile Include="HeaderController.cs" />
     <Compile Include="MenuController.cs" />
     <Compile Include="LicenseeListController.cs" />

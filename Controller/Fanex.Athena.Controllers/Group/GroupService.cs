@@ -14,7 +14,7 @@
             _commonepository = new CommonRepository();
         }
 
-        public IEnumerable<Group> GetAllWithNumOfUser(string name, string env = Constant.Uat, bool? isActive = null,
+        public IEnumerable<GroupData> GetAllWithNumOfUser(string name, string env = Constant.Uat, bool? isActive = null,
             bool isLicenseeGroup = true, int? siteId = null)
         {
             var criteria = new GetAllWithNumOfUserGroupCriteria
@@ -28,10 +28,21 @@
 
             if (criteria.IsValid())
             {
-                return this._commonepository.FetchData<Group>(criteria).OrderBy(g => g.Name);
+                return this._commonepository.FetchData<GroupData>(criteria).OrderBy(g => g.GroupName);
             }
 
             return null;
         }
+
+        public CommandResult Insert(InsertGroupCriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                return this._commonepository.ExecuteNonQueryAsync(criteria);
+            }
+
+            return new CommandResult { Error = 1, Message = "Error" };
+        }
+
     }
 }

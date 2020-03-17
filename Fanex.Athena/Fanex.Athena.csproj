@@ -269,6 +269,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Webdiyer.MvcPager, Version=3.0.2015.802, Culture=neutral, PublicKeyToken=f6872c5a09aed72c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Webdiyer.MvcPager.3.0.1.1\lib\Webdiyer.MvcPager.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -410,13 +413,36 @@
     <Content Include="Content\Plugin\bootstrap\bootstrap.css" />
     <Content Include="Content\Plugin\tipsy\tipsy-1.0.0.css" />
     <Content Include="Content\Plugin\tipsy\tipsy-1.0.0.min.css" />
+    <Content Include="img\Account\accept.png" />
     <Content Include="img\Account\action-ico.png" />
+    <Content Include="img\Account\bg_footer.jpg" />
+    <Content Include="img\Account\bg_header.png" />
+    <Content Include="img\Account\bg_tfoot.png" />
+    <Content Include="img\Account\bg_tfoot_s.png" />
+    <Content Include="img\Account\blank.png" />
     <Content Include="img\Account\chgpwd-ico.png" />
+    <Content Include="img\Account\chosen-sprite.png" />
+    <Content Include="img\Account\delete.png" />
     <Content Include="img\Account\duplicate.png" />
     <Content Include="img\Account\edit-ico.png" />
+    <Content Include="img\Account\favicon.ico" />
+    <Content Include="img\Account\first.png" />
+    <Content Include="img\Account\grid-view.png" />
+    <Content Include="img\Account\invalid_line.gif" />
+    <Content Include="img\Account\last.png" />
+    <Content Include="img\Account\logo.png" />
+    <Content Include="img\Account\next.png" />
     <Content Include="img\Account\permission-ico.png" />
+    <Content Include="img\Account\prev.png" />
+    <Content Include="img\Account\red-triangle.png" />
+    <Content Include="img\Account\refresh.gif" />
+    <Content Include="img\Account\setting.png" />
     <Content Include="img\Account\site-ico.png" />
+    <Content Include="img\Account\sprites.png" />
+    <Content Include="img\Account\tick-ico-16.png" />
+    <Content Include="img\Account\tree-view.png" />
     <Content Include="img\Account\user-info-ico.png" />
+    <Content Include="img\Account\user.png" />
     <Content Include="karma-new-bypage.conf.js" />
     <Content Include="Scripts\Account\EditAccount.js" />
     <Content Include="Scripts\Account\EditPermission.js" />

@@ -1,4 +1,4 @@
-﻿@{    
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section css
@@ -6,20 +6,15 @@
     @System.Web.Optimization.Styles.Render("~/bundles/AccountLayoutStyles")
     @RenderSection("pagecss", required: false)
 }
-@section js
-{
-    @System.Web.Optimization.Scripts.Render("~/bundles/AccountLayoutScripts")
-    @RenderSection("pagejs", required: false)
-}
 <div class="container_26">
     <div class="grid_26" style="position: relative">
         <div class="content-title">
             @RenderSection("ContentTitle", required: false)
         </div>
     </div>
-    
-        @RenderSection("ContentFilter", required: false)
-    
+
+    @RenderSection("ContentFilter", required: false)
+
 </div>
 <div class="content-main new-line">
     <div class="loading">
@@ -28,5 +23,10 @@
     </div>
     @RenderBody()
 
-    @Html.Hidden("RootPath", Request.Url.GetLeftPart(UriPartial.Authority)  + Url.Content("~/"))
+    @Html.Hidden("RootPath", Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~/"))
 </div>
+@section js
+{
+    @System.Web.Optimization.Scripts.Render("~/bundles/AccountLayoutScripts")
+    @RenderSection("pagejs", required: false)
+}

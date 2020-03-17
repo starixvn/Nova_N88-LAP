@@ -23,32 +23,36 @@ namespace Fanex.Athena.Controllers.Account
             userService = new UserService();
         }
 
-        public ActionResult Manage()
+        public ActionResult Manage(
+             int id = 1,
+            int size = 5000,
+            string username = "",
+            int groupId = 0,
+            int statusId = 1)
         {
             var criteria = new SearchUserCriteria
             {
-                PageIndex = 1,
-                PageSize = 20,
-                Username = string.Empty,
-                GroupId = 0,
-                SiteId = 3,
-                Status = 1,
+                PageIndex = id,
+                PageSize = size,
+                Username = username,
+                GroupId = groupId,
+                SiteId = Consts.SiteId,
+                Status = statusId,
                 TotalRows = 0,
                 Environment = "UAT"
             };
 
-            var groupCriteria = new GetAllGroupCriteria();
-
-            ViewBag.GroupSelectList = userService.GetSettingGroups(groupCriteria);
+            ViewBag.GroupSelectList = GetGroups();
+            ViewBag.Criteria = criteria;
             IEnumerable<UserLevel> users = userService.SearchUser(criteria);
 
-            return View("~/Views/Account/Manage.cshtml", users);
+            var model = new PagerList<UserLevel>(criteria.PageIndex, criteria.PageSize, criteria.TotalRows, users);
+            return View("~/Views/Account/Manage.cshtml", model);
         }
 
         public ActionResult NewUser()
         {
-            var groupCriteria = new GetAllGroupCriteria();
-            ViewBag.GroupSelectList = userService.GetSettingGroups(groupCriteria);
+            ViewBag.GroupSelectList = GetGroups();
             var criteria = new InsertCustCriteria();
             ViewBag.Success = false;
             return View("~/Views/Account/NewUser.cshtml", criteria);
@@ -57,8 +61,7 @@ namespace Fanex.Athena.Controllers.Account
         [HttpPost]
         public ActionResult NewUser(InsertCustCriteria criteria)
         {
-            var groupCriteria = new GetAllGroupCriteria();
-            ViewBag.GroupSelectList = userService.GetSettingGroups(groupCriteria);
+            ViewBag.GroupSelectList = GetGroups();
 
             if (ModelState.IsValid)
             {
@@ -113,8 +116,7 @@ namespace Fanex.Athena.Controllers.Account
             criteria.Username = user.Username;
             criteria.GroupId = user.Group != null ? user.Group.Id : 0;
 
-            var groupCriteria = new GetAllGroupCriteria();
-            ViewBag.GroupSelectList = userService.GetSettingGroups(groupCriteria);
+            ViewBag.GroupSelectList = GetGroups();
 
             return View("~/Views/Account/EditUser.cshtml", criteria);
         }
@@ -122,8 +124,7 @@ namespace Fanex.Athena.Controllers.Account
         [HttpPost]
         public ActionResult Edit(UpdateCustCriteria criteria)
         {
-            var groupCriteria = new GetAllGroupCriteria();
-            ViewBag.GroupSelectList = userService.GetSettingGroups(groupCriteria);
+            ViewBag.GroupSelectList = GetGroups();
 
             if (ModelState.IsValid)
             {
@@ -239,6 +240,17 @@ namespace Fanex.Athena.Controllers.Account
             //FormToken = token;
 
             return token;
+        }
+
+        private IEnumerable<SelectListItem> GetGroups()
+        {
+            var groupCriteria = new GetAllGroupCriteria
+            {
+                IsLicenseeGroup = true,
+                SiteId = Consts.SiteId
+            };
+
+            return userService.GetSettingGroups(groupCriteria);
         }
     }
 }

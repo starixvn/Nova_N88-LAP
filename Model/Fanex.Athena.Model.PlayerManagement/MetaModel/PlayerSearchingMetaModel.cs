@@ -6,6 +6,8 @@
 
         public string UserName { get; set; }
 
+        public string SystemId { get; set; }
+
         public string OddsGroup { get; set; }
 
         public string SpecialLevel { get; set; }

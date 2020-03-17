@@ -24,7 +24,9 @@ export class FormFilter extends PureComponent {
 
         this.state = {
             isValidUserName: false,
+            isValidsystemId: false,
             userName: '',
+            systemId: '',
             currencyIdList: this.allCurrencyString,
             oddsGroup: this.allOddsGroupString,
             specialLevel: this.allSpecialLevel,
@@ -63,8 +65,9 @@ export class FormFilter extends PureComponent {
 
     searchPlayer() {
         const userName = this.state.userName;
+        const systemId = this.state.systemId;
 
-        const { pagingOption, searchPlayer, currencyList } = this.props;
+        const { pagingOption, searchPlayer, currencyList, isAdvancedSearch } = this.props;
         const { specialLevel, currencyIdList, oddsGroup, isValidUserName, ...restParam } = this.state;
         const actualSpecialLevel = specialLevel.trim();
         const isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
@@ -73,12 +76,16 @@ export class FormFilter extends PureComponent {
         const param = {
             ...restParam,
             userName: encode(userName),
+            systemId: encode(systemId),
+            searchOption: isAdvancedSearch + 1,
             currencyIdList: isSelectAllCurrency ? '' : currencyIdList,
             oddsGroup: isSelectAllOddsGroup ? '' : oddsGroup,
             specialLevel: actualSpecialLevel === '' ? this.allSpecialLevel : actualSpecialLevel,
             pageSize: pagingOption.PageSize,
             pageIndex: 1
         };
+
+        console.log(param)
 
         searchPlayer(param);
     }
@@ -111,6 +118,13 @@ export class FormFilter extends PureComponent {
             isValidUserName: !!value });
     }
 
+    hangedelSystemIdChange= (event) => {
+        const { name, value } = event.target;
+        this.setState({ 
+            systemId: value,
+            isValidsystemId: !!value });
+    }
+
     _renderUserGuide() {
         const userGuideContent = 'Player Admin User Guide';
 
@@ -122,12 +136,12 @@ export class FormFilter extends PureComponent {
     }
 
     render() {
-        const { bankAccountNumber, email, searchOption, isValidUserName, ...advancedSearchParam } = this.state;
+        const { bankAccountNumber, email, searchOption, isValidUserName, isValidsystemId, ...advancedSearchParam } = this.state;
         const { type, isAdvancedSearch, isFilterCollapsing, currencyList, hasBaPermission } = this.props;
         const { currencyIdList, oddsGroup, specialLevel } = advancedSearchParam;
 
-        const isValidParam = (isValidUserName) &&
-            !!currencyIdList && !!oddsGroup && !!specialLevel;
+        console.log(isAdvancedSearch)
+        const isValidParam = (isValidUserName || isValidsystemId || isAdvancedSearch);
         const iconToggle = {
             tag: 'div',
             className: isFilterCollapsing ? 'chevron down' : 'chevron up',
@@ -153,7 +167,8 @@ export class FormFilter extends PureComponent {
                             <label className="label-text">
                                SystemID
                             </label>
-                            <input className="input-text" id="systemID" name="systemID" type="text" />
+                            <input className="input-text" id="systemID" name="systemID" type="text" 
+                            onKeyPress={this.handlePressEnter} onChange={(value) => this.hangedelSystemIdChange(value)}/>
                         </div>
                     </div>
 

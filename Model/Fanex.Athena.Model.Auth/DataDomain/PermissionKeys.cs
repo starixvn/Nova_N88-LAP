@@ -52,23 +52,12 @@
         public const string BetHistoryAdvancedSearch = "BetHistory_AdvancedSearch";
 
         /*External*/
-        public const string DashboardCustomerBalance = "n_customer_balance";
-        public const string DashboardLicenseeWinLossByPlatform = "c_licWL";
-        public const string DashboardPendingFund = "n_pending_funds";
-        public const string DashboardTodayDeposit = "n_deposit";
-        public const string DashboardTodayWithdrawal = "n_withdrawal";
-        public const string DashboardTurnoverByPlatform = "c_turnover";
-
         public const string PlayerAdmin = "PlayerAdmin";
         public const string PlayerAdminUpdateBaStatus = "pa_BA_ctl";
         public const string PlayerAdminUpdateSpecialLevel = "pa_lv_ctl";
         public const string PlayerAdminUpdateOddsGroup = "pa_odds_g_ctl";
 
         public const string PlayerAdminStatement = "pa_statement";
-        public const string PlayerAdminBetList = "pa_r_bl";
-        public const string PlayerAdminBetLimit = "pa_bet_lm";
-        public const string PlayerAdminBetLimit_Write = "pa_bet_lm_w";
-        public const string PlayerAdminLog = "pa_log";
 
         public const string AccountInfo = "pa_acc_Info";
     }

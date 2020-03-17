@@ -55,7 +55,6 @@ export class DataGrid extends PureComponent {
         }
 
         const dataList = selectedPlayer ? [playerList.find(item => item.IbcCustId === selectedPlayer.ibcCustId)] : playerList;
-        console.log(dataList)
         const displayedColumn = buildDisplayedColumnObject(displayedColumnList);
 
         return (

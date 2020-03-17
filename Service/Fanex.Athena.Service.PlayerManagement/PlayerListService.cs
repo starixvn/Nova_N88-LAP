@@ -20,7 +20,7 @@
 
         public PlayerListResultViewModel Search(PlayerSearchingMetaModel metaModel)
         {
-            const string SpKey = "Lrf_CustomerSelByUsername";
+            const string SpKey = "N88_CustomerSelByUsername";
             var result = new PlayerListResultViewModel();
 
             using (var objectDb = _dbFactory.GetObjectDb(SpKey))
@@ -60,7 +60,8 @@
 
         private static void AssignParamByUserName(IObjectDb objectDb, PlayerSearchingMetaModel metaModel)
         {
-            objectDb.SetParameterValue("UserName", metaModel.UserName);
+            objectDb.SetParameterValue("UserName", metaModel.SystemId);
+            objectDb.SetParameterValue("UserName2", metaModel.UserName);
             objectDb.SetParameterValue("SearchOption", metaModel.SearchOption);
             objectDb.SetParameterValue("BaFilter", metaModel.BaFilter);
             objectDb.SetParameterValue("SpecialLevel", metaModel.SpecialLevel);

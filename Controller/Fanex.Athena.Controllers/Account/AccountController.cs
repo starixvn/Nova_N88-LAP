@@ -7,6 +7,7 @@
 namespace Fanex.Athena.Controllers.Account
 {
     using Fanex.Common;
+    using Fanex.N88.Core.Configuration;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,7 +15,7 @@ namespace Fanex.Athena.Controllers.Account
 
     using Web.ActionFilter;
 
-    public class AccountController : Controller
+    public class AccountController : CultureBaseController
     {
         private readonly UserService userService;
 
@@ -45,6 +46,8 @@ namespace Fanex.Athena.Controllers.Account
             ViewBag.GroupSelectList = GetGroups();
             ViewBag.Criteria = criteria;
             IEnumerable<UserLevel> users = userService.SearchUser(criteria);
+
+            ViewBag.currentUserLevel = userService.GetUserSiteLevel(SessionServiceInstance.UserSession.UserId, N88Settings.Settings.SiteId);
 
             var model = new PagerList<UserLevel>(criteria.PageIndex, criteria.PageSize, criteria.TotalRows, users);
             return View("~/Views/Account/Manage.cshtml", model);

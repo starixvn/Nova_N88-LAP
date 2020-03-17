@@ -157,56 +157,65 @@
                         </td>
 
                         <td class="text-center">
-                            <div class="action-wrp">
+                            @if (item.Level <= ViewBag.currentUserLevel)
+                            {
+                                <div class="action-wrp">
 
-                                <span class="btn-action">Action</span>
-                                <div class="relative">
-                                    <ul class="actions">
+                                    <span class="btn-action btn-action-active">Action</span>
+                                    <div class="relative">
+                                        <ul class="actions">
 
-                                        <li>
-                                            @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
-                                            "Edit", new
-                                            {
-                                                id = item.User.Id,
-                                                returnUserName = ViewBag.Username,
-                                                returnSiteId = siteId,
-                                                returnGroupId = returnGroupId,
-                                                returnPageIndex = CurrentPageIndex
-                                            }, new { @class = "dd-edit" })
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
-                                            "ResetPassword", new
-                                            {
-                                                id = item.User.Id,
-                                                returnUserName = ViewBag.Username,
-                                                returnSiteId = siteId,
-                                                returnGroupId = returnGroupId,
-                                                returnPageIndex = CurrentPageIndex
-                                            }, new { @class = "dd-chgpwd" })
-                                        </li>
-
-
-
-                                        <li>
-                                            @Html.ActionLink(string.Format("Edit Permission of '{0}'", item.User.Username), "AssignPermission",
-                                            new
-                                            {
-                                                id = item.User.Id,
-                                                siteId = item.Site != null ? item.Site.Id : returnSiteId,
-                                                returnUserName = ViewBag.Username,
-                                                returnSiteId = siteId,
-                                                returnGroupId = returnGroupId,
-                                                returnPageIndex = CurrentPageIndex
-                                            }, new { @class = "dd-permission" })
-                                        </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
+                                     "Edit", new
+                                     {
+                                         id = item.User.Id,
+                                         returnUserName = ViewBag.Username,
+                                         returnSiteId = siteId,
+                                         returnGroupId = returnGroupId,
+                                         returnPageIndex = CurrentPageIndex
+                                     }, new { @class = "dd-edit" })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
+                                     "ResetPassword", new
+                                     {
+                                         id = item.User.Id,
+                                         returnUserName = ViewBag.Username,
+                                         returnSiteId = siteId,
+                                         returnGroupId = returnGroupId,
+                                         returnPageIndex = CurrentPageIndex
+                                     }, new { @class = "dd-chgpwd" })
+                                            </li>
 
 
-                                    </ul>
+
+                                            <li>
+                                                @Html.ActionLink(string.Format("Edit Permission of '{0}'", item.User.Username), "AssignPermission",
+                                     new
+                                     {
+                                         id = item.User.Id,
+                                         siteId = item.Site != null ? item.Site.Id : returnSiteId,
+                                         returnUserName = ViewBag.Username,
+                                         returnSiteId = siteId,
+                                         returnGroupId = returnGroupId,
+                                         returnPageIndex = CurrentPageIndex
+                                     }, new { @class = "dd-permission" })
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+
                                 </div>
-
-                            </div>
-                        </td>
+                            }
+                            else
+                            {
+                                <div class="action-wrp">
+                                    <span class="btn-action btn-action-inactive">Action</span>
+                                </div>
+                            }
+                            </td>
                     </tr>
 
                     i++;

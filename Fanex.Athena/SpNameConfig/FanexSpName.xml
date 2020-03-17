@@ -189,6 +189,8 @@
     <Setting Key="N88_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBPOL.NAP_UserControl.bodbAdminNet"></Setting>
     <Setting Key="N88_Cust_UpdatePassword" SpName="N88_Cust_UpdatePassword" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
     <Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
+    
   </Function>
 </Functions>
 		

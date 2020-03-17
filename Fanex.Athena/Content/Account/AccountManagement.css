@@ -372,9 +372,14 @@ a {
         cursor: pointer;
     }
 
-        .grid .action-wrp .btn-action:hover {
-            background-position: center -56px;
-        }
+    .grid .action-wrp .btn-action-active:hover {
+        background-position: center -56px;
+    }
+
+    .grid .action-wrp .btn-action-inactive {
+        cursor: text;
+        opacity: 0.5;
+    }
 
     .grid .action-wrp .actions {
         display: none;

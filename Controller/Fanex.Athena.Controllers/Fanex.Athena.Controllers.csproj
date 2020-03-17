@@ -213,6 +213,7 @@
     <Compile Include="Account\GetBySiteFunctionCriteria.cs" />
     <Compile Include="Account\GetByUserAndSiteFunctionCriteria.cs" />
     <Compile Include="Account\GetByUsernameUserCriteria.cs" />
+    <Compile Include="Account\GetUserSiteLevelUserCriteria.cs" />
     <Compile Include="Account\Group.cs" />
     <Compile Include="Account\GroupPolicy.cs" />
     <Compile Include="Account\PagerList.cs" />

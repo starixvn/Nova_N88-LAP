@@ -182,6 +182,22 @@ namespace Fanex.Athena.Controllers.Account
             return null;
         }
 
+        public int GetUserSiteLevel(int userId, int siteId)
+        {
+            var criteria = new GetUserSiteLevelUserCriteria
+            {
+                UserId = userId,
+                SiteId = siteId
+            };
+
+            if (criteria.IsValid())
+            {
+                return this.userRepository.FetchData<int>(criteria).FirstOrDefault();
+            }
+
+            return -1;
+        }
+
         private List<AccFunction> SortFunctionsInHierarchy(List<AccFunction> functionList, int parentId = 0)
         {
             var sortedFunctionList = new List<AccFunction>();

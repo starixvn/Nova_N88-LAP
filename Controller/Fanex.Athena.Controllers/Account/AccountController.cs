@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AccountController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers.Account
+﻿namespace Fanex.Athena.Controllers.Account
 {
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
@@ -12,8 +6,6 @@ namespace Fanex.Athena.Controllers.Account
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-
-    using Web.ActionFilter;
 
     public class AccountController : CultureBaseController
     {
@@ -37,19 +29,18 @@ namespace Fanex.Athena.Controllers.Account
                 PageSize = size,
                 Username = username,
                 GroupId = groupId,
-                SiteId = Consts.SiteId,
+                SiteId = N88Settings.Settings.SiteId,
                 Status = statusId,
                 TotalRows = 0,
-                Environment = "UAT"
+                Environment = N88Settings.Settings.Environment
             };
 
             ViewBag.GroupSelectList = GetGroups();
             ViewBag.Criteria = criteria;
-            IEnumerable<UserLevel> users = userService.SearchUser(criteria);
-
             ViewBag.currentUserLevel = userService.GetUserSiteLevel(SessionServiceInstance.UserSession.UserId, N88Settings.Settings.SiteId);
-
+            IEnumerable<UserLevel> users = userService.SearchUser(criteria);
             var model = new PagerList<UserLevel>(criteria.PageIndex, criteria.PageSize, criteria.TotalRows, users);
+
             return View("~/Views/Account/Manage.cshtml", model);
         }
 
@@ -74,7 +65,6 @@ namespace Fanex.Athena.Controllers.Account
                     return View("~/Views/Account/NewUser.cshtml", criteria);
                 }
 
-                // add new user
                 criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
                 criteria.FirstName = criteria.FirstName ?? string.Empty;
                 criteria.LastName = criteria.LastName ?? string.Empty;
@@ -85,10 +75,10 @@ namespace Fanex.Athena.Controllers.Account
                 {
                     var assignSiteCriteria = new AssignSiteUserCriteria
                     {
-                        CreatedBy = Consts.CurrentUserId,
+                        CreatedBy = SessionServiceInstance.UserSession.UserId,
                         CreatedDate = DateTime.Now,
                         UserId = criteria.CustId,
-                        SiteId = Consts.SiteId,
+                        SiteId = N88Settings.Settings.SiteId,
                         Level = Consts.UserLevel,
                         IsActive = true,
                         IsNeverExpired = true,
@@ -102,7 +92,6 @@ namespace Fanex.Athena.Controllers.Account
                     }
                 }
             }
-
             
             return View("~/Views/Account/NewUser.cshtml", criteria);
         }
@@ -146,22 +135,19 @@ namespace Fanex.Athena.Controllers.Account
             return View("~/Views/Account/EditUser.cshtml", criteria);
         }
 
-        public ActionResult AssignPermission(int id,
-            int siteId = 0)
+        public ActionResult AssignPermission(int id)
         {
-            var user = userService.GetById(id);
-            //var site = userService.GetSiteById(siteId);
-
+            var user = userService.GetById(id);            
             var criteria = new AssignFunctionUserCriteria
             {
                 UserId = id,
                 Username = user.Username,
-                SiteId = siteId
+                SiteId = N88Settings.Settings.SiteId
             };
 
-            ViewBag.GroupFuncPolicyList = userService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, "UAT").ToList();
-            ViewBag.FunctionList = userService.GetBySiteInHierarchy(criteria.SiteId, "UAT", true).ToList();
-            ViewBag.UserFuncPolicyList = userService.GetByUserAndSite(criteria.UserId, criteria.SiteId, "UAT").ToList();
+            ViewBag.GroupFuncPolicyList = userService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+            ViewBag.FunctionList = userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
+            ViewBag.UserFuncPolicyList = userService.GetByUserAndSite(criteria.UserId, criteria.SiteId, N88Settings.Settings.Environment).ToList();
 
             return View("~/Views/Account/AssignPermission.cshtml", criteria);
         }
@@ -169,34 +155,25 @@ namespace Fanex.Athena.Controllers.Account
         [HttpPost]
         public ActionResult AssignPermission(AssignFunctionUserCriteria criteria)
         {
-            var sessionUserId = 1;
             var user = userService.GetById(criteria.UserId);
-            //var site = userService.GetSiteById(criteria.SiteId);
 
             criteria.Username = user.Username;
-            criteria.ModifiedBy = sessionUserId;
+            criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
             criteria.ModifiedDate = DateTime.Now;
-
-            //var functionList = userService.GetBySiteInHierarchy(criteria.SiteId, "UAT", true).ToList();
-            //var userFuncPolicyList = userService.GetByUserAndSite(criteria.UserId, criteria.SiteId, "UAT").ToList();
-
-            // list function will be remove by current user login
-            //var listUserFuncRemove = new List<FunctionPolicy>();
-            //listUserFuncRemove.AddRange(userFuncPolicyList);
-
+            
             var result = userService.AssignFunction(criteria);
 
-            ViewBag.FunctionList = userService.GetBySiteInHierarchy(criteria.SiteId, "UAT", true).ToList();
+            ViewBag.FunctionList = userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
             if (result != null && result.IsSuccessful)
             {
                 ViewBag.Success = true;
 
-                ViewBag.UserFuncPolicyList = userService.GetByUserAndSite(criteria.UserId, criteria.SiteId, "UAT").ToList();
+                ViewBag.UserFuncPolicyList = userService.GetByUserAndSite(criteria.UserId, criteria.SiteId, N88Settings.Settings.Environment).ToList();
             }
 
             if (!ReferenceEquals(user.Group, null))
             {
-                ViewBag.GroupFuncPolicyList = userService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, "UAT").ToList();
+                ViewBag.GroupFuncPolicyList = userService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, N88Settings.Settings.Environment).ToList();
             }
 
             return View("~/Views/Account/AssignPermission.cshtml", criteria);
@@ -222,7 +199,6 @@ namespace Fanex.Athena.Controllers.Account
         {
             if (ModelState.IsValid)
             {
-                //var user = userService.GetById(criteria.CustId);
                 criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
                 var result = userService.UpdatePassword(criteria);
 
@@ -238,11 +214,7 @@ namespace Fanex.Athena.Controllers.Account
 
         private string GenerateToken()
         {
-            string token = Guid.NewGuid().ToString("N");
-
-            //FormToken = token;
-
-            return token;
+            return Guid.NewGuid().ToString("N");
         }
 
         private IEnumerable<SelectListItem> GetGroups()
@@ -250,7 +222,7 @@ namespace Fanex.Athena.Controllers.Account
             var groupCriteria = new GetAllGroupCriteria
             {
                 IsLicenseeGroup = true,
-                SiteId = Consts.SiteId
+                SiteId = N88Settings.Settings.SiteId
             };
 
             return userService.GetSettingGroups(groupCriteria);

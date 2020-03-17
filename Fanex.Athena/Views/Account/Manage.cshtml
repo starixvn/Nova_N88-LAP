@@ -169,41 +169,24 @@
                                                 @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
                                      "Edit", new
                                      {
-                                         id = item.User.Id,
-                                         returnUserName = ViewBag.Username,
-                                         returnSiteId = siteId,
-                                         returnGroupId = returnGroupId,
-                                         returnPageIndex = CurrentPageIndex
+                                         id = item.User.Id
                                      }, new { @class = "dd-edit" })
                                             </li>
                                             <li>
                                                 @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
                                      "ResetPassword", new
                                      {
-                                         id = item.User.Id,
-                                         returnUserName = ViewBag.Username,
-                                         returnSiteId = siteId,
-                                         returnGroupId = returnGroupId,
-                                         returnPageIndex = CurrentPageIndex
+                                         id = item.User.Id
                                      }, new { @class = "dd-chgpwd" })
                                             </li>
-
-
 
                                             <li>
                                                 @Html.ActionLink(string.Format("Edit Permission of '{0}'", item.User.Username), "AssignPermission",
                                      new
                                      {
-                                         id = item.User.Id,
-                                         siteId = item.Site != null ? item.Site.Id : returnSiteId,
-                                         returnUserName = ViewBag.Username,
-                                         returnSiteId = siteId,
-                                         returnGroupId = returnGroupId,
-                                         returnPageIndex = CurrentPageIndex
+                                         id = item.User.Id
                                      }, new { @class = "dd-permission" })
                                             </li>
-
-
                                         </ul>
                                     </div>
 

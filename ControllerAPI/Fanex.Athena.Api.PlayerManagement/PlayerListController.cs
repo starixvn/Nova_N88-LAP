@@ -6,12 +6,15 @@
     using Fanex.Athena.Api.Base;
     using Fanex.Athena.Api.Base.Attributes;
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
+    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.MetaModel;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.PlayerManagement.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
+    using Fanex.Athena.Web.ActionFilter;
 
+    [FunctionAuthorization(PermissionKeys.PlayerAdminPlayerList)]
     public class PlayerListController : BaseApiController
     {
         private readonly IPlayerListService _playerListService;
@@ -42,7 +45,7 @@
             var selectedCurrencyIdList = currencySelected.Trim()
                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                .Select(x => Convert.ToInt32(x));
-           
+
             searchParam.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, selectedCurrencyIdList);
             return _playerListService.Search(searchParam);
         }

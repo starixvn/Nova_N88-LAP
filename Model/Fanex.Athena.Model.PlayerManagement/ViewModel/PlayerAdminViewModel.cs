@@ -13,6 +13,10 @@
 
         public bool IsAllowedBA { get; set; }
 
+        public bool IsAllowedOddGroup { get; set; }
+
+        public bool IsAllowedSpecialLevel { get; set; }
+
         public string SiteName { get; set; }
 
         public string PlayerTabItems { get; set; }

@@ -53,11 +53,12 @@
 
         /*External*/
         public const string PlayerAdmin = "PlayerAdmin";
-        public const string PlayerAdminUpdateBaStatus = "pa_BA_ctl";
-        public const string PlayerAdminUpdateSpecialLevel = "pa_lv_ctl";
-        public const string PlayerAdminUpdateOddsGroup = "pa_odds_g_ctl";
+        public const string PlayerAdminPlayerList = "PlayerAdminPlayerList";
+        public const string PlayerAdminPlayerStatement = "PlayerAdminPlayerStatement";
 
-        public const string PlayerAdminStatement = "pa_statement";
+        public const string PlayerAdminUpdateBaStatus = "PlayerAdmin_PL_BA";
+        public const string PlayerAdminUpdateSpecialLevel = "PlayerAdmin_PL_SpecialLevel";
+        public const string PlayerAdminUpdateOddsGroup = "PlayerAdmin_PL_OddGroups";
 
         public const string AccountInfo = "pa_acc_Info";
     }

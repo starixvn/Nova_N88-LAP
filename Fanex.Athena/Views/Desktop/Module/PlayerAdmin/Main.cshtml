@@ -30,9 +30,8 @@
     applyLinkTokenUrl: '@Url.Action("ApplyToken", "Verify")',
     tabList: @Html.Raw(Model.PlayerTabItems),
     hasBaPermission: @((bool)Model.IsAllowedBA ? 1 : 0),
-    hasOddsGroupPermission: 1,
-    hasSpecialLevelPermission: 1,
-    isAllowedCustomerComm: @((bool)Model.IsAllowedCustomerComm ? 1 : 0)
+    hasOddsGroupPermission: @((bool)Model.IsAllowedOddGroup ? 1 : 0),
+    hasSpecialLevelPermission: @((bool)Model.IsAllowedSpecialLevel ? 1 : 0)
     };
 }
 <div id="app-container">

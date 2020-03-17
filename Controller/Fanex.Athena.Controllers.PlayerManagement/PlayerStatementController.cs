@@ -6,6 +6,7 @@
     using System.Web.SessionState;
     using System.Web.UI;
     using Fanex.Athena.Controllers;
+    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.MetaModel;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
     using Fanex.Athena.Service.PlayerManagement.Interfaces;
@@ -14,6 +15,7 @@
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
+    [FunctionAuthorization(PermissionKeys.PlayerAdminPlayerStatement)]
     public class PlayerStatementController : CultureBaseController
     {
         private readonly IPlayerStatementService _playerStatementService;

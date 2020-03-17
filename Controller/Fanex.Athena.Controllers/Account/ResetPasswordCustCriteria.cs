@@ -23,14 +23,14 @@ namespace Fanex.Athena.Controllers.Account
         public string Username { get; set; }
 
         [Required]
-        [Display(Name = "New_Password", ResourceType = typeof(ViewResources))]
+        [Display(Name = "NewPassword", ResourceType = typeof(ViewResources))]
         [StringLength(50, MinimumLength = 2,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string UserPwd { get; set; }
 
         [Required]
-        [Display(Name = "Confirm_Password", ResourceType = typeof(ViewResources))]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(ViewResources))]
         [StringLength(50, MinimumLength = 2,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]

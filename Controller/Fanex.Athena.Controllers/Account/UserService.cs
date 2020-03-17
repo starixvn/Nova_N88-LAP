@@ -78,10 +78,10 @@ namespace Fanex.Athena.Controllers.Account
         {
             var user = GetByUsername(username);
 
-            return user != null && user.Id != 0;
+            return user != null && user.UserId != 0;
         }
 
-        public User GetByUsername(string username)
+        public UserData GetByUsername(string username)
         {
             var criteria = new GetByUsernameUserCriteria
             {
@@ -90,7 +90,7 @@ namespace Fanex.Athena.Controllers.Account
 
             if (criteria.IsValid())
             {
-                return this.userRepository.FetchData<User>(criteria).FirstOrDefault();
+                return this.userRepository.FetchData<UserData>(criteria).FirstOrDefault();
             }
 
             return null;

@@ -15,13 +15,13 @@ namespace Fanex.Athena.Controllers.Account
 
         public int CustId { get; set; }
 
-        [Display(Name = "First_Name", ResourceType = typeof(ViewResources))]
+        [Display(Name = "FirstName", ResourceType = typeof(ViewResources))]
         [StringLength(50, MinimumLength = 0,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last_Name", ResourceType = typeof(ViewResources))]
+        [Display(Name = "LastName", ResourceType = typeof(ViewResources))]
         [StringLength(50, MinimumLength = 0,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]

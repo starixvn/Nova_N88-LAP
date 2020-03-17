@@ -26,7 +26,7 @@
 }
 
 <div class="section-div">
-    <div class="title">Assign Permission</div>
+    <div class="title">@ViewResources.AssignPermission</div>
     <div class="permission-div">
         @using (Html.BeginForm())
         {
@@ -50,26 +50,26 @@
                                 @ViewResources.Function
                             </th>
                             <th colspan="2">
-                                User Permission
+                                @ViewResources.UserPermission
                             </th>
                             <th colspan="2">
-                                Group Permission
+                                @ViewResources.GroupPermission
                             </th>
                         </tr>
                         <tr>
                             <th style="width: 50px">
-                                Read
+                                @ViewResources.Read
                                 <input title="Check/Uncheck All" id="chkAllFuncRead" type="checkbox" />
                             </th>
                             <th style="width: 50px">
-                                Host
+                                @ViewResources.Host
                                 <input title="Check/Uncheck All" id="chkAllFuncHost" type="checkbox" />
                             </th>
                             <th style="width: 50px">
-                                Read
+                                @ViewResources.Read
                             </th>
                             <th style="width: 50px">
-                                Host
+                                @ViewResources.Host
                             </th>
                         </tr>
                     </thead>
@@ -187,7 +187,7 @@
 
 @if (success)
 {
-    string dialogMsg = string.Format(ViewResources.Update_Permission_Success, Model.Username, 3);
+    string dialogMsg = string.Format(ViewResources.Your_changes_were_saved, Model.Username, 3);
 
     <script type="text/javascript">
         var url = '/Account/Manage';

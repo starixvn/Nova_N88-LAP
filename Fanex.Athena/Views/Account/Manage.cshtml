@@ -31,7 +31,7 @@
     <div class="buttons-div">
         <div class="title">Manage User</div>
         <div class="button-action">
-            @Html.ActionLink("+ " + "Create New User", "NewUser", "Account",
+            @Html.ActionLink("+ " + ViewResources.CreateNewUser, "NewUser", "Account",
                     new
                     {
                         ReturnUserName = ViewBag.Username,
@@ -47,17 +47,17 @@
         @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-inline col-sm-12 filter-form" }))
         {
             <div class="form-group">
-                @Html.Label("Username")
+                @Html.Label(ViewResources.Username)
                 <input type="hidden" value="@ViewBag.Criteria.Username" id="hdnUsename" />
                 <input type="text" value="@ViewBag.Criteria.Username" name="userName" id="Username" />
             </div>
             <div class="form-group">
-                @Html.Label("GroupId", "Group")
+                @Html.Label("GroupId", ViewResources.Group)
                 @Html.DropDownList("GroupId", (List<SelectListItem>)ViewBag.GroupSelectList, "All_Groups")
             </div>
 
             <div class="form-group">
-                @Html.Label("StatusId", "Status")
+                @Html.Label("StatusId", ViewResources.Status)
                 @Html.DropDownList("StatusId", new List<SelectListItem> {
                 new SelectListItem { Text = "All", Value = "0"  },
                 new SelectListItem { Text = "Active", Value = "1" , Selected = true },
@@ -78,25 +78,25 @@
                     #
                 </th>
                 <th>
-                    Username
+                    @ViewResources.Username
                 </th>
                 <th>
-                    FirstName
+                    @ViewResources.FirstName
                 </th>
                 <th>
-                    Group
+                    @ViewResources.Group
                 </th>
                 <th>
-                    Creator
+                    @ViewResources.Creator
                 </th>
                 <th>
-                    Created_Date
+                    @ViewResources.CreatedDate
                 </th>
                 <th>
-                    Last_Login_Date
+                    @ViewResources.LastLoginDate
                 </th>
                 <th>
-                    Status
+                    @ViewResources.Status
                 </th>
                 <th>
                     @ViewResources.Action
@@ -181,7 +181,7 @@
                                             </li>
 
                                             <li>
-                                                @Html.ActionLink(string.Format("Edit Permission of '{0}'", item.User.Username), "AssignPermission",
+                                                @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
                                      new
                                      {
                                          id = item.User.Id
@@ -195,7 +195,7 @@
                             else
                             {
                                 <div class="action-wrp">
-                                    <span class="btn-action btn-action-inactive">Action</span>
+                                    <span class="btn-action btn-action-inactive">@ViewResources.Action</span>
                                 </div>
                             }
                             </td>

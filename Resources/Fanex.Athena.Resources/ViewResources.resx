@@ -1653,7 +1653,7 @@
     <value>User Guide</value>
   </data>
   <data name="WrongUserNamePassword" xml:space="preserve">
-    <value>Wrong username or password.</value>
+    <value>x</value>
     <comment>#22443</comment>
   </data>
   <data name="UserNotExist" xml:space="preserve">
@@ -2560,25 +2560,25 @@
     <value>Confirm_Password</value>
   </data>
   <data name="EmailFormatValidationMsg" xml:space="preserve">
-    <value>EmailFormatValidationMsg</value>
+    <value>The {0} field is invalid.</value>
   </data>
   <data name="First_Name" xml:space="preserve">
     <value>First_Name</value>
   </data>
   <data name="InputLengthValidationMsg" xml:space="preserve">
-    <value>InputLengthValidationMsg</value>
+    <value>The {0} field must be at least {2} and maximum {1} characters long.</value>
   </data>
   <data name="InvalidNameValidationMsg" xml:space="preserve">
-    <value>InvalidNameValidationMsg</value>
+    <value>The Name field can only contain A-Z, a-z, 0-9, underscore, and spaces.</value>
   </data>
   <data name="Last_Name" xml:space="preserve">
     <value>Last_Name</value>
   </data>
-  <data name="New_Password" xml:space="preserve">
-    <value>New_Password</value>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
   </data>
   <data name="PropertiesMustMatchErrMsg" xml:space="preserve">
-    <value>PropertiesMustMatchErrMsg</value>
+    <value>'{0}' and '{1}' do not match.</value>
   </data>
   <data name="Site" xml:space="preserve">
     <value>Site</value>
@@ -2587,37 +2587,10 @@
     <value>UserPwd</value>
   </data>
   <data name="Add_New_User_Success" xml:space="preserve">
-    <value>Add_New_User_Success</value>
+    <value>'{0}' account has been created successfully.</value>
   </data>
   <data name="Edit_User_Success" xml:space="preserve">
-    <value>Edit_User_Success</value>
-  </data>
-  <data name="Create_New" xml:space="preserve">
-    <value>Create New</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="Manage" xml:space="preserve">
-    <value>Manage</value>
-  </data>
-  <data name="Management" xml:space="preserve">
-    <value>Management</value>
-  </data>
-  <data name="Modified_Date" xml:space="preserve">
-    <value>Modified Date</value>
-  </data>
-  <data name="Modifier" xml:space="preserve">
-    <value>Modifier</value>
-  </data>
-  <data name="NoInformationAvailable" xml:space="preserve">
-    <value>No Information Available</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Users</value>
-  </data>
-  <data name="View_details_of" xml:space="preserve">
-    <value>Details</value>
+    <value>'{0}' has been updated successfully. </value>
   </data>
   <data name="Create_New" xml:space="preserve">
     <value>Create New</value>
@@ -2647,9 +2620,48 @@
     <value>Details</value>
   </data>
   <data name="Update_Password_Success" xml:space="preserve">
-    <value>Update_Password_Success</value>
+    <value>'{0}' password has been reset successfully. </value>
   </data>
   <data name="Update_Permission_Success" xml:space="preserve">
     <value>Update_Permission_Success</value>
+  </data>
+  <data name="AssignPermission" xml:space="preserve">
+    <value>Assign Permission</value>
+  </data>
+  <data name="CreateNewUser" xml:space="preserve">
+    <value>Create New User</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="EditPermission" xml:space="preserve">
+    <value>Edit Permission</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="GroupPermission" xml:space="preserve">
+    <value>Group Permission</value>
+  </data>
+  <data name="Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="LastLoginDate" xml:space="preserve">
+    <value>Last Login Date</value>
+  </data>
+  <data name="ManageUser" xml:space="preserve">
+    <value>Manage User</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>New User</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="UserPermission" xml:space="preserve">
+    <value>User Permission</value>
+  </data>
+  <data name="Your_changes_were_saved" xml:space="preserve">
+    <value>Your changes were saved</value>
   </data>
 </root>

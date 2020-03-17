@@ -31,7 +31,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModelAttribute(BindUserId = true, BindIp = true, BindLanguage = true, BindSiteName = true)]
+        [ApiAutoBindMetaModelAttribute(BindUserId = true, BindIp = true, BindLanguage = true, BindLicenseeName = true)]
         public ResultViewModel Update(SpecialLevelUpdatingMetaModel metaModel)
         {
             try

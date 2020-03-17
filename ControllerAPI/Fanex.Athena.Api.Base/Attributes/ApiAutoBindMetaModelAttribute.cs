@@ -16,7 +16,7 @@ namespace Fanex.Athena.Api.Base.Attributes
 
         public bool BindUserId { get; set; }
 
-        public bool BindSiteName { get; set; }
+        public bool BindLicenseeName { get; set; }
 
         public bool BindLanguage { get; set; }
 
@@ -41,7 +41,7 @@ namespace Fanex.Athena.Api.Base.Attributes
                 AutoBindMetaModelService.MapUserId(actionArgument, userSession.UserId);
             }
 
-            if (BindSiteName)
+            if (BindLicenseeName)
             {
                 AutoBindMetaModelService.MapSiteName(actionArgument, licenseeSession.LicenseeName);
             }

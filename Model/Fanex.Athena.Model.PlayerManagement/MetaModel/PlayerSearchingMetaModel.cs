@@ -8,6 +8,8 @@
 
         public string SystemId { get; set; }
 
+        public string LicenseeName { get; set; }
+
         public string OddsGroup { get; set; }
 
         public string SpecialLevel { get; set; }

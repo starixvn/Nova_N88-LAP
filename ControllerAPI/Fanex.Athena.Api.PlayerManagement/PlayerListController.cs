@@ -28,7 +28,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModelAttribute(BindUserId = true)]
+        [ApiAutoBindMetaModelAttribute(BindUserId = true, BindLicenseeName = true)]
         public PlayerListResultViewModel Search(PlayerSearchingMetaModel searchParam)
         {
             var currencySelected = searchParam.CurrencyIdList;
@@ -48,7 +48,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModelAttribute(BindSiteName = true, BindAgent = true)]
+        [ApiAutoBindMetaModelAttribute(BindLicenseeName = true, BindAgent = true)]
         public PlayerListResultViewModel GetPlayerListById(PlayerListByIdMetaModel metaModel)
         {
             metaModel.PageIndex = 1;

@@ -18,7 +18,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModelAttribute(BindSiteName = true, BindUserId = true, BindLanguage = true, BindIp = true)]
+        [ApiAutoBindMetaModelAttribute(BindLicenseeName = true, BindUserId = true, BindLanguage = true, BindIp = true)]
         public ResultViewModel Update(BaStatusUpdatingMetaModel metaModel)
         {
             return _playerBaStatusService.Update(metaModel);

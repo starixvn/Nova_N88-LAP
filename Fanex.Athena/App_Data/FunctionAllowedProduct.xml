@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Root>
   <Group Name="Default">
-    <Function Name="_Default" Product="SB,BA,NG,VS,CS,KN,AGC,PTCS,GD,VG,BT,VB,AB,CB,FW,CO,VS2,LT,SG,BX,PP,CC"></Function>
+    <Function Name="_Default" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,PP,CC"></Function>
   </Group>
 
   <Group Name="Report">
-    <Function Name="LicenseeWinLoss" Product="SB,BA,NG,VS,CS,KN,BT,AGC,VB,AB,FW,CO,VS2,LT,SG,PP,CC"></Function>
-    <Function Name="SpecialLicenseeWinLoss" Product="SB,NG,CS,LC"></Function>
-    <Function Name="CustomerBalance" Product="SB,BA,NG,VS,CS,KN,BT,AGC,VB,AB,CB,FW,CO,VS2,LT,SG,PP,CC"></Function>
-    <Function Name="CustomerWinLoss" Product="SB,BA,NG,VS,CS,KN,BT,AGC,VB,AB,FW,CO,VS2,LT,SG,PP,CC"></Function>
+    <Function Name="LicenseeWinLoss" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,PP,CC"></Function>
+    <Function Name="SpecialLicenseeWinLoss" Product="SB,NG,CS"></Function>
+    <Function Name="CustomerBalance" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,PP,CC"></Function>
+    <Function Name="CustomerWinLoss" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,PP,CC"></Function>
     <Function Name="ResultPage_GetNormalSports" Product="SB,BA,NG,VS,KN,LT"></Function>
   </Group>
 
   <Group Name="BetList">
-    <Function Name="BetList_CustomerOutstanding" Product="SB,BA,NG,VS,CS,KN,BT,AGC,VB,AB,CB,FW,CO,VS2,LT,SG,PP,CC"></Function>
-    <Function Name="BetList_CustomerOutstandingRunning" Product="SB,BA,NG,VS,CS,KN,AGC,VB,AB,CB,FW,VS2,LT,SG,PP,CC"></Function>
-    <Function Name="BettingTicketCenter" Product="SB,BA,NG,VS,VS2,KN,LT,CO"></Function>
-    <Function Name="BettingTicketCenter_Running" Product="SB,BA,NG,VS,VS2,KN,LT"></Function>
-    <Function Name="BettingTicketCenter_AdvancedSearch" Product="SB,BA,NG,VS,VS2,KN,LT,CO"></Function>
+    <Function Name="BetList_CustomerOutstanding" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,PP,CC"></Function>
+    <Function Name="BetList_CustomerOutstandingRunning" Product="SB,BA,NG,VS,CS,KN,AB,VS2,PP,CC"></Function>
+    <Function Name="BettingTicketCenter" Product="SB,BA,NG,VS,VS2,KN,CO"></Function>
+    <Function Name="BettingTicketCenter_Running" Product="SB,BA,NG,VS,VS2,KN"></Function>
+    <Function Name="BettingTicketCenter_AdvancedSearch" Product="SB,BA,NG,VS,VS2,KN,CO"></Function>
   </Group>
 
   <Group Name="API">

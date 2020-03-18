@@ -141,7 +141,6 @@
   <ItemGroup>
     <Compile Include="HeaderControllerTest.cs" />
     <Compile Include="HomeControllerTest.cs" />
-    <Compile Include="LicenseeListControllerTest.cs" />
     <Compile Include="UserGuideControllerTest.cs" />
     <Compile Include="MenuControllerTest.cs" />
     <Compile Include="AuthorizationControllerTest.RecheckIn.cs" />

@@ -1,26 +1,22 @@
 ﻿namespace Fanex.Athena.Controllers.UnitTests
 {
     using System.Web.Mvc;
-
     using Controllers.Base.UnitTests;
-
-    using DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Model.Core.ViewModel;
-
     using NSubstitute;
-
     using NUnit.Framework;
 
     public class HeaderControllerTest : CultureBaseControllerHelperTest
     {
-        private ILicenseeDataAccess _licenseeDataAccess;
         private ILicenseeSettingService _licenseeSettingService;
+
         [SetUp]
         public void SetUp()
         {
             _licenseeSettingService = Substitute.For<ILicenseeSettingService>();
         }
+
         [OneTimeSetUp]
         public override void FixtureSetUp()
         {
@@ -28,15 +24,12 @@
 
             SetUpDefaultFakeData();
 
-            _licenseeDataAccess = Substitute.For<ILicenseeDataAccess>();
             LangService.When(x => x.ChangeLanguage(Arg.Any<string>())).DoNotCallBase();
-            SessionService.When(x => x.UpdateLiceseeSession(Arg.Any<int>())).DoNotCallBase();
         }
 
         [TearDown]
         public void TearDown()
         {
-            _licenseeDataAccess.ClearReceivedCalls();
             SessionService.ClearReceivedCalls();
         }
 
@@ -84,67 +77,6 @@
             }
         }
 
-        [TestCase(0)]
-        [TestCase(null)]
-        public void ChangeLicensee_LicenseeIsLessThanZero_DoNotUpdateLicenseeSession(int? licenseeId)
-        {
-            using (var controller = CreateController())
-            {
-                // Action
-                var result = controller.ChangeLicensee(licenseeId);
-
-                // Assert
-                SessionService.DidNotReceive().UpdateLiceseeSession(Arg.Any<int>());
-            }
-        }
-
-        [Test]
-        public void ChangeLicensee_NewLicenseeIsEqualToCurrent_DoNotUpdateLicenseeSession()
-        {
-            using (var controller = CreateController())
-            {
-                // Action
-                var result = controller.ChangeLicensee(DefaultLicenseeSession.LicenseeId);
-
-                // Assert
-                SessionService.DidNotReceive().UpdateLiceseeSession(Arg.Any<int>());
-            }
-        }
-
-        [Test]
-        public void ChangeLicensee_NewLicenseeIsNotBelongToUser_DoNotUpdateLicenseeSession()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                const int LicenseeId = 10;
-                _licenseeDataAccess.IsLicenseeBelongToUser(Arg.Any<int>(), Arg.Any<int>()).Returns(false);
-
-                // Action
-                var result = controller.ChangeLicensee(LicenseeId);
-
-                // Assert
-                SessionService.DidNotReceive().UpdateLiceseeSession(Arg.Any<int>());
-            }
-        }
-
-        [Test]
-        public void ChangeLicensee_InvalidNewLicenseeId_UpdateLicenseeSession()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                const int LicenseeId = 10;
-                _licenseeDataAccess.IsLicenseeBelongToUser(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
-
-                // Action
-                var result = controller.ChangeLicensee(LicenseeId);
-
-                // Assert
-                SessionService.Received().UpdateLiceseeSession(LicenseeId);
-            }
-        }
-
         [TestCase("")]
         [TestCase("Invalid")]
         [TestCase("en-US")]
@@ -186,8 +118,7 @@
 
         private HeaderController CreateController()
         {
-            return new HeaderController(
-                _licenseeDataAccess)
+            return new HeaderController()
             {
                 LangService = LangService,
                 SessionServiceInstance = SessionService,

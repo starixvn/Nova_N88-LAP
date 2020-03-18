@@ -32,7 +32,6 @@ var cssPaths = {
     customerlist: ["./www/css/source/pages/customer/customerlist.scss"],
     customeroutstanding: ["./www/css/source/pages/betlist/customeroutstanding.scss"],
     betsetting: ["./www/css/source/pages/customer/betsetting.scss"],
-    licenseelist: ["./www/css/source/pages/utility/licenseelist.scss"],
     customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"]
 };
 

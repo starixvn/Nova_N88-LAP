@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Athena.Controllers
 {
     using System.Web.Mvc;
-    using DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.ViewModel;
@@ -10,17 +9,6 @@
     [AuthorizeRestriction(AppMode.Self)]
     public class HeaderController : CultureBaseController
     {
-        private readonly ILicenseeDataAccess _licenseeDataAccess;
-        private readonly IAppSettings _appSettings;
-
-        public HeaderController(
-            ILicenseeDataAccess licenseeDataAccess,
-            IAppSettings appSettings)
-        {
-            _licenseeDataAccess = licenseeDataAccess;
-            _appSettings = appSettings;
-        }
-
         [HttpGet]
         public ActionResult Index()
         {
@@ -33,38 +21,13 @@
                 HasRecheckIn = !AppSettingInstance.LocalTest,
                 SupportedLanguageList = Util.SupportedLanguages,
                 UserName = userSession.UserName,
-                CurrentLicenseeId = _appSettings.LicenseeId,
+                CurrentLicenseeId = AppSettingInstance.LicenseeId,
                 IsFakeLicensee = false,
                 IsAllowedNotification = false
             };
             return View("~/Views/Desktop/Header/Index.cshtml", viewModel);
         }
 
-        public ActionResult ChangeLicensee(int? licenseeId)
-        {
-            var newLicenseeId = licenseeId ?? 0;
-            var originalLicenseeId = SessionServiceInstance.LicenseeSession.LicenseeId;
-            var originalUserId = SessionServiceInstance.UserSession.UserId;
-
-            if (newLicenseeId <= 0 || !_licenseeDataAccess.IsLicenseeBelongToUser(originalLicenseeId, originalUserId))
-            {
-                newLicenseeId = originalLicenseeId;
-            }
-
-            if (newLicenseeId != originalLicenseeId)
-            {
-                SessionServiceInstance.UpdateLiceseeSession(newLicenseeId);
-            }
-
-            ViewBag.DefaultReportUrl = SessionServiceInstance.UserSession.DefaultReportUrl;
-            return Redirect("~");
-        }
-
-        /// <summary>
-        /// Change language.
-        /// </summary>
-        /// <param name="languagesite">The language code.</param>
-        /// <returns>Return "1" if changing is success.</returns>
         [HttpGet]
         public string ChangeLanguage(string languagesite)
         {

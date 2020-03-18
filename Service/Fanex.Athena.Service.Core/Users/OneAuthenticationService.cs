@@ -6,12 +6,9 @@
     using System.Linq;
     using System.Web;
     using System.Web.Hosting;
-
     using DataAccess.Core.Users.Interfaces;
-
     using Extension.Utility;
     using Extension.Utility.Interfaces;
-
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.DTO.Common;
@@ -21,7 +18,6 @@
     using Fanex.Logging;
     using LAP.ONEBook.Security;
     using Model.Core.DataDomain;
-
     using Resources;
 
     [CLSCompliant(false)]
@@ -97,7 +93,7 @@
             if (IsAuthenticated(currentContext, userSession, licenseeSession) &&
                 IsSameSession(userSession, licenseeSession, tokenInfo, licensee.Id))
             {
-                UpdateUserSession(userSession, tokenInfo, licensee.Id, userInfo, language);
+                UpdateUserSession(userSession, tokenInfo, userInfo, language);
                 return new ResultInfo
                 {
                     ExtendedData = tokenInfo.ActionLink
@@ -179,16 +175,18 @@
             return new ResultInfo { Code = 0 };
         }
 
-        private void UpdateUserSession(UserAuthInfo userSession, 
+        private void UpdateUserSession(
+            UserAuthInfo userSession,
             DefaultAuthInfo<OneAuthPermission, OneAuthCurrency> tokenInfo,
-            int licenseeId, OneAuthUserInfo userInfo, string language)
+            OneAuthUserInfo userInfo,
+            string language)
         {
             if (!language.Equals(userSession.Language))
             {
                 _sessionService.UpdateLanguage(language);
             }
 
-            _sessionService.AssignCurrenciesToUserSession(userSession, licenseeId, userInfo.CurrencyUserList);
+            _sessionService.AssignCurrenciesToUserSession(userSession, userInfo.CurrencyUserList);
             userSession.UserLevel = userInfo.UserLevel;
             userSession.WhiteLabelID = tokenInfo.WhiteLabelID;
             userSession.SubsidiaryViewType = (byte)SubsidiaryManagementHelper.GetView(userInfo.IsEnabledSubsidiary,
@@ -251,7 +249,7 @@
                 : userInfo.BaseCurrency
             };
 
-            _sessionService.AssignCurrenciesToUserSession(userSession, licenseeInfo.Id, userInfo.CurrencyUserList);
+            _sessionService.AssignCurrenciesToUserSession(userSession, userInfo.CurrencyUserList);
 
             _sessionService.AssignSessions(userSession, licSession);
         }

@@ -3,28 +3,19 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-
     using DataAccess.Core.Common.Interfaces;
     using DataAccess.Core.Users.Interfaces;
-
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth;
-    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.Core.Users.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Models.ValueObject;
-    using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
 
     public class SessionService : ISessionService
     {
-        private const string DefaultReportPath = "LicenseeWinLossReport";
-
         private const string UserSessionKey = "UserSessionKey";
 
-        private readonly IFunctionService _functionService;
         private readonly ILicenseeDataAccess _licenseeDataAccess;
         private readonly ICurrencyDataAccess _currencyDataAccess;
         private readonly N88.Core.Service.Interface.IUserService _napUserService;
@@ -32,14 +23,12 @@
         private readonly IAppSettings _appSettings;
 
         public SessionService(
-            IFunctionService functionService,
             ILicenseeDataAccess licenseeDataAccess,
             ICurrencyDataAccess currencyDataAccess,
             N88.Core.Service.Interface.IUserService napUserService,
             IAppSettings appSettings,
             ISessionStorage sessionStorage)
         {
-            _functionService = functionService;
             _licenseeDataAccess = licenseeDataAccess;
             _currencyDataAccess = currencyDataAccess;
             _sessionStorage = sessionStorage;
@@ -101,25 +90,6 @@
             AssignSessions(userSession, GenerateLicenseeInfo(licensee));
         }
 
-        public void UpdateLiceseeSession(int licenseeId)
-        {
-            var userSession = UserSession;
-            var licenseeList = _licenseeDataAccess.GetByUser(userSession.UserId);
-
-            if (licenseeId > 0)
-            {
-                var selectedLicensee = licenseeList.SingleOrDefault(i => i.Id == licenseeId);
-                var functionList = _functionService.GetUserFunctionList(licenseeId, userSession.UserId).ToList();
-
-                userSession.FunctionList = functionList;
-                userSession.DefaultReportUrl = GetDefaultReportUrl(functionList);
-
-                AssignCurrenciesToUserSession(userSession, licenseeId);
-
-                AssignSessions(userSession, GenerateLicenseeInfo(selectedLicensee));
-            }
-        }
-
         public bool UpdateLanguage(string languageCode)
         {
             var userSession = UserSession;
@@ -132,22 +102,6 @@
             }
 
             return false;
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3995:UriReturnValuesShouldNotBeStrings",
-           Justification = "Reviewed. Suppression is OK here.")]
-        private static string GetDefaultReportUrl(IEnumerable<Model.Auth.Function> functionList)
-        {
-            if (!functionList.Any(x => x.FunctionKey.Equals(PermissionKeys.ReportLicenseeWinLoss)))
-            {
-                var firstFunction = functionList.FirstOrDefault(x => x.ParentId > 0 && x.IsActive);
-                if (firstFunction != null)
-                {
-                    return firstFunction.Url;
-                }
-            }
-
-            return DefaultReportPath;
         }
 
         private static LicenseeAuthInfo GenerateLicenseeInfo(Licensee selectedLicensee)
@@ -164,11 +118,6 @@
         public void AssignCurrenciesToUserSession(UserAuthInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null)
         {
             var currencyUsers = currencyUserList ?? _currencyDataAccess.GetCurrenciesByLicensee(_appSettings.LicenseeId);
-
-            //if (licenseeId == LicenseeIdentity.KeenOcean)
-            //{
-            //    currencyUsers = KeanOceanBusinessHelper.ModifyCurrenciesForKeenOcean(currencyUsers);
-            //}
 
             var currencyList = currencyUsers
                 .Where(x => x.IsActive)
@@ -191,29 +140,6 @@
                 .OrderBy(x => x.DisplayOrder).ToList();
 
             userSessionInfo.MenuItemList = menuItems;
-        }
-
-        public void AssignCurrenciesToUserSession(UserAuthInfo userSession, int licenseeId, IEnumerable<CurrencyUser> currencyUserList = null)
-        {
-            var currencyUsers = currencyUserList ?? _currencyDataAccess.GetCurrenciesByUser(licenseeId, userSession.UserId);
-
-            if (licenseeId == LicenseeIdentity.KeenOcean)
-            {
-                currencyUsers = KeanOceanBusinessHelper.ModifyCurrenciesForKeenOcean(currencyUsers);
-            }
-
-            var currencyList = currencyUsers
-                .Where(x => x.IsActive)
-                .Select(x => new { x.CurrencyId, x.CurrencyName })
-                .ToDictionary(x => x.CurrencyId, x => x.CurrencyName);
-
-            var currencyAgentList = currencyUsers
-                .Where(x => x.IsActive)
-                .Select(x => new { x.CurrencyId, x.AgentIdList })
-                .ToDictionary(x => x.CurrencyId, x => x.AgentIdList.ToArray());
-
-            userSession.CurrencyList = currencyList;
-            userSession.CurrencyAgentList = currencyAgentList;
         }
 
         private IEnumerable<Function> GetUserFunction(List<FunctionPolicy> functionPolicies)

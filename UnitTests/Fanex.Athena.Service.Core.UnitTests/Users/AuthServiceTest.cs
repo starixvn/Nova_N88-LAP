@@ -2,35 +2,26 @@
 {
     using Core.Users;
     using Core.Users.Interfaces;
-
     using DataAccess.Core.Users.Interfaces;
-
     using Fanex.Common;
-
     using Model.Core.DTO.Common;
     using Model.Core.DTO.Users;
-
     using NSubstitute;
-
     using NUnit.Framework;
-
     using Resources;
-
     using UnitTest.Common.Helpers;
 
     [TestFixture]
     public class AuthServiceTest
     {
-        private IUserDataAccess _userDataAccess;
         private IAuthDataAccess _authDataAccess;
         private IAuthService _authService;
 
         [OneTimeSetUp]
         public void SetUp()
         {
-            _userDataAccess = Substitute.For<IUserDataAccess>();
             _authDataAccess = Substitute.For<IAuthDataAccess>();
-            _authService = new AuthService(_userDataAccess, _authDataAccess);
+            _authService = new AuthService(_authDataAccess);
         }
 
         [OneTimeTearDown]
@@ -101,7 +92,6 @@
             {
                 ExtendedData = outputUser
             };
-            _userDataAccess.GetByUsername(inputUser.Username, false, 0).Returns(outputUser);
             _authDataAccess.ValidateUserForLrf(inputUser).Returns(resultInfo);
 
             // Action
@@ -129,8 +119,6 @@
                 Password = hashPassword
             };
 
-            _userDataAccess.GetByUsername(inputUser.Username, Arg.Any<bool>(), Arg.Any<int>()).Returns(outputUser);
-
             var expectedResult = new ResultInfo { Code = 104, Message = ViewResources.WrongUserNamePassword };
 
             // Action
@@ -157,7 +145,6 @@
                 Password = FakeHelper.Create<string>()
             };
 
-            _userDataAccess.GetByUsername("user1", Arg.Any<bool>(), Arg.Any<int>()).Returns(outputUser);
             var expectedResult = new ResultInfo { Code = 100, Message = ViewResources.UserNotExist };
 
             // Action

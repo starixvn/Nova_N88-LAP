@@ -101,8 +101,6 @@
     <Compile Include="BetListApiClientTest.cs" />
     <Compile Include="BetTypeServiceTest.cs" />
     <Compile Include="BusinessLogServiceTest.cs" />
-    <Compile Include="FunctionServiceTest.cs" />
-    <Compile Include="FunctionStorageTest.cs" />
     <Compile Include="LicenseeSettingServiceTest.cs" />
     <Compile Include="MatchServiceTest.cs" />
     <Compile Include="MockHelper\MockHttpMessageHandler.cs" />

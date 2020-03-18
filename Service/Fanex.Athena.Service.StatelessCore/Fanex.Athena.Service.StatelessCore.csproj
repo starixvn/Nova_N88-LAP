@@ -109,16 +109,12 @@
     <Compile Include="LicenseeSettingService.cs" />
     <Compile Include="ReportSettingService.cs" />
     <Compile Include="Exception\ServiceException.cs" />
-    <Compile Include="FunctionService.cs" />
-    <Compile Include="FunctionStorage.cs" />
     <Compile Include="Interfaces\IAuthorizationService.cs" />
     <Compile Include="Interfaces\IBetListApiClient.cs" />
     <Compile Include="Interfaces\ILGAPIClient.cs" />
     <Compile Include="Interfaces\IReportAPIClient.cs" />
     <Compile Include="LGAPIClient.cs" />
     <Compile Include="Interfaces\IBetTypeService.cs" />
-    <Compile Include="Interfaces\IFunctionService.cs" />
-    <Compile Include="Interfaces\IFunctionStorage.cs" />
     <Compile Include="Interfaces\IMatchService.cs" />
     <Compile Include="Interfaces\IOneBookSecurityWrapper.cs" />
     <Compile Include="Interfaces\IProductService.cs" />

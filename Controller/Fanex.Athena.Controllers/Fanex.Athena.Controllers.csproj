@@ -239,7 +239,6 @@
     <Compile Include="Group\InsertGroupCriteria.cs" />
     <Compile Include="HeaderController.cs" />
     <Compile Include="MenuController.cs" />
-    <Compile Include="LicenseeListController.cs" />
     <Compile Include="OneAuthorizationController.cs" />
     <Compile Include="UserGuideController.cs" />
     <Compile Include="UtilityController.cs">

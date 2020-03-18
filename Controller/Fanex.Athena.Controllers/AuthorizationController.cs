@@ -138,33 +138,6 @@
                         SetErrorForView(InvalidPasswordError, ViewResources.WrongUserNamePassword);
                     }
                 }
-
-                //var requestUser = new User
-                //{
-                //    Username = model.UserName,
-                //    Password = model.PassWord,
-                //    Request = new Request { Ip = Request.UserHostAddress },
-                //};
-
-                //var resultInfo = _authService.ValidateUserForLrf(requestUser, model.LogInToken);
-
-                //if (resultInfo.IsSuccessful)
-                //{
-                //    var user = resultInfo.ExtendedData;
-                //    CreateSession(user);
-                //    if (user.IsInRole(UserRole.Admin.ToString()))
-                //    {
-                //        return RedirectToAction("Index", "LicenseeList");
-                //    }
-                //    else
-                //    {
-                //      FormsAuthentication.RedirectFromLoginPage(user.Username, false);
-                //    }
-                //}
-                //else
-                //{
-                //    SetErrorForView(resultInfo.Code, resultInfo.Message);
-                //}
             }
 
             ViewBag.LogInToken = CreateToken();

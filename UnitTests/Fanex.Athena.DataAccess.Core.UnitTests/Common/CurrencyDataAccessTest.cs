@@ -2,46 +2,38 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
     using Core.Common;
-
     using Fanex.Athena.Model.Auth;
-
     using NSubstitute;
-
     using NUnit.Framework;
-
     using TestHelpers;
 
     public class CurrencyDataAccessTest : BaseDataAccessHelperTest<CurrencyDataAccess>
     {
-        private const string AssignCurrenciesByUserSp = "Lrf_CurrencyCustIns";
-        private const string GetCurrenciesByUser = "Lrf_SelCurrencyByLicenseeUser";
+        private const string GetCurrenciesByLicensee = "N88_SelAgentListByLicensee";
 
         [Test]
-        public void GetCurrenciesByUser_WhenCall_ParametersPassedCorrectly()
+        public void GetCurrenciesByLicensee_WhenCall_ParametersPassedCorrectly()
         {
             // Arrange
             const int LicenseeId = 1;
-            const int UserId = 2;
-            DataAccess.GetObjectDb(Arg.Is(GetCurrenciesByUser)).Returns(ObjectDb);
+            DataAccess.GetObjectDb(Arg.Is(GetCurrenciesByLicensee)).Returns(ObjectDb);
 
             // Action
-            DataAccess.GetCurrenciesByUser(LicenseeId, UserId);
+            DataAccess.GetCurrenciesByLicensee(LicenseeId);
 
             // Assert
             Assert.Multiple(() =>
             {
                 ObjectDb.Received(1).SetParameterValue("LicenseeID", LicenseeId);
-                ObjectDb.Received(1).SetParameterValue("UserID", UserId);
             });
         }
 
         [Test]
-        public void GetCurrenciesByUser_WhenCall_ReturnCorrectData()
+        public void GetCurrenciesByLicensee_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            DataAccess.GetObjectDb(GetCurrenciesByUser).Query<CurrencyUser>()
+            DataAccess.GetObjectDb(GetCurrenciesByLicensee).Query<CurrencyUser>()
                 .Returns(new List<CurrencyUser>
                 {
                     new CurrencyUser { CurrencyId = 1, AgentId = 100 },
@@ -49,7 +41,7 @@
                 });
 
             // Action
-            var currencyList = DataAccess.GetCurrenciesByUser(0, 0);
+            var currencyList = DataAccess.GetCurrenciesByLicensee(0);
 
             // Assert
             Assert.Multiple(() =>

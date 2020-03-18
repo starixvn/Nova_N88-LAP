@@ -599,7 +599,6 @@
     <Content Include="www\css\build\pro\pages\reports\reportjqgridlayout.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\result.chunk.js" />
     <Content Include="www\css\build\pro\pages\utility\error.chunk.js" />
-    <Content Include="www\css\build\pro\pages\utility\licenseelist.chunk.js" />
     <Content Include="www\css\build\pro\reactpages\betlist\images\bonus.png" />
     <Content Include="www\css\build\pro\reactpages\betlist\images\goal-icon.png" />
     <Content Include="www\css\build\pro\reactpages\betlist\images\lotto_ball.png" />
@@ -1274,7 +1273,6 @@
     <Content Include="www\css\build\pro\pages\customer\customerlist.css" />
     <Content Include="www\css\build\pro\pages\customer\customerlog.css" />
     <Content Include="www\css\build\pro\pages\reports\customerwinloss.css" />
-    <Content Include="www\css\build\pro\pages\utility\licenseelist.css" />
     <Content Include="www\css\build\pro\um.css" />
     <Content Include="www\css\source\components\jquery.colorpicker\colorPicker.css" />
     <Content Include="www\css\source\pages\customer\commgrouplist.scss" />
@@ -1295,7 +1293,6 @@
     <Content Include="www\css\build\dev\um.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.css.map" />
-    <Content Include="Views\Desktop\LicenseeList\Index.cshtml" />
     <Content Include="www\css\build\dev\pages\utility\licenseelist.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\utility\licenseelist.css.map" />
     <Content Include="Views\Desktop\BetList\LiveReport\VirtualSports.cshtml" />

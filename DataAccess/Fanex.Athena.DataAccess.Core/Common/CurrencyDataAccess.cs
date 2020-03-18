@@ -12,23 +12,10 @@
     {
         public IList<CurrencyUser> GetCurrenciesByLicensee(int licenseeId)
         {
-            const string UspName = "Lrf_SelAgentListByLicensee";
+            const string UspName = "N88_SelAgentListByLicensee";
 
             using (var db = this.GetObjectDb(UspName))
             {
-                db.SetParameterValue("LicenseeID", licenseeId);
-
-                return BindCurrencyUser(db);
-            }
-        }
-
-        public IList<CurrencyUser> GetCurrenciesByUser(int licenseeId, int userId)
-        {
-            const string UspName = "Lrf_SelCurrencyByLicenseeUser";
-
-            using (var db = this.GetObjectDb(UspName))
-            {
-                db.SetParameterValue("UserID", userId);
                 db.SetParameterValue("LicenseeID", licenseeId);
 
                 return BindCurrencyUser(db);

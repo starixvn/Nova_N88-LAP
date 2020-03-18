@@ -60,7 +60,6 @@ function generateConfig(environment) {
             [`${cssPath}/pages/customer/customerlist`]: pathConfig.cssPaths.customerlist,
             [`${cssPath}/pages/betlist/customeroutstanding`]: pathConfig.cssPaths.customeroutstanding,
             [`${cssPath}/pages/customer/betsetting`]: pathConfig.cssPaths.betsetting,
-            [`${cssPath}/pages/utility/licenseelist`]: pathConfig.cssPaths.licenseelist,
             [`${cssPath}/pages/reports/customerwinloss`]: pathConfig.cssPaths.customerwinloss
         },
         output: {

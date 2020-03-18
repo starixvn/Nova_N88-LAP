@@ -1,30 +1,24 @@
-﻿using System;
-
-using Fanex.Athena.DataAccess.Core.Users.Interfaces;
-using Fanex.Athena.Model.Auth;
-using Fanex.Athena.Model.Core.DTO.Common;
-using Fanex.Athena.Model.Core.DTO.Users;
-using Fanex.Athena.Resources;
-using Fanex.Athena.Service.Core.Helper;
-using Fanex.Athena.Service.Core.Users.Interfaces;
-using Fanex.Common;
-
-namespace Fanex.Athena.Service.Core.Users
+﻿namespace Fanex.Athena.Service.Core.Users
 {
+    using System;
+    using Fanex.Athena.DataAccess.Core.Users.Interfaces;
+    using Fanex.Athena.Model.Auth;
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.DTO.Users;
+    using Fanex.Athena.Resources;
+    using Fanex.Athena.Service.Core.Helper;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Common;
+
     public class AuthService : IAuthService
     {
         private const int UserNotExistError = 100;
         private const int WrongUserNameOrPasswordError = 104;
 
-        private readonly IUserDataAccess _userDataAccess;
-
         private readonly IAuthDataAccess _authenticationDataAccess;
 
-        public AuthService(
-            IUserDataAccess userDataAccess,
-            IAuthDataAccess authenticationDataAccess)
+        public AuthService(IAuthDataAccess authenticationDataAccess)
         {
-            _userDataAccess = userDataAccess;
             _authenticationDataAccess = authenticationDataAccess;
         }
 

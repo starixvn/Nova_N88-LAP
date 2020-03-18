@@ -454,11 +454,10 @@
     <Content Include="Scripts\Group\Manage.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.min.js" />
-    <Content Include="SpNameConfig\FanexSpName.BACKUPMNL.xml">
-      <DependentUpon>FanexSpName.xml.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="SpNameConfig\FanexSpName.LOCAL.xml">
+      <DependentUpon>FanexSpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="SpNameConfig\FanexSpName.MNL.xml">
       <DependentUpon>FanexSpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="SpNameConfig\FanexSpName.PRO.xml">
@@ -468,13 +467,7 @@
     <Content Include="SpNameConfig\FanexSpName.SIT.xml">
       <DependentUpon>FanexSpName.xml.tt</DependentUpon>
     </Content>
-    <Content Include="SpNameConfig\FanexSpName.Staging.xml">
-      <DependentUpon>FanexSpName.xml.tt</DependentUpon>
-    </Content>
     <Content Include="SpNameConfig\FanexSpName.UAT.xml">
-      <DependentUpon>FanexSpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="SpNameConfig\FanexSpName.UATTW.xml">
       <DependentUpon>FanexSpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="SpNameConfig\FanexSpName.xml">

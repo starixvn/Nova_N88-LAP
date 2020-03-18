@@ -18,7 +18,7 @@
 
         public ActionResult Manage(
              int id = 1,
-            int size = 5000,
+            int size = 10,
             string username = "",
             int groupId = 0,
             int statusId = 1)

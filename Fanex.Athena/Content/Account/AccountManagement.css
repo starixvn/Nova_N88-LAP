@@ -1635,8 +1635,47 @@ input[type="submit"],
         font-size: 20px;
     }
 
-@media (max-width: 768px) {
-    .common-form label {
+.paging{
+    display: inline-block;
+    margin-top: 2px;
+}
+.paging span.disabled {
+    border: 1px solid #ddd;
+    color: #999;
+    margin-top: 4px;
+    padding: 3px;
+    text-align: center;
+    margin: 4px 3px;
+}
+
+.paging span.current {
+    background-color: #355391;
+    border: 1px solid #ddd;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 4px;
+    padding: 3px 5px;
+    text-align: center;
+    margin: 4px 3px;
+}
+
+.paging a {
+    border: 1px solid #aaa;
+    padding: 3px 5px;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 3px;
+    color: black;
+}
+
+.paging a:hover {
+    background: #c7d1d6;
+    color: #333;
+    outline: none;
+}
+
+    @media (max-width: 768px) {
+        .common-form label {
         float: left;
     }
 

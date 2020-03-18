@@ -55,27 +55,25 @@ $(document).ready(function () {
             return false;
         }
 
-        NAP.loadingBox.show();
+        //NAP.loadingBox.show();
     });
 
     // changes items/page
     ManageUser.grid.on('change', '.items-per-page', function () {
         var $this = $(this),
             pageSize = $this.val(),
-            username = $('#hdnUsename').val(),
+            username = $('#Username').val(),
             groupId = $('#GroupId').val(),
-            ddlSite = $('#SiteId');
+            statusId = $('#StatusId').val();
 
-        var url = NAP.resolveClientUrl('User/Manage' +
-            '?q=' + username +
+        var url = NAP.resolveClientUrl('Account/Manage' +
+            '?username=' + username +
             '&groupid=' + groupId +
-            '&size=' + pageSize);
+            '&size=' + pageSize +
+            '&page=' + 1 +
+            '&statusId=' + statusId);        
 
-        if (ddlSite.length > 0) {
-            url = url + '&siteid=' + ddlSite.val();
-        }
-
-        NAP.loadingBox.show();
+        //NAP.loadingBox.show();
         window.location.replace(url);
     });
 });

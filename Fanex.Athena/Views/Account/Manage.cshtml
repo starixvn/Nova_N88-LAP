@@ -6,11 +6,6 @@
     ViewBag.Title = string.Format(titleFormat, HttpUtility.HtmlDecode("&bull;"),
                                          ViewResources.AccountManagement, ViewResources.ManageAccount);
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
-
-
-    var siteId = 1;
-    var returnGroupId = 1;
-    var CurrentPageIndex = 1;
 }
 
 @section pagecss {
@@ -22,6 +17,7 @@
 @section pagejs {
     <script src="@Url.ContentLink("/Scripts/Account/Manage.js")" type="text/javascript"></script>
     <script src="@Url.ContentLink("/Scripts/Plugin/tipsy/tipsy-1.0.0.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Account/NAP.js")" type="text/javascript"></script>
 }
 
 <div class="section-div">
@@ -32,10 +28,6 @@
             @Html.ActionLink("+ " + ViewResources.CreateNewUser, "NewUser", "Account",
                     new
                     {
-                        ReturnUserName = ViewBag.Username,
-                        ReturnSiteId = siteId,
-                        ReturnGroupId = returnGroupId,
-                        ReturnPageIndex = CurrentPageIndex
                     }, new { @class = "add-button" })
 
         </div>
@@ -113,7 +105,7 @@
 
                     <tr @Html.Raw(rowCss)>
                         <td class="text-center">
-                            @((Model.PageSize*(Model.PageNumber-2) + i + 1))
+                            @((Model.PageSize * (Model.PageIndex) + i + 1))
                         </td>
                         <td>
                             <a href="javascript:;" uid="@item.User.Id" class="lnk-user-info"
@@ -211,11 +203,12 @@
                 </tr>
             }
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="12">
-                    @if (Model != null && Model.Count() > 0)
-                    {
+        @if (Model != null && Model.Count() > 0)
+        {
+            <tfoot>
+                <tr>
+                    <td colspan="12">
+
                         <span class="items-per-page-wrp">
                             @ViewResources.PageSize
                             @Html.DropDownList("items-per-page", new List<SelectListItem> {
@@ -224,13 +217,16 @@
                             new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
                         }, new { id = string.Empty, @class = "items-per-page" })
                         </span>
-                        @Html.Pager(Model.PageSize, Model.PageNumber-1, Model.TotalItemCount)
-                    }
-                </td>
-            </tr>
-        </tfoot>
+                        <span class="paging">
+                            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+                        </span>
+                        
+                    </td>
+                </tr>
+            </tfoot>
+        }
 
-    </table>
+        </table>
 
 
 </div>

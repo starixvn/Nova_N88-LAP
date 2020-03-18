@@ -41,7 +41,7 @@
             ViewBag.currentUserLevel = userService.GetUserSiteLevel(SessionServiceInstance.UserSession.UserId, N88Settings.Settings.SiteId);
             IEnumerable<UserLevel> users = userService.SearchUser(criteria);
 
-            return View("~/Views/Account/Manage.cshtml", users.ToPagedList(criteria.PageIndex, criteria.PageSize, criteria.TotalRows));
+            return View("~/Views/Account/Manage.cshtml", users.ToPagedList(criteria.PageIndex-1, criteria.PageSize, criteria.TotalRows));
         }
 
         public ActionResult NewUser()

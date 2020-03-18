@@ -53,7 +53,7 @@ namespace Fanex.Athena.Service.Core.Users
 
         public IResultInfo<User> ValidateUserForLrf(User requestUser, string loginToken)
         {
-            var user = _userDataAccess.GetByUsername(requestUser.Username, isInternal: false);
+            var user = new User();
 
             if (user == null)
             {

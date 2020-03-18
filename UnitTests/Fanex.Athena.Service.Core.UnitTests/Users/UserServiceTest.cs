@@ -1,20 +1,13 @@
 ﻿namespace Fanex.Athena.Service.Core.UnitTests.Users
 {
     using System.Collections.Generic;
-
     using Core.Users;
     using Core.Users.Interfaces;
-
     using DataAccess.Core.Users.Interfaces;
-
     using Model.Core.DTO.Users;
-
     using NSubstitute;
-
     using NUnit.Framework;
-
     using Resources;
-
     using UnitTest.Common.Helpers;
 
     [TestFixture]
@@ -54,24 +47,6 @@
 
             // Assert
             Assert.That(result[0].UserID, Is.EqualTo(expectedResult[0].UserID));
-        }
-
-        [Test]
-        public void GetByUsername_WhenCall_ReturnDataFromDataAccess()
-        {
-            // Arrange
-            var userName = FakeHelper.Create<string>();
-            var licenseeId = FakeHelper.Create<int>();
-            var isInternal = FakeHelper.Create<bool>();
-
-            var expectedResult = new User { UserID = FakeHelper.Create<int>() };
-            _userDataAccess.GetByUsername(userName, isInternal, licenseeId).Returns(expectedResult);
-
-            // Action
-            var result = _userService.GetByUsername(userName, isInternal, licenseeId);
-
-            // Assert
-            Assert.That(result.UserID, Is.EqualTo(expectedResult.UserID));
         }
 
         [Test]
@@ -142,7 +117,7 @@
             var newPass = FakeHelper.Create<string>();
             var ip = FakeHelper.Create<string>();
 
-            _userDataAccess.GetByUsername(userName, false).Returns(x => { return null; });
+            ////_userDataAccess.GetByUsername(userName, false).Returns(x => { return null; });
 
             // Action
             var result = _userService.ChangePassword(userName, oldPass, newPass, ip);
@@ -160,7 +135,7 @@
             var newPass = FakeHelper.Create<string>();
             var ip = FakeHelper.Create<string>();
 
-            _userDataAccess.GetByUsername(userName, false).Returns(new User { UserSalt = FakeHelper.Create<string>() });
+            ////_userDataAccess.GetByUsername(userName, false).Returns(new User { UserSalt = FakeHelper.Create<string>() });
 
             // Action
             var result = _userService.ChangePassword(userName, oldPass, newPass, ip);

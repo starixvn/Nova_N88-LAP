@@ -1,14 +1,7 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UserDataAccess.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Core.Users
+﻿namespace Fanex.Athena.DataAccess.Core.Users
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Fanex.Athena.DataAccess.Core;
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Common;
@@ -67,20 +60,6 @@ namespace Fanex.Athena.DataAccess.Core.Users
             }
 
             return entityList;
-        }
-
-        public User GetByUsername(string userName, bool isInternal, int licenseeId = 0)
-        {
-            var param = new
-            {
-                Username = userName,
-                LicenseeId = licenseeId,
-                isInternal
-            };
-            using (var objectDb = GetObjectDb("Lrf_UserInfoSelByUserName"))
-            {
-                return objectDb.Query<User>(param).FirstOrDefault();
-            }
         }
 
         public User GetUserInfo(int licenseeId, int userId)

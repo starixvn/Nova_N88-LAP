@@ -1,16 +1,10 @@
 ﻿namespace Fanex.Athena.DataAccess.Core.UnitTests.Users
 {
-    using System.Collections.Generic;
-
     using Core.Users;
-
     using Model.Core.DTO.Common;
     using Model.Core.DTO.Users;
-
     using NSubstitute;
-
     using NUnit.Framework;
-
     using TestHelpers;
 
     public class UserDataAccessTest : BaseDataAccessHelperTest<UserDataAccess>
@@ -108,44 +102,6 @@
                 Assert.That(result[0].IsManageAccount, Is.EqualTo(expected.IsManageAccount));
                 Assert.That(result[0].IsInternal, Is.EqualTo(expected.IsInternal));
             });
-        }
-
-        [TestCase(true, 1)]
-        [TestCase(false, 1)]
-        [TestCase(true, 0)]
-        [TestCase(false, 0)]
-        public void GetByUsername_WhenCall_QueryMethodIsCalled(bool isInternal, int licenseeId)
-        {
-            // Arrange
-            DataAccess.GetObjectDb(Arg.Is("Lrf_UserInfoSelByUserName")).Returns(ObjectDb);
-            const string UserName = "test";
-
-            // Action
-            DataAccess.GetByUsername(UserName, isInternal, licenseeId);
-
-            // Assert
-            ObjectDb.Received(1).Query<User>(Arg.Any<dynamic>());
-        }
-
-        [TestCase(true, 1)]
-        [TestCase(false, 1)]
-        [TestCase(true, 0)]
-        [TestCase(false, 0)]
-        public void GetByUsername_WhenCall_DataReturnedCorrectly(bool isInternal, int licenseeId)
-        {
-            // Arrange
-            const string UserName = "test";
-
-            var expected = GetFakeUserData();
-            ObjectDb.Query<User>(Arg.Any<object>()).Returns(new List<User> { expected });
-
-            DataAccess.GetObjectDb(Arg.Is("Lrf_UserInfoSelByUserName")).Returns(ObjectDb);
-
-            // Action
-            var result = DataAccess.GetByUsername(UserName, isInternal, licenseeId);
-
-            // Assert
-            Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]

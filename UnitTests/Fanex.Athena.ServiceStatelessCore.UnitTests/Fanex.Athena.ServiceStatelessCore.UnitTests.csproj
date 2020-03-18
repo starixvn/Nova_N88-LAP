@@ -106,7 +106,6 @@
     <Compile Include="LicenseeSettingServiceTest.cs" />
     <Compile Include="MatchServiceTest.cs" />
     <Compile Include="MockHelper\MockHttpMessageHandler.cs" />
-    <Compile Include="MoveBetServiceTest.cs" />
     <Compile Include="OneBookSecurityWrapperTest.cs" />
     <Compile Include="ProductServiceTest.GetProductAccess.cs" />
     <Compile Include="ProductServiceTest.GetProductList.cs" />

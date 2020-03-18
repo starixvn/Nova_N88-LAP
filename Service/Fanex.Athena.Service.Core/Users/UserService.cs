@@ -35,7 +35,7 @@ namespace Fanex.Athena.Service.Core.Users
 
         public IResultInfo ChangePassword(string userName, string oldPassword, string newPassword, string ip)
         {
-            var user = _userDataAccess.GetByUsername(userName, false);
+            var user = new User();
             if (user == null)
             {
                 return new ResultInfo { Code = UserNotExistError, Message = ViewResources.UserNotExist };
@@ -54,11 +54,6 @@ namespace Fanex.Athena.Service.Core.Users
         public IList<User> GetByLicensee(int licenseeId, bool isInternal)
         {
             return this._userDataAccess.GetByLicensee(licenseeId, isInternal);
-        }
-
-        public User GetByUsername(string userName, bool isInternal, int licenseeId = 0)
-        {
-            return _userDataAccess.GetByUsername(userName, isInternal, licenseeId);
         }
 
         public User GetUserInfo(int licenseeId, int userId)

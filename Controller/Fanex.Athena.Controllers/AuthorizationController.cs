@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AuthorizationController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers
+﻿namespace Fanex.Athena.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -31,7 +25,6 @@ namespace Fanex.Athena.Controllers
     using Fanex.N88.Core.Models;
     using Fanex.N88.Core.Models.ParameterObject;
     using Fanex.N88.Core.Web.Auth;
-    using Fanex.N88.Core.Web.Session;
     using ONEbook.UM.Filters;
     using ONEbook.UM.Services;
     using Resources;
@@ -54,7 +47,6 @@ namespace Fanex.Athena.Controllers
         private readonly N88.Core.Service.Interface.IUserService userService1;
         private readonly N88.Core.Service.Interface.IGroupService groupService;
         private readonly N88.Core.Service.Interface.ISecurityService securityService;
-        private readonly ICurrentSession currentSession;
 
 #pragma warning disable S107 // Methods should not have too many parameters
 
@@ -65,9 +57,7 @@ namespace Fanex.Athena.Controllers
             IFormsAuthenticationService formAuthenticationService,
             N88.Core.Service.Interface.IUserService userService1,
             N88.Core.Service.Interface.IGroupService groupService,
-            N88.Core.Service.Interface.ISecurityService securityService,
-            ICurrentSession currentSession
-            )
+            N88.Core.Service.Interface.ISecurityService securityService)
         {
             _maintenanceService = maintenanceService;
             _userService = userService;
@@ -76,7 +66,6 @@ namespace Fanex.Athena.Controllers
             this.userService1 = userService1;
             this.groupService = groupService;
             this.securityService = securityService;
-            this.currentSession = currentSession;
         }
 
         [CheckUMFilter]
@@ -312,20 +301,6 @@ namespace Fanex.Athena.Controllers
             var img = CreateCaptcha(code);
 
             return File(img.FileContents, img.ContentType);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public string GetUserSalt(string userName)
-        {
-            var user = _userService.GetByUsername(userName, false);
-            if (user != null)
-            {
-                return user.UserSalt;
-            }
-
-            return string.Empty;
         }
 
         [HttpGet]

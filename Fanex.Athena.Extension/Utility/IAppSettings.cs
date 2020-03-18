@@ -36,8 +36,6 @@
             Justification = "Reviewed. Suppression is OK here.")]
         string ResultAmendmentAttachmentApiUrl { get; }
 
-        bool IsEnabledMoveBetNotification { get; }
-
         string DefaultBaseCurrency { get; }
 
         bool EnableAssignCurrency { get; }

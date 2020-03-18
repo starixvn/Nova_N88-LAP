@@ -27,7 +27,5 @@ namespace Fanex.Athena.Service.Core.Users.Interfaces
         IResultInfo ResetPassword(User user, int resetPwdBy);
 
         IResultInfo UpdateInfo(User user, int updatedBy);
-
-        User GetByUsername(string userName, bool isInternal, int licenseeId = 0);
     }
 }

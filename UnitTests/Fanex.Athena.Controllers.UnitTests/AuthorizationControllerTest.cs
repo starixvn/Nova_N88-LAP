@@ -4,23 +4,14 @@
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
-
     using Base.UnitTests;
-
     using Extension.Utility.Interfaces;
-
     using Fanex.Athena.Service.Core.Users.Interfaces;
-
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
-    using Model.Core.DTO.Users;
-
     using NSubstitute;
-
     using NUnit.Framework;
-
     using ONEbook.UM.Services;
-
     using Resources;
 
     [TestFixture]
@@ -96,43 +87,6 @@
 
                 // Assert
                 Assert.That(SessionService.CaptchaCode.Length, Is.EqualTo(4));
-            }
-        }
-
-        [Test]
-        public void GetUserSalt_WhenCall_ReturnSaltFromService()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                const string UserName = "abc";
-                _userService.GetByUsername(UserName, false).Returns(new User
-                {
-                    UserSalt = "xxx"
-                });
-
-                // Action
-                var result = controller.GetUserSalt(UserName) as string;
-
-                // Assert
-                Assert.That(result, Is.EqualTo("xxx"));
-            }
-        }
-
-        [Test]
-        public void GetUserSalt_UserDoesNotExist_ReturnEmptyString()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                const string UserName = "abc";
-                _userService.GetByUsername(UserName, false).Returns(x => null);
-
-                // Action
-                var result = controller.GetUserSalt(UserName) as string;
-
-                // Assert
-                Assert.That(result, Is.Empty);
             }
         }
 
@@ -382,7 +336,6 @@
                 LangService = LangService,
                 SessionServiceInstance = SessionService,
                 AppSettingInstance = AppSettings
-
             };
         }
     }

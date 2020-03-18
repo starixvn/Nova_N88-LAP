@@ -2,6 +2,7 @@
 {
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
+    using MvcPaging;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -17,7 +18,7 @@
         }
 
         public ActionResult Manage(
-             int id = 1,
+             int page = 1,
             int size = 10,
             string username = "",
             int groupId = 0,
@@ -25,7 +26,7 @@
         {
             var criteria = new SearchUserCriteria
             {
-                PageIndex = id,
+                PageIndex = page,
                 PageSize = size,
                 Username = username,
                 GroupId = groupId,
@@ -39,9 +40,8 @@
             ViewBag.Criteria = criteria;
             ViewBag.currentUserLevel = userService.GetUserSiteLevel(SessionServiceInstance.UserSession.UserId, N88Settings.Settings.SiteId);
             IEnumerable<UserLevel> users = userService.SearchUser(criteria);
-            var model = new PagerList<UserLevel>(criteria.PageIndex, criteria.PageSize, criteria.TotalRows, users);
 
-            return View("~/Views/Account/Manage.cshtml", model);
+            return View("~/Views/Account/Manage.cshtml", users.ToPagedList(criteria.PageIndex, criteria.PageSize, criteria.TotalRows));
         }
 
         public ActionResult NewUser()

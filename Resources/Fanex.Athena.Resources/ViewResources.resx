@@ -2620,7 +2620,7 @@
     <value>Details</value>
   </data>
   <data name="Update_Password_Success" xml:space="preserve">
-    <value>'{0}' password has been reset successfully. </value>
+    <value>Update_Password_Success</value>
   </data>
   <data name="Update_Permission_Success" xml:space="preserve">
     <value>Update_Permission_Success</value>
@@ -2655,14 +2655,8 @@
   <data name="NewUser" xml:space="preserve">
     <value>New User</value>
   </data>
-  <data name="Update_Password_Success" xml:space="preserve">
-    <value>Update_Password_Success</value>
-  </data>
   <data name="Read" xml:space="preserve">
     <value>Read</value>
-   </data>
-  <data name="Update_Permission_Success" xml:space="preserve">
-    <value>Update_Permission_Success</value>
   </data>
   <data name="UserPermission" xml:space="preserve">
     <value>User Permission</value>
@@ -2684,5 +2678,8 @@
   </data>
   <data name="Create_New_Group" xml:space="preserve">
     <value>Create New Group</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page Size</value>
   </data>
 </root>

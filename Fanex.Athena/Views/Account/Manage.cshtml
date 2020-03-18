@@ -1,6 +1,5 @@
 ﻿@using Fanex.Athena.Controllers.Account;
-@using Webdiyer.WebControls.Mvc
-@model PagerList<UserLevel>
+@model IPagedList<UserLevel>
 
 @{
     string titleFormat = @"LAP {0} {1} - {2}";
@@ -12,7 +11,6 @@
     var siteId = 1;
     var returnGroupId = 1;
     var CurrentPageIndex = 1;
-    var returnSiteId = 1;
 }
 
 @section pagecss {
@@ -115,7 +113,7 @@
 
                     <tr @Html.Raw(rowCss)>
                         <td class="text-center">
-                            @((i + 1))
+                            @((Model.PageSize*(Model.PageNumber-2) + i + 1))
                         </td>
                         <td>
                             <a href="javascript:;" uid="@item.User.Id" class="lnk-user-info"
@@ -198,7 +196,7 @@
                                     <span class="btn-action btn-action-inactive">@ViewResources.Action</span>
                                 </div>
                             }
-                            </td>
+                        </td>
                     </tr>
 
                     i++;
@@ -213,8 +211,25 @@
                 </tr>
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="12">
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        <span class="items-per-page-wrp">
+                            @ViewResources.PageSize
+                            @Html.DropDownList("items-per-page", new List<SelectListItem> {
+                            new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
+                            new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
+                            new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
+                        }, new { id = string.Empty, @class = "items-per-page" })
+                        </span>
+                        @Html.Pager(Model.PageSize, Model.PageNumber-1, Model.TotalItemCount)
+                    }
+                </td>
+            </tr>
+        </tfoot>
 
-        
     </table>
 
 

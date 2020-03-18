@@ -41,10 +41,6 @@
         public const string CustomerInfoCustomerLog = "CustomerLog56";
         public const string CustomerInfoEditBetSetting = "EditBetSetting70";
 
-        /*Notification*/
-
-        public const string ResultAmendmentNotificationReport = "ResultAmendment_Recalculation75";
-
         public const string BetHistory = "BetHistory";
         public const string BetHistorySingleCustomer = "BetHistory_SingleCustomer";
         public const string BetHistoryRefNo = "BetHistory_RefNo";

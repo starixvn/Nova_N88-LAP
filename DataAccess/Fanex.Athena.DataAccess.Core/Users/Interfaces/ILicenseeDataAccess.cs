@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ILicenseeDataAccess.cs" company="">
-// a
-// </copyright>
-// <summary>
-//   The i licensee data access.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Core.Users.Interfaces
+﻿namespace Fanex.Athena.DataAccess.Core.Users.Interfaces
 {
     using System.Collections.Generic;
     using Fanex.Athena.Model.Core.DTO.Common;

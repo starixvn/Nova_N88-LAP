@@ -768,7 +768,6 @@
     <Content Include="www\js\source\reactpages\actions\convertAllAction.js" />
     <Content Include="www\js\source\reactpages\actions\excludeTestAction.js" />
     <Content Include="www\js\source\reactpages\actions\currencyAction.js" />
-    <Content Include="www\js\source\pages\home\notification.js" />
     <Content Include="www\js\source\reactpages\actions\baseCurrencyAction.js" />
     <Content Include="www\js\source\reactpages\actions\liveStatusAction.js" />
     <Content Include="www\js\source\reactpages\actions\loaderAction.js" />

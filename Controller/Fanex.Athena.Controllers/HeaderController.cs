@@ -1,16 +1,8 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="HeaderController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers
+﻿namespace Fanex.Athena.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
     using DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility;
-    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.ViewModel;
     using Web.ActionFilter;
@@ -42,7 +34,6 @@ namespace Fanex.Athena.Controllers
                 SupportedLanguageList = Util.SupportedLanguages,
                 UserName = userSession.UserName,
                 CurrentLicenseeId = _appSettings.LicenseeId,
-                IsAllowedManagementMember = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.UserManagement),
                 IsFakeLicensee = false,
                 IsAllowedNotification = false
             };

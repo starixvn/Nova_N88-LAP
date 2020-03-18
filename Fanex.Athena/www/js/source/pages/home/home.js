@@ -3,19 +3,14 @@
 define([
     'common/site',
     './recheckin',
-    'components/pluginhelper/autocomplete',
-    './notification',
     'lib/jquery.cookie',
     'lib/jquery.marquee',
     'components/selectlist',
     'lib/jquery.jclock',
     'vendor-materialize'],
-    function (Site, Recheckin, AutoComplete, Notification) {
-        let $searchBox;
-
+    function (Site, Recheckin, Notification) {
         function initialize() {
             Site.initialize();
-            initVariables();
             initEvent();
             Notification.add();
             activeDefaultMenuItem();
@@ -23,11 +18,6 @@ define([
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();
             }
-
-            AutoComplete.initialize({
-                url: Site.resolveClientUrl('SearchCustomerAPI/SearchActiveAndDormantCustomer'),
-                target: '#searchbox'
-            });
         }
 
         // init clock
@@ -37,41 +27,9 @@ define([
             format: '%H:%M:%S %b %d, %Y GMT'
         });
 
-        function initVariables() {
-            $searchBox = $('#searchbox');
-        }
-
         function initEvent() {
-            $searchBox.keyup(function (e) {
-                const event = e || window.event;
-                const key = event.keyCode || event.which;
-
-                if (key === 13) {
-                    searchByUserName();
-                }
-            });
-
             $('#languagesite').on('click', '.languageItem', function () {
                 changeLanguage($(this));
-            });
-
-            $('#ddlLicensee')
-                .selectList({ canSearch: true })
-                .on('change', function () {
-                    const licenseeId = $(this).val();
-                    top.location.href = Site.resolveClientUrl('Header/ChangeLicensee?licenseeid=') + licenseeId + '&nocache=' + (new Date().getTime());
-                });
-
-            $('#label-search').click(function () {
-                $(this).parent().addClass('focused');
-                $searchBox.focus();
-                searchByUserName();
-            });
-
-            $searchBox.blur(function () {
-                if (!$(this).val()) {
-                    $(this).parent().removeClass('focused');
-                }
             });
 
             $('.collapsible2').on('click.menuevent', '.menu-item.has-sub .collapsible-body a', function () {
@@ -90,21 +48,8 @@ define([
 
             $(window).on('blur', function () {
                 $('.dropdown-button', '.languages-block').dropdown('close');
-                $('#ddlLicensee').selectList('close');
                 $('#suggestionDropdown').hide();
             });
-        }
-
-        function searchByUserName() {
-            const userName = $searchBox.val();
-            if (!userName) {
-                return;
-            }
-
-            const url = Site.resolveClientUrl('Customer/CustomerList?userName=' + userName);
-            top.main.location.href = url;
-            $('.collapsible2').collapsibleMenu('activeMenuItem', $('#MenuItem43'));
-            $('#page-title').text(Site.getSingleResource('CustomerList'));
         }
 
         function changeLanguage($target) {

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DictionaryPropertyComparer.cs" company="Unknown">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Extension.Utility
+﻿namespace Fanex.Athena.Extension.Utility
 {
     using System.Collections;
     using System.ComponentModel;

@@ -1,11 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LiveReportBetListController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.BetList
+﻿namespace Fanex.Athena.Api.BetList
 {
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -85,13 +78,10 @@ namespace Fanex.Athena.Api.BetList
 
         private async Task<HttpResponseMessage> GetData(LiveReportBetListMetaModel metaModel, string uspKey)
         {
-            var licenseeSession = SessionService.LicenseeSession;
             var userSession = SessionService.UserSession;
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, metaModel.CurrencyId);
-            metaModel.HasPlayerCom = licenseeSession.IsAllowedCustomerComm;
-            metaModel.UspKey = uspKey;
-            return await BridgeClientService.PostAsync("/LiveReportBetList/GetData",
-                metaModel, userSession.Language).ConfigureAwait(false);
+            UpdateMetaModel(metaModel, uspKey);
+
+            return await BridgeClientService.PostAsync("/LiveReportBetList/GetData", metaModel, userSession.Language).ConfigureAwait(false);
         }
 
         private async Task<HttpResponseMessage> GetPagingData(LiveReportBetListMetaModel metaModel, string uspKey, int pageIndex, int pageSize)
@@ -100,16 +90,26 @@ namespace Fanex.Athena.Api.BetList
 
             var licenseeSession = SessionService.LicenseeSession;
             var userSession = SessionService.UserSession;
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, metaModel.CurrencyId);
+
             metaModel.PageIndex = pageIndex < 1 ? 1 : pageIndex;
             metaModel.PageSize = pageSize < 1 ? DefautlPageSize : pageSize;
             metaModel.LicenseeId = licenseeSession.LicenseeId;
-            metaModel.HasPlayerCom = licenseeSession.IsAllowedCustomerComm;
-            metaModel.UspKey = uspKey;
+
             return await BridgeClientService.PostAsync("/LiveReportBetList/GetPagingData",
                 metaModel, userSession.Language).ConfigureAwait(false);
         }
 
+        private LiveReportBetListMetaModel UpdateMetaModel(LiveReportBetListMetaModel metaModel, string uspKey)
+        {
+            var licenseeSession = SessionService.LicenseeSession;
+            var userSession = SessionService.UserSession;
+
+            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, metaModel.CurrencyId);
+            metaModel.HasPlayerCom = licenseeSession.IsAllowedCustomerComm;
+            metaModel.UspKey = uspKey;
+
+            return metaModel;
+        }
         #endregion Utility
     }
 }

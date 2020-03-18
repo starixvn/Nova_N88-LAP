@@ -1,9 +1,4 @@
-﻿// <copyright file="ReportController.CustomerWinloss.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers.Report
+﻿namespace Fanex.Athena.Controllers.Report
 {
     using System;
     using System.Threading.Tasks;

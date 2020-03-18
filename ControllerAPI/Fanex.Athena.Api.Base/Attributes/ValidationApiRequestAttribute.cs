@@ -16,18 +16,12 @@
     {
         public string ObjectName { get; set; }
 
-        /// <summary>
-        /// Option: IsIncludeKeanOcean
-        /// </summary>
         public bool IsValidCurrency { get; set; }
 
         public bool IsValidCurrencyList { get; set; }
 
         public bool IsIncludeKeanOcean { get; set; }
 
-        /// <summary>
-        /// Required :FunctionKey
-        /// </summary>
         public bool IsValidProductCodeList { get; set; }
 
         public string FunctionConfig { get; set; }

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Util.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Extension.Utility
+﻿namespace Fanex.Athena.Extension.Utility
 {
     using System;
     using System.Collections.Generic;
@@ -69,22 +63,12 @@ namespace Fanex.Athena.Extension.Utility
             }
         }
 
-        /// <summary>
-        /// Validate language code.
-        /// </summary>
-        /// <param name="languageCode">The language code.</param>
-        /// <returns>True or false.</returns>
         public static bool IsValidLanguage(string languageCode)
         {
             var langsKey = SupportedLanguages.Keys;
             return langsKey.Contains(languageCode);
         }
-
-        /// <summary>
-        /// Return true if password contains least 2 numbers and 2 letters and have length >= 6.
-        /// </summary>
-        /// <param name="password">The password.</param>
-        /// <returns>The valid password or invalid password.</returns>
+        
         public static bool IsPasswordValid(string password)
         {
             const string Pattern = @"^(?=.*[A-z].*[A-z])(?=.*\d.*\d).{6,}$";

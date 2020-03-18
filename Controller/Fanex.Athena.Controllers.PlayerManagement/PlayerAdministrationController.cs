@@ -26,10 +26,16 @@
         [HttpGet]
         public ActionResult Index()
         {
+            var viewmodel = CreateDefaultViewModel();
+
+            return View("~/Views/Desktop/Module/PlayerAdmin/Main.cshtml", viewmodel);
+        }
+
+        private PlayerAdminViewModel CreateDefaultViewModel()
+        {
             PlayerAdminViewModel playerAdmin = new PlayerAdminViewModel();
             var userSession = SessionServiceInstance.UserSession;
             var licenseeSession = SessionServiceInstance.LicenseeSession;
-            var licenseeInfo = _licenseeSettingService.GetLicenseeInfo(licenseeSession.LicenseeName);
 
             playerAdmin.CurrencyList = userSession.CurrencyList;
             playerAdmin.SiteName = licenseeSession.LicenseeName;
@@ -37,11 +43,11 @@
                 Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateOddsGroup).FirstOrDefault() != null;
             playerAdmin.IsAllowedSpecialLevel = userSession.FunctionList.
                 Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateOddsGroup).FirstOrDefault() != null;
-            playerAdmin.IsAllowedBA = licenseeInfo != null && licenseeInfo.IsEnableBA &&
+            playerAdmin.IsAllowedBA = licenseeSession.IsEnableBA &&
                 _authService.CheckProductBelongsTo(licenseeSession.LicenseeName, ProductTypes.BA);
             playerAdmin.PlayerTabItems = JsonConvert.SerializeObject(PlayerAdminTab.CommonTabList);
 
-            return View("~/Views/Desktop/Module/PlayerAdmin/Main.cshtml", playerAdmin);
+            return playerAdmin;
         }
     }
 }

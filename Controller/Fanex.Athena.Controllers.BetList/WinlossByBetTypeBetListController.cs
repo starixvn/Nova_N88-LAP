@@ -32,7 +32,6 @@
             metaModel.PageIndex = 1;
             metaModel.PageSize = int.MaxValue - 1;
 
-            // determine currency viewed in
             var curencyId = metaModel.IsConvert ? metaModel.BaseCurrencyId : metaModel.CurrencyId;
             var viewinCurrency = GetViewInCurrency(curencyId, metaModel.CurrencyName);
             metaModel.Title = string.Format(
@@ -47,6 +46,7 @@
                 CustomerCommVisible = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm
             };
             metaModel.HiddenColumns = new[] { BetEffectiveColumn };
+
             return await ProcessExportExcel(metaModel, "WinLossByBetTypeBetList").ConfigureAwait(false);
         }
     }

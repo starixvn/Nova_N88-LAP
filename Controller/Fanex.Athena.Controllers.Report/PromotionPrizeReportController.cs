@@ -10,7 +10,6 @@
     using Fanex.N88.Core.Web.Attribute;
     using static Fanex.N88.Core.Business.Constant;
 
-    //[FunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss, PermissionKeys.ReportCustomerWinLoss)]
     [N88Auth(FunctionKey = PermissionKeys.ReportLicenseeWinLoss, Policy = Policy.Read)]
     public class PromotionPrizeReportController : CultureBaseController
     {

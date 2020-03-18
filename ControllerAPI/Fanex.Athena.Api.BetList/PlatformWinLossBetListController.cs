@@ -1,28 +1,13 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="PlatformWinLossBetListController.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.BetList
+﻿namespace Fanex.Athena.Api.BetList
 {
     using System.Threading.Tasks;
-
-    #region Using
-
     using System.Web.Http;
-
     using Base.Attributes;
-
     using DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
-
     using Model.BetList.MetaModel;
-
     using Service.Core.Common.Interfaces;
     using Service.StatelessCore.Interfaces;
-
-    #endregion Using
 
     [ApiFunctionAuthorization(PermissionKeys.ReportPlatformWinLoss)]
     public class PlatformWinLossBetListController : ApiBetListBaseController

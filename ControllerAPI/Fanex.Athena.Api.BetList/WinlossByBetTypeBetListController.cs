@@ -3,13 +3,10 @@
     using System;
     using System.Threading.Tasks;
     using System.Web.Http;
-
     using Base.Attributes;
-
     using DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Model.BetList.MetaModel;
-
     using Service.Core.Common.Interfaces;
     using Service.Core.Utility.Interfaces;
     using Service.StatelessCore.Interfaces;
@@ -32,7 +29,6 @@
         }
 
         [HttpGet]
-#pragma warning disable S107 // Methods should not have too many parameters
         public async Task<dynamic> Index(
             int page,
             int rows,
@@ -44,7 +40,6 @@
             int bettype,
             string sortBy = null,
             string sortOrder = null)
-#pragma warning restore S107 // Methods should not have too many parameters
         {
             if (!_currencyValidation.IsValidBaseCurrency(baseCurrency)
                 || !_currencyValidation.IsValidCurrency(currencyId))

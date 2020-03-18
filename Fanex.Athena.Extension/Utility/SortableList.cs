@@ -1,18 +1,8 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SortableList.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Extension.Utility
+﻿namespace Fanex.Athena.Extension.Utility
 {
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    /// <typeparam name="T">Type parameter.</typeparam>
     public class SortableList<T> : List<T>
     {
         private string _propertyName;
@@ -22,7 +12,6 @@ namespace Fanex.Athena.Extension.Utility
         {
             UpdateSortingData(propertyName, ascending);
 
-            // Apply and set the sort, if items to sort
             var comparer = new DictionaryPropertyComparer<T>(key, _propertyName, ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
             this.Sort(comparer);
         }
@@ -39,17 +28,11 @@ namespace Fanex.Athena.Extension.Utility
                 propAscending ? ListSortDirection.Ascending : ListSortDirection.Descending);
             this.Sort(comparer);
         }
-
-        /// <summary>
-        /// Sort list by property name.
-        /// </summary>
-        /// <param name="propertyName">Property name to sort.</param>
-        /// <param name="ascending">Sort ascending or descending.</param>
+        
         public void Sort(string propertyName, bool ascending)
         {
             UpdateSortingData(propertyName, ascending);
 
-            // Apply and set the sort, if items to sort
             var comparer = new PropertyComparer<T>(propertyName, _ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
             this.Sort(comparer);
         }
@@ -68,14 +51,12 @@ namespace Fanex.Athena.Extension.Utility
 
         private void UpdateSortingData(string propertyName, bool ascending)
         {
-            // Flip the properties if the parameters are the same.
             if (_propertyName == propertyName && _ascending == ascending)
             {
                 _ascending = !ascending;
             }
             else
             {
-                // Else, new properties are set with the new values.
                 _propertyName = propertyName;
                 _ascending = ascending;
             }

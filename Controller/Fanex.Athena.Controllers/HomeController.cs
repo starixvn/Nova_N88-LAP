@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="HomeController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers
+﻿namespace Fanex.Athena.Controllers
 {
     using System.Web.Mvc;
     using Fanex.Athena.Model.Auth.Enum;
@@ -28,11 +22,6 @@ namespace Fanex.Athena.Controllers
             return ReAuthorize("~/Views/Desktop/Home/IndexIpad.cshtml");
         }
 
-        /// <summary>
-        /// Checking existing user in the system.
-        /// </summary>
-        /// <param name="defaultView">The client device (IPAD or others).</param>
-        /// <returns>Redirect to sign in page or the home page.</returns>
         private ActionResult ReAuthorize(string defaultView)
         {
             if (!HttpContext.Response.IsRequestBeingRedirected)

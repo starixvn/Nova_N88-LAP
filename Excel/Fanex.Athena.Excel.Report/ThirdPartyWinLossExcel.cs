@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ThirdPartyWinLossExcel.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Excel.Report
+﻿namespace Fanex.Athena.Excel.Report
 {
     using System.Linq;
     using Base;

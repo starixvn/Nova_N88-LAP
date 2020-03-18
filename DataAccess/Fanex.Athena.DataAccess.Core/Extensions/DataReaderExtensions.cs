@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DataReaderExtensions.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Core.Extensions
+﻿namespace Fanex.Athena.DataAccess.Core.Extensions
 {
     using System;
     using System.Data;

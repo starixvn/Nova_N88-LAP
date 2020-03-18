@@ -1,9 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CustomApiAuthorizeAttribute.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-namespace Fanex.Athena.Api.Base.Attributes
+﻿namespace Fanex.Athena.Api.Base.Attributes
 {
     using System;
     using System.Net;

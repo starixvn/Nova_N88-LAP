@@ -31,14 +31,10 @@
 
     public class AuthorizationController : CultureBaseController
     {
-        #region Constant
-
         private const int InvalidCaptchaError = 101;
         private const int InvalidUserNameError = 102;
         private const int InvalidPasswordError = 103;
         private const int UserNotExistError = 104;
-
-        #endregion Constant
 
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
@@ -47,8 +43,6 @@
         private readonly N88.Core.Service.Interface.IUserService userService1;
         private readonly N88.Core.Service.Interface.IGroupService groupService;
         private readonly N88.Core.Service.Interface.ISecurityService securityService;
-
-#pragma warning disable S107 // Methods should not have too many parameters
 
         public AuthorizationController(
             IMaintenanceService maintenanceService,
@@ -294,10 +288,6 @@
             return RedirectToAction("OneTokenRestriction", "Utility", new { Code = OneAuthorizationErrorCode.TokenWasExpired });
         }
 
-        /// <summary>
-        /// The changing password page.
-        /// </summary>
-        /// <returns>The changing password form.</returns>
         [HttpGet]
         public ActionResult ChangePassword()
         {

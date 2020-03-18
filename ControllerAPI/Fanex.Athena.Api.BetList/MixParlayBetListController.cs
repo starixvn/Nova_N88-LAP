@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MixParlayBetListController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.BetList
+﻿namespace Fanex.Athena.Api.BetList
 {
     using System.Net.Http;
     using System.Threading.Tasks;

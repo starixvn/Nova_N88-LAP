@@ -1,20 +1,11 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="WinlossByLeagueBetListController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.BetList
+﻿namespace Fanex.Athena.Api.BetList
 {
     using System.Threading.Tasks;
     using System.Web.Http;
-
     using Base.Attributes;
-
     using DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Model.BetList.MetaModel;
-
     using Service.Core.Common.Interfaces;
     using Service.StatelessCore.Interfaces;
 

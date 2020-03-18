@@ -1,24 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CookiesHelper.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Extension.Utility
+﻿namespace Fanex.Athena.Extension.Utility
 {
     using System;
     using System.Web;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class CookiesHelper
     {
-        /// <summary>
-        /// Get cookies.
-        /// </summary>
-        /// <param name="name">The cookie name.</param>
-        /// <returns>The cookie value.</returns>
         public static string GetCookies(string name)
         {
             var cookies = HttpContext.Current.Request.Cookies.Get(name);

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MatchDataAccess.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Core.Common
+﻿namespace Fanex.Athena.DataAccess.Core.Common
 {
     using System;
     using System.Collections.Generic;
@@ -28,11 +22,6 @@ namespace Fanex.Athena.DataAccess.Core.Common
             _appSettings = appSettings;
         }
 
-        /// <summary>
-        /// Get all running matches.
-        /// </summary>
-        /// <param name="sportId">Sport ID value.</param>
-        /// <returns>The result value.</returns>
         public async Task<IList<Match>> GetAllRunningMatch(int sportId)
         {
             var result = new List<Match>();
@@ -65,9 +54,6 @@ namespace Fanex.Athena.DataAccess.Core.Common
             return result;
         }
 
-        /// <summary>
-        /// Get matches by league id (only for SB)
-        /// </summary>
         public async Task<IList<Match>> GetMatchesByLeague(int leagueId, DateTime fromDate, DateTime toDate, int sportId = 0)
         {
             var result = new List<Match>();
@@ -103,9 +89,10 @@ namespace Fanex.Athena.DataAccess.Core.Common
 
         private string GetMatchName(Match match)
         {
-            return _cacheRefAdapter.GetTeamName(match.HomeId) + (match.IsNeutral ? " (N)" : string.Empty)
-                                   + " -vs- "
-                               + _cacheRefAdapter.GetTeamName(match.AwayId);
+            return _cacheRefAdapter.GetTeamName(match.HomeId) 
+                + (match.IsNeutral ? " (N)" : string.Empty)
+                + " -vs- " 
+                + _cacheRefAdapter.GetTeamName(match.AwayId);
         }
     }
 }

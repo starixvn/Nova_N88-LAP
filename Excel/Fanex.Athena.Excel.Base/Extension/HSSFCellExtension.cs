@@ -1,34 +1,16 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="HSSFCellExtension.cs" company="" >
-//  Copyright (c) . All rights reserved.
-// </copyright>
-
-namespace Fanex.Athena.Excel.Base.Extension
+﻿namespace Fanex.Athena.Excel.Base.Extension
 {
     using System;
     using Fanex.Common;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// HSSFCellExtensions class contains extension method for HSSFCell.
-    /// </summary>
     public static class HSSFCellExtension
     {
-        /// <summary>
-        /// Assign decimal value to cell.
-        /// </summary>
-        /// <param name="cell">Target cell.</param>
-        /// <param name="value">The value to be set.</param>
         public static void SetCellValue(this ICell cell, decimal value)
         {
             cell.SetCellValue(Convert.ToDouble(value));
         }
 
-        /// <summary>
-        /// Assign object value to cell.
-        /// </summary>
-        /// <param name="cell">Target cell.</param>
-        /// <param name="value">The value to be set.</param>
         public static void SetCellValue(this ICell cell, object value)
         {
             var valueType = value.GetType();

@@ -79,17 +79,12 @@
             return BalanceUpDataAccessInstance.GetBalanceUp();
         }
 
-        /// <summary>
-        /// Set the Licensee Id, Balance Up Date.
-        /// Remove the UTC part of DateTime value.
-        /// </summary>
-        /// <param name="metaModel">The metal model.</param>
-        /// <returns>The bet list metal model.</returns>
         protected BetListMetaModel CreateDefaultMetaModel(BetListMetaModel metaModel = null)
         {
             var licenseeSession = SessionServiceInstance.LicenseeSession;
             var userSession = SessionServiceInstance.UserSession;
             var defaultMetaModel = metaModel ?? new BetListMetaModel();
+
             defaultMetaModel.LicenseeId = licenseeSession.LicenseeId;
             defaultMetaModel.UserId = userSession.UserId;
             defaultMetaModel.HasPlayerCom = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm;

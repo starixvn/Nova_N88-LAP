@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DailyStatementBetListController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.BetList
+﻿namespace Fanex.Athena.Api.BetList
 {
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -35,6 +29,7 @@ namespace Fanex.Athena.Api.BetList
         [ValidationApiRequest(IsValidCurrency = true)]
         public async Task<dynamic> Index(BetListMetaModel metaModel)
         {
+            const int RunningTicketTransType = 3;
             const string UspKey = "Lrf_BetList_SelByDayAll_Mem";
             const string UspKeyOld = "Lrf_BetList_SelByDayAll_Mem_Old";
 
@@ -43,7 +38,6 @@ namespace Fanex.Athena.Api.BetList
 
             metaModel.ToDate = metaModel.ToDate.Date.AddDays(1).AddMinutes(-1);
 
-            const int RunningTicketTransType = 3;
             HttpResponseMessage response = await GetBetListResult(metaModel, uspKey).ConfigureAwait(false);
 
             var result = await response.Content.ReadAsAsync<dynamic>().ConfigureAwait(false);

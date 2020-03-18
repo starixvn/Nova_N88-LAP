@@ -97,7 +97,6 @@
 
         private async Task<ActionResult> Excel(LiveReportBetListMetaModel metaModel, string uspKey, string title)
         {
-            // Sum value by page
             metaModel.UspKey = uspKey;
             metaModel.Title = title;
             metaModel.ShowingOption = new BetListShowingOption

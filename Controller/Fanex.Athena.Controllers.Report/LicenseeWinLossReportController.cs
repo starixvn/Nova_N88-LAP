@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LicenseeWinLossReportController.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers.Report
+﻿namespace Fanex.Athena.Controllers.Report
 {
     using System;
     using System.Collections.Generic;
@@ -36,7 +30,6 @@ namespace Fanex.Athena.Controllers.Report
         [HttpGet]
         public ActionResult Index()
         {
-
             if (IsFakeLicensee(SessionServiceInstance.LicenseeSession.LicenseeName))
             {
                 return MapToFakeView();

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UtilityController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers
+﻿namespace Fanex.Athena.Controllers
 {
     using System.Web.Mvc;
     using System.Web.Security;
@@ -14,9 +8,6 @@ namespace Fanex.Athena.Controllers
     using Resources;
     using Service.Core.Common.Interfaces;
 
-    /// <summary>
-    /// Utility controller.
-    /// </summary>
     [AllowAnonymous]
     public class UtilityController : Controller
     {
@@ -68,10 +59,6 @@ namespace Fanex.Athena.Controllers
             return View("~/Views/Desktop/Utility/LocationRestriction.cshtml");
         }
 
-        /// <summary>
-        /// The error page.
-        /// </summary>
-        /// <returns>The error information.</returns>
         public ActionResult Error()
         {
             var errorStr = string.Empty;

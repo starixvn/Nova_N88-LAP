@@ -1,14 +1,5 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ConvertingOption.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Excel.Base.Entities
+﻿namespace Fanex.Athena.Excel.Base.Entities
 {
-    /// <summary>
-    /// Converting option.
-    /// </summary>
     public class ConvertingOption
     {
         public ConvertingOption()

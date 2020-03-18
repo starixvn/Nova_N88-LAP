@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ReportBase.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Excel.Base
+﻿namespace Fanex.Athena.Excel.Base
 {
     using System.Collections.Generic;
     using System.IO;

@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LicenseeWinLossReportController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.Report
+﻿namespace Fanex.Athena.Api.Report
 {
     using System;
     using System.Collections.Generic;
@@ -13,13 +7,9 @@ namespace Fanex.Athena.Api.Report
     using System.Threading.Tasks;
     using System.Web.Hosting;
     using System.Web.Http;
-
     using Base.Attributes;
-
     using DataAccess.Report.Interfaces;
-
     using Excel.Report.Models;
-
     using Fanex.Athena.Excel.Base.Entities;
     using Fanex.Athena.Excel.Report;
     using Fanex.Athena.Extension.Helper;
@@ -34,7 +24,6 @@ namespace Fanex.Athena.Api.Report
     using Model.Core.DataDomain;
     using Model.Core.MetaModel.Product;
     using Model.Core.ResultModel;
-
     using Service.Core.Common.Interfaces;
 
     [ApiFunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss)]
@@ -100,7 +89,6 @@ namespace Fanex.Athena.Api.Report
 
             var propertyName = sortBy;
 
-            // Sort for grouping columns, get the real column name
             if (sortBy.EndsWith("Single", StringComparison.OrdinalIgnoreCase))
             {
                 propertyName = sortBy.Remove(sortBy.LastIndexOf("Single", StringComparison.OrdinalIgnoreCase));

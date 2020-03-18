@@ -52,6 +52,7 @@
         {
             metaModel.SiteName = SessionServiceInstance.LicenseeSession.LicenseeName;
             metaModel.Language = SessionServiceInstance.UserSession.Language;
+
             return Content(await _playerStatementService.GetUrl(metaModel).ConfigureAwait(false));
         }
     }

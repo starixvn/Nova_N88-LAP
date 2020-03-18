@@ -133,6 +133,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Model.PlayerMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Service.PlayerManagement", "Service\Fanex.Athena.Service.PlayerManagement\Fanex.Athena.Service.PlayerManagement.csproj", "{20699CA3-3E0F-4575-B6A6-8E642374E8A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Model.UserManagement", "Fanex.Athena.Model.UserManagement\Fanex.Athena.Model.UserManagement.csproj", "{B166FAC7-A122-4665-BA2B-8977EF8B68CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Service.UserManagement", "Fanex.Athena.Service.UserManagement\Fanex.Athena.Service.UserManagement.csproj", "{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -721,6 +725,30 @@ Global
 		{20699CA3-3E0F-4575-B6A6-8E642374E8A9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{20699CA3-3E0F-4575-B6A6-8E642374E8A9}.Release|x86.ActiveCfg = Release|Any CPU
 		{20699CA3-3E0F-4575-B6A6-8E642374E8A9}.Release|x86.Build.0 = Release|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Debug|x86.Build.0 = Debug|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Release|x86.ActiveCfg = Release|Any CPU
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA}.Release|x86.Build.0 = Release|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Debug|x86.Build.0 = Debug|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Release|x86.ActiveCfg = Release|Any CPU
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -780,10 +808,12 @@ Global
 		{43241DF7-54D9-4107-A6B3-ED89495C4F0B} = {4D6B663E-04A8-4993-B33F-A445428FA349}
 		{12121414-6686-4286-86D3-328EBBF6BC8C} = {FF903E7B-A043-4B69-B750-4830F0E5C58A}
 		{20699CA3-3E0F-4575-B6A6-8E642374E8A9} = {195AD258-DE51-497C-BA3B-1645AE32CAB6}
+		{B166FAC7-A122-4665-BA2B-8977EF8B68CA} = {FF903E7B-A043-4B69-B750-4830F0E5C58A}
+		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E} = {195AD258-DE51-497C-BA3B-1645AE32CAB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AF850210-126B-4E21-BADB-F5C02AD2CCEE}
-		RESX_ShowErrorsInErrorList = False
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35
+		RESX_ShowErrorsInErrorList = False
+		SolutionGuid = {AF850210-126B-4E21-BADB-F5C02AD2CCEE}
 	EndGlobalSection
 EndGlobal

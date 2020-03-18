@@ -200,38 +200,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AccountController.cs" />
-    <Compile Include="Account\AssignFunctionUserCriteria.cs" />
-    <Compile Include="Account\AssignSiteUserCriteria.cs" />
-    <Compile Include="Account\CommandResult.cs" />
-    <Compile Include="Account\CommonRepository.cs" />
-    <Compile Include="Account\Constant.cs" />
-    <Compile Include="Account\Function.cs" />
-    <Compile Include="Account\FunctionData.cs" />
-    <Compile Include="Account\FunctionPolicy.cs" />
-    <Compile Include="Account\GetAllGroupCriteria.cs" />
-    <Compile Include="Account\GetByGroupAndSiteFunctionCriteria.cs" />
-    <Compile Include="Account\GetByIdSiteCriteria.cs" />
-    <Compile Include="Account\GetByIdUserCriteria.cs" />
-    <Compile Include="Account\GetBySiteFunctionCriteria.cs" />
-    <Compile Include="Account\GetByUserAndSiteFunctionCriteria.cs" />
-    <Compile Include="Account\GetByUsernameUserCriteria.cs" />
-    <Compile Include="Account\GetUserSiteLevelUserCriteria.cs" />
-    <Compile Include="Account\Group.cs" />
-    <Compile Include="Account\GroupPolicy.cs" />
-    <Compile Include="Account\LogExecSpCriteria.cs" />
     <Compile Include="Group\GetAllWithNumOfUserGroupCriteria.cs" />
     <Compile Include="Group\GroupController.cs" />
-    <Compile Include="Account\GroupData.cs" />
-    <Compile Include="Account\InsertCustCriteria.cs" />
-    <Compile Include="Account\ResetPasswordCustCriteria.cs" />
-    <Compile Include="Account\SearchUserCriteria.cs" />
-    <Compile Include="Account\Site.cs" />
-    <Compile Include="Account\UpdateCustCriteria.cs" />
-    <Compile Include="Account\User.cs" />
-    <Compile Include="Account\UserData.cs" />
-    <Compile Include="Account\UserLevel.cs" />
-    <Compile Include="Account\UserRepository.cs" />
-    <Compile Include="Account\UserService.cs" />
     <Compile Include="AuthorizationController.cs" />
     <Compile Include="Group\GroupRepository.cs" />
     <Compile Include="Group\GroupService.cs" />
@@ -251,6 +221,14 @@
     <ProjectReference Include="..\..\DataAccess\Fanex.Athena.DataAccess.Core\Fanex.Athena.DataAccess.Core.csproj">
       <Project>{A6BE21E8-6895-4863-BA3A-E6B21D3CE78D}</Project>
       <Name>Fanex.Athena.DataAccess.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fanex.Athena.Model.UserManagement\Fanex.Athena.Model.UserManagement.csproj">
+      <Project>{B166FAC7-A122-4665-BA2B-8977EF8B68CA}</Project>
+      <Name>Fanex.Athena.Model.UserManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fanex.Athena.Service.UserManagement\Fanex.Athena.Service.UserManagement.csproj">
+      <Project>{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E}</Project>
+      <Name>Fanex.Athena.Service.UserManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Auth\Fanex.Athena.Model.Auth.csproj">
       <Project>{794C0345-2DDD-4FFD-A605-BB96FBB37DE8}</Project>

@@ -1,5 +1,8 @@
 ﻿namespace Fanex.Athena.Controllers.Account
 {
+    using Fanex.Athena.Model.UserManagement.Criteria;
+    using Fanex.Athena.Model.UserManagement.Model;
+    using Fanex.Athena.Service.UserManagement.Service;
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
     using MvcPaging;

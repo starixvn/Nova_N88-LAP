@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using Fanex.Athena.Controllers;
     using Fanex.Athena.Controllers.Account;
+    using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Resources;
     using Fanex.N88.Core.Configuration;
 

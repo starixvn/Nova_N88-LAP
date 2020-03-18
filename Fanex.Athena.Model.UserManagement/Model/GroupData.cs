@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fanex.Athena.Model.UserManagement.Model
+{
+    public class GroupData
+    {
+        public int GroupId { get; set; }
+        public string GroupName { get; set; }
+        public string Description { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
+        public int CreatorId { get; set; }
+        public string CreatorUsername { get; set; }
+        public int ModifierId { get; set; }
+        public string ModifierUsername { get; set; }
+        public int NumOfUser { get; set; }
+    }
+}

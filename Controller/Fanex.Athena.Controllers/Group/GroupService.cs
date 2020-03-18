@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.Athena.Controllers.Account;
+    using Fanex.Athena.Model.UserManagement.Model;
+    using Fanex.Athena.Service.UserManagement.Repository;
     using Fanex.N88.Admin.Areas.UserControl.Controllers;
 
     public class GroupService

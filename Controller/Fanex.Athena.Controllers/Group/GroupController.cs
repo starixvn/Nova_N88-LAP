@@ -11,7 +11,6 @@
     using Fanex.Athena.Service.UserManagement.Service;
     using Fanex.Common.Extensions;
     using Fanex.N88.Core.Configuration;
-    using Fanex.NAP.Core.Configuration;
 
     public class GroupController : CultureBaseController
     {
@@ -120,7 +119,7 @@
             {
                 var getCriteria = new GetByNameGroupCriteria
                 {
-                    SiteId = NapSettings.Settings.SiteId,
+                    SiteId = N88Settings.Settings.SiteId,
                     GroupName = criteria.GroupName,
                     IsLicenseeGroup = true
                 };
@@ -138,7 +137,7 @@
                 criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
                 criteria.ModifiedDate = DateTime.Now;
                 criteria.IsLicenseeGroup = true;
-                criteria.SiteId = NapSettings.Settings.SiteId;
+                criteria.SiteId = N88Settings.Settings.SiteId;
 
                 UpdateCriteria(criteria);
 
@@ -186,7 +185,7 @@
         //[N88Auth(FunctionKey = FunctionKeys.AssignFunctionToGroup, Policy = Constant.Policy.Read)]
         public ActionResult AssignPermission(int id)
         {
-            int siteId = NapSettings.Settings.SiteId;
+            int siteId = N88Settings.Settings.SiteId;
 
             var getGroupCriteria = new GetByIdGroupCriteria
             {
@@ -206,11 +205,11 @@
 
             ViewBag.HasAssignFunctionRight = true;
 
-            ViewBag.FunctionList = _userService.GetBySiteInHierarchy(criteria.SiteId, NapSettings.Settings.Environment, true);
+            ViewBag.FunctionList = _userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true);
             ViewBag.GroupFuncPolicyList =
-                _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, NapSettings.Settings.Environment);
+                _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
             ViewBag.UserFuncPolicyList =
-                _userService.GetByUserAndSiteIncludeGroup(SessionServiceInstance.UserSession.UserId, criteria.SiteId, NapSettings.Settings.Environment);
+                _userService.GetByUserAndSiteIncludeGroup(SessionServiceInstance.UserSession.UserId, criteria.SiteId, N88Settings.Settings.Environment);
             ViewBag.UserLevel = 1; // need check here
 
             return View(criteria);
@@ -220,7 +219,7 @@
         //[N88Auth(FunctionKey = FunctionKeys.AssignFunctionToGroup, Policy = Constant.Policy.Host)]
         public ActionResult AssignPermission(AssignFunctionGroupCriteria criteria)
         {
-            criteria.SiteId = NapSettings.Settings.SiteId;
+            criteria.SiteId = N88Settings.Settings.SiteId;
             // check group and site
             var getGroupCriteria = new GetByIdGroupCriteria
             {

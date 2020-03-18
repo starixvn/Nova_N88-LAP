@@ -19,10 +19,6 @@
         },
 		new SiteInfo
         {
-            SiteEnvironment = SiteEnvironment.UATTW
-        },
-		new SiteInfo
-        {
             SiteEnvironment = SiteEnvironment.SIT
         },
         new SiteInfo
@@ -31,11 +27,7 @@
         },
 		new SiteInfo
         {
-            SiteEnvironment = SiteEnvironment.Staging
-        },
-		new SiteInfo
-        {
-            SiteEnvironment = SiteEnvironment.BACKUPMNL
+            SiteEnvironment = SiteEnvironment.MNL
         }
     };
 #>
@@ -45,11 +37,9 @@
 		DEV,
         LOCAL,
         UAT,
-		UATTW,
 		SIT,
         PRO,
-		Staging,
-		BACKUPMNL
+		MNL
     }
 
 	class SiteInfo

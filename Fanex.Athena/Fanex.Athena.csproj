@@ -444,10 +444,9 @@
     <Content Include="img\Account\user-info-ico.png" />
     <Content Include="img\Account\user.png" />
     <Content Include="karma-new-bypage.conf.js" />
-    <Content Include="Scripts\Account\EditAccount.js" />
-    <Content Include="Scripts\Account\EditPermission.js" />
+    <Content Include="Scripts\Account\AssignPermission.js" />
+    <Content Include="Scripts\Account\CryptoJS.js" />
     <Content Include="Scripts\Account\Manage.js" />
-    <Content Include="Scripts\Account\ManageAccount.js" />
     <Content Include="Scripts\Account\NAP.js" />
     <Content Include="Scripts\Account\ResetPassword.js" />
     <Content Include="Scripts\Group\AssignPermission.js" />

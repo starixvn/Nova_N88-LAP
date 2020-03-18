@@ -1,12 +1,11 @@
-﻿namespace Fanex.N88.Admin.Areas.UserControl.Controllers
+﻿namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
-    using Fanex.Athena.Controllers.Account;
     using Fanex.Athena.Resources;
     using Fanex.Data;
-    using static Fanex.N88.Core.Business.Constant;
+    using static Fanex.Athena.Model.UserManagement.Model.Constant;
 
     public class AssignFunctionGroupCriteria : LogExecSpCriteria
     {

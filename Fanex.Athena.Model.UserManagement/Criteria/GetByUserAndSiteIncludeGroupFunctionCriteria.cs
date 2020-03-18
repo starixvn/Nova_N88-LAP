@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Controllers.Account
+﻿namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     using Fanex.Data.Repository;
 

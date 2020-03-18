@@ -1,12 +1,10 @@
-﻿
-namespace Fanex.N88.Admin.Areas.UserControl.Controllers
+﻿namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using Fanex.Athena.Resources;
-    using Fanex.Data.Repository;
 
-    public class InsertGroupCriteria : NonQueryCommand
+    public class UpdateGroupCriteria : LogExecSpCriteria
     {
         public int GroupId { get; set; }
 
@@ -30,27 +28,17 @@ namespace Fanex.N88.Admin.Areas.UserControl.Controllers
         [Display(Name = "Status", ResourceType = typeof(ViewResources))]
         public bool IsActive { get; set; }
 
-        public int CreatedBy { get; set; }
+        public int ModifiedBy { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
 
         public bool IsLicenseeGroup { get; set; }
 
         public int? SiteId { get; set; }
 
-        public int CurrentSiteId { get; set; }
-
-        public int CurrentUserId { get; set; }
-
-        public DateTime LogDate { get; set; }
-
-        public string LoginIP { get; set; }
-
-        public string Language { get; set; }
-
         public override string GetSettingKey()
         {
-            return "N88_Group_Insert";
+            return "N88_Group_Update";
         }
 
         public override bool IsValid()

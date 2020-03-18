@@ -1,4 +1,4 @@
-﻿namespace Fanex.N88.Admin.Areas.UserControl.Controllers
+﻿namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     using System.ComponentModel.DataAnnotations;
     using Fanex.Athena.Resources;

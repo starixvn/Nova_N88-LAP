@@ -57,21 +57,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criteria\AssignFunctionGroupCriteria.cs" />
     <Compile Include="Criteria\AssignFunctionUserCriteria.cs" />
     <Compile Include="Criteria\AssignSiteUserCriteria.cs" />
     <Compile Include="Criteria\GetAllGroupCriteria.cs" />
+    <Compile Include="Criteria\GetAllWithNumOfUserGroupCriteria.cs" />
     <Compile Include="Criteria\GetByGroupAndSiteFunctionCriteria.cs" />
+    <Compile Include="Criteria\GetByIdGroupCriteria.cs" />
     <Compile Include="Criteria\GetByIdSiteCriteria.cs" />
     <Compile Include="Criteria\GetByIdUserCriteria.cs" />
+    <Compile Include="Criteria\GetByNameGroupCriteria.cs" />
     <Compile Include="Criteria\GetBySiteFunctionCriteria.cs" />
     <Compile Include="Criteria\GetByUserAndSiteFunctionCriteria.cs" />
+    <Compile Include="Criteria\GetByUserAndSiteIncludeGroupFunctionCriteria.cs" />
     <Compile Include="Criteria\GetByUsernameUserCriteria.cs" />
     <Compile Include="Criteria\GetUserSiteLevelUserCriteria.cs" />
     <Compile Include="Criteria\InsertCustCriteria.cs" />
+    <Compile Include="Criteria\InsertGroupCriteria.cs" />
     <Compile Include="Criteria\LogExecSpCriteria.cs" />
     <Compile Include="Criteria\ResetPasswordCustCriteria.cs" />
     <Compile Include="Criteria\SearchUserCriteria.cs" />
     <Compile Include="Criteria\UpdateCustCriteria.cs" />
+    <Compile Include="Criteria\UpdateGroupCriteria.cs" />
+    <Compile Include="Criteria\UpdateStatusGroupCriteria.cs" />
     <Compile Include="Model\AccFunction.cs" />
     <Compile Include="Model\CommandResult.cs" />
     <Compile Include="Model\Constant.cs" />

@@ -203,18 +203,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AccountController.cs" />
-    <Compile Include="Account\GetByUserAndSiteIncludeGroupFunctionCriteria.cs" />
-    <Compile Include="Group\GetAllWithNumOfUserGroupCriteria.cs" />
-    <Compile Include="Group\GetByNameGroupCriteria.cs" />
-    <Compile Include="Group\AssignFunctionGroupCriteria.cs" />
-    <Compile Include="Group\UpdateGroupCriteria.cs" />
-    <Compile Include="Group\GetByIdGroupCriteria.cs" />
     <Compile Include="Group\GroupController.cs" />
     <Compile Include="AuthorizationController.cs" />
-    <Compile Include="Group\GroupRepository.cs" />
-    <Compile Include="Group\GroupService.cs" />
-    <Compile Include="Group\InsertGroupCriteria.cs" />
-    <Compile Include="Group\UpdateStatusGroupCriteria.cs" />
     <Compile Include="HeaderController.cs" />
     <Compile Include="MenuController.cs" />
     <Compile Include="OneAuthorizationController.cs" />

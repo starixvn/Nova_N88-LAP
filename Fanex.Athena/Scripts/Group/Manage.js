@@ -3,9 +3,45 @@
 "use strict";
 
 var ManageGroup = (function () {
-
 	return {
-		grid: null
+		grid: null,
+		getSingleResource: function (enghlishName) {
+			if (enghlishName == null) {
+				return enghlishName;
+			}
+
+			const keyName = '_language_' + $('#PageLanguage').val().replace('-', '_');
+
+			let resources = window[keyName];
+			if (!resources) {
+				resources = window._language_en_US; // jshint ignore:line
+			}
+
+			const mapResource = function (key) {
+				let item = resources[key];
+				if (item === undefined) {
+					item = window._language_en_US[key]; // jshint ignore:line
+					return item !== undefined ? item : key;
+				} else {
+					return item;
+				}
+			};
+			if (enghlishName.indexOf('@') > -1) {
+				const keys = enghlishName.match(/\@{1}\[{1}[a-zA-Z\d\_]+\]{1}/g);
+				if (keys != null) {
+					let temp = enghlishName;
+					for (var i = 0; i < keys.length; i++) {
+						var realKey = keys[i].replace('@[', '').replace(']', '');
+						temp = temp.replace(keys[i], mapResource(realKey));
+					}
+					return temp;
+				}
+				return mapResource(enghlishName);
+			}
+			else {
+				return mapResource(enghlishName);
+			}
+		}
 	};
 
 } (jQuery));
@@ -46,11 +82,12 @@ $(document).ready(function () {
 
 	// #region activate/deactivate functions
 	ManageGroup.grid.on('mousedown', 'input[type=checkbox][gid]', function () {
+		debugger;
 		var $this = $(this),
 			groupName = $this.attr('gname'),
 			active = !$this.is(':checked'),
 			action = active ? 'activate' : 'deactivate',
-			msgTemplate = Site.getSingleResource('ActiveGroupConfirm');
+			msgTemplate = ManageGroup.getSingleResource('ActiveGroupConfirm'),
 			msg = msgTemplate.replace('{0}', action).replace('{1}', groupName);
 
 		var isConfirm = confirm(msg);

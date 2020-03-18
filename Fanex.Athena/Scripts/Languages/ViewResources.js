@@ -1,4 +1,4 @@
-﻿// Generated at: 3/18/2020 2:21:34 PM
+﻿// Generated at: 3/18/2020 5:56:22 PM
 var _language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -524,6 +524,7 @@ OutstandingBalance:"Outstanding Balance",
 Over:"Over",
 OverUnder:"Over/Under",
 Page:"Page",
+PageSize:"Page Size",
 Parlay:"Parlay",
 ParlayComm:"Parlay Comm",
 Password:"Password",

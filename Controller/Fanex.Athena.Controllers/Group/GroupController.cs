@@ -1,13 +1,14 @@
-﻿namespace Fanex.N88.Admin.Areas.UserControl.Controllers
+﻿namespace Fanex.Athena.Controllers.Account
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.Athena.Controllers;
-    using Fanex.Athena.Controllers.Account;
+    using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Resources;
+    using Fanex.Athena.Service.UserManagement.Service;
     using Fanex.Common.Extensions;
     using Fanex.N88.Core.Configuration;
     using Fanex.NAP.Core.Configuration;
@@ -152,9 +153,7 @@
             return View(criteria);
         }
 
-
         #region Activation
-
 
         //[N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
         public ActionResult Activate(int id, bool isActive)
@@ -182,7 +181,6 @@
 
             return new EmptyResult();
         }
-
 
         [HttpGet]
         //[N88Auth(FunctionKey = FunctionKeys.AssignFunctionToGroup, Policy = Constant.Policy.Read)]
@@ -244,7 +242,6 @@
 
             //ViewBag.HasAssignFunctionRight = policy >= (int)Constant.Policy.Host;
             ViewBag.HasAssignFunctionRight = true;
-
 
             criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
             criteria.ModifiedDate = DateTime.Now;
@@ -319,7 +316,7 @@
             return View(criteria);
         }
 
-        #endregion Assign Permission
+        #endregion Activation
 
         #region UnassignPermission
 
@@ -333,7 +330,7 @@
                 GroupId = groupId
             };
 
-            var  group = _groupService.Get(getGroupCriteria);
+            var group = _groupService.Get(getGroupCriteria);
             List<FunctionPolicy> listGroupFuncPolicy = _userService.GetByGroupAndSite(groupId, N88Settings.Settings.SiteId, AppSettingInstance.Environment).ToList();
 
             var criteria = new AssignFunctionGroupCriteria();

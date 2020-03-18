@@ -1,7 +1,6 @@
-﻿namespace Fanex.N88.Admin.Areas.UserControl.Controllers
+﻿namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     using System;
-    using Fanex.Athena.Controllers.Account;
 
     public class UpdateStatusGroupCriteria : LogExecSpCriteria
     {

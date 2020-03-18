@@ -1,11 +1,11 @@
-﻿namespace Fanex.Athena.Controllers
+﻿namespace Fanex.Athena.Service.UserManagement.Service
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Fanex.Athena.Controllers.Account;
-    using Fanex.Data.Repository;
+    using Fanex.Athena.Model.UserManagement.Criteria;
+    using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Service.UserManagement.Repository;
-    using Fanex.N88.Admin.Areas.UserControl.Controllers;
+    using Fanex.Data.Repository;
 
     public class GroupService
     {

@@ -182,9 +182,9 @@
   <Function Name="Group">
     <Setting Key="N88_Group_GetAllWithNumOfUser" SpName="N88_Group_GetAllWithNumOfUser" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
     <Setting Key="N88_Group_Insert" SpName="N88_Group_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBPOL.NAP_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBPOL.NAP_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBPOL.NAP_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
   </Function>
 </Functions>
 		

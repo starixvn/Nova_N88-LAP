@@ -1,4 +1,4 @@
-﻿// Generated at: 3/14/2020 1:39:00 PM
+﻿// Generated at: 3/18/2020 2:21:34 PM
 var _language_zh_Hans = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -6,6 +6,7 @@ AccessDeniedMsg:"对不起, 您没有权限访问此页面。",
 Account:"账号",
 AccountManagement:"帐户管理",
 Action:"动作",
+ActiveGroupConfirm:"Are you sure you want to {0} {1} ?",
 AD:"客和",
 Adjustment:"调整",
 AdvancedSearch:"进阶搜寻",

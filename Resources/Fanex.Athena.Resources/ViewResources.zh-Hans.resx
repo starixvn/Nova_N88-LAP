@@ -2005,4 +2005,7 @@
     <value>Bet History</value>
     <comment>80941</comment>
   </data>
+  <data name="ActiveGroupConfirm" xml:space="preserve">
+    <value>Are you sure you want to {0} {1} ?</value>
+  </data>
 </root>

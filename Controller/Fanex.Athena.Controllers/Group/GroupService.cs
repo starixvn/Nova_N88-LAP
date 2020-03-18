@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.Athena.Controllers.Account;
-    using Fanex.Athena.Model.UserManagement.Model;
+    using Fanex.Data.Repository;
     using Fanex.Athena.Service.UserManagement.Repository;
     using Fanex.N88.Admin.Areas.UserControl.Controllers;
 
@@ -36,7 +36,7 @@
             return null;
         }
 
-        public CommandResult Insert(InsertGroupCriteria criteria)
+        public CommandResult ExecuteNonQuery(INonQueryCommand criteria)
         {
             if (criteria.IsValid())
             {
@@ -46,5 +46,14 @@
             return new CommandResult { Error = 1, Message = "Error" };
         }
 
+        public GroupData Get(ICriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                return this._commonepository.FetchData<GroupData>(criteria).FirstOrDefault();
+            }
+
+            return null;
+        }
     }
 }

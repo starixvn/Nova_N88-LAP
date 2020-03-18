@@ -1,4 +1,4 @@
-﻿// Generated at: 2/28/2020 11:54:17 AM
+﻿// Generated at: 3/18/2020 2:23:11 PM
 window._language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
@@ -6,6 +6,7 @@ AccessDeniedMsg:"對不起，您沒有權限訪問此頁面。",
 Account:"賬號",
 AccountManagement:"帳戶管理",
 Action:"動作",
+ActiveGroupConfirm:"Are you sure you want to {0} {1} ?",
 AD:"客和",
 Adjustment:"調整",
 AffiliateTransfer:"合作夥伴轉賬",
@@ -53,6 +54,7 @@ BAUpdatedBy:"投注總計跟新由",
 BBAmtComm:"回購金額+即時兌現傭金",
 BetCount:"投注數",
 BetfromOthers:"其他",
+BetHistory:"Bet History",
 BetId:"投注單號",
 BetList:"投注歷史",
 BetListRunning:"投注歷史(進行中)",

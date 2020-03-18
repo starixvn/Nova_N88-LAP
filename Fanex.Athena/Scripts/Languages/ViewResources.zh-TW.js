@@ -1,4 +1,4 @@
-﻿// Generated at: 3/14/2020 1:39:00 PM
+﻿// Generated at: 3/18/2020 2:21:34 PM
 var _language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
@@ -6,6 +6,7 @@ AccessDeniedMsg:"對不起，您沒有權限訪問此頁面。",
 Account:"賬號",
 AccountManagement:"帳戶管理",
 Action:"動作",
+ActiveGroupConfirm:"Are you sure you want to {0} {1} ?",
 AD:"客和",
 Adjustment:"調整",
 AffiliateTransfer:"合作夥伴轉賬",

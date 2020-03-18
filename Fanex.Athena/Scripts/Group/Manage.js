@@ -50,12 +50,15 @@ $(document).ready(function () {
 			groupName = $this.attr('gname'),
 			active = !$this.is(':checked'),
 			action = active ? 'activate' : 'deactivate',
-			msg = "Are you sure you want to " + action + " '" + groupName + "' ?";
+			msgTemplate = Site.getSingleResource('ActiveGroupConfirm');
+			msg = msgTemplate.replace('{0}', action).replace('{1}', groupName);
 
-		NAP.headlineMsgBox.confirm(msg, function () {
+		var isConfirm = confirm(msg);
+
+		if (isConfirm) {
 			var groupId = $this.attr('gid');
 
-			$this.attr('checked', active).change();
+			$this.prop('checked', active);
 
 			$.ajax({
 				url: NAP.resolveClientUrl("Group/Activate" + "?id=" + groupId + "&isActive=" + active),
@@ -63,29 +66,31 @@ $(document).ready(function () {
 				contentType: 'application/json',
 				dataType: 'json',
 				cache: false,
-				beforeSend: function () {
-					NAP.loadingBox.show();
-				},
-				complete: function () {
-					NAP.loadingBox.close();
-				},
-				success: function (result) {
-					if (result === 'OK') {
-						var msg = active ? "Activation succeeded!" : "Deactivation succeeded!";
+				//beforeSend: function () {
+				//	NAP.loadingBox.show();
+				//},
+				//complete: function () {
+				//	NAP.loadingBox.close();
+				//},
+				success: function (response) {
+					$('#resultMessage').toggleClass('field-validation-success', response.IsSuccessful)
+						.toggleClass('field-validation-error', !response.IsSuccessful)
+						.text(response.Message);
 
-						NAP.headlineMsgBox.showInfo(msg, { closeBtn: false });
-						if (active) {
+					$('.response-area').show()
+						.animate({ "opacity": "hidden" }, 10000, function () { $(this).fadeOut(1000); });
+
+					if (active) {
 							$this.attr('original-title', $this.attr('original-title').replace('Activate', 'Deactivate'));
 						} else {
 							$this.attr('original-title', $this.attr('original-title').replace('Deactivate', 'Activate'));
 						}
-					}
 				},
 				error: function (xhr, status, err) {
 					NAP.handleAjaxError(xhr, status, err);
 				}
 			});
-		}, { modal: true, closeBtn: false });
+		}
 	});
 	// #endregion
 

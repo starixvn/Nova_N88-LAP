@@ -133,6 +133,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to {0} {1} ?.
+        /// </summary>
+        public static string ActiveGroupConfirm {
+            get {
+                return ResourceManager.GetString("ActiveGroupConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actual Stake.
         /// </summary>
         public static string ActualStake {

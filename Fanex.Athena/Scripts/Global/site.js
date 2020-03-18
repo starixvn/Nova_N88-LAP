@@ -4,6 +4,8 @@
 // root JSON object
 "use strict";
 
+import { debug } from "webpack";
+
 var Site = (function ($) {
     var UNBLOCKUI_TIMEOUT = 30000;
     var BASE_CURRENCY = { 'eur': '-1', 'usd': '-2', 'gbp': '-3', 'myr': '-4', 'cny': '-5', 'thb': '-6', 'idr': '-7', 'inh': '-8' };
@@ -592,7 +594,7 @@ var Site = (function ($) {
             /// convert text to orther language
             /// </summary>
             /// <param name="enghlishName"></param>
-
+            debugger;
             if (enghlishName == null || enghlishName === undefined) {
                 return enghlishName;
             }

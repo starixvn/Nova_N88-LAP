@@ -182,6 +182,23 @@ namespace Fanex.Athena.Service.UserManagement.Service
             return new List<FunctionPolicy>();
         }
 
+        public List<FunctionPolicy> GetByUserAndSiteIncludeGroup(int userId, int siteId, string env = Constant.Uat)
+        {
+            var criteria = new GetByUserAndSiteIncludeGroupFunctionCriteria
+            {
+                UserId = userId,
+                SiteId = siteId,
+                Environment = env
+            };
+
+            if (criteria.IsValid())
+            {
+                return this.userRepository.GetByGroupAndSite(criteria).ToList();
+            }
+
+            return new List<FunctionPolicy>();
+        }
+
         public int GetUserSiteLevel(int userId, int siteId)
         {
             var criteria = new GetUserSiteLevelUserCriteria

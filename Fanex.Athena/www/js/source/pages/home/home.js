@@ -12,7 +12,6 @@ define([
         function initialize() {
             Site.initialize();
             initEvent();
-            Notification.add();
             activeDefaultMenuItem();
 
             if ($('#HasRecheckIn').val() === '1') {

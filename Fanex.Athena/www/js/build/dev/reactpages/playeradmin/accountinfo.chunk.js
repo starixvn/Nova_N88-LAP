@@ -23187,7 +23187,7 @@ function (_BaseCommonService) {
         tabList = initialConfig.tabList;
     _this._applyLinkTokenUrl = applyLinkTokenUrl;
     _this._applyApiTokenUrl = applyApiTokenUrl;
-    _this._baseUrl = '/';
+    _this._baseUrl = baseUrl;
     _this._tabList = tabList || [];
     return _this;
   }

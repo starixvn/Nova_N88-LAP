@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 2/28/2020 11:54:17 AM
+// Generated at: 3/18/2020 2:23:11 PM
 window._language_zh_Hans = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -101,6 +101,7 @@ window._language_zh_Hans = {
   Account: "账号",
   AccountManagement: "帐户管理",
   Action: "动作",
+  ActiveGroupConfirm: "Are you sure you want to {0} {1} ?",
   AD: "客和",
   Adjustment: "调整",
   AdvancedSearch: "进阶搜寻",
@@ -149,6 +150,7 @@ window._language_zh_Hans = {
   BBAmtComm: "回购金额+即时兑现佣金",
   BetCount: "投注数",
   BetfromOthers: "其他",
+  BetHistory: "Bet History",
   BetId: "投注单号",
   BetList: "投注历史",
   BetListRunning: "投注历史 (进行中)",

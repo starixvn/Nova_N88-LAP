@@ -26,10 +26,13 @@
     <div class="buttons-div">
         <div class="title">Manage User</div>
         <div class="button-action">
+            @if (ViewBag.HasHostPermission)
+            {
             @Html.ActionLink("+ " + ViewResources.CreateNewUser, "NewUser", "Account",
-                    new
-                    {
-                    }, new { @class = "add-button" })
+                             new
+                             {
+                             }, new { @class = "add-button" })
+            }
 
         </div>
     </div>
@@ -89,9 +92,12 @@
                 <th>
                     @ViewResources.Status
                 </th>
+                @if (ViewBag.HasHostPermission)
+                {
                 <th>
                     @ViewResources.Action
                 </th>
+                }
             </tr>
         </thead>
 
@@ -147,49 +153,52 @@
                             }
                         </td>
 
-                        <td class="text-center">
-                            @if (item.Level <= ViewBag.currentUserLevel)
-                            {
-                                <div class="action-wrp">
+                        @if (ViewBag.HasHostPermission)
+                        {
+                            <td class="text-center">
+                                @if (item.User.Id != ViewBag.CurrentUserId && (item.Level < ViewBag.currentUserLevel || item.Level == (int)Constant.Level.User))
+                                {
+                                    <div class="action-wrp">
 
-                                    <span class="btn-action btn-action-active">Action</span>
-                                    <div class="relative">
-                                        <ul class="actions">
+                                        <span class="btn-action btn-action-active">Action</span>
+                                        <div class="relative">
+                                            <ul class="actions">
 
-                                            <li>
-                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
-                                     "Edit", new
-                                     {
-                                         id = item.User.Id
-                                     }, new { @class = "dd-edit" })
-                                            </li>
-                                            <li>
-                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
-                                     "ResetPassword", new
-                                     {
-                                         id = item.User.Id
-                                     }, new { @class = "dd-chgpwd" })
-                                            </li>
+                                                <li>
+                                                    @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
+                              "Edit", new
+                              {
+                                  id = item.User.Id
+                              }, new { @class = "dd-edit" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
+                              "ResetPassword", new
+                              {
+                                  id = item.User.Id
+                              }, new { @class = "dd-chgpwd" })
+                                                </li>
 
-                                            <li>
-                                                @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
-                                     new
-                                     {
-                                         id = item.User.Id
-                                     }, new { @class = "dd-permission" })
-                                            </li>
-                                        </ul>
+                                                <li>
+                                                    @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
+                              new
+                              {
+                                  id = item.User.Id
+                              }, new { @class = "dd-permission" })
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                     </div>
-
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="action-wrp">
-                                    <span class="btn-action btn-action-inactive">@ViewResources.Action</span>
-                                </div>
-                            }
-                        </td>
+                                }
+                                else
+                                {
+                                    <div class="action-wrp">
+                                        <span class="btn-action btn-action-inactive">@ViewResources.Action</span>
+                                    </div>
+                                }
+                            </td>
+                        }
                     </tr>
 
                     i++;

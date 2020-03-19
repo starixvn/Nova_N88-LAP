@@ -39,8 +39,10 @@
                 Environment = N88Settings.Settings.Environment
             };
 
+            ViewBag.HasHostPermission = true;
             ViewBag.GroupSelectList = GetGroups();
             ViewBag.Criteria = criteria;
+            ViewBag.CurrentUserId = SessionServiceInstance.UserSession.UserId;
             ViewBag.currentUserLevel = userService.GetUserSiteLevel(SessionServiceInstance.UserSession.UserId, N88Settings.Settings.SiteId);
             IEnumerable<UserLevel> users = userService.SearchUser(criteria);
 

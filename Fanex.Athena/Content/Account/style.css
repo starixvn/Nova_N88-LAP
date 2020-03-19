@@ -239,7 +239,7 @@ a {
         }
 
     .grid th {
-        background-color: #3c5ea5;
+        background-color: #0f3631;
         border: 1px solid #c5c5c5;
         border-bottom: 0;
         text-align: center;
@@ -1356,7 +1356,7 @@ input[type="submit"],
     color: #fff;
     font-weight: bold;
     height: 25px;
-    padding: 0 10px;
+    padding: 0 20px;
     text-align: center;
     font-size: 12px;
     margin-right: 10px;
@@ -1377,11 +1377,9 @@ input[type="submit"],
 input[type="submit"],
 .primary-button {
     text-shadow: 0 1px rgba(0, 0, 0, 0.5);
-    border: 1px solid #3C5B9B;
+    border: none;
     background: #5a7dc1;
-    background: -moz-linear-gradient(#486cb8, #5a7dc1) #5a7dc1;
-    background: -webkit-linear-gradient(#486cb8, #5a7dc1) #5a7dc1;
-    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
     -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
 }
@@ -1398,23 +1396,24 @@ input[type="submit"],
 
 .cancel-button {
     text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-    border: 1px solid #893A2E;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
     -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
     -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
-    background: #dd7d6d;
-    background: -moz-linear-gradient(#b65f51, #dd7d6d) #dd7d6d;
-    background: -webkit-linear-gradient(#b65f51, #dd7d6d) #dd7d6d;
+    background: #f05b1f;
+    border: none;
+    padding: 0 15px;
 }
+    
 
-    .cancel-button:hover {
-        background: #b65f51;
-        background: -moz-linear-gradient(#ea8473, #b65f51) #b65f51;
-        background: -webkit-linear-gradient(#ea8473, #b65f51) #b65f51;
-        box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
-        -webkit-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
-    }
+    .cancel-button:hover
+{
+    background: #f37e4f;
+    background: -moz-linear-gradient(#ea8473, #b65f51) #b65f51;
+    background: -webkit-linear-gradient(#ea8473, #b65f51) #b65f51;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
+}
 
 .add-button {
     padding: 4px 10px;
@@ -1603,7 +1602,7 @@ input[type="submit"],
 
     .section-div .title {
         margin: 0 10px 0 0;
-        color: #0136ac;
+        color: #0f3631;
         font-weight: normal;
         margin-bottom: 10px;
         font-size: 20px;

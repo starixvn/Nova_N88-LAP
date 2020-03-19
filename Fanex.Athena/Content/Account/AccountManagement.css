@@ -225,6 +225,7 @@ a {
         padding: 2px 4px;
         white-space: nowrap;
         vertical-align: middle;
+        color: #404040;
     }
 
         .grid th input[type=checkbox],
@@ -239,11 +240,13 @@ a {
         }
 
     .grid th {
-        background-color: #3c5ea5;
+        background-color: #0f3631;
         border: 1px solid #c5c5c5;
         border-bottom: 0;
         text-align: center;
         color: #eeeeee;
+        font-family: SANS-SERIF;
+        font-weight: normal;
     }
 
         .grid th.first {
@@ -510,11 +513,11 @@ a {
     }
 
     .grid tfoot tr {
-        background-color: #ced7e8;
+        background-color: #a1beba;
     }
 
         .grid tfoot tr:hover {
-            background-color: #ced7e8;
+            background-color: #a1beba;
         }
 
     .grid tr.no-info:hover {
@@ -1361,7 +1364,7 @@ input[type="submit"],
     color: #fff;
     font-weight: bold;
     height: 25px;
-    padding: 0 10px;
+    padding: 0 15px;
     text-align: center;
     font-size: 12px;
     margin-right: 10px;
@@ -1381,11 +1384,8 @@ input[type="submit"],
 
 input[type="submit"],
 .primary-button {
-    text-shadow: 0 1px rgba(0, 0, 0, 0.5);
-    border: 1px solid #3C5B9B;
-    background: #5a7dc1;
-    background: -moz-linear-gradient(#486cb8, #5a7dc1) #5a7dc1;
-    background: -webkit-linear-gradient(#486cb8, #5a7dc1) #5a7dc1;
+    border: none;
+    background: #f05b1f;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
     -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
     -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
@@ -1393,9 +1393,7 @@ input[type="submit"],
 
     input[type="submit"]:hover,
     .primary-button:hover {
-        background: #486cb8;
-        background: -moz-linear-gradient(#6891e8, #486cb8) #486cb8;
-        background: -webkit-linear-gradient(#6891e8, #486cb8) #486cb8;
+        background: #f37e4f;
         box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
         -moz-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
         -webkit-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
@@ -1422,22 +1420,15 @@ input[type="submit"],
     }
 
 .add-button {
-    padding: 4px 10px;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-    border: 1px solid #729446;
-    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
-    -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
-    -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
-    background: #a1c46b;
-    background: -moz-linear-gradient(#8daf60, #a1c46b) #a1c46b;
-    background: -webkit-linear-gradient(#8daf60, #a1c46b) #a1c46b;
+    padding: 4px 15px;
+    border: none;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    background: #f05b1f;    
 }
 
     .add-button:active,
     .add-button:hover {
-        background: #8daf60;
-        background: -moz-linear-gradient(#abd172, #8daf60) #8daf60;
-        background: -webkit-linear-gradient(#abd172, #8daf60) #8daf60;
+        background: #f37e4f;       
         box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
         -moz-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
         -webkit-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
@@ -1469,10 +1460,9 @@ input[type="submit"],
 /* Filter */
 .filter-form {
     background-color: #edecea;
-    border: 1px solid #cecccd;
-    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     margin: 0 0 15px;
-    padding: 10px;
+    padding: 20px 20px;
     display: inline-block;
 }
 
@@ -1484,6 +1474,7 @@ input[type="submit"],
         .filter-form .form-group label {
             margin-right: 5px;
             font-weight: normal;
+            color: #808080;
         }
 
         .filter-form .form-group input[type="text"],
@@ -1629,7 +1620,7 @@ input[type="submit"],
 
     .section-div .title {
         margin: 0 10px 0 0;
-        color: #0136ac;
+        color: #0f3631;
         font-weight: normal;
         margin-bottom: 10px;
         font-size: 20px;
@@ -1648,16 +1639,16 @@ input[type="submit"],
     margin: 4px 3px;
 }
 
-.paging span.current {
-    background-color: #355391;
-    border: 1px solid #ddd;
-    color: #fff;
-    font-weight: bold;
-    margin-top: 4px;
-    padding: 3px 5px;
-    text-align: center;
-    margin: 4px 3px;
-}
+    .paging span.current {
+        background-color: #0f3631;
+        border: 1px solid #ddd;
+        color: #fff;
+        font-weight: bold;
+        margin-top: 4px;
+        padding: 3px 5px;
+        text-align: center;
+        margin: 4px 3px;
+    }
 
 .paging a {
     border: 1px solid #aaa;
@@ -1672,6 +1663,11 @@ input[type="submit"],
     background: #c7d1d6;
     color: #333;
     outline: none;
+}
+
+.username-td a {
+    color: #0f3631;
+    font-weight: bold;
 }
 
     @media (max-width: 768px) {

@@ -122,11 +122,6 @@ namespace Fanex.Athena
                    (pi, ctx) => pi.ParameterType == typeof(IBusinessLogBuilderFactory),
                    (pi, ctx) => ctx.ResolveKeyed<IBusinessLogBuilderFactory>("PlayerAdminCommonCustomerSettingLogFactory")))
                    .Keyed<IBusinessLogService>("PlayerAdminCommonCustomerSettingLogService");
-
-            // Specify WithAttributeFiltering for the consumer
-            builder.RegisterType<PlayerBaStatusService>().As<IPlayerBaStatusService>().WithAttributeFiltering();
-            builder.RegisterType<PlayerOddsGroupService>().As<IPlayerOddsGroupService>().WithAttributeFiltering();
-            builder.RegisterType<PlayerSpecialLevelService>().As<IPlayerSpecialLevelService>().WithAttributeFiltering();
         }
 
         private static Assembly[] GetAssemblies()

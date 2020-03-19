@@ -11,7 +11,7 @@
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
-    [FunctionAuthorization(PermissionKeys.BetHistory)]
+    [FunctionAuthorization(PermissionKeys.BetHistory, PermissionKeys.ReportCustomerWinLoss)]
     public class SearchCustomerAPIController : CultureBaseController
     {
         private readonly ISearchCustomerService _searchCustomerService;

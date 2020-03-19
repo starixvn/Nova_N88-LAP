@@ -1,36 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Web.Compilation;
-using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
-using System.Web.Mvc;
-using Autofac;
-using Autofac.Core;
-using Autofac.Features.AttributeFilters;
-using Autofac.Integration.Mvc;
-using Autofac.Integration.WebApi;
-using Fanex.Athena.Api.PlayerManagement.Extensions;
-using Fanex.Athena.Api.StatelessBase.Logger;
-using Fanex.Athena.Extension;
-using Fanex.Athena.Extension.Utility;
-using Fanex.Athena.Extension.Utility.Internal;
-using Fanex.Athena.Service.Core.Users;
-using Fanex.Athena.Service.Core.Users.Interfaces;
-using Fanex.Athena.Service.PlayerManagement;
-using Fanex.Athena.Service.PlayerManagement.Interfaces;
-using Fanex.Athena.Service.StatelessCore;
-using Fanex.Athena.Service.StatelessCore.Extensions;
-using Fanex.Athena.Service.StatelessCore.Interfaces;
-using Fanex.Logging;
-using ONEbook.UM.Services;
-using ONEbook.UM.Services.Impl;
-
-namespace Fanex.Athena
+﻿namespace Fanex.Athena
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Reflection;
+    using System.Web.Compilation;
+    using System.Web.Http;
+    using System.Web.Http.ExceptionHandling;
+    using System.Web.Mvc;
+    using Autofac;
+    using Autofac.Core;
+    using Autofac.Integration.Mvc;
+    using Autofac.Integration.WebApi;
+    using Fanex.Athena.Api.PlayerManagement.Extensions;
+    using Fanex.Athena.Api.StatelessBase.Logger;
+    using Fanex.Athena.Extension;
+    using Fanex.Athena.Extension.Utility;
+    using Fanex.Athena.Extension.Utility.Internal;
+    using Fanex.Athena.Service.Core.Users;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Service.PlayerManagement;
+    using Fanex.Athena.Service.PlayerManagement.Interfaces;
+    using Fanex.Athena.Service.StatelessCore;
+    using Fanex.Athena.Service.StatelessCore.Extensions;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Logging;
+    using Fanex.N88.Core.Service.Impl;
+    using Fanex.N88.Core.Service.Interface;
+    using Fanex.N88.Core.Web.Session;
+    using ONEbook.UM.Services;
+    using ONEbook.UM.Services.Impl;
+
     public static class DIConfig
     {
         public static void Register()
@@ -59,11 +61,11 @@ namespace Fanex.Athena
             builder.RegisterControllers(controllerAssemblies).PropertiesAutowired();
             builder.RegisterApiControllers(apiControllerAssemblies).PropertiesAutowired();
 
-            builder.RegisterType<N88.Core.Service.Impl.UserService>().As<N88.Core.Service.Interface.IUserService>();
-            builder.RegisterType<N88.Core.Service.Impl.GroupService>().As<N88.Core.Service.Interface.IGroupService>();
-            builder.RegisterType<N88.Core.Service.Impl.SiteService>().As<N88.Core.Service.Interface.ISiteService>();
-            builder.RegisterType<N88.Core.Service.Impl.SecurityService>().As<N88.Core.Service.Interface.ISecurityService>();
-            builder.RegisterType<N88.Core.Web.Session.CurrentSession>().As<N88.Core.Web.Session.ICurrentSession>();
+            builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<GroupService>().As<IGroupService>();
+            builder.RegisterType<SiteService>().As<ISiteService>();
+            builder.RegisterType<SecurityService>().As<ISecurityService>();
+            builder.RegisterType<CurrentSession>().As<ICurrentSession>();
             builder.RegisterType<ApiExceptionLogger>().As<IExceptionLogger>();
 
             var container = builder.Build();
@@ -101,7 +103,7 @@ namespace Fanex.Athena
         {
             builder.RegisterType<MaintenanceService>().As<IMaintenanceService>().SingleInstance();
 
-            builder.RegisterInstance(Logger.Log).As<Logging.ILogger>();
+            builder.RegisterInstance(Logger.Log).As<ILogger>();
             builder.RegisterType<RestSharp.RestClient>().As<RestSharp.IRestClient>().InstancePerDependency();
         }
 

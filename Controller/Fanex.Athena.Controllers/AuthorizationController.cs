@@ -13,7 +13,6 @@
     using System.Web.Caching;
     using System.Web.Mvc;
     using System.Web.Security;
-    using System.Web.UI;
     using Extension.Utility.Interfaces;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth.MetaModel;
@@ -24,6 +23,7 @@
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Models;
     using Fanex.N88.Core.Models.ParameterObject;
+    using Fanex.N88.Core.Service.Interface;
     using Fanex.N88.Core.Web.Auth;
     using ONEbook.UM.Filters;
     using ONEbook.UM.Services;
@@ -36,28 +36,25 @@
         private const int InvalidPasswordError = 103;
         private const int UserNotExistError = 104;
 
-        private readonly IUserService _userService;
-        private readonly IAuthService _authService;
-        private readonly IMaintenanceService _maintenanceService;
-        private readonly IFormsAuthenticationService _formAuthenticationService;
-        private readonly N88.Core.Service.Interface.IUserService userService1;
-        private readonly N88.Core.Service.Interface.IGroupService groupService;
-        private readonly N88.Core.Service.Interface.ISecurityService securityService;
+        private readonly IAuthService authService;
+        private readonly IMaintenanceService maintenanceService;
+        private readonly IFormsAuthenticationService formAuthenticationService;
+        private readonly IUserService userService;
+        private readonly IGroupService groupService;
+        private readonly ISecurityService securityService;
 
         public AuthorizationController(
             IMaintenanceService maintenanceService,
-            IUserService userService,
             IAuthService authService,
             IFormsAuthenticationService formAuthenticationService,
-            N88.Core.Service.Interface.IUserService userService1,
-            N88.Core.Service.Interface.IGroupService groupService,
-            N88.Core.Service.Interface.ISecurityService securityService)
+            IUserService userService,
+            IGroupService groupService,
+            ISecurityService securityService)
         {
-            _maintenanceService = maintenanceService;
-            _userService = userService;
-            _authService = authService;
-            _formAuthenticationService = formAuthenticationService;
-            this.userService1 = userService1;
+            this.maintenanceService = maintenanceService;
+            this.authService = authService;
+            this.formAuthenticationService = formAuthenticationService;
+            this.userService = userService;
             this.groupService = groupService;
             this.securityService = securityService;
         }
@@ -105,7 +102,7 @@
             }
             else
             {
-                var user = userService1.Get(model.UserName.Trim(), N88Settings.Settings.SiteId);
+                var user = userService.Get(model.UserName.Trim(), N88Settings.Settings.SiteId);
                 if (user != null)
                 {
                     var password = Cryptography.CfsEnCode(model.PassWord);
@@ -118,7 +115,7 @@
                         else
                         {
                             var onUserId = LoginCheckIn(user);
-                            if (userService1.HasAnyPermission(user.Id, N88Settings.Settings.SiteId))
+                            if (userService.HasAnyPermission(user.Id, N88Settings.Settings.SiteId))
                             {
                                 CreateSession(user, onUserId);
                                 CreateAuthInfo(user, onUserId);
@@ -138,7 +135,7 @@
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
 
-        private void CreateAuthInfo(N88.Core.Models.User user, int onlineUserId)
+        private void CreateAuthInfo(User user, int onlineUserId)
         {
             var authInfo = new AuthInfo
             {
@@ -167,7 +164,7 @@
             Response.Cookies.Add(authCookie);
         }
 
-        private int LoginCheckIn(N88.Core.Models.User user)
+        private int LoginCheckIn(User user)
         {
             //var loginParameter = new LoginParameter
             //{
@@ -196,12 +193,12 @@
             return onlineUserId;
         }
 
-        private bool IsExistNapSite(N88.Core.Models.User user)
+        private bool IsExistNapSite(User user)
         {
-            return (userService1.GetSiteLevel(user.Id, N88Settings.Settings.Environment)).Any(s => s.Site.Id == N88Settings.Settings.SiteId && s.IsActive);
+            return (userService.GetSiteLevel(user.Id, N88Settings.Settings.Environment)).Any(s => s.Site.Id == N88Settings.Settings.SiteId && s.IsActive);
         }
 
-        private bool IsExistNapGroup(N88.Core.Models.User user)
+        private bool IsExistNapGroup(User user)
         {
             if (user.Group != null)
             {
@@ -216,43 +213,43 @@
             return true;
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
-        public ActionResult RecheckIn()
-        {
-            if (_maintenanceService.IsUnderMaintenance())
-            {
-                var time = _maintenanceService.GetUnderMaintenanceTime();
-                var message = string.Format(ViewResources.UndermaintenanceMsg, time.From, time.To);
-                return Json(RecheckInResult(ErrorType.UnderMaintenance, message), JsonRequestBehavior.AllowGet);
-            }
+        ////[HttpGet]
+        ////[AllowAnonymous]
+        ////[OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
+        ////public ActionResult RecheckIn()
+        ////{
+        ////    if (maintenanceService.IsUnderMaintenance())
+        ////    {
+        ////        var time = maintenanceService.GetUnderMaintenanceTime();
+        ////        var message = string.Format(ViewResources.UndermaintenanceMsg, time.From, time.To);
+        ////        return Json(RecheckInResult(ErrorType.UnderMaintenance, message), JsonRequestBehavior.AllowGet);
+        ////    }
 
-            var userSession = SessionServiceInstance.UserSession;
-            var currentLoginId = Request["onid"];
-            if (!Request.IsAuthenticated || string.IsNullOrEmpty(currentLoginId) || userSession == null)
-            {
-                return Json(RecheckInResult(ErrorType.AccessDenied, ViewResources.InvalidRequestOrNotAuthorizedMsg), JsonRequestBehavior.AllowGet);
-            }
+        ////    var userSession = SessionServiceInstance.UserSession;
+        ////    var currentLoginId = Request["onid"];
+        ////    if (!Request.IsAuthenticated || string.IsNullOrEmpty(currentLoginId) || userSession == null)
+        ////    {
+        ////        return Json(RecheckInResult(ErrorType.AccessDenied, ViewResources.InvalidRequestOrNotAuthorizedMsg), JsonRequestBehavior.AllowGet);
+        ////    }
 
-            if (currentLoginId != userSession.OnUserId.ToString())
-            {
-                return Json(RecheckInResult(ErrorType.SessionOverride, ViewResources.SessionLoggedMsg), JsonRequestBehavior.AllowGet);
-            }
+        ////    if (currentLoginId != userSession.OnUserId.ToString())
+        ////    {
+        ////        return Json(RecheckInResult(ErrorType.SessionOverride, ViewResources.SessionLoggedMsg), JsonRequestBehavior.AllowGet);
+        ////    }
 
-            var isKickout = _userService.RecheckIn(userSession.OnUserId);
+        ////    var isKickout = _userService.RecheckIn(userSession.OnUserId);
 
-            var errorCode = ErrorType.Success;
-            var errorMsg = string.Empty;
-            if (isKickout)
-            {
-                errorCode = ErrorType.KickedOut;
-                errorMsg = ViewResources.SessionLoggedMsg;
-                _formAuthenticationService.SignOut();
-            }
+        ////    var errorCode = ErrorType.Success;
+        ////    var errorMsg = string.Empty;
+        ////    if (isKickout)
+        ////    {
+        ////        errorCode = ErrorType.KickedOut;
+        ////        errorMsg = ViewResources.SessionLoggedMsg;
+        ////        formAuthenticationService.SignOut();
+        ////    }
 
-            return Json(RecheckInResult(errorCode, errorMsg), JsonRequestBehavior.AllowGet);
-        }
+        ////    return Json(RecheckInResult(errorCode, errorMsg), JsonRequestBehavior.AllowGet);
+        ////}
 
         [AllowAnonymous]
         public FileContentResult Captcha()
@@ -302,52 +299,52 @@
             return View("~/Views/Authorization/ChangePass.cshtml");
         }
 
-        [HttpPost]
-        [CustomValidateAntiForgery]
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult ChangePassword(string oldPassword, string newPassword)
-        {
-            if (string.IsNullOrEmpty(oldPassword) || !Util.IsPasswordValid(newPassword))
-            {
-                return Json(new
-                {
-                    errCode = ErrorType.Unknown,
-                    errMsg = ViewResources.PasswordNoteMsg
-                });
-            }
+        ////[HttpPost]
+        ////[CustomValidateAntiForgery]
+        ////[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        ////public ActionResult ChangePassword(string oldPassword, string newPassword)
+        ////{
+        ////    if (string.IsNullOrEmpty(oldPassword) || !Util.IsPasswordValid(newPassword))
+        ////    {
+        ////        return Json(new
+        ////        {
+        ////            errCode = ErrorType.Unknown,
+        ////            errMsg = ViewResources.PasswordNoteMsg
+        ////        });
+        ////    }
 
-            var userSession = SessionServiceInstance.UserSession;
-            if (userSession.IsInternal)
-            {
-                return Json(new
-                {
-                    errCode = ErrorType.AccessDenied,
-                    errMsg = ViewResources.AccessDeniedMsg
-                });
-            }
-            else
-            {
-                var result = _userService.ChangePassword(
-                    userSession.UserName,
-                    oldPassword,
-                    newPassword,
-                    Request.UserHostAddress);
-                return Json(new
-                {
-                    errCode = result.Code,
-                    errMsg = result.Message
-                });
-            }
-        }
+        ////    var userSession = SessionServiceInstance.UserSession;
+        ////    if (userSession.IsInternal)
+        ////    {
+        ////        return Json(new
+        ////        {
+        ////            errCode = ErrorType.AccessDenied,
+        ////            errMsg = ViewResources.AccessDeniedMsg
+        ////        });
+        ////    }
+        ////    else
+        ////    {
+        ////        var result = _userService.ChangePassword(
+        ////            userSession.UserName,
+        ////            oldPassword,
+        ////            newPassword,
+        ////            Request.UserHostAddress);
+        ////        return Json(new
+        ////        {
+        ////            errCode = result.Code,
+        ////            errMsg = result.Message
+        ////        });
+        ////    }
+        ////}
 
-        private static dynamic RecheckInResult(ErrorType type, string msg)
-        {
-            return new
-            {
-                ErrCode = (int)type,
-                ErrMsg = msg
-            };
-        }
+        ////private static dynamic RecheckInResult(ErrorType type, string msg)
+        ////{
+        ////    return new
+        ////    {
+        ////        ErrCode = (int)type,
+        ////        ErrMsg = msg
+        ////    };
+        ////}
 
         private static string CreateToken()
         {
@@ -391,7 +388,7 @@
         {
             SessionServiceInstance.CreateNewSession(user.Id, onUserId, user.Username);
 
-            _formAuthenticationService.SetAuthCookie(user.Username, false);
+            formAuthenticationService.SetAuthCookie(user.Username, false);
         }
 
         private void DoSignOut()
@@ -399,12 +396,12 @@
             var userSession = SessionServiceInstance.UserSession;
             if (userSession != null)
             {
-                _authService.Logout(userSession.OnUserId);
+                authService.Logout(userSession.OnUserId);
             }
 
             Session.Clear();
             ClearCookies();
-            _formAuthenticationService.SignOut();
+            formAuthenticationService.SignOut();
         }
 
         private void SetErrorForView(int errorCode, string errorMsg)

@@ -3,9 +3,6 @@
     using System.Web.Configuration;
     using System.Web.Optimization;
 
-    /// <summary>
-    /// Bundle config.
-    /// </summary>
     public static class BundleConfig
     {
         private const string JqueryUiMinCssPath = "~/Content/Library/start/jquery-ui.min.css";

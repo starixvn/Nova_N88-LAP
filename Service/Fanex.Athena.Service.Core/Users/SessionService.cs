@@ -10,30 +10,31 @@
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Models.ValueObject;
+    using Fanex.N88.Core.Service.Interface;
     using Model.Core.DTO.Common;
 
     public class SessionService : ISessionService
     {
         private const string UserSessionKey = "UserSessionKey";
 
-        private readonly ILicenseeDataAccess _licenseeDataAccess;
-        private readonly ICurrencyDataAccess _currencyDataAccess;
-        private readonly N88.Core.Service.Interface.IUserService _napUserService;
-        private readonly ISessionStorage _sessionStorage;
-        private readonly IAppSettings _appSettings;
+        private readonly ILicenseeDataAccess licenseeDataAccess;
+        private readonly ICurrencyDataAccess currencyDataAccess;
+        private readonly IUserService userService;
+        private readonly ISessionStorage sessionStorage;
+        private readonly IAppSettings appSettings;
 
         public SessionService(
             ILicenseeDataAccess licenseeDataAccess,
             ICurrencyDataAccess currencyDataAccess,
-            N88.Core.Service.Interface.IUserService napUserService,
+            IUserService userService,
             IAppSettings appSettings,
             ISessionStorage sessionStorage)
         {
-            _licenseeDataAccess = licenseeDataAccess;
-            _currencyDataAccess = currencyDataAccess;
-            _sessionStorage = sessionStorage;
-            _appSettings = appSettings;
-            _napUserService = napUserService;
+            this.licenseeDataAccess = licenseeDataAccess;
+            this.currencyDataAccess = currencyDataAccess;
+            this.sessionStorage = sessionStorage;
+            this.appSettings = appSettings;
+            this.userService = userService;
         }
 
         #region Public Properties
@@ -42,7 +43,7 @@
         {
             get
             {
-                return _sessionStorage.LicenseeAuthInfo;
+                return sessionStorage.LicenseeAuthInfo;
             }
         }
 
@@ -50,19 +51,19 @@
         {
             get
             {
-                return _sessionStorage.UserAuthInfo;
+                return sessionStorage.UserAuthInfo;
             }
         }
 
         public string CaptchaCode
         {
-            get { return _sessionStorage.CaptchaCode; }
-            set { _sessionStorage.CaptchaCode = value; }
+            get { return sessionStorage.CaptchaCode; }
+            set { sessionStorage.CaptchaCode = value; }
         }
 
         public void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession)
         {
-            _sessionStorage.AssignSessions(userSession, licenseeSession);
+            sessionStorage.AssignSessions(userSession, licenseeSession);
         }
 
         public void CreateNewSession(
@@ -71,7 +72,7 @@
             string userName,
             string language = "en-US")
         {
-            var functions = _napUserService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment).ToList();
+            var functions = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment).ToList();
 
             var userSession = new UserAuthInfo
             {
@@ -80,13 +81,13 @@
                 UserName = userName,
                 Language = language,
                 FunctionList = GetUserFunction(functions).ToList(),
-                DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
+                DefaultBaseCurrency = appSettings.DefaultBaseCurrency
             };
 
             AssignMenuToUserSession(userSession);
             AssignCurrenciesToUserSession(userSession);
 
-            var licensee = _licenseeDataAccess.GetLicenseeSettingById(_appSettings.LicenseeId);
+            var licensee = licenseeDataAccess.GetLicenseeSettingById(appSettings.LicenseeId);
             AssignSessions(userSession, GenerateLicenseeInfo(licensee));
         }
 
@@ -117,7 +118,7 @@
 
         public void AssignCurrenciesToUserSession(UserAuthInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null)
         {
-            var currencyUsers = currencyUserList ?? _currencyDataAccess.GetCurrenciesByLicensee(_appSettings.LicenseeId);
+            var currencyUsers = currencyUserList ?? currencyDataAccess.GetCurrenciesByLicensee(appSettings.LicenseeId);
 
             var currencyList = currencyUsers
                 .Where(x => x.IsActive)
@@ -135,7 +136,7 @@
 
         private void AssignMenuToUserSession(UserAuthInfo userSessionInfo)
         {
-            var menuItems = _napUserService.GetMenuItem(userSessionInfo.UserId, N88Settings.Settings.SiteId,
+            var menuItems = userService.GetMenuItem(userSessionInfo.UserId, N88Settings.Settings.SiteId,
                 N88Settings.Settings.Environment, true)
                 .OrderBy(x => x.DisplayOrder).ToList();
 

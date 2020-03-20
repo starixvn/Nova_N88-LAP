@@ -197,6 +197,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AccountController.cs" />
+    <Compile Include="CustomerLog\CustomerLogController.cs" />
+    <Compile Include="CustomerLog\CustomerLogController.CustomerSetting.cs" />
+    <Compile Include="CustomerLog\CustomerLogController.GroupCommission.cs" />
+    <Compile Include="CustomerLog\CustomerLogController.LogInLog.cs" />
     <Compile Include="Group\GroupController.cs" />
     <Compile Include="AuthorizationController.cs" />
     <Compile Include="HeaderController.cs" />
@@ -211,6 +215,10 @@
     <Compile Include="VerifyController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\LAP\lap\Model\Fanex.Athena.Model.Customer\Fanex.Athena.Model.Customer.csproj">
+      <Project>{3b212f2f-4deb-449b-9ae0-36f6e4f49f5f}</Project>
+      <Name>Fanex.Athena.Model.Customer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\Fanex.Athena.DataAccess.Core\Fanex.Athena.DataAccess.Core.csproj">
       <Project>{A6BE21E8-6895-4863-BA3A-E6B21D3CE78D}</Project>
       <Name>Fanex.Athena.DataAccess.Core</Name>
@@ -263,6 +271,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

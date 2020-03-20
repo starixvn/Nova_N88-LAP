@@ -14,6 +14,8 @@ namespace Fanex.Athena.Service.StatelessCore.Interfaces
     {
         bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys);
 
+        bool HasHostPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys);
+
         bool HasPermissionOnData(IDictionary<int, int[]> currencyAgents, int custId, long transId);
 
         bool HasPermissionOnData(IEnumerable<OneAuthCurrency> currencyAgents, int custId, long transId);

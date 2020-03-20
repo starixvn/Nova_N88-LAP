@@ -50,7 +50,14 @@ namespace Fanex.Athena.Service.StatelessCore
 
         public bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
         {
-            return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
+
+                return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
+
+        }
+
+        public bool HasHostPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
+        {
+                return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase) && x.Policy == (int)Policy.Host);
         }
 
         public bool IsAllowedEditCommission(UserAuthInfo userAuthInfo)

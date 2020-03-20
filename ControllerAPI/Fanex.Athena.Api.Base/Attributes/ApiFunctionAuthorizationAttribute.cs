@@ -15,6 +15,7 @@
     using Extension.Utility;
 
     using Fanex.Athena.Api.StatelessBase.Attributes.Extensions;
+    using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
 
     using Resources;
@@ -27,6 +28,7 @@
         private const string KeyName = "__RequestVerificationToken";
 
         private readonly string[] _permissionKeys;
+        private readonly Policy _policy;
 
         public ApiFunctionAuthorizationAttribute()
         {
@@ -34,6 +36,13 @@
 
         public ApiFunctionAuthorizationAttribute(params string[] permissionKeys)
         {
+            _policy = Policy.Read;
+            _permissionKeys = permissionKeys;
+        }
+
+        public ApiFunctionAuthorizationAttribute(Policy policy, params string[] permissionKeys)
+        {
+            _policy = policy;
             _permissionKeys = permissionKeys;
         }
 
@@ -114,7 +123,15 @@
             if (authorized)
             {
                 var authorizationService = scope.Resolve<IAuthorizationService>();
-                authorized = authorizationService.HasPermissions(userSession, _permissionKeys);
+
+                if (_policy == Policy.Host)
+                {
+                    authorized = authorizationService.HasHostPermissions(userSession, _permissionKeys);
+                }
+                else
+                {
+                    authorized = authorizationService.HasPermissions(userSession, _permissionKeys);
+                }
             }
 
             return authorized;

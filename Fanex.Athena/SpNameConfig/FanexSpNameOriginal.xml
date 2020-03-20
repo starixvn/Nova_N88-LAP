@@ -160,33 +160,31 @@
   </Function>
 
   <Function Name="Account">
-    <Setting Key="N88_User_Search" SpName="N88_User_Search" DbName="DBN88POL.N88_UserControl.bodbAdminNet">
-      <Mapping DataField="UserId" ObjectProperty="UserId" />
-      <Mapping DataField="Username" ObjectProperty="username" />
+    <Setting Key="N88_User_Search" SpName="N88_User_Search" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet">
     </Setting>
-    <Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Cust_Insert" SpName="N88_Cust_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Cust_Update" SpName="N88_Cust_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_GetById" SpName="N88_User_GetById" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Site_GetById" SpName="N88_Site_GetById" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_AssignFunction" SpName="N88_User_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Function_GetByGroupAndSite" SpName="N88_Function_GetByGroupAndSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Function_GetBySite" SpName="N88_Function_GetBySite" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Cust_UpdatePassword" SpName="N88_Cust_UpdatePassword" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_Cust_Insert" SpName="N88_Cust_Insert" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_Cust_Update" SpName="N88_Cust_Update" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_User_GetById" SpName="N88_User_GetById" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_Site_GetById" SpName="N88_Site_GetById" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_User_AssignFunction" SpName="N88_User_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_Function_GetByGroupAndSite" SpName="N88_Function_GetByGroupAndSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
+    <Setting Key="N88_Function_GetBySite" SpName="N88_Function_GetBySite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
+    <Setting Key="N88_Cust_UpdatePassword" SpName="N88_Cust_UpdatePassword" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
   </Function>
 
   <Function Name="Group">
-    <Setting Key="N88_Group_GetAllWithNumOfUser" SpName="N88_Group_GetAllWithNumOfUser" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Group_Insert" SpName="N88_Group_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_GetById" SpName="N88_Group_GetById" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_GetByName" SpName="N88_Group_GetByName" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Function_GetByUserAndSiteIncludeGroup" SpName="N88_Function_GetByUserAndSiteIncludeGroup" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Group_GetAllWithNumOfUser" SpName="N88_Group_GetAllWithNumOfUser" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_Group_Insert" SpName="N88_Group_Insert" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
+    <Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
+    <Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
+    <Setting Key="N88_Group_GetById" SpName="N88_Group_GetById" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
+    <Setting Key="N88_Group_GetByName" SpName="N88_Group_GetByName" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
+    <Setting Key="N88_Function_GetByUserAndSiteIncludeGroup" SpName="N88_Function_GetByUserAndSiteIncludeGroup" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
   </Function>
 </Functions>

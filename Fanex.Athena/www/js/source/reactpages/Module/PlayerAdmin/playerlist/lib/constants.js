@@ -30,7 +30,6 @@ export const licenseeType = {
 }
 
 export const fields = {
-    Status: 'Status',
     UserName: 'UserName',
     SystemId: 'SystemId',
     Currency: 'Currency',
@@ -42,7 +41,6 @@ export const fields = {
 }
 
 export const columnList = [
-    { key: fields.Status, value: LangHelper.getSingleResource('Status'), show: true },
     { key: fields.UserName, value: LangHelper.getSingleResource('Username'), show: true },
     { key: fields.SystemId, value: LangHelper.getSingleResource('SystemId'), show: true },
     { key: fields.Currency, value: LangHelper.getSingleResource('Currency'), show: true },

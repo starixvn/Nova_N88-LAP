@@ -88,6 +88,14 @@ namespace Fanex.Athena.Model.Core.DTO.Common
             }
         }
 
+        public bool IsAllowVRG
+        {
+            get
+            {
+                return ProductList.Any(p => p.ProductCode == Product.VRG);
+            }
+        }
+
         public bool IsAllow(int productId)
         {
             return ProductList.Any(p => p.ProductID == productId);

@@ -177,6 +177,7 @@
     <Compile Include="ReportBaseController.cs" />
     <Compile Include="CustomerWinLossReportController.cs" />
     <Compile Include="Result\ResultKenoReportController.cs" />
+    <Compile Include="Result\ResultPopup\VirtualGamesResultPopupController.cs" />
     <Compile Include="Result\ResultReportController.cs" />
   </ItemGroup>
   <ItemGroup>

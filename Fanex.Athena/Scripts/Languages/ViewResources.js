@@ -1,4 +1,4 @@
-﻿// Generated at: 3/18/2020 5:56:22 PM
+﻿// Generated at: 3/20/2020 8:40:44 AM
 var _language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -572,6 +572,7 @@ ProductSB:"Sportsbook",
 ProductSG:"SG",
 ProductVB:"Macau Games",
 ProductVG:"Macau",
+ProductVRG:"Virtual Games",
 ProductVS:"Virtual Sports",
 ProductVS2:"Virtual Sports 2",
 Promotion:"Promotion",

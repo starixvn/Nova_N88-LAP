@@ -416,6 +416,18 @@
                 });
             },
 
+            viewVRGResult: function (gamePlayId, platform, title) {
+                const url = Site.resolveClientUrl('VirtualGamesResultPopup/Index');
+                Site.blockUI();
+               
+                $.get(url + '?gamePlayId=' + gamePlayId + '&platform=' + platform, function (result) {
+                    if (result !== '') {
+                        showResultPopUp(result, { width: 800, height: 380, title: title });
+                        Site.unBlockUI();
+                    }
+                });
+            },
+
             viewAllBetResult: function (trasdesc, betcheck, bettype, title) {
                 const url = Site.resolveClientUrl('ResultReport/AllBetResult?transdesc=' +
                     encodeURIComponent(trasdesc) + '&betcheck=' + betcheck + '&bettype=' + bettype);
@@ -442,6 +454,7 @@
             viewResult: function (matchid, raceNo, bettype, sporttype, refno,
                 username, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs) {
                 const title = Site.getSingleResource('Result');
+                const defaultPlatform = 'd';  // desktop
 
                 if (sporttype === SPORT_RNG_GAME || sporttype === SPORT_RNG_MINIGAME || sporttype === SPORT_RNG_MOBILE) {
                     _me.viewRngCasinoResult(title, refno);
@@ -457,6 +470,9 @@
                 }
                 else if (sporttype === SPORT_SG) {
                     _me.viewSGResult(custid, extension2, title);
+                }
+                else if (sporttype === SPORT_VRG) {
+                    _me.viewVRGResult(refno, defaultPlatform, title);
                 }
                 else if (sporttype === SPORT_ALLBET) {
                     _me.viewAllBetResult(transdecs, extension2, bettype, title);

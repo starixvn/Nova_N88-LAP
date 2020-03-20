@@ -1,4 +1,4 @@
-﻿// Generated at: 3/18/2020 2:23:11 PM
+﻿// Generated at: 3/20/2020 8:40:08 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -524,6 +524,7 @@ OutstandingBalance:"Outstanding Balance",
 Over:"Over",
 OverUnder:"Over/Under",
 Page:"Page",
+PageSize:"Page Size",
 Parlay:"Parlay",
 ParlayComm:"Parlay Comm",
 Password:"Password",
@@ -571,6 +572,7 @@ ProductSB:"Sportsbook",
 ProductSG:"SG",
 ProductVB:"Macau Games",
 ProductVG:"Macau",
+ProductVRG:"Virtual Games",
 ProductVS:"Virtual Sports",
 ProductVS2:"Virtual Sports 2",
 Promotion:"Promotion",

@@ -51,6 +51,7 @@ namespace Fanex.Athena.Controllers.Report.Result
             var productAccess = ProductServiceInstance.GetProductAccess(SessionServiceInstance.LicenseeSession.LicenseeId, SessionServiceInstance.UserSession.Language);
             ViewBag.IsAllowedRNG = productAccess.IsAllowCS;
             ViewBag.IsAllowedKeno = productAccess.IsAllowKN;
+            ViewBag.IsAllowedVRG = productAccess.IsAllowVRG;
             ViewBag.IsAllowedLottery = productAccess.IsAllow(Product.LT);
             return View("~/Views/Desktop/Report/Result/Main.cshtml", model);
         }

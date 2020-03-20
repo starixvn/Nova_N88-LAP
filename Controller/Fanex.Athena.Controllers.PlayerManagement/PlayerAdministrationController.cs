@@ -1,7 +1,9 @@
 ﻿namespace Fanex.Athena.Controllers.PlayerManagement
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.Constants;
@@ -37,14 +39,25 @@
             var userSession = SessionServiceInstance.UserSession;
             var licenseeSession = SessionServiceInstance.LicenseeSession;
 
+            var allowedOddGroup = userSession.FunctionList.
+                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateOddsGroup).FirstOrDefault();
+            var allowedSpecialLevel = userSession.FunctionList.
+                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateSpecialLevel).FirstOrDefault();
+            var isAllowedBA = licenseeSession.IsEnableBA &&
+                _authService.CheckProductBelongsTo(licenseeSession.LicenseeName, ProductTypes.BA);
+
+            var allowedBA = new Function();
+            if (isAllowedBA)
+            {
+                allowedBA = userSession.FunctionList.
+                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateBaStatus).FirstOrDefault();
+            }
+
             playerAdmin.CurrencyList = userSession.CurrencyList;
             playerAdmin.SiteName = licenseeSession.LicenseeName;
-            playerAdmin.IsAllowedOddGroup = userSession.FunctionList.
-                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateOddsGroup).FirstOrDefault() != null;
-            playerAdmin.IsAllowedSpecialLevel = userSession.FunctionList.
-                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateOddsGroup).FirstOrDefault() != null;
-            playerAdmin.IsAllowedBA = licenseeSession.IsEnableBA &&
-                _authService.CheckProductBelongsTo(licenseeSession.LicenseeName, ProductTypes.BA);
+            playerAdmin.IsAllowedOddGroup = new KeyValuePair<bool, int>(allowedOddGroup != null, allowedOddGroup == null ? 0 : allowedOddGroup.Policy);
+            playerAdmin.IsAllowedSpecialLevel = new KeyValuePair<bool, int>(allowedSpecialLevel != null, allowedSpecialLevel == null ? 0 : allowedSpecialLevel.Policy);
+            playerAdmin.IsAllowedBA = new KeyValuePair<bool, int>(allowedSpecialLevel != null, allowedSpecialLevel == null ? 0 : allowedSpecialLevel.Policy);
             playerAdmin.PlayerTabItems = JsonConvert.SerializeObject(PlayerAdminTab.CommonTabList);
 
             return playerAdmin;

@@ -29,9 +29,9 @@
     applyApiTokenUrl: '@Url.Action("ApplyApiToken", "Verify")',
     applyLinkTokenUrl: '@Url.Action("ApplyToken", "Verify")',
     tabList: @Html.Raw(Model.PlayerTabItems),
-    hasBaPermission: @((bool)Model.IsAllowedBA ? 1 : 0),
-    hasOddsGroupPermission: @((bool)Model.IsAllowedOddGroup ? 1 : 0),
-    hasSpecialLevelPermission: @((bool)Model.IsAllowedSpecialLevel ? 1 : 0)
+    hasBaPermission:  @Html.Raw((new { isallowed = (bool)Model.IsAllowedBA.Key, policy = Model.IsAllowedBA.Value }).ToJson()),
+    hasOddsGroupPermission: @Html.Raw((new { isallowed = (bool)Model.IsAllowedOddGroup.Key, policy = Model.IsAllowedOddGroup.Value }).ToJson()),
+    hasSpecialLevelPermission: @Html.Raw((new { isallowed = (bool)Model.IsAllowedSpecialLevel.Key, policy = Model.IsAllowedSpecialLevel.Value }).ToJson()),
     };
 }
 <div id="app-container">

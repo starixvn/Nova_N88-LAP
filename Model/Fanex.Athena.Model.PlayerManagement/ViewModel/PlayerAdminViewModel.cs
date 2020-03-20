@@ -9,13 +9,11 @@
 
         public bool IsSubsidiary { get; set; }
 
-        public bool IsAllowedCustomerComm { get; set; }
+        public KeyValuePair<bool, int> IsAllowedBA { get; set; }
 
-        public bool IsAllowedBA { get; set; }
+        public KeyValuePair<bool, int> IsAllowedOddGroup { get; set; }
 
-        public bool IsAllowedOddGroup { get; set; }
-
-        public bool IsAllowedSpecialLevel { get; set; }
+        public KeyValuePair<bool, int> IsAllowedSpecialLevel { get; set; }
 
         public string SiteName { get; set; }
 

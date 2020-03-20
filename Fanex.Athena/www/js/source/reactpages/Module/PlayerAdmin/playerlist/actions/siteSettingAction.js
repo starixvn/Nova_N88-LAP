@@ -3,7 +3,7 @@ import { setDisplayedColumnList } from './gridHandlerAction';
 import { buildColumnList } from '../lib/helpers/gridColumnBuilder';
 import SiteSettingService from '../lib/services/siteSettingService';
 
-export const getSiteSetting = (licType, isSubsidiary) => (dispatch) => {
+export const getSiteSetting = (hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary) => (dispatch) => {
     const service = new SiteSettingService();
 
     service.getSetting().then((response) => {
@@ -11,7 +11,7 @@ export const getSiteSetting = (licType, isSubsidiary) => (dispatch) => {
 
         const isAllowedBA = !isSubsidiary && IsAllowedBA;
         if (isAllowedBA) {
-            const columnList = buildColumnList(licType, isAllowedBA);
+            const columnList = buildColumnList(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedBA);
             dispatch(setDisplayedColumnList(columnList));
         }
 

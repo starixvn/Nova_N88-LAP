@@ -13,10 +13,12 @@ import { generateDefaultConfirmOption, generateDefaultAlertOption, predefinedIco
 const BaStatusCell = (props) => {
     const { dataItem, setPlayerList, toggleLoader, updateBaStatus, setSweetAlertOption, playerList, hasBaPermission } = props;
     const { IbcCustId, BaStatus, OddsGroup, IsArchived, LicenseeCustId } = dataItem;
+    const canUpdate = canView && hasBaPermission.policy == 2;
+    const canView = hasBaPermission.isallowed;
 
     const handleChangeBaStatus = (event) => {
         event.preventDefault();
-        if(!hasBaPermission){
+        if(!canUpdate){
             return;
         }
 
@@ -66,8 +68,8 @@ const BaStatusCell = (props) => {
     }
 
     return (
-        <Cell className={"center-align" + `${!hasBaPermission ? ' ba-disabled' : ''}`}>
-            {!IsArchived && BaStatus !== undefined && <Switcher disabled={!hasBaPermission} checked={BaStatus} onChange={handleChangeBaStatus} />}
+        <Cell className={"center-align" + `${!canUpdate ? ' ba-disabled' : ''}`}>
+            {!IsArchived && BaStatus !== undefined && <Switcher disabled={!canUpdate} checked={BaStatus} onChange={handleChangeBaStatus} />}
         </Cell>
     )
 }

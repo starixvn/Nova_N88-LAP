@@ -13,7 +13,8 @@ export const OddsGroupCell = (props) => {
 
     const value = dataItem.OddsGroup;
     const style = oddsGroupListWithStyle[value];
-    const canUpdate = hasOddsGroupPermission && !dataItem.BaStatus;
+    const canUpdate = canView && hasOddsGroupPermission.policy == 2 && !dataItem.BaStatus;
+    const canView = hasOddsGroupPermission.isallowed;
 
     const handleToggleOddsGroup = (event) => {
         if(!canUpdate){

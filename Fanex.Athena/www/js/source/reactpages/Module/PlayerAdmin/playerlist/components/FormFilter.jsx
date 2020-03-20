@@ -47,8 +47,8 @@ export class FormFilter extends PureComponent {
             this.setState({ isValidUserName: !!userName });
         }
 
-        const { type, isSubsidiary } = this.props;
-        this.props.getSiteSetting(type, isSubsidiary);
+        const { hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary } = this.props;
+        this.props.getSiteSetting(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -206,8 +206,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ searchPlayer, setAdvancedSearch, setCollapseFilter, getSuggestionList, getSinglePlayer, getSiteSetting }, dispatch);
 }
 function mapStateToProps(state) {
-    const { type, isAdvancedSearch, isFilterCollapsing, pagingOption, currencyList, isSubsidiary, hasBaPermission } = state;
-    return Object.assign({}, { type, isAdvancedSearch, isFilterCollapsing, pagingOption, currencyList, isSubsidiary, hasBaPermission });
+    const { type, isAdvancedSearch, isFilterCollapsing, pagingOption, currencyList, isSubsidiary, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission } = state;
+    return Object.assign({}, { type, isAdvancedSearch, isFilterCollapsing, pagingOption, currencyList, isSubsidiary, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);

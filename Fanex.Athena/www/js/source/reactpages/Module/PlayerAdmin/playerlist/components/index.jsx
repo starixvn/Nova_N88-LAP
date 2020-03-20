@@ -6,13 +6,12 @@ import reducer from '../reducers';
 import Store from '@jsroot/lib/store';
 import { buildDefaultColumnList } from '../lib/helpers/gridColumnBuilder';
 
-const { type } = 1;
-const hasBaPermission = window._pConfig.hasBaPermission === 1;
-const hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission === 1;
-const hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission === 1;
+const hasBaPermission = window._pConfig.hasBaPermission;
+const hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission;
+const hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission;
 const isAllowedCustomerComm = window._pConfig.isAllowedCustomerComm === 1;
 
-const displayedColumnList = buildDefaultColumnList(type);
+const displayedColumnList = buildDefaultColumnList();
 const siteSetting = {
   isAllowedCustomerComm: false,
   isAllowedBA: false

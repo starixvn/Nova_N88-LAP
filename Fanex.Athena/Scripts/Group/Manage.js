@@ -82,13 +82,12 @@ $(document).ready(function () {
 
 	// #region activate/deactivate functions
 	ManageGroup.grid.on('mousedown', 'input[type=checkbox][gid]', function () {
-		debugger;
 		var $this = $(this),
 			groupName = $this.attr('gname'),
 			active = !$this.is(':checked'),
 			action = active ? 'activate' : 'deactivate',
 			msgTemplate = ManageGroup.getSingleResource('ActiveGroupConfirm'),
-			msg = msgTemplate.replace('{0}', action).replace('{1}', groupName);
+			msg = msgTemplate.replace('{0}', ManageGroup.getSingleResource(action)).replace('{1}', groupName);
 
 		var isConfirm = confirm(msg);
 

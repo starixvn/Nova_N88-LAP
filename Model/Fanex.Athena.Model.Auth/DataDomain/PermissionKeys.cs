@@ -4,11 +4,13 @@
     {
 
         /*NAP Menu Permission*/
-        public const string UserManagement = "UserManagement";
+        public const string ManageUser = "ManageUser";
         public const string ReportLicenseeWinLoss = "LicenseeWinLoss";
         public const string ReportCustomerWinLoss = "CustomerWinLoss";
         public const string ReportCashOutWinLoss = "CashOutWinLoss";
         public const string BtcAdvancedSearch = "BtcAdvancedSearch";
+        public const string AssignFunctionToGroup = "AssignFunctionToGroup";
+        public const string ManageGroup = "ManageGroup";
 
         public const string GroupReport = "REPORTS3";
         public const string GroupCustomerReport = "CUSTOMERREPORTS52";

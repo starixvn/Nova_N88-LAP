@@ -2703,4 +2703,7 @@
   <data name="Update_Group" xml:space="preserve">
     <value>Update Group</value>
   </data>
+  <data name="Deactive" xml:space="preserve">
+    <value>Deactive</value>
+  </data>
 </root>

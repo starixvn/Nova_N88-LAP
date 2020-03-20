@@ -154,9 +154,12 @@
             <input type="hidden" name="GroupName" value="@Model.GroupName" />
             <input type="hidden" name="SiteId" value="@Model.SiteId" />
             <input type="hidden" id="HasAssignFunction" value="@ViewBag.HasAssignFunctionRight" />
-            <div class="form">
-                <input type="submit" value="@ViewResources.Save" id="btnSaveAssign" />
-                <button class="cancel-button" onclick="NAP.redirect('Group/Manage', 0); return false;">@ViewResources.Cancel</button>
+            <div class="button-list">
+                @if (!success)
+                {
+                    <input type="submit" value="@ViewResources.Save" id="btnSaveAssign" />
+                    <button class="cancel-button" onclick="NAP.redirect('Group/Manage', 0); return false;">@ViewResources.Cancel</button>
+                }
             </div>
         }
     </div>

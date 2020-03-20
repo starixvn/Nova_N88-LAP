@@ -71,7 +71,6 @@ export class FormFilter extends PureComponent {
         const { specialLevel, currencyIdList, oddsGroup, isValidUserName, ...restParam } = this.state;
         const actualSpecialLevel = specialLevel.trim();
         const isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
-        const isSelectAllOddsGroup = oddsGroup.trim().split(',').length === Object.keys(oddsGroupListWithStyle).length;
 
         const param = {
             ...restParam,
@@ -79,7 +78,7 @@ export class FormFilter extends PureComponent {
             systemId: encode(systemId),
             searchOption: isAdvancedSearch + 1,
             currencyIdList: isSelectAllCurrency ? '' : currencyIdList,
-            oddsGroup: isSelectAllOddsGroup ? '' : oddsGroup,
+            oddsGroup: oddsGroup,
             specialLevel: actualSpecialLevel === '' ? this.allSpecialLevel : actualSpecialLevel,
             pageSize: pagingOption.PageSize,
             pageIndex: 1

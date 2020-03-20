@@ -1282,14 +1282,13 @@ function (_PureComponent) {
 
       var actualSpecialLevel = specialLevel.trim();
       var isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
-      var isSelectAllOddsGroup = oddsGroup.trim().split(',').length === Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["oddsGroupListWithStyle"]).length;
 
       var param = _objectSpread({}, restParam, {
         userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(userName),
         systemId: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(systemId),
         searchOption: isAdvancedSearch + 1,
         currencyIdList: isSelectAllCurrency ? '' : currencyIdList,
-        oddsGroup: isSelectAllOddsGroup ? '' : oddsGroup,
+        oddsGroup: oddsGroup,
         specialLevel: actualSpecialLevel === '' ? this.allSpecialLevel : actualSpecialLevel,
         pageSize: pagingOption.PageSize,
         pageIndex: 1

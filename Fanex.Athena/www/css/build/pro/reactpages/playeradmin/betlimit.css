@@ -222,6 +222,9 @@
   .page-container .page-last:before {
     content: "\EA22"; }
 
+.footer-content .table tbody tr.fixed-table-grant-total td, .footer-content .table tbody tr td {
+  background: #8DA6A2; }
+
 /* z-index */
 /* Table */
 /* Label Text */
@@ -264,37 +267,75 @@ input[type="checkbox"].checkbox {
   opacity: 0; }
   input[type="checkbox"].checkbox + label {
     position: relative;
-    padding-left: 20px;
+    padding-left: 1.5em;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     cursor: pointer;
-    display: inline-block;
-    height: 18px;
-    font-size: 12px;
-    color: #2c2c2c;
-    margin: 0 5px 0 0;
-    line-height: 18px;
-    top: 4px; }
-    input[type="checkbox"].checkbox + label:before, input[type="checkbox"].checkbox + label:after {
-      content: '';
-      left: 0;
-      position: absolute; }
-    input[type="checkbox"].checkbox + label:before {
-      width: 4px;
-      height: 11px;
-      border: 1px solid transparent;
-      -webkit-transform-origin: 20% 40%;
-      transform-origin: 100% 100%;
-      transform: rotateZ(37deg); }
-    input[type="checkbox"].checkbox + label:after {
-      top: 0;
-      width: 15px;
-      height: 15px;
-      background-color: transparent;
-      border: 1px solid #2c2c2c; }
-  input[type="checkbox"].checkbox:checked + label:before {
-    top: 0;
+    margin: 0;
+    color: #000;
+    font-weight: normal;
+    min-height: unset; }
+  input[type="checkbox"].checkbox + label:before {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    background-color: #fff;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    margin-top: -10px;
+    border: 1px solid #2c2c2c;
+    text-align: center;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    transition: all .2s ease; }
+  input[type="checkbox"].checkbox + label:after {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    content: '';
+    position: absolute;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transform-origin: 50%;
+    transform-origin: 50%;
+    -webkit-transition: -webkit-transform .1s ease-out;
+    transition: -webkit-transform .1s ease-out;
+    transition: transform .1s ease-out;
+    transition: transform .1s ease-out,-webkit-transform .1s ease-out;
+    background-color: transparent;
+    top: 50%;
     left: 2px;
-    border-right: 1px solid #2c2c2c;
-    border-bottom: 1px solid #2c2c2c; }
+    width: 8px;
+    height: 3px;
+    margin-top: -7px;
+    border-style: solid;
+    border-color: #fff;
+    border-width: 0 0 2px 2px;
+    -o-border-image: none;
+    border-image: none;
+    -webkit-transform: rotate(-45deg) scale(0);
+    transform: rotate(-45deg) scale(0); }
+  input[type="checkbox"].checkbox:checked + label:before {
+    -webkit-animation: .1s ease-in borderscale;
+    animation: .1s ease-in borderscale;
+    background-color: #458A00;
+    border-color: #458A00; }
+  input[type="checkbox"].checkbox:checked + label:after {
+    content: '';
+    -webkit-transition: -webkit-transform .1s ease-out;
+    transition: -webkit-transform .1s ease-out;
+    transition: transform .1s ease-out;
+    transition: transform .1s ease-out,-webkit-transform .1s ease-out;
+    -webkit-transform: rotate(-45deg) scale(1);
+    transform: rotate(-45deg) scale(1); }
   input[type="checkbox"].checkbox:disabled + label:after {
     border-color: #BDBDBD; }
   input[type="checkbox"].checkbox:disabled:checked + label:before {
@@ -338,7 +379,7 @@ input[type="checkbox"].checkbox {
     background-color: #4C6375;
     padding: 8.5px 15px;
     position: relative;
-    background-color: #4C6375;
+    background-color: #164F46;
     padding: 8.5px 15px;
     position: relative; }
     .popup-container .flat-popup .popup-title .txt-title {
@@ -652,7 +693,7 @@ body {
 .pa-betlimit-grid table {
   width: 100%; }
   .pa-betlimit-grid table > thead > tr > th {
-    background: #4C6375;
+    background: #164F46;
     color: #fff;
     font-weight: normal;
     padding: 4px 5px; }

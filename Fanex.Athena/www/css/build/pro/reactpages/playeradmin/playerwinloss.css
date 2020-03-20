@@ -219,3 +219,6 @@
   .page-container .page-last:before {
     content: "\EA22"; }
 
+.footer-content .table tbody tr.fixed-table-grant-total td, .footer-content .table tbody tr td {
+  background: #8DA6A2; }
+

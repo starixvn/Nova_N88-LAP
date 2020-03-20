@@ -43,6 +43,7 @@ header {
 
 .logo {
     padding-left: 15px;
+    width: 260px;
     height: 64px;
     line-height: 64px;
     float: left;
@@ -64,7 +65,7 @@ header {
 
     .icon-hambuger {
         display: inline-block;
-        width: 5rem;
+        width: 4.5rem;
         text-align: center;
         margin-left: 13px;
     }
@@ -207,7 +208,6 @@ header {
                 vertical-align: middle;
             }
         }
-
         //------------ Languages block -------------------//
         .languages-block {
             padding: 0 0.8rem;
@@ -230,6 +230,7 @@ header {
             .language-items {
                 width: 15rem !important;
                 top: 38px !important;
+                margin-left: 0;
 
                 > li {
                     min-height: 4rem;

@@ -8,11 +8,11 @@ define([
     'components/selectlist',
     'lib/jquery.jclock',
     'vendor-materialize'],
-    function (Site, Recheckin, Notification) {
+    function (Site, Recheckin) {
         function initialize() {
             Site.initialize();
             initEvent();
-            activeDefaultMenuItem();
+            //activeDefaultMenuItem();
 
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();
@@ -33,14 +33,14 @@ define([
 
             $('.collapsible2').on('click.menuevent', '.menu-item.has-sub .collapsible-body a', function () {
                 const $currentMenuItem = $(this);
-                document.title = 'LAP' + ' - ' + $('.active > .menu-title').text() + ' - ' + $currentMenuItem.text();
+                document.title = $('.active > .menu-title').text() + ' - ' + $currentMenuItem.text();
 
                 $('#page-title').text($currentMenuItem.text());
             });
 
             $('.collapsible2').on('click.menuevent', '.menu-item:not(.has-sub) a', function () {
                 const $currentMenuItem = $(this);
-                document.title = 'LAP' + ' - ' + $currentMenuItem.text();
+                document.title = $currentMenuItem.text();
 
                 $('#page-title').text($currentMenuItem.text());
             });
@@ -88,45 +88,6 @@ define([
             $('#page-title').text(menuItemName);
 
             document.title = 'LAP' + ' - ' + $('.active > .menu-title').text() + ' - ' + menuItemName;
-        }
-
-        function checkMoveBetNotification() {
-            const $marquee = $('#notification-marquee');
-
-            if ($marquee.length === 0) {
-                return;
-            }
-
-            let previousText = '';
-            const $parent = $marquee.parent();
-            const apiUrl = Site.resolveClientUrl('api/CommonApi/GetMoveBetNotification');
-            function processNotification() {
-                $.get(apiUrl, function (message) {
-                    if (message === previousText) {
-                        return;
-                    }
-
-                    previousText = message;
-                    if (message) {
-                        if ($parent.is(':hidden')) {
-                            $parent.slideDown('fast');
-                            $('#mainFrame').css('height', 'calc(100% - 30px)');
-                        }
-
-                        if ('marquee' in $marquee) {
-                            $marquee.text(message);
-                            $marquee.marquee({ speed: 30 });
-                        }
-                    } else {
-                        $marquee.marquee('stop');
-                        $parent.slideUp('fast');
-                        $('#mainFrame').css('height', '100%');
-                    }
-                });
-            }
-
-            processNotification();
-            setInterval(processNotification, 60000);
         }
 
         return {

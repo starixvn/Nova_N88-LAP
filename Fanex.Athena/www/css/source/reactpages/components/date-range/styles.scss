@@ -2,9 +2,9 @@ $calendar-color: #000000 !default;
 $calendar-background: #ffffff !default;
 $calendar-month-button-background: #bdc3c7 !default;
 $calendar-month-button-icon-color: rgb(52, 73, 94) !default;
-$calendar-day-selected-background: #4eb85e !default;
-$calendar-day-hover-background: rgba(78, 184, 94, 0.4) !default;
-$calendar-day-in-range-background: rgba(78, 184, 94, 0.2) !default;
+$calendar-day-selected-background: #1cc883 !default;
+$calendar-day-hover-background: #caf3e3 !default;
+$calendar-day-in-range-background: #caf3e3 !default;
 $calendar-width: 280px !default;
 $calendar-padding: 10px !default;
 $cell-margin: 0 !default;
@@ -200,12 +200,12 @@ $indexNormal: 1;
         font-size: 12px;
         color: #2c3e50;
         padding: 6px 14px;
-        border-radius: 2px;
+        border-radius: 3px;
         text-decoration: none;
         margin-bottom: 3px;
 
         &Active, &:hover {
-            background: #4c6375;
+            background: #164F46;
             color: #fff;
         }
     }

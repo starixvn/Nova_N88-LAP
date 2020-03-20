@@ -185,6 +185,9 @@
     <Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
     <Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
     <Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Group_GetById" SpName="N88_Group_GetById" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Group_GetByName" SpName="N88_Group_GetByName" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_GetByUserAndSiteIncludeGroup" SpName="N88_Function_GetByUserAndSiteIncludeGroup" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
   </Function>
 </Functions>
 		

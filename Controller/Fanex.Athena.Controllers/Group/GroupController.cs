@@ -247,11 +247,11 @@
 
             // list function policy
             var listFunc =
-                _userService.GetBySiteInHierarchy(criteria.SiteId, AppSettingInstance.Environment, true);
+                _userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true);
 
             // list group function policy
             var listGroupFuncPolicy =
-                _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, AppSettingInstance.Environment);
+                _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
 
             // list function will be remove by current user login
             var listGroupFuncRemove = new List<FunctionPolicy>();
@@ -259,7 +259,7 @@
 
             // list function policy of current user login
             List<FunctionPolicy> listCurrentUserFuncPolicy =
-                _userService.GetByUserAndSiteIncludeGroup(SessionServiceInstance.UserSession.UserId, criteria.SiteId, AppSettingInstance.Environment);
+                _userService.GetByUserAndSiteIncludeGroup(SessionServiceInstance.UserSession.UserId, criteria.SiteId, N88Settings.Settings.Environment);
 
             // check function host,contains in list function
             if (!criteria.FuncHost.IsNullOrDBNull())
@@ -296,6 +296,7 @@
                 }
             }
 
+            UpdateCriteria(criteria);
             // assign permission
             CommandResult result = _groupService.ExecuteNonQuery(criteria);
 
@@ -304,7 +305,7 @@
                 ViewBag.Success = true;
 
                 listGroupFuncPolicy =
-                    _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, AppSettingInstance.Environment);
+                    _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
             }
 
             ViewBag.FunctionList = listFunc;
@@ -351,7 +352,6 @@
 
         #region Group Info
 
-        [HttpPost]
         //[N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Read)]
         public ActionResult GroupInfo(int id)
         {
@@ -360,7 +360,9 @@
                 GroupId = id
             };
 
-            return View(_groupService.Get(getCriteria));
+            var group = _groupService.Get(getCriteria);
+
+            return View("~/Views/Group/GroupInfo.cshtml", group);
         }
 
         #endregion Group Info

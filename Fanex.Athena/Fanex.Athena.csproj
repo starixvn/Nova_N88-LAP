@@ -441,6 +441,8 @@
     <Content Include="img\Account\sprites.png" />
     <Content Include="img\Account\tick-ico-16.png" />
     <Content Include="img\Account\tree-view.png" />
+    <Content Include="img\Account\ui-icons_222222_256x240.png" />
+    <Content Include="img\Account\ui-icons_ffffff_256x240.png" />
     <Content Include="img\Account\user-info-ico.png" />
     <Content Include="img\Account\user.png" />
     <Content Include="karma-new-bypage.conf.js" />

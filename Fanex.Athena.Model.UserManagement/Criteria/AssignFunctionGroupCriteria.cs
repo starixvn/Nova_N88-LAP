@@ -35,7 +35,7 @@
                 {
                     foreach (var funcId in this.FuncRead)
                     {
-                        value.AppendFormat(AssignPermissionTpl, this.SiteId, funcId, Policy.Read);
+                        value.AppendFormat(AssignPermissionTpl, this.SiteId, funcId, (int)Policy.Read);
                     }
                 }
 
@@ -43,7 +43,7 @@
                 {
                     foreach (var funcId in this.FuncHost)
                     {
-                        value.AppendFormat(AssignPermissionTpl, this.SiteId, funcId, Policy.Host);
+                        value.AppendFormat(AssignPermissionTpl, this.SiteId, funcId, (int)Policy.Host);
                     }
                 }
 

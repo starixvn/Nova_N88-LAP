@@ -1440,6 +1440,15 @@ namespace Fanex.Athena.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Created Date.
         /// </summary>
+        public static string Created_Date {
+            get {
+                return ResourceManager.GetString("Created_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created Date.
+        /// </summary>
         public static string CreatedDate {
             get {
                 return ResourceManager.GetString("CreatedDate", resourceCulture);
@@ -2154,6 +2163,15 @@ namespace Fanex.Athena.Resources {
         public static string EditPermission {
             get {
                 return ResourceManager.GetString("EditPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; has been updated successfully. You will be redirected in &lt;span class=&apos;msec&apos;&gt;{1}&lt;/span&gt; seconds..
+        /// </summary>
+        public static string EditSuccessMsg {
+            get {
+                return ResourceManager.GetString("EditSuccessMsg", resourceCulture);
             }
         }
         
@@ -3036,6 +3054,15 @@ namespace Fanex.Athena.Resources {
         public static string HttpError_Default {
             get {
                 return ResourceManager.GetString("HttpError_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive.
+        /// </summary>
+        public static string Inactive {
+            get {
+                return ResourceManager.GetString("Inactive", resourceCulture);
             }
         }
         
@@ -4170,6 +4197,15 @@ namespace Fanex.Athena.Resources {
         public static string MultiCustomers {
             get {
                 return ResourceManager.GetString("MultiCustomers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        public static string NA {
+            get {
+                return ResourceManager.GetString("NA", resourceCulture);
             }
         }
         
@@ -6393,6 +6429,15 @@ namespace Fanex.Athena.Resources {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Group.
+        /// </summary>
+        public static string Update_Group {
+            get {
+                return ResourceManager.GetString("Update_Group", resourceCulture);
             }
         }
         

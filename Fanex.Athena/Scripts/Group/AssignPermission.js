@@ -15,17 +15,17 @@ var AssignGroupPermission = (function ($) {
 					parent = $('#func' + type + pid);
 
                 if (thisIsChecked && !parent.is(':checked')) {
-                    parent.attr('checked', true);
+                    parent.prop('checked', true);
                 }
 
                 if (!thisIsChecked) {
                     var siblings = $('[name=func' + type + '][pid=' + parent.val() + ']:checked');
 
                     if (siblings.length === 0) {
-                        parent.attr('checked', false);
+                        parent.prop('checked', false);
 
                         if (type === 'Read') {
-                            parent.parents('tr').find('[name=funcHost]').attr('checked', false);
+                            parent.parents('tr').find('[name=funcHost]').prop('checked', false);
                         }
                     }
                 }
@@ -33,7 +33,6 @@ var AssignGroupPermission = (function ($) {
                 AssignGroupPermission.updateParent.call(parent.get(0), type);
             }
         },
-
         // disabled parent if has child is disabled
         disabledParent: function () {
             AssignGroupPermission.grid.find('tr').each(function () {
@@ -61,7 +60,42 @@ var AssignGroupPermission = (function ($) {
                     }
                 }
             });
+        },
+        hasHouseWLByProductsPermission : function (table, currentElement) {
+            var houseWLByProductsFuncId = table
+                .find("tr:contains('House Win Loss By Products - Product Permission') input").val();
+
+            if (currentElement.attr('pid') === houseWLByProductsFuncId || currentElement.val() === houseWLByProductsFuncId) {
+                var hasPermissionIsHouseWLByProducts = table
+                    .find('[type=checkbox][pid=' + houseWLByProductsFuncId + '][value!=' + currentElement.val() + ']')
+                    .filter(':checked').length > 0;
+
+                if (currentElement.is(':checked') && (hasPermissionIsHouseWLByProducts || currentElement.val() === houseWLByProductsFuncId)) {
+                    NAP.headlineMsgBox.showErr('You must select ONLY ONE function House Win Loss by Products - Product Permission');
+                    currentElement.prop('checked', false);
+                    return true;
+                }
+            }
+            return false;
+        },
+        hasCN88WLByProductsPermission: function (table, currentElement) {
+            var cn88WLByProductsFuncId = table
+                .find("tr:contains('CN88 Win Loss By Products - Product Permission') input").val();
+
+            if (currentElement.attr('pid') === cn88WLByProductsFuncId || currentElement.val() === cn88WLByProductsFuncId) {
+                var hasPermissionIsCN88WLByProducts = table
+                    .find('[type=checkbox][pid=' + cn88WLByProductsFuncId + '][value!=' + currentElement.val() + ']')
+                    .filter(':checked').length > 0;
+
+                if (currentElement.is(':checked') && (hasPermissionIsCN88WLByProducts || currentElement.val() === cn88WLByProductsFuncId)) {
+                    NAP.headlineMsgBox.showErr('You must select ONLY ONE function CN88 Win Loss by Products - Product Permission');
+                    currentElement.prop('checked', false);
+                    return true;
+                }
+            }
+            return false;
         }
+
     };
 }(jQuery));
 
@@ -92,23 +126,23 @@ $(document).ready(function () {
 			row = $this.parents('tr'),
 			table = row.parents('table');
 
-        if (NAP.hasHouseWLByProductsPermission(table, $this)) {
+        if (AssignGroupPermission.hasHouseWLByProductsPermission(table, $this)) {
             return;
         }
 
-        if (NAP.hasCN88WLByProductsPermission(table, $this)) {
+        if (AssignGroupPermission.hasCN88WLByProductsPermission(table, $this)) {
             return;
         }
 
         if ($this.attr('name') === 'funcHost') {
             // host checked -> read checked
             if (thisIsChecked) {
-                AssignGroupPermission.updateParent.call(row.find('[name=funcRead]').attr('checked', true).get(0), 'Read');
-                table.find('[name=funcRead][pid=' + $this.val() + ']').attr('checked', true).change();
+                AssignGroupPermission.updateParent.call(row.find('[name=funcRead]').prop('checked', true).get(0), 'Read');
+                table.find('[name=funcRead][pid=' + $this.val() + ']').prop('checked', true).change();
             }
 
             // parent changed -> children changed
-            table.find('[name=funcHost][pid=' + $this.val() + ']').attr('checked', thisIsChecked).change();
+            table.find('[name=funcHost][pid=' + $this.val() + ']').prop('checked', thisIsChecked).change();
 
             // child checked -> parent checked
             // last child unchecked -> parent unchecked
@@ -116,11 +150,11 @@ $(document).ready(function () {
         } else { // funcRead
             // read unchecked -> host unchecked
             if (!thisIsChecked) {
-                AssignGroupPermission.updateParent.call(row.find('[name=funcHost]').attr('checked', false).get(0), 'Host');
+                AssignGroupPermission.updateParent.call(row.find('[name=funcHost]').prop('checked', false).get(0), 'Host');
             }
 
             // parent changed -> children changed
-            table.find('[name=funcRead][pid=' + $this.val() + ']').attr('checked', thisIsChecked).change();
+            table.find('[name=funcRead][pid=' + $this.val() + ']').prop('checked', thisIsChecked).change();
 
             // child checked -> parent checked
             // last child unchecked -> parent unchecked

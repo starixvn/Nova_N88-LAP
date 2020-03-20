@@ -64,8 +64,8 @@ $(document).ready(function () {
 			groupName = $this.text();
 
 		$.ajax({
-			url: NAP.resolveClientUrl("Group/GroupInfo/" + groupId),
-			type: 'POST',
+			url: NAP.resolveClientUrl("Group/GroupInfo/?id=" + groupId),
+			type: 'GET',
 			dataType: 'html',
 			cache: false,
 			success: function (result) {

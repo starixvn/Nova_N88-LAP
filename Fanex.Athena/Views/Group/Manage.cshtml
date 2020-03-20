@@ -107,7 +107,7 @@
                             {
                                 string title = string.Format("View users of '{0}'", group.GroupName);
 
-                                <a href="@Url.Action("Manage", "User", new { groupId = group.GroupId, siteid = -9999 })" target="_blank"
+                                <a href="@Url.Action("Manage", "Account", new { groupId = group.GroupId})"
                                    gid="@group.GroupId" gname="@group.GroupName" class="num-of-user" title="@title">@group.NumOfUser</a>
                             }
                             else

@@ -27,9 +27,6 @@
         <span class="title">
             <span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
         </span>
-        <div class="button-action">
-            @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "Group", null, new { @class = "back-button" })
-        </div>
     </div>
 
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-horizontal col-sm-6 col-md-4 common-form" }))

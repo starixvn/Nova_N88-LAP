@@ -1,4 +1,6 @@
-﻿namespace Fanex.Athena.Model.UserManagement.Model
+﻿using System.Collections.Generic;
+
+namespace Fanex.Athena.Model.UserManagement.Model
 {
     public static class Constant
     {
@@ -106,5 +108,12 @@
             Inactive = 2,
             Closed = 3
         }
+
+        public static List<string> IgnoredNapFunctions = new List<string>
+        {
+            "SystemConfiguration", "ManageFunction", "ManageMenu",
+            "Administration", "ManageUser", "AssignSiteToUser", "AssignFunctionToUser",
+            "ManageGroup", "AssignFunctionToGroup"
+        };
     }
 }

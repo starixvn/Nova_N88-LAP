@@ -157,7 +157,9 @@ namespace Fanex.Athena.Service.UserManagement.Service
 
             if (criteria.IsValid())
             {
-                IEnumerable<AccFunction> functionList = this.userRepository.GetBySiteInHierarchy(criteria).OrderBy(x => x.DisplayOrder);
+                IEnumerable<AccFunction> functionList = this.userRepository.GetBySiteInHierarchy(criteria)
+                    .Where(x => !Constant.IgnoredNapFunctions.Contains(x.Key))
+                    .OrderBy(x => x.DisplayOrder);
 
                 return this.SortFunctionsInHierarchy(functionList.ToList());
             }

@@ -6664,6 +6664,7 @@ function (_Component) {
         var title = _this2._getResource('Result');
 
         var rootUrl = _this2.props.rootUrl;
+        var defaultPlatform = 'd';
 
         if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_GAME || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_MINIGAME || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_MOBILE) {
           var url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getRngCasinoResultUrl(rootUrl);
@@ -6685,18 +6686,22 @@ function (_Component) {
           var _url4 = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSGResultUrl(rootUrl, custid, extension2);
 
           _this2._showThirdPartyResult(_url4, title);
+        } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VRG) {
+          var _url5 = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVRGResultUrl(rootUrl, refno, defaultPlatform);
+
+          _this2._showThirdPartyResult(_url5, title);
         } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].ALLBET) {
-          var _url5 = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBetResultUrl(rootUrl, transdecs, extension2, bettype);
+          var _url6 = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBetResultUrl(rootUrl, transdecs, extension2, bettype);
 
-          _this2._openPopup(_url5, title);
+          _this2._openPopup(_url6, title);
         } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].GLOBALGAMING) {
-          var _url6 = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getGlobalGamingResultUrl(rootUrl, custid, extension2);
+          var _url7 = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getGlobalGamingResultUrl(rootUrl, custid, extension2);
 
-          _this2._showThirdPartyResult(_url6, title);
+          _this2._showThirdPartyResult(_url7, title);
         } else {
-          var _url7 = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getResultUrl(rootUrl, matchid, raceNo, bettype, sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid);
+          var _url8 = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getResultUrl(rootUrl, matchid, raceNo, bettype, sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid);
 
-          _this2._openPopup(_url7, title);
+          _this2._openPopup(_url8, title);
         }
       };
 
@@ -7386,6 +7391,15 @@ function () {
       return url;
     }
   }, {
+    key: "getVRGResultUrl",
+    value: function getVRGResultUrl(rootUrl, gamePlayId, platform) {
+      var url = rootUrl + 'VirtualGamesResultPopup/Index';
+      console.log(gamePlayId);
+      url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gamePlayId', gamePlayId);
+      url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'platform', platform);
+      return url;
+    }
+  }, {
     key: "getRngCasinoResultUrl",
     value: function getRngCasinoResultUrl(rootUrl) {
       return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
@@ -7477,7 +7491,8 @@ var SportType = {
   PP: 248,
   GLOBALGAMING: 219,
   CARDCLUB: 165,
-  SG: 247
+  SG: 247,
+  VRG: 245
 };
 
 /***/ }),

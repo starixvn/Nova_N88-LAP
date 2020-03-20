@@ -116,6 +116,7 @@
     <Compile Include="DataDomain\PermissionKeys.cs" />
     <Compile Include="PortalSystemFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SsoLogin.cs" />
     <Compile Include="TokenInfo.cs" />
     <Compile Include="UserAuthInfo.cs" />
     <Compile Include="UserFunction.cs" />

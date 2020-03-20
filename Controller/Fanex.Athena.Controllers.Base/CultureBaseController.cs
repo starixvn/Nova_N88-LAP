@@ -6,6 +6,9 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Context;
+    using Fanex.N88.Core.Web.Context;
     using Service.Core.Users.Interfaces;
 
     [CustomAuthorize]
@@ -18,6 +21,9 @@
         public IAppSettings AppSettingInstance { get; set; }
         public ILicenseeSettingService LicenseeSettingServiceInstance { get; set; }
 
+        protected N88Settings n88Settings;
+        private readonly ICurrentContext currentContext = new CurrentContext();
+
         public bool IsFakeLicensee(string licenseeName)
         {
             return LicenseeSettingServiceInstance.IsFakeLicensee(licenseeName);
@@ -28,6 +34,7 @@
             base.Initialize(requestContext);
             var currentLanguage = LangService.GetCurrentLanguage();
             LangService.SetPageCulture(currentLanguage);
+            n88Settings = N88Settings.Settings;
         }
 
         protected JsonResult JsonNet(object data)
@@ -41,6 +48,14 @@
         protected static JsonNetResult JsonString(string jsonData)
         {
             return new JsonNetResult(jsonData);
+        }
+
+        public ICurrentContext CurrentContext
+        {
+            get
+            {
+                return currentContext;
+            }
         }
     }
 }

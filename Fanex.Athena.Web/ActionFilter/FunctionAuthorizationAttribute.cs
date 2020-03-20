@@ -19,6 +19,7 @@ namespace Fanex.Athena.Web.ActionFilter
     public sealed class FunctionAuthorizationAttribute : ActionFilterAttribute
     {
         private readonly string[] _permissionKeys;
+        private readonly Policy _policy;
 
         public FunctionAuthorizationAttribute()
         {
@@ -26,6 +27,13 @@ namespace Fanex.Athena.Web.ActionFilter
 
         public FunctionAuthorizationAttribute(params string[] permissionKeys)
         {
+            _policy = Policy.Read;
+            _permissionKeys = permissionKeys;
+        }
+
+        public FunctionAuthorizationAttribute(Policy policy, params string[] permissionKeys)
+        {
+            _policy = policy;
             _permissionKeys = permissionKeys;
         }
 
@@ -42,7 +50,14 @@ namespace Fanex.Athena.Web.ActionFilter
             var authorized = userSession != null && licenseeSession != null;
             if (authorized)
             {
-                authorized = AuthorizationServiceInstance.HasPermissions(userSession, _permissionKeys);
+                if(_policy == Policy.Host)
+                {
+                    authorized = AuthorizationServiceInstance.HasHostPermissions(userSession, _permissionKeys);
+                }
+                else
+                {
+                    authorized = AuthorizationServiceInstance.HasPermissions(userSession, _permissionKeys);
+                }
             }
 
             if (!authorized)

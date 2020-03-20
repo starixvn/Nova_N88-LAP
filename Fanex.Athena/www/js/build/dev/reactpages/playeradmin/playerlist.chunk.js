@@ -3455,7 +3455,6 @@ var licenseeType = {
   nonApi: 1
 };
 var fields = {
-  Status: 'Status',
   UserName: 'UserName',
   SystemId: 'SystemId',
   Currency: 'Currency',
@@ -3466,10 +3465,6 @@ var fields = {
   SpecialLevel: 'SpecialLevel'
 };
 var columnList = [{
-  key: fields.Status,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Status'),
-  show: true
-}, {
   key: fields.UserName,
   value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Username'),
   show: true
@@ -4257,16 +4252,6 @@ function () {
     key: "_buildDataRow",
     value: function _buildDataRow(item, colIndex) {
       var columnConfig = this.columnConfigs[colIndex];
-      var shouldHideValue = !item.IsDeposit || item.IsArchived;
-
-      if (shouldHideValue && fieldListWithEmptyValueByStatus.indexOf(columnConfig.field) !== -1) {
-        return {
-          t: 's',
-          v: '',
-          s: columnConfig[MAIN_SECTION_STYLE]
-        };
-      }
-
       var value = item[columnConfig.field];
       var displayedTextFunc = displayedTextByField[columnConfig.field];
       var displayedValue = this._shouldSetEmpty(value) ? '' : displayedTextFunc ? displayedTextFunc(value) : value;
@@ -4313,34 +4298,31 @@ function () {
           _ref9,
           _ref10,
           _ref11,
-          _ref12,
           _this2 = this;
 
       return [(_ref = {
-        field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Status
-      }, _defineProperty(_ref, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref, "width", 60), _ref), (_ref2 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].UserName
-      }, _defineProperty(_ref2, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref2, "width", 200), _ref2), (_ref3 = {
+      }, _defineProperty(_ref, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref, "width", 200), _ref), (_ref2 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SystemId
-      }, _defineProperty(_ref3, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref3, "width", 200), _ref3), (_ref4 = {
+      }, _defineProperty(_ref2, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref2, "width", 200), _ref2), (_ref3 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].RealName
-      }, _defineProperty(_ref4, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref4, "width", 150), _ref4), (_ref5 = {
+      }, _defineProperty(_ref3, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref3, "width", 150), _ref3), (_ref4 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Currency
-      }, _defineProperty(_ref5, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref5, "width", 80), _ref5), (_ref6 = {
+      }, _defineProperty(_ref4, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref4, "width", 80), _ref4), (_ref5 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].CurrentBalance
-      }, _defineProperty(_ref6, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].decimal), _defineProperty(_ref6, "width", 130), _ref6), (_ref7 = {
+      }, _defineProperty(_ref5, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].decimal), _defineProperty(_ref5, "width", 130), _ref5), (_ref6 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OutstandingBalance
-      }, _defineProperty(_ref7, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].decimal), _defineProperty(_ref7, "width", 130), _ref7), (_ref8 = {
+      }, _defineProperty(_ref6, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].decimal), _defineProperty(_ref6, "width", 130), _ref6), (_ref7 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OddsGroup
-      }, _defineProperty(_ref8, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref8, "width", 70), _ref8), (_ref9 = {
+      }, _defineProperty(_ref7, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref7, "width", 70), _ref7), (_ref8 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].BaStatus
-      }, _defineProperty(_ref9, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref9, "width", 70), _ref9), (_ref10 = {
+      }, _defineProperty(_ref8, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref8, "width", 70), _ref8), (_ref9 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel
-      }, _defineProperty(_ref10, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref10, "width", 70), _ref10), (_ref11 = {
+      }, _defineProperty(_ref9, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref9, "width", 70), _ref9), (_ref10 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].LastTransaction
-      }, _defineProperty(_ref11, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref11, "width", 150), _ref11), (_ref12 = {
+      }, _defineProperty(_ref10, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref10, "width", 150), _ref10), (_ref11 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Email
-      }, _defineProperty(_ref12, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref12, "width", 200), _ref12)].filter(function (x) {
+      }, _defineProperty(_ref11, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref11, "width", 200), _ref11)].filter(function (x) {
         return !!_this2.displayedColumn[x.field];
       });
     }

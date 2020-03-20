@@ -6,6 +6,7 @@
     using System.Web.Mvc;
     using Fanex.Athena.Controllers;
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Resources;
@@ -13,7 +14,6 @@
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common.Extensions;
     using Fanex.N88.Core.Configuration;
-    using static Fanex.Athena.Model.UserManagement.Model.Constant;
 
     [FunctionAuthorization(PermissionKeys.ManageGroup)]
     public class GroupController : CultureBaseController
@@ -54,14 +54,14 @@
         }
 
         [HttpGet]
-        //[N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageGroup)]
         public ActionResult AddNew()
         {
             return View(new InsertGroupCriteria());
         }
 
         [HttpPost]
-        //[N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageGroup)]
         public ActionResult AddNew(InsertGroupCriteria criteria)
         {
             if (ModelState.IsValid)
@@ -86,7 +86,7 @@
         }
 
         [HttpGet]
-        //[N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageGroup)]
         public ActionResult Edit(int id)
         {
             var getCriteria = new GetByIdGroupCriteria
@@ -112,7 +112,7 @@
         }
 
         [HttpPost]
-        //[N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageGroup)]
         public ActionResult Edit(UpdateGroupCriteria criteria)
         {
             if (ModelState.IsValid)
@@ -154,7 +154,7 @@
 
         #region Activation
 
-        //[N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageGroup)]
         public ActionResult Activate(int id, bool isActive)
         {
             if (Request.IsAjaxRequest())
@@ -182,7 +182,6 @@
         }
 
         [HttpGet]
-        //[N88Auth(FunctionKey = FunctionKeys.AssignFunctionToGroup, Policy = Constant.Policy.Read)]
         public ActionResult AssignPermission(int id)
         {
             int siteId = N88Settings.Settings.SiteId;
@@ -214,7 +213,7 @@
         }
 
         [HttpPost]
-        //[N88Auth(FunctionKey = FunctionKeys.AssignFunctionToGroup, Policy = Constant.Policy.Host)]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageGroup)]
         public ActionResult AssignPermission(AssignFunctionGroupCriteria criteria)
         {
             criteria.SiteId = N88Settings.Settings.SiteId;
@@ -223,8 +222,6 @@
             {
                 GroupId = criteria.SiteId
             };
-
-            GroupData group = _groupService.Get(getGroupCriteria);
 
             ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
 

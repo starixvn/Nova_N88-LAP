@@ -1,8 +1,11 @@
 ﻿namespace Fanex.Athena.Controllers.Account
 {
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Service.UserManagement.Service;
+    using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
     using MvcPaging;
@@ -11,6 +14,7 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    [FunctionAuthorization(PermissionKeys.ManageUser)]
     public class AccountController : CultureBaseController
     {
         private readonly UserService userService;
@@ -39,7 +43,7 @@
                 Environment = N88Settings.Settings.Environment
             };
 
-            ViewBag.HasHostPermission = true;
+            ViewBag.HasHostPermission = HasPermission(PermissionKeys.ManageUser, (int)Policy.Host);
             ViewBag.GroupSelectList = GetGroups();
             ViewBag.Criteria = criteria;
             ViewBag.CurrentUserId = SessionServiceInstance.UserSession.UserId;
@@ -49,6 +53,7 @@
             return View("~/Views/Account/Manage.cshtml", users.ToPagedList(criteria.PageIndex-1, criteria.PageSize, criteria.TotalRows));
         }
 
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult NewUser()
         {
             ViewBag.GroupSelectList = GetGroups();
@@ -58,6 +63,7 @@
         }
 
         [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult NewUser(InsertCustCriteria criteria)
         {
             ViewBag.GroupSelectList = GetGroups();
@@ -103,6 +109,7 @@
             return View("~/Views/Account/NewUser.cshtml", criteria);
         }
 
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult Edit(int id)
         {
             var criteria = new UpdateCustCriteria();
@@ -121,6 +128,7 @@
         }
 
         [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult Edit(UpdateCustCriteria criteria)
         {
             ViewBag.GroupSelectList = GetGroups();
@@ -143,6 +151,7 @@
             return View("~/Views/Account/EditUser.cshtml", criteria);
         }
 
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult AssignPermission(int id)
         {
             var user = userService.GetById(id);            
@@ -161,6 +170,7 @@
         }
 
         [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult AssignPermission(AssignFunctionUserCriteria criteria)
         {
             var user = userService.GetById(criteria.UserId);
@@ -188,6 +198,7 @@
             return View("~/Views/Account/AssignPermission.cshtml", criteria);
         }
 
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult ResetPassword(int id)
         {
             var user = userService.GetById(id);
@@ -204,6 +215,7 @@
         }
 
         [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult ResetPassword(ResetPasswordCustCriteria criteria)
         {
             if (ModelState.IsValid)
@@ -244,6 +256,13 @@
             criteria.CurrentSiteId = N88Settings.Settings.SiteId;
             criteria.LoginIp = string.Empty;
             criteria.LogDate = DateTime.Now;
+        }
+
+        private bool HasPermission(string functionKey, int policy)
+        {
+            var userFunctions = SessionServiceInstance.UserSession.FunctionList;
+
+            return userFunctions.Any(function => function.FunctionKey == functionKey && function.Policy >= policy);
         }
     }
 }

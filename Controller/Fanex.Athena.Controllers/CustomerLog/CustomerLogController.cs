@@ -17,7 +17,7 @@ namespace Fanex.Athena.Controllers.Customer.CustomerLog
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
-    [FunctionAuthorization(PermissionKeys.CustomerInfoCustomerLog)]
+    //[FunctionAuthorization(PermissionKeys.CustomerInfoCustomerLog)]
     public partial class CustomerLogController : CultureBaseController
     {
         private readonly IProductService _productService;

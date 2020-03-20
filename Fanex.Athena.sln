@@ -139,6 +139,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Service.UserMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Model.Customer", "..\..\LAP\lap\Model\Fanex.Athena.Model.Customer\Fanex.Athena.Model.Customer.csproj", "{3B212F2F-4DEB-449B-9AE0-36F6E4F49F5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Service.Customer", "..\..\LAP\lap\Service\Fanex.Athena.Service.Customer\Fanex.Athena.Service.Customer.csproj", "{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Api.Customer", "..\..\LAP\lap\ControllerAPI\Fanex.Athena.Api.Customer\Fanex.Athena.Api.Customer.csproj", "{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -763,6 +767,30 @@ Global
 		{3B212F2F-4DEB-449B-9AE0-36F6E4F49F5F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3B212F2F-4DEB-449B-9AE0-36F6E4F49F5F}.Release|x86.ActiveCfg = Release|Any CPU
 		{3B212F2F-4DEB-449B-9AE0-36F6E4F49F5F}.Release|x86.Build.0 = Release|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Debug|x86.Build.0 = Debug|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Release|x86.ActiveCfg = Release|Any CPU
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42}.Release|x86.Build.0 = Release|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Debug|x86.Build.0 = Debug|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Release|x86.ActiveCfg = Release|Any CPU
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -825,6 +853,8 @@ Global
 		{B166FAC7-A122-4665-BA2B-8977EF8B68CA} = {FF903E7B-A043-4B69-B750-4830F0E5C58A}
 		{DD2BD7CC-5BAD-41E7-AAB6-F54E9350BB6E} = {195AD258-DE51-497C-BA3B-1645AE32CAB6}
 		{3B212F2F-4DEB-449B-9AE0-36F6E4F49F5F} = {FF903E7B-A043-4B69-B750-4830F0E5C58A}
+		{EC87B5F7-32CA-485B-A3FF-52A5D0EDCE42} = {195AD258-DE51-497C-BA3B-1645AE32CAB6}
+		{D51C20F8-9F28-47EB-AEA2-0BCFED2CFF26} = {4D6B663E-04A8-4993-B33F-A445428FA349}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF850210-126B-4E21-BADB-F5C02AD2CCEE}

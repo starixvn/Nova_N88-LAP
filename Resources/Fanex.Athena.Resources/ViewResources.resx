@@ -2706,4 +2706,7 @@
   <data name="Deactive" xml:space="preserve">
     <value>Deactive</value>
   </data>
+  <data name="InvalidStartNameValidationMsg" xml:space="preserve">
+    <value>Username cannot start with 'starix'</value>
+  </data>
 </root>

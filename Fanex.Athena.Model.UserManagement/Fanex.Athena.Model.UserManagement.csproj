@@ -83,6 +83,7 @@
     <Compile Include="Model\AccFunction.cs" />
     <Compile Include="Model\CommandResult.cs" />
     <Compile Include="Model\Constant.cs" />
+    <Compile Include="Model\StartNameValidationAttribute.cs" />
     <Compile Include="Model\FunctionData.cs" />
     <Compile Include="Model\FunctionPolicy.cs" />
     <Compile Include="Model\Group.cs" />

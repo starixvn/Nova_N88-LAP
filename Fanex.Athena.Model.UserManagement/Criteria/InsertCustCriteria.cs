@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.Resources;
+﻿using Fanex.Athena.Model.UserManagement.Model;
+using Fanex.Athena.Resources;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using System;
@@ -35,6 +36,9 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
             ErrorMessageResourceType = typeof(ViewResources))]
         [RegularExpression(@"^[\w\s]{1,}$",
             ErrorMessageResourceName = "InvalidNameValidationMsg",
+            ErrorMessageResourceType = typeof(ViewResources))]
+        [StartNameValidation(
+            ErrorMessageResourceName = "InvalidStartNameValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string Username { get; set; }
 

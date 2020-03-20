@@ -701,7 +701,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var getSiteSetting = function getSiteSetting(licType, isSubsidiary) {
+var getSiteSetting = function getSiteSetting(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary) {
   return function (dispatch) {
     var service = new _lib_services_siteSettingService__WEBPACK_IMPORTED_MODULE_3__["default"]();
     service.getSetting().then(function (response) {
@@ -711,7 +711,7 @@ var getSiteSetting = function getSiteSetting(licType, isSubsidiary) {
       var isAllowedBA = !isSubsidiary && IsAllowedBA;
 
       if (isAllowedBA) {
-        var columnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_2__["buildColumnList"])(licType, isAllowedBA);
+        var columnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_2__["buildColumnList"])(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedBA);
         dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_1__["setDisplayedColumnList"])(columnList));
       }
 
@@ -1242,9 +1242,11 @@ function (_PureComponent) {
       }
 
       var _this$props = this.props,
-          type = _this$props.type,
+          hasBaPermission = _this$props.hasBaPermission,
+          hasOddsGroupPermission = _this$props.hasOddsGroupPermission,
+          hasSpecialLevelPermission = _this$props.hasSpecialLevelPermission,
           isSubsidiary = _this$props.isSubsidiary;
-      this.props.getSiteSetting(type, isSubsidiary);
+      this.props.getSiteSetting(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary);
     }
   }, {
     key: "componentDidUpdate",
@@ -1436,7 +1438,9 @@ function mapStateToProps(state) {
       pagingOption = state.pagingOption,
       currencyList = state.currencyList,
       isSubsidiary = state.isSubsidiary,
-      hasBaPermission = state.hasBaPermission;
+      hasBaPermission = state.hasBaPermission,
+      hasOddsGroupPermission = state.hasOddsGroupPermission,
+      hasSpecialLevelPermission = state.hasSpecialLevelPermission;
   return Object.assign({}, {
     type: type,
     isAdvancedSearch: isAdvancedSearch,
@@ -1444,7 +1448,9 @@ function mapStateToProps(state) {
     pagingOption: pagingOption,
     currencyList: currencyList,
     isSubsidiary: isSubsidiary,
-    hasBaPermission: hasBaPermission
+    hasBaPermission: hasBaPermission,
+    hasOddsGroupPermission: hasOddsGroupPermission,
+    hasSpecialLevelPermission: hasSpecialLevelPermission
   });
 }
 
@@ -2129,11 +2135,13 @@ var BaStatusCell = function BaStatusCell(props) {
       OddsGroup = dataItem.OddsGroup,
       IsArchived = dataItem.IsArchived,
       LicenseeCustId = dataItem.LicenseeCustId;
+  var canUpdate = canView && hasBaPermission.policy == 2;
+  var canView = hasBaPermission.isallowed;
 
   var handleChangeBaStatus = function handleChangeBaStatus(event) {
     event.preventDefault();
 
-    if (!hasBaPermission) {
+    if (!canUpdate) {
       return;
     }
 
@@ -2187,9 +2195,9 @@ var BaStatusCell = function BaStatusCell(props) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
-    className: "center-align" + "".concat(!hasBaPermission ? ' ba-disabled' : '')
+    className: "center-align" + "".concat(!canUpdate ? ' ba-disabled' : '')
   }, !IsArchived && BaStatus !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_Switcher__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    disabled: !hasBaPermission,
+    disabled: !canUpdate,
     checked: BaStatus,
     onChange: handleChangeBaStatus
   }));
@@ -2391,7 +2399,8 @@ var OddsGroupCell = function OddsGroupCell(props) {
       hasOddsGroupPermission = props.hasOddsGroupPermission;
   var value = dataItem.OddsGroup;
   var style = _lib_constants__WEBPACK_IMPORTED_MODULE_3__["oddsGroupListWithStyle"][value];
-  var canUpdate = hasOddsGroupPermission && !dataItem.BaStatus;
+  var canUpdate = canView && hasOddsGroupPermission.policy == 2 && !dataItem.BaStatus;
+  var canView = hasOddsGroupPermission.isallowed;
 
   var handleToggleOddsGroup = function handleToggleOddsGroup(event) {
     if (!canUpdate) {
@@ -2714,9 +2723,11 @@ var SpecialLevelCell = function SpecialLevelCell(props) {
   var style = {
     backgroundColor: _lib_constants__WEBPACK_IMPORTED_MODULE_3__["specialLevelListWithColor"][value]
   };
+  var canUpdate = canView && hasSpecialLevelPermission.policy == 2;
+  var canView = hasSpecialLevelPermission.isallowed;
 
   var handleToggleSpecialLevel = function handleToggleSpecialLevel(event) {
-    if (!hasSpecialLevelPermission) {
+    if (!canUpdate) {
       return;
     }
 
@@ -2728,7 +2739,7 @@ var SpecialLevelCell = function SpecialLevelCell(props) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_DropdownLabel__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: hasSpecialLevelPermission ? '' : 'disabled',
+    className: canUpdate ? '' : 'disabled',
     text: Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_7__["getSpecialLevelText"])(value),
     labelStyle: style,
     onClick: handleToggleSpecialLevel
@@ -3333,13 +3344,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var _ = 1,
-    type = _.type;
-var hasBaPermission = window._pConfig.hasBaPermission === 1;
-var hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission === 1;
-var hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission === 1;
+var hasBaPermission = window._pConfig.hasBaPermission;
+var hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission;
+var hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission;
 var isAllowedCustomerComm = window._pConfig.isAllowedCustomerComm === 1;
-var displayedColumnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__["buildDefaultColumnList"])(type);
+var displayedColumnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__["buildDefaultColumnList"])();
 var siteSetting = {
   isAllowedCustomerComm: false,
   isAllowedBA: false
@@ -3717,17 +3726,26 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-var buildDefaultColumnList = function buildDefaultColumnList(licType) {
+var buildDefaultColumnList = function buildDefaultColumnList() {
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(function (item) {
     return item.key !== _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus;
   }).map(function (item) {
     return _objectSpread({}, item);
   });
 };
-var buildColumnList = function buildColumnList(licType, isAllowedBA) {
+var buildColumnList = function buildColumnList(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedBA) {
+  console.log(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission);
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(function (item) {
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
-      return isAllowedBA;
+      return isAllowedBA && hasBaPermission.isallowed;
+    }
+
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].OddsGroup) {
+      return hasOddsGroupPermission.isallowed;
+    }
+
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].SpecialLevel) {
+      return hasOddsGroupPermission.isallowed;
     } else {
       return true;
     }

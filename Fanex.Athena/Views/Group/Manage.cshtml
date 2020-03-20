@@ -99,8 +99,7 @@
                             @(i + 1)
                         </td>
                         <td>
-                            <a href="javascript:;" gid="@group.GroupId" class="lnk-group-info"
-                               title="@ViewResources.View_details_of '@group.GroupName'">@group.GroupName</a>
+                            @group.GroupName
                         </td>
                         <td class="text-center">
                             @if (group.NumOfUser > 0 && ViewBag.HasManageUserRight)

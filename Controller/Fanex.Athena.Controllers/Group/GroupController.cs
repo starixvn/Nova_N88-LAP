@@ -31,7 +31,7 @@
         public ActionResult Manage()
         {
             ViewBag.HasEditRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
-            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.AssignFunctionToGroup, (int)Policy.Read);
+            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
             ViewBag.HasManageUserRight = HasPermission(PermissionKeys.ManageUser, (int)Policy.Read);
 
             ViewBag.GroupList = _groupService.GetAllWithNumOfUser(string.Empty, N88Settings.Settings.Environment, isLicenseeGroup: true, siteId: N88Settings.Settings.SiteId);
@@ -45,7 +45,7 @@
             criteria.Environment = N88Settings.Settings.Environment;
 
             ViewBag.HasEditRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
-            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.AssignFunctionToGroup, (int)Policy.Read);
+            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
             ViewBag.HasManageUserRight = HasPermission(PermissionKeys.ManageUser, (int)Policy.Read);
 
             ViewBag.GroupList = _groupService.GetAllWithNumOfUser(criteria.GroupName, isLicenseeGroup: true, siteId: N88Settings.Settings.SiteId, env: N88Settings.Settings.Environment);
@@ -201,7 +201,7 @@
             criteria.GroupName = group.GroupName;
             criteria.SiteId = siteId;
 
-            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.AssignFunctionToGroup,(int)Policy.Host);
+            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup,(int)Policy.Host);
 
             ViewBag.FunctionList = _userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true);
             ViewBag.GroupFuncPolicyList =
@@ -226,7 +226,7 @@
 
             GroupData group = _groupService.Get(getGroupCriteria);
 
-            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.AssignFunctionToGroup, (int)Policy.Host);
+            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
 
             criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
             criteria.ModifiedDate = DateTime.Now;

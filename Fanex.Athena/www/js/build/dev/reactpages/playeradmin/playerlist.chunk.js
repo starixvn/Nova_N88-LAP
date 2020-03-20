@@ -2134,8 +2134,8 @@ var BaStatusCell = function BaStatusCell(props) {
       OddsGroup = dataItem.OddsGroup,
       IsArchived = dataItem.IsArchived,
       LicenseeCustId = dataItem.LicenseeCustId;
-  var canUpdate = canView && hasBaPermission.policy == 2;
   var canView = hasBaPermission.isallowed;
+  var canUpdate = canView && hasBaPermission.policy == 2;
 
   var handleChangeBaStatus = function handleChangeBaStatus(event) {
     event.preventDefault();
@@ -2398,8 +2398,8 @@ var OddsGroupCell = function OddsGroupCell(props) {
       hasOddsGroupPermission = props.hasOddsGroupPermission;
   var value = dataItem.OddsGroup;
   var style = _lib_constants__WEBPACK_IMPORTED_MODULE_3__["oddsGroupListWithStyle"][value];
-  var canUpdate = canView && hasOddsGroupPermission.policy == 2 && !dataItem.BaStatus;
   var canView = hasOddsGroupPermission.isallowed;
+  var canUpdate = canView && hasOddsGroupPermission.policy == 2 && !dataItem.BaStatus;
 
   var handleToggleOddsGroup = function handleToggleOddsGroup(event) {
     if (!canUpdate) {
@@ -2722,8 +2722,8 @@ var SpecialLevelCell = function SpecialLevelCell(props) {
   var style = {
     backgroundColor: _lib_constants__WEBPACK_IMPORTED_MODULE_3__["specialLevelListWithColor"][value]
   };
-  var canUpdate = canView && hasSpecialLevelPermission.policy == 2;
   var canView = hasSpecialLevelPermission.isallowed;
+  var canUpdate = canView && hasSpecialLevelPermission.policy == 2;
 
   var handleToggleSpecialLevel = function handleToggleSpecialLevel(event) {
     if (!canUpdate) {

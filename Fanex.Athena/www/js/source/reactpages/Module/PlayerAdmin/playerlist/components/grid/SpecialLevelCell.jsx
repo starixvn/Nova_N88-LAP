@@ -14,9 +14,10 @@ export const SpecialLevelCell = (props) => {
     const { dataItem, specialLevelDropdownPosition, setCurrentActivePlayer, setSpecialLevelDropdownPosition, hasSpecialLevelPermission } = props;
     const value = dataItem.SpecialLevel;
     const style = { backgroundColor: specialLevelListWithColor[value] };
-    const canUpdate = canView && hasSpecialLevelPermission.policy == 2;
+   
     const canView = hasSpecialLevelPermission.isallowed;
-
+    const canUpdate = canView && hasSpecialLevelPermission.policy == 2;
+    
     const handleToggleSpecialLevel = (event) => {
         if(!canUpdate){
             return;

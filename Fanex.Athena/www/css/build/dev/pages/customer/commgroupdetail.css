@@ -171,16 +171,16 @@ input[type="checkbox"] {
   color: #2c2c2c;
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  height: 32px;
-  line-height: 32px;
+  height: 28px;
+  line-height: 28px;
   transition: none; }
 
-.btn-primary {
+.btn-primary, .btn-submit {
   background: #f05b1f;
   color: #fff; }
-  .btn-primary:hover {
+  .btn-primary:hover, .btn-submit:hover {
     background: #f37e4f; }
-  .btn-primary:focus {
+  .btn-primary:focus, .btn-submit:focus {
     background: #f05b1f; }
 
 .button-collapse .material-icons {
@@ -221,20 +221,12 @@ input[type="checkbox"] {
     background: #4caf50; }
 
 .btn-cancel {
-  background: #757575;
+  background: #767885;
   color: #fff; }
   .btn-cancel:hover {
-    background: #8f8f8f; }
+    background: #91929d; }
   .btn-cancel:focus {
-    background: #757575; }
-
-.btn-submit {
-  background: #4e68b6;
-  color: #fff; }
-  .btn-submit:hover {
-    background: #7287c5; }
-  .btn-submit:focus {
-    background: #4e68b6; }
+    background: #767885; }
 
 .btn-nav {
   background: #fff;
@@ -370,12 +362,12 @@ input[type="checkbox"] {
 
 .panel-heading {
   position: relative;
-  background: #4C6375;
+  background: #164F46;
   border-radius: 0;
   padding: 0; }
   .panel-heading .panel-title {
     color: #fff;
-    padding: 5px 15px;
+    padding: 8px 15px;
     font-size: 13px; }
     .panel-heading .panel-title .icon-arrow {
       margin: 0;

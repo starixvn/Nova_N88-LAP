@@ -210,9 +210,13 @@
   box-sizing: border-box; }
 
 .page-container {
+  background-color: #e6e6e6;
   font-size: 1.1rem; }
   .page-container .icon {
-    font-family: 'icomoon' !important; }
+    font-family: 'icomoon' !important;
+    color: #545454; }
+    .page-container .icon.disable {
+      color: #8e8e8e; }
   .page-container .page-first:before {
     content: "\EA21"; }
   .page-container .page-prev:before {

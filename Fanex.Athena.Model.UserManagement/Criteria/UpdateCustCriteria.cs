@@ -6,7 +6,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     public class UpdateCustCriteria : LogExecSpCriteria
     {
-        public int CustId { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(ViewResources))]
         [StringLength(50, MinimumLength = 0,

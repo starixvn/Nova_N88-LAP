@@ -3555,8 +3555,8 @@ var searchOptions = {
 };
 var defaultPagingOption = {
   PageIndex: 1,
-  PageSize: 1000,
-  PageList: [1000],
+  PageSize: 50,
+  PageList: [50, 100, 200, 300, 400, 500, 1000, 2000],
   TotalItem: null
 };
 var playerStatus = {

@@ -80,6 +80,8 @@
                 criteria.FirstName = criteria.FirstName ?? string.Empty;
                 criteria.LastName = criteria.LastName ?? string.Empty;
                 criteria.Email = criteria.Email ?? string.Empty;
+                criteria.IsLicenseeUser = true;
+                criteria.SiteId = N88Settings.Settings.SiteId;
 
                 UpdateCriteria(criteria);
                 var result = userService.Insert(criteria);

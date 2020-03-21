@@ -53,8 +53,9 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         [Display(Name = "Group", ResourceType = typeof(ViewResources))]
         public int GroupId { get; set; }
 
-        [SpParam(Ignored = true)]
         public int SiteId { get; set; }
+
+        public bool IsLicenseeUser { get; set; }
 
         [SpParam(Ignored = true)]
         public int PageIndex { get; set; }

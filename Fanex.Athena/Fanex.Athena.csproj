@@ -652,7 +652,7 @@
     <Content Include="Views\Group\Manage.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="www\css\source\pages\user\usermanagement.scss" />
+    <Content Include="www\css\source\pages\user\index.scss" />
     <Content Include="Views\Desktop\Customer\CustomerLog\Action\2200.cshtml" />
     <Content Include="Views\Desktop\Customer\CustomerLog\Action\2201.cshtml" />
     <Content Include="Views\Desktop\Customer\CustomerLog\Action\2407.cshtml" />
@@ -867,9 +867,21 @@
     <Content Include="www\js\source\reactpages\components\date-range\__tests__\defaultOptions.test.js" />
     <Content Include="www\js\source\reactpages\components\date-range\__tests__\PredefinedRanges.test.js" />
     <Content Include="www\js\source\reactpages\components\Balloon.jsx" />
+    <Content Include="www\js\source\reactpages\components\dropdown\DropdownButton.jsx" />
+    <Content Include="www\js\source\reactpages\components\dropdown\DropdownItem.jsx" />
+    <Content Include="www\js\source\reactpages\components\dropdown\DropdownMenu.jsx" />
+    <Content Include="www\js\source\reactpages\components\dropdown\DropdownToggle.jsx" />
+    <Content Include="www\js\source\reactpages\components\dropdown\index.js" />
+    <Content Include="www\js\source\reactpages\components\dropdown\__tests__\DropdownButton.test.js" />
+    <Content Include="www\js\source\reactpages\components\dropdown\__tests__\DropdownItem.test.js" />
+    <Content Include="www\js\source\reactpages\components\dropdown\__tests__\DropdownMenu.test.js" />
+    <Content Include="www\js\source\reactpages\components\dropdown\__tests__\DropdownToggle.test.js" />
     <Content Include="www\js\source\reactpages\components\popup\constants.js" />
     <Content Include="www\js\source\reactpages\components\radio\__tests__\RadioGroup.test.js" />
     <Content Include="www\js\source\reactpages\components\radio\__tests__\Radio.test.js" />
+    <Content Include="www\js\source\reactpages\components\sweet-alert\icon.js" />
+    <Content Include="www\js\source\reactpages\components\sweet-alert\index.jsx" />
+    <Content Include="www\js\source\reactpages\components\Switcher.jsx" />
     <Content Include="www\js\source\reactpages\components\UserGuide.jsx" />
     <Content Include="www\js\source\reactpages\components\__tests__\CollapsibleRow.test.js" />
     <Content Include="www\js\source\reactpages\components\utils\timer.js" />
@@ -1942,6 +1954,11 @@
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\advancedsearch\components\__tests__\__snapshots__\DataGrid.test.js.snap" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\advancedsearch\components\__tests__\__snapshots__\FormFilter.render.test.js.snap" />
     <Content Include="www\js\build\dev\reactpages\bettingticketscenter\advancedsearch.chunk.js.map" />
+    <Content Include="www\css\source\scss\abstracts\_mixins.scss" />
+    <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownButton.test.js.snap" />
+    <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownItem.test.js.snap" />
+    <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownMenu.test.js.snap" />
+    <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownToggle.test.js.snap" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">
@@ -4924,6 +4941,10 @@
   <ItemGroup>
     <Folder Include="Logs\" />
     <Folder Include="Views\Report\" />
+    <Folder Include="www\css\build\dev\pages\user\" />
+    <Folder Include="www\css\build\pro\pages\user\" />
+    <Folder Include="www\js\build\dev\pages\user\" />
+    <Folder Include="www\js\build\pro\pages\user\" />
     <Folder Include="www\js\source\pages\report\thirdpartywinloss\reports\" />
     <Folder Include="www\js\source\reactpages\pages\bettingticketscenter\common\components\__tests__\" />
     <Folder Include="www\js\tests\pages\report\thirdpartywinloss\reports\" />

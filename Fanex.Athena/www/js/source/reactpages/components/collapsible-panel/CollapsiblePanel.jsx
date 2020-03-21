@@ -40,7 +40,7 @@ class CollapsiblePanel extends React.Component {
             transform: this.state.isCollapsed ? null : 'rotate(180deg)',
             color: '#fff',
             textAlign: 'center',
-            background: '#4c6274',
+            background: '#0F3630',
             height: "15px",
             width: "20px",
             float: 'left'

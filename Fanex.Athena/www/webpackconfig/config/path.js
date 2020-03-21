@@ -32,7 +32,8 @@ var cssPaths = {
     customerlist: ["./www/css/source/pages/customer/customerlist.scss"],
     customeroutstanding: ["./www/css/source/pages/betlist/customeroutstanding.scss"],
     betsetting: ["./www/css/source/pages/customer/betsetting.scss"],
-    customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"]
+    customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"],
+    manageuser: ["./www/css/source/pages/user/index.scss"]
 };
 
 var scriptPaths = {

@@ -14,13 +14,13 @@
 
 .panel-heading {
     position: relative;
-    background: #4C6375;
+    background: $bgHeaderTableLevel1;
     border-radius: 0;
     padding: 0;
 
     .panel-title {
         color: #fff;
-        padding: 5px 15px;
+        padding: 8px 15px;
         font-size: 13px;
 
         .icon-arrow {

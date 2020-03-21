@@ -165,7 +165,7 @@
     <Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_User_Insert" SpName="N88_User_Insert" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-    <Setting Key="N88_User_Update" SpName="N88_Cust_Update" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_User_Update" SpName="N88_User_Update" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_User_GetById" SpName="N88_User_GetById" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_Site_GetById" SpName="N88_Site_GetById" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_User_AssignFunction" SpName="N88_User_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />

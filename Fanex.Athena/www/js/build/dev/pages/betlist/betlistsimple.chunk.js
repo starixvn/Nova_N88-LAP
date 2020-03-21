@@ -3521,6 +3521,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
         const SPORT_GLOBALGAMING = 219;
         const SPORT_CARDCLUB = 165;
         const SPORT_SG = 247;
+        const SPORT_VRG = 245;
         const BETLIST_META_MODEL = '#BetListMetaModel';
 
         let _sortColumnName, _sortOrder;

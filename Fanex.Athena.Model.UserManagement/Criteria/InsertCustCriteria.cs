@@ -64,7 +64,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         
         public override string GetSettingKey()
         {
-            return "N88_Cust_Insert";
+            return "N88_User_Insert";
         }
 
         public override bool IsValid()

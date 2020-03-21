@@ -3,7 +3,8 @@
 }
 @section css
 {
-    @System.Web.Optimization.Styles.Render("~/bundles/AccountLayoutStyles")
+    <link href="@Url.ContentLinkByEnv("/www/css/build/main.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/vendor.css")" rel="stylesheet" type="text/css" />
     @RenderSection("pagecss", required: false)
 }
 <div class="container_26">

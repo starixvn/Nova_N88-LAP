@@ -22,7 +22,7 @@
     <div class="title">Edit User</div>
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-horizontal col-sm-7 col-md-5 common-form" }))
     {
-        @Html.HiddenFor(c => c.CustId)
+        @Html.HiddenFor(c => c.UserId)
 
         <div class="form-group summary">
             @Html.ValidationSummary()

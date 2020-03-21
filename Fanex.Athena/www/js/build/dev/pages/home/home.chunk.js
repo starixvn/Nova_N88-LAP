@@ -2161,11 +2161,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     __webpack_require__(/*! lib/jquery.marquee */ "./www/js/source/lib/jquery.marquee.js"),
     __webpack_require__(/*! components/selectlist */ "./www/js/source/components/selectlist.js"),
     __webpack_require__(/*! lib/jquery.jclock */ "./www/js/source/lib/jquery.jclock.js"),
-    __webpack_require__(/*! vendor-materialize */ "./www/js/source/vendors/materialize/materialize.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (Site, Recheckin, Notification) {
+    __webpack_require__(/*! vendor-materialize */ "./www/js/source/vendors/materialize/materialize.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (Site, Recheckin) {
         function initialize() {
             Site.initialize();
             initEvent();
             activeDefaultMenuItem();
+            setTimeout(function () {
+                const $mainFrame = $('#mainFrame');
+                $mainFrame.attr('src', $mainFrame.data('src'));
+            }, 100);
 
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();
@@ -2186,14 +2190,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
             $('.collapsible2').on('click.menuevent', '.menu-item.has-sub .collapsible-body a', function () {
                 const $currentMenuItem = $(this);
-                document.title = 'LAP' + ' - ' + $('.active > .menu-title').text() + ' - ' + $currentMenuItem.text();
+                document.title = $('.active > .menu-title').text() + ' - ' + $currentMenuItem.text();
 
                 $('#page-title').text($currentMenuItem.text());
             });
 
             $('.collapsible2').on('click.menuevent', '.menu-item:not(.has-sub) a', function () {
                 const $currentMenuItem = $(this);
-                document.title = 'LAP' + ' - ' + $currentMenuItem.text();
+                document.title = $currentMenuItem.text();
 
                 $('#page-title').text($currentMenuItem.text());
             });
@@ -2241,45 +2245,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             $('#page-title').text(menuItemName);
 
             document.title = 'LAP' + ' - ' + $('.active > .menu-title').text() + ' - ' + menuItemName;
-        }
-
-        function checkMoveBetNotification() {
-            const $marquee = $('#notification-marquee');
-
-            if ($marquee.length === 0) {
-                return;
-            }
-
-            let previousText = '';
-            const $parent = $marquee.parent();
-            const apiUrl = Site.resolveClientUrl('api/CommonApi/GetMoveBetNotification');
-            function processNotification() {
-                $.get(apiUrl, function (message) {
-                    if (message === previousText) {
-                        return;
-                    }
-
-                    previousText = message;
-                    if (message) {
-                        if ($parent.is(':hidden')) {
-                            $parent.slideDown('fast');
-                            $('#mainFrame').css('height', 'calc(100% - 30px)');
-                        }
-
-                        if ('marquee' in $marquee) {
-                            $marquee.text(message);
-                            $marquee.marquee({ speed: 30 });
-                        }
-                    } else {
-                        $marquee.marquee('stop');
-                        $parent.slideUp('fast');
-                        $('#mainFrame').css('height', '100%');
-                    }
-                });
-            }
-
-            processNotification();
-            setInterval(processNotification, 60000);
         }
 
         return {

@@ -20,7 +20,7 @@
                 UserId = currentItem.UserId,
                 ActionID = currentItem.ActionId,
                 TypeId = (byte)UserControlLogType.Function,
-                Doing = $"LAP - {currentItem.SiteName} - {currentItem.LicenseeCustId} - {currentItem.ActionDetailId} - {currentItem.Status} - {currentItem.NewValue} - {currentItem.OldValue}"
+                Doing = $"N88 - {currentItem.SiteName} - {currentItem.LicenseeCustId} - {currentItem.ActionDetailId} - {currentItem.Status} - {currentItem.NewValue} - {currentItem.OldValue}"
             };
         }
     }

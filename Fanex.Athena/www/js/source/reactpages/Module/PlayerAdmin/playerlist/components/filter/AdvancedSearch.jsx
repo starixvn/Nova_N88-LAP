@@ -38,14 +38,13 @@ export class AdvancedSearch extends React.Component {
     }
 
     render() {
-        const { currencyList, param, isAllowedBA } = this.props;
+        const { currencyList, param, isAllowedBA, isAllowedOddsGroup, isAllowedSpecialLevel } = this.props;
         const { currencyIdList, oddsGroup, specialLevel, baFilter } = param;
         const convertedCurrencyList = this._createSelectData(currencyList, currencyIdList);
         const oddsGroupList = this._createSelectData(this.oddsGroupList, oddsGroup);
         const specialLevelList = this._createSelectData(this.specialLevelList, specialLevel);
         const selectedBaStatus = isAllowedBA ? this.baStatusList.find(x => x.value === baFilter) : null;
 
-        console.log(isAllowedBA)
         return (
             <>
                 <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
@@ -59,30 +58,37 @@ export class AdvancedSearch extends React.Component {
                             onChange={(currentItem, selectedItemsKey) => this.handleChange('currencyIdList', selectedItemsKey)} />
                     </div>
                 </div>
+                {
+                    isAllowedOddsGroup &&
+                    (
+                        <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
+                            <div className="form-group">
+                                <label className="label-text">{LangHelper.getSingleResource("OddsGroup")}</label>
+                                <MultipleSelect id="oddsGroup"
+                                    dataSource={oddsGroupList}
+                                    keyField={"Id"}
+                                    valueField={"Value"}
+                                    statusField={"Status"}
+                                    onChange={(currentItem, selectedItemsKey) => this.handleChange('oddsGroup', selectedItemsKey)} />
+                            </div>
+                        </div>
+                    )
+                }
 
-                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
-                    <div className="form-group">
-                        <label className="label-text">{LangHelper.getSingleResource("OddsGroup")}</label>
-                        <MultipleSelect id="oddsGroup"
-                            dataSource={oddsGroupList}
-                            keyField={"Id"}
-                            valueField={"Value"}
-                            statusField={"Status"}
-                            onChange={(currentItem, selectedItemsKey) => this.handleChange('oddsGroup', selectedItemsKey)} />
+                {
+                    isAllowedSpecialLevel &&
+                    <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
+                        <div className="form-group">
+                            <label className="label-text">{LangHelper.getSingleResource("SpecialLevel")}</label>
+                            <MultipleSelect id="specialLevel"
+                                dataSource={specialLevelList}
+                                keyField={"Id"}
+                                valueField={"Value"}
+                                statusField={"Status"}
+                                onChange={(currentItem, selectedItemsKey) => this.handleChange('specialLevel', selectedItemsKey)} />
+                        </div>
                     </div>
-                </div>
-
-                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
-                    <div className="form-group">
-                        <label className="label-text">{LangHelper.getSingleResource("SpecialLevel")}</label>
-                        <MultipleSelect id="specialLevel"
-                            dataSource={specialLevelList}
-                            keyField={"Id"}
-                            valueField={"Value"}
-                            statusField={"Status"}
-                            onChange={(currentItem, selectedItemsKey) => this.handleChange('specialLevel', selectedItemsKey)} />
-                    </div>
-                </div>
+                }
 
                 {
                     selectedBaStatus !== null &&

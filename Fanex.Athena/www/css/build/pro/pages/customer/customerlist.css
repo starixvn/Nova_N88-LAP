@@ -1846,7 +1846,8 @@ input[type="checkbox"] {
     left: 0.5px; }
 
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #CA3232; }
+  background-color: #13A306;
+  border-color: #13A306; }
   .switch label input[type=checkbox]:checked + .lever:before {
     content: "ON";
     right: 24px;

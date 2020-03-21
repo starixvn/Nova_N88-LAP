@@ -12,7 +12,11 @@ define([
         function initialize() {
             Site.initialize();
             initEvent();
-            //activeDefaultMenuItem();
+            activeDefaultMenuItem();
+            setTimeout(function () {
+                const $mainFrame = $('#mainFrame');
+                $mainFrame.attr('src', $mainFrame.data('src'));
+            }, 100);
 
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();

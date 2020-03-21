@@ -16,8 +16,7 @@ tr {
         .ui-jqgrid-htable {
             thead tr th {
                 &.ui-th-column, &.ui-th-column-header {
-                    background: $bgHeaderTableLevel2;
-                    font-weight: bold;
+                    background: #a2beba;
                 }
             }
         }
@@ -28,6 +27,14 @@ tr {
             &.jqgroup td {
                 background: $bgRowGroupLevel1;
                 font-weight: bold;
+            }
+        }
+    }
+
+    .ui-jqgrid-ftable {
+        .summarytotal {
+            td {
+                background: #8da6a2 !important;
             }
         }
     }

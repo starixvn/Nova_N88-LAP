@@ -6,7 +6,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     public class UpdateCustCriteria : LogExecSpCriteria
     {
-        public int CustId { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(ViewResources))]
         [StringLength(50, MinimumLength = 0,
@@ -43,7 +43,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         
         public override string GetSettingKey()
         {
-            return "N88_Cust_Update";
+            return "N88_User_Update";
         }
        
         public override bool IsValid()

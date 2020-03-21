@@ -5376,7 +5376,7 @@ yx-axis
   background-clip: padding-box;
   /* for IE9+, Firefox 4+, Opera, Chrome */ }
   .flat-popup .title-bar {
-    background-color: #4C6375;
+    background-color: #164F46;
     padding: 8.5px 15px;
     position: relative; }
     .flat-popup .title-bar .txt-title {
@@ -5600,16 +5600,16 @@ button.btn-floating {
   color: #2c2c2c;
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  height: 32px;
-  line-height: 32px;
+  height: 28px;
+  line-height: 28px;
   transition: none; }
 
-.btn-primary {
+.btn-primary, .btn-submit {
   background: #f05b1f;
   color: #fff; }
-  .btn-primary:hover {
+  .btn-primary:hover, .btn-submit:hover {
     background: #f37e4f; }
-  .btn-primary:focus {
+  .btn-primary:focus, .btn-submit:focus {
     background: #f05b1f; }
 
 .button-collapse .material-icons {
@@ -5650,20 +5650,12 @@ button.btn-floating {
     background: #4caf50; }
 
 .btn-cancel {
-  background: #757575;
+  background: #767885;
   color: #fff; }
   .btn-cancel:hover {
-    background: #8f8f8f; }
+    background: #91929d; }
   .btn-cancel:focus {
-    background: #757575; }
-
-.btn-submit {
-  background: #4e68b6;
-  color: #fff; }
-  .btn-submit:hover {
-    background: #7287c5; }
-  .btn-submit:focus {
-    background: #4e68b6; }
+    background: #767885; }
 
 .btn-nav {
   background: #fff;
@@ -5713,6 +5705,7 @@ header nav {
 
 .logo {
   padding-left: 15px;
+  width: 260px;
   height: 64px;
   line-height: 64px;
   float: left;
@@ -5727,7 +5720,7 @@ header nav {
     margin-left: 10px; }
   .logo .icon-hambuger {
     display: inline-block;
-    width: 5rem;
+    width: 4.5rem;
     text-align: center;
     margin-left: 13px; }
   .logo .lines {
@@ -5849,7 +5842,8 @@ header nav {
         line-height: 26px; }
     .nav-wrapper .right-block .languages-block .language-items {
       width: 15rem !important;
-      top: 38px !important; }
+      top: 38px !important;
+      margin-left: 0; }
       .nav-wrapper .right-block .languages-block .language-items > li {
         min-height: 4rem; }
       .nav-wrapper .right-block .languages-block .language-items a {
@@ -5997,7 +5991,7 @@ header nav {
   .side-nav.fixed .menu-item:not(.active) .collapsible-header i.icon-arrow {
     transition: none; }
   .side-nav.fixed .menu-item.active {
-    background: rgba(0, 0, 0, 0.1); }
+    background: #081C19; }
     .side-nav.fixed .menu-item.active > .collapsible-header {
       color: #fff;
       font-weight: bold; }

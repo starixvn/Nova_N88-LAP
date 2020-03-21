@@ -9,7 +9,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     public class InsertCustCriteria : LogExecSpCriteria
     {   
-        public int CustId { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(ViewResources))]
         [StringLength(50, MinimumLength = 0,
@@ -65,7 +65,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         
         public override string GetSettingKey()
         {
-            return "N88_Cust_Insert";
+            return "N88_User_Insert";
         }
 
         public override bool IsValid()

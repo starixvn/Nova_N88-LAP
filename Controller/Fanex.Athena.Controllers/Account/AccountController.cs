@@ -91,7 +91,7 @@
                     {
                         CreatedBy = SessionServiceInstance.UserSession.UserId,
                         CreatedDate = DateTime.Now,
-                        UserId = criteria.CustId,
+                        UserId = criteria.UserId,
                         SiteId = N88Settings.Settings.SiteId,
                         Level = (int)Constant.Level.User,
                         IsActive = true,
@@ -103,7 +103,7 @@
                     if (assignResult != null && assignResult.IsSuccessful)
                     {
                         ViewBag.Success = true;
-                        ViewBag.UserId = criteria.CustId;
+                        ViewBag.UserId = criteria.UserId;
                     }
                 }
             }
@@ -117,7 +117,7 @@
             var criteria = new UpdateCustCriteria();
 
             var user = userService.GetById(id);
-            criteria.CustId = user.Id;
+            criteria.UserId = user.Id;
             criteria.FirstName = user.FirstName;
             criteria.LastName = user.LastName;
             criteria.Email = user.Email;

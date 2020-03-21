@@ -136,8 +136,7 @@ export class FormFilter extends PureComponent {
 
     render() {
         const { bankAccountNumber, email, searchOption, isValidUserName, isValidsystemId, ...advancedSearchParam } = this.state;
-        const { type, isAdvancedSearch, isFilterCollapsing, currencyList, hasBaPermission } = this.props;
-        const { currencyIdList, oddsGroup, specialLevel } = advancedSearchParam;
+        const { type, isAdvancedSearch, isFilterCollapsing, currencyList, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission } = this.props;
 
         console.log(isAdvancedSearch)
         const isValidParam = (isValidUserName || isValidsystemId || isAdvancedSearch);
@@ -174,7 +173,9 @@ export class FormFilter extends PureComponent {
                     {isAdvancedSearch && <AdvancedSearch
                         currencyList={currencyList}
                         param={advancedSearchParam}
-                        isAllowedBA={hasBaPermission}
+                        isAllowedBA={hasBaPermission.isallowed}
+                        isAllowedOddsGroup={hasOddsGroupPermission.isallowed}
+                        isAllowedSpecialLevel={hasSpecialLevelPermission.isallowed}
                         onChange={this.handleSpecificInputChange} />
                     }
 

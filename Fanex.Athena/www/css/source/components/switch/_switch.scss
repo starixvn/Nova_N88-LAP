@@ -1,4 +1,4 @@
-﻿$bgOn: #CA3232;
+﻿$bgOn: #13A306;
 $bgOff: #DFDFDF;
 $bgButtonOn: #fff;
 $bgButtonOff: #919191;
@@ -32,6 +32,7 @@ $bgButtonOff: #919191;
             &:checked {
                 & + .lever {
                     background-color: $bgOn;
+                    border-color: $bgOn;
 
                     &:before {
                         content: "ON";

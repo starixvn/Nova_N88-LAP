@@ -3,13 +3,11 @@
 @model IPagedList<UserLevel>
 
 @{
-    string titleFormat = @"LAP {0} {1} - {2}";
-    ViewBag.Title = string.Format(titleFormat, HttpUtility.HtmlDecode("&bull;"),
-                                         ViewResources.AccountManagement, ViewResources.ManageAccount);
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
 @section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.ContentLink("/Content/Global/lrf.global.reportable.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.ContentLink("/Content/Account/reset.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.ContentLink("/Content/Account/AccountManagement.css")" rel="stylesheet" type="text/css" />
@@ -21,86 +19,70 @@
     <script src="@Url.ContentLink("/Scripts/Account/NAP.js")" type="text/javascript"></script>
 }
 
-<div class="section-div">
-
-    <div class="buttons-div">
-        <div class="title">Manage User</div>
-        <div class="button-action">
+<div class="container-fluid">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "page-filter" }))
+    {
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group">
+                    <label class="label-text">@ViewResources.Username</label>
+                    <input type="text" class="input-text" value="@ViewBag.Criteria.Username" name="userName" id="Username" autocomplete="off" />
+                    <input type="hidden" value="@ViewBag.Criteria.Username" id="hdnUsename" />
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group">
+                    <label class="label-text">@ViewResources.Group</label>
+                    @Html.DropDownList("GroupId", (List<SelectListItem>)ViewBag.GroupSelectList, "All_Groups")
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 col-xl-1">
+                <div class="form-group">
+                    <label class="label-text">@ViewResources.Status</label>
+                    @Html.DropDownList("StatusId", new List<SelectListItem> {
+                        new SelectListItem { Text = "All", Value = "0"  },
+                        new SelectListItem { Text = "Active", Value = "1" , Selected = true },
+                        new SelectListItem { Text = "Inactive", Value = "2"  },
+                        new SelectListItem { Text = "Closed", Value = "3"  }
+                    })
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 col-xl-1">
+                <div class="form-group">
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-submit">@ViewResources.Submit</button>
+                    </div>
+                </div>
+            </div>
             @if (ViewBag.HasHostPermission)
             {
-            @Html.ActionLink("+ " + ViewResources.CreateNewUser, "NewUser", "Account",
-                             new
-                             {
-                             }, new { @class = "add-button" })
+                <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div class="form-group">
+                        <div class="button-group">
+                            @Html.ActionLink(ViewResources.NewUser, "NewUser", "Account", new { }, new { @class = "btn btn-add" })
+                        </div>
+                    </div>
+                </div>
             }
-
         </div>
-    </div>
-
-    <div>
-        @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-inline col-sm-12 filter-form" }))
-        {
-            <div class="form-group user-group-div">
-                @Html.Label(ViewResources.Username)
-                <input type="hidden" value="@ViewBag.Criteria.Username" id="hdnUsename" />
-                <input type="text" value="@ViewBag.Criteria.Username" name="userName" id="Username" />
-            </div>
-            <div class="form-group">
-                @Html.Label("GroupId", ViewResources.Group)
-                @Html.DropDownList("GroupId", (List<SelectListItem>)ViewBag.GroupSelectList, "All_Groups")
-            </div>
-
-            <div class="form-group">
-                @Html.Label("StatusId", ViewResources.Status)
-                @Html.DropDownList("StatusId", new List<SelectListItem> {
-                new SelectListItem { Text = "All", Value = "0"  },
-                new SelectListItem { Text = "Active", Value = "1" , Selected = true },
-                new SelectListItem { Text = "Inactive", Value = "2"  },
-                new SelectListItem { Text = "Closed", Value = "3"  }
-            })
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="@ViewResources.Submit" />
-            </div>
-        }
-    </div>
+    }
     <table class="col-sm-12 grid manage-table">
         <thead>
             <tr>
-                <th class="first">
-                    #
-                </th>
-                <th>
-                    @ViewResources.Username
-                </th>
-                <th>
-                    @ViewResources.FirstName
-                </th>
-                <th>
-                    @ViewResources.Group
-                </th>
-                <th>
-                    @ViewResources.Creator
-                </th>
-                <th>
-                    @ViewResources.CreatedDate
-                </th>
-                <th>
-                    @ViewResources.LastLoginDate
-                </th>
-                <th>
-                    @ViewResources.Status
-                </th>
+                <th class="first">#</th>
+                <th>@ViewResources.Username</th>
+                <th>@ViewResources.FirstName</th>
+                <th>@ViewResources.Group</th>
+                <th>@ViewResources.Creator</th>
+                <th>@ViewResources.CreatedDate</th>
+                <th>@ViewResources.LastLoginDate</th>
+                <th>@ViewResources.Status</th>
                 @if (ViewBag.HasHostPermission)
                 {
-                <th>
-                    @ViewResources.Action
-                </th>
+                    <th>@ViewResources.Action</th>
                 }
             </tr>
         </thead>
-
         <tbody id="grid-user">
             @if (!ReferenceEquals(Model, null) && Model.Count() > 0)
             {
@@ -159,36 +141,23 @@
                                 @if (item.User.Id != ViewBag.CurrentUserId && (item.Level < ViewBag.currentUserLevel || item.Level == (int)Constant.Level.User))
                                 {
                                     <div class="action-wrp">
-
                                         <span class="btn-action btn-action-active">Action</span>
                                         <div class="relative">
                                             <ul class="actions">
-
                                                 <li>
                                                     @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
-                              "Edit", new
-                              {
-                                  id = item.User.Id
-                              }, new { @class = "dd-edit" })
+                                                        "Edit", new { id = item.User.Id }, new { @class = "dd-edit" })
                                                 </li>
                                                 <li>
                                                     @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
-                              "ResetPassword", new
-                              {
-                                  id = item.User.Id
-                              }, new { @class = "dd-chgpwd" })
+                                                        "ResetPassword", new { id = item.User.Id }, new { @class = "dd-chgpwd" })
                                                 </li>
-
                                                 <li>
                                                     @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
-                              new
-                              {
-                                  id = item.User.Id
-                              }, new { @class = "dd-permission" })
+                                                        new { id = item.User.Id }, new { @class = "dd-permission" })
                                                 </li>
                                             </ul>
                                         </div>
-
                                     </div>
                                 }
                                 else
@@ -230,13 +199,9 @@
                         <span class="paging">
                             @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
                         </span>
-                        
                     </td>
                 </tr>
             </tfoot>
         }
-
-        </table>
-
-
+    </table>
 </div>

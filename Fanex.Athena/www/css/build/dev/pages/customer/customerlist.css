@@ -1800,18 +1800,18 @@ input[type="checkbox"] {
   .label:last-child {
     margin-right: 0; }
   .label-default {
-    border: 1px solid #4C6375;
-    color: #4C6375;
+    border: 1px solid #164F46;
+    color: #164F46;
     background: transparent; }
     .label-default:hover {
       color: #fff;
-      background: #4C6375; }
+      background: #164F46; }
     .label-default.active {
       color: #fff;
-      background: #4C6375; }
+      background: #164F46; }
   .label-primary {
     color: #fff;
-    background: #4C6375;
+    background: #164F46;
     border: none; }
     .label-primary:hover {
       color: #fff;
@@ -1846,7 +1846,8 @@ input[type="checkbox"] {
     left: 0.5px; }
 
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #CA3232; }
+  background-color: #13A306;
+  border-color: #13A306; }
   .switch label input[type=checkbox]:checked + .lever:before {
     content: "ON";
     right: 24px;

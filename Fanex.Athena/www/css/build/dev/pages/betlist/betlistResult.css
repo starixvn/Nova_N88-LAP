@@ -90,10 +90,11 @@ body {
   .result-container table > thead > tr > th {
     vertical-align: middle;
     text-align: center;
-    background: #4C6375;
+    background: #164F46;
     border: 1px solid #d1dae1;
     color: #fff !important;
-    padding: 4px 5px; }
+    padding: 4px 5px;
+    font-weight: normal; }
     .result-container table > thead > tr > th:first-child {
       border-left-color: #d1dae1 !important; }
     .result-container table > thead > tr > th:last-child {

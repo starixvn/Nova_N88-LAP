@@ -7882,7 +7882,7 @@ var defaultSubmitButton = {
 };
 var defaultCancelButton = {
   text: _langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Cancel'),
-  className: 'btn'
+  className: 'btn btn-cancel'
 };
 var defaultOkButton = {
   text: _langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OK'),

@@ -480,7 +480,7 @@ table tbody tr.row-group-level1 td {
   background-clip: padding-box;
   /* for IE9+, Firefox 4+, Opera, Chrome */ }
   .flat-popup .title-bar {
-    background-color: #4C6375;
+    background-color: #164F46;
     padding: 8.5px 15px;
     position: relative; }
     .flat-popup .title-bar .txt-title {
@@ -597,7 +597,7 @@ body {
   .system-parlay-detail-container .system-parlay-header th {
     vertical-align: middle;
     text-align: center;
-    background: #4C6375;
+    background: #164F46;
     border: 1px solid #fff;
     color: #fff;
     padding: 2px 5px; }

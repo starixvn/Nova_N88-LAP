@@ -480,7 +480,7 @@ table tbody tr.row-group-level1 td {
   background-clip: padding-box;
   /* for IE9+, Firefox 4+, Opera, Chrome */ }
   .flat-popup .title-bar {
-    background-color: #4C6375;
+    background-color: #164F46;
     padding: 8.5px 15px;
     position: relative; }
     .flat-popup .title-bar .txt-title {
@@ -681,7 +681,7 @@ input[type="checkbox"] {
   position: relative; }
 
 .header-content .table th {
-  background: #4C6375;
+  background: #164F46;
   color: #fff;
   border-top: none; }
   .header-content .table th:first-child {
@@ -706,7 +706,7 @@ input[type="checkbox"] {
   color: #F15E29; }
 
 .copy-setting input[type="checkbox"] + label, .filter-input input[type="checkbox"] + label {
-  color: #4C6375; }
+  color: #164F46; }
 
 .betsetting-form td input[type=text] {
   width: calc(100% - 100px);

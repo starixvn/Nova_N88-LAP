@@ -479,7 +479,7 @@ table tbody tr.row-group-level1 td {
   background-clip: padding-box;
   /* for IE9+, Firefox 4+, Opera, Chrome */ }
   .flat-popup .title-bar {
-    background-color: #4C6375;
+    background-color: #164F46;
     padding: 8.5px 15px;
     position: relative; }
     .flat-popup .title-bar .txt-title {
@@ -979,18 +979,18 @@ table tbody tr.row-group-level1 td {
   .label:last-child {
     margin-right: 0; }
   .label-default {
-    border: 1px solid #4C6375;
-    color: #4C6375;
+    border: 1px solid #164F46;
+    color: #164F46;
     background: transparent; }
     .label-default:hover {
       color: #fff;
-      background: #4C6375; }
+      background: #164F46; }
     .label-default.active {
       color: #fff;
-      background: #4C6375; }
+      background: #164F46; }
   .label-primary {
     color: #fff;
-    background: #4C6375;
+    background: #164F46;
     border: none; }
     .label-primary:hover {
       color: #fff;

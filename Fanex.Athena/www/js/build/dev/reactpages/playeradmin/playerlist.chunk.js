@@ -1326,10 +1326,9 @@ function (_PureComponent) {
           isAdvancedSearch = _this$props3.isAdvancedSearch,
           isFilterCollapsing = _this$props3.isFilterCollapsing,
           currencyList = _this$props3.currencyList,
-          hasBaPermission = _this$props3.hasBaPermission;
-      var currencyIdList = advancedSearchParam.currencyIdList,
-          oddsGroup = advancedSearchParam.oddsGroup,
-          specialLevel = advancedSearchParam.specialLevel;
+          hasBaPermission = _this$props3.hasBaPermission,
+          hasOddsGroupPermission = _this$props3.hasOddsGroupPermission,
+          hasSpecialLevelPermission = _this$props3.hasSpecialLevelPermission;
       console.log(isAdvancedSearch);
       var isValidParam = isValidUserName || isValidsystemId || isAdvancedSearch;
       var iconToggle = {
@@ -1382,7 +1381,9 @@ function (_PureComponent) {
       }))), isAdvancedSearch && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_AdvancedSearch__WEBPACK_IMPORTED_MODULE_5__["default"], {
         currencyList: currencyList,
         param: advancedSearchParam,
-        isAllowedBA: hasBaPermission,
+        isAllowedBA: hasBaPermission.isallowed,
+        isAllowedOddsGroup: hasOddsGroupPermission.isallowed,
+        isAllowedSpecialLevel: hasSpecialLevelPermission.isallowed,
         onChange: this.handleSpecificInputChange
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-2 col-sm-2 col-lg-2 col-xl-1"
@@ -1994,7 +1995,9 @@ function (_React$Component) {
       var _this$props = this.props,
           currencyList = _this$props.currencyList,
           param = _this$props.param,
-          isAllowedBA = _this$props.isAllowedBA;
+          isAllowedBA = _this$props.isAllowedBA,
+          isAllowedOddsGroup = _this$props.isAllowedOddsGroup,
+          isAllowedSpecialLevel = _this$props.isAllowedSpecialLevel;
       var currencyIdList = param.currencyIdList,
           oddsGroup = param.oddsGroup,
           specialLevel = param.specialLevel,
@@ -2009,7 +2012,6 @@ function (_React$Component) {
       var selectedBaStatus = isAllowedBA ? this.baStatusList.find(function (x) {
         return x.value === baFilter;
       }) : null;
-      console.log(isAllowedBA);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2025,7 +2027,7 @@ function (_React$Component) {
         onChange: function onChange(currentItem, selectedItemsKey) {
           return _this2.handleChange('currencyIdList', selectedItemsKey);
         }
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), isAllowedOddsGroup && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -2040,7 +2042,7 @@ function (_React$Component) {
         onChange: function onChange(currentItem, selectedItemsKey) {
           return _this2.handleChange('oddsGroup', selectedItemsKey);
         }
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), isAllowedSpecialLevel && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"

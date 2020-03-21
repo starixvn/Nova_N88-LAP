@@ -14,7 +14,7 @@ export const defaultSubmitButton = {
 
 export const defaultCancelButton = {
     text: LangHelper.getSingleResource('Cancel'),
-    className: 'btn'
+    className: 'btn btn-cancel'
 }
 
 export const defaultOkButton = {

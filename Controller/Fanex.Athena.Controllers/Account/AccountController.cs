@@ -70,7 +70,7 @@
 
             if (ModelState.IsValid)
             {
-                if (userService.CheckUsernameExist(criteria.Username))
+                if (userService.CheckUsernameExist(criteria.Username, true, N88Settings.Settings.SiteId))
                 {
                     ModelState.AddModelError("Username", string.Format("Duplicate User {0}", criteria.Username));
                     return View("~/Views/Account/NewUser.cshtml", criteria);

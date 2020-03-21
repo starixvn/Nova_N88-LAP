@@ -77,18 +77,20 @@ namespace Fanex.Athena.Service.UserManagement.Service
             return new CommandResult { Error = 1, Message = "Error" };
         }
 
-        public bool CheckUsernameExist(string username)
+        public bool CheckUsernameExist(string username, bool isLicenseeSite, int siteId)
         {
-            var user = GetByUsername(username);
+            var user = GetByUsername(username, isLicenseeSite, siteId);
 
             return user != null && user.UserId != 0;
         }
 
-        public UserData GetByUsername(string username)
+        public UserData GetByUsername(string username, bool isLicenseeSite, int siteId)
         {
             var criteria = new GetByUsernameUserCriteria
             {
-                Username = username
+                Username = username,
+                IsLicenseeSite = isLicenseeSite,
+                SiteId = siteId
             };
 
             if (criteria.IsValid())

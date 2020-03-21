@@ -6,6 +6,10 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
     {
         public string Username { get; set; }
 
+        public int SiteId { get; set; }
+
+        public bool IsLicenseeSite { get; set; }
+
         public override string GetSettingKey()
         {
             return "N88_User_GetByUsername";

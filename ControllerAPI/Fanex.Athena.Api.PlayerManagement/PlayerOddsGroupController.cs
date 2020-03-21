@@ -7,6 +7,7 @@
     using Fanex.Athena.Api.PlayerManagement.Utilities;
     using Fanex.Athena.Extension.Helpers;
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.ViewModel;
     using Fanex.Athena.Model.PlayerManagement.MetaModel;
     using Fanex.Athena.Service.Core.Common.Interfaces;
@@ -15,7 +16,7 @@
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Logging;
 
-    [FunctionAuthorization(PermissionKeys.PlayerAdminUpdateOddsGroup)]
+    [FunctionAuthorization(Policy.Host, PermissionKeys.PlayerAdminUpdateOddsGroup)]
     public class PlayerOddsGroupController : BaseApiController
     {
         private readonly IPlayerOddsGroupService _playerOddsGroupService;

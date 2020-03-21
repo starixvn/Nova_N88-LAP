@@ -219,6 +219,9 @@
   .page-container .page-last:before {
     content: "\EA22"; }
 
+.footer-content .table tbody tr.fixed-table-grant-total td, .footer-content .table tbody tr td {
+  background: #8DA6A2; }
+
 /* z-index */
 /* Table */
 /* Label Text */
@@ -253,7 +256,7 @@
     background-color: #4C6375;
     padding: 8.5px 15px;
     position: relative;
-    background-color: #4C6375;
+    background-color: #164F46;
     padding: 8.5px 15px;
     position: relative; }
     .popup-container .flat-popup .popup-title .txt-title {
@@ -312,7 +315,7 @@
     .popup-content-default .caption .base-currency-title {
       color: #024584; }
   .popup-content-default .table > thead > tr > th {
-    background: #4C6375;
+    background: #164F46;
     color: #fff; }
 
 .popup-detail-default {

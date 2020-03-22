@@ -53,6 +53,11 @@
             return View("~/Views/Account/Manage.cshtml", users.ToPagedList(criteria.PageIndex-1, criteria.PageSize, criteria.TotalRows));
         }
 
+        public ActionResult UserInfo(int id)
+        {
+            return View(userService.GetById(id));
+        }
+
         [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult NewUser()
         {

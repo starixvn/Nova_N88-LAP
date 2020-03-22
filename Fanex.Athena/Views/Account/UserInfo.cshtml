@@ -1,0 +1,114 @@
+﻿@using Fanex.Athena.Model.UserManagement.Model
+@model User
+@{
+    Layout = null;
+}
+
+@if (!ReferenceEquals(Model, null))
+{
+    <form class="form-horizontal info-form" role="form">
+        <table>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.Username, new { @for = "" })
+                </td>
+                <td class="col-sm-8">
+                    <label>@Model.Username</label>
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.FirstName, new { @for = "" })
+                </td>
+                <td class="col-sm-8">
+                    <label>@Model.FirstName</label>
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.LastName)
+                </td>
+                <td class="col-sm-8">
+                    <label>@Model.LastName</label>
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.Email)
+                </td>
+                <td class="col-sm-8">
+                    <label>@Model.Email</label>
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.Group, new { @for = "" })
+                </td>
+                <td class="col-sm-8">
+                    <label>@(Model.Group != null ? Model.Group.Name : string.Empty)</label>
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.LastLoginDate, new { @for = "" })
+                </td>
+                <td class="col-sm-8">
+                    @if (Model.LastLoginDate != DateTime.MinValue)
+                    {
+                        @Model.LastLoginDate.ToFullDateString()
+                    }
+                    else
+                    {
+                        <label>@ViewResources.NA</label>
+                    }
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.CreatedDate, new { @for = "" })
+                </td>
+                <td class="col-sm-8">
+                    @if (Model.CreatedDate != DateTime.MinValue)
+                    {
+                        @Model.CreatedDate.ToFullDateString()
+                    }
+                    else
+                    {
+                        <label>@ViewResources.NA</label>
+                    }
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.Creator, new { @for = "" })
+                </td>
+                <td class="col-sm-8">
+                    <label>@(Model.Creator != null ? Model.Creator.Username : string.Empty)</label>
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.ModifiedDate, new { @for = "" })
+                </td>
+                <td class="col-sm-8">
+                    @if (Model.ModifiedDate != DateTime.MinValue)
+                    {
+                        @Model.ModifiedDate.ToFullDateString()
+                    }
+                    else
+                    {
+                        <label>@ViewResources.NA</label>
+                    }
+                </td>
+            </tr>
+            <tr class="form-group line">
+                <td class="col-sm-4 text-right">
+                    @Html.LabelFor(m => m.Modifier, new { @for = "" })
+                </td>
+                <td class="col-sm-8">
+                    <label>@(Model.Modifier != null ? Model.Modifier.Username : string.Empty)</label>
+                </td>
+            </tr>
+        </table>
+    </form>
+}

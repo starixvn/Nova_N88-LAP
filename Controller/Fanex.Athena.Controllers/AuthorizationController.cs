@@ -376,10 +376,12 @@
             }
 
             var user = userService.Get(SessionServiceInstance.UserSession.UserId);
-            string hashPassword = Cryptography.CfsEnCode(newPassword);
-            if (string.Equals(hashPassword, user.Password, StringComparison.CurrentCultureIgnoreCase))
+            string hashOldPassword = Cryptography.CfsEnCode(oldPassword);
+
+            if (string.Equals(hashOldPassword, user.Password, StringComparison.CurrentCultureIgnoreCase))
             {
-                var result = securityService.UpdatePassword(n88Settings.SiteId, SessionServiceInstance.UserSession.UserId, newPassword);
+                string hashNewPassword = Cryptography.CfsEnCode(newPassword);
+                var result = securityService.UpdatePassword(n88Settings.SiteId, SessionServiceInstance.UserSession.UserId, hashNewPassword);
                 if (result)
                 {
                     return Json(new

@@ -62,7 +62,8 @@ function generateConfig(environment) {
             [`${cssPath}/pages/customer/betsetting`]: pathConfig.cssPaths.betsetting,
             [`${cssPath}/pages/reports/customerwinloss`]: pathConfig.cssPaths.customerwinloss,
 
-            [`${cssPath}/pages/user/manageuser`]: pathConfig.cssPaths.manageuser
+            [`${cssPath}/pages/user/manageuser`]: pathConfig.cssPaths.manageuser,
+            [`${cssPath}/pages/user/edituser`]: pathConfig.cssPaths.edituser
         },
         output: {
             path: pathConfig.projectRoot,

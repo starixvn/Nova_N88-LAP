@@ -33,7 +33,8 @@ var cssPaths = {
     customeroutstanding: ["./www/css/source/pages/betlist/customeroutstanding.scss"],
     betsetting: ["./www/css/source/pages/customer/betsetting.scss"],
     customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"],
-    manageuser: ["./www/css/source/pages/user/index.scss"]
+    manageuser: ["./www/css/source/pages/user/index.scss"],
+    edituser: ["./www/css/source/pages/user/edit.scss"],
 };
 
 var scriptPaths = {

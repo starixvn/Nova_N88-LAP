@@ -6,8 +6,8 @@
     var langCode = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
 }
 @section pagecss {
-    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
 }
 @section pagejs {
     <script src="@Url.ContentLinkByEnv("/www/js/build/language.chunk.js")"></script>

@@ -1,0 +1,86 @@
+﻿@import "../../abstracts/variables";
+@import "../../abstracts/mixins";
+@import '../../components/breadcrumb/breadcrumb';
+
+.container-fluid {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+}
+
+.form-horizontal {
+    width: 500px;
+    background: #fff;
+    border: 1px solid #d6d6d6;
+    padding: 10px 15px;
+    @include box-shadow(0px 5px 8px rgba(0, 0, 0, 0.25));
+
+    .label-text {
+        font-size: 12px;
+
+        &.required {
+            &:after {
+                content: "*";
+                margin-left: 4px;
+                color: #ff0000;
+            }
+        }
+    }
+
+    .input-text {
+        font-size: 12px;
+        margin: 0px;
+        height: 22px;
+        line-height: 22px;
+
+        &.input-validation-error {
+            border-bottom-color: #ff4545;
+        }
+
+        &.disabled {
+            background-color: #dfdfdf;
+        }
+    }
+
+    select {
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .validation-summary-valid.success {
+        padding: 0 .8rem;
+        background-color: #aaffaa;
+        border: 1px solid #00aa00;
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 0;
+            list-style-type: disc;
+
+            li {
+                margin: 4px 0;
+                list-style-type: disc;
+            }
+        }
+    }
+
+    .validation-summary-errors {
+        padding: 0 .8rem;
+        background-color: #fccccc;
+        color: #ff0909;
+        border: 1px solid #f5a7a7;
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 0;
+            list-style-type: disc;
+
+            li {
+                margin: 4px 0;
+                list-style-type: disc;
+            }
+        }
+    }
+}

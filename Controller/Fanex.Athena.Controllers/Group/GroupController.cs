@@ -66,6 +66,20 @@
         {
             if (ModelState.IsValid)
             {
+                var getCriteria = new GetByNameGroupCriteria
+                {
+                    GroupName = criteria.GroupName
+                };
+
+                GroupData group = _groupService.Get(getCriteria);
+
+                if (!ReferenceEquals(group, null) && group.GroupId != criteria.GroupId)
+                {
+                    ModelState.AddModelError("SiteName", string.Format(ViewResources.DuplicateMsg, criteria.GroupName));
+
+                    return View(criteria);
+                }
+
                 criteria.IsLicenseeGroup = true;
                 criteria.SiteId = N88Settings.Settings.SiteId;
                 criteria.CreatedBy = SessionServiceInstance.UserSession.UserId;
@@ -123,7 +137,7 @@
                     GroupName = criteria.GroupName,
                     IsLicenseeGroup = true
                 };
-                // check name exist
+
                 GroupData group = _groupService.Get(getCriteria);
 
                 if (!ReferenceEquals(group, null) && group.GroupId != criteria.GroupId)
@@ -133,7 +147,6 @@
                     return View(criteria);
                 }
 
-                // update function
                 criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
                 criteria.ModifiedDate = DateTime.Now;
                 criteria.IsLicenseeGroup = true;

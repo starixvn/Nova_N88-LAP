@@ -84,8 +84,11 @@
 
                     <tr @Html.Raw(rowCss)>
                         <td class="text-center">@(i + 1)</td>
-                        <td>@group.GroupName</td>
-                        <td class="text-center">
+                        <td class="username-td">
+                            <a href="javascript:;" gid="@group.GroupId" class="lnk-group-info"
+                               title="@ViewResources.View_details_of '@group.GroupName'">@group.GroupName</a>
+                        </td>
+                        <td class="text-center username-td">
                             @if (group.NumOfUser > 0 && ViewBag.HasManageUserRight)
                             {
                                 string title = string.Format("View users of '{0}'", group.GroupName);

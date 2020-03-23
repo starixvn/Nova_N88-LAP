@@ -4,6 +4,7 @@
 @import "../../components/table";
 @import "../../reactpages/layout/filter";
 @import "../../reactpages/components/forms/input-text";
+@import "../../components/ui-dialog";
 
 .container-fluid {
     width: 100%;
@@ -92,4 +93,8 @@
             }
         }
     }
+}
+
+.ui-dialog {
+    width: 400px !important;
 }

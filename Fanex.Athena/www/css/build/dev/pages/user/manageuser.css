@@ -775,6 +775,50 @@ button.close {
     -moz-appearance: textfield;
     /* Firefox */ }
 
+.ui-widget-overlay {
+  background: rgba(0, 0, 0, 0.7) no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100; }
+
+.ui-dialog {
+  background: #fff;
+  -webkit-border-radius: 0;
+  -khtml-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  min-width: 400px;
+  z-index: 101; }
+  .ui-dialog .ui-dialog-titlebar {
+    background-color: #164F46;
+    padding: 8px 15px; }
+    .ui-dialog .ui-dialog-titlebar .ui-dialog-title {
+      color: #fff;
+      font-size: 14px; }
+    .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+      color: #bfbdbf;
+      float: right;
+      border: none;
+      background: transparent; }
+      .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close:hover {
+        color: #fff; }
+      .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon {
+        font-family: 'icomoon' !important;
+        font-size: 18px; }
+        .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon:before {
+          content: "\E910"; }
+      .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-button-text {
+        display: none; }
+  .ui-dialog .ui-dialog-content {
+    padding: 10px; }
+
 .container-fluid {
   width: 100%;
   margin-right: auto;
@@ -839,6 +883,9 @@ button.close {
         display: block;
         color: #333;
         white-space: nowrap; }
+
+.ui-dialog {
+  width: 400px !important; }
 
 
 /*# sourceMappingURL=manageuser.css.map*/

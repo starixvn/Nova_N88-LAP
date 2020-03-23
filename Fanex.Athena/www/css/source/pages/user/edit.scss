@@ -1,6 +1,7 @@
 ﻿@import "../../abstracts/variables";
 @import "../../abstracts/mixins";
 @import '../../components/breadcrumb/breadcrumb';
+/*@import '../../reactpages/components/forms/_checkbox.scss';*/
 
 .container-fluid {
     width: 100%;
@@ -46,6 +47,15 @@
     select {
         &:focus {
             outline: none;
+        }
+    }
+
+    .checkbox-group {
+        margin-top: 5px;
+
+        label {
+            font-size: 12px;
+            color: #333;
         }
     }
 

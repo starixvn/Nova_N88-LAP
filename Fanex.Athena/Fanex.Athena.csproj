@@ -686,6 +686,7 @@
     <Content Include="www\css\source\pages\user\edit.scss" />
     <Content Include="www\css\build\dev\pages\user\edituser.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\user\edituser.css.map" />
+    <Content Include="Views\ViewLog\LogExecSp.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -4958,6 +4959,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="Views\Home\" />
     <Folder Include="Views\Report\" />
     <Folder Include="www\js\build\dev\pages\user\" />
     <Folder Include="www\js\build\pro\pages\user\" />

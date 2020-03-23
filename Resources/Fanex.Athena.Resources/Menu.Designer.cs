@@ -88,11 +88,29 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Execute SP Log.
+        /// </summary>
+        public static string ExecuteSPLog {
+            get {
+                return ResourceManager.GetString("ExecuteSPLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licensee Win Loss.
         /// </summary>
         public static string LicenseeWinLoss {
             get {
                 return ResourceManager.GetString("LicenseeWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log Management.
+        /// </summary>
+        public static string LogManagement {
+            get {
+                return ResourceManager.GetString("LogManagement", resourceCulture);
             }
         }
         

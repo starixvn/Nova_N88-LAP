@@ -37,6 +37,16 @@ namespace Fanex.Athena.Service.UserManagement.Service
             return new CommandResult { Error = 1, Message = "Error" };
         }
 
+        public CommandResult UpdateSite(UpdateSiteToUserCriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                return this.userRepository.ExecuteNonQueryAsync(criteria);
+            }
+
+            return new CommandResult { Error = 1, Message = "Error" };
+        }
+
         public CommandResult Update(UpdateCustCriteria criteria)
         {
             if (criteria.IsValid())

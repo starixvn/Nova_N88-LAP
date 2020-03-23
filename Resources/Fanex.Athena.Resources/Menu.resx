@@ -147,4 +147,10 @@
   <data name="UserManagement" xml:space="preserve">
     <value>User Management</value>
   </data>
+  <data name="ExecuteSPLog" xml:space="preserve">
+    <value>Execute SP Log</value>
+  </data>
+  <data name="LogManagement" xml:space="preserve">
+    <value>Log Management</value>
+  </data>
 </root>

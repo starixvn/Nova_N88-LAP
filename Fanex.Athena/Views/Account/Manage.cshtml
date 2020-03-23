@@ -152,6 +152,17 @@
                                                 @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
                                                     new { id = item.User.Id })
                                             </li>
+                                            @{ 
+                                                    var itemStatus = (Constant.UserStatus)item.Status;
+                                                    if (itemStatus != Constant.UserStatus.Closed)
+                                                    {
+                                                        string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
+                                                        <li>
+                                                            <a href="#" onclick="return false;" class="active-deactive-link" username="@item.User.Username"
+                                                               activatetext="@activateText" userid="@item.User.Id">@activateText '@item.User.Username'</a>
+                                                        </li>
+                                                   }
+                                           }
                                         </ul>
                                     </div>
                                 }
@@ -170,7 +181,7 @@
             {
                 <tr class="no-info">
                     <td colspan="12" class="text-center">
-                        NoInformationAvailable
+                        @ViewResources.NoInformationAvailable
                     </td>
                 </tr>
             }

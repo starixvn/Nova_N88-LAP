@@ -58,6 +58,32 @@
             return View(userService.GetById(id));
         }
 
+        [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult UpdateStatus(int id, bool isActive)
+        {
+            var assignSiteCriteria = new UpdateSiteToUserCriteria
+            {
+                UserId = id,
+                SiteId = N88Settings.Settings.SiteId,
+                Level = (int)Constant.Level.User,
+                IsActive = isActive,
+                ModifiedBy = SessionServiceInstance.UserSession.UserId,
+                ModifiedDate = DateTime.Now,
+                IsNeverExpired = true
+            };
+            UpdateCriteria(assignSiteCriteria);
+            var assignResult = userService.UpdateSite(assignSiteCriteria);
+
+            if (assignResult != null && assignResult.IsSuccessful)
+            {
+                ViewBag.Success = true;
+                return Json(Constant.Ok);
+            }
+
+            return new EmptyResult();
+        }
+
         [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult NewUser()
         {

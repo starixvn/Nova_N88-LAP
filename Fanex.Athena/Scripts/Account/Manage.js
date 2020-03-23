@@ -92,4 +92,39 @@ $(document).ready(function () {
         //NAP.loadingBox.show();
         window.location.replace(url);
     });
+
+    ManageUser.grid.on('click', '.active-deactive-link', function () {
+        var $this = $(this),
+            activeText = $this.attr('activatetext'),
+            isActive = activeText == "Activate",
+            userId = $this.attr('userid'),
+            userName = $this.attr('username'),
+            msg = "Are you sure you want to " + activeText + " '" + userName + "'";
+
+        var isConfirm = confirm(msg);
+        if (isConfirm) {
+            $.ajax({
+                url: NAP.resolveClientUrl("Account/UpdateStatus" + "?id=" + userId + "&isActive=" + isActive),
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                cache: false,
+                success: function (response) {
+                    var username = $('#Username').val(),
+                        groupId = $('#GroupId').val(),
+                        statusId = $('#StatusId').val();
+
+                    var url = NAP.resolveClientUrl('Account/Manage' +
+                        '?username=' + username +
+                        '&groupid=' + groupId +
+                        '&statusId=' + statusId);
+
+                    window.location.replace(url);
+                },
+                error: function (xhr, status, err) {
+                    NAP.handleAjaxError(xhr, status, err);
+                }
+            });
+        }
+    });
 });

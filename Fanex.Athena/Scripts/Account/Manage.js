@@ -1,19 +1,16 @@
 ﻿/* global NAP: false */
-
 "use strict";
 
 var ManageUser = (function () {
-
     return {
         grid: null,
         form: null,
         siteId: null
     };
-
 }(jQuery));
 
 $(document).ready(function () {
-    ManageUser.grid = $('.grid');
+    ManageUser.grid = $('.table');
     ManageUser.form = $('form:first');
     ManageUser.siteId = $('#SiteId');
 
@@ -40,19 +37,18 @@ $(document).ready(function () {
             }
         });
     });
-
     // shows action-panel when clicking on the action buttons
-    ManageUser.grid.on('click', '.btn-action', function (e) {
+    ManageUser.grid.on('click', '.btn-action:not(.disabled)', function (e) {
         var $this = $(this),
             parent = $this.parent(),
-            dropdown = parent.find('.actions');
+            dropdown = parent.find('.dropdown');
 
         if (parent.hasClass('active')) {
             parent.removeClass('active');
             dropdown.hide();
         } else {
-            ManageUser.grid.find('.active').removeClass('active').find('.actions').hide();
-            dropdown.css({ top: -(parent.height() + 10), right: parent.width() * 0.8 }).show();
+            ManageUser.grid.find('.active').removeClass('active').find('.dropdown').hide();
+            dropdown.show();
             parent.addClass('active');
         }
 
@@ -61,7 +57,7 @@ $(document).ready(function () {
 
     // hides action-panel when clicking outside the action buttons
     $('body, header, #headline, #body').on('click', function () {
-        ManageUser.grid.find('.action-wrp.active').removeClass('active').find('.actions').hide();
+        ManageUser.grid.find('.col-action.active').removeClass('active').find('.dropdown').hide();
     });
 
     // shows loading on change page
@@ -91,7 +87,7 @@ $(document).ready(function () {
             '&groupid=' + groupId +
             '&size=' + pageSize +
             '&page=' + 1 +
-            '&statusId=' + statusId);        
+            '&statusId=' + statusId);
 
         //NAP.loadingBox.show();
         window.location.replace(url);

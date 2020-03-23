@@ -8,9 +8,6 @@
 
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Global/lrf.global.reportable.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Account/reset.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Account/AccountManagement.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
 }
 @section pagejs {
@@ -66,10 +63,10 @@
             }
         </div>
     }
-    <table class="col-sm-12 grid manage-table">
+    <table class="table">
         <thead>
-            <tr>
-                <th class="first">#</th>
+            <tr class="level1">
+                <th>#</th>
                 <th>@ViewResources.Username</th>
                 <th>@ViewResources.FirstName</th>
                 <th>@ViewResources.Group</th>
@@ -96,7 +93,7 @@
                         <td class="text-center">
                             @((Model.PageSize * (Model.PageIndex) + i + 1))
                         </td>
-                        <td class="username-td">
+                        <td>
                             <a href="javascript:;" uid="@item.User.Id" class="lnk-user-info"
                                title="">@item.User.Username</a>
                         </td>
@@ -137,34 +134,30 @@
 
                         @if (ViewBag.HasHostPermission)
                         {
-                            <td class="text-center">
+                            <td class="text-center col-action">
                                 @if (item.User.Id != ViewBag.CurrentUserId && (item.Level < ViewBag.currentUserLevel || item.Level == (int)Constant.Level.User))
                                 {
-                                    <div class="action-wrp">
-                                        <span class="btn-action btn-action-active">Action</span>
-                                        <div class="relative">
-                                            <ul class="actions">
-                                                <li>
-                                                    @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
-                                                        "Edit", new { id = item.User.Id }, new { @class = "dd-edit" })
-                                                </li>
-                                                <li>
-                                                    @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
-                                                        "ResetPassword", new { id = item.User.Id }, new { @class = "dd-chgpwd" })
-                                                </li>
-                                                <li>
-                                                    @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
-                                                        new { id = item.User.Id }, new { @class = "dd-permission" })
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <span class="btn-action icon-settings"></span>
+                                    <div class="action-wrapper">
+                                        <ul class="dropdown">
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
+                                                    "Edit", new { id = item.User.Id })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
+                                                    "ResetPassword", new { id = item.User.Id })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
+                                                    new { id = item.User.Id })
+                                            </li>
+                                        </ul>
                                     </div>
                                 }
                                 else
                                 {
-                                    <div class="action-wrp">
-                                        <span class="btn-action btn-action-inactive">@ViewResources.Action</span>
-                                    </div>
+                                    <span class="btn-action disabled icon-settings"></span>
                                 }
                             </td>
                         }
@@ -185,16 +178,15 @@
         @if (Model != null && Model.Count() > 0)
         {
             <tfoot>
-                <tr>
+                <tr class="page-container">
                     <td colspan="12">
-
                         <span class="items-per-page-wrp">
                             @ViewResources.PageSize
                             @Html.DropDownList("items-per-page", new List<SelectListItem> {
-                            new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
-                            new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
-                            new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
-                        }, new { id = string.Empty, @class = "items-per-page" })
+                                new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
+                                new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
+                                new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
+                            }, new { id = string.Empty, @class = "items-per-page" })
                         </span>
                         <span class="paging">
                             @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("groupid", ViewBag.Criteria.GroupId)).Options(o => o.AddRouteValue("username", ViewBag.Criteria.Username)).Options(o => o.AddRouteValue("statusId", ViewBag.Criteria.Status))

@@ -55,6 +55,25 @@
   .breadcrumb.flat a.active:hover {
     background: #4C6375; }
 
+.table {
+  width: 100%; }
+  .table thead tr th, .table thead tr td, .table tbody tr th, .table tbody tr td {
+    border-left: 1px solid #bdbdbd;
+    color: #333; }
+  .table thead tr.level1 th {
+    background-color: #164F46;
+    color: #fff; }
+  .table thead tr.level2 th {
+    background-color: #a2beba; }
+  .table thead tr th {
+    padding: 8px 5px;
+    text-align: center; }
+  .table tbody tr td {
+    padding: 4px 5px;
+    border-bottom: 1px solid #bdbdbd; }
+    .table tbody tr td:last-child {
+      border-right: 1px solid #bdbdbd; }
+
 .form-group {
   margin-bottom: 15px; }
   .form-group .label-text {

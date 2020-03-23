@@ -7,9 +7,6 @@
 }
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Global/lrf.global.reportable.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Account/reset.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Account/AccountManagement.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
 }
 @section pagejs {
@@ -53,10 +50,10 @@
             }
         </div>
     }
-    <table class="col-sm-12 grid manage-table">
+    <table class="table">
         <thead>
-            <tr>
-                <th class="first">#</th>
+            <tr class="level1">
+                <th>#</th>
                 <th>@ViewResources.Name</th>
                 <th>@ViewResources.Users</th>
                 <th>@ViewResources.Description</th>
@@ -128,24 +125,22 @@
                                 <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
                             }
                         </td>
-                        <td class="text-center">
-                            <div class="action-wrp">
-                                <span class="btn-action">@ViewResources.Action</span>
-                                <div class="relative">
-                                    <ul class="actions">
-                                        @if (ViewBag.HasEditRight)
-                                        {
-                                            <li>
-                                                @Html.ActionLink(string.Format("Edit '{0}' Details", group.GroupName),
-                                                    "Edit", new { id = group.GroupId }, new { @class = "dd-edit" })
-                                            </li>
-                                        }
+                        <td class="text-center col-action">
+                            <span class="btn-action icon-settings"></span>
+                            <div class="action-wrapper">
+                                <ul class="dropdown">
+                                    @if (ViewBag.HasEditRight)
+                                    {
                                         <li>
-                                            @Html.ActionLink(string.Format("View Permission of '{0}'", group.GroupName),
-                                                "AssignPermission", new { id = group.GroupId }, new { @class = "dd-permission" })
+                                            @Html.ActionLink(string.Format("Edit '{0}' Details", group.GroupName),
+                                                "Edit", new { id = group.GroupId })
                                         </li>
-                                    </ul>
-                                </div>
+                                    }
+                                    <li>
+                                        @Html.ActionLink(string.Format("View Permission of '{0}'", group.GroupName),
+                                            "AssignPermission", new { id = group.GroupId })
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                     </tr>

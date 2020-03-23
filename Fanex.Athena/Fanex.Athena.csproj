@@ -675,6 +675,7 @@
     <Content Include="www\css\build\dev\pages\user\manageuser.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\user\manageuser.css.map" />
     <Content Include="Views\Account\UserInfo.cshtml" />
+    <Content Include="www\css\source\components\_table.scss" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

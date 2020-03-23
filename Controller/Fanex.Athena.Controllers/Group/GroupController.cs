@@ -68,7 +68,9 @@
             {
                 var getCriteria = new GetByNameGroupCriteria
                 {
-                    GroupName = criteria.GroupName
+                    GroupName = criteria.GroupName,
+                    IsLicenseeGroup = true,
+                    SiteId = n88Settings.SiteId
                 };
 
                 GroupData group = _groupService.Get(getCriteria);

@@ -57,7 +57,7 @@
             playerAdmin.SiteName = licenseeSession.LicenseeName;
             playerAdmin.IsAllowedOddGroup = new KeyValuePair<bool, int>(allowedOddGroup != null, allowedOddGroup == null ? 0 : allowedOddGroup.Policy);
             playerAdmin.IsAllowedSpecialLevel = new KeyValuePair<bool, int>(allowedSpecialLevel != null, allowedSpecialLevel == null ? 0 : allowedSpecialLevel.Policy);
-            playerAdmin.IsAllowedBA = new KeyValuePair<bool, int>(allowedBA != null, allowedBA == null ? 0 : allowedBA.Policy);
+            playerAdmin.IsAllowedBA = new KeyValuePair<bool, int>(allowedBA.FunctionKey != null, allowedBA == null ? 0 : allowedBA.Policy);
             playerAdmin.PlayerTabItems = JsonConvert.SerializeObject(PlayerAdminTab.CommonTabList);
 
             return playerAdmin;

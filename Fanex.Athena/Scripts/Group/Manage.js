@@ -51,7 +51,7 @@ $(document).ready(function () {
     // #region tooltips
     $('.tip').tipsy({ gravity: 'se' });
     $('#headline h1 .lnk').tipsy({ gravity: 'w' });
-    $('.table input[type=checkbox][gid]').tipsy({ gravity: 's' });
+    $('.js-tipsy-s').tipsy({ gravity: 's' });
     $('.table .lnk-group-info').tipsy({ gravity: 'w' });
     $('.table .num-of-user').tipsy({ gravity: 'w' });
     // #endregion
@@ -80,51 +80,38 @@ $(document).ready(function () {
     // #endregion
 
     // #region activate/deactivate functions
-    ManageGroup.grid.on('mousedown', 'input[type=checkbox][gid]', function () {
+    ManageGroup.grid.on('change', 'input[type=checkbox]:not(:disabled)', function () {
         var $this = $(this),
             groupName = $this.attr('gname'),
-            active = !$this.is(':checked'),
-            action = active ? 'activate' : 'deactivate',
+            isChecked = $this.prop('checked'),
+            action = isChecked ? 'activate' : 'deactivate',
             msgTemplate = ManageGroup.getSingleResource('ActiveGroupConfirm'),
             msg = msgTemplate.replace('{0}', ManageGroup.getSingleResource(action)).replace('{1}', groupName);
 
         var isConfirm = confirm(msg);
-
         if (isConfirm) {
             var groupId = $this.attr('gid');
-
-            $this.prop('checked', active);
-
+            $this.prop('checked', isChecked);
             $.ajax({
-                url: NAP.resolveClientUrl("Group/Activate" + "?id=" + groupId + "&isActive=" + active),
+                url: NAP.resolveClientUrl("Group/Activate" + "?id=" + groupId + "&isActive=" + isChecked),
                 type: 'POST',
                 contentType: 'application/json',
                 dataType: 'json',
                 cache: false,
-                //beforeSend: function () {
-                //	NAP.loadingBox.show();
-                //},
-                //complete: function () {
-                //	NAP.loadingBox.close();
-                //},
-                success: function (response) {
-                    $('#resultMessage').toggleClass('field-validation-success', response.IsSuccessful)
-                        .toggleClass('field-validation-error', !response.IsSuccessful)
-                        .text(response.Message);
-
-                    $('.response-area').show()
-                        .animate({ "opacity": "hidden" }, 10000, function () { $(this).fadeOut(1000); });
-
-                    if (active) {
-                        $this.attr('original-title', $this.attr('original-title').replace('Activate', 'Deactivate'));
+                success: function () {
+                    var parent = $this.parent('.js-tipsy-s');
+                    if (isChecked) {
+                        parent.attr('original-title', parent.attr('original-title').replace('Activate', 'Deactivate'));
                     } else {
-                        $this.attr('original-title', $this.attr('original-title').replace('Deactivate', 'Activate'));
+                        parent.attr('original-title', parent.attr('original-title').replace('Deactivate', 'Activate'));
                     }
                 },
                 error: function (xhr, status, err) {
                     NAP.handleAjaxError(xhr, status, err);
                 }
             });
+        } else {
+            $this.prop('checked', !isChecked);
         }
     });
     // #endregion

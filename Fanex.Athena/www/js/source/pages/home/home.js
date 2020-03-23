@@ -91,7 +91,7 @@ define([
             const menuItemName = $menuItem.length > 0 ? $menuItem.text() : '';
             $('#page-title').text(menuItemName);
 
-            document.title = 'LAP' + ' - ' + $('.active > .menu-title').text() + ' - ' + menuItemName;
+            document.title = $('.active > .menu-title').text() + ' - ' + menuItemName;
         }
 
         return {

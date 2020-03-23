@@ -341,11 +341,13 @@ input[type="checkbox"].checkbox {
     transition: transform .1s ease-out,-webkit-transform .1s ease-out;
     -webkit-transform: rotate(-45deg) scale(1);
     transform: rotate(-45deg) scale(1); }
-  input[type="checkbox"].checkbox:disabled + label:after {
-    border-color: #BDBDBD; }
-  input[type="checkbox"].checkbox:disabled:checked + label:before {
-    border-right-color: #BDBDBD;
-    border-bottom-color: #BDBDBD; }
+  input[type="checkbox"].checkbox:disabled + label {
+    color: #b8b8b8;
+    cursor: not-allowed; }
+  input[type="checkbox"].checkbox:disabled + label:before {
+    box-shadow: none;
+    background-color: #a8a8a8;
+    border-color: #a8a8a8; }
 
 .invalid input[type="checkbox"] + label:after {
   border: 1px solid #e51c23; }

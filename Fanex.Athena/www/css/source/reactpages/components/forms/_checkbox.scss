@@ -81,15 +81,15 @@ input[type="checkbox"].checkbox {
         transform: rotate(-45deg) scale(1);
     }
 
-    &:disabled {
-        & + label:after {
-            border-color: $input-disabled-solid-color;
-        }
+    &:disabled + label {
+        color: #b8b8b8;
+        cursor: not-allowed;
+    }
 
-        &:checked + label:before {
-            border-right-color: $input-disabled-solid-color;
-            border-bottom-color: $input-disabled-solid-color;
-        }
+    &:disabled + label:before {
+        box-shadow: none;
+        background-color: rgb(168, 168, 168);
+        border-color: rgb(168, 168, 168);
     }
 }
 

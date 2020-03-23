@@ -40,8 +40,9 @@
         <div class="form-group">
             <div class="label-text">@ViewResources.Status</div>
             <div class="checkbox-group">
-                @Html.CheckBoxFor(g => g.IsActive, new { @class = "checkbox" })
-                @Html.LabelFor(g => g.IsActive, ViewResources.Active)
+                <input type="checkbox" class="checkbox" name="IsActive" id="IsActive" @(Model.IsActive ? "checked" : string.Empty) value="true" />
+                <label for="IsActive">@ViewResources.Active</label>
+                <input name="IsActive" type="hidden" value="false" />
             </div>
         </div>
         <div class="form-group">

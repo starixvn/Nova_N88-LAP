@@ -81,11 +81,11 @@
 
                     <tr @Html.Raw(rowCss)>
                         <td class="text-center">@(i + 1)</td>
-                        <td class="username-td">
+                        <td>
                             <a href="javascript:;" gid="@group.GroupId" class="lnk-group-info"
                                title="@ViewResources.View_details_of '@group.GroupName'">@group.GroupName</a>
                         </td>
-                        <td class="text-center username-td">
+                        <td class="text-center">
                             @if (group.NumOfUser > 0 && ViewBag.HasManageUserRight)
                             {
                                 string title = string.Format("View users of '{0}'", group.GroupName);
@@ -98,31 +98,28 @@
                                 @group.NumOfUser
                             }
                         </td>
-                        <td>
-                            @group.Description
-                        </td>
-                        <td class="text-center">
-                            @group.ModifiedDate.ToFullDateString()
-                        </td>
-                        <td>
-                            @group.ModifierUsername
-                        </td>
+                        <td>@group.Description</td>
+                        <td class="text-center">@group.ModifiedDate.ToFullDateString()</td>
+                        <td>@group.ModifierUsername</td>
                         <td class="text-center">
                             @if (ViewBag.HasEditRight)
                             {
                                 string activateText = group.IsActive ? "Deactivate" : "Activate";
-
-                                @Html.CheckBox(string.Format("chk-group-{0}", group.GroupId), group.IsActive,
-                                    new
-                                    {
-                                        gid = group.GroupId,
-                                        gname = group.GroupName,
-                                        title = string.Format("{0} '{1}'", activateText, group.GroupName)
-                                    })
+                                var ckbname = string.Format("chk-group-{0}", group.GroupId);
+                                <div class="js-tipsy-s" title="@string.Format("{0} '{1}'", activateText, group.GroupName)">
+                                    <input type="checkbox" class="checkbox" name="@ckbname" id="@ckbname"
+                                        gid="@group.GroupId" gname="@group.GroupName"
+                                        @(group.IsActive ? "checked" : string.Empty) />
+                                    <label for="@ckbname"></label>
+                                </div>
                             }
-                            else if (group.IsActive)
+                            else
                             {
-                                <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
+                                if (group.IsActive)
+                                {
+                                    <input type="checkbox" class="checkbox" name="@string.Format("chk-group-{0}", group.GroupId)" disabled checked />
+                                    <label></label>
+                                }
                             }
                         </td>
                         <td class="text-center col-action">

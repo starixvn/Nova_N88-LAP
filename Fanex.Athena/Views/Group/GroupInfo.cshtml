@@ -5,64 +5,60 @@
 
 @if (!ReferenceEquals(Model, null))
 {
-    <form class="form-horizontal info-form">
-        <table>
-            <tr class="form-group line">
-                <td class="col-sm-4 text-right">@Html.Label(ViewResources.Name)</td>
-                <td class="col-sm-8">
-                    @Html.Label(Model.GroupName)
-                </td>
-            </tr>
-            <tr class="form-group line">
-                <td class="col-sm-4 text-right">@Html.Label(ViewResources.Description)</td>
-                <td class="col-sm-8">
-                    @(Model.Description != null ? Model.Description : string.Empty)
-                </td>
-            </tr>
-            <tr class="form-group line">
-                <td class="col-sm-4 text-right">@Html.Label(ViewResources.Status)</td>
-                <td class="col-sm-8">
-                    @(Model.IsActive ? ViewResources.Active : ViewResources.Inactive)
-                </td>
-            </tr>
-            <tr class="form-group line">
-                <td class="col-sm-4 text-right">@Html.Label(ViewResources.Created_Date)</td>
-                <td class="col-sm-8">
-                    @if (Model.CreatedDate != DateTime.MinValue)
-                    {
-                        @Model.CreatedDate.ToFullDateString()
-                    }
-                    else
-                    {
-                        <label>@ViewResources.NA</label>
-                    }
-                </td>
-            </tr>
-            <tr class="form-group line">
-                <td class="col-sm-4 text-right">@Html.Label(ViewResources.Creator)</td>
-                <td class="col-sm-8">
-                    @(Model.CreatorId != null ? Model.CreatorUsername : string.Empty)
-                </td>
-            </tr>
-            <tr class="form-group line">
-                <td class="col-sm-4 text-right">@Html.Label(ViewResources.Modified_Date)</td>
-                <td class="col-sm-8">
-                    @if (Model.ModifiedDate != DateTime.MinValue)
-                    {
-                        @Model.ModifiedDate.ToFullDateString()
-                    }
-                    else
-                    {
-                        <label>@ViewResources.NA</label>
-                    }
-                </td>
-            </tr>
-            <tr class="form-group line">
-                <td class="col-sm-4 text-right">@Html.Label(ViewResources.Modifier)</td>
-                <td class="col-sm-8">
-                    @(Model.ModifierId != null ? Model.ModifierUsername : string.Empty)
-                </td>
-            </tr>
-        </table>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="label-text">@ViewResources.Name</div>
+            <div class="input-text">@Model.GroupName</div>
+        </div>
+        <div class="form-group">
+            <div class="label-text">@ViewResources.Description</div>
+            <div class="input-text">
+                @(Model.Description != null ? Model.Description : string.Empty)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label-text">@ViewResources.Status</div>
+            <div class="input-text">
+                @(Model.IsActive ? ViewResources.Active : ViewResources.Inactive)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label-text">@Html.Label(ViewResources.Created_Date)</div>
+            <div class="input-text">
+                @if (Model.CreatedDate != DateTime.MinValue)
+                {
+                    @Model.CreatedDate.ToFullDateString()
+                }
+                else
+                {
+                    <label>@ViewResources.NA</label>
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label-text">@ViewResources.Creator</div>
+            <div class="input-text">
+                @(Model.CreatorId != null ? Model.CreatorUsername : string.Empty)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label-text">@ViewResources.Modified_Date</div>
+            <div class="input-text">
+                @if (Model.ModifiedDate != DateTime.MinValue)
+                {
+                    @Model.ModifiedDate.ToFullDateString()
+                }
+                else
+                {
+                    @ViewResources.NA
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label-text">@Html.Label(ViewResources.Modifier)</div>
+            <div class="input-text">
+                @(Model.ModifierId != null ? Model.ModifierUsername : string.Empty)
+            </div>
+        </div>
     </form>
 }

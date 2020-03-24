@@ -5,7 +5,7 @@
     using Fanex.Athena.Resources;
     using Fanex.Data.Repository;
 
-    public class InsertGroupCriteria : NonQueryCommand
+    public class InsertGroupCriteria : LogExecSpCriteria
     {
         public int GroupId { get; set; }
 
@@ -36,12 +36,6 @@
         public bool IsLicenseeGroup { get; set; }
 
         public int? SiteId { get; set; }
-
-        public int CurrentSiteId { get; set; }
-
-        public int CurrentUserId { get; set; }
-
-        public DateTime LogDate { get; set; }
 
         public string LoginIP { get; set; }
 

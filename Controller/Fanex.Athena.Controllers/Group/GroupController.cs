@@ -85,8 +85,7 @@
                 criteria.IsLicenseeGroup = true;
                 criteria.SiteId = N88Settings.Settings.SiteId;
                 criteria.CreatedBy = SessionServiceInstance.UserSession.UserId;
-                criteria.CreatedDate = DateTime.Now;
-                criteria.LogDate = DateTime.Now;
+                UpdateCriteria(criteria);
                 CommandResult result = _groupService.ExecuteNonQuery(criteria);
 
                 if (!result.IsSuccessful)

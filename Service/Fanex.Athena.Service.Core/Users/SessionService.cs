@@ -17,7 +17,7 @@
 
     public class SessionService : ISessionService
     {
-        private const string DefaultReportPath = "LicenseeWinLossReport";
+        private const string DefaultPagePath = "BettingTicketCenter";
         private const string UserSessionKey = "UserSessionKey";
 
         private readonly ILicenseeDataAccess licenseeDataAccess;
@@ -111,7 +111,7 @@
 
         private static string GetDefaultUrl(IEnumerable<FunctionPolicy> functionList)
         {
-            if (!functionList.Any(x => x.Function.Key.Equals(PermissionKeys.ReportLicenseeWinLoss)))
+            if (!functionList.Any(x => x.Function.Key.Equals(PermissionKeys.BetHistory)))
             {
                 var firstFunction = functionList.FirstOrDefault(x => x.Function.Parent !=null && x.Function.Parent.Id > 0 && x.Policy != 0 );
                 if (firstFunction != null)
@@ -120,7 +120,7 @@
                 }
             }
 
-            return DefaultReportPath;
+            return DefaultPagePath;
         }
 
         private static LicenseeAuthInfo GenerateLicenseeInfo(Licensee selectedLicensee)

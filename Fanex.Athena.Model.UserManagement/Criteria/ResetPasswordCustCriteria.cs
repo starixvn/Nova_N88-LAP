@@ -6,7 +6,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     public class ResetPasswordCustCriteria : LogExecSpCriteria
     {      
-        public int CustId { get; set; }
+        public int UserId { get; set; }
 
         [SpParam(Ignored = true)]
         public string Username { get; set; }

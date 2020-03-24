@@ -99,10 +99,9 @@ $(document).ready(function () {
             isActive = activeText == "Activate",
             userId = $this.attr('userid'),
             userName = $this.attr('username'),
-            msg = "Are you sure you want to " + activeText + " '" + userName + "'";
+            msg = "Are you sure you want to " + activeText + " '" + userName + "'?";
 
-        var isConfirm = confirm(msg);
-        if (isConfirm) {
+        NAP.headlineMsgBox.confirm(msg, function () {
             $.ajax({
                 url: NAP.resolveClientUrl("Account/UpdateStatus" + "?id=" + userId + "&isActive=" + isActive),
                 type: 'POST',
@@ -125,6 +124,6 @@ $(document).ready(function () {
                     NAP.handleAjaxError(xhr, status, err);
                 }
             });
-        }
+        });
     });
 });

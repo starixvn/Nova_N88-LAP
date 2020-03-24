@@ -138,6 +138,17 @@ var NAP = (function ($) {
 
 $(document).ready(function () {
     NAP.initCoreValues();    
+
+    NAP.headlineMsgBox = $.msgbox({
+        message: '',
+        //containerId: 'msg-bar',
+        type: 'err',
+        modal: false,
+        position: ['top:130', 'center'],
+        theme: '',
+        zIndex: 9999,
+        useAnimation: false
+    });
 });
 
 // -- Utilities -- //

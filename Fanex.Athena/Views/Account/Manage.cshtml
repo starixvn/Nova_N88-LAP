@@ -9,10 +9,12 @@
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLink("/Content/Account/msgbox-0.0.1.css")" rel="stylesheet" type="text/css" />
 }
 @section pagejs {
     <script src="@Url.ContentLink("/Scripts/Account/Manage.js")" type="text/javascript"></script>
     <script src="@Url.ContentLink("/Scripts/Plugin/tipsy/tipsy-1.0.0.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Account/msgbox-0.0.1.js")" type="text/javascript"></script>
     <script src="@Url.ContentLink("/Scripts/Account/NAP.js")" type="text/javascript"></script>
 }
 
@@ -39,8 +41,7 @@
                     @Html.DropDownList("StatusId", new List<SelectListItem> {
                         new SelectListItem { Text = "All", Value = "0"  },
                         new SelectListItem { Text = "Active", Value = "1" , Selected = true },
-                        new SelectListItem { Text = "Inactive", Value = "2"  },
-                        new SelectListItem { Text = "Closed", Value = "3"  }
+                        new SelectListItem { Text = "Inactive", Value = "2"  }
                     })
                 </div>
             </div>
@@ -125,7 +126,7 @@
 
                                 if (status != Constant.UserStatus.All)
                                 {
-                                    <div class="@(status == Constant.UserStatus.Closed ? "text-danger": string.Empty)">
+                                    <div>
                                         @status
                                     </div>
                                 }
@@ -152,17 +153,14 @@
                                                 @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
                                                     new { id = item.User.Id })
                                             </li>
-                                            @{ 
-                                                    var itemStatus = (Constant.UserStatus)item.Status;
-                                                    if (itemStatus != Constant.UserStatus.Closed)
-                                                    {
-                                                        string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
-                                                        <li>
-                                                            <a href="#" onclick="return false;" class="active-deactive-link" username="@item.User.Username"
-                                                               activatetext="@activateText" userid="@item.User.Id">@activateText '@item.User.Username'</a>
-                                                        </li>
-                                                   }
-                                           }
+                                            @{
+                                                var itemStatus = (Constant.UserStatus)item.Status;
+                                                string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
+                                                <li>
+                                                    <a href="#" onclick="return false;" class="active-deactive-link" username="@item.User.Username"
+                                                       activatetext="@activateText" userid="@item.User.Id">@activateText '@item.User.Username'</a>
+                                                </li>
+                                            }
                                         </ul>
                                     </div>
                                 }

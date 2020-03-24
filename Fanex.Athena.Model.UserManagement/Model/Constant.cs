@@ -105,8 +105,7 @@ namespace Fanex.Athena.Model.UserManagement.Model
         {
             All = 0,
             Active = 1,
-            Inactive = 2,
-            Closed = 3
+            Inactive = 2
         }
 
         public static List<string> IgnoredNapFunctions = new List<string>

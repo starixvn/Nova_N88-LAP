@@ -85,6 +85,7 @@
                 criteria.IsLicenseeGroup = true;
                 criteria.SiteId = N88Settings.Settings.SiteId;
                 criteria.CreatedBy = SessionServiceInstance.UserSession.UserId;
+                criteria.CreatedDate = DateTime.Now;
                 UpdateCriteria(criteria);
                 CommandResult result = _groupService.ExecuteNonQuery(criteria);
 
@@ -365,7 +366,7 @@
         {
             criteria.CurrentUserId = SessionServiceInstance.UserSession.UserId;
             criteria.CurrentSiteId = N88Settings.Settings.SiteId;
-            criteria.LoginIp = string.Empty;
+            criteria.LoginIp = HttpContext.Request.UserHostAddress;
             criteria.LogDate = DateTime.Now;
         }
 

@@ -172,7 +172,7 @@
     <Setting Key="N88_Function_GetByGroupAndSite" SpName="N88_Function_GetByGroupAndSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
     <Setting Key="N88_Function_GetBySite" SpName="N88_Function_GetBySite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
-    <Setting Key="N88_Cust_UpdatePassword" SpName="N88_Cust_UpdatePassword" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+    <Setting Key="N88_User_UpdatePassword" SpName="N88_User_UpdatePassword" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
     <Setting Key="N88_User_UpdateSite" SpName="N88_User_UpdateSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />

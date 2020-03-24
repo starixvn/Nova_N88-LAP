@@ -7,9 +7,6 @@ body, html {
 .layout-full {
   height: 100%; }
 
-.overflow-hidden {
-  overflow: hidden; }
-
 .errmsg {
   color: #fc5448;
   transition: 0.2s ease all;
@@ -36,57 +33,9 @@ body, html {
   font-size: 14px;
   padding: 50px 30px 20px 30px; }
 
-.page-login .page-content .brand-text {
-  text-transform: capitalize;
-  color: #fff;
-  margin-bottom: 10px; }
-
-.page-login .page-content .brand-text .text-small {
-  font-size: 20px;
-  font-family: 'Montserrat Hairline';
-  line-height: 1; }
-
-.page-login .page-content .brand-text .big-text {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 30px; }
-
-.page-login .languages {
-  position: relative;
-  text-align: left;
-  width: 70%;
-  margin-bottom: 0; }
-
-.page-login .languages .flag-icon {
-  margin-right: 11px; }
-
-.page-login .languages .icon {
-  font-size: 20px;
-  float: right;
-  top: 12px;
-  left: 5px;
-  position: relative; }
-
-.page-login .languages .dropdown-toggle {
-  color: #314453;
-  border-bottom: 1px solid #8aa5b8;
-  width: 100%;
-  display: block;
-  transition: 0.2s ease all;
-  font-size: 13px;
-  height: 38px;
-  line-height: 38px; }
-
-.page-login .languages .dropdown-toggle:hover, .page-login .languages .dropdown-toggle:focus, .page-login .languages .dropdown-toggle:active {
-  text-decoration: none; }
-
-.page-login .languages.open .dropdown-toggle {
-  border-bottom: 1px solid #314453;
-  box-shadow: 0 1px 0 0 #314453; }
-
 .page-login .capcha-block {
   position: relative;
   text-align: left;
-  width: 70%;
   margin-bottom: 0;
   overflow: hidden; }
 
@@ -108,27 +57,32 @@ body, html {
   margin-bottom: 1px; }
 
 .page-login form {
-  width: 410px;
+  width: 460px;
   background: #fff;
-  padding: 10px 30px 30px;
-  border-radius: 6px; }
+  padding: 60px 48px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); }
+
+.page-login .logo {
+  margin-bottom: 40px; }
 
 .page-login .floating-label {
   color: #bdbdbd; }
 
 .page-login .form-control {
-  color: #333;
+  color: #545454;
   border-radius: 0;
-  font-size: 13px;
+  font-size: 16px;
   height: 31px;
   line-height: 31px;
-  width: calc(100% - 30px); }
+  width: calc(100% - 30px);
+  border-bottom: 2px solid #545454; }
 
 .page-login .form-control:focus + .floating-label {
   color: #bdbdbd; }
 
 .page-login .form-control:focus:not([readonly]) {
-  border-bottom: 1px solid #314453;
+  border-bottom: 2px solid #314453;
   box-shadow: 0 1px 0 0 #314453; }
 
 .page-login .input-icon-group i {
@@ -168,17 +122,39 @@ a {
   color: rgba(255, 255, 255, 0.6); }
 
 .btn {
-  background: #f05c20;
-  font-size: 14px;
+  width: 100%;
+  background: #F15D21;
+  font-size: 16px;
   text-transform: uppercase;
   color: #fff;
-  width: calc(30% - 20px);
-  margin-left: 20px;
-  border-radius: 2px;
-  letter-spacing: initial; }
+  border-radius: 3px;
+  margin-top: 40px; }
 
 .btn:hover, .btn:active {
   background: #f37f50; }
+
+::placeholder {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  color: #545454; }
+
+::-webkit-input-placeholder {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px; }
+
+::-ms-input-placeholder {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  color: #545454; }
+
+::-webkit-input-placeholder {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  color: #545454; }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

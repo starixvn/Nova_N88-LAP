@@ -2620,10 +2620,10 @@
     <value>Details</value>
   </data>
   <data name="Update_Password_Success" xml:space="preserve">
-    <value>Update_Password_Success</value>
+    <value>Update Password Success</value>
   </data>
   <data name="Update_Permission_Success" xml:space="preserve">
-    <value>Update_Permission_Success</value>
+    <value>Update Permission Success</value>
   </data>
   <data name="AssignPermission" xml:space="preserve">
     <value>Assign Permission</value>

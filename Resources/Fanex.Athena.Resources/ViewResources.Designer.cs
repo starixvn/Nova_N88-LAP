@@ -6514,7 +6514,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update_Password_Success.
+        ///   Looks up a localized string similar to Update Password Success.
         /// </summary>
         public static string Update_Password_Success {
             get {
@@ -6523,7 +6523,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update_Permission_Success.
+        ///   Looks up a localized string similar to Update Permission Success.
         /// </summary>
         public static string Update_Permission_Success {
             get {

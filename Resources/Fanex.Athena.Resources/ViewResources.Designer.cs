@@ -19,7 +19,7 @@ namespace Fanex.Athena.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ViewResources {
@@ -943,6 +943,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browser Name.
+        /// </summary>
+        public static string Browser_Name {
+            get {
+                return ResourceManager.GetString("Browser_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your search result exceeds our set limits to get it downloaded..
         /// </summary>
         public static string BTCExportExcelMsg1 {
@@ -1416,6 +1425,15 @@ namespace Fanex.Athena.Resources {
         public static string CorrectScore {
             get {
                 return ResourceManager.GetString("CorrectScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country Code.
+        /// </summary>
+        public static string Country_Code {
+            get {
+                return ResourceManager.GetString("Country_Code", resourceCulture);
             }
         }
         
@@ -2037,6 +2055,15 @@ namespace Fanex.Athena.Resources {
         public static string DisableRNGCasino {
             get {
                 return ResourceManager.GetString("DisableRNGCasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domain Name.
+        /// </summary>
+        public static string Domain_Name {
+            get {
+                return ResourceManager.GetString("Domain_Name", resourceCulture);
             }
         }
         
@@ -3238,6 +3265,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IP.
+        /// </summary>
+        public static string IP {
+            get {
+                return ResourceManager.GetString("IP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (N).
         /// </summary>
         public static string IsNeutral {
@@ -3639,6 +3675,24 @@ namespace Fanex.Athena.Resources {
         public static string Locked {
             get {
                 return ResourceManager.GetString("Locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log Date.
+        /// </summary>
+        public static string Log_Date {
+            get {
+                return ResourceManager.GetString("Log_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string Log_Id {
+            get {
+                return ResourceManager.GetString("Log_Id", resourceCulture);
             }
         }
         
@@ -6708,6 +6762,15 @@ namespace Fanex.Athena.Resources {
         public static string UpdateUnSuccess {
             get {
                 return ResourceManager.GetString("UpdateUnSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
             }
         }
         

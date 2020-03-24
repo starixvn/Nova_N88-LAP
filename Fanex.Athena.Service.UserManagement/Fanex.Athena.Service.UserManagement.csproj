@@ -85,6 +85,7 @@
     <Compile Include="Repository\GroupRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\GroupService.cs" />
+    <Compile Include="Service\UserLogService.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

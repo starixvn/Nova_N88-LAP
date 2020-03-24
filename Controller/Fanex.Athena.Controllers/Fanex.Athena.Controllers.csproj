@@ -200,6 +200,7 @@
     <Compile Include="Group\GroupController.cs" />
     <Compile Include="AuthorizationController.cs" />
     <Compile Include="HeaderController.cs" />
+    <Compile Include="LogController.cs" />
     <Compile Include="MenuController.cs" />
     <Compile Include="OneAuthorizationController.cs" />
     <Compile Include="UserGuideController.cs" />

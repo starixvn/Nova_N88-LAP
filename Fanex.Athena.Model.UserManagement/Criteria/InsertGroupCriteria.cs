@@ -3,7 +3,6 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using Fanex.Athena.Resources;
-    using Fanex.Data.Repository;
 
     public class InsertGroupCriteria : LogExecSpCriteria
     {
@@ -36,8 +35,6 @@
         public bool IsLicenseeGroup { get; set; }
 
         public int? SiteId { get; set; }
-
-        public string LoginIP { get; set; }
 
         public string Language { get; set; }
 

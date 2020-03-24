@@ -188,4 +188,8 @@
     <Setting Key="N88_Group_GetByName" SpName="N88_Group_GetByName" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
     <Setting Key="N88_Function_GetByUserAndSiteIncludeGroup" SpName="N88_Function_GetByUserAndSiteIncludeGroup" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
   </Function>
+
+  <Function Name="Log">
+    <Setting Key="N88_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88LOG.bodb_N88LOG.bodbAdminNet" />
+  </Function>
 </Functions>

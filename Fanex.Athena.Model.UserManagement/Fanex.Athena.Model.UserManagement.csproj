@@ -61,6 +61,7 @@
     <Compile Include="Criteria\AssignFunctionUserCriteria.cs" />
     <Compile Include="Criteria\AssignSiteUserCriteria.cs" />
     <Compile Include="Criteria\GetAllGroupCriteria.cs" />
+    <Compile Include="Criteria\GetAllLogUserLoginCriteria.cs" />
     <Compile Include="Criteria\GetAllWithNumOfUserGroupCriteria.cs" />
     <Compile Include="Criteria\GetByGroupAndSiteFunctionCriteria.cs" />
     <Compile Include="Criteria\GetByIdGroupCriteria.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\GroupData.cs" />
     <Compile Include="Model\GroupPolicy.cs" />
+    <Compile Include="Model\UserLoginLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Site.cs" />
     <Compile Include="Model\User.cs" />

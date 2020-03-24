@@ -1,0 +1,181 @@
+﻿@using Fanex.Athena.Model.UserManagement.Model;
+@model IPagedList<UserLoginLog>
+
+@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
+}
+@section pagejs {
+  
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "page-filter" }))
+    {
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group">
+                    <label class="label-text">@ViewResources.Name</label>
+                    <input type="text" class="input-text" value="@ViewBag.Criteria.Name" name="userName" id="Username" autocomplete="off" />
+                    <input type="hidden" value="@ViewBag.Criteria.Name" id="hdnUsename" />
+                </div>
+            </div>
+            
+            <div class="col-md-2 col-sm-2 col-lg-2 col-xl-1">
+                <div class="form-group">
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-submit">@ViewResources.Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <table class="table">
+        <thead>
+            <tr class="level1">
+                <th>#</th>
+                <th>@ViewResources.Username</th>
+                <th>@ViewResources.FirstName</th>
+                <th>@ViewResources.Group</th>
+                <th>@ViewResources.Creator</th>
+                <th>@ViewResources.CreatedDate</th>
+                <th>@ViewResources.LastLoginDate</th>
+                <th>@ViewResources.Status</th>
+                @if (ViewBag.HasHostPermission)
+                {
+                    <th>@ViewResources.Action</th>
+                }
+            </tr>
+        </thead>
+        <tbody id="grid-user">
+            @if (!ReferenceEquals(Model, null) && Model.Count() > 0)
+            {
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+                    var NA = "NA";
+
+                    <tr @Html.Raw(rowCss)>
+                        <td class="text-center">
+                            @((Model.PageSize * (Model.PageIndex) + i + 1))
+                        </td>
+                        <td>
+                            <a href="javascript:;" uid="@item.User.Id" class="lnk-user-info"
+                               title="">@item.User.Username</a>
+                        </td>
+                        <td>
+                            @(item.User.FirstName != null ? item.User.FirstName : string.Empty)
+                        </td>
+                        <td>
+                            @(item.User.Group != null ? item.User.Group.Name : string.Empty)
+                        </td>
+                        <td>
+                            @(item.User.Creator != null ? item.User.Creator.Username : string.Empty)
+                        </td>
+                        <td class="text-center">
+                            @item.User.CreatedDate.ToFullDateString()
+                        </td>
+                        <td class="text-center">
+                            @if (item.User.LastLoginDate != DateTime.MinValue)
+                            {
+                                @item.User.LastLoginDate.ToFullDateString()
+                            }
+                            else
+                            {
+                                @NA
+                            }
+                        </td>
+                        <td class="text-center">
+                            @{
+                                var status = ((Constant.UserStatus)item.Status);
+
+                                if (status != Constant.UserStatus.All)
+                                {
+                                    <div class="@(status == Constant.UserStatus.Closed ? "text-danger": string.Empty)">
+                                        @status
+                                    </div>
+                                }
+                            }
+                        </td>
+
+                        @if (ViewBag.HasHostPermission)
+                        {
+                            <td class="text-center col-action">
+                                @if (item.User.Id != ViewBag.CurrentUserId && (item.Level < ViewBag.currentUserLevel || item.Level == (int)Constant.Level.User))
+                                {
+                                    <span class="btn-action icon-settings"></span>
+                                    <div class="action-wrapper">
+                                        <ul class="dropdown">
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
+                                                    "Edit", new { id = item.User.Id })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
+                                                    "ResetPassword", new { id = item.User.Id })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
+                                                    new { id = item.User.Id })
+                                            </li>
+                                            @{ 
+                                                    var itemStatus = (Constant.UserStatus)item.Status;
+                                                    if (itemStatus != Constant.UserStatus.Closed)
+                                                    {
+                                                        string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
+                                                        <li>
+                                                            <a href="#" onclick="return false;" class="active-deactive-link" username="@item.User.Username"
+                                                               activatetext="@activateText" userid="@item.User.Id">@activateText '@item.User.Username'</a>
+                                                        </li>
+                                                   }
+                                           }
+                                        </ul>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="btn-action disabled icon-settings"></span>
+                                }
+                            </td>
+                        }
+                    </tr>
+
+                    i++;
+                }
+            }
+            else
+            {
+                <tr class="no-info">
+                    <td colspan="12" class="text-center">
+                        @ViewResources.NoInformationAvailable
+                    </td>
+                </tr>
+            }
+        </tbody>
+        @if (Model != null && Model.Count() > 0)
+        {
+            <tfoot>
+                <tr class="page-container">
+                    <td colspan="12">
+                        <span class="items-per-page-wrp">
+                            @ViewResources.PageSize
+                            @Html.DropDownList("items-per-page", new List<SelectListItem> {
+                                new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
+                                new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
+                                new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
+                            }, new { id = string.Empty, @class = "items-per-page" })
+                        </span>
+                        <span class="paging">
+                            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("groupid", ViewBag.Criteria.GroupId)).Options(o => o.AddRouteValue("username", ViewBag.Criteria.Username)).Options(o => o.AddRouteValue("statusId", ViewBag.Criteria.Status))
+                        </span>
+                    </td>
+                </tr>
+            </tfoot>
+        }
+    </table>
+</div>

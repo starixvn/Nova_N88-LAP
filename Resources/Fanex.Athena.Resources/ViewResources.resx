@@ -2709,4 +2709,31 @@
   <data name="InvalidStartNameValidationMsg" xml:space="preserve">
     <value>Username cannot start with 'starix'</value>
   </data>
+  <data name="Log_Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Log_Date" xml:space="preserve">
+    <value>Log Date</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="Domain_Name" xml:space="preserve">
+    <value>Domain Name</value>
+  </data>
+  <data name="Browser_Name" xml:space="preserve">
+    <value>Browser Name</value>
+  </data>
+  <data name="Platform" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="Country_Code" xml:space="preserve">
+    <value>Country Code</value>
+  </data>
 </root>

@@ -100,7 +100,7 @@
 }
 
 .msgbox .msgbox-close {
-	background: url(images/btn-close.png) no-repeat -2px -41px;
+	background: white;
 	border: #333 solid 2px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;

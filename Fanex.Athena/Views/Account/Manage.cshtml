@@ -74,7 +74,7 @@
                 <th>@ViewResources.Creator</th>
                 <th>@ViewResources.CreatedDate</th>
                 <th>@ViewResources.LastLoginDate</th>
-                <th>@ViewResources.Status</th>
+                <th>@ViewResources.Active</th>
                 @if (ViewBag.HasHostPermission)
                 {
                     <th>@ViewResources.Action</th>
@@ -89,6 +89,7 @@
                 {
                     string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
                     var NA = "NA";
+                    var isEditable = (item.User.Id != ViewBag.CurrentUserId && (item.Level < ViewBag.currentUserLevel || item.Level == (int)Constant.Level.User));
 
                     <tr @Html.Raw(rowCss)>
                         <td class="text-center">
@@ -122,21 +123,24 @@
                         </td>
                         <td class="text-center">
                             @{
-                                var status = ((Constant.UserStatus)item.Status);
+                                    var itemStatus = (Constant.UserStatus)item.Status;
+                                    string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
+                                    var title = isEditable ? string.Format("{0} '{1}'", activateText, @item.User.Username) : string.Empty;
 
-                                if (status != Constant.UserStatus.All)
-                                {
-                                    <div>
-                                        @status
-                                    </div>
-                                }
+                                <div class="js-tipsy-s active-deactive-link" 
+                                     title="@title"
+                                     username="@item.User.Username" activatetext="@activateText" userid="@item.User.Id">
+                                    <input type="checkbox" class="checkbox" @(itemStatus == Constant.UserStatus.Active ? "checked" : string.Empty) 
+                                           @(isEditable ? string.Empty : "disabled") />
+                                    <label></label>
+                                </div>
                             }
                         </td>
 
                         @if (ViewBag.HasHostPermission)
                         {
                             <td class="text-center col-action">
-                                @if (item.User.Id != ViewBag.CurrentUserId && (item.Level < ViewBag.currentUserLevel || item.Level == (int)Constant.Level.User))
+                                @if (isEditable)
                                 {
                                     <span class="btn-action icon-settings"></span>
                                     <div class="action-wrapper">
@@ -152,15 +156,7 @@
                                             <li>
                                                 @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
                                                     new { id = item.User.Id })
-                                            </li>
-                                            @{
-                                                var itemStatus = (Constant.UserStatus)item.Status;
-                                                string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
-                                                <li>
-                                                    <a href="#" onclick="return false;" class="active-deactive-link" username="@item.User.Username"
-                                                       activatetext="@activateText" userid="@item.User.Id">@activateText '@item.User.Username'</a>
-                                                </li>
-                                            }
+                                            </li>                                            
                                         </ul>
                                     </div>
                                 }

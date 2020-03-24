@@ -91,7 +91,13 @@ input[type="checkbox"].checkbox {
     -webkit-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
-    transition: all 0.2s ease; }
+    transition: all 0.2s ease;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px; }
   input[type="checkbox"].checkbox + label:after {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
@@ -144,10 +150,10 @@ input[type="checkbox"].checkbox {
   border: 1px solid #e51c23; }
 
 .container-fluid {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
   padding: 15px; }
+
+.breadCrumbHolder {
+  margin-bottom: 10px; }
 
 .form-horizontal {
   width: 500px;

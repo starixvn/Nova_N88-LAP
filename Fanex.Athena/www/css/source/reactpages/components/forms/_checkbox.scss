@@ -35,6 +35,7 @@ input[type="checkbox"].checkbox {
         border: 1px solid $colorDefault;
         text-align: center;
         @include transition(all .2s ease);
+        @include border-radius(2px);
     }
 
     & + label:after {

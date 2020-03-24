@@ -7,11 +7,11 @@ var AssignUserPermission = (function ($) {
 
         updateParent: function (type) {
             var $this = $(this),
-				pid = $this.attr('pid');
+                pid = $this.attr('pid');
 
             if (pid && pid.length > 0) {
                 var thisIsChecked = $this.is(':checked'),
-					parent = $('#func' + type + pid);
+                    parent = $('#func' + type + pid);
 
                 if (thisIsChecked && !parent.is(':checked')) {
                     parent.prop('checked', true);
@@ -37,8 +37,8 @@ var AssignUserPermission = (function ($) {
         disabledParent: function () {
             AssignUserPermission.grid.find('tr').each(function () {
                 var $this = $(this),
-				chkHost = $this.find('[name=funcHost][type=hidden]'),
-				chkRead = $this.find('[name=funcRead][type=hidden]');
+                    chkHost = $this.find('[name=funcHost][type=hidden]'),
+                    chkRead = $this.find('[name=funcRead][type=hidden]');
 
                 var parent;
 
@@ -46,7 +46,7 @@ var AssignUserPermission = (function ($) {
                     parent = $('#funcRead' + chkRead.attr('pid'));
                     if (parent.is(':checked') && parent.attr('pdisabled') === undefined) {
                         parent.attr('pdisabled', '1');
-                        parent.after('<input type="checkbox" checked="checked" disabled="disabled"/>');
+                        parent.after('<input type="checkbox" checked="checked" disabled="disabled" class="checkbox" />');
                         parent.hide();
                     }
                 }
@@ -55,7 +55,7 @@ var AssignUserPermission = (function ($) {
                     parent = $('#funcHost' + chkHost.attr('pid'));
                     if (parent.is(':checked') && parent.attr('pdisabled') === undefined) {
                         parent.attr('pdisabled', '1');
-                        parent.after('<input type="checkbox" checked="checked" disabled="disabled"/>');
+                        parent.after('<input type="checkbox" checked="checked" disabled="disabled" class="checkbox" />');
                         parent.hide();
                     }
                 }
@@ -131,7 +131,7 @@ var AssignUserPermission = (function ($) {
 }(jQuery));
 
 $(document).ready(function () {
-    AssignUserPermission.grid = $('.grid:first');
+    AssignUserPermission.grid = $('.table:first');
     AssignUserPermission.updateForm = $('form:last');
     AssignUserPermission.disabledParent();
     AssignUserPermission.updateForm.submit(function () {
@@ -194,7 +194,7 @@ $(document).ready(function () {
             checkBoxAll.checkForCheckBoxAllFuncRead();
         }
     });
-    
+
     checkBoxAll.checkBoxAllFuncRead.change(function () {
         var $this = $(this),
             thisIsChecked = $this.is(':checked');

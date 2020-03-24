@@ -4,10 +4,11 @@
 @import '../../reactpages/components/forms/checkbox';
 
 .container-fluid {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
     padding: 15px;
+}
+
+.breadCrumbHolder {
+    margin-bottom: 10px;
 }
 
 .form-horizontal {

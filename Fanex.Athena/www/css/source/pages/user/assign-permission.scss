@@ -1,0 +1,66 @@
+﻿@import "../../reactpages/abstracts/variables";
+@import "../../reactpages/abstracts/mixins";
+@import '../../components/breadcrumb/breadcrumb';
+@import "../../components/table";
+@import '../../reactpages/components/forms/checkbox';
+
+.container-fluid {
+    padding: 15px;
+}
+
+.breadCrumbHolder {
+    margin-bottom: 10px;
+}
+
+.table {
+    width: 500px;
+    margin-bottom: 10px;
+
+    thead {
+        .checkbox:not([disabled]) {
+            & + label:before {
+                background-color: transparent;
+                border-color: #fff;
+            }
+
+            &:checked + label:before {
+                background-color: #fff;
+                border-color: #fff;
+            }
+
+            &:checked + label:after {
+                border-color: #164F46;
+            }
+        }
+    }
+
+    .invisible {
+        visibility: hidden;
+    }
+
+    .no-border-bottom {
+        border-bottom: 0;
+    }
+
+    .no-border-top {
+        border-top: 0;
+    }
+}
+
+.validation-summary-valid.success {
+    width: 500px;
+    padding: 0 .8rem;
+    background-color: #aaffaa;
+    border: 1px solid #00aa00;
+
+    ul {
+        margin-left: 2rem;
+        margin-bottom: 0;
+        list-style-type: disc;
+
+        li {
+            margin: 4px 0;
+            list-style-type: disc;
+        }
+    }
+}

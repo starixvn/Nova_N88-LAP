@@ -1,11 +1,9 @@
 ﻿@using Fanex.Athena.Model.UserManagement.Model
 @model Fanex.Athena.Model.UserManagement.Criteria.InsertGroupCriteria
 @{
-                /**/
-
-                Layout = "~/Views/Shared/_AccountLayout.cshtml";
-                ViewBag.Title = ViewResources.Create_New_Group;
-                bool success = ViewBag.Success != null && ViewBag.Success;
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    ViewBag.Title = ViewResources.Create_New_Group;
+    bool success = ViewBag.Success != null && ViewBag.Success;
 }
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/edituser.css")" rel="stylesheet" />

@@ -35,6 +35,7 @@ var cssPaths = {
     customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"],
     manageuser: ["./www/css/source/pages/user/index.scss"],
     edituser: ["./www/css/source/pages/user/edit.scss"],
+    assignpermission: ["./www/css/source/pages/user/assign-permission.scss"],
 };
 
 var scriptPaths = {

@@ -305,7 +305,6 @@
     <Content Include="Content\Account\AccountManagement.css" />
     <Content Include="Content\Account\msgbox-0.0.1.css" />
     <Content Include="Content\Account\NewUser.css" />
-    <Content Include="Content\Account\Permission.css" />
     <Content Include="Content\Account\reset.css" />
     <Content Include="Content\Account\style.css" />
     <Content Include="Content\Fanex.Result\Allbet\css\button.css" />
@@ -521,6 +520,8 @@
     <Content Include="www\css\build\dev\pages\betlist\images\lotto_ball.png" />
     <Content Include="www\css\build\dev\pages\betlist\images\nphPromotion.png" />
     <Content Include="www\css\build\dev\pages\betlist\images\rebateBonus.png" />
+    <Content Include="www\css\build\dev\pages\user\assignpermission.chunk.js" />
+    <Content Include="www\css\build\dev\pages\user\assignpermission.css" />
     <Content Include="www\css\build\dev\pages\user\edituser.chunk.js" />
     <Content Include="www\css\build\dev\pages\user\edituser.css" />
     <Content Include="www\css\build\dev\pages\user\manageuser.chunk.js" />
@@ -596,6 +597,8 @@
     <Content Include="www\css\build\pro\pages\reports\licenseewinloss.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\reportjqgridlayout.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\result.chunk.js" />
+    <Content Include="www\css\build\pro\pages\user\assignpermission.chunk.js" />
+    <Content Include="www\css\build\pro\pages\user\assignpermission.css" />
     <Content Include="www\css\build\pro\pages\user\edituser.chunk.js" />
     <Content Include="www\css\build\pro\pages\user\edituser.css" />
     <Content Include="www\css\build\pro\pages\user\manageuser.chunk.js" />
@@ -689,6 +692,9 @@
     <Content Include="www\css\build\dev\pages\user\edituser.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\user\edituser.css.map" />
     <Content Include="Views\ViewLog\LogExecSp.cshtml" />
+    <Content Include="www\css\source\pages\user\assign-permission.scss" />
+    <Content Include="www\css\build\dev\pages\user\assignpermission.chunk.js.map" />
+    <Content Include="www\css\build\dev\pages\user\assignpermission.css.map" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

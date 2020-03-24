@@ -14,177 +14,179 @@
 }
 
 @section pagecss {
-    <link href="@Url.ContentLink("/Content/Plugin/bootstrap/bootstrap.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Account/reset.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Account/style.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentLink("/Content/Account/Permission.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/assignpermission.css")" rel="stylesheet" type="text/css" />
 }
 @section pagejs {
-    <script src="@Url.ContentLink("/Scripts/Account/AssignPermission.js")" type="text/javascript"></script>
-    <script src="@Url.ContentLink("/Scripts/Plugin/tipsy/tipsy-1.0.0.js")" type="text/javascript"></script>
     <script src="@Url.ContentLink("/Scripts/Account/msgbox-0.0.1.js")" type="text/javascript"></script>
     <script src="@Url.ContentLink("/Scripts/Account/NAP.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Account/AssignPermission.js")" type="text/javascript"></script>
 }
 
-<div class="section-div">
-    <div class="title">@ViewResources.AssignPermission to User '@Model.Username'</div>
-    <div class="permission-div">
-        @using (Html.BeginForm())
-        {
-            <div class="common-form">
-                <div class="form-group summary">
-                    <div class="validation-summary-valid" data-valmsg-summary="true">
-                        <ul>
-                            <li style="display:none">@successMsg</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="container-fluid">
+    <div class="breadCrumbHolder" style="display: block;">
+        <div class="breadcrumb flat">
+            <a class="level level0 level-link" data-level="0" href="javascript:;" style="display: inline;"
+               onclick="NAP.redirect('/Account/Manage/', 0); return false;">@ViewResources.ManageUser</a>
+            <a class="level level1 active" data-level="1" href="javascript:;" style="display: inline;">
+                @ViewResources.AssignPermission to User '@Model.Username'
+            </a>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <div class="validation-summary-valid" data-valmsg-summary="true">
+                <ul>
+                    <li style="display:none">@successMsg</li>
+                </ul>
             </div>
+        </div>
 
-            @Html.Hidden("criteria.UserId", Model.UserId)
-            @Html.Hidden("criteria.SiteId", Model.SiteId)
+        @Html.Hidden("criteria.UserId", Model.UserId)
+        @Html.Hidden("criteria.SiteId", Model.SiteId)
 
-            <table class="grid no-scale">
-                <thead>
-                    <tr>
-                        <th rowspan="2">
-                            @ViewResources.Function
-                        </th>
-                        <th colspan="2">
-                            @ViewResources.UserPermission
-                        </th>
-                        <th colspan="2">
-                            @ViewResources.GroupPermission
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style="width: 50px">
-                            @ViewResources.Read
-                            <input title="Check/Uncheck All" id="chkAllFuncRead" type="checkbox" />
-                        </th>
-                        <th style="width: 50px">
-                            @ViewResources.Host
-                            <input title="Check/Uncheck All" id="chkAllFuncHost" type="checkbox" />
-                        </th>
-                        <th style="width: 50px">
-                            @ViewResources.Read
-                        </th>
-                        <th style="width: 50px">
-                            @ViewResources.Host
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (functionList.Count > 0)
+        <table class="table">
+            <thead>
+                <tr class="level1">
+                    <th rowspan="2">@ViewResources.Function</th>
+                    <th colspan="2">@ViewResources.UserPermission</th>
+                    <th colspan="2">@ViewResources.GroupPermission</th>
+                </tr>
+                <tr class="level1">
+                    <th style="width: 50px">
+                        @ViewResources.Read
+                        <input title="Check/Uncheck All" id="chkAllFuncRead" name="chkAllFuncRead" type="checkbox" class="checkbox" />
+                        <label for="chkAllFuncRead"></label>
+                    </th>
+                    <th style="width: 50px">
+                        @ViewResources.Host
+                        <input title="Check/Uncheck All" id="chkAllFuncHost" type="checkbox" class="checkbox" />
+                        <label for="chkAllFuncHost"></label>
+                    </th>
+                    <th style="width: 50px">
+                        @ViewResources.Read
+                    </th>
+                    <th style="width: 50px">
+                        @ViewResources.Host
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (functionList.Count > 0)
+                {
+                    var functionCount = functionList.Count;
+                    for (int i = 0; i < functionCount; i++)
                     {
-                        var functionCount = functionList.Count;
-                        for (int i = 0; i < functionCount; i++)
+                        var function = functionList[i];
+                        var userFuncPolicy = userFuncPolicyList.Where(x => x.Function.Id == function.Id).SingleOrDefault();
+                        var groupFuncPolicy = new FunctionPolicy();
+                        if (!ReferenceEquals(groupFuncPolicyList, null))
                         {
-                            var function = functionList[i];
-                            var userFuncPolicy = userFuncPolicyList.Where(x => x.Function.Id == function.Id).SingleOrDefault();
-                            var groupFuncPolicy = new FunctionPolicy();
-                            if (!ReferenceEquals(groupFuncPolicyList, null))
-                            {
-                                groupFuncPolicy = groupFuncPolicyList.Where(x => x.Function.Id == function.Id).FirstOrDefault();
-                            }
+                            groupFuncPolicy = groupFuncPolicyList.Where(x => x.Function.Id == function.Id).FirstOrDefault();
+                        }
 
-                            var funcNameStyle = i == functionCount - 1 ? "nbt" : "nbt nbb";
-                            if (function.Parent == null)
-                            {
-                                funcNameStyle = i == functionCount - 1 ? string.Empty : "nbb";
-                            }
-                            string parentId = function.Parent != null ? function.Parent.Id.ToString() : string.Empty;
-                            string chkReadId = "funcRead" + function.Id;
-                            string checkedReadCss = userFuncPolicy != null && userFuncPolicy.Policy >= (int)Constant.Policy.Read
-                                ? "checked='checked'" : string.Empty;
-                            bool isReadDisabled = false;
+                        var funcNameStyle = i == functionCount - 1 ? "no-border-top" : "no-border-top no-border-bottom";
+                        if (function.Parent == null)
+                        {
+                            funcNameStyle = i == functionCount - 1 ? string.Empty : "no-border-bottom";
+                        }
+                        string parentId = function.Parent != null ? function.Parent.Id.ToString() : string.Empty;
+                        string chkReadId = "funcRead" + function.Id;
+                        string checkedReadCss = userFuncPolicy != null && userFuncPolicy.Policy >= (int)Constant.Policy.Read
+                            ? "checked='checked'" : string.Empty;
+                        bool isReadDisabled = false;
 
-                            <tr>
-                                <td class="@Html.Raw(funcNameStyle)">
-                                    @IndentChildFunctions(functionList, function)
-                                </td>
-                                <td class="text-center">
-                                    @if (isReadDisabled)
+                        <tr>
+                            <td class="@Html.Raw(funcNameStyle)">
+                                @IndentChildFunctions(functionList, function)
+                            </td>
+                            <td class="text-center">
+                                @if (isReadDisabled)
+                                {
+                                    <input disabled="disabled" type="checkbox" @Html.Raw(checkedReadCss) class="checkbox" />
+                                    <label></label>
+                                    if (!string.IsNullOrWhiteSpace(checkedReadCss))
                                     {
-                                        <input disabled="disabled" type="checkbox" @Html.Raw(checkedReadCss) />
-                                        if (!string.IsNullOrWhiteSpace(checkedReadCss))
+                                        <input id="@chkReadId" name="criteria.funcRead" value="@function.Id" pid="@parentId" type="hidden" />
+                                    }
+                                }
+                                else
+                                {
+                                    <input id="@chkReadId" name="criteria.funcRead" value="@function.Id" pid="@parentId"
+                                           type="checkbox" @Html.Raw(checkedReadCss) class="checkbox" />
+                                    <label for="@chkReadId"></label>
+                                }
+                            </td>
+                            <td class="text-center">
+                                @if (function.Crud > 0)
+                                {
+                                    string chkHostId = "funcHost" + function.Id;
+                                    string checkedHostCss = userFuncPolicy != null && userFuncPolicy.Policy >= (int)Constant.Policy.Host
+                                        ? "checked='checked'" : string.Empty;
+                                    bool isHostDisabled = false;
+
+                                    if (isHostDisabled)
+                                    {
+                                        <input disabled="disabled" type="checkbox" @Html.Raw(checkedHostCss) class="checkbox" />
+                                        <label></label>
+                                        if (!string.IsNullOrWhiteSpace(checkedHostCss))
                                         {
-                                            <input id="@chkReadId" name="criteria.funcRead" value="@function.Id" pid="@parentId" type="hidden" />
+                                            <input id="@chkHostId" name="criteria.funcHost" value="@function.Id" pid="@parentId" type="hidden" />
                                         }
                                     }
                                     else
                                     {
-                                        <input id="@chkReadId" name="criteria.funcRead" value="@function.Id" pid="@parentId"
-                                               type="checkbox" @Html.Raw(checkedReadCss) />
+                                        <input id="@chkHostId" name="criteria.funcHost" value="@function.Id" pid="@parentId"
+                                               type="checkbox" @Html.Raw(checkedHostCss) class="checkbox" />
+                                        <label for="@chkHostId"></label>
                                     }
-                                </td>
-                                <td class="text-center">
-                                    @if (function.Crud > 0)
-                                    {
-                                        string chkHostId = "funcHost" + function.Id;
-                                        string checkedHostCss = userFuncPolicy != null && userFuncPolicy.Policy >= (int)Constant.Policy.Host
-                                            ? "checked='checked'" : string.Empty;
-                                        bool isHostDisabled = false;
+                                }
+                            </td>
+                            <td class="text-center">
+                                @if (groupFuncPolicyList != null)
+                                {
+                                    string checkedGroupReadCss =
+                                        groupFuncPolicy != null && groupFuncPolicy.Policy >= (int)Constant.Policy.Read
+                                        ? "checked='checked'" : string.Empty;
 
-                                        if (isHostDisabled)
-                                        {
-                                            <input disabled="disabled" type="checkbox" @Html.Raw(checkedHostCss) />
-                                            if (!string.IsNullOrWhiteSpace(checkedHostCss))
-                                            {
-                                                <input id="@chkHostId" name="criteria.funcHost" value="@function.Id" pid="@parentId" type="hidden" />
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <input id="@chkHostId" name="criteria.funcHost" value="@function.Id" pid="@parentId"
-                                                   type="checkbox" @Html.Raw(checkedHostCss) />
-                                        }
-                                    }
-                                </td>
-                                <td class="text-center">
-                                    @if (groupFuncPolicyList != null)
-                                    {
-                                        string checkedGroupReadCss =
-                                            groupFuncPolicy != null && groupFuncPolicy.Policy >= (int)Constant.Policy.Read
-                                            ? "checked='checked'" : string.Empty;
+                                    <input disabled="disabled" type="checkbox" pid="@parentId" @Html.Raw(checkedGroupReadCss) class="checkbox" />
+                                    <label></label>
+                                }
+                            </td>
+                            <td class="text-center">
+                                @if (function.Crud > 0 && groupFuncPolicyList != null)
+                                {
+                                    string checkedGroupHostCss =
+                                        groupFuncPolicy != null && groupFuncPolicy.Policy >= (int)Constant.Policy.Host
+                                        ? "checked='checked'" : string.Empty;
 
-                                        <input disabled="disabled" type="checkbox" pid="@parentId" @Html.Raw(checkedGroupReadCss) />
-                                    }
-                                </td>
-                                <td class="text-center">
-                                    @if (function.Crud > 0 && groupFuncPolicyList != null)
-                                    {
-                                        string checkedGroupHostCss =
-                                            groupFuncPolicy != null && groupFuncPolicy.Policy >= (int)Constant.Policy.Host
-                                            ? "checked='checked'" : string.Empty;
-
-                                        <input disabled="disabled" type="checkbox" pid="@parentId" @Html.Raw(checkedGroupHostCss) />
-                                    }
-                                </td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="5" class="text-center">
-                                NoInformationAvailable
+                                    <input disabled="disabled" type="checkbox" pid="@parentId" @Html.Raw(checkedGroupHostCss) class="checkbox" />
+                                    <label></label>
+                                }
                             </td>
                         </tr>
                     }
-                </tbody>
-            </table>
-
-            <div class="button-list">
-                @if (!success)
-                {
-                    <input type="submit" value="Save" />
-                    <button class="cancel-button" onclick="NAP.redirect('/Account/Manage/', 0); return false;">@ViewResources.Cancel</button>
                 }
-            </div>
-        }
-    </div>
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            @ViewResources.NoInformationAvailable
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="button-list">
+            @if (!success)
+            {
+                <input type="submit" class="btn btn-submit" value="@ViewResources.Save" />
+                <button class="btn btn-cancel" onclick="NAP.redirect('/Account/Manage/', 0); return false;">@ViewResources.Cancel</button>
+            }
+        </div>
+    }
 </div>
 
 @if (success)

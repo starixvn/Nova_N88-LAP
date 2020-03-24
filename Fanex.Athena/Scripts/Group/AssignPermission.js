@@ -8,11 +8,11 @@ var AssignGroupPermission = (function ($) {
         grid: null,
         updateParent: function (type) {
             var $this = $(this),
-				pid = $this.attr('pid');
+                pid = $this.attr('pid');
 
             if (pid && pid.length > 0) {
                 var thisIsChecked = $this.is(':checked'),
-					parent = $('#func' + type + pid);
+                    parent = $('#func' + type + pid);
 
                 if (thisIsChecked && !parent.is(':checked')) {
                     parent.prop('checked', true);
@@ -37,8 +37,8 @@ var AssignGroupPermission = (function ($) {
         disabledParent: function () {
             AssignGroupPermission.grid.find('tr').each(function () {
                 var $this = $(this),
-				chkHost = $this.find('[name=funcHost][type=hidden]'),
-				chkRead = $this.find('[name=funcRead][type=hidden]');
+                    chkHost = $this.find('[name=funcHost][type=hidden]'),
+                    chkRead = $this.find('[name=funcRead][type=hidden]');
 
                 var parent;
 
@@ -46,7 +46,7 @@ var AssignGroupPermission = (function ($) {
                     parent = $('#funcRead' + chkRead.attr('pid'));
                     if (parent.is(':checked') && parent.attr('pdisabled') === undefined) {
                         parent.attr('pdisabled', '1');
-                        parent.after('<input type="checkbox" checked="checked" disabled="disabled"/>');
+                        parent.after('<input type="checkbox" checked="checked" disabled="disabled" class="checkbox" />');
                         parent.hide();
                     }
                 }
@@ -55,13 +55,13 @@ var AssignGroupPermission = (function ($) {
                     parent = $('#funcHost' + chkHost.attr('pid'));
                     if (parent.is(':checked') && parent.attr('pdisabled') === undefined) {
                         parent.attr('pdisabled', '1');
-                        parent.after('<input type="checkbox" checked="checked" disabled="disabled"/>');
+                        parent.after('<input type="checkbox" checked="checked" disabled="disabled" class="checkbox" />');
                         parent.hide();
                     }
                 }
             });
         },
-        hasHouseWLByProductsPermission : function (table, currentElement) {
+        hasHouseWLByProductsPermission: function (table, currentElement) {
             var houseWLByProductsFuncId = table
                 .find("tr:contains('House Win Loss By Products - Product Permission') input").val();
 
@@ -95,20 +95,19 @@ var AssignGroupPermission = (function ($) {
             }
             return false;
         }
-
     };
 }(jQuery));
 
 $(document).ready(function () {
-    AssignGroupPermission.grid = $('.grid:first');
+    AssignGroupPermission.grid = $('.table:first');
     AssignGroupPermission.updateForm = $('form:last');
     AssignGroupPermission.disabledParent();
 
     AssignGroupPermission.updateForm.submit(function () {
         AssignGroupPermission.grid.find('tr').each(function () {
             var $this = $(this),
-				chkHost = $this.find('[name=funcHost]'),
-				chkRead = $this.find('[name=funcRead]');
+                chkHost = $this.find('[name=funcHost]'),
+                chkRead = $this.find('[name=funcRead]');
 
             if (chkHost.is(':checked')) {
                 chkRead.removeAttr('name');
@@ -122,9 +121,9 @@ $(document).ready(function () {
 
     AssignGroupPermission.grid.find('[type=checkbox]').change(function () {
         var $this = $(this),
-			thisIsChecked = $this.is(':checked'),
-			row = $this.parents('tr'),
-			table = row.parents('table');
+            thisIsChecked = $this.is(':checked'),
+            row = $this.parents('tr'),
+            table = row.parents('table');
 
         if (AssignGroupPermission.hasHouseWLByProductsPermission(table, $this)) {
             return;

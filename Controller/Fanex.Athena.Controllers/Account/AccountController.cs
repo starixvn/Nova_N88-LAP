@@ -237,7 +237,7 @@
             var user = userService.GetById(id);
             var criteria = new ResetPasswordCustCriteria
             {
-                CustId = user.Id,
+                UserId = user.Id,
                 Username = user.Username,
                 UserPwd = string.Empty,
                 ConfirmUserPwd = string.Empty,

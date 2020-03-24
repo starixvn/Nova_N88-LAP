@@ -1,15 +1,11 @@
 ﻿@import "../../reactpages/abstracts/variables";
 @import "../../reactpages/abstracts/mixins";
-@import '../../components/breadcrumb/breadcrumb';
+@import '../../components/breadcrumb';
 @import "../../components/table";
 @import '../../reactpages/components/forms/checkbox';
 
 .container-fluid {
     padding: 15px;
-}
-
-.breadCrumbHolder {
-    margin-bottom: 10px;
 }
 
 .table {

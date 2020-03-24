@@ -304,7 +304,6 @@
     <Content Include="App_Data\UserGuide\CashOutWL\en-US.htm" />
     <Content Include="Content\Account\AccountManagement.css" />
     <Content Include="Content\Account\msgbox-0.0.1.css" />
-    <Content Include="Content\Account\NewUser.css" />
     <Content Include="Content\Account\reset.css" />
     <Content Include="Content\Account\style.css" />
     <Content Include="Content\Fanex.Result\Allbet\css\button.css" />
@@ -695,6 +694,7 @@
     <Content Include="www\css\source\pages\user\assign-permission.scss" />
     <Content Include="www\css\build\dev\pages\user\assignpermission.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\user\assignpermission.css.map" />
+    <Content Include="www\css\source\components\_breadcrumb.scss" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -1829,7 +1829,6 @@
     <Content Include="www\css\source\pages\betlist\betlistcommon.main.scss" />
     <Content Include="www\css\source\components\jqgrid\jqgrid.main.scss" />
     <Content Include="www\css\source\components\multiselect\multiselect.main.scss" />
-    <Content Include="www\css\source\components\breadcrumb\breadcrumb.scss" />
     <Content Include="www\css\source\components\loader\loader.scss" />
     <Content Include="Views\Desktop\BetList\LiveReport\Match.cshtml" />
     <Content Include="Views\Desktop\BetList\LiveReport\MixParlay.cshtml" />

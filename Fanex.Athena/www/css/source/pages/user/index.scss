@@ -40,8 +40,12 @@
 }
 
 .table {
+    .col-datetime {
+        width: 180px;
+    }
+
     .col-action {
-        width: 70px;
+        width: 80px;
     }
 
     .icon-settings {

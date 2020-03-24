@@ -24,12 +24,10 @@
 }
 
 <div class="container-fluid">
-    <div class="breadCrumbHolder" style="display: block;">
-        <div class="breadcrumb flat">
-            <a class="level level0 level-link" data-level="0" href="@Url.Action("Manage", "Group", null)"
-               style="display: inline;">@Menu.ManageGroup</a>
-            <a class="level level1 active" data-level="1" href="javascript:;" style="display: inline;">@ViewBag.Title</a>
-        </div>
+    <div class="breadcrumb">
+        <a class="level level-link" href="@Url.Action("Manage", "Group", null)">@Menu.ManageGroup</a>
+        <i class="icon-arrow"></i>
+        <a class="level" href="javascript:;">@ViewBag.Title</a>
     </div>
 
     @using (Html.BeginForm())

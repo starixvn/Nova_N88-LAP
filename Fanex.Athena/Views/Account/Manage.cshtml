@@ -108,10 +108,10 @@
                         <td>
                             @(item.User.Creator != null ? item.User.Creator.Username : string.Empty)
                         </td>
-                        <td class="text-center">
+                        <td class="text-center col-datetime">
                             @item.User.CreatedDate.ToFullDateString()
                         </td>
-                        <td class="text-center">
+                        <td class="text-center col-datetime">
                             @if (item.User.LastLoginDate != DateTime.MinValue)
                             {
                                 @item.User.LastLoginDate.ToFullDateString()
@@ -121,11 +121,11 @@
                                 @NA
                             }
                         </td>
-                        <td class="text-center">
+                        <td class="text-center col-action">
                             @{
-                                    var itemStatus = (Constant.UserStatus)item.Status;
-                                    string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
-                                    var title = isEditable ? string.Format("{0} '{1}'", activateText, @item.User.Username) : string.Empty;
+                                var itemStatus = (Constant.UserStatus)item.Status;
+                                string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
+                                var title = isEditable ? string.Format("{0} '{1}'", activateText, @item.User.Username) : string.Empty;
 
                                 <div class="js-tipsy-s active-deactive-link" 
                                      title="@title"

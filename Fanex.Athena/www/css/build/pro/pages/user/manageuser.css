@@ -885,8 +885,11 @@ input[type="checkbox"].checkbox {
     .page-filter select:focus {
       outline: none; }
 
+.table .col-datetime {
+  width: 180px; }
+
 .table .col-action {
-  width: 70px; }
+  width: 80px; }
 
 .table .icon-settings {
   font-size: 14px;

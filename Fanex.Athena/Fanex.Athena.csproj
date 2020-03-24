@@ -303,6 +303,7 @@
     <Content Include="App_Data\UserGuide\CashOutWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\CashOutWL\en-US.htm" />
     <Content Include="Content\Account\AccountManagement.css" />
+    <Content Include="Content\Account\msgbox-0.0.1.css" />
     <Content Include="Content\Account\NewUser.css" />
     <Content Include="Content\Account\Permission.css" />
     <Content Include="Content\Account\reset.css" />
@@ -449,6 +450,7 @@
     <Content Include="Scripts\Account\AssignPermission.js" />
     <Content Include="Scripts\Account\CryptoJS.js" />
     <Content Include="Scripts\Account\Manage.js" />
+    <Content Include="Scripts\Account\msgbox-0.0.1.js" />
     <Content Include="Scripts\Account\NAP.js" />
     <Content Include="Scripts\Account\ResetPassword.js" />
     <Content Include="Scripts\Group\AssignPermission.js" />

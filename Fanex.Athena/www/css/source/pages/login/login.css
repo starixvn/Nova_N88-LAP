@@ -49,8 +49,8 @@ body, html {
 
     .page-login .capcha-block .capcha-img {
         float: left;
-        width: 80px;
-        height: 32px;
+        width: 120px;
+        height: 35px;
         background: #d2d2d2;
         border-radius: 3px;
         overflow: hidden;
@@ -62,7 +62,7 @@ body, html {
 
     .page-login .capcha-block .input-capcha {
         float: left;
-        width: calc(100% - 95px);
+        width: calc(100% - 135px);
         margin-left: 15px;
         margin-bottom: 1px;
     }
@@ -79,10 +79,6 @@ body, html {
     margin-bottom: 40px;
 }
 
-.page-login .floating-label {
-    color: #bdbdbd;
-}
-
 .page-login .form-control {
     color: #545454;
     border-radius: 0;
@@ -92,10 +88,6 @@ body, html {
     width: calc(100% - 30px);
     border-bottom: 2px solid #545454;
 }
-
-    .page-login .form-control:focus + .floating-label {
-        color: #bdbdbd;
-    }
 
     .page-login .form-control:focus:not([readonly]) {
         border-bottom: 2px solid #314453;
@@ -117,16 +109,6 @@ body, html {
     transform: translateY(-50%);
 }
 
-    .page-login .input-icon-group i.pull-right {
-        left: inherit;
-        right: -10px;
-        font-size: 16px;
-        opacity: 0;
-        z-index: 9999;
-        cursor: pointer;
-        transition: 0.2s all ease;
-    }
-
     .page-login .input-icon-group i + .form-control {
         padding-left: 30px;
     }
@@ -136,14 +118,6 @@ body, html {
             box-shadow: 0 1px 0 0 #314453;
         }
 
-            .page-login .input-icon-group i + .form-control:not([value=""]):not(:focus) + i.pull-right {
-                opacity: 1;
-            }
-
-a {
-    color: rgba(255, 255, 255, 0.6);
-}
-
 .btn {
     width: 100%;
     background: #F15D21;
@@ -152,33 +126,36 @@ a {
     color: #fff;
     border-radius: 3px;
     margin-top: 40px;
+    height: 40px;
+    line-height: 40px;
 }
 
     .btn:hover, .btn:active {
         background: #f37f50;
     }
 
-::placeholder {
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     font-style: italic;
     font-weight: normal;
     font-size: 16px;
     color: #545454;
 }
 
-::-webkit-input-placeholder {
-    font-style: italic;
-    font-weight: normal;
-    font-size: 16px;
-}
-
-::-ms-input-placeholder {
+::-moz-placeholder { /* Firefox 19+ */
     font-style: italic;
     font-weight: normal;
     font-size: 16px;
     color: #545454;
 }
 
-::-webkit-input-placeholder {
+:-ms-input-placeholder { /* IE 10+ */
+    font-style: italic;
+    font-weight: normal;
+    font-size: 16px;
+    color: #545454;
+}
+
+:-moz-placeholder { /* Firefox 18- */
     font-style: italic;
     font-weight: normal;
     font-size: 16px;

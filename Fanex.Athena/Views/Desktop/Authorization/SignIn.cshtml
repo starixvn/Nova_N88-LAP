@@ -31,21 +31,20 @@
         <div class="page-content">
             <form class="form-content" action="@Url.Content("~/Authorization/SignIn")" method="post" name="fLogin" id="fLogin">
                 @Html.AntiForgeryToken()
-                <img class="logo" src="/www/assets/images/logo-login.svg">
+                <img class="logo" src="@Url.ContentLink("/www/assets/images/logo-login.svg")">
                 <div class="input-field col s12">
                     <div class="input-icon-group">
                         <i class="icon icon-account" aria-hidden="true"></i>
                         <input type="text" class="form-control" placeholder="@ViewResources.Username"
                                id="userName" name="userName" value="" autocomplete="off" />
-                        <i class="icon icon-close pull-right" id="btn-reset-1"></i>
                     </div>
                 </div>
 
                 <div class="input-field col s12">
                     <div class="input-icon-group">
                         <i class="icon icon-lock" aria-hidden="true"></i>
-                        <input type="password" class="form-control" placeholder="@ViewResources.Password" id="passWord" name="passWord" value="" autocomplete="off" />
-                        <i class="icon icon-close pull-right"></i>
+                        <input type="password" class="form-control" placeholder="@ViewResources.Password"
+                               id="passWord" name="passWord" value="" autocomplete="off" />
                     </div>
                 </div>
 

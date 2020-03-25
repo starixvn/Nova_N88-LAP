@@ -876,6 +876,15 @@ input[type="checkbox"].checkbox {
     line-height: 22px;
     margin: 0;
     font-size: 12px; }
+  .page-filter input[type="datetime"] {
+    height: 25px;
+    width: 110px;
+    border: 1px solid #cecccd;
+    padding: 0 26px 2px 7px; }
+  .page-filter .datetime img {
+    position: absolute;
+    left: 140px;
+    top: 29px; }
   .page-filter select {
     height: 22px;
     line-height: 22px;

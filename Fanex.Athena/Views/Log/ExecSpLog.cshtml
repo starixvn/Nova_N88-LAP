@@ -1,4 +1,5 @@
 ﻿@using Fanex.Athena.Model.UserManagement.Model;
+@using Fanex.Athena.Model.UserManagement.Enum;
 @model IPagedList<LogExecSp>
 
 @{
@@ -53,10 +54,7 @@
                     <label class="label-text">@ViewResources.Filter</label>
                     @Html.DropDownList("filterBy", new List<SelectListItem>() {
                                 new SelectListItem { Text = ViewResources.User, Value = "1"},
-                                new SelectListItem { Text = ViewResources.Group, Value = "2"},
-                                new SelectListItem { Text = ViewResources.Site, Value = "3"},
-                                new SelectListItem { Text = ViewResources.Function, Value = "4"},
-                                new SelectListItem { Text = ViewResources.Menu, Value = "5"} })
+                                new SelectListItem { Text = ViewResources.Group, Value = "2"} })
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
@@ -148,7 +146,7 @@
                             @item.ActionName
                         </td>
                         <td class="text-center" style="width: 100px">
-                            @if (item.ActionId != (int)Constant.LogAction.NAP_Cust_UpdatePassword)
+                            @if (item.ActionId != (int)LogAction.N88_User_UpdatePassword)
                             {
                                 <a href="#" logid="@item.Id" class="loginsert">@ViewResources.Details</a>
                             }

@@ -110,7 +110,7 @@
 
         public PartialViewResult N88UserInsert(LogExecSp log)
         {
-            if (log.ActionId == (int)LogAction.N88_Cust_Insert)
+            if (log.ActionId == (int)LogAction.N88_User_Insert)
             {
                 XElement elementNew = XElement.Parse(log.Data);
 
@@ -228,12 +228,12 @@
             return PartialView("~/Views/Log/_N88LogUpdate.cshtml");
         }
 
-        public PartialViewResult N88CustUpdate(LogExecSp log)
+        public PartialViewResult N88UserUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data ?? "<ROOT/>");
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.N88_Cust_Update)
+            if (log.ActionId == (int)LogAction.N88_User_Update)
             {
                 var listLogData = new List<LogData>
                 {
@@ -279,8 +279,7 @@
 
             // N88_Group_AssignFunction || N88_User_AssignFunction
             if (log.ActionId == (int)LogAction.N88_Group_AssignFunction
-                || log.ActionId == (int)LogAction.N88_User_AssignFunction
-                || log.ActionId == (int)LogAction.N88_Function_CopyPermission)
+                || log.ActionId == (int)LogAction.N88_User_AssignFunction)
             {
                 // Get function list
                 int siteId = Convert.ToInt32(elementNew.Attribute("SiteId").Value);
@@ -321,7 +320,7 @@
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.N88_Function_AssignFunctionToUsers)
+            if (log.ActionId == (int)LogAction.N88_User_AssignFunction)
             {
                 // Old data
                 string strUserPolicyOld = elementOld.Attribute("Value").Value.DecodeXMLValue();
@@ -376,7 +375,7 @@
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.N88_Function_AssignFunctionToGroups)
+            if (log.ActionId == (int)LogAction.N88_Group_AssignFunction)
             {
                 // Old data
                 string strGroupPolicyOld = elementOld.Attribute("Value").Value.DecodeXMLValue();

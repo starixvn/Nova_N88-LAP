@@ -707,6 +707,7 @@
     <Content Include="www\css\build\dev\pages\log\logexecsp.css.map" />
     <Content Include="Views\Log\GetLogInsertDetail.cshtml" />
     <Content Include="Views\Log\_N88LogInsert.cshtml" />
+    <Content Include="Views\Log\_N88LogUpdate.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

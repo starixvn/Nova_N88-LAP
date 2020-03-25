@@ -7,56 +7,15 @@
 
 @if (!ReferenceEquals(Model, null))
 {
-    if (Model.ActionId == (int)LogAction.N88_Cust_Insert)
+    if (Model.ActionId == (int)LogAction.N88_User_Insert)
     {
         @Html.Action("N88UserInsert", "Log", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.N88_Group_Insert)
+    if (Model.ActionId == (int)LogAction.N88_User_Update)
     {
-        @Html.Action("N88GroupInsert", "Log", Model)
+        @Html.Action("N88UserUpdate", "Log", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.N88_Group_Update)
-    {
-        @Html.Action("N88GroupUpdate", "Log", Model)
-    }
 
-    if (Model.ActionId == (int)LogAction.N88_Group_UpdateStatus)
-    {
-        @Html.Action("N88GroupUpdateStatus", "Log", Model)
-    }
-
-    if (Model.ActionId == (int)LogAction.N88_Cust_Update)
-    {
-        @Html.Action("N88CustUpdate", "Log", Model)
-    }
-
-    if (Model.ActionId == (int)LogAction.N88_Group_AssignFunction
-        || Model.ActionId == (int)LogAction.N88_User_AssignFunction
-        || Model.ActionId == (int)LogAction.N88_Function_CopyPermission)
-    {
-        @Html.Action("N88AssignPermission", "Log", Model)
-    }
-    if (Model.ActionId == (int)LogAction.N88_User_AssignNewSite)
-    {
-        @Html.Action("N88AssignNewSite", "Log", Model)
-    }
-
-    if (Model.ActionId == (int)LogAction.N88_User_AssignSite)
-    {
-        @Html.Action("N88AssignSite", "Log", Model)
-    }
-    if (Model.ActionId == (int)LogAction.N88_Function_AssignFunctionToUsers)
-    {
-        @Html.Action("N88FunctionAssignToUsers", "Log", Model)
-    }
-    if (Model.ActionId == (int)LogAction.N88_Function_AssignFunctionToGroups)
-    {
-        @Html.Action("N88FunctionAssignFunctionToGroups", "Log", Model)
-    }
-    if (Model.ActionId == (int)LogAction.Task_N88_RevokeUserPermission)
-    {
-        @Html.Action("TaskN88RevokeUserPermission", "Log", Model)
-    }
 }

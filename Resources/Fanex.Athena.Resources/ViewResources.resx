@@ -2747,5 +2747,10 @@
   </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
+  <data name="NewValue" xml:space="preserve">
+    <value>New Value</value>
+  </data>
+  <data name="OldValue" xml:space="preserve">
+    <value>Old Value</value>
   </data>
 </root>

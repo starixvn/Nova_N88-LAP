@@ -26,42 +26,28 @@
 
         [HttpGet]
         public ActionResult LogUserLogin(
-            int id = 1,
+            int page = 1,
             int size = 20,
-            string q = null,
+            string name = null,
             DateTime? from = null,
             DateTime? to = null)
         {
             var criteria = new GetAllLogUserLoginCriteria
             {
-                PageIndex = id,
+                PageIndex = page,
                 PageSize = size,
-                Name = q ?? string.Empty,
-                From = from ?? DateTime.Now,
-                To = to ?? DateTime.Now.AddDays(1),
+                Name = name ?? string.Empty,
+                From = from ?? DateTime.Now.Date,
+                To = to ?? DateTime.Now.Date,
                 SiteId = n88Settings.SiteId,
                 TotalRows = 0
             };
-
             ViewBag.Criteria = criteria;
+
+            criteria.To = criteria.To.AddDays(1).AddMilliseconds(-1);
             var listLog = userLogService.GetAllLoginLog(criteria);
 
             return View("~/Views/Log/UserLoginLog.cshtml", listLog.ToPagedList(criteria.PageIndex - 1, criteria.PageSize, criteria.TotalRows));
-        }
-
-        [HttpPost]
-        public ActionResult LogUserLogin(GetAllLogUserLoginCriteria criteria)
-        {
-            return RedirectToAction(
-                "LogUserLogin",
-                new
-                {
-                    id = criteria.PageIndex,
-                    size = criteria.PageSize,
-                    q = criteria.Name,
-                    from = criteria.From.ToString("MMM dd,yyyy"),
-                    to = criteria.To.ToString("MMM dd,yyyy"),
-                });
         }
 
         [HttpGet]

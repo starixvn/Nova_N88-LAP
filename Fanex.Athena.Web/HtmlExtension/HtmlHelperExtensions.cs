@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web;
 
 namespace Fanex.Athena.Web.HtmlExtension
@@ -29,6 +30,23 @@ namespace Fanex.Athena.Web.HtmlExtension
             }
 
             return value;
+        }
+
+        public static string GetGeoName(this string geoId)
+        {
+            var listCulture = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+
+            foreach (CultureInfo culture in listCulture)
+            {
+                var region = new RegionInfo(culture.LCID);
+
+                if (region.GeoId.ToString().Equals(geoId))
+                {
+                    return region.DisplayName;
+                }
+            }
+
+            return geoId;
         }
     }
 }

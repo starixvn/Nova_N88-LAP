@@ -10,45 +10,54 @@
     <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
 }
 @section pagejs {
-  
+    <script src="@Url.ContentLink("/Scripts/Log/LogLogin.js")" type="text/javascript"></script>
 }
 
 <div class="container-fluid">
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "page-filter" }))
+    @using (Html.BeginForm(null, null, FormMethod.Get, new { @role = "form", @class = "page-filter" }))
     {
         <div class="row">
             <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
                 <div class="form-group">
                     <label class="label-text">@ViewResources.Name</label>
-                    <input type="text" class="input-text" value="@ViewBag.Criteria.Name" name="userName" id="Username" autocomplete="off" />
+                    <input type="text" class="input-text" value="@ViewBag.Criteria.Name" name="name" id="name" autocomplete="off" />
                     <input type="hidden" value="@ViewBag.Criteria.Name" id="hdnUsename" />
                 </div>
             </div>
-            
-            <div class="col-md-2 col-sm-2 col-lg-2 col-xl-1">
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group datetime">
+                    <label class="label-text">@ViewResources.From</label>
+                    <input type="date" class="input-text" value="@ViewBag.Criteria.From.ToString("yyyy-MM-dd")" name="From" id="From" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group datetime">
+                    <label class="label-text">@ViewResources.To</label>
+                    <input type="date" class="input-text" value="@ViewBag.Criteria.To.ToString("yyyy-MM-dd")" name="To" id="To" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
                 <div class="form-group">
                     <div class="button-group">
-                        <button type="submit" class="btn btn-submit">@ViewResources.Submit</button>
+                        <input type="submit" class="btn btn-submit" value="@ViewResources.Submit" />
                     </div>
                 </div>
             </div>
         </div>
     }
+
     <table class="table">
         <thead>
             <tr class="level1">
                 <th>#</th>
+                <th>@ViewResources.LogID</th>
+                <th>@ViewResources.LogDate</th>
                 <th>@ViewResources.Username</th>
-                <th>@ViewResources.FirstName</th>
-                <th>@ViewResources.Group</th>
-                <th>@ViewResources.Creator</th>
-                <th>@ViewResources.CreatedDate</th>
-                <th>@ViewResources.LastLoginDate</th>
-                <th>@ViewResources.Status</th>
-                @if (ViewBag.HasHostPermission)
-                {
-                    <th>@ViewResources.Action</th>
-                }
+                <th>@ViewResources.IP</th>
+                <th>@ViewResources.Domain_Name</th>
+                <th>@ViewResources.Browser_Name</th>
+                <th>@ViewResources.Platform</th>
+                <th>@ViewResources.Country</th>
             </tr>
         </thead>
         <tbody id="grid-user">
@@ -65,84 +74,29 @@
                             @((Model.PageSize * (Model.PageIndex) + i + 1))
                         </td>
                         <td>
-                            <a href="javascript:;" uid="@item.User.Id" class="lnk-user-info"
-                               title="">@item.User.Username</a>
+                            @item.Id
                         </td>
                         <td>
-                            @(item.User.FirstName != null ? item.User.FirstName : string.Empty)
+                            @item.LogDate
                         </td>
                         <td>
-                            @(item.User.Group != null ? item.User.Group.Name : string.Empty)
+                            @item.UserName
                         </td>
                         <td>
-                            @(item.User.Creator != null ? item.User.Creator.Username : string.Empty)
+                            @item.IP
                         </td>
-                        <td class="text-center">
-                            @item.User.CreatedDate.ToFullDateString()
+                        <td>
+                            @item.DomainName
                         </td>
-                        <td class="text-center">
-                            @if (item.User.LastLoginDate != DateTime.MinValue)
-                            {
-                                @item.User.LastLoginDate.ToFullDateString()
-                            }
-                            else
-                            {
-                                @NA
-                            }
+                        <td>
+                            @item.BrowserName
                         </td>
-                        <td class="text-center">
-                            @{
-                                var status = ((Constant.UserStatus)item.Status);
-
-                                if (status != Constant.UserStatus.All)
-                                {
-                                    <div class="@(status == Constant.UserStatus.Closed ? "text-danger": string.Empty)">
-                                        @status
-                                    </div>
-                                }
-                            }
+                        <td>
+                            @item.Platform
                         </td>
-
-                        @if (ViewBag.HasHostPermission)
-                        {
-                            <td class="text-center col-action">
-                                @if (item.User.Id != ViewBag.CurrentUserId && (item.Level < ViewBag.currentUserLevel || item.Level == (int)Constant.Level.User))
-                                {
-                                    <span class="btn-action icon-settings"></span>
-                                    <div class="action-wrapper">
-                                        <ul class="dropdown">
-                                            <li>
-                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
-                                                    "Edit", new { id = item.User.Id })
-                                            </li>
-                                            <li>
-                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
-                                                    "ResetPassword", new { id = item.User.Id })
-                                            </li>
-                                            <li>
-                                                @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
-                                                    new { id = item.User.Id })
-                                            </li>
-                                            @{ 
-                                                    var itemStatus = (Constant.UserStatus)item.Status;
-                                                    if (itemStatus != Constant.UserStatus.Closed)
-                                                    {
-                                                        string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
-                                                        <li>
-                                                            <a href="#" onclick="return false;" class="active-deactive-link" username="@item.User.Username"
-                                                               activatetext="@activateText" userid="@item.User.Id">@activateText '@item.User.Username'</a>
-                                                        </li>
-                                                   }
-                                           }
-                                        </ul>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <span class="btn-action disabled icon-settings"></span>
-                                }
-                            </td>
-                        }
+                        <td>
+                            @item.CountryCode.GetGeoName()
+                        </td>
                     </tr>
 
                     i++;
@@ -171,7 +125,7 @@
                             }, new { id = string.Empty, @class = "items-per-page" })
                         </span>
                         <span class="paging">
-                            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("groupid", ViewBag.Criteria.GroupId)).Options(o => o.AddRouteValue("username", ViewBag.Criteria.Username)).Options(o => o.AddRouteValue("statusId", ViewBag.Criteria.Status))
+                            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("name", ViewBag.Criteria.Name)).Options(o => o.AddRouteValue("From", ViewBag.Criteria.From)).Options(o => o.AddRouteValue("To", ViewBag.Criteria.To))
                         </span>
                     </td>
                 </tr>

@@ -454,6 +454,7 @@
     <Content Include="Scripts\Account\ResetPassword.js" />
     <Content Include="Scripts\Group\AssignPermission.js" />
     <Content Include="Scripts\Group\Manage.js" />
+    <Content Include="Scripts\Log\LogLogin.js" />
     <Content Include="Scripts\Log\LogExecSp.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.min.js" />

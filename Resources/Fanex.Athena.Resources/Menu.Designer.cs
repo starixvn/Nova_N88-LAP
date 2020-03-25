@@ -160,6 +160,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Login Log.
+        /// </summary>
+        public static string UserLoginLog {
+            get {
+                return ResourceManager.GetString("UserLoginLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Management.
         /// </summary>
         public static string UserManagement {

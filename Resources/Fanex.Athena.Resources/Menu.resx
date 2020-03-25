@@ -153,4 +153,7 @@
   <data name="LogManagement" xml:space="preserve">
     <value>Log Management</value>
   </data>
+  <data name="UserLoginLog" xml:space="preserve">
+    <value>User Login Log</value>
+  </data>
 </root>

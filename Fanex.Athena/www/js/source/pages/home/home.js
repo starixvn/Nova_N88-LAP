@@ -81,17 +81,21 @@ define([
         }
 
         function activeDefaultMenuItem() {
-            let defaultUrl = $('#DefaultUrl').val().toLowerCase();
+            let defaultUrl = $('#DefaultUrl').val();
             defaultUrl = defaultUrl.replace(/\/index$/i, ''); // remove the last '/Index'
-            const $menuItem = $('#left-menu .collapsible-body a').filter(function () {
-                return $(this).attr('href').toLowerCase() === defaultUrl;
+            const $menuItem = $('#left-menu .menu-item a').filter(function () {
+                return $(this).attr('href') === defaultUrl;
             });
             $('.collapsible2').collapsibleMenu('activeMenuItem', $menuItem);
 
-            const menuItemName = $menuItem.length > 0 ? $menuItem.text() : '';
+            const menuItemName = $menuItem.length > 0 ? $menuItem.text().replace(/\s/g, '') : '';
             $('#page-title').text(menuItemName);
 
-            document.title = $('.active > .menu-title').text() + ' - ' + menuItemName;
+            const documentTitle = $('.active > .menu-title').text().replace(/\s/g, '')
+
+            if (documentTitle.toLowerCase() !== menuItemName.toLowerCase()) {
+                document.title = documentTitle + ' - ' + menuItemName;
+            }
         }
 
         return {

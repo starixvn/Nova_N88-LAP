@@ -125,13 +125,15 @@
                             @{
                                 var itemStatus = (Constant.UserStatus)item.Status;
                                 string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
-                                var title = isEditable ? string.Format("{0} '{1}'", activateText, @item.User.Username) : string.Empty;
+                                var canEdit = ViewBag.HasHostPermission && isEditable;
+                                var title = canEdit ? string.Format("{0} '{1}'", activateText, @item.User.Username) : string.Empty;
 
                                 <div class="js-tipsy-s active-deactive-link" 
                                      title="@title"
+                                     iseditable="@canEdit"
                                      username="@item.User.Username" activatetext="@activateText" userid="@item.User.Id">
                                     <input type="checkbox" class="checkbox" @(itemStatus == Constant.UserStatus.Active ? "checked" : string.Empty) 
-                                           @(isEditable ? string.Empty : "disabled") />
+                                           @(canEdit ? string.Empty : "disabled") />
                                     <label></label>
                                 </div>
                             }

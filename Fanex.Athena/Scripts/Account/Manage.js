@@ -96,10 +96,15 @@ $(document).ready(function () {
     ManageUser.grid.on('click', '.active-deactive-link', function () {
         var $this = $(this),
             activeText = $this.attr('activatetext'),
+            iseditable = $this.attr('iseditable'),
             isActive = activeText == "Activate",
             userId = $this.attr('userid'),
             userName = $this.attr('username'),
             msg = "Are you sure you want to " + activeText + " '" + userName + "'?";
+
+        if (!iseditable) {
+            return;
+        }
 
         NAP.headlineMsgBox.confirm(msg, function () {
             $.ajax({

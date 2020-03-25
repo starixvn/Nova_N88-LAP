@@ -10,6 +10,7 @@ const hasBaPermission = window._pConfig.hasBaPermission;
 const hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission;
 const hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission;
 const isAllowedCustomerComm = window._pConfig.isAllowedCustomerComm === 1;
+const isAllowedStatement = window._pConfig.isAllowedStatement === 1;
 
 const displayedColumnList = buildDefaultColumnList(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission);
 const siteSetting = {
@@ -17,7 +18,7 @@ const siteSetting = {
   isAllowedBA: false
 }
 
-const defaultState = { ...window.initialState, displayedColumnList, hasBaPermission, siteSetting, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedCustomerComm };
+const defaultState = { ...window.initialState, displayedColumnList, hasBaPermission, siteSetting, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedCustomerComm, isAllowedStatement };
 const store = Store.createStore(reducer, defaultState);
 
 const App = () => {

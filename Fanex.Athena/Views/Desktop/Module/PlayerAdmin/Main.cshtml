@@ -32,6 +32,7 @@
     hasBaPermission:  @Html.Raw((new { isallowed = (bool)Model.IsAllowedBA.Key, policy = Model.IsAllowedBA.Value }).ToJson()),
     hasOddsGroupPermission: @Html.Raw((new { isallowed = (bool)Model.IsAllowedOddGroup.Key, policy = Model.IsAllowedOddGroup.Value }).ToJson()),
     hasSpecialLevelPermission: @Html.Raw((new { isallowed = (bool)Model.IsAllowedSpecialLevel.Key, policy = Model.IsAllowedSpecialLevel.Value }).ToJson()),
+    isAllowedStatement : @((bool)Model.IsAllowedStatement ? 1 : 0)
     };
 }
 <div id="app-container">

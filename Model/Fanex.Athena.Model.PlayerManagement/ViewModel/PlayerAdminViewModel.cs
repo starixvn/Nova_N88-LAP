@@ -7,7 +7,7 @@
     {
         public IDictionary<int, string> CurrencyList { get; set; }
 
-        public bool IsSubsidiary { get; set; }
+        public bool IsAllowedStatement { get; set; }
 
         public KeyValuePair<bool, int> IsAllowedBA { get; set; }
 

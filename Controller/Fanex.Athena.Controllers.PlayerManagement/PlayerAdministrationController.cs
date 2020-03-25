@@ -7,6 +7,7 @@
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.Constants;
+    using Fanex.Athena.Model.PlayerManagement.DTO;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
@@ -45,6 +46,8 @@
                 Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateSpecialLevel).FirstOrDefault();
             var isAllowedBA = licenseeSession.IsEnableBA &&
                 _authService.CheckProductBelongsTo(licenseeSession.LicenseeName, ProductTypes.BA);
+            var isAllowedStatement = userSession.FunctionList.
+                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminPlayerStatement).FirstOrDefault();
 
             var allowedBA = new Function();
             if (isAllowedBA)
@@ -59,6 +62,7 @@
             playerAdmin.IsAllowedSpecialLevel = new KeyValuePair<bool, int>(allowedSpecialLevel != null, allowedSpecialLevel == null ? 0 : allowedSpecialLevel.Policy);
             playerAdmin.IsAllowedBA = new KeyValuePair<bool, int>(allowedBA != null && allowedBA.FunctionKey != null, allowedBA == null ? 0 : allowedBA.Policy);
             playerAdmin.PlayerTabItems = JsonConvert.SerializeObject(PlayerAdminTab.CommonTabList);
+            playerAdmin.IsAllowedStatement = isAllowedStatement != null;
 
             return playerAdmin;
         }

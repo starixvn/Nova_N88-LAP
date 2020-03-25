@@ -35,6 +35,7 @@ export class PlayerDetail extends PureComponent {
     }
 
     _renderTabList(tabList) {
+        console.log(tabList);
         const selectedTabName = this.props.selectedTabName || this._getDefaultSelectedTab();
         const renderedTabList = tabList;
         return (  

@@ -3352,7 +3352,6 @@ var hasBaPermission = window._pConfig.hasBaPermission;
 var hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission;
 var hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission;
 var isAllowedCustomerComm = window._pConfig.isAllowedCustomerComm === 1;
-var isAllowedStatement = window._pConfig.isAllowedStatement === 1;
 var displayedColumnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__["buildDefaultColumnList"])(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission);
 var siteSetting = {
   isAllowedCustomerComm: false,
@@ -3365,8 +3364,7 @@ var defaultState = _objectSpread({}, window.initialState, {
   siteSetting: siteSetting,
   hasOddsGroupPermission: hasOddsGroupPermission,
   hasSpecialLevelPermission: hasSpecialLevelPermission,
-  isAllowedCustomerComm: isAllowedCustomerComm,
-  isAllowedStatement: isAllowedStatement
+  isAllowedCustomerComm: isAllowedCustomerComm
 });
 
 var store = _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_5__["default"].createStore(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], defaultState);

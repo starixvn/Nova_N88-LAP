@@ -36,6 +36,8 @@ var cssPaths = {
     manageuser: ["./www/css/source/pages/user/index.scss"],
     edituser: ["./www/css/source/pages/user/edit.scss"],
     assignpermission: ["./www/css/source/pages/user/assign-permission.scss"],
+
+    logexecsp: ["./www/css/source/pages/log/logexecsp.scss"]
 };
 
 var scriptPaths = {

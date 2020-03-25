@@ -54,16 +54,16 @@ $(document).ready(function () {
 		var logId = $(this).attr('logid');
 
 		$.ajax({
-			url: NAP.resolveClientUrl("Trace/GetLogInsertDetail/" + logId),
+			url: NAP.resolveClientUrl("Log/GetLogInsertDetail?id=" + logId),
 			type: 'POST',
 			contentType: 'application/json',
 			dataType: 'html',
 			cache: false,
 			beforeSend: function () {
-				NAP.loadingBox.show();
+				//NAP.loadingBox.show();
 			},
 			complete: function () {
-				NAP.loadingBox.close();
+				//NAP.loadingBox.close();
 			},
 			success: function (result) {
 				if (result.length > 0) {

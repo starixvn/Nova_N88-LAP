@@ -2527,6 +2527,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Field Name.
+        /// </summary>
+        public static string FieldName {
+            get {
+                return ResourceManager.GetString("FieldName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file is not ready, please try again later..
         /// </summary>
         public static string FileIsNotReady {
@@ -6888,6 +6897,15 @@ namespace Fanex.Athena.Resources {
         public static string ValidBetAmount {
             get {
                 return ResourceManager.GetString("ValidBetAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
         

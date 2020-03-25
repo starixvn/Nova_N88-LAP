@@ -66,6 +66,7 @@
     <Compile Include="Criteria\GetAllWithNumOfUserGroupCriteria.cs" />
     <Compile Include="Criteria\GetByGroupAndSiteFunctionCriteria.cs" />
     <Compile Include="Criteria\GetByIdGroupCriteria.cs" />
+    <Compile Include="Criteria\GetByIdLogCriteria.cs" />
     <Compile Include="Criteria\GetByIdSiteCriteria.cs" />
     <Compile Include="Criteria\GetByIdUserCriteria.cs" />
     <Compile Include="Criteria\GetByNameGroupCriteria.cs" />

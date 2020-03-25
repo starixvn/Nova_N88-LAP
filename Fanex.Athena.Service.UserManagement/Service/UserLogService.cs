@@ -1,6 +1,9 @@
 ﻿namespace Fanex.Athena.Service.UserManagement.Service
 {
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Xml.Linq;
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Service.UserManagement.Repository;
@@ -22,6 +25,158 @@
         public IEnumerable<LogExecSp> GetExecSPLog(GetAllLogCriteria criteria)
         {
             return commonRepository.FetchData<LogExecSp>(criteria);
+        }
+
+        public LogExecSp GetById(int logId)
+        {
+            var criteria = new GetByIdLogCriteria
+            {
+                LogId = logId
+            };
+
+            if (criteria.IsValid())
+            {
+                LogExecSp logExec = this.commonRepository.FetchData<LogExecSp>(criteria).FirstOrDefault();
+
+                if (!object.ReferenceEquals(logExec, null))
+                {
+                    var hashItems = new Hashtable();
+                    var hashSubItems = new Hashtable();
+
+                    if (!string.IsNullOrWhiteSpace(logExec.Items))
+                    {
+                        XDocument xmlItems = XDocument.Parse(logExec.Items);
+                        IEnumerable<XElement> xmlItemRows = xmlItems.Descendants("row");
+
+                        foreach (XElement item in xmlItemRows)
+                        {
+                            string alias = item.Attribute("alias").Value;
+                            if (!hashItems.Contains(alias))
+                            {
+                                hashItems.Add(alias, item.Attribute("item").Value);
+                            }
+                        }
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(logExec.SubItems))
+                    {
+                        XDocument xmlItems = XDocument.Parse(logExec.SubItems);
+                        IEnumerable<XElement> xmlItemRows = xmlItems.Descendants("row");
+
+                        foreach (XElement item in xmlItemRows)
+                        {
+                            string alias = item.Attribute("alias").Value;
+                            if (!hashSubItems.Contains(alias))
+                            {
+                                hashSubItems.Add(alias, item.Attribute("item").Value);
+                            }
+                        }
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(logExec.Data))
+                    {
+                        XDocument xmlData = XDocument.Parse(logExec.Data);
+                        var xmlElementData = new XElement("ROOT");
+
+                        if (hashItems.Count > 0)
+                        {
+                            foreach (DictionaryEntry item in hashItems)
+                            {
+                                XAttribute attribute = xmlData.Root.Attribute(item.Key.ToString());
+                                string value = attribute != null ? attribute.Value : string.Empty;
+
+                                xmlElementData.SetAttributeValue(item.Value.ToString(), value);
+                            }
+                        }
+
+                        if (hashSubItems.Count > 0)
+                        {
+                            var xmlElementValue = new XElement("ROW");
+                            IEnumerable<XElement> xmlElementSubData = xmlData.Descendants("z");
+
+                            foreach (XElement item in xmlElementSubData)
+                            {
+                                var xmlElementChildTemp = new XElement("ITEM");
+
+                                foreach (DictionaryEntry itemAtt in hashSubItems)
+                                {
+                                    XAttribute attribute = item.Attribute(itemAtt.Key.ToString());
+                                    string value = attribute != null ? attribute.Value : string.Empty;
+
+                                    xmlElementChildTemp.SetAttributeValue(itemAtt.Value.ToString(), value);
+                                }
+
+                                xmlElementValue.Add(xmlElementChildTemp);
+                            }
+
+                            xmlElementData.SetAttributeValue("Value", this.EncodeXMLValue(xmlElementValue.ToString()));
+                        }
+
+                        logExec.Data = xmlElementData.ToString();
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(logExec.OldData))
+                    {
+                        XDocument xmlData = XDocument.Parse(logExec.OldData);
+                        var xmlElementData = new XElement("ROOT");
+
+                        if (hashItems.Count > 0)
+                        {
+                            foreach (DictionaryEntry item in hashItems)
+                            {
+                                XAttribute attribute = xmlData.Root.Attribute(item.Key.ToString());
+                                string value = attribute != null ? attribute.Value : string.Empty;
+
+                                xmlElementData.SetAttributeValue(item.Value.ToString(), value);
+                            }
+                        }
+
+                        if (hashSubItems.Count > 0)
+                        {
+                            var xmlElementValue = new XElement("ROW");
+                            IEnumerable<XElement> xmlElementSubData = xmlData.Descendants("z");
+
+                            foreach (XElement item in xmlElementSubData)
+                            {
+                                var xmlElementChildTemp = new XElement("ITEM");
+                                foreach (DictionaryEntry itemAtt in hashSubItems)
+                                {
+                                    XAttribute attribute = item.Attribute(itemAtt.Key.ToString());
+                                    var value = attribute != null ? attribute.Value : string.Empty;
+
+                                    xmlElementChildTemp.SetAttributeValue(itemAtt.Value.ToString(), value);
+                                }
+
+                                xmlElementValue.Add(xmlElementChildTemp);
+                            }
+
+                            xmlElementData.SetAttributeValue("Value", this.EncodeXMLValue(xmlElementValue.ToString()));
+                        }
+
+                        logExec.OldData = xmlElementData.ToString();
+                    }
+                }
+
+                return logExec;
+            }
+
+            return null;
+        }
+
+        private string EncodeXMLValue(string value)
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                value = value.Replace("&", "&amp;");
+                value = value.Replace("<", "&lt;");
+                value = value.Replace(">", "&gt;");
+                value = value.Replace("\"", "&quot;");
+                value = value.Replace("''", "&apos;");
+
+                return value;
+            }
+
+            return value;
         }
     }
 }

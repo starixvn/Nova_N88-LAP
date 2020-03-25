@@ -109,9 +109,22 @@
                  });
         }
 
+        [HttpPost]
+        public ActionResult GetLogInsertDetail(int id)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var log = userLogService.GetById(id);
+
+                return View(log);
+            }
+
+            return View(new LogExecSp());
+        }
+
         public PartialViewResult N88UserInsert(LogExecSp log)
         {
-            if (log.ActionId == (int)LogAction.N88_User_Insert)
+            if (log.ActionId == (int)LogAction.N88_Cust_Insert)
             {
                 XElement elementNew = XElement.Parse(log.Data);
 

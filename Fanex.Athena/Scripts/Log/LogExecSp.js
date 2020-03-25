@@ -9,7 +9,7 @@ var LogExecSp = (function ($) {
 		buttonImage: null,
 		form: null,
 
-		InitDateTimePicker: function () {
+        InitDateTimePicker: function () {
 			$("#From").datepicker({
 				defaultDate: "+1w",
 				changeMonth: true,

@@ -444,6 +444,7 @@
     <Content Include="img\Account\ui-icons_ffffff_256x240.png" />
     <Content Include="img\Account\user-info-ico.png" />
     <Content Include="img\Account\user.png" />
+    <Content Include="img\Log\icon-calendar.png" />
     <Content Include="karma-new-bypage.conf.js" />
     <Content Include="Scripts\Account\AssignPermission.js" />
     <Content Include="Scripts\Account\CryptoJS.js" />

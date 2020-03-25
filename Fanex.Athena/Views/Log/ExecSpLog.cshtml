@@ -8,6 +8,7 @@
 
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/pages/log/logexecsp.css")" rel="stylesheet" type="text/css" />
+
 }
 
 @section pagejs {
@@ -84,29 +85,29 @@
                         case 1:
                             <th>
                                 @ViewResources.User
-                        </th>
-                        break;
-                    case 2:
-                        <th>
-                            @ViewResources.Group
-                    </th>
-                    break;
-                case 3:
-                    <th>
-                        @ViewResources.Site
-                </th>
-                break;
-            case 4:
-                <th>
-                    @ViewResources.Function
-            </th>
-            break;
-        case 5:
-            <th>
-                @ViewResources.Menu
-        </th>
-        break;
-}
+                            </th>
+                            break;
+                        case 2:
+                            <th>
+                                @ViewResources.Group
+                            </th>
+                            break;
+                        case 3:
+                            <th>
+                                @ViewResources.Site
+                            </th>
+                            break;
+                        case 4:
+                            <th>
+                                @ViewResources.Function
+                            </th>
+                            break;
+                        case 5:
+                            <th>
+                                @ViewResources.Menu
+                            </th>
+                            break;
+                    }
                     <th>
                         @ViewResources.ModifiedBy
                     </th>
@@ -164,6 +165,9 @@
                     </tr>
                 }
             </tbody>
-            
+
         </table>
+
+        @Html.Hidden("imagePath", (string)@Url.Content("~/img/Log/icon-calendar.png"))
+
     </div>

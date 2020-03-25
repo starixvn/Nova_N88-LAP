@@ -1,12 +1,7 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LicenseeSession.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-using System;
-
-namespace Fanex.Athena.Model.Auth
+﻿namespace Fanex.Athena.Model.Auth
 {
+    using System;
+
     [Serializable]
     public class LicenseeAuthInfo
     {

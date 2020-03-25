@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Athena.Model.Auth
+﻿namespace Fanex.Athena.Model.Auth
 {
+    using System.Collections.Generic;
+
     public class TokenInfo
     {
         public string VendorID { get; set; }

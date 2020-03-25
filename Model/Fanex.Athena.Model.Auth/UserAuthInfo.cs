@@ -1,15 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UserSession.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-using System;
-
-namespace Fanex.Athena.Model.Auth
+﻿namespace Fanex.Athena.Model.Auth
 {
-    using System.Collections.Generic;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.N88.Core.Models;
+    using System;
+    using System.Collections.Generic;
 
     [Serializable]
     public class UserAuthInfo

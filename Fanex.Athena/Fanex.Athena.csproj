@@ -518,7 +518,6 @@
     <Content Include="www\assets\images\logo-text.svg" />
     <Content Include="www\assets\images\logo-login.svg" />
     <Content Include="www\assets\images\new-system.svg" />
-    <Content Include="www\css\build\dev\pages\betlist\images\lotto_ball.png" />
     <Content Include="www\css\build\dev\pages\betlist\images\nphPromotion.png" />
     <Content Include="www\css\build\dev\pages\betlist\images\rebateBonus.png" />
     <Content Include="www\css\build\dev\pages\log\logexecsp.chunk.js" />

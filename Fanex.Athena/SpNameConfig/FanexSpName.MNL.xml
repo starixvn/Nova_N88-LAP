@@ -190,7 +190,8 @@
   </Function>
 
   <Function Name="Log">
-    <Setting Key="N88_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88LOG.bodb_N88LOG.bodbAdminNet" />
+    <Setting Key="N88_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
+    <Setting Key="N88_LogExecSp_Search" SpName="N88_LogExecSp_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
   </Function>
 </Functions>
 		

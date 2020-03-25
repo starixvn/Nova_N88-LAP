@@ -16,5 +16,19 @@ namespace Fanex.Athena.Web.HtmlExtension
                     value.ToString(dateFormat),
                     value.ToString(timeFormat)));
         }
+
+        public static string DecodeXMLValue(this string value)
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                return value.Replace("&amp;", "&")
+                    .Replace("&lt;", "<")
+                    .Replace("&gt;", ">")
+                    .Replace("&quot;", "\"")
+                    .Replace("&apos;", "''");
+            }
+
+            return value;
+        }
     }
 }

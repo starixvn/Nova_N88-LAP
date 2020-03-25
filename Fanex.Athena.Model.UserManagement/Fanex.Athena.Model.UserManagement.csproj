@@ -83,9 +83,11 @@
     <Compile Include="Criteria\UpdateGroupCriteria.cs" />
     <Compile Include="Criteria\UpdateSiteToUserCriteria.cs" />
     <Compile Include="Criteria\UpdateStatusGroupCriteria.cs" />
+    <Compile Include="Enum\LogAction.cs" />
     <Compile Include="Model\AccFunction.cs" />
     <Compile Include="Model\CommandResult.cs" />
     <Compile Include="Model\Constant.cs" />
+    <Compile Include="Model\LogData.cs" />
     <Compile Include="Model\LogExecSp.cs" />
     <Compile Include="Model\StartNameValidationAttribute.cs" />
     <Compile Include="Model\FunctionData.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Model\GroupData.cs" />
     <Compile Include="Model\GroupPolicy.cs" />
     <Compile Include="Model\UserLoginLog.cs" />
+    <Compile Include="Model\UserPolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Site.cs" />
     <Compile Include="Model\User.cs" />

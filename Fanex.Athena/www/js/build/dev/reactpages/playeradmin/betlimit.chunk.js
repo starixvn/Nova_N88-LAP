@@ -416,7 +416,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_utility__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../lib/utility */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/utility.js");
 /* harmony import */ var _jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/components/CheckBox */ "./www/js/source/reactpages/components/CheckBox.jsx");
 /* harmony import */ var _jsroot_components_Balloon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/components/Balloon */ "./www/js/source/reactpages/components/Balloon.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -452,7 +452,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var SettingContent = function SettingContent(Grid, DataHandling) {
   var _temp;
 
-  return _temp = /*#__PURE__*/function (_PureComponent) {
+  return _temp =
+  /*#__PURE__*/
+  function (_PureComponent) {
     _inherits(_temp, _PureComponent);
 
     function _temp(props) {
@@ -960,7 +962,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.es.js");
 /* harmony import */ var _sport_settings_AGCSettingGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../sport-settings/AGCSettingGrid */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/components/grid/sport-settings/AGCSettingGrid.jsx");
 /* harmony import */ var _jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -990,7 +992,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var AGCDataContent = /*#__PURE__*/function (_PureComponent) {
+var AGCDataContent =
+/*#__PURE__*/
+function (_PureComponent) {
   _inherits(AGCDataContent, _PureComponent);
 
   function AGCDataContent(props) {
@@ -1625,7 +1629,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var DataHandling = /*#__PURE__*/function () {
+var DataHandling =
+/*#__PURE__*/
+function () {
   function DataHandling() {
     _classCallCheck(this, DataHandling);
   }
@@ -1766,7 +1772,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var Url = (_Url = {}, _defineProperty(_Url, _constants__WEBPACK_IMPORTED_MODULE_3__["BetLimitProduct"].SB, 'SportsBookBetLimit'), _defineProperty(_Url, _constants__WEBPACK_IMPORTED_MODULE_3__["BetLimitProduct"].VS, 'DcsBetLimit'), _defineProperty(_Url, _constants__WEBPACK_IMPORTED_MODULE_3__["BetLimitProduct"].VS2, 'DcsBetLimit'), _defineProperty(_Url, _constants__WEBPACK_IMPORTED_MODULE_3__["BetLimitProduct"].LT, 'DcsBetLimit'), _defineProperty(_Url, _constants__WEBPACK_IMPORTED_MODULE_3__["BetLimitProduct"].NG, 'NumberGameBetLimit'), _defineProperty(_Url, _constants__WEBPACK_IMPORTED_MODULE_3__["BetLimitProduct"].KN, 'RngKenoBetLimit'), _defineProperty(_Url, _constants__WEBPACK_IMPORTED_MODULE_3__["BetLimitProduct"].AGC, 'AGCasinoBetLimit'), _Url);
 
-var DataTransfer = /*#__PURE__*/function () {
+var DataTransfer =
+/*#__PURE__*/
+function () {
   function DataTransfer() {
     _classCallCheck(this, DataTransfer);
   }
@@ -1821,7 +1829,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GameSettingDataHandling; });
 /* harmony import */ var _validatation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validatation */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/validatation.js");
 /* harmony import */ var _dataHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataHandling */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/dataHandling.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1846,7 +1854,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var GameSettingDataHandling = /*#__PURE__*/function (_DataHandling) {
+var GameSettingDataHandling =
+/*#__PURE__*/
+function (_DataHandling) {
   _inherits(GameSettingDataHandling, _DataHandling);
 
   function GameSettingDataHandling() {
@@ -1905,7 +1915,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _validatation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validatation */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/validatation.js");
 /* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utility */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/utility.js");
 /* harmony import */ var _dataHandling__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dataHandling */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/dataHandling.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1931,7 +1941,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var NGDataHandling = /*#__PURE__*/function (_DataHandling) {
+var NGDataHandling =
+/*#__PURE__*/
+function (_DataHandling) {
   _inherits(NGDataHandling, _DataHandling);
 
   function NGDataHandling() {
@@ -2052,7 +2064,9 @@ var ConfirmationMsg = (_ConfirmationMsg = {}, _defineProperty(_ConfirmationMsg, 
   Msg: 'UpdateAgCasinoBetSettings'
 }), _ConfirmationMsg);
 
-var Utility = /*#__PURE__*/function () {
+var Utility =
+/*#__PURE__*/
+function () {
   function Utility() {
     _classCallCheck(this, Utility);
   }
@@ -2109,7 +2123,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var Validatation = /*#__PURE__*/function () {
+var Validatation =
+/*#__PURE__*/
+function () {
   function Validatation() {
     _classCallCheck(this, Validatation);
   }
@@ -2454,7 +2470,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2478,7 +2494,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var Balloon = /*#__PURE__*/function (_PureComponent) {
+var Balloon =
+/*#__PURE__*/
+function (_PureComponent) {
   _inherits(Balloon, _PureComponent);
 
   function Balloon(props) {
@@ -2702,7 +2720,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2730,7 +2748,9 @@ var wrapperClasses = {
   OVERLAY_OPEN: "overlay-open"
 };
 
-var Overlay = /*#__PURE__*/function (_Component) {
+var Overlay =
+/*#__PURE__*/
+function (_Component) {
   _inherits(Overlay, _Component);
 
   function Overlay(props) {
@@ -3017,7 +3037,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icon */ "./www/js/source/reactpages/components/sweet-alert/icon.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -3051,7 +3071,9 @@ var ICON_CONTENTS = {
   warning: Object(_icon__WEBPACK_IMPORTED_MODULE_3__["warningIconMarkup"])(),
   success: Object(_icon__WEBPACK_IMPORTED_MODULE_3__["successIconMarkup"])()
 };
-var SweetAlert = /*#__PURE__*/function (_React$Component) {
+var SweetAlert =
+/*#__PURE__*/
+function (_React$Component) {
   _inherits(SweetAlert, _React$Component);
 
   function SweetAlert(props) {
@@ -3158,7 +3180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AppLayout; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3178,7 +3200,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var AppLayout = /*#__PURE__*/function (_Component) {
+var AppLayout =
+/*#__PURE__*/
+function (_Component) {
   _inherits(AppLayout, _Component);
 
   function AppLayout(props) {
@@ -3239,7 +3263,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var DataService = /*#__PURE__*/function () {
+var DataService =
+/*#__PURE__*/
+function () {
   function DataService() {
     _classCallCheck(this, DataService);
   }
@@ -3326,7 +3352,9 @@ var DEFAULT_RESOURCE_NAME = "_language_en_US";
 var langCode = window.PageLanguage || "en-US";
 var resourceName = "_language_".concat(langCode.replace("-", "_"));
 
-var LangHelper = /*#__PURE__*/function () {
+var LangHelper =
+/*#__PURE__*/
+function () {
   function LangHelper() {
     _classCallCheck(this, LangHelper);
   }
@@ -3389,7 +3417,9 @@ var loggerMiddleware = Object(redux_logger__WEBPACK_IMPORTED_MODULE_0__["createL
   }
 });
 
-var Logger = /*#__PURE__*/function () {
+var Logger =
+/*#__PURE__*/
+function () {
   function Logger() {
     _classCallCheck(this, Logger);
   }
@@ -3424,7 +3454,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var NumberFormat = /*#__PURE__*/function () {
+var NumberFormat =
+/*#__PURE__*/
+function () {
   function NumberFormat() {
     _classCallCheck(this, NumberFormat);
   }
@@ -3488,7 +3520,9 @@ var _rootUrl = window.rootUrl || "/";
 
 var _xsrfToken = null;
 
-var Site = /*#__PURE__*/function () {
+var Site =
+/*#__PURE__*/
+function () {
   function Site() {
     _classCallCheck(this, Site);
   }
@@ -3585,7 +3619,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var Store = /*#__PURE__*/function () {
+var Store =
+/*#__PURE__*/
+function () {
   function Store() {
     _classCallCheck(this, Store);
   }

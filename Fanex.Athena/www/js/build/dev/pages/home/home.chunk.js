@@ -2234,21 +2234,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         }
 
         function activeDefaultMenuItem() {
-            let defaultUrl = $('#DefaultUrl').val();
+            let defaultUrl = $('#DefaultUrl').val().toLowerCase();
             defaultUrl = defaultUrl.replace(/\/index$/i, ''); // remove the last '/Index'
-            const $menuItem = $('#left-menu .menu-item a').filter(function () {
-                return $(this).attr('href') === defaultUrl;
+            const $menuItem = $('#left-menu .collapsible-body a').filter(function () {
+                return $(this).attr('href').toLowerCase() === defaultUrl;
             });
             $('.collapsible2').collapsibleMenu('activeMenuItem', $menuItem);
 
-            const menuItemName = $menuItem.length > 0 ? $menuItem.text().replace(/\s/g, '') : '';
+            const menuItemName = $menuItem.length > 0 ? $menuItem.text() : '';
             $('#page-title').text(menuItemName);
 
-            const documentTitle = $('.active > .menu-title').text().replace(/\s/g, '')
-
-            if (documentTitle.toLowerCase() !== menuItemName.toLowerCase()) {
-                document.title = documentTitle + ' - ' + menuItemName;
-            }
+            document.title = $('.active > .menu-title').text() + ' - ' + menuItemName;
         }
 
         return {

@@ -453,6 +453,7 @@
     <Content Include="Scripts\Account\ResetPassword.js" />
     <Content Include="Scripts\Group\AssignPermission.js" />
     <Content Include="Scripts\Group\Manage.js" />
+    <Content Include="Scripts\Log\LogExecSp.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.js" />
     <Content Include="Scripts\Plugin\tipsy\tipsy-1.0.0.min.js" />
     <Content Include="SpNameConfig\FanexSpName.LOCAL.xml">
@@ -520,6 +521,8 @@
     <Content Include="www\css\build\dev\pages\betlist\images\lotto_ball.png" />
     <Content Include="www\css\build\dev\pages\betlist\images\nphPromotion.png" />
     <Content Include="www\css\build\dev\pages\betlist\images\rebateBonus.png" />
+    <Content Include="www\css\build\dev\pages\log\logexecsp.chunk.js" />
+    <Content Include="www\css\build\dev\pages\log\logexecsp.css" />
     <Content Include="www\css\build\dev\pages\user\assignpermission.chunk.js" />
     <Content Include="www\css\build\dev\pages\user\assignpermission.css" />
     <Content Include="www\css\build\dev\pages\user\edituser.chunk.js" />
@@ -697,6 +700,10 @@
     <Content Include="www\css\build\dev\pages\user\assignpermission.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\user\assignpermission.css.map" />
     <Content Include="www\css\source\components\_breadcrumb.scss" />
+    <Content Include="Views\Log\ExecSpLog.cshtml" />
+    <Content Include="www\css\source\pages\log\logexecsp.scss" />
+    <Content Include="www\css\build\dev\pages\log\logexecsp.chunk.js.map" />
+    <Content Include="www\css\build\dev\pages\log\logexecsp.css.map" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -4967,6 +4974,7 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Log\" />
     <Folder Include="Logs\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Report\" />

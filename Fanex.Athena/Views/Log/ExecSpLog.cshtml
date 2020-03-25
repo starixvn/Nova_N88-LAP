@@ -1,0 +1,169 @@
+﻿@using Fanex.Athena.Model.UserManagement.Model;
+@model IPagedList<LogExecSp>
+
+@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    var filterType = (int)ViewBag.Criteria.FilterType;
+}
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/log/logexecsp.css")" rel="stylesheet" type="text/css" />
+}
+
+@section pagejs {
+    <script src="@Url.ContentLink("/Scripts/Account/msgbox-0.0.1.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Log/LogExecSp.js")" type="text/javascript"></script>
+}
+
+    <div class="container-fluid">
+
+        @using (Html.BeginForm(null, null, FormMethod.Get, new { @role = "form", @class = "page-filter" }))
+        {
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div class="form-group">
+                        <label class="label-text">@ViewResources.ModifiedBy</label>
+                        <input type="text" class="input-text" value="@ViewBag.Criteria.Username" name="userName" id="Username" autocomplete="off" />
+                        <input type="hidden" value="@ViewBag.Criteria.Username" id="hdnUsename" />
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div class="form-group datetime">
+                        <label class="label-text">@ViewResources.From</label>
+                        <input type="datetime" class="input-text" value="@ViewBag.Criteria.From" name="From" id="From" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div class="form-group datetime">
+                        <label class="label-text">@ViewResources.To</label>
+                        <input type="datetime" class="input-text" value="@ViewBag.Criteria.To" name="To" id="To" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div class="form-group">
+                        <label class="label-text">@ViewResources.Name</label>
+                        <input type="text" class="input-text" value="@ViewBag.Criteria.Name" name="Name" id="Name" autocomplete="off" />
+                        <input type="hidden" value="@ViewBag.Criteria.Name" id="hdnName" />
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div class="form-group">
+                        <label class="label-text">@ViewResources.Filter</label>
+                        @Html.DropDownList("filterBy", new List<SelectListItem>() {
+                                    new SelectListItem { Text = ViewResources.User, Value = "1"},
+                                    new SelectListItem { Text = ViewResources.Group, Value = "2"},
+                                    new SelectListItem { Text = ViewResources.Site, Value = "3"},
+                                    new SelectListItem { Text = ViewResources.Function, Value = "4"},
+                                    new SelectListItem { Text = ViewResources.Menu, Value = "5"} })
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div class="form-group">
+                        <div class="button-group">
+                            <input type="submit" class="btn btn-submit" value="@ViewResources.Submit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <table class="table">
+            <thead>
+                <tr class="level1">
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        @ViewResources.LogID
+                    </th>
+                    <th>
+                        @ViewResources.LogDate
+                    </th>
+                    @switch (filterType)
+                    {
+                        case 1:
+                            <th>
+                                @ViewResources.User
+                        </th>
+                        break;
+                    case 2:
+                        <th>
+                            @ViewResources.Group
+                    </th>
+                    break;
+                case 3:
+                    <th>
+                        @ViewResources.Site
+                </th>
+                break;
+            case 4:
+                <th>
+                    @ViewResources.Function
+            </th>
+            break;
+        case 5:
+            <th>
+                @ViewResources.Menu
+        </th>
+        break;
+}
+                    <th>
+                        @ViewResources.ModifiedBy
+                    </th>
+                    <th>
+                        @ViewResources.Action
+                    </th>
+                    <th>
+                        @ViewResources.Description
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!ReferenceEquals(Model, null) && Model.Count() > 0)
+                {
+                    int i = 0;
+                    foreach (var item in Model)
+                    {
+                        string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+                        <tr @Html.Raw(rowCss)>
+                            <td class="text-center">
+                                @((i + 1) + ((ViewBag.Criteria.PageIndex - 1) * ViewBag.Criteria.PageSize))
+                            </td>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td style="width: 150px" class="text-center">
+                                @item.LogDate.ToFullDateString()
+                            </td>
+                            <td style="width: 200px">
+                                @item.Name
+                            </td>
+                            <td style="width: 200px">
+                                @item.Modifier
+                            </td>
+                            <td>
+                                @item.ActionName
+                            </td>
+                            <td class="text-center" style="width: 100px">
+                                @if (item.ActionId != (int)Constant.LogAction.NAP_Cust_UpdatePassword)
+                                {
+                                    <a href="#" logid="@item.Id" class="loginsert">@ViewResources.Details</a>
+                                }
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+                else
+                {
+                    <tr class="no-info">
+                        <td colspan="12" class="text-center">
+                            @ViewResources.NoInformationAvailable
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            
+        </table>
+    </div>

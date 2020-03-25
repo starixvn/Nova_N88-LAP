@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Model.UserManagement.Model
+﻿namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     using System;
     using System.ComponentModel.DataAnnotations;

@@ -61,6 +61,7 @@
     <Compile Include="Criteria\AssignFunctionUserCriteria.cs" />
     <Compile Include="Criteria\AssignSiteUserCriteria.cs" />
     <Compile Include="Criteria\GetAllGroupCriteria.cs" />
+    <Compile Include="Criteria\GetAllLogCriteria.cs" />
     <Compile Include="Criteria\GetAllLogUserLoginCriteria.cs" />
     <Compile Include="Criteria\GetAllWithNumOfUserGroupCriteria.cs" />
     <Compile Include="Criteria\GetByGroupAndSiteFunctionCriteria.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Model\AccFunction.cs" />
     <Compile Include="Model\CommandResult.cs" />
     <Compile Include="Model\Constant.cs" />
+    <Compile Include="Model\LogExecSp.cs" />
     <Compile Include="Model\StartNameValidationAttribute.cs" />
     <Compile Include="Model\FunctionData.cs" />
     <Compile Include="Model\FunctionPolicy.cs" />

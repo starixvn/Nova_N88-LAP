@@ -3,7 +3,7 @@
 "use strict";
 
 $(document).ready(function () {
-	$('.grid').on('change', '.items-per-page', function () {
+	$('#table-loginlog').on('change', '.items-per-page', function () {
 		var $this = $(this),
 			pageSize = $this.val(),
 			from = $('#From').val(),

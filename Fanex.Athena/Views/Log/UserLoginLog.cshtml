@@ -10,6 +10,8 @@
     <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
 }
 @section pagejs {
+    <script src="@Url.ContentLink("/Scripts/Account/msgbox-0.0.1.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Account/NAP.js")" type="text/javascript"></script>
     <script src="@Url.ContentLink("/Scripts/Log/LogLogin.js")" type="text/javascript"></script>
 }
 
@@ -20,7 +22,7 @@
             <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
                 <div class="form-group">
                     <label class="label-text">@ViewResources.Name</label>
-                    <input type="text" class="input-text" value="@ViewBag.Criteria.Name" name="name" id="name" autocomplete="off" />
+                    <input type="text" class="input-text" value="@ViewBag.Criteria.Name" name="name" id="Name" autocomplete="off" />
                     <input type="hidden" value="@ViewBag.Criteria.Name" id="hdnUsename" />
                 </div>
             </div>
@@ -46,7 +48,7 @@
         </div>
     }
 
-    <table class="table">
+    <table class="table" id="table-loginlog">
         <thead>
             <tr class="level1">
                 <th>#</th>

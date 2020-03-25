@@ -1,8 +1,19 @@
 import { fields, columnList, licenseeType } from '../constants';
 
-export const buildDefaultColumnList = () => {
+export const buildDefaultColumnList = (hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission) => {
     return columnList.filter(item => {
-        return item.key !== fields.BaStatus
+        if (item.key === fields.BaStatus) {
+            return hasBaPermission.isallowed;
+        }
+        if (item.key === fields.OddsGroup) {
+            return hasOddsGroupPermission.isallowed;
+        }
+        if (item.key === fields.SpecialLevel) {
+            return hasSpecialLevelPermission.isallowed;
+        } 
+        else {
+            return true;
+        }
     }).map(item => ({...item }))
 }
 
@@ -16,7 +27,7 @@ export const buildColumnList = (hasBaPermission, hasOddsGroupPermission, hasSpec
             return hasOddsGroupPermission.isallowed;
         }
         if (item.key === fields.SpecialLevel) {
-            return hasOddsGroupPermission.isallowed;
+            return hasSpecialLevelPermission.isallowed;
         } 
         else {
             return true;

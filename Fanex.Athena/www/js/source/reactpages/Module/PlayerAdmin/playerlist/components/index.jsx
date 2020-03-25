@@ -11,7 +11,7 @@ const hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission;
 const hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission;
 const isAllowedCustomerComm = window._pConfig.isAllowedCustomerComm === 1;
 
-const displayedColumnList = buildDefaultColumnList();
+const displayedColumnList = buildDefaultColumnList(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission);
 const siteSetting = {
   isAllowedCustomerComm: false,
   isAllowedBA: false

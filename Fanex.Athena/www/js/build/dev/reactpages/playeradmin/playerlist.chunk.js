@@ -3349,7 +3349,7 @@ var hasBaPermission = window._pConfig.hasBaPermission;
 var hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission;
 var hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission;
 var isAllowedCustomerComm = window._pConfig.isAllowedCustomerComm === 1;
-var displayedColumnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__["buildDefaultColumnList"])();
+var displayedColumnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__["buildDefaultColumnList"])(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission);
 var siteSetting = {
   isAllowedCustomerComm: false,
   isAllowedBA: false
@@ -3722,9 +3722,21 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-var buildDefaultColumnList = function buildDefaultColumnList() {
+var buildDefaultColumnList = function buildDefaultColumnList(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission) {
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(function (item) {
-    return item.key !== _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus;
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
+      return hasBaPermission.isallowed;
+    }
+
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].OddsGroup) {
+      return hasOddsGroupPermission.isallowed;
+    }
+
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].SpecialLevel) {
+      return hasSpecialLevelPermission.isallowed;
+    } else {
+      return true;
+    }
   }).map(function (item) {
     return _objectSpread({}, item);
   });
@@ -3741,7 +3753,7 @@ var buildColumnList = function buildColumnList(hasBaPermission, hasOddsGroupPerm
     }
 
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].SpecialLevel) {
-      return hasOddsGroupPermission.isallowed;
+      return hasSpecialLevelPermission.isallowed;
     } else {
       return true;
     }

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Xml.Linq;
     using Fanex.Athena.Model.UserManagement.Criteria;
+    using Fanex.Athena.Model.UserManagement.Enum;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Service.UserManagement.Repository;
 
@@ -24,7 +25,7 @@
 
         public IEnumerable<LogExecSp> GetExecSPLog(GetAllLogCriteria criteria)
         {
-            return commonRepository.FetchData<LogExecSp>(criteria);
+            return FilterLogExecSp(commonRepository.FetchData<LogExecSp>(criteria));
         }
 
         public LogExecSp GetById(int logId)
@@ -177,6 +178,19 @@
             }
 
             return value;
+        }
+
+        private IEnumerable<LogExecSp> FilterLogExecSp(IEnumerable<LogExecSp> data)
+        {
+            return data
+                .Where(l => l.ActionId != (short)LogAction.N88_User_AssignNewSite)
+                .Select(l => {
+                    if (l.ActionId == (short)LogAction.N88_User_UpdateSite) {
+                        l.ActionName = "Update user status";
+                    }
+
+                    return l;
+                });
         }
     }
 }

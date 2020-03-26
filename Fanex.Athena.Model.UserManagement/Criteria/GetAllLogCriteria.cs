@@ -21,6 +21,8 @@
         [Display(Name = "Filter", ResourceType = typeof(ViewResources))]
         public int FilterType { get; set; }
 
+        public int SiteId { get; set; }
+
         public int PageIndex { get; set; }
 
         public int PageSize { get; set; }

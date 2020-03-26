@@ -69,6 +69,7 @@
                 From = from ?? DateTime.Now.Date,
                 To = to ?? DateTime.Now.AddDays(1).Date,
                 FilterType = filterBy,
+                SiteId = n88Settings.SiteId,
                 TotalRows = 0
             };
 

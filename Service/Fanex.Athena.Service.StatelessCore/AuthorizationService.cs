@@ -9,7 +9,6 @@ namespace Fanex.Athena.Service.StatelessCore
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility.Interfaces;
     using Fanex.Athena.Model.Auth;
@@ -26,30 +25,12 @@ namespace Fanex.Athena.Service.StatelessCore
         private readonly ICustomMemoryCacheService _cache;
         private readonly IUserService userService;
 
-
         public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache, IUserService userService)
         {
             _authorizationDataAccess = authorizationDataAccess;
             _cache = cache;
             this.userService = userService;
         }
-
-        //public bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
-        //{
-        //    if (userAuthInfo.ApplicationMode == AppMode.Parasitic)
-        //    {
-        //        if (userAuthInfo.IsSuperAdmin)
-        //        {
-        //            return true;
-        //        }
-
-        //        return userAuthInfo.PortalFunctionList.Any(i => permissionKeys.Contains(i.FunctionKey,
-        //            StringComparer.InvariantCultureIgnoreCase)
-        //        || (i.SubFunctionKeys != null && i.SubFunctionKeys.Intersect(permissionKeys).Any()));
-        //    }
-
-        //    return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
-        //}
 
         public bool HasPermissions(int userId, params string[] permissionKeys)
         {
@@ -76,7 +57,6 @@ namespace Fanex.Athena.Service.StatelessCore
                 return userAuthInfo.PortalFunctionList != null && userAuthInfo.PortalFunctionList.Any(i => i.FunctionKey
                       == PermissionKeys.CustomerInfoCommissionGroupList ||
                       (i.SubFunctionKeys != null && i.SubFunctionKeys.Contains(PermissionKeys.CustomerInfoCommissionGroupList)));
-
             }
             return userAuthInfo.FunctionList != null && userAuthInfo.FunctionList.Any(x => x.FunctionKey == PermissionKeys.CustomerInfoCommissionGroupList);
         }
@@ -92,7 +72,6 @@ namespace Fanex.Athena.Service.StatelessCore
                 return userAuthInfo.PortalFunctionList != null && (userAuthInfo.PortalFunctionList.Any(i => i.FunctionKey
                      == PermissionKeys.CustomerInfoSpecialBA
                      || (i.SubFunctionKeys != null && i.SubFunctionKeys.Contains(PermissionKeys.CustomerInfoSpecialBA))));
-
             }
             return userAuthInfo.FunctionList != null && userAuthInfo.FunctionList.Any(x => x.FunctionKey == PermissionKeys.CustomerInfoSpecialBA);
         }

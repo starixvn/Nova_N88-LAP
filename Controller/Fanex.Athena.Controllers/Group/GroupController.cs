@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.Athena.Controllers;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.UserManagement.Criteria;
@@ -215,7 +214,7 @@
             criteria.GroupName = group.GroupName;
             criteria.SiteId = siteId;
 
-            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup,(int)Policy.Host);
+            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
 
             ViewBag.FunctionList = _userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true);
             ViewBag.GroupFuncPolicyList =

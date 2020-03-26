@@ -11,9 +11,8 @@ namespace Fanex.Athena.Web.ActionFilter
     using System.Web.Mvc;
     using System.Web.Routing;
     using Fanex.Athena.Model.Auth.Enum;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-
     using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public sealed class FunctionAuthorizationAttribute : ActionFilterAttribute
@@ -50,7 +49,7 @@ namespace Fanex.Athena.Web.ActionFilter
             var authorized = userSession != null && licenseeSession != null;
             if (authorized)
             {
-                if(_policy == Policy.Host)
+                if (_policy == Policy.Host)
                 {
                     authorized = AuthorizationServiceInstance.HasHostPermissions(userSession.UserId, _permissionKeys);
                 }

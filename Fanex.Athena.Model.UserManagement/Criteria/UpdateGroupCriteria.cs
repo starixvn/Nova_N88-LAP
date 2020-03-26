@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Resources;
 
     public class UpdateGroupCriteria : LogExecSpCriteria
@@ -15,6 +16,9 @@
             ErrorMessageResourceType = typeof(ViewResources))]
         [RegularExpression(@"^[\w\s]{1,}$",
             ErrorMessageResourceName = "InvalidNameValidationMsg",
+            ErrorMessageResourceType = typeof(ViewResources))]
+        [StartNameValidation(
+            ErrorMessageResourceName = "InvalidStartGroupNameValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string GroupName { get; set; }
 

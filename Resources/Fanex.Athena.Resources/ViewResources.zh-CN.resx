@@ -2252,4 +2252,7 @@
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="InvalidStartGroupNameValidationMsg" xml:space="preserve">
+    <value>Group Name cannot start with 'starix'</value>
+  </data>
 </root>

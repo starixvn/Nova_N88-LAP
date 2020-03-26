@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Athena.Model.UserManagement.Model
 {
@@ -14,7 +9,7 @@ namespace Fanex.Athena.Model.UserManagement.Model
             string strValue = value as string;
             if (!string.IsNullOrEmpty(strValue))
             {
-                return !strValue.StartsWith("starix");
+                return !strValue.ToLowerInvariant().StartsWith("starix");
             }
 
             return true;

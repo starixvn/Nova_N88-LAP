@@ -2772,4 +2772,7 @@
   <data name="SiteName" xml:space="preserve">
     <value>Site Name</value>
   </data>
+  <data name="InvalidStartGroupNameValidationMsg" xml:space="preserve">
+    <value>Group Name cannot start with 'starix'</value>
+  </data>
 </root>

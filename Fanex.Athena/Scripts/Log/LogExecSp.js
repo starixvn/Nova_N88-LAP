@@ -7,48 +7,15 @@ var LogExecSp = (function ($) {
 	return {
 		grid: null,
 		buttonImage: null,
-		form: null,
-
-        InitDateTimePicker: function () {
-			$("#From").datepicker({
-				defaultDate: "+1w",
-				changeMonth: true,
-				numberOfMonths: 1,
-				dateFormat: "M dd,yy",
-				showOn: "button",
-				buttonImage: LogExecSp.buttonImage,
-				buttonText: "From",
-				buttonImageOnly: true,
-				onSelect: function (selectedDate) {
-					$("#To").datepicker("option", "minDate", selectedDate);
-					if ($("#To").val() === '') {
-						$("#To").val($(this).val());
-					}
-				}
-			});
-
-			$("#To").datepicker({
-				defaultDate: "+1w",
-				changeMonth: true,
-				numberOfMonths: 1,
-				dateFormat: "M dd,yy",
-				showOn: "button",
-				buttonImage: LogExecSp.buttonImage,
-				buttonText: "To",
-				buttonImageOnly: true,
-				onSelect: function () {
-				}
-			});
-		}
+		form: null
 	};
 
 } (jQuery));
 
 $(document).ready(function () {
-	LogExecSp.grid = $('.grid');
+	LogExecSp.grid = $('.table');
 	LogExecSp.buttonImage = $('#imagePath').val();
 	LogExecSp.form = $('form:first');
-	LogExecSp.InitDateTimePicker();
 
 	$('.loginsert').click(function () {
 		var logId = $(this).attr('logid');
@@ -89,14 +56,15 @@ $(document).ready(function () {
 			from = $('#From').val(),
 			to = $('#To').val(),
 			name = $('#Name').val(),
-			filter = $('#FilterType').val();
+            filter = $('#filterBy').val();
 
-		var url = NAP.resolveClientUrl('Trace/LogExecSp'+
-			'?q=' + name +
+		var url = NAP.resolveClientUrl('Log/LogExecSp'+
+			'?name=' + name +
 			'&username=' + username +
 			'&from=' + from +
 			'&to=' + to +
-			'&filterBy=' + filter +
+            '&filterBy=' + filter +
+            '&page=' + 1 +
 			'&size=' + pageSize);
 
 		//NAP.loadingBox.show();

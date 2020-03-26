@@ -52,9 +52,9 @@
 
         [HttpGet]
         public ActionResult LogExecSp(
-            int id = 1,
+            int page = 1,
             int size = 20,
-            string q = null,
+            string name = null,
             string username = null,
             DateTime? from = null,
             DateTime? to = null,
@@ -62,12 +62,12 @@
         {
             var criteria = new GetAllLogCriteria
             {
-                PageIndex = id,
+                PageIndex = page,
                 PageSize = size,
-                Name = q ?? string.Empty,
+                Name = name ?? string.Empty,
                 Username = username,
-                From = from ?? DateTime.Now,
-                To = to ?? DateTime.Now.AddDays(1),
+                From = from ?? DateTime.Now.Date,
+                To = to ?? DateTime.Now.AddDays(1).Date,
                 FilterType = filterBy,
                 TotalRows = 0
             };

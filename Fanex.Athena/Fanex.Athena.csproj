@@ -1412,7 +1412,6 @@
     <Content Include="Views\Desktop\BetList\MatchWl\MatchBetType.cshtml" />
     <Content Include="Views\Desktop\BetList\MatchWl\MixParlay.cshtml" />
     <Content Include="Views\Desktop\BetList\MatchWl\Outright.cshtml" />
-    <Content Include="Views\Desktop\BetList\WinLossByLeague\Main.cshtml" />
     <Content Include="www\css\source\components\checkbox\_checkbox.scss" />
     <Content Include="Views\Desktop\BetList\PlatformWinLoss\Main.cshtml" />
     <Content Include="www\css\source\pages\betlist\lastbetmonitoring.scss" />
@@ -1598,9 +1597,6 @@
     <Content Include="www\js\tests\pages\report\result\result-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\common\thirdpartywinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\thirdpartywinloss\common\thirdpartywinloss.option-spec.js" />
-    <Content Include="www\js\tests\pages\report\winlossbyleague\winlossbyleague-spec.js" />
-    <Content Include="www\js\tests\pages\report\winlossbyleague\winlossbyleague.filter-spec.js" />
-    <Content Include="www\js\tests\pages\report\winlossbyleague\winlossbyleague.option-spec.js" />
     <Content Include="www\js\tests\test-main.js" />
     <Content Include="www\webpackconfig\build\utils.js" />
     <Content Include="www\webpackconfig\build\webpack.base.conf.js" />

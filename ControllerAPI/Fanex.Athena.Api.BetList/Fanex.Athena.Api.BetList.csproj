@@ -175,7 +175,6 @@
     <Compile Include="SingleMatchParlayBetListController.cs" />
     <Compile Include="VoidbridgeBetListController.cs" />
     <Compile Include="WinlossByBetTypeBetListController.cs" />
-    <Compile Include="WinlossByLeagueBetListController.cs" />
     <Compile Include="RunningBettypesOfMatchBetListController.cs" />
     <Compile Include="OutstandingDailyStatementBetListController.cs" />
     <Compile Include="LicenseeWinLossBetListController.cs" />

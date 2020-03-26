@@ -52,11 +52,11 @@ namespace Fanex.Athena.Web.ActionFilter
             {
                 if(_policy == Policy.Host)
                 {
-                    authorized = AuthorizationServiceInstance.HasHostPermissions(userSession, _permissionKeys);
+                    authorized = AuthorizationServiceInstance.HasHostPermissions(userSession.UserId, _permissionKeys);
                 }
                 else
                 {
-                    authorized = AuthorizationServiceInstance.HasPermissions(userSession, _permissionKeys);
+                    authorized = AuthorizationServiceInstance.HasPermissions(userSession.UserId, _permissionKeys);
                 }
             }
 

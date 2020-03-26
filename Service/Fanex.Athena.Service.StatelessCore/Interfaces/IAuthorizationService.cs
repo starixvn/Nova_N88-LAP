@@ -12,9 +12,9 @@ namespace Fanex.Athena.Service.StatelessCore.Interfaces
 
     public interface IAuthorizationService
     {
-        bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys);
+        bool HasPermissions(int userId, params string[] permissionKeys);
 
-        bool HasHostPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys);
+        bool HasHostPermissions(int userId, params string[] permissionKeys);
 
         bool HasPermissionOnData(IDictionary<int, int[]> currencyAgents, int custId, long transId);
 

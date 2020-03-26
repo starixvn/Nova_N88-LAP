@@ -126,11 +126,11 @@
 
                 if (_policy == Policy.Host)
                 {
-                    authorized = authorizationService.HasHostPermissions(userSession, _permissionKeys);
+                    authorized = authorizationService.HasHostPermissions(userSession.UserId, _permissionKeys);
                 }
                 else
                 {
-                    authorized = authorizationService.HasPermissions(userSession, _permissionKeys);
+                    authorized = authorizationService.HasPermissions(userSession.UserId, _permissionKeys);
                 }
             }
 

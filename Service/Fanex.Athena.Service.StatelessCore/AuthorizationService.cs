@@ -16,19 +16,22 @@ namespace Fanex.Athena.Service.StatelessCore
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Service.Interface;
 
     public class AuthorizationService : IAuthorizationService
     {
         private const int OneHourInSecond = 3600;
-
         private readonly IAthorizationDataAccess _authorizationDataAccess;
-
         private readonly ICustomMemoryCacheService _cache;
+        private readonly IUserService userService;
 
-        public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache)
+
+        public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache, IUserService userService)
         {
             _authorizationDataAccess = authorizationDataAccess;
             _cache = cache;
+            this.userService = userService;
         }
 
         //public bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
@@ -48,16 +51,18 @@ namespace Fanex.Athena.Service.StatelessCore
         //    return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
         //}
 
-        public bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
+        public bool HasPermissions(int userId, params string[] permissionKeys)
         {
+            var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
 
-                return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
-
+            return userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) && x.Policy > (int)Policy.None);
         }
 
-        public bool HasHostPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
+        public bool HasHostPermissions(int userId, params string[] permissionKeys)
         {
-                return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase) && x.Policy == (int)Policy.Host);
+            var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+
+            return userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) && x.Policy == (int)Policy.Host);
         }
 
         public bool IsAllowedEditCommission(UserAuthInfo userAuthInfo)

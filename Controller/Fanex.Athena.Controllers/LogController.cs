@@ -44,7 +44,7 @@
             };
             ViewBag.Criteria = criteria;
 
-            criteria.To = criteria.To.AddDays(1).AddMilliseconds(-1);
+            criteria.To = criteria.To.Date.AddDays(1).AddMilliseconds(-1);
             var listLog = userLogService.GetAllLoginLog(criteria);
 
             return View("~/Views/Log/UserLoginLog.cshtml", listLog.ToPagedList(criteria.PageIndex - 1, criteria.PageSize, criteria.TotalRows));

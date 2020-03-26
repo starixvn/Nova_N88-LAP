@@ -127,7 +127,7 @@
                             }, new { id = string.Empty, @class = "items-per-page" })
                         </span>
                         <span class="paging">
-                            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("name", ViewBag.Criteria.Name)).Options(o => o.AddRouteValue("From", ViewBag.Criteria.From)).Options(o => o.AddRouteValue("To", ViewBag.Criteria.To))
+                            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("name", ViewBag.Criteria.Name)).Options(o => o.AddRouteValue("From", ViewBag.Criteria.From)).Options(o => o.AddRouteValue("To", ViewBag.Criteria.To)).Options(o => o.AddRouteValue("size", ViewBag.Criteria.PageSize))
                         </span>
                     </td>
                 </tr>

@@ -7,6 +7,7 @@
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Security.Cryptography;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Web;
@@ -17,6 +18,7 @@
     using Extension.Utility.Interfaces;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth;
+    using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Auth.MetaModel;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Service.Core.Users.Interfaces;
@@ -37,6 +39,7 @@
         private const int InvalidUserNameError = 102;
         private const int InvalidPasswordError = 103;
         private const int UserNotExistError = 104;
+        private const int UserHasNoPermissionError = 105;
 
         private const int SSOExpiredTimeInSeconds = 30;
 
@@ -47,6 +50,7 @@
         private readonly IGroupService groupService;
         private readonly ISecurityService securityService;
         private readonly ISiteService siteService;
+        private readonly HashAlgorithm _hashAlgorithm;
 
         public AuthorizationController(
             IMaintenanceService maintenanceService,
@@ -64,6 +68,7 @@
             this.groupService = groupService;
             this.securityService = securityService;
             this.siteService = siteService;
+            _hashAlgorithm = new SHA256Managed();
         }
 
         [CheckUMFilter]
@@ -112,8 +117,9 @@
                 var user = userService.Get(model.UserName.Trim(), n88Settings.SiteId);
                 if (user != null)
                 {
-                    var password = Cryptography.CfsEnCode(model.PassWord);
-                    if (password == user.Password)
+                    var crypPassword = GetHash(user.Password + model.LogInToken);
+
+                    if (model.PassWord == crypPassword)
                     {
                         if (!IsExistNapSite(user) || !IsExistNapGroup(user))
                         {
@@ -122,12 +128,17 @@
                         else
                         {
                             var onUserId = LoginCheckIn(user);
-                            if (userService.HasAnyPermission(user.Id, n88Settings.SiteId))
+
+                            if (HasAnyPermission(user.Id))
                             {
                                 CreateSession(user, onUserId);
                                 CreateAuthInfo(user, onUserId);
 
                                 return RedirectToAction("Index", "Home");
+                            }
+                            else
+                            {
+                                SetErrorForView(UserHasNoPermissionError, ViewResources.UserHasNoPermissionError);
                             }
                         }
                     }
@@ -135,6 +146,10 @@
                     {
                         SetErrorForView(InvalidPasswordError, ViewResources.WrongUserNamePassword);
                     }
+                }
+                else
+                {
+                    SetErrorForView(InvalidUserNameError, ViewResources.UsernameNotExisted);
                 }
             }
 
@@ -264,6 +279,12 @@
             }
 
             return true;
+        }
+
+        private bool HasAnyPermission(int userId)
+        {
+            var functions = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment).ToList();
+            return functions.Any(function => function.Policy > (int)Policy.None);
         }
 
         [HttpGet]
@@ -488,6 +509,20 @@
                 };
                 Response.Cookies.Add(item);
             }
+        }
+
+        private string GetHash(string input)
+        {
+            var encrypted = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(input))
+            {
+                var hashData = _hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+                encrypted = BitConverter.ToString(hashData).Replace("-", string.Empty).ToLowerInvariant();
+            }
+
+            return encrypted;
         }
 
         private FileContentResult CreateCaptcha(string code, int height = 25)

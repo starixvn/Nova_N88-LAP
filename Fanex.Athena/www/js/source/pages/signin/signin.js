@@ -1,6 +1,7 @@
-﻿/*global _page, resolveClientUrl */
+﻿
+/*global _page, resolveClientUrl */
 
-define(['jquery', 'crypto-js'], function ($, CryptoJS) {
+define(['jquery'], function ($) {
     'use strict';
     function isIE() { return (/msie/i).test(navigator.userAgent) && !/opera/i.test(navigator.userAgent); }
     window.IE = isIE();
@@ -74,8 +75,8 @@ define(['jquery', 'crypto-js'], function ($, CryptoJS) {
 
             $loginToken.val($loginTokenTemp.val());
             const $password = $('#passWord');
-            const hashPassword = CryptoJS.SHA1($password.val()).toString(CryptoJS.enc.Hex).toUpperCase();
-            const encryptedPass = CryptoJS.SHA1(hashPassword + $loginToken.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
+            const hashPassword = CryptoJS.CfsEnCode($password.val());
+            const encryptedPass = CryptoJS.SHA256(hashPassword + $loginToken.val());
             $password.val(encryptedPass);
             return true;
         };

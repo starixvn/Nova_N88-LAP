@@ -2255,4 +2255,7 @@
   <data name="InvalidStartGroupNameValidationMsg" xml:space="preserve">
     <value>Group Name cannot start with 'starix'</value>
   </data>
+  <data name="UserHasNoPermissionError" xml:space="preserve">
+    <value>Account has no permission on this site</value>
+  </data>
 </root>

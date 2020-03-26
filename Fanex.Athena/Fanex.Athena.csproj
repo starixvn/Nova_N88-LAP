@@ -1704,7 +1704,6 @@
       <DependentUpon>ViewResources.tt</DependentUpon>
     </Content>
     <Content Include="Scripts\Library\jquery.marquee.js" />
-    <Content Include="Scripts\Library\CryptoJS.js" />
     <Content Include="Scripts\Library\moment.min.js" />
     <Content Include="Scripts\Plugin\FlatPopup\jquery.custom-scrollbar.js" />
     <Content Include="Scripts\Plugin\FlatPopup\jquery.flatpopup.js" />

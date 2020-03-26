@@ -2059,4 +2059,7 @@
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="UserHasNoPermissionError" xml:space="preserve">
+    <value>Account has no permission on this site</value>
+  </data>
 </root>

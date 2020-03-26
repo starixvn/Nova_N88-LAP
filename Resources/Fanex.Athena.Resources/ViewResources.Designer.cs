@@ -6910,6 +6910,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account has no permission on this site.
+        /// </summary>
+        public static string UserHasNoPermissionError {
+            get {
+                return ResourceManager.GetString("UserHasNoPermissionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Information.
         /// </summary>
         public static string UserInformation {
@@ -6924,6 +6933,15 @@ namespace Fanex.Athena.Resources {
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is not existed.
+        /// </summary>
+        public static string UsernameNotExisted {
+            get {
+                return ResourceManager.GetString("UsernameNotExisted", resourceCulture);
             }
         }
         
@@ -7351,7 +7369,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to x.
+        ///   Looks up a localized string similar to Incorrect Password.
         /// </summary>
         public static string WrongUserNamePassword {
             get {

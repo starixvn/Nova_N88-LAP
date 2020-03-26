@@ -1337,7 +1337,6 @@
     <Content Include="www\css\build\dev\um.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.css.map" />
-    <Content Include="Views\Desktop\BetList\LiveReport\VirtualSports.cshtml" />
     <Content Include="Views\Desktop\BetList\PendingFunds\Main.cshtml" />
     <Content Include="Views\Desktop\Report\CustomerWinloss\Content.cshtml" />
     <Content Include="Views\Desktop\Report\CustomerWinloss\Filter.cshtml" />
@@ -1851,10 +1850,6 @@
     <Content Include="www\css\source\components\jqgrid\jqgrid.main.scss" />
     <Content Include="www\css\source\components\multiselect\multiselect.main.scss" />
     <Content Include="www\css\source\components\loader\loader.scss" />
-    <Content Include="Views\Desktop\BetList\LiveReport\Match.cshtml" />
-    <Content Include="Views\Desktop\BetList\LiveReport\MixParlay.cshtml" />
-    <Content Include="Views\Desktop\BetList\LiveReport\Outright.cshtml" />
-    <Content Include="Views\Desktop\BetList\LiveReport\NumberGame.cshtml" />
     <Content Include="www\css\source\components\select2\select2.main.scss" />
     <Content Include="www\css\source\components\select2\select2-ex.scss" />
     <Content Include="www\css\source\components\scrollablegrid\scrollablegrid.scss" />

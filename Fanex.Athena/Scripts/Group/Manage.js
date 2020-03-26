@@ -87,9 +87,9 @@ $(document).ready(function () {
             action = isChecked ? 'activate' : 'deactivate',
             msgTemplate = ManageGroup.getSingleResource('ActiveGroupConfirm'),
             msg = msgTemplate.replace('{0}', ManageGroup.getSingleResource(action)).replace('{1}', groupName);
+            $this.prop('checked', !isChecked);
 
-        var isConfirm = confirm(msg);
-        if (isConfirm) {
+        NAP.headlineMsgBox.confirm(msg, function () {
             var groupId = $this.attr('gid');
             $this.prop('checked', isChecked);
             $.ajax({
@@ -99,6 +99,8 @@ $(document).ready(function () {
                 dataType: 'json',
                 cache: false,
                 success: function () {
+                    $this.prop('checked', isChecked);
+
                     var parent = $this.parent('.js-tipsy-s');
                     if (isChecked) {
                         parent.attr('original-title', parent.attr('original-title').replace('Activate', 'Deactivate'));
@@ -110,9 +112,7 @@ $(document).ready(function () {
                     NAP.handleAjaxError(xhr, status, err);
                 }
             });
-        } else {
-            $this.prop('checked', !isChecked);
-        }
+        });
     });
     // #endregion
 

@@ -17,5 +17,8 @@
         @Html.Action("N88UserUpdate", "Log", Model)
     }
 
-
+    if (Model.ActionId == (int)LogAction.N88_User_UpdateSite)
+    {
+        @Html.Action("N88UpdateSite", "Log", Model)
+    }
 }

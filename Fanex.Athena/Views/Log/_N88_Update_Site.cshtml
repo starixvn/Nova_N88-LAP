@@ -1,0 +1,47 @@
+﻿@using Fanex.Athena.Model.UserManagement.Model;
+
+@{
+    var newSite = ViewBag.NewSite as SiteLevel;
+    var oldSite = ViewBag.OldSite as SiteLevel;
+}
+
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                @ViewResources.FieldName
+            </th>
+            <th>
+                @ViewResources.OldValue
+            </th>
+            <th>
+                @ViewResources.NewValue
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewResources.Active</td>
+            @if (oldSite != null)
+            {
+                var fieldValue = oldSite.IsActive ? "True" : "False";
+                <td>@fieldValue</td>
+            }
+            else
+            {
+                <td></td>
+            }
+
+            @if (newSite != null)
+            {
+                var fieldValue = newSite.IsActive ? "True" : "False";
+                <td>@fieldValue</td>
+            }
+            else
+            {
+                <td></td>
+            }
+        </tr>
+    </tbody>
+</table>
+

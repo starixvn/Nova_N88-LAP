@@ -444,7 +444,9 @@
     <Content Include="img\Account\ui-icons_ffffff_256x240.png" />
     <Content Include="img\Account\user-info-ico.png" />
     <Content Include="img\Account\user.png" />
+    <Content Include="img\Log\blank.png" />
     <Content Include="img\Log\icon-calendar.png" />
+    <Content Include="img\Log\tick-ico-16.png" />
     <Content Include="karma-new-bypage.conf.js" />
     <Content Include="Scripts\Account\AssignPermission.js" />
     <Content Include="Scripts\Account\CryptoJS.js" />
@@ -708,6 +710,7 @@
     <Content Include="Views\Log\GetLogInsertDetail.cshtml" />
     <Content Include="Views\Log\_N88LogInsert.cshtml" />
     <Content Include="Views\Log\_N88LogUpdate.cshtml" />
+    <Content Include="Views\Log\_N88_Update_Site.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

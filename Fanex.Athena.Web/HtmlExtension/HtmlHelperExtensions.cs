@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fanex.Athena.Model.UserManagement.Model;
+using Fanex.Athena.Resources;
+using System;
 using System.Globalization;
 using System.Web;
 
@@ -47,6 +49,24 @@ namespace Fanex.Athena.Web.HtmlExtension
             }
 
             return geoId;
+        }
+
+        public static IHtmlString ToUserLevel(this int value)
+        {
+            switch (value)
+            {
+                case (int)Constant.Level.PortalAdmin:
+                    return new HtmlString(ViewResources.PortalAdmin);
+
+                case (int)Constant.Level.SiteAdmin:
+                    return new HtmlString(ViewResources.SiteAdmin);
+
+                case (int)Constant.Level.User:
+                    return new HtmlString(ViewResources.User);
+
+                default:
+                    return new HtmlString(string.Empty);
+            }
         }
     }
 }

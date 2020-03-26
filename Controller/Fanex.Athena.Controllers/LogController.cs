@@ -135,6 +135,56 @@
             return PartialView("~/Views/Log/_N88LogInsert.cshtml");
         }
 
+        public PartialViewResult N88UpdateSite(LogExecSp log)
+        {
+            XElement newElement = XElement.Parse(log.Data);
+            XElement oldElement = XElement.Parse(log.OldData ?? "<ROOT/>");
+
+            if (oldElement.Attribute("UserId") != null)
+            {
+                var oldSite = new SiteLevel
+                {
+                    Site = new Site
+                    {
+                        Id = Convert.ToByte(oldElement.Attribute("SiteId").Value),
+                        Name = Convert.ToString(oldElement.Attribute("SiteName").Value)
+                    },
+                    Level = Convert.ToInt32(oldElement.Attribute("Level").Value),
+                    IsActive = oldElement.Attribute("IsActive").Value == "1",
+                    IsNeverExpired = oldElement.Attribute("IsNeverExpired").Value == "1"
+                };
+
+                DateTime expiredDate;
+                DateTime.TryParse(oldElement.Attribute("ExpiredDate").Value, out expiredDate);
+                oldSite.ExpiredDate = expiredDate;
+
+                ViewBag.oldSite = oldSite;
+            }
+
+            if (newElement.Attribute("UserId") != null)
+            {
+                var newSite = new SiteLevel
+                {
+                    Site = new Site
+                    {
+                        Id = Convert.ToByte(newElement.Attribute("SiteId").Value),
+                        Name = Convert.ToString(newElement.Attribute("SiteName").Value)
+                    },
+                    Level = Convert.ToInt32(newElement.Attribute("Level").Value),
+                    IsActive = newElement.Attribute("IsActive").Value == "1",
+                    IsNeverExpired = newElement.Attribute("IsNeverExpired").Value == "1"
+                };
+
+                DateTime expiredDate;
+                DateTime.TryParse(newElement.Attribute("ExpiredDate").Value, out expiredDate);
+                newSite.ExpiredDate = expiredDate;
+
+                ViewBag.newSite = newSite;
+            }
+
+            return PartialView("~/Views/Log/_N88_Update_Site.cshtml");
+        }
+
         public PartialViewResult N88GroupInsert(LogExecSp log)
         {
             XElement element = XElement.Parse(log.Data);

@@ -2747,11 +2747,29 @@
   </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
-	</data>
+  </data>
   <data name="NewValue" xml:space="preserve">
     <value>New Value</value>
   </data>
   <data name="OldValue" xml:space="preserve">
     <value>Old Value</value>
+  </data>
+  <data name="ExpiredDate" xml:space="preserve">
+    <value>Expired Date</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="NeverExpired" xml:space="preserve">
+    <value>Never Expired</value>
+  </data>
+  <data name="PortalAdmin" xml:space="preserve">
+    <value>Portal Admin</value>
+  </data>
+  <data name="SiteAdmin" xml:space="preserve">
+    <value>Site Admin</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Site Name</value>
   </data>
 </root>

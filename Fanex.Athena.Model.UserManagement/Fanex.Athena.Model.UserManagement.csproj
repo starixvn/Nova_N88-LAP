@@ -90,6 +90,7 @@
     <Compile Include="Model\Constant.cs" />
     <Compile Include="Model\LogData.cs" />
     <Compile Include="Model\LogExecSp.cs" />
+    <Compile Include="Model\SiteLevel.cs" />
     <Compile Include="Model\StartNameValidationAttribute.cs" />
     <Compile Include="Model\FunctionData.cs" />
     <Compile Include="Model\FunctionPolicy.cs" />

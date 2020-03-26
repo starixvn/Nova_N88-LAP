@@ -153,6 +153,7 @@
     <Compile Include="ActionFilter\HandleAntiForgeryErrorAttribute.cs" />
     <Compile Include="ActionFilter\ValidationWebRequestAttribute.cs" />
     <Compile Include="ActionFilter\XFrameOptionAttribute.cs" />
+    <Compile Include="HtmlExtension\DateTimeExtensions.cs" />
     <Compile Include="HtmlExtension\HtmlHelperExtensions.cs" />
     <Compile Include="HtmlExtension\UrlExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,6 +165,10 @@
     <ProjectReference Include="..\Fanex.Athena.Extension\Fanex.Athena.Extension.csproj">
       <Project>{71F95E53-36D0-4091-828D-ED14C9939C35}</Project>
       <Name>Fanex.Athena.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Athena.Model.UserManagement\Fanex.Athena.Model.UserManagement.csproj">
+      <Project>{B166FAC7-A122-4665-BA2B-8977EF8B68CA}</Project>
+      <Name>Fanex.Athena.Model.UserManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Fanex.Athena.Model.Auth\Fanex.Athena.Model.Auth.csproj">
       <Project>{794C0345-2DDD-4FFD-A605-BB96FBB37DE8}</Project>

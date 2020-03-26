@@ -253,7 +253,6 @@
         {
             if (ModelState.IsValid)
             {
-                criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
                 UpdateCriteria(criteria);
                 var result = userService.UpdatePassword(criteria);
 

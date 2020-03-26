@@ -22,17 +22,16 @@ $(document).ready(function () {
     ResetPassword.confirmPassword = $('#confirmPassword');
 
     ResetPassword.mainForm.on('submit', function () {
-        //if ($(this).valid()) {
+        if ($(this).valid()) {
             var encryptPass = '';
-
             encryptPass = CryptoJS.CfsEnCode(ResetPassword.userPwd.val());
             ResetPassword.newPassword.val(encryptPass);
             encryptPass = CryptoJS.CfsEnCode(ResetPassword.confirmUserPwd.val());
             ResetPassword.confirmPassword.val(encryptPass);
 
-            //ResetPassword.hiddenForm.submit();
+            ResetPassword.hiddenForm.submit();
 
-            //return false;
-        //}
+            return false;
+        }        
     });
 });

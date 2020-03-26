@@ -453,6 +453,8 @@
     <Content Include="karma-new-bypage.conf.js" />
     <Content Include="Scripts\Account\AssignPermission.js" />
     <Content Include="Scripts\Account\CryptoJS.js" />
+    <Content Include="Scripts\Account\jquery.validate.js" />
+    <Content Include="Scripts\Account\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\Account\Manage.js" />
     <Content Include="Scripts\Account\msgbox-0.0.1.js" />
     <Content Include="Scripts\Account\NAP.js" />

@@ -26,7 +26,6 @@ namespace Fanex.Athena.Web.ActionFilter
 
         public FunctionAuthorizationAttribute(params string[] permissionKeys)
         {
-            _policy = Policy.Read;
             _permissionKeys = permissionKeys;
         }
 

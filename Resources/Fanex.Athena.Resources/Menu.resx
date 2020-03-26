@@ -156,4 +156,7 @@
   <data name="UserLoginLog" xml:space="preserve">
     <value>User Login Log</value>
   </data>
+  <data name="UserLog" xml:space="preserve">
+    <value>User Log</value>
+  </data>
 </root>

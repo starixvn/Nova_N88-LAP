@@ -77,10 +77,8 @@
     <Compile Include="Interfaces\ICustomerLogDataAccess.cs" />
     <Compile Include="Interfaces\IGroupComDataAccess.cs" />
     <Compile Include="Interfaces\ILogInLogDataAccess.cs" />
-    <Compile Include="Interfaces\ISearchCustomerDataAccess.cs" />
     <Compile Include="LogInLogDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchCustomerDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Core\Fanex.Athena.Model.Core.csproj">

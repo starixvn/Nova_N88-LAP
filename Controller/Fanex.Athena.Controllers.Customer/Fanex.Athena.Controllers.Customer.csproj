@@ -132,7 +132,6 @@
     <Compile Include="CustomerLog\CustomerLogController.CustomerSetting.cs" />
     <Compile Include="CustomerLog\CustomerLogController.GroupCommission.cs" />
     <Compile Include="CustomerLog\CustomerLogController.LogInLog.cs" />
-    <Compile Include="SearchCustomerAPIController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

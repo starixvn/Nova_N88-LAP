@@ -57,6 +57,10 @@ var scriptPaths = {
     betlistrunningmultiplebettypes: "./www/js/source/pages/betlist/main-betlistrunning.multiplebettypes.js",
     betlistcorrectscore: "./www/js/source/pages/betlist/main-betlistcorrectscore.js",
 
+    loginlog: "./www/js/source/pages/customer/customerlog/loginlog/main.js",
+    customersetting: "./www/js/source/pages/customer/customerlog/customersetting/main.js",
+    groupcommission: "./www/js/source/pages/customer/customerlog/groupcommission/main.js",
+
     result: "./www/js/source/pages/report/result/main-result.js",
     cashoutwinloss: "./www/js/source/pages/report/cashoutwinloss/main.js",
     customeroutstanding: "./www/js/source/pages/betlist/customer/main.js",

@@ -37,7 +37,7 @@
         public const string CustomerInfoCustomerList = "CustomerList43";
         public const string CustomerInfoSpecialBA = "SpecialBA54";
         public const string CustomerInfoCommissionGroupList = "CommissionGroupList55";
-        public const string CustomerInfoCustomerLog = "CustomerLog56";
+        public const string CustomerInfoCustomerLog = "CustomerLog";
         public const string CustomerInfoEditBetSetting = "EditBetSetting70";
 
         public const string BetHistory = "BetHistory";

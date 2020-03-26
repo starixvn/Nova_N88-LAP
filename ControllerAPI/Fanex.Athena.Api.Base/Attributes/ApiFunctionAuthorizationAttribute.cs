@@ -36,7 +36,6 @@
 
         public ApiFunctionAuthorizationAttribute(params string[] permissionKeys)
         {
-            _policy = Policy.Read;
             _permissionKeys = permissionKeys;
         }
 

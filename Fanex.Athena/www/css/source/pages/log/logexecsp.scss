@@ -112,3 +112,10 @@
     width: 400px !important;
 }
 
+.ui-dialog-content {
+    .assign-permission-detail{
+        max-height: 500px;
+        overflow: scroll;
+    }
+}
+

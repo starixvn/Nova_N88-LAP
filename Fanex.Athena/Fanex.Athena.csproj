@@ -711,6 +711,7 @@
     <Content Include="Views\Log\_N88LogInsert.cshtml" />
     <Content Include="Views\Log\_N88LogUpdate.cshtml" />
     <Content Include="Views\Log\_N88_Update_Site.cshtml" />
+    <Content Include="Views\Log\_N88_Assign_Permission.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

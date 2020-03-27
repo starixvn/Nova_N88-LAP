@@ -21,7 +21,6 @@
         public const string ReportCustomerPendingFunds = "CustomerPendingFunds30";
         public const string ReportMatchWinLoss = "MatchWinLoss31";
         public const string ReportWinLossByProduct = "WinLossByProducts32";
-        public const string ReportWinLossByBetType = "WinLossByBetType33";
         public const string ReportCancelledBets = "CancelledBets36";
         public const string ReportDailyBetList = "DailyBetList37";
         public const string ReportTurnover = "Turnover39";

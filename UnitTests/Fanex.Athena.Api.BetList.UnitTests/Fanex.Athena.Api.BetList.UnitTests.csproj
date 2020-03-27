@@ -137,7 +137,6 @@
     <Compile Include="RunningBettypesOfMatchBetListControllerTest.cs" />
     <Compile Include="SingleMatchParlayBetListControllerTest.cs" />
     <Compile Include="VoidbridgeBetListControllerTest.cs" />
-    <Compile Include="WinlossByBetTypeBetListControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

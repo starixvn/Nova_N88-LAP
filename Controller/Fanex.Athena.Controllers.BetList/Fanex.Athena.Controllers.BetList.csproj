@@ -170,7 +170,6 @@
     <Compile Include="RunningBettypesOfMatchBetListController.cs" />
     <Compile Include="SystemParlayBetListController.cs" />
     <Compile Include="VoidbridgeBetListController.cs" />
-    <Compile Include="WinlossByBetTypeBetListController.cs" />
     <Compile Include="LicenseeWinLossBetListController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

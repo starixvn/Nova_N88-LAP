@@ -31,7 +31,7 @@
 
         public override string GetSettingKey()
         {
-            return "N88Admin_LogExecSp_Search";
+            return "N88_Admin_LogExecSp_Search";
         }
 
         public override bool IsValid()

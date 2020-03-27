@@ -191,7 +191,7 @@
 
   <Function Name="Log">
     <Setting Key="N88_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
-    <Setting Key="N88Admin_LogExecSp_Search" SpName="N88Admin_LogExecSp_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
+    <Setting Key="N88_Admin_LogExecSp_Search" SpName="N88_Admin_LogExecSp_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
     <Setting Key="N88_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
   </Function>
 </Functions>

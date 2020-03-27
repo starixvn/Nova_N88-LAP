@@ -183,7 +183,6 @@
         private IEnumerable<LogExecSp> FilterLogExecSp(IEnumerable<LogExecSp> data)
         {
             return data
-                .Where(l => l.ActionId != (short)LogAction.N88_User_AssignNewSite)
                 .Select(l => {
                     if (l.ActionId == (short)LogAction.N88_User_UpdateSite) {
                         l.ActionName = "Update user status";

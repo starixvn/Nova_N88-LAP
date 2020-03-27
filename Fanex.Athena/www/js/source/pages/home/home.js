@@ -87,15 +87,7 @@ define([
                 return $(this).attr('href') === defaultUrl;
             });
             $('.collapsible2').collapsibleMenu('activeMenuItem', $menuItem);
-
-            const menuItemName = $menuItem.length > 0 ? $menuItem.text() : '';
-            $('#page-title').text(menuItemName);
-
-            const documentTitle = $('.active > .menu-title').text();
-
-            if (documentTitle.replace(/\s/g, '').toUpperCase() === menuItemName.replace(/\s/g, '').toUpperCase()) {
-                document.title = documentTitle + ' - ' + menuItemName;
-            }
+            $menuItem.trigger('click.menuevent');
         }
 
         return {

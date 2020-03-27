@@ -25,7 +25,6 @@
         public const string ReportDailyBetList = "DailyBetList37";
         public const string ReportTurnover = "Turnover39";
         public const string ReportResults = "Results41";
-        public const string ReportPlatformWinLoss = "MobileWinLoss53";
         public const string ReportColossusBetsWinLoss = "ColossusBetsWinLoss71";
         public const string ReportExchangeWinLoss = "ExchangeWinloss77";
 

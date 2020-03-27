@@ -84,8 +84,6 @@ export class FormFilter extends PureComponent {
             pageIndex: 1
         };
 
-        console.log(param)
-
         searchPlayer(param);
     }
 
@@ -112,16 +110,18 @@ export class FormFilter extends PureComponent {
 
     handleUserNameChange = (event) => {
         const { name, value } = event.target;
-        this.setState({ 
+        this.setState({
             userName: value,
-            isValidUserName: !!value });
+            isValidUserName: !!value
+        });
     }
 
-    hangedelSystemIdChange= (event) => {
+    hangedelSystemIdChange = (event) => {
         const { name, value } = event.target;
-        this.setState({ 
+        this.setState({
             systemId: value,
-            isValidsystemId: !!value });
+            isValidsystemId: !!value
+        });
     }
 
     _renderUserGuide() {
@@ -138,7 +138,6 @@ export class FormFilter extends PureComponent {
         const { bankAccountNumber, email, searchOption, isValidUserName, isValidsystemId, ...advancedSearchParam } = this.state;
         const { type, isAdvancedSearch, isFilterCollapsing, currencyList, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission } = this.props;
 
-        console.log(isAdvancedSearch)
         const isValidParam = (isValidUserName || isValidsystemId || isAdvancedSearch);
         const iconToggle = {
             tag: 'div',
@@ -153,20 +152,20 @@ export class FormFilter extends PureComponent {
                     <div className="col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">
-                               Username
+                                Username
                             </label>
-                            <input className="input-text" id="username" name="username" type="text" 
-                            onKeyPress={this.handlePressEnter} onChange={(value) => this.handleUserNameChange(value)}/>
+                            <input className="input-text" id="username" name="username" type="text"
+                                onKeyPress={this.handlePressEnter} onChange={(value) => this.handleUserNameChange(value)} />
                         </div>
                     </div>
 
                     <div className="col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">
-                               SystemID
+                                SystemID
                             </label>
-                            <input className="input-text" id="systemID" name="systemID" type="text" 
-                            onKeyPress={this.handlePressEnter} onChange={(value) => this.hangedelSystemIdChange(value)}/>
+                            <input className="input-text" id="systemID" name="systemID" type="text"
+                                onKeyPress={this.handlePressEnter} onChange={(value) => this.hangedelSystemIdChange(value)} />
                         </div>
                     </div>
 

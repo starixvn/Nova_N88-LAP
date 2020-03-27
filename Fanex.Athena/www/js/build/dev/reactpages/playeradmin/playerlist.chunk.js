@@ -1291,7 +1291,6 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
         pageIndex: 1
       });
 
-      console.log(param);
       searchPlayer(param);
     }
   }, {
@@ -1326,7 +1325,6 @@ var FormFilter = /*#__PURE__*/function (_PureComponent) {
           hasBaPermission = _this$props3.hasBaPermission,
           hasOddsGroupPermission = _this$props3.hasOddsGroupPermission,
           hasSpecialLevelPermission = _this$props3.hasSpecialLevelPermission;
-      console.log(isAdvancedSearch);
       var isValidParam = isValidUserName || isValidsystemId || isAdvancedSearch;
       var iconToggle = {
         tag: 'div',
@@ -6306,7 +6304,7 @@ var defaultProps = {
     position: 'absolute',
     left: 'calc(50% - 10px)',
     bottom: 0,
-    background: '#4c6274',
+    background: '#0F3630',
     textAlign: 'center'
   },
   iconToggle: {

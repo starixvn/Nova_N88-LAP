@@ -603,6 +603,8 @@
     <Content Include="www\css\build\pro\pages\customer\customerlist.chunk.js" />
     <Content Include="www\css\build\pro\pages\customer\customerlog.chunk.js" />
     <Content Include="www\css\build\pro\pages\login\login.chunk.js" />
+    <Content Include="www\css\build\pro\pages\log\logexecsp.chunk.js" />
+    <Content Include="www\css\build\pro\pages\log\logexecsp.css" />
     <Content Include="www\css\build\pro\pages\reports\cashoutwinloss.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\customerwinloss.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\licenseewinloss.chunk.js" />

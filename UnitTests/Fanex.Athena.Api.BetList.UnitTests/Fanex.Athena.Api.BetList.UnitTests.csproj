@@ -130,7 +130,6 @@
     <Compile Include="OutStandingCompletedBetListControllerTest.cs" />
     <Compile Include="OutstandingDailyStatementBetListControllerTest.cs" />
     <Compile Include="OutstandingRunningBetListControllerTest.cs" />
-    <Compile Include="PendingFundsBetListControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RNGCasinoBetListControllerTest.cs" />
     <Compile Include="RunningBettypesOfMatchBetListControllerTest.cs" />

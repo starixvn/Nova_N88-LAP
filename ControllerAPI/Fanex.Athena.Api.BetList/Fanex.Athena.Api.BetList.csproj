@@ -178,7 +178,6 @@
     <Compile Include="LicenseeWinLossBetListController.cs" />
     <Compile Include="MatchWinLossBetListController.cs" />
     <Compile Include="CustomerWinLossBetListController.cs" />
-    <Compile Include="PendingFundsBetListController.cs" />
     <Compile Include="OutStandingCompletedBetListController.cs" />
     <Compile Include="OutstandingRunningBetListController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

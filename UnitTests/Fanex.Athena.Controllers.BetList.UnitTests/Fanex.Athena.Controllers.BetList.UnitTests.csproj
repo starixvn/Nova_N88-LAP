@@ -112,7 +112,6 @@
     <Compile Include="GlobalGamingBetListControllerTest.cs" />
     <Compile Include="LicenseeWinLossBetListControllerTest.cs" />
     <Compile Include="MatchWinLossBetListControllerTest.cs" />
-    <Compile Include="PendingFundsBetListControllerTest.cs" />
     <Compile Include="CardClubBetListtControllerTest.cs" />
     <Compile Include="SGBetListControllerTest.cs" />
     <Compile Include="PragmaticPlayBetListControllerTest.cs" />

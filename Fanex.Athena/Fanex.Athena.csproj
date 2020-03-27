@@ -1337,7 +1337,6 @@
     <Content Include="www\css\build\dev\um.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.css.map" />
-    <Content Include="Views\Desktop\BetList\PendingFunds\Main.cshtml" />
     <Content Include="Views\Desktop\Report\CustomerWinloss\Content.cshtml" />
     <Content Include="Views\Desktop\Report\CustomerWinloss\Filter.cshtml" />
     <Content Include="Views\Desktop\Report\CustomerWinloss\HistoryFilter.cshtml" />

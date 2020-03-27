@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Athena.Controllers
 {
     using System;
+    using System.Web;
     using System.Web.Mvc;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.Core.Users.Interfaces;
@@ -41,14 +42,14 @@
         public ActionResult ApplyApiToken(string vendorID, string actionLink)
         {
             var token = GetToken(vendorID, actionLink);
-            var appUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~");
+            var appUrl = HttpRuntime.AppDomainAppVirtualPath.TrimEnd('/');
 
             return Json(new { Token = token, ApiUrl = appUrl }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ApplyToken(string vendorID, string actionLink)
         {
-            var appUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~");
+            var appUrl = HttpRuntime.AppDomainAppVirtualPath.TrimEnd('/');
 
             return Redirect(appUrl + actionLink);
         }

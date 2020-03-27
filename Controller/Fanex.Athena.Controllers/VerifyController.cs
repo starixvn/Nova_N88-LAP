@@ -42,14 +42,19 @@
         public ActionResult ApplyApiToken(string vendorID, string actionLink)
         {
             var token = GetToken(vendorID, actionLink);
-            var appUrl = HttpRuntime.AppDomainAppVirtualPath.TrimEnd('/');
+
+            var appUrl = Request.ApplicationPath != null ?
+                Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath
+                : Request.Url.GetLeftPart(UriPartial.Authority);
 
             return Json(new { Token = token, ApiUrl = appUrl }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ApplyToken(string vendorID, string actionLink)
         {
-            var appUrl = HttpRuntime.AppDomainAppVirtualPath.TrimEnd('/');
+            var appUrl = Request.ApplicationPath != null ?
+                Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath
+                : Request.Url.GetLeftPart(UriPartial.Authority);
 
             return Redirect(appUrl + actionLink);
         }

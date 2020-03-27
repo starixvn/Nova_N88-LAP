@@ -43,18 +43,14 @@
         {
             var token = GetToken(vendorID, actionLink);
 
-            var appUrl = Request.ApplicationPath != null ?
-                Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath
-                : Request.Url.GetLeftPart(UriPartial.Authority);
+            var appUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath;
 
             return Json(new { Token = token, ApiUrl = appUrl }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ApplyToken(string vendorID, string actionLink)
         {
-            var appUrl = Request.ApplicationPath != null ?
-                Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath
-                : Request.Url.GetLeftPart(UriPartial.Authority);
+            var appUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath;
 
             return Redirect(appUrl + actionLink);
         }

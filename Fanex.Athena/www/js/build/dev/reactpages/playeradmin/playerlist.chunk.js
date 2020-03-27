@@ -5523,9 +5523,7 @@ function (_BaseCommonService) {
         var _response$data = response.data,
             Token = _response$data.Token,
             ApiUrl = _response$data.ApiUrl;
-        var apiActionUrl = "".concat(ApiUrl, "/").concat(action);
-        console.log(ApiUrl);
-        console.log(action);
+        var apiActionUrl = ApiUrl != undefined ? "".concat(ApiUrl, "/").concat(action) : "/".concat(action);
 
         var commonAjaxConfig = _this2._buildCommonAjaxConfig(configOption, apiActionUrl, params);
 

@@ -6928,7 +6928,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Name.
+        ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Username {
             get {

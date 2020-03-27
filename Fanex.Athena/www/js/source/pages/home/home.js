@@ -88,12 +88,12 @@ define([
             });
             $('.collapsible2').collapsibleMenu('activeMenuItem', $menuItem);
 
-            const menuItemName = $menuItem.length > 0 ? $menuItem.text().replace(/\s/g, '') : '';
+            const menuItemName = $menuItem.length > 0 ? $menuItem.text() : '';
             $('#page-title').text(menuItemName);
 
-            const documentTitle = $('.active > .menu-title').text().replace(/\s/g, '')
+            const documentTitle = $('.active > .menu-title').text();
 
-            if (documentTitle.toLowerCase() !== menuItemName.toLowerCase()) {
+            if (documentTitle.replace(/\s/g, '').toUpperCase() === menuItemName.replace(/\s/g, '').toUpperCase()) {
                 document.title = documentTitle + ' - ' + menuItemName;
             }
         }

@@ -43,16 +43,12 @@
         {
             var token = GetToken(vendorID, actionLink);
 
-            var appUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath;
-
-            return Json(new { Token = token, ApiUrl = appUrl }, JsonRequestBehavior.AllowGet);
+            return Json(new { Token = token }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ApplyToken(string vendorID, string actionLink)
         {
-            var appUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath;
-
-            return Redirect(appUrl + actionLink);
+            return Redirect(actionLink);
         }
     }
 }

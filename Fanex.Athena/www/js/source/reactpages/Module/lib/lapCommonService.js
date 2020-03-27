@@ -64,8 +64,8 @@ class LapCommonService extends BaseCommonService {
 
         return axios.get(apiToken)
             .then(response => {
-                const { Token, ApiUrl } = response.data;
-                const apiActionUrl = (ApiUrl != undefined) ? `${ApiUrl}/${action}` :`/${action}` ;
+                const { Token } = response.data;
+                const apiActionUrl = `${action}`;
 
                 const commonAjaxConfig = this._buildCommonAjaxConfig(configOption, apiActionUrl, params);
                 const headerConfig = {

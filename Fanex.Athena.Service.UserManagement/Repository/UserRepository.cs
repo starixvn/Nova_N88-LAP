@@ -149,7 +149,7 @@ namespace Fanex.Athena.Service.UserManagement.Repository
                     Id = i.SiteId,
                     Name = i.SiteName
                 }
-            });
+            }).OrderByDescending(user => user.CreatedDate);
         }
 
         public IEnumerable<T> FetchData<T>(ICriteria criteria)

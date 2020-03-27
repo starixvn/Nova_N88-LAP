@@ -66,6 +66,8 @@ class LapCommonService extends BaseCommonService {
             .then(response => {
                 const { Token, ApiUrl } = response.data;
                 const apiActionUrl = `${ApiUrl}/${action}`;
+                console.log(ApiUrl);
+                console.log(action);
 
                 const commonAjaxConfig = this._buildCommonAjaxConfig(configOption, apiActionUrl, params);
                 const headerConfig = {

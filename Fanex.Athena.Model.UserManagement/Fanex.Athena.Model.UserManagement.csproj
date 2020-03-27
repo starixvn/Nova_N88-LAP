@@ -88,6 +88,7 @@
     <Compile Include="Model\AccFunction.cs" />
     <Compile Include="Model\CommandResult.cs" />
     <Compile Include="Model\Constant.cs" />
+    <Compile Include="Model\GetAllGroupModal.cs" />
     <Compile Include="Model\LogData.cs" />
     <Compile Include="Model\LogExecSp.cs" />
     <Compile Include="Model\SiteLevel.cs" />

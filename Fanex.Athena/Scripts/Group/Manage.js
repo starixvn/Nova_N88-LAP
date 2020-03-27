@@ -137,4 +137,17 @@ $(document).ready(function () {
         ManageGroup.grid.find('.col-action.active').removeClass('active').find('.dropdown').hide();
     });
     // #endregion
+
+    ManageGroup.grid.on('change', '.items-per-page', function () {
+        var $this = $(this),
+            pageSize = $this.val(),
+            groupName = $('#groupName').val();
+
+        var url = NAP.resolveClientUrl('Group/Manage' +
+            '?groupName=' + groupName +
+            '&size=' + pageSize +
+            '&page=' + 1);
+
+        window.location.replace(url);
+    });
 });

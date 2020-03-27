@@ -13,6 +13,7 @@
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common.Extensions;
     using Fanex.N88.Core.Configuration;
+    using MvcPaging;
 
     [FunctionAuthorization(PermissionKeys.ManageGroup)]
     public class GroupController : CultureBaseController
@@ -27,29 +28,28 @@
         }
 
         [HttpGet]
-        public ActionResult Manage()
+        public ActionResult Manage(
+            int page = 1,
+            int size = 20,
+            string groupName = ""
+            )
         {
             ViewBag.HasEditRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
             ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
             ViewBag.HasManageUserRight = HasPermission(PermissionKeys.ManageUser, (int)Policy.Read);
 
-            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(string.Empty, N88Settings.Settings.Environment, isLicenseeGroup: true, siteId: N88Settings.Settings.SiteId);
+            var groups = _groupService.GetAllWithNumOfUser(groupName, N88Settings.Settings.Environment, isLicenseeGroup: true, siteId: N88Settings.Settings.SiteId);
 
-            return View(new GetAllWithNumOfUserGroupCriteria());
-        }
+            var searchViewModal = new GetAllGroupModal { 
+                PageIndex = page,
+                PageSize = size,
+                GroupName = groupName,
+                TotalRows = groups.Count()
+            };
 
-        [HttpPost]
-        public ActionResult Manage(GetAllWithNumOfUserGroupCriteria criteria)
-        {
-            criteria.Environment = N88Settings.Settings.Environment;
+            ViewBag.Criteria = searchViewModal;
 
-            ViewBag.HasEditRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
-            ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
-            ViewBag.HasManageUserRight = HasPermission(PermissionKeys.ManageUser, (int)Policy.Read);
-
-            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(criteria.GroupName, isLicenseeGroup: true, siteId: N88Settings.Settings.SiteId, env: N88Settings.Settings.Environment);
-
-            return View(criteria);
+            return View("~/Views/Group/Manage.cshtml", groups.ToPagedList(searchViewModal.PageIndex - 1, searchViewModal.PageSize, searchViewModal.TotalRows));
         }
 
         [HttpGet]

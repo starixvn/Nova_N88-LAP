@@ -54,20 +54,6 @@ namespace Fanex.Athena.DataAccess.Core.Users
             }
         }
 
-        public void ApplyToken(string Token, string PermissionData, int Expiry = 1)
-        {
-            string UspName = "Dot_Auth_TokenIns";
-
-            using (var db = this.GetObjectDb(UspName))
-            {
-                db.SetParameterValue("Token", Token);
-                db.SetParameterValue("PermissionData", PermissionData);
-                db.SetParameterValue("Expiry", Expiry);
-
-                db.ExecuteNonQuery();
-            }
-        }
-
         private static void AddCommonParameters(User requestUser, IObjectDb db)
         {
             db.SetParameterValue("UserName", requestUser.Username);

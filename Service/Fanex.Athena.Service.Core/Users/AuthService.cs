@@ -33,18 +33,6 @@
             this._authenticationDataAccess.Logout(onuserId);
         }
 
-        public string ApplyToken(TokenInfo token, int Expiry = 1)
-        {
-            Guid g = Guid.NewGuid();
-            string GuidString = Convert.ToBase64String(g.ToByteArray());
-            GuidString = GuidString.Replace("=", "");
-            GuidString = GuidString.Replace("+", "");
-
-            this._authenticationDataAccess.ApplyToken(GuidString, JsonSerializerHelper.ToJson(token), Expiry);
-
-            return GuidString;
-        }
-
         public IResultInfo<User> ValidateUserForLrf(User requestUser, string loginToken)
         {
             var user = new User();

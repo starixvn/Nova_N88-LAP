@@ -64,13 +64,11 @@ class LapCommonService extends BaseCommonService {
 
         return axios.get(apiToken)
             .then(response => {
-                const { Token } = response.data;
                 const apiActionUrl = `${action}`;
 
                 const commonAjaxConfig = this._buildCommonAjaxConfig(configOption, apiActionUrl, params);
                 const headerConfig = {
-                    ...configOption.headers,
-                    'X-Auth-Token': Token
+                    ...configOption.headers
                 }
 
                 const configWithXToken = {...commonAjaxConfig, headers: {...headerConfig } };

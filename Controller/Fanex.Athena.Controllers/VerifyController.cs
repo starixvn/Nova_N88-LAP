@@ -15,35 +15,11 @@
             _authService = authService;
         }
 
-        private string GetToken(string vendorID, string actionLink)
-        {
-            var userSession = SessionServiceInstance.UserSession;
-
-            var oTokenInfo = new TokenInfo();
-            oTokenInfo.UserID = userSession.UserId;
-            oTokenInfo.VendorID = vendorID;
-            oTokenInfo.ActionLink = actionLink;
-            oTokenInfo.Language = userSession.Language;
-            oTokenInfo.SiteName = userSession.VendorID;
-
-            oTokenInfo.UserName = userSession.UserName;
-            oTokenInfo.IsAdminstrator = userSession.IsSuperAdmin;
-            oTokenInfo.WhiteLabelID = userSession.WhiteLabelID;
-
-            oTokenInfo.Currency = userSession.CurrencyList;
-
-            oTokenInfo.Permissions = userSession.FunctionList;
-
-            return _authService.ApplyToken(oTokenInfo);
-        }
-
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult ApplyApiToken(string vendorID, string actionLink)
         {
-            var token = GetToken(vendorID, actionLink);
-
-            return Json(new { Token = token }, JsonRequestBehavior.AllowGet);
+            return Json(new { }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ApplyToken(string vendorID, string actionLink)

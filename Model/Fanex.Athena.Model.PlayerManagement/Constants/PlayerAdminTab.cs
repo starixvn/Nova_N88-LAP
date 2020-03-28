@@ -8,7 +8,7 @@
     {
         public static IList<PlayerTabItem> CommonTabList => new List<PlayerTabItem>
         {
-            new PlayerTabItem { Name = "lblPlayerAdminPlayerStatement", Text = ViewResources.Statement, Action = "/PlayerStatement" }
+            new PlayerTabItem { Name = "lblPlayerAdminPlayerStatement", Text = ViewResources.Statement, Action = "PlayerStatement" }
         };
     }
 }

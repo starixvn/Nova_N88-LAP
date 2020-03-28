@@ -47,9 +47,7 @@
     <Setting Key="Lrf_UserPwdReset" SpName="Lrf_UserPwdReset" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" />
     <Setting Key="Licensee_UserPasswordUpd" SpName="Licensee_UserPasswordUpd" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" />
     <Setting Key="Lrf_CurrencyCustIns" SpName="Lrf_CurrencyCustIns" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" />
-    <Setting Key="Lrf_UserInfoSelByUserName" SpName="Lrf_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-    <Setting Key="Dot_Auth_TokenIns" SpName="Dot_Auth_TokenIns" DbName="ConnectionString_ClearinghouseDB" />
-  </Function>
+    <Setting Key="Lrf_UserInfoSelByUserName" SpName="Lrf_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />  </Function>
 
   <Function Name="Report">
     <Setting Key="Lrf_Rpt_PlatformWinloss" SpName="Lrf_Rpt_PlatformWinloss" DbName="DBEXT.bodb02.bodbLicenseeNet" />

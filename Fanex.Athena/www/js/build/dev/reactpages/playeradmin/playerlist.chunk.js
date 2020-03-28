@@ -5520,16 +5520,11 @@ function (_BaseCommonService) {
 
       var apiToken = "".concat(this._applyApiTokenUrl, "?").concat(this._buildApplyTokenQueryString(sysType, action));
       return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(apiToken).then(function (response) {
-        var Token = response.data.Token;
         var apiActionUrl = "".concat(action);
 
         var commonAjaxConfig = _this2._buildCommonAjaxConfig(configOption, apiActionUrl, params);
 
-        var headerConfig = _objectSpread({}, configOption.headers, {
-          'X-Auth-Token': Token
-        });
-
-        console.log(commonAjaxConfig);
+        var headerConfig = _objectSpread({}, configOption.headers);
 
         var configWithXToken = _objectSpread({}, commonAjaxConfig, {
           headers: _objectSpread({}, headerConfig)

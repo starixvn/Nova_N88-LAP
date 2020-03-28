@@ -3693,8 +3693,8 @@ textarea {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/font-icon/fonts/icomoon.eot?74xi81");
-  src: url("../fonts/font-icon/fonts/icomoon.eot?74xi81#iefix") format("embedded-opentype"), url("../fonts/font-icon/fonts/icomoon.ttf?74xi81") format("truetype"), url("../fonts/font-icon/fonts/icomoon.woff?74xi81") format("woff"), url("../fonts/font-icon/fonts/icomoon.svg?74xi81#icomoon") format("svg");
+  src: url("../fonts/font-icon/fonts/icomoon.eot?e6jubp");
+  src: url("../fonts/font-icon/fonts/icomoon.eot?e6jubp#iefix") format("embedded-opentype"), url("../fonts/font-icon/fonts/icomoon.ttf?e6jubp") format("truetype"), url("../fonts/font-icon/fonts/icomoon.woff?e6jubp") format("woff"), url("../fonts/font-icon/fonts/icomoon.svg?e6jubp#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -3710,6 +3710,48 @@ textarea {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-clock:before {
+  content: "\E94E"; }
+
+.icon-backward:before {
+  content: "\EA1F"; }
+
+.icon-forward:before {
+  content: "\EA20"; }
+
+.icon-first:before {
+  content: "\EA21"; }
+
+.icon-last:before {
+  content: "\EA22"; }
+
+.icon-plus:before {
+  content: "\EA0A"; }
+
+.icon-back:before {
+  content: "\EA38"; }
+
+.icon-refresh:before {
+  content: "\EA2E"; }
+
+.icon-pencil :before, .icon-edit :before {
+  content: "\E905"; }
+
+.icon-bin :before, .icon-delete :before {
+  content: "\E9AC"; }
+
+.icon-checkmark:before {
+  content: "\EA10"; }
+
+.icon-bet-history:before {
+  content: "\E900"; }
+
+.icon-log-management:before {
+  content: "\E901"; }
+
+.icon-user-management:before {
+  content: "\E902"; }
+
 .icon-account:before {
   content: "\E917"; }
 
@@ -3723,7 +3765,7 @@ textarea {
   content: "\E916"; }
 
 .icon-account-circle:before {
-  content: "\E900"; }
+  content: "\E903"; }
 
 .icon-chart-bar:before {
   content: "\E911"; }
@@ -3747,58 +3789,40 @@ textarea {
   content: "\E90F"; }
 
 .icon-administration:before {
-  content: "\E901"; }
-
-.icon-affiliate:before {
-  content: "\E902"; }
-
-.icon-arrow:before {
-  content: "\E903"; }
-
-.icon-book:before {
   content: "\E904"; }
 
-.icon-customer:before {
+.icon-affiliate:before {
   content: "\E906"; }
 
-.icon-home:before {
+.icon-arrow:before {
   content: "\E908"; }
 
-.icon-notification:before {
+.icon-book:before {
   content: "\E909"; }
 
-.icon-s-arrow:before {
+.icon-player-management:before {
   content: "\E90A"; }
 
-.icon-search:before {
+.icon-home:before {
   content: "\E90B"; }
 
-.icon-table:before {
+.icon-notification:before {
   content: "\E90C"; }
 
-.icon-totalbet:before {
+.icon-s-arrow:before {
   content: "\E90D"; }
 
-.icon-xs-arrow:before {
+.icon-search:before {
   content: "\E90E"; }
 
-.icon-back:before {
-  content: "\EA38"; }
+.icon-table:before {
+  content: "\E919"; }
 
-.icon-refresh:before {
-  content: "\EA2E"; }
+.icon-totalbet:before {
+  content: "\E91A"; }
 
-.icon-pencil:before, .icon-edit:before {
-  content: "\E905"; }
-
-.icon-bin:before, .icon-delete:before {
-  content: "\E9AC"; }
-
-.icon-checkmark:before {
-  content: "\EA10"; }
-
-.icon-clock:before {
-  content: "\E94E"; }
+.icon-xs-arrow:before {
+  content: "\E91B"; }
 
 @font-face {
   font-family: 'Montserrat Regular';

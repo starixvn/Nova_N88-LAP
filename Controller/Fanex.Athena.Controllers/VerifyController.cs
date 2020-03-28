@@ -48,7 +48,9 @@
 
         public ActionResult ApplyToken(string vendorID, string actionLink)
         {
-            return Redirect(actionLink);
+            var appUrl = Url.Content("~/");
+
+            return Redirect(appUrl + actionLink);
         }
     }
 }

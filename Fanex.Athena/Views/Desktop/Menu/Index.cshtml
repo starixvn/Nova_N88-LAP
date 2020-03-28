@@ -1,8 +1,12 @@
 ﻿@{
     Layout = null;
-    var icons = new Dictionary<int, string>
+    var icons = new Dictionary<string, string>
     {
-        { 1, "totalbet" }, { 2, "chart-bar" }, { 3, "table" }, { 5, "table" }, { 6, "administration" }, { 52, "table" }, { 4, "customer" }
+        { "BetHistory", "bet-history" },
+        { "Report", "table" },
+        { "PlayerManagement", "player-management" },
+        { "UserManagement", "user-management" },
+        { "LogManagement", "log-management" }
     };
 }
 @using Fanex.Athena.Resources
@@ -29,7 +33,7 @@
             @if (menu.Url == "")
             {
                 <a class="collapsible-header waves-effect">
-                    <i class="menu-icon icon-table" aria-hidden="true"></i>
+                    <i class="menu-icon icon-@(icons.ContainsKey(menu.Key) ? icons[menu.Key] : "table")" aria-hidden="true"></i>
                     <span class="menu-title">@getMenuTitle(menu)</span>
                     <i class="right icon-arrow"></i>
                 </a>
@@ -37,7 +41,7 @@
             else
             {
                 <a class="collapsible-header waves-effect" id="MenuItem@(menu.Id)" href="@Url.Content("~/" + menu.Url)" target="main">
-                    <i class="menu-icon icon-table" aria-hidden="true"></i>
+                    <i class="menu-icon icon-@(icons.ContainsKey(menu.Key) ? icons[menu.Key] : "table")" aria-hidden="true"></i>
                     <span class="menu-title">@getMenuTitle(menu)</span>
                 </a>
             }

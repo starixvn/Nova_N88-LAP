@@ -1,7 +1,7 @@
 ﻿@font-face {
     font-family: 'icomoon';
-    src: url('../../fonts/font-icon/fonts/icomoon.eot?74xi81');
-    src: url('../../fonts/font-icon/fonts/icomoon.eot?74xi81#iefix') format('embedded-opentype'), url('../../fonts/font-icon/fonts/icomoon.ttf?74xi81') format('truetype'), url('../../fonts/font-icon/fonts/icomoon.woff?74xi81') format('woff'), url('../../fonts/font-icon/fonts/icomoon.svg?74xi81#icomoon') format('svg');
+    src: url('../../fonts/font-icon/fonts/icomoon.eot?e6jubp');
+    src: url('../../fonts/font-icon/fonts/icomoon.eot?e6jubp#iefix') format('embedded-opentype'), url('../../fonts/font-icon/fonts/icomoon.ttf?e6jubp') format('truetype'), url('../../fonts/font-icon/fonts/icomoon.woff?e6jubp') format('woff'), url('../../fonts/font-icon/fonts/icomoon.svg?e6jubp#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -19,18 +19,158 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-calendar:before {
-    content: "\e90f";
+.icon-clock:before {
+    content: "\e94e";
 }
 
-.icon-book:before {
-    content: "\e904";
+.icon-backward:before {
+    content: "\ea1f";
+}
+
+.icon-forward:before {
+    content: "\ea20";
+}
+
+.icon-first:before {
+    content: "\ea21";
+}
+
+.icon-last:before {
+    content: "\ea22";
+}
+
+.icon-plus:before {
+    content: "\ea0a";
+}
+
+.icon-back:before {
+    content: "\ea38";
+}
+
+.icon-refresh:before {
+    content: "\ea2e";
+}
+
+.icon-pencil, .icon-edit {
+    :before {
+        content: "\e905";
+    }
+}
+
+.icon-bin, .icon-delete {
+    :before {
+        content: "\e9ac";
+    }
+}
+
+.icon-checkmark:before {
+    content: "\ea10";
+}
+
+.icon-bet-history:before {
+    content: "\e900";
+}
+
+.icon-log-management:before {
+    content: "\e901";
+}
+
+.icon-user-management:before {
+    content: "\e902";
+}
+
+.icon-account:before {
+    content: "\e917";
+}
+
+.icon-lock:before {
+    content: "\e918";
+}
+
+.icon-backburger:before {
+    content: "\e907";
+}
+
+.icon-menu-down:before {
+    content: "\e916";
+}
+
+.icon-account-circle:before {
+    content: "\e903";
+}
+
+.icon-chart-bar:before {
+    content: "\e911";
+}
+
+.icon-clipboard-text:before {
+    content: "\e912";
+}
+
+.icon-credit-card:before {
+    content: "\e913";
+}
+
+.icon-logout:before {
+    content: "\e914";
+}
+
+.icon-settings:before {
+    content: "\e915";
 }
 
 .icon-close:before {
     content: "\e910";
 }
 
+.icon-calendar:before {
+    content: "\e90f";
+}
+
+.icon-administration:before {
+    content: "\e904";
+}
+
+.icon-affiliate:before {
+    content: "\e906";
+}
+
 .icon-arrow:before {
-    content: "\e903";
+    content: "\e908";
+}
+
+.icon-book:before {
+    content: "\e909";
+}
+
+.icon-player-management:before {
+    content: "\e90a";
+}
+
+.icon-home:before {
+    content: "\e90b";
+}
+
+.icon-notification:before {
+    content: "\e90c";
+}
+
+.icon-s-arrow:before {
+    content: "\e90d";
+}
+
+.icon-search:before {
+    content: "\e90e";
+}
+
+.icon-table:before {
+    content: "\e919";
+}
+
+.icon-totalbet:before {
+    content: "\e91a";
+}
+
+.icon-xs-arrow:before {
+    content: "\e91b";
 }

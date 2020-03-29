@@ -1778,8 +1778,6 @@ function (_React$Component) {
       var dataList = selectedPlayer ? [playerList.find(function (item) {
         return item.IbcCustId === selectedPlayer.ibcCustId;
       })] : playerList;
-      console.log(playerList);
-      console.log(selectedPlayer);
       exportExcel(dataList, param, displayedColumn);
     });
 

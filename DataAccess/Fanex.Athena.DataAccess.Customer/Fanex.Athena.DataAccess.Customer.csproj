@@ -73,9 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerLogDataAccess.cs" />
-    <Compile Include="GroupComDataAccess.cs" />
     <Compile Include="Interfaces\ICustomerLogDataAccess.cs" />
-    <Compile Include="Interfaces\IGroupComDataAccess.cs" />
     <Compile Include="Interfaces\ILogInLogDataAccess.cs" />
     <Compile Include="LogInLogDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

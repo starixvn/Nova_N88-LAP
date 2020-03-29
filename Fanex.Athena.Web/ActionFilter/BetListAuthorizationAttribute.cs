@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FunctionAuthorizationAttribute.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Web.ActionFilter
+﻿namespace Fanex.Athena.Web.ActionFilter
 {
     using System;
     using System.Net;

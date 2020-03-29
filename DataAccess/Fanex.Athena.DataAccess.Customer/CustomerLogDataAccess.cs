@@ -1,13 +1,6 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CustomerLogDataAccess.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Customer
+﻿namespace Fanex.Athena.DataAccess.Customer
 {
     using System.Collections.Generic;
-    using System.Data;
     using System.Linq;
     using System.Threading.Tasks;
     using Core;

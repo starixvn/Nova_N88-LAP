@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BetTypeService.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Service.StatelessCore
+﻿namespace Fanex.Athena.Service.StatelessCore
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -15,9 +9,6 @@ namespace Fanex.Athena.Service.StatelessCore
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
 
-    /// <summary>
-    ///     TODO: Update summary.
-    /// </summary>
     public class BetTypeService : IBetTypeService
     {
         private readonly IBetTypeDataAccess _betTypeDataAccess;

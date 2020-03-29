@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Model.UserManagement.Model;
-using Fanex.Athena.Resources;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Web;
+using Fanex.Athena.Model.UserManagement.Model;
+using Fanex.Athena.Resources;
 
 namespace Fanex.Athena.Web.HtmlExtension
 {

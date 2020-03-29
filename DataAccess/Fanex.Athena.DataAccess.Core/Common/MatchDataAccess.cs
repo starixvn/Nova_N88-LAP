@@ -22,38 +22,6 @@
             _appSettings = appSettings;
         }
 
-        public async Task<IList<Match>> GetAllRunningMatch(int sportId)
-        {
-            var result = new List<Match>();
-
-            using (var db = GetObjectDb("Lrf_LeagueMatchSelRunning"))
-            {
-                db.SetParameterValue("sporttype", sportId);
-                db.SetParameterValue("IsIncludeTestLeague", !_appSettings.IsProduction);
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
-                {
-                    while (reader.Read())
-                    {
-                        var awayId = Convert.ToInt32(reader["awayid"]);
-                        var match = new Match
-                        {
-                            MatchId = Convert.ToInt32(reader["matchid"]),
-                            LeagueId = Convert.ToInt32(reader["leagueid"]),
-                            IsOutRight = awayId == 0,
-                            HomeId = Convert.ToInt32(reader["homeid"]),
-                            AwayId = awayId
-                        };
-
-                        match.MatchName = GetMatchName(match);
-
-                        result.Add(match);
-                    }
-                }
-            }
-
-            return result;
-        }
-
         public async Task<IList<Match>> GetMatchesByLeague(int leagueId, DateTime fromDate, DateTime toDate, int sportId = 0)
         {
             var result = new List<Match>();

@@ -7,7 +7,6 @@
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.Constants;
-    using Fanex.Athena.Model.PlayerManagement.DTO;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;

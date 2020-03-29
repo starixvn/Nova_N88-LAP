@@ -7,8 +7,6 @@
 
     public interface IMatchDataAccess
     {
-        Task<IList<Match>> GetAllRunningMatch(int sportId);
-
         Task<IList<Match>> GetMatchesByLeague(int leagueId, DateTime fromDate, DateTime toDate, int sportId = 0);
     }
 }

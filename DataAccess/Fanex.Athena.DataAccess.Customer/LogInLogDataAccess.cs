@@ -1,13 +1,6 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LogInLogDataAccess.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Customer
+﻿namespace Fanex.Athena.DataAccess.Customer
 {
     using System.Collections.Generic;
-    using System.Data;
     using System.Threading.Tasks;
     using Core;
     using Fanex.Athena.DataAccess.Customer.Interfaces;

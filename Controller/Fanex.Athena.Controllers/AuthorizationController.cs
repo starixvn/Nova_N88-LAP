@@ -21,7 +21,6 @@
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Auth.MetaModel;
     using Fanex.Athena.Model.Core.DataDomain;
-    using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
@@ -43,7 +42,6 @@
 
         private const int SSOExpiredTimeInSeconds = 30;
 
-        private readonly IAuthService authService;
         private readonly IMaintenanceService maintenanceService;
         private readonly IFormsAuthenticationService formAuthenticationService;
         private readonly IUserService userService;
@@ -54,7 +52,6 @@
 
         public AuthorizationController(
             IMaintenanceService maintenanceService,
-            IAuthService authService,
             IFormsAuthenticationService formAuthenticationService,
             IUserService userService,
             IGroupService groupService,
@@ -62,7 +59,6 @@
             ISiteService siteService)
         {
             this.maintenanceService = maintenanceService;
-            this.authService = authService;
             this.formAuthenticationService = formAuthenticationService;
             this.userService = userService;
             this.groupService = groupService;
@@ -479,7 +475,7 @@
             var userSession = SessionServiceInstance.UserSession;
             if (userSession != null)
             {
-                authService.Logout(userSession.OnUserId);
+                securityService.Logout(userSession.OnUserId);
             }
 
             Session.Clear();

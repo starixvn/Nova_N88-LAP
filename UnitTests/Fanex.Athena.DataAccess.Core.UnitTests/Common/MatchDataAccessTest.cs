@@ -27,48 +27,6 @@
             DataAccess = Substitute.ForPartsOf<MatchDataAccess>(Substitute.For<ICacheRefAdapter>(), _appSettings);
         }
 
-        [TestCase(false)]
-        [TestCase(true)]
-        public async Task GetAllRunningMatch_WhenCall_ParametersPassedCorrectly(bool isProduction)
-        {
-            // Arrange
-            DataAccess.GetObjectDb(Arg.Is("Lrf_LeagueMatchSelRunning")).Returns(ObjectDb);
-            const int SportId = 1;
-            _appSettings.IsProduction.Returns(isProduction);
-
-            // Action
-            await DataAccess.GetAllRunningMatch(SportId);
-
-            // Assert
-            ObjectDb.Received(1).SetParameterValue("sporttype", SportId);
-            ObjectDb.Received(1).SetParameterValue("IsIncludeTestLeague", !isProduction);
-        }
-
-        [Test]
-        public async Task GetAllRunningMatch_WhenCall_DataReturnedCorrectly()
-        {
-            // Arrange
-            const int SportId = 1;
-            var expectedMatch = GetFakeMatch();
-
-            DataAccess.GetObjectDb(Arg.Is("Lrf_LeagueMatchSelRunning")).Returns(ObjectDb);
-            MapReaderData(expectedMatch);
-            Reader.Read().Returns(true, false);
-
-            // Action
-            var result = await DataAccess.GetAllRunningMatch(SportId);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(result[0].MatchId, Is.EqualTo(expectedMatch.MatchId));
-                Assert.That(result[0].LeagueId, Is.EqualTo(expectedMatch.LeagueId));
-                Assert.That(result[0].IsOutRight, Is.EqualTo(expectedMatch.IsOutRight));
-                Assert.That(result[0].HomeId, Is.EqualTo(expectedMatch.HomeId));
-                Assert.That(result[0].AwayId, Is.EqualTo(expectedMatch.AwayId));
-            });
-        }
-
         [Test]
         public async Task GetMatchesByLeague_WhenCall_ExecuteReaderMethodIsCalled()
         {

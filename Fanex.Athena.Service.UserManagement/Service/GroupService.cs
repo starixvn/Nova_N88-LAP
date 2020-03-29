@@ -9,11 +9,11 @@
 
     public class GroupService
     {
-        private readonly CommonRepository _commonepository;
+        private readonly CommonRepository _commonRepository;
 
         public GroupService()
         {
-            _commonepository = new CommonRepository();
+            _commonRepository = new CommonRepository();
         }
 
         public IEnumerable<GroupData> GetAllWithNumOfUser(string name, string env = Constant.Uat, bool? isActive = null,
@@ -30,7 +30,7 @@
 
             if (criteria.IsValid())
             {
-                return this._commonepository.FetchData<GroupData>(criteria).OrderBy(g => g.GroupName);
+                return this._commonRepository.FetchData<GroupData>(criteria).OrderBy(g => g.GroupName);
             }
 
             return null;
@@ -40,7 +40,7 @@
         {
             if (criteria.IsValid())
             {
-                return this._commonepository.ExecuteNonQueryAsync(criteria);
+                return this._commonRepository.ExecuteNonQueryAsync(criteria);
             }
 
             return new CommandResult { Error = 1, Message = "Error" };
@@ -50,7 +50,7 @@
         {
             if (criteria.IsValid())
             {
-                return this._commonepository.FetchData<GroupData>(criteria).FirstOrDefault();
+                return this._commonRepository.FetchData<GroupData>(criteria).FirstOrDefault();
             }
 
             return null;

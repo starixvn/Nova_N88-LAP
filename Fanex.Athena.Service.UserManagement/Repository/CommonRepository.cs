@@ -1,10 +1,9 @@
-﻿using Fanex.Athena.Model.UserManagement;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Fanex.Athena.Model.UserManagement.Model;
 using Fanex.Data;
 using Fanex.Data.Repository;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.Service.UserManagement.Repository
 {

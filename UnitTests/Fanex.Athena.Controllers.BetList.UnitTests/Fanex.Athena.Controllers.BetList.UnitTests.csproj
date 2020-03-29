@@ -111,13 +111,11 @@
     <Compile Include="CustomerWinLossBetListControllerTest.cs" />
     <Compile Include="GlobalGamingBetListControllerTest.cs" />
     <Compile Include="LicenseeWinLossBetListControllerTest.cs" />
-    <Compile Include="MatchWinLossBetListControllerTest.cs" />
     <Compile Include="CardClubBetListtControllerTest.cs" />
     <Compile Include="SGBetListControllerTest.cs" />
     <Compile Include="PragmaticPlayBetListControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RNGCasinoBetListControllerTest.cs" />
-    <Compile Include="RunningBettypesOfMatchBetListControllerTest.cs" />
     <Compile Include="SystemParlayBetListControllerTest.cs" />
     <Compile Include="VoidbridgeBetListControllerTest.cs" />
   </ItemGroup>

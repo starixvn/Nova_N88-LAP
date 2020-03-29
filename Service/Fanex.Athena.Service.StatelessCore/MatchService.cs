@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MatchService.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Service.StatelessCore
+﻿namespace Fanex.Athena.Service.StatelessCore
 {
     using System;
     using System.Collections.Generic;
@@ -28,23 +22,6 @@ namespace Fanex.Athena.Service.StatelessCore
         {
             _matchDataAccess = matchDataAccess;
             _cache = cache;
-        }
-
-        public async Task<IList<Match>> GetAllRunningMatchAsync(int sportId, string languageCode)
-        {
-            var cacheKey = RunningMatchCacheKey + sportId + languageCode;
-            var isInCache = _cache.Contains(cacheKey);
-            if (isInCache)
-            {
-                return _cache.Get<IList<Match>>(cacheKey);
-            }
-            else
-            {
-                var matchList = await _matchDataAccess.GetAllRunningMatch(sportId).ConfigureAwait(false);
-                _cache.Set(cacheKey, matchList);
-
-                return matchList;
-            }
         }
 
         public async Task<IList<Match>> GetMatchesByLeagueAsync(int leagueId, DateTime fromDate, DateTime toDate)

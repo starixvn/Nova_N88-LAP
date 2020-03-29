@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.Mvc;
-using Fanex.Athena.Model.UserManagement;
 using Fanex.Athena.Model.UserManagement.Model;
 using Fanex.Data;
 using Fanex.Data.Repository;

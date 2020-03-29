@@ -1,14 +1,5 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ILanguageService.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Service.Core.Common.Interfaces
+﻿namespace Fanex.Athena.Service.Core.Common.Interfaces
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface ILanguageService
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",

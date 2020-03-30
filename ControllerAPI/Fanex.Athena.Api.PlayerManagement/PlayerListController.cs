@@ -14,7 +14,7 @@
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.Athena.Web.ActionFilter;
 
-    [FunctionAuthorization(PermissionKeys.PlayerAdminPlayerList)]
+    [FunctionAuthorization(PermissionKeys.PlayerAdmin)]
     public class PlayerListController : BaseApiController
     {
         private readonly IPlayerListService _playerListService;

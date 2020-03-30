@@ -33,7 +33,6 @@
 
         private IBalanceUpDataAccess _balanceUpDataAccess;
 
-        private IAuthorizationService _authService;
 
         [OneTimeSetUp]
         public override void FixtureSetUp()
@@ -46,7 +45,6 @@
             {
                 BalanceUpDay = BalanceUpDate
             });
-            _authService = Substitute.For<IAuthorizationService>();
 
             SetUpDefaultFakeData();
         }
@@ -57,13 +55,12 @@
             base.FixtureTearDown();
 
             _productService = null;
-            _authService = null;
         }
 
         [TestCase(PermissionKeys.BtcAdvancedSearch, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
-        [TestCase(PermissionKeys.BtcSingleCustomer, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml")]
-        [TestCase(PermissionKeys.BtcRefNo, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml")]
-        [TestCase(PermissionKeys.BtcRunning, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml")]
+        [TestCase(PermissionKeys.BetHistorySingleCustomer, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryRefNo, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryRunning, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml")]
         [TestCase(PermissionKeys.BtcAdvancedSearch, AppMode.Parasitic, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
         public void Index_CheckByPermission_ReturnCorrectView(string permissionKey, AppMode appMode, string expectedView)
         {
@@ -155,7 +152,7 @@
             using (var controller = CreateController(hasExchangePermission))
             {
                 // Arrange
-                CreateAndStubUserSession(PermissionKeys.BtcRefNo);
+                CreateAndStubUserSession(PermissionKeys.BetHistoryRefNo);
                 var productKN = new Product { ProductCode = Product.KN, ProductName = FakeHelper.Create<string>() };
                 var productLT = new Product { ProductCode = Product.LT, ProductName = FakeHelper.Create<string>() };
                 var productSB = new Product { ProductCode = Product.SB, ProductName = FakeHelper.Create<string>() };
@@ -209,7 +206,7 @@
             using (var controller = CreateController(hasExchangePermission))
             {
                 // Arrange
-                CreateAndStubUserSession(PermissionKeys.BtcRunning);
+                CreateAndStubUserSession(PermissionKeys.BetHistoryRunning);
                 var productCodes = MockProductService();
 
                 // Action
@@ -252,7 +249,7 @@
             using (var controller = CreateController(hasExchangePermission))
             {
                 // Arrange
-                CreateAndStubUserSession(PermissionKeys.BtcSingleCustomer);
+                CreateAndStubUserSession(PermissionKeys.BetHistorySingleCustomer);
                 var productCodes = MockProductService();
 
                 // Action
@@ -319,9 +316,7 @@
 
         private BettingTicketCenterController CreateController(bool hasExchangePermission = true)
         {
-            _authService.CheckProductBelongsTo(SessionService.LicenseeSession.LicenseeName, ProductTypes.Exchange).Returns(hasExchangePermission);
-
-            return new BettingTicketCenterController(_productService, _balanceUpDataAccess, _authService)
+            return new BettingTicketCenterController(_productService, _balanceUpDataAccess)
             {
                 LangService = LangService,
                 SessionServiceInstance = SessionService

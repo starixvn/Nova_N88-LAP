@@ -8,7 +8,7 @@ using Fanex.Athena.Model.Auth.DataDomain;
 using Fanex.Athena.Model.Auth.Enum;
 using Fanex.Athena.Service.StatelessCore;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+using Fanex.N88.Core.Service.Interface;
 using NSubstitute;
 
 using NUnit.Framework;
@@ -24,12 +24,15 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
 
         private ICustomMemoryCacheService _cache;
 
+        private IUserService _userService;
+
         [SetUp]
         public void SetUp()
         {
             _authorizationDataAccess = Substitute.For<IAthorizationDataAccess>();
             _cache = Substitute.For<ICustomMemoryCacheService>();
-            _authorizationService = new AuthorizationService(_authorizationDataAccess, _cache);
+            _userService = Substitute.For<IUserService>();
+            _authorizationService = new AuthorizationService(_authorizationDataAccess, _cache, _userService);
         }
 
         [TearDown]
@@ -58,7 +61,7 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
         {
             // Arrange
             var functionList = new OneAuthPermission[] {
-                new OneAuthPermission {FunctionKey=PermissionKeys.BettingTicketCenter } };
+                new OneAuthPermission {FunctionKey=PermissionKeys.BetHistory } };
             var userSession = new UserAuthInfo { PortalFunctionList = functionList, ApplicationMode = AppMode.Parasitic };
 
             // Action
@@ -92,7 +95,7 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
             // Arrange
             var functionList = new List<Function> {
                 new Function {
-                    FunctionKey = PermissionKeys.BettingTicketCenter
+                    FunctionKey = PermissionKeys.BetHistory
                 }
             }; var userSession = new UserAuthInfo { FunctionList = functionList, ApplicationMode = AppMode.Self };
 
@@ -123,7 +126,7 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
         {
             // Arrange
             var functionList = new OneAuthPermission[] {
-                new OneAuthPermission {FunctionKey= PermissionKeys.BettingTicketCenter } };
+                new OneAuthPermission {FunctionKey= PermissionKeys.BetHistory } };
 
             var userSession = new UserAuthInfo { PortalFunctionList = functionList, ApplicationMode = AppMode.Parasitic };
 
@@ -245,7 +248,7 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
 
             //Action
 
-            var result = _authorizationService.HasPermissions(userAuthInfo, permissionKey1, permissinKey2);
+            var result = _authorizationService.HasPermissions(userAuthInfo.UserId, permissionKey1, permissinKey2);
 
             //Assert
 
@@ -263,7 +266,7 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
 
             //Action
 
-            var result = _authorizationService.HasPermissions(userAuthInfo, permissionKey1, permissinKey2);
+            var result = _authorizationService.HasPermissions(userAuthInfo.UserId, permissionKey1, permissinKey2);
 
             //Assert
 
@@ -281,7 +284,7 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
 
             //Action
 
-            var result = _authorizationService.HasPermissions(userAuthInfo, permissionKey1, permissinKey2);
+            var result = _authorizationService.HasPermissions(userAuthInfo.UserId, permissionKey1, permissinKey2);
 
             //Assert
 

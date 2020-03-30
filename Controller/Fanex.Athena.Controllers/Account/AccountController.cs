@@ -18,10 +18,12 @@
     public class AccountController : CultureBaseController
     {
         private readonly UserService userService;
+        private readonly FunctionService functionService;
 
         public AccountController()
         {
             userService = new UserService();
+            functionService = new FunctionService();
         }
 
         public ActionResult Manage(
@@ -195,9 +197,9 @@
                 SiteId = N88Settings.Settings.SiteId
             };
 
-            ViewBag.GroupFuncPolicyList = userService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, N88Settings.Settings.Environment).ToList();
-            ViewBag.FunctionList = userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
-            ViewBag.UserFuncPolicyList = userService.GetByUserAndSite(criteria.UserId, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+            ViewBag.GroupFuncPolicyList = functionService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+            ViewBag.FunctionList = functionService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
+            ViewBag.UserFuncPolicyList = functionService.GetByUserAndSite(criteria.UserId, criteria.SiteId, N88Settings.Settings.Environment).ToList();
 
             return View("~/Views/Account/AssignPermission.cshtml", criteria);
         }
@@ -215,17 +217,17 @@
             UpdateCriteria(criteria);
             var result = userService.AssignFunction(criteria);
 
-            ViewBag.FunctionList = userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
+            ViewBag.FunctionList = functionService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
             if (result != null && result.IsSuccessful)
             {
                 ViewBag.Success = true;
 
-                ViewBag.UserFuncPolicyList = userService.GetByUserAndSite(criteria.UserId, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+                ViewBag.UserFuncPolicyList = functionService.GetByUserAndSite(criteria.UserId, criteria.SiteId, N88Settings.Settings.Environment).ToList();
             }
 
             if (!ReferenceEquals(user.Group, null))
             {
-                ViewBag.GroupFuncPolicyList = userService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+                ViewBag.GroupFuncPolicyList = functionService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, N88Settings.Settings.Environment).ToList();
             }
 
             return View("~/Views/Account/AssignPermission.cshtml", criteria);

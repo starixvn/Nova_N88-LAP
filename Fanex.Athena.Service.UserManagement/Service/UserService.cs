@@ -141,78 +141,6 @@ namespace Fanex.Athena.Service.UserManagement.Service
             return null;
         }
 
-        public List<FunctionPolicy> GetByGroupAndSite(int groupId, int siteId, string env = Constant.Uat)
-        {
-            var criteria = new GetByGroupAndSiteFunctionCriteria
-            {
-                GroupId = groupId,
-                SiteId = siteId,
-                Environment = env
-            };
-
-            if (criteria.IsValid())
-            {
-                return this.userRepository.GetByGroupAndSite(criteria).ToList();
-            }
-
-            return new List<FunctionPolicy>();
-        }
-
-        public List<AccFunction> GetBySiteInHierarchy(int siteId, string env = Constant.Uat, bool? isActive = null)
-        {
-            var criteria = new GetBySiteFunctionCriteria
-            {
-                SiteId = siteId,
-                Environment = env,
-                IsActive = isActive
-            };
-
-            if (criteria.IsValid())
-            {
-                IEnumerable<AccFunction> functionList = this.userRepository.GetBySiteInHierarchy(criteria)
-                    .Where(x => !Constant.IgnoredNapFunctions.Contains(x.Key))
-                    .OrderBy(x => x.DisplayOrder);
-
-                return this.SortFunctionsInHierarchy(functionList.ToList());
-            }
-
-            return new List<AccFunction>();
-        }
-
-        public List<FunctionPolicy> GetByUserAndSite(int userId, int siteId, string env = Constant.Uat)
-        {
-            var criteria = new GetByUserAndSiteFunctionCriteria
-            {
-                UserId = userId,
-                SiteId = siteId,
-                Environment = env
-            };
-
-            if (criteria.IsValid())
-            {
-                return this.userRepository.GetByGroupAndSite(criteria).ToList();
-            }
-
-            return new List<FunctionPolicy>();
-        }
-
-        public List<FunctionPolicy> GetByUserAndSiteIncludeGroup(int userId, int siteId, string env = Constant.Uat)
-        {
-            var criteria = new GetByUserAndSiteIncludeGroupFunctionCriteria
-            {
-                UserId = userId,
-                SiteId = siteId,
-                Environment = env
-            };
-
-            if (criteria.IsValid())
-            {
-                return this.userRepository.GetByGroupAndSite(criteria).ToList();
-            }
-
-            return new List<FunctionPolicy>();
-        }
-
         public int GetUserSiteLevel(int userId, int siteId)
         {
             var criteria = new GetUserSiteLevelUserCriteria
@@ -227,24 +155,6 @@ namespace Fanex.Athena.Service.UserManagement.Service
             }
 
             return -1;
-        }
-
-        private List<AccFunction> SortFunctionsInHierarchy(List<AccFunction> functionList, int parentId = 0)
-        {
-            var sortedFunctionList = new List<AccFunction>();
-
-            foreach (AccFunction function in functionList)
-            {
-                // top functions || sub functions
-                if ((function.Parent == null && parentId == 0)
-                    || (function.Parent != null && function.Parent.Id == parentId))
-                {
-                    sortedFunctionList.Add(function);
-                    sortedFunctionList.AddRange(SortFunctionsInHierarchy(functionList, function.Id));
-                }
-            }
-
-            return sortedFunctionList;
         }
     }
 }

@@ -20,11 +20,13 @@
     {
         private readonly GroupService _groupService;
         private readonly UserService _userService;
+        private readonly FunctionService _functionService;
 
         public GroupController()
         {
             _groupService = new GroupService();
             _userService = new UserService();
+            _functionService = new FunctionService();
         }
 
         [HttpGet]
@@ -40,7 +42,8 @@
 
             var groups = _groupService.GetAllWithNumOfUser(groupName, N88Settings.Settings.Environment, isLicenseeGroup: true, siteId: N88Settings.Settings.SiteId);
 
-            var searchViewModal = new GetAllGroupModal { 
+            var searchViewModal = new GetAllGroupModal
+            {
                 PageIndex = page,
                 PageSize = size,
                 GroupName = groupName,
@@ -216,11 +219,11 @@
 
             ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
 
-            ViewBag.FunctionList = _userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true);
+            ViewBag.FunctionList = _functionService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true);
             ViewBag.GroupFuncPolicyList =
-                _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
+                _functionService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
             ViewBag.UserFuncPolicyList =
-                _userService.GetByUserAndSiteIncludeGroup(userId, criteria.SiteId, N88Settings.Settings.Environment);
+                _functionService.GetByUserAndSiteIncludeGroup(userId, criteria.SiteId, N88Settings.Settings.Environment);
             ViewBag.UserLevel = _userService.GetUserSiteLevel(userId, siteId);
 
             return View(criteria);
@@ -244,11 +247,11 @@
 
             // list function policy
             var listFunc =
-                _userService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true);
+                _functionService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true);
 
             // list group function policy
             var listGroupFuncPolicy =
-                _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
+                _functionService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
 
             // list function will be remove by current user login
             var listGroupFuncRemove = new List<FunctionPolicy>();
@@ -256,7 +259,7 @@
 
             // list function policy of current user login
             List<FunctionPolicy> listCurrentUserFuncPolicy =
-                _userService.GetByUserAndSiteIncludeGroup(SessionServiceInstance.UserSession.UserId, criteria.SiteId, N88Settings.Settings.Environment);
+                _functionService.GetByUserAndSiteIncludeGroup(SessionServiceInstance.UserSession.UserId, criteria.SiteId, N88Settings.Settings.Environment);
 
             // check function host,contains in list function
             if (!criteria.FuncHost.IsNullOrDBNull())
@@ -301,7 +304,7 @@
                 ViewBag.Success = true;
 
                 listGroupFuncPolicy =
-                    _userService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
+                    _functionService.GetByGroupAndSite(criteria.GroupId, criteria.SiteId, N88Settings.Settings.Environment);
             }
 
             ViewBag.FunctionList = listFunc;
@@ -326,7 +329,7 @@
             };
 
             var group = _groupService.Get(getGroupCriteria);
-            List<FunctionPolicy> listGroupFuncPolicy = _userService.GetByGroupAndSite(groupId, N88Settings.Settings.SiteId, AppSettingInstance.Environment).ToList();
+            List<FunctionPolicy> listGroupFuncPolicy = _functionService.GetByGroupAndSite(groupId, N88Settings.Settings.SiteId, AppSettingInstance.Environment).ToList();
 
             var criteria = new AssignFunctionGroupCriteria();
             criteria.FuncHost = listGroupFuncPolicy.Where(p => p.Policy == 2 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();

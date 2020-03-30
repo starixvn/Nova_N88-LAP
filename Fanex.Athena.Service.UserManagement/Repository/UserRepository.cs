@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using Fanex.Athena.Model.UserManagement.Model;
@@ -21,77 +20,6 @@ namespace Fanex.Athena.Service.UserManagement.Repository
                 Value = g.GroupId.ToString(),
                 Selected = g.GroupId == 0
             }).ToList();
-        }
-
-        public IEnumerable<AccFunction> GetBySiteInHierarchy(ICriteria criteria)
-        {
-            var data = FetchData<FunctionData>(criteria);
-            return data.Select(i => new AccFunction
-            {
-                Id = i.FunctionId,
-                Name = i.FunctionName,
-                Key = i.FunctionKey,
-                Description = i.Description,
-                Crud = i.CRUD,
-                DisplayOrder = i.DisplayOrder,
-                IsActive = i.IsActive,
-                Site = new Site
-                {
-                    Id = i.SiteId,
-                    Name = i.SiteName
-                },
-                Parent = i.ParentName == null ? null : new AccFunction
-                {
-                    Id = i.ParentId,
-                    Name = i.ParentName
-                }
-            });
-        }
-
-        public IEnumerable<FunctionPolicy> GetByGroupAndSite(ICriteria criteria)
-        {
-            var data = FetchData<FunctionData>(criteria);
-            return data.Select(i => new FunctionPolicy
-            {
-                Function = new AccFunction
-                {
-                    Id = i.FunctionId,
-                    Name = i.FunctionName,
-                    Key = i.FunctionKey,
-                    Description = i.Description,
-                    Crud = i.CRUD,
-                    DisplayOrder = i.DisplayOrder,
-                    IsActive = i.IsActive,
-                    Site = new Site
-                    {
-                        Id = i.SiteId,
-                        Name = i.SiteName
-                    },
-                    Parent = i.ParentName == null ? null : new AccFunction
-                    {
-                        Id = i.ParentId,
-                        Name = i.ParentName
-                    }
-                },
-                Site = new Site
-                {
-                    Id = i.SiteId,
-                    Name = i.SiteName
-                },
-                Policy = i.Policy,
-                Creator = new User
-                {
-                    Id = i.CreatorId,
-                    Name = i.CreatorUsername
-                },
-                CreatedDate = i.CreatedDate,
-                Modifier = new User
-                {
-                    Id = i.ModifierId,
-                    Name = i.ModifierUsername
-                },
-                ModifiedDate = i.ModifiedDate
-            });
         }
 
         public IEnumerable<UserLevel> GetUsers(ICriteria criteria)

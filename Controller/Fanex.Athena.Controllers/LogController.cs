@@ -17,11 +17,13 @@
     {
         private readonly UserLogService userLogService;
         private readonly UserService userService;
+        private readonly FunctionService functionService;
 
         public LogController()
         {
             userLogService = new UserLogService();
             userService = new UserService();
+            functionService = new FunctionService();
         }
 
         [HttpGet]
@@ -335,7 +337,7 @@
                 // Get function list
                 int siteId = Convert.ToInt32(elementNew.Attribute("SiteId").Value);
 
-                ViewBag.FunctionList = userService.GetBySiteInHierarchy(siteId, n88Settings.Environment, true);
+                ViewBag.FunctionList = functionService.GetBySiteInHierarchy(siteId, n88Settings.Environment, true);
 
                 // Old data
 

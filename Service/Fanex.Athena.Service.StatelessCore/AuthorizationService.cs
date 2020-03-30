@@ -28,16 +28,43 @@
 
         public bool HasPermissions(int userId, params string[] permissionKeys)
         {
-            var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+            var isHasPermission = false;
 
-            return userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) && x.Policy > (int)Policy.None);
+            if (permissionKeys.Length == 1)
+            {
+                var policy = userService.GetPermission(userId, N88Settings.Settings.SiteId, permissionKeys.FirstOrDefault());
+
+                isHasPermission = policy > (int)Policy.None;
+            }
+            else
+            {
+                var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+
+                isHasPermission = userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) &&
+                    x.Policy > (int)Policy.None);
+            }
+
+            return isHasPermission;
         }
 
         public bool HasHostPermissions(int userId, params string[] permissionKeys)
         {
-            var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+            var isHasPermission = false;
 
-            return userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) && x.Policy == (int)Policy.Host);
+            if (permissionKeys.Length == 1)
+            {
+                var policy = userService.GetPermission(userId, N88Settings.Settings.SiteId, permissionKeys.FirstOrDefault());
+
+                isHasPermission = policy == (int)Policy.Host;
+            }
+            else
+            {
+                var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+
+                isHasPermission = userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) && x.Policy == (int)Policy.Host);
+            }
+
+            return isHasPermission;
         }
 
         public bool IsAllowedEditCommission(UserAuthInfo userAuthInfo)

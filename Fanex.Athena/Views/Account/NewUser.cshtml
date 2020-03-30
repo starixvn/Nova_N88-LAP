@@ -18,7 +18,7 @@
 <div class="container-fluid">
     <div class="breadcrumb">
         <a class="level level-link" href="javascript:;"
-           onclick="NAP.redirect('/Account/Manage/', 0); return false;">@ViewResources.ManageUser</a>
+           onclick="NAP.redirect('Account/Manage/', 0); return false;">@ViewResources.ManageUser</a>
         <i class="icon-arrow"></i>
         <a class="level" href="javascript:;">@ViewResources.NewUser</a>
     </div>
@@ -56,7 +56,7 @@
             @if (!success)
             {
                 <input type="submit" class="btn btn-submit" value="@ViewResources.Save" />
-                <button class="btn btn-cancel" onclick="NAP.redirect('/Account/Manage/', 0); return false;">
+                <button class="btn btn-cancel" onclick="NAP.redirect('Account/Manage/', 0); return false;">
                     @ViewResources.Cancel
                 </button>
             }

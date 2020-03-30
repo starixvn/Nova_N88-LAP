@@ -12,19 +12,25 @@
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Service.Interface;
+    using static Fanex.N88.Core.Business.Constant;
 
     [FunctionAuthorization(PermissionKeys.BetHistory)]
     public class BettingTicketCenterController : CultureBaseController
     {
         private readonly IProductService _productService;
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
+        private readonly IUserService userService;
 
         public BettingTicketCenterController(
             IProductService productService,
-            IBalanceUpDataAccess balanceUpDataAccess)
+            IBalanceUpDataAccess balanceUpDataAccess,
+            IUserService userService)
         {
             _productService = productService;
             _balanceUpDataAccess = balanceUpDataAccess;
+            this.userService = userService;
         }
 
         public ActionResult Index()
@@ -124,9 +130,15 @@
 
         private IEnumerable<string> GetEnableTabList()
         {
-            var functionKeys = SessionServiceInstance.UserSession.FunctionList.Select(x => x.FunctionKey);
+            var functionKeys = userService.GetPermissions(
+                SessionServiceInstance.UserSession.UserId,
+                N88Settings.Settings.SiteId,
+                string.Empty,
+                N88Settings.Settings.Environment)
+                    .Where(x => x.Policy == (byte)Policy.Read || x.Policy == (byte)Policy.Host)
+                    .Select(x => x.Function.Key);
 
-            return BtcViewInfo.TabList.Where(x => functionKeys.Contains(x));
+            return BtcViewInfo.TabList.Intersect(functionKeys);
         }
 
         private string GetProductsRequireUseName()

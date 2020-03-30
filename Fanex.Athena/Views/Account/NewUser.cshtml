@@ -66,10 +66,10 @@
 
 @if (success)
 {
-    string dialogMsg = string.Format(ViewResources.Add_New_User_Success, Model.Username, 3);
+    string dialogMsg = string.Format(ViewResources.AddSuccessMsg, ViewResources.User + " '" + Model.Username + "'", 3);
 
     <script type="text/javascript">
-        var url = '/Account/Manage';
-        NAP.showSuccessMsg('@dialogMsg', url, 3000);
+        var url = 'Account/Manage';
+        NAP.showSuccessMsg('@dialogMsg', url, 4000);
     </script>
 }

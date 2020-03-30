@@ -2620,7 +2620,7 @@
     <value>Details</value>
   </data>
   <data name="Update_Password_Success" xml:space="preserve">
-    <value>Update Password Success</value>
+    <value>'{0}' password has been reset successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
   </data>
   <data name="Update_Permission_Success" xml:space="preserve">
     <value>Update Permission Success</value>
@@ -2665,7 +2665,7 @@
     <value>Group Name</value>
   </data>
   <data name="Your_changes_were_saved" xml:space="preserve">
-    <value>Your changes were saved</value>
+    <value>Your changes were saved.  You will be redirected in &lt;span class='msec'&gt;{0}&lt;/span&gt; seconds.</value>
   </data>
   <data name="AddSuccessMsg" xml:space="preserve">
     <value>{0} has been added successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>

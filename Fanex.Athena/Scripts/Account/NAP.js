@@ -4,7 +4,6 @@
 
 var NAP = (function ($) {
     return {
-        NAPAdminRoot: null,
         NAPRoot: null,
         dialogMsg: null,
         dialogPopup: null,
@@ -12,29 +11,14 @@ var NAP = (function ($) {
         loadingBox: null,
         alertCallback: null,
         confirmCallback: null,
-        msieVersion: null,
-        agentIsOldIe: null,
-        agentIsApple: null,
-        agentIsMobile: null,
-        hasHouseWLByProductsPermission: null,
-        hasCN88WLByProductsPermission: null,
 
         initCoreValues: function () {
-            NAP.NAPAdminRoot = $('#NapAdminRoot').val();
             NAP.NAPRoot = $('#RootPath').val();
             NAP.dialogPopup = $('<div id="dialog-popup"></div>').appendTo('body');
-
-            NAP.msieVersion = NAP.getIeVersion();
-            NAP.agentIsOldIe = NAP.msieVersion !== -1 && NAP.msieVersion < 9.0;
-            NAP.agentIsApple = NAP.agentIs('apple') != null;
-            NAP.agentIsMobile = NAP.agentIs('mobile') != null;
         },
         resolveClientUrl: function (relativeUrl) {
-            return NAP.NAPRoot + relativeUrl;//NAP.NAPAdminRoot + relativeUrl;
-        },
-        resolveRootUrl: function (relativeUrl) {
             return NAP.NAPRoot + relativeUrl;
-        },
+        },        
         // Handles common error when making ajax request
         handleAjaxError: function (xhr) {
             if (xhr.status === 403) {
@@ -44,48 +28,7 @@ var NAP = (function ($) {
             } else {
                 NAP.headlineMsgBox.showErr('An unexpected error has occurred!', { sticky: true });
             }
-        },
-        /* jshint ignore:start */
-        getIeVersion: function () {
-            var version = -1; // Return value assumes failure.
-
-            if (window.navigator.userAgent.indexOf("MSIE") > 0) {
-                var usrAgent = navigator.userAgent;
-                var reg = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-
-                if (reg.exec(usrAgent) != null) {
-                    version = parseFloat(RegExp.$1);
-                }
-            }
-
-            return version;
-        },
-        /* jshint ignore:end */
-        agentIs: function (name) {
-            switch (name.toLowerCase()) {
-                case 'ipad':
-                    return navigator.userAgent.match(/iPad/i);
-                case 'iphone':
-                    return navigator.userAgent.match(/iPhone/i);
-                case 'ipod':
-                    return navigator.userAgent.match(/iPod/i);
-                case 'apple':
-                    return navigator.userAgent.match(/iPad/i) ||
-						navigator.userAgent.match(/iPhone/i) ||
-						navigator.userAgent.match(/iPod/i);
-                case 'mobile':
-                    return navigator.userAgent.match(/iPad/i) ||		// Apple
-						navigator.userAgent.match(/iPhone/i) ||
-						navigator.userAgent.match(/iPod/i) ||
-						navigator.userAgent.match(/BlackBerry/i) ||		// RIM
-						navigator.userAgent.match(/PlayBook/i) ||
-						navigator.userAgent.match(/Windows Phone/i) ||	// Windows Phone
-						navigator.userAgent.match(/Android/i) ||		// Android
-						navigator.userAgent.match(/Touch/i);			// General
-                default:
-                    return null;
-            }
-        },
+        },              
         popup: function (title, html) {
             NAP.dialogPopup.html(html).dialog({
                 width: 'auto',
@@ -103,9 +46,6 @@ var NAP = (function ($) {
         },
         navigateTo: function (url) {
             window.location.replace(NAP.resolveClientUrl(url));
-        },
-        navigateToRoot: function (url) {
-            window.location.replace(NAP.resolveRootUrl(url));
         },
         htmlEncode: function (value) {
             return $('<div/>').text(value).html();
@@ -127,11 +67,6 @@ var NAP = (function ($) {
             } else {
                 window.location.replace(NAP.resolveClientUrl(url));
             }
-        },
-
-        encodeURI: function (str) {
-            // ref: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/encodeURI
-            return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
         }
     };
 }(jQuery));

@@ -100,7 +100,7 @@
                 </td>
                 <td>
                     <a href="javascript:;" uid="@item.User.Id" class="lnk-user-info"
-                       title="">@item.User.Username</a>
+                       title="@ViewResources.View_details_of '@item.User.Username'">@item.User.Username</a>
                 </td>
                 <td>
                     @(item.User.FirstName != null ? item.User.FirstName : string.Empty)

@@ -154,11 +154,10 @@
 </div>
 @if (success)
 {
-    string dialogMsg = string.Format(ViewResources.Your_changes_were_saved);
-
+    string dialogMsg = string.Format(ViewResources.Your_changes_were_saved, 3);
     <script type="text/javascript">
-        var url = '/Group/Manage';
-        NAP.showSuccessMsg('@ViewResources.Your_changes_were_saved', url, 3000);
+        var url = 'Group/Manage';
+        NAP.showSuccessMsg('@ViewResources.Your_changes_were_saved', url, 4000);
     </script>
 }
 @helper IndentChildFunctions(List<AccFunction> functionList, AccFunction function, int level = 0)

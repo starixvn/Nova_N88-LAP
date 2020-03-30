@@ -115,8 +115,6 @@ $(document).ready(function () {
                 chkHost.removeAttr('name');
             }
         });
-
-        NAP.loadingBox.show();
     });
 
     AssignGroupPermission.grid.find('[type=checkbox]').change(function () {

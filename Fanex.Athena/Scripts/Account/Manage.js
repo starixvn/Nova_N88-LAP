@@ -3,18 +3,13 @@
 
 var ManageUser = (function () {
     return {
-        grid: null,
-        form: null,
-        siteId: null
+        grid: null
     };
 }(jQuery));
 
 $(document).ready(function () {
     ManageUser.grid = $('.table');
-    ManageUser.form = $('form:first');
-    ManageUser.siteId = $('#SiteId');
 
-    // shows tooltips when hovering on Usernames
     ManageUser.grid.find('.lnk-user-info').tipsy({ gravity: 'w' });
 
     ManageUser.grid.on('click', '.lnk-user-info', function () {
@@ -37,7 +32,7 @@ $(document).ready(function () {
             }
         });
     });
-    // shows action-panel when clicking on the action buttons
+
     ManageUser.grid.on('click', '.btn-action:not(.disabled)', function (e) {
         var $this = $(this),
             parent = $this.parent(),
@@ -55,26 +50,10 @@ $(document).ready(function () {
         e.stopPropagation();
     });
 
-    // hides action-panel when clicking outside the action buttons
     $('body, header, #headline, #body').on('click', function () {
         ManageUser.grid.find('.col-action.active').removeClass('active').find('.dropdown').hide();
     });
-
-    // shows loading on change page
-    ManageUser.form.submit(function () {
-        var username = $('#Username').val();
-        var siteId = $('#SiteId').val();
-        var groupId = $('#GroupId').val();
-
-        if (siteId === -9999 && username === '' && groupId === '') {
-            $('#Username').addClass('input-validation-error');
-            return false;
-        }
-
-        //NAP.loadingBox.show();
-    });
-
-    // changes items/page
+    
     ManageUser.grid.on('change', '.items-per-page', function () {
         var $this = $(this),
             pageSize = $this.val(),
@@ -89,7 +68,6 @@ $(document).ready(function () {
             '&page=' + 1 +
             '&statusId=' + statusId);
 
-        //NAP.loadingBox.show();
         window.location.replace(url);
     });
 
@@ -113,7 +91,7 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 dataType: 'json',
                 cache: false,
-                success: function (response) {
+                success: function () {
                     var username = $('#Username').val(),
                         groupId = $('#GroupId').val(),
                         statusId = $('#StatusId').val();

@@ -692,7 +692,6 @@
     <Content Include="www\css\source\pages\user\edit.scss" />
     <Content Include="www\css\build\dev\pages\user\edituser.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\user\edituser.css.map" />
-    <Content Include="Views\ViewLog\LogExecSp.cshtml" />
     <Content Include="www\css\source\pages\user\assign-permission.scss" />
     <Content Include="Views\Log\UserLoginLog.cshtml" />
     <Content Include="www\css\build\dev\pages\user\assignpermission.chunk.js.map" />

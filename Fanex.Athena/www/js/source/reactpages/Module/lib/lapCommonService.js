@@ -1,5 +1,6 @@
 import BaseCommonService from './baseCommonService';
 import { systemType } from '../constants/configInfo';
+import Site from '@jsroot/lib/site';
 import axios from 'axios'
 import qs from 'qs';
 
@@ -7,7 +8,8 @@ const defaultAjaxConfig = {
     method: 'post',
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        '__RequestVerificationToken': Site.getXsrfToken()
     },
     withCredentials: false,
     responseType: 'json',

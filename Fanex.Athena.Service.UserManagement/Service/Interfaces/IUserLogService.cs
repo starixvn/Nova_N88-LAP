@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
-    using Fanex.Data.Repository;
 
     public interface IUserLogService
     {

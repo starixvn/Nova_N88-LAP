@@ -9,7 +9,6 @@
     using Fanex.Athena.Model.UserManagement.Enum;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Resources;
-    using Fanex.Athena.Service.UserManagement.Service;
     using Fanex.Athena.Service.UserManagement.Service.Interfaces;
     using Fanex.Athena.Web.HtmlExtension;
     using MvcPaging;
@@ -368,8 +367,6 @@
 
             return PartialView("~/Views/Log/_N88_Assign_Permission.cshtml");
         }
-
-        
 
         private List<FunctionPolicy> GetOldFunctionPolicyList(string strFunctionPolicy)
         {

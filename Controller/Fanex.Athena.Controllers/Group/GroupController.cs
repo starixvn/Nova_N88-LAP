@@ -234,11 +234,6 @@
         public ActionResult AssignPermission(AssignFunctionGroupCriteria criteria)
         {
             criteria.SiteId = N88Settings.Settings.SiteId;
-            // check group and site
-            var getGroupCriteria = new GetByIdGroupCriteria
-            {
-                GroupId = criteria.SiteId
-            };
 
             ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
 

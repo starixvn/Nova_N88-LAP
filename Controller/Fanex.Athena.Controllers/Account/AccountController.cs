@@ -1,19 +1,18 @@
 ﻿namespace Fanex.Athena.Controllers.Account
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
-    using Fanex.Athena.Service.UserManagement.Service;
     using Fanex.Athena.Service.UserManagement.Service.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
     using MvcPaging;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
 
     [FunctionAuthorization(PermissionKeys.ManageUser)]
     public class AccountController : CultureBaseController
@@ -53,7 +52,7 @@
             ViewBag.currentUserLevel = userService.GetUserSiteLevel(SessionServiceInstance.UserSession.UserId, N88Settings.Settings.SiteId);
             IEnumerable<UserLevel> users = userService.SearchUser(criteria);
 
-            return View("~/Views/Account/Manage.cshtml", users.ToPagedList(criteria.PageIndex-1, criteria.PageSize, criteria.TotalRows));
+            return View("~/Views/Account/Manage.cshtml", users.ToPagedList(criteria.PageIndex - 1, criteria.PageSize, criteria.TotalRows));
         }
 
         public ActionResult UserInfo(int id)
@@ -141,7 +140,7 @@
                     }
                 }
             }
-            
+
             return View("~/Views/Account/NewUser.cshtml", criteria);
         }
 
@@ -190,7 +189,7 @@
         [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult AssignPermission(int id)
         {
-            var user = userService.GetById(id);            
+            var user = userService.GetById(id);
             var criteria = new AssignFunctionUserCriteria
             {
                 UserId = id,

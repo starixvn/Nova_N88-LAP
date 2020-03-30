@@ -13,46 +13,6 @@
     public class KeanOceanBusinessHelperTest
     {
         [Test]
-        public void ModifyCurrenciesForKeenOcean_ContainCNYCurrency_ReturnCurrencyListWithoutCNY()
-        {
-            // Arrange
-            var currencyList = new List<CurrencyUser>
-            {
-                new CurrencyUser { CurrencyId = CurrencyType.Cny, CurrencyName = "CNY" },
-                new CurrencyUser { CurrencyId = 1, CurrencyName = "test" }
-            };
-
-            // Action
-            var temp = KeanOceanBusinessHelper.ModifyCurrenciesForKeenOcean(currencyList);
-            var expectedResult = temp.Any(i => i.CurrencyId == CurrencyType.Cny);
-
-            // Assert
-            Assert.IsFalse(expectedResult);
-        }
-
-        [Test]
-        public void ModifyCurrenciesForKeenOcean_ContainHKDCurrency_ChangeCurrencyNameOfHKDToCNY()
-        {
-            // Arrange
-            var currencyList = new List<CurrencyUser>
-            {
-                new CurrencyUser { CurrencyId = CurrencyType.Cny, CurrencyName = "CNY" },
-                new CurrencyUser { CurrencyId = 1, CurrencyName = "test" },
-                new CurrencyUser { CurrencyId = CurrencyType.Hkd, CurrencyName = "HKD" }
-            };
-
-            var expectedResult = new CurrencyUser { CurrencyId = CurrencyType.Hkd, CurrencyName = "CNY" };
-
-            // Action
-            var temp = KeanOceanBusinessHelper.ModifyCurrenciesForKeenOcean(currencyList);
-            var currency = temp.SingleOrDefault(i => i.CurrencyId == CurrencyType.Hkd);
-
-            // Assert
-            Assert.NotNull(currency);
-            Assert.AreEqual(expectedResult.CurrencyName, currency.CurrencyName);
-        }
-
-        [Test]
         public void KeepHKDCurrencyName_ContainHKDCurrency_HDKCurrency_CurrenyName_Equal_HKD()
         {
             // Arrange

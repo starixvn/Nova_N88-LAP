@@ -80,7 +80,6 @@
             {
                 // Arrange
                 _maintenanceService.IsUnderMaintenance().Returns(false);
-                _userService.RecheckIn(DefaultUserSession.OnUserId).Returns(true);
 
                 controller.ControllerContext.HttpContext.Request.IsAuthenticated.Returns(true);
                 controller.ControllerContext.HttpContext.Request["onid"].Returns(DefaultUserSession.OnUserId.ToString());
@@ -101,7 +100,6 @@
             {
                 // Arrange
                 _maintenanceService.IsUnderMaintenance().Returns(false);
-                _userService.RecheckIn(DefaultUserSession.OnUserId).Returns(false);
 
                 controller.ControllerContext.HttpContext.Request.IsAuthenticated.Returns(true);
                 controller.ControllerContext.HttpContext.Request["onid"].Returns(DefaultUserSession.OnUserId.ToString());

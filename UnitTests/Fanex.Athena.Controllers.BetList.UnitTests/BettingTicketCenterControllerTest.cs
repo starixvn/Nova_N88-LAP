@@ -13,7 +13,7 @@
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+    using Fanex.N88.Core.Service.Interface;
     using Model.BetList.ViewModel;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
@@ -33,6 +33,8 @@
 
         private IBalanceUpDataAccess _balanceUpDataAccess;
 
+        private IUserService _userService;
+
 
         [OneTimeSetUp]
         public override void FixtureSetUp()
@@ -41,6 +43,8 @@
 
             _productService = Substitute.For<IProductService>();
             _balanceUpDataAccess = Substitute.For<IBalanceUpDataAccess>();
+            _userService = Substitute.For<IUserService>();
+
             _balanceUpDataAccess.GetBalanceUp().Returns(new BalanceUp
             {
                 BalanceUpDay = BalanceUpDate
@@ -55,6 +59,8 @@
             base.FixtureTearDown();
 
             _productService = null;
+            _balanceUpDataAccess = null;
+            _userService = null;
         }
 
         [TestCase(PermissionKeys.BtcAdvancedSearch, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
@@ -316,7 +322,7 @@
 
         private BettingTicketCenterController CreateController(bool hasExchangePermission = true)
         {
-            return new BettingTicketCenterController(_productService, _balanceUpDataAccess)
+            return new BettingTicketCenterController(_productService, _balanceUpDataAccess, _userService)
             {
                 LangService = LangService,
                 SessionServiceInstance = SessionService

@@ -11,6 +11,7 @@
     using Extension.Utility;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Utility;
+    using Fanex.N88.Core.Service.Interface;
     using Model.Core.DTO.Common;
     using NSubstitute;
     using NUnit.Framework;
@@ -26,6 +27,7 @@
         private ICurrencyDataAccess _currencyDataAccess;
         private ISessionStorage _sessionStorage;
         private ISessionService _sessionService;
+        private IUserService _userService;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -37,6 +39,7 @@
 
             _appSettings = Substitute.For<IAppSettings>();
             _licenseeDataAccess = Substitute.For<ILicenseeDataAccess>();
+            _userService = Substitute.For<IUserService>();
             var licenseeList = new List<Licensee>
             {
                 new Licensee
@@ -49,6 +52,7 @@
             _sessionService = new SessionService(
                 _licenseeDataAccess,
                 _currencyDataAccess,
+                _userService,
                 _appSettings,
                 _sessionStorage);
         }

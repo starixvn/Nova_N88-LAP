@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fanex.Athena.Model.UserManagement.Model;
+using Fanex.Athena.Service.UserManagement.Repository.Interfaces;
 using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace Fanex.Athena.Service.UserManagement.Repository
 {
-    public class CommonRepository
+    public class CommonRepository : ICommonRepository
     {
         public IEnumerable<T> FetchData<T>(ICriteria criteria)
         {

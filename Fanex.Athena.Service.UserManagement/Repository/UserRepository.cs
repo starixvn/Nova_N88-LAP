@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Fanex.Athena.Model.UserManagement.Model;
+using Fanex.Athena.Service.UserManagement.Repository.Interfaces;
 using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace Fanex.Athena.Service.UserManagement.Repository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         public IEnumerable<SelectListItem> GetSettingGroups(ICriteria criteria)
         {

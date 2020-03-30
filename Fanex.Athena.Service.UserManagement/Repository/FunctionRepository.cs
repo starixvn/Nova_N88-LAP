@@ -3,10 +3,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.Athena.Model.UserManagement.Model;
+    using Fanex.Athena.Service.UserManagement.Repository.Interfaces;
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class FunctionRepository
+    public class FunctionRepository : IFunctionRepository
     {
         public IEnumerable<AccFunction> GetBySiteInHierarchy(ICriteria criteria)
         {

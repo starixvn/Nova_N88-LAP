@@ -4,16 +4,17 @@
     using System.Linq;
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
-    using Fanex.Athena.Service.UserManagement.Repository;
+    using Fanex.Athena.Service.UserManagement.Repository.Interfaces;
+    using Fanex.Athena.Service.UserManagement.Service.Interfaces;
     using Fanex.Data.Repository;
 
-    public class GroupService
+    public class GroupService : IGroupService
     {
-        private readonly CommonRepository _commonRepository;
+        private readonly ICommonRepository _commonRepository;
 
-        public GroupService()
+        public GroupService(ICommonRepository commonRepository)
         {
-            _commonRepository = new CommonRepository();
+            _commonRepository = commonRepository;
         }
 
         public IEnumerable<GroupData> GetAllWithNumOfUser(string name, string env = Constant.Uat, bool? isActive = null,

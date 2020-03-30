@@ -10,20 +10,21 @@
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.UserManagement.Service;
+    using Fanex.Athena.Service.UserManagement.Service.Interfaces;
     using Fanex.Athena.Web.HtmlExtension;
     using MvcPaging;
 
     public class LogController : CultureBaseController
     {
-        private readonly UserLogService userLogService;
-        private readonly UserService userService;
-        private readonly FunctionService functionService;
+        private readonly IUserLogService userLogService;
+        private readonly IUserService userService;
+        private readonly IFunctionService functionService;
 
-        public LogController()
+        public LogController(IUserLogService userLogService, IUserService userService, IFunctionService functionService)
         {
-            userLogService = new UserLogService();
-            userService = new UserService();
-            functionService = new FunctionService();
+            this.userLogService = userLogService;
+            this.userService = userService;
+            this.functionService = functionService;
         }
 
         [HttpGet]

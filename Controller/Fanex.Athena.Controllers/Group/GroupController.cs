@@ -9,7 +9,7 @@
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Resources;
-    using Fanex.Athena.Service.UserManagement.Service;
+    using Fanex.Athena.Service.UserManagement.Service.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common.Extensions;
     using Fanex.N88.Core.Configuration;
@@ -18,15 +18,15 @@
     [FunctionAuthorization(PermissionKeys.ManageGroup)]
     public class GroupController : CultureBaseController
     {
-        private readonly GroupService _groupService;
-        private readonly UserService _userService;
-        private readonly FunctionService _functionService;
+        private readonly IGroupService _groupService;
+        private readonly IUserService _userService;
+        private readonly IFunctionService _functionService;
 
-        public GroupController()
+        public GroupController(IGroupService groupService, IUserService userService, IFunctionService functionService)
         {
-            _groupService = new GroupService();
-            _userService = new UserService();
-            _functionService = new FunctionService();
+            _groupService = groupService;
+            _userService = userService;
+            _functionService = functionService;
         }
 
         [HttpGet]

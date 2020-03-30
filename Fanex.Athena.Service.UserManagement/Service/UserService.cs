@@ -1,20 +1,21 @@
-﻿using Fanex.Athena.Model.UserManagement.Criteria;
-using Fanex.Athena.Model.UserManagement.Model;
-using Fanex.Athena.Service.UserManagement.Repository;
-using Fanex.Data.Repository;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-
-namespace Fanex.Athena.Service.UserManagement.Service
+﻿namespace Fanex.Athena.Service.UserManagement.Service
 {
-    public class UserService
-    {
-        private readonly UserRepository userRepository;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Fanex.Athena.Model.UserManagement.Criteria;
+    using Fanex.Athena.Model.UserManagement.Model;
+    using Fanex.Athena.Service.UserManagement.Repository.Interfaces;
+    using Fanex.Athena.Service.UserManagement.Service.Interfaces;
+    using Fanex.Data.Repository;
 
-        public UserService()
+    public class UserService : IUserService
+    {
+        private readonly IUserRepository userRepository;
+
+        public UserService(IUserRepository userRepository)
         {
-            this.userRepository = new UserRepository();
+            this.userRepository = userRepository;
         }
 
         public IEnumerable<SelectListItem> GetSettingGroups(ICriteria criteria)
@@ -127,7 +128,7 @@ namespace Fanex.Athena.Service.UserManagement.Service
         }
 
         public Site GetSiteById(int id)
-        {            
+        {
             var criteria = new GetByIdSiteCriteria
             {
                 SiteId = id

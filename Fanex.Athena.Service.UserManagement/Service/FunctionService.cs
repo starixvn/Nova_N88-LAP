@@ -4,18 +4,19 @@
     using System.Linq;
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
-    using Fanex.Athena.Service.UserManagement.Repository;
+    using Fanex.Athena.Service.UserManagement.Repository.Interfaces;
+    using Fanex.Athena.Service.UserManagement.Service.Interfaces;
 
-    public class FunctionService
+    public class FunctionService : IFunctionService
     {
-        private readonly FunctionRepository functionRepository;
+        private readonly IFunctionRepository functionRepository;
 
-        public FunctionService()
+        public FunctionService(IFunctionRepository functionRepository)
         {
-            this.functionRepository = new FunctionRepository();
+            this.functionRepository = functionRepository;
         }
 
-        public List<FunctionPolicy> GetByGroupAndSite(int groupId, int siteId, string env = Constant.Uat)
+        public List<FunctionPolicy> GetByGroupAndSite(int groupId, int siteId, string env)
         {
             var criteria = new GetByGroupAndSiteFunctionCriteria
             {

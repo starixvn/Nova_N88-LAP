@@ -5,6 +5,7 @@
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Service.UserManagement.Service;
+    using Fanex.Athena.Service.UserManagement.Service.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
@@ -17,13 +18,13 @@
     [FunctionAuthorization(PermissionKeys.ManageUser)]
     public class AccountController : CultureBaseController
     {
-        private readonly UserService userService;
-        private readonly FunctionService functionService;
+        private readonly IUserService userService;
+        private readonly IFunctionService functionService;
 
-        public AccountController()
+        public AccountController(IUserService userService, IFunctionService functionService)
         {
-            userService = new UserService();
-            functionService = new FunctionService();
+            this.userService = userService;
+            this.functionService = functionService;
         }
 
         public ActionResult Manage(

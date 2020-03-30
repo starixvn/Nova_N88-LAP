@@ -7,15 +7,16 @@
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Enum;
     using Fanex.Athena.Model.UserManagement.Model;
-    using Fanex.Athena.Service.UserManagement.Repository;
+    using Fanex.Athena.Service.UserManagement.Repository.Interfaces;
+    using Fanex.Athena.Service.UserManagement.Service.Interfaces;
 
-    public class UserLogService
+    public class UserLogService : IUserLogService
     {
-        private readonly CommonRepository commonRepository;
+        private readonly ICommonRepository commonRepository;
 
-        public UserLogService()
+        public UserLogService(ICommonRepository commonRepository)
         {
-            commonRepository = new CommonRepository();
+            this.commonRepository = commonRepository;
         }
 
         public IEnumerable<UserLoginLog> GetAllLoginLog(GetAllLogUserLoginCriteria criteria)
@@ -183,8 +184,10 @@
         private IEnumerable<LogExecSp> FilterLogExecSp(IEnumerable<LogExecSp> data)
         {
             return data
-                .Select(l => {
-                    if (l.ActionId == (short)LogAction.N88_User_UpdateSite) {
+                .Select(l =>
+                {
+                    if (l.ActionId == (short)LogAction.N88_User_UpdateSite)
+                    {
                         l.ActionName = "Update user status";
                     }
 

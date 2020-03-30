@@ -60,10 +60,16 @@
   <ItemGroup>
     <Compile Include="Repository\CommonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\GroupRepository.cs" />
     <Compile Include="Repository\FunctionRepository.cs" />
+    <Compile Include="Repository\Interfaces\ICommonRepository.cs" />
+    <Compile Include="Repository\Interfaces\IFunctionRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUserRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\GroupService.cs" />
+    <Compile Include="Service\Interfaces\IFunctionService.cs" />
+    <Compile Include="Service\Interfaces\IGroupService.cs" />
+    <Compile Include="Service\Interfaces\IUserLogService.cs" />
+    <Compile Include="Service\Interfaces\IUserService.cs" />
     <Compile Include="Service\UserLogService.cs" />
     <Compile Include="Service\FunctionService.cs" />
     <Compile Include="Service\UserService.cs" />
@@ -77,5 +83,6 @@
       <Name>Fanex.Athena.Model.UserManagement</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

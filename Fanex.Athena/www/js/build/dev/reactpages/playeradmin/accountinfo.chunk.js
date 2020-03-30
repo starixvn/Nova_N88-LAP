@@ -23117,10 +23117,11 @@ var FactoryCommonService = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _baseCommonService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./baseCommonService */ "./www/js/source/reactpages/Module/lib/baseCommonService.js");
 /* harmony import */ var _constants_configInfo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/configInfo */ "./www/js/source/reactpages/Module/constants/configInfo.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -23157,15 +23158,17 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var defaultAjaxConfig = {
   method: 'post',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
-    'content-type': 'application/x-www-form-urlencoded'
+    'content-type': 'application/x-www-form-urlencoded',
+    '__RequestVerificationToken': _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].getXsrfToken()
   },
   withCredentials: false,
   responseType: 'json',
-  cancelToken: new axios__WEBPACK_IMPORTED_MODULE_2___default.a.CancelToken(function (cancel) {})
+  cancelToken: new axios__WEBPACK_IMPORTED_MODULE_3___default.a.CancelToken(function (cancel) {})
 };
 
 var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
@@ -23221,7 +23224,7 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
       var paramConfig = isGetMethod ? {
         params: params
       } : {
-        data: qs__WEBPACK_IMPORTED_MODULE_3___default.a.stringify(params)
+        data: qs__WEBPACK_IMPORTED_MODULE_4___default.a.stringify(params)
       };
       return _objectSpread({}, config, {}, paramConfig);
     }
@@ -23231,7 +23234,7 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
       var _this2 = this;
 
       var apiToken = "".concat(this._applyApiTokenUrl, "?").concat(this._buildApplyTokenQueryString(sysType, action));
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(apiToken).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(apiToken).then(function (response) {
         var apiActionUrl = "".concat(action);
 
         var commonAjaxConfig = _this2._buildCommonAjaxConfig(configOption, apiActionUrl, params);
@@ -23242,7 +23245,7 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
           headers: _objectSpread({}, headerConfig)
         });
 
-        return axios__WEBPACK_IMPORTED_MODULE_2___default()(configWithXToken);
+        return axios__WEBPACK_IMPORTED_MODULE_3___default()(configWithXToken);
       });
     }
   }, {
@@ -23257,7 +23260,7 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
 
         var ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
 
-        return axios__WEBPACK_IMPORTED_MODULE_2___default()(ajaxConfig);
+        return axios__WEBPACK_IMPORTED_MODULE_3___default()(ajaxConfig);
       } else {
         return this._fetchDataWithToken(sysType, action, params, config);
       }
@@ -23266,7 +23269,7 @@ var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
     key: "fetchMultiple",
     value: function fetchMultiple(promiseList, callback) {
       if (promiseList && promiseList.length) {
-        return axios__WEBPACK_IMPORTED_MODULE_2___default.a.all(promiseList).then(axios__WEBPACK_IMPORTED_MODULE_2___default.a.spread(callback));
+        return axios__WEBPACK_IMPORTED_MODULE_3___default.a.all(promiseList).then(axios__WEBPACK_IMPORTED_MODULE_3___default.a.spread(callback));
       }
     }
   }]);
@@ -23656,6 +23659,100 @@ var NumberFormat = /*#__PURE__*/function () {
   }]);
 
   return NumberFormat;
+}();
+
+
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/lib/site.js":
+/*!**********************************************!*\
+  !*** ./www/js/source/reactpages/lib/site.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Site; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var _rootUrl = window.rootUrl || "/";
+
+var _xsrfToken = null;
+
+var Site = /*#__PURE__*/function () {
+  function Site() {
+    _classCallCheck(this, Site);
+  }
+
+  _createClass(Site, null, [{
+    key: "getXsrfToken",
+    value: function getXsrfToken() {
+      if (!_xsrfToken) {
+        _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
+      }
+
+      return _xsrfToken;
+    }
+  }, {
+    key: "resolveClientUrl",
+    value: function resolveClientUrl(relativeUrl) {
+      return _rootUrl + relativeUrl;
+    }
+  }, {
+    key: "convertDateToString",
+    value: function convertDateToString(date) {
+      return typeof date === "string" ? date : date.format("MM/DD/YYYY");
+    }
+  }, {
+    key: "asNull",
+    value: function asNull(text) {
+      if (text != null) {
+        text = text.trim();
+
+        if (text === '') {
+          return null;
+        }
+      }
+
+      return text;
+    }
+  }, {
+    key: "downloadFile",
+    value: function downloadFile(data, fileName) {
+      var url = window.URL.createObjectURL(new Blob([data]));
+      var link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', fileName);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    }
+  }, {
+    key: "readAsJson",
+    value: function readAsJson(blob, callback) {
+      var reader = new FileReader();
+
+      reader.onload = function () {
+        callback && callback(JSON.parse(reader.result));
+      };
+
+      reader.readAsText(blob);
+    }
+  }, {
+    key: "getRootUrl",
+    value: function getRootUrl() {
+      return _rootUrl;
+    }
+  }]);
+
+  return Site;
 }();
 
 

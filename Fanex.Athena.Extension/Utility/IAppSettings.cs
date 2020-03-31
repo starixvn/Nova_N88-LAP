@@ -52,8 +52,6 @@
 
         bool IsShowAllDataForSettleMatchCountReport { get; }
 
-        IEnumerable<int> LiveReportNoDetailLinkSports { get; }
-
         bool LocalTest { get; }
 
         DateTime MaxDate { get; }

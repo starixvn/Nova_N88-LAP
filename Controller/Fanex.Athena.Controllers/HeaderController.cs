@@ -21,7 +21,7 @@
                 OnUserId = userSession.OnUserId,
                 IsInternalLogin = userSession.IsInternal,
                 HasRecheckIn = !AppSettingInstance.LocalTest,
-                SupportedLanguageList = Util.SupportedLanguages,
+                //SupportedLanguageList = Util.SupportedLanguages,
                 UserName = userSession.UserName,
                 CurrentLicenseeId = currentLicenseeId,
                 IsFakeLicensee = false,

@@ -34,7 +34,7 @@
             }
         </div>
 
-        <div class="languages-block">
+        @*<div class="languages-block">
             @{
                 var currentLanguage = Model.SupportedLanguageList.FirstOrDefault(p => p.Key.Equals(Model.Language)).Value;
             }
@@ -54,7 +54,7 @@
                     </li>
                 }
             </ul>
-        </div>
+        </div>*@
 
         @if (Model.IsAllowedNotification)
         {

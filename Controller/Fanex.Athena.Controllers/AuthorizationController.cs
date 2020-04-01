@@ -84,6 +84,7 @@
 
             SetErrorForView(0, string.Empty);
             ViewBag.LogInToken = CreateToken();
+            ViewBag.LogoLoginUrl = $"/www/assets/images/logo-login-{AppSettingInstance.LicenseeId}.svg";
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
 

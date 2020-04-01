@@ -46,6 +46,7 @@
             ViewBag.OnUserId = userSession.OnUserId;
             ViewBag.IsInternal = userSession.IsInternal ? "1" : "0";
             ViewBag.HasRecheckIn = AppSettingInstance.LocalTest ? "0" : "1";
+            ViewBag.LicenseeName = SessionServiceInstance.LicenseeSession.LicenseeName;
         }
     }
 }

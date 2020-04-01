@@ -31,7 +31,7 @@
         <div class="page-content">
             <form class="form-content" action="@Url.Content("~/Authorization/SignIn")" method="post" name="fLogin" id="fLogin">
                 @Html.AntiForgeryToken()
-                <img class="logo" src="@Url.ContentLink("/www/assets/images/logo-login.svg")">
+                <img class="logo" src="@Url.ContentLink((string)ViewBag.LogoLoginUrl)">
                 <div class="input-field col s12">
                     <div class="input-icon-group">
                         <i class="icon icon-account" aria-hidden="true"></i>

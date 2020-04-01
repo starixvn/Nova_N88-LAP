@@ -13,6 +13,8 @@
         public ActionResult Index()
         {
             var userSession = SessionServiceInstance.UserSession;
+            var currentLicenseeId = AppSettingInstance.LicenseeId;
+
             var viewModel = new HeaderPageViewModel
             {
                 Language = string.IsNullOrEmpty(userSession.Language) ? DefaultLanguage : userSession.Language,
@@ -21,10 +23,11 @@
                 HasRecheckIn = !AppSettingInstance.LocalTest,
                 SupportedLanguageList = Util.SupportedLanguages,
                 UserName = userSession.UserName,
-                CurrentLicenseeId = AppSettingInstance.LicenseeId,
+                CurrentLicenseeId = currentLicenseeId,
                 IsFakeLicensee = false,
-                IsAllowedNotification = false
-            };
+                IsAllowedNotification = false,
+                LogoTextUrl = $"/www/assets/images/logo-text-{currentLicenseeId}.svg"
+        };
             return View("~/Views/Desktop/Header/Index.cshtml", viewModel);
         }
 

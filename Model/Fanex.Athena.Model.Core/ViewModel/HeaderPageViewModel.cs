@@ -21,5 +21,7 @@
         public bool IsFakeLicensee { get; set; }
 
         public bool IsAllowedNotification { get; set; }
+
+        public string LogoTextUrl { get; set; }
     }
 }

@@ -512,8 +512,8 @@
     <Content Include="Scripts\Library\jquery.marquee.js" />
     <Content Include="Views\Desktop\BetList\PragmaticPlayDetail\Main.cshtml" />
     <Content Include="www\assets\images\ajax-loader.gif" />
-    <Content Include="www\assets\images\logo-text.svg" />
-    <Content Include="www\assets\images\logo-login.svg" />
+    <Content Include="www\assets\images\logo-login-402.svg" />
+    <Content Include="www\assets\images\logo-text-402.svg" />
     <Content Include="www\assets\images\new-system.svg" />
     <Content Include="www\css\build\dev\pages\betlist\images\nphPromotion.png" />
     <Content Include="www\css\build\dev\pages\betlist\images\rebateBonus.png" />

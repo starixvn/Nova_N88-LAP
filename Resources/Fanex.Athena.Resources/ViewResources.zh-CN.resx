@@ -2223,9 +2223,6 @@
     <value>Host</value>
   </data>
   <data name="EditSuccessMsg" xml:space="preserve">
-    <value>Host</value>
-  </data>
-  <data name="EditSuccessMsg" xml:space="preserve">
     <value>'{0}' has been updated successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
   </data>
   <data name="Description" xml:space="preserve">
@@ -2257,5 +2254,14 @@
   </data>
   <data name="UserHasNoPermissionError" xml:space="preserve">
     <value>Account has no permission on this site</value>
+  </data>
+  <data name="ESportsApp" xml:space="preserve">
+    <value>电子竞技App</value>
+  </data>
+  <data name="ESportsDesktop" xml:space="preserve">
+    <value>电子竞技 桌机</value>
+  </data>
+  <data name="ESportsMobile" xml:space="preserve">
+    <value>电子竞技 手机</value>
   </data>
 </root>

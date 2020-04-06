@@ -2781,4 +2781,19 @@
   <data name="UsernameNotExisted" xml:space="preserve">
     <value>Username is not existed</value>
   </data>
+  <data name="ESportsApp" xml:space="preserve">
+    <value>E-Sports App</value>
+  </data>
+  <data name="ESportsDesktop" xml:space="preserve">
+    <value>E-Sports Desktop</value>
+  </data>
+  <data name="ESportsMobile" xml:space="preserve">
+    <value>E-Sports Mobile</value>
+  </data>
+  <data name="VirtualSoccerChampionsCup" xml:space="preserve">
+    <value>Virtual Soccer Champions Cup</value>
+  </data>
+  <data name="VirtualSoccerEnglishPremier" xml:space="preserve">
+    <value>Virtual Soccer English Premier</value>
+  </data>
 </root>

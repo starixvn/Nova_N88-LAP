@@ -2410,6 +2410,33 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Sports App.
+        /// </summary>
+        public static string ESportsApp {
+            get {
+                return ResourceManager.GetString("ESportsApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Sports Desktop.
+        /// </summary>
+        public static string ESportsDesktop {
+            get {
+                return ResourceManager.GetString("ESportsDesktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Sports Mobile.
+        /// </summary>
+        public static string ESportsMobile {
+            get {
+                return ResourceManager.GetString("ESportsMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Euro.
         /// </summary>
         public static string Euro {
@@ -7140,6 +7167,24 @@ namespace Fanex.Athena.Resources {
         public static string VirtualSoccerAsianCup {
             get {
                 return ResourceManager.GetString("VirtualSoccerAsianCup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Soccer Champions Cup.
+        /// </summary>
+        public static string VirtualSoccerChampionsCup {
+            get {
+                return ResourceManager.GetString("VirtualSoccerChampionsCup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Soccer English Premier.
+        /// </summary>
+        public static string VirtualSoccerEnglishPremier {
+            get {
+                return ResourceManager.GetString("VirtualSoccerEnglishPremier", resourceCulture);
             }
         }
         

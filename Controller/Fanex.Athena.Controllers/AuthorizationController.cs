@@ -77,6 +77,8 @@
 
             var isInternalDomain = requestHost.Contains(AppSettingInstance.GetValue("InternalSubDomain"));
 
+            var currentLicenseeId = AppSettingInstance.LicenseeId;
+
             if (!isInternalDomain)
             {
                 return RedirectToAction("LocationRestriction", "Utility");
@@ -84,7 +86,8 @@
 
             SetErrorForView(0, string.Empty);
             ViewBag.LogInToken = CreateToken();
-            ViewBag.LogoLoginUrl = $"/www/assets/images/logo-login-{AppSettingInstance.LicenseeId}.svg";
+            ViewBag.LogoLoginUrl = $"/www/assets/images/logo-login-{currentLicenseeId}.svg";
+            ViewBag.Title = $"{siteNameList[currentLicenseeId]} Admin Site";
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
 

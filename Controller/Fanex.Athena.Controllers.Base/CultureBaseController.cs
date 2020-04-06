@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Controllers
 {
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using Extension.Utility;
     using Fanex.Athena.Controllers.Base;
@@ -22,7 +23,15 @@
         public ILicenseeSettingService LicenseeSettingServiceInstance { get; set; }
 
         protected N88Settings n88Settings;
+
         private readonly ICurrentContext currentContext = new CurrentContext();
+
+        protected readonly IDictionary<int, string> siteNameList = new Dictionary<int, string>
+        {
+            { 402, "N88" },
+            { 436, "Goal123" },
+            { 437, "Bwing" }
+        };
 
         public bool IsFakeLicensee(string licenseeName)
         {

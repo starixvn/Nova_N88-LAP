@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ShowingOption.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Excel.Base.Entities
+﻿namespace Fanex.Athena.Excel.Base.Entities
 {
     public class ShowingOption
     {

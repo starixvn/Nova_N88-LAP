@@ -1,5 +1,6 @@
 import BaseCommonService from './baseCommonService';
 import { systemType } from '../constants/configInfo';
+import Site from '@jsroot/lib/site';
 import axios from 'axios'
 import qs from 'qs';
 
@@ -7,7 +8,8 @@ const defaultAjaxConfig = {
     method: 'post',
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        '__RequestVerificationToken': Site.getXsrfToken()
     },
     withCredentials: false,
     responseType: 'json',
@@ -64,13 +66,11 @@ class LapCommonService extends BaseCommonService {
 
         return axios.get(apiToken)
             .then(response => {
-                const { Token, ApiUrl } = response.data;
-                const apiActionUrl = `${ApiUrl}/${action}`;
+                const apiActionUrl = `${action}`;
 
                 const commonAjaxConfig = this._buildCommonAjaxConfig(configOption, apiActionUrl, params);
                 const headerConfig = {
-                    ...configOption.headers,
-                    'X-Auth-Token': Token
+                    ...configOption.headers
                 }
 
                 const configWithXToken = {...commonAjaxConfig, headers: {...headerConfig } };
@@ -81,8 +81,10 @@ class LapCommonService extends BaseCommonService {
 
     fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
         const config = {...defaultAjaxConfig, ...configOption };
+
         if (sysType === systemType.newAdmin) {
             const relativeUrl = this._baseUrl + action;
+            
             const ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
 
             return axios(ajaxConfig);

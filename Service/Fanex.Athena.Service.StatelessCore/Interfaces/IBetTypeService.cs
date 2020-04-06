@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IBetTypeService.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Service.StatelessCore.Interfaces
+﻿namespace Fanex.Athena.Service.StatelessCore.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

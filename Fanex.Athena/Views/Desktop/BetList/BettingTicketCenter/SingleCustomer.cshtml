@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "LAP - " + ViewResources.Report +
+    ViewBag.Title = ViewResources.Report +
     " - " + "Betting Tickets Center";
     Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
 }
@@ -34,8 +34,7 @@
     selectedStatus: '@(selectedStatus)',
     selectedLiveStatus: '@(selectedLiveStatus)',
     selectedPlatform: 0,
-    isConvertAll: true,
-    hasExchange: '@Model.HasExchange.ToString()' === 'True'
+    isConvertAll: true
     };
     window._AppData = {
     liveStatusList: @Html.Raw(Model.LiveStatusList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),

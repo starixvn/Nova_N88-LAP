@@ -4,23 +4,15 @@
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
-
     using Base.UnitTests;
-
     using Extension.Utility.Interfaces;
-
     using Fanex.Athena.Service.Core.Users.Interfaces;
-
+    using Fanex.N88.Core.Service.Interface;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
-    using Model.Core.DTO.Users;
-
     using NSubstitute;
-
     using NUnit.Framework;
-
     using ONEbook.UM.Services;
-
     using Resources;
 
     [TestFixture]
@@ -28,9 +20,12 @@
     {
         private IMaintenanceService _maintenanceService;
         private IUserService _userService;
-        private IAuthService _authService;
         private IFormsAuthenticationService _formAuthenticationService;
         private IFileSystem _fileSystem;
+        private ISecurityService _sercurityService;
+        private IGroupService _groupService;
+        private ISiteService _siteService;
+        private IFormsAuthenticationService _formsAuthenticationService;
 
         [OneTimeSetUp]
         public override void FixtureSetUp()
@@ -39,9 +34,12 @@
 
             _maintenanceService = Substitute.For<IMaintenanceService>();
             _userService = Substitute.For<IUserService>();
-            _authService = Substitute.For<IAuthService>();
             _formAuthenticationService = Substitute.For<IFormsAuthenticationService>();
             _fileSystem = Substitute.For<IFileSystem>();
+            _sercurityService = Substitute.For<ISecurityService>();
+            _groupService = Substitute.For<IGroupService>();
+            _siteService = Substitute.For<ISiteService>();
+            _formsAuthenticationService = Substitute.For<IFormsAuthenticationService>();
         }
 
         [OneTimeTearDown]
@@ -50,6 +48,10 @@
             _maintenanceService = null;
             _userService = null;
             _formAuthenticationService = null;
+            _sercurityService = null;
+            _groupService = null;
+            _siteService = null;
+            _formsAuthenticationService = null;
         }
 
         [SetUp]
@@ -63,8 +65,8 @@
         {
             AppSettings.ClearReceivedCalls();
             _userService.ClearReceivedCalls();
-            _authService.ClearReceivedCalls();
             SessionService.ClearReceivedCalls();
+            _sercurityService.ClearReceivedCalls();
         }
 
         [Test]
@@ -100,43 +102,6 @@
         }
 
         [Test]
-        public void GetUserSalt_WhenCall_ReturnSaltFromService()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                const string UserName = "abc";
-                _userService.GetByUsername(UserName, false).Returns(new User
-                {
-                    UserSalt = "xxx"
-                });
-
-                // Action
-                var result = controller.GetUserSalt(UserName) as string;
-
-                // Assert
-                Assert.That(result, Is.EqualTo("xxx"));
-            }
-        }
-
-        [Test]
-        public void GetUserSalt_UserDoesNotExist_ReturnEmptyString()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                const string UserName = "abc";
-                _userService.GetByUsername(UserName, false).Returns(x => null);
-
-                // Action
-                var result = controller.GetUserSalt(UserName) as string;
-
-                // Assert
-                Assert.That(result, Is.Empty);
-            }
-        }
-
-        [Test]
         public void SignOut_WhenCall_CallSignOutFromService()
         {
             using (var controller = CreateController())
@@ -145,7 +110,7 @@
                 var result = controller.SignOut() as RedirectToRouteResult;
 
                 // Assert
-                _authService.Received().Logout(DefaultUserSession.OnUserId);
+                _sercurityService.Received().Logout(DefaultUserSession.OnUserId);
                 _formAuthenticationService.Received().SignOut();
             }
         }
@@ -164,7 +129,7 @@
                 // Assert
                 Assert.Multiple(() =>
                 {
-                    _authService.DidNotReceive().Logout(Arg.Any<int>());
+                    _sercurityService.DidNotReceive().Logout(Arg.Any<int>());
                     _formAuthenticationService.Received().SignOut();
                 });
             }
@@ -250,7 +215,7 @@
                 // Assert
                 Assert.Multiple(() =>
                 {
-                    _authService.Received().Logout(DefaultUserSession.OnUserId);
+                    _sercurityService.Received().Logout(DefaultUserSession.OnUserId);
                     _formAuthenticationService.Received().SignOut();
                 });
             }
@@ -351,12 +316,6 @@
 
                 SessionService.UserSession.IsInternal = false;
 
-                _userService.ChangePassword(DefaultUserSession.UserName, OldPassword, NewPassword, Arg.Any<string>())
-                    .Returns(new ResultInfo
-                    {
-                        Code = ErrorCode
-                    });
-
                 // Action
                 var result = controller.ChangePassword(OldPassword, NewPassword) as JsonResult;
                 var data = result.Data as dynamic;
@@ -364,7 +323,7 @@
                 // Assert
                 Assert.Multiple(() =>
                 {
-                    _userService.Received().ChangePassword(DefaultUserSession.UserName, OldPassword, NewPassword, string.Empty);
+                    _sercurityService.Received().UpdatePassword(Arg.Any<int>(), Arg.Any<int>(), NewPassword);
                     Assert.That(data.errCode, Is.EqualTo(ErrorCode));
                 });
             }
@@ -374,15 +333,16 @@
         {
             return new AuthorizationController(
                _maintenanceService,
+               _formAuthenticationService,
                _userService,
-               _authService,
-               _formAuthenticationService)
+               _groupService,
+               _sercurityService,
+               _siteService)
             {
                 ControllerContext = ControllerContext,
                 LangService = LangService,
                 SessionServiceInstance = SessionService,
                 AppSettingInstance = AppSettings
-
             };
         }
     }

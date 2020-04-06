@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LicenseeWinLossReportController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.Report
+﻿namespace Fanex.Athena.Api.Report
 {
     using System;
     using System.Collections.Generic;
@@ -13,13 +7,9 @@ namespace Fanex.Athena.Api.Report
     using System.Threading.Tasks;
     using System.Web.Hosting;
     using System.Web.Http;
-
     using Base.Attributes;
-
     using DataAccess.Report.Interfaces;
-
     using Excel.Report.Models;
-
     using Fanex.Athena.Excel.Base.Entities;
     using Fanex.Athena.Excel.Report;
     using Fanex.Athena.Extension.Helper;
@@ -31,11 +21,9 @@ namespace Fanex.Athena.Api.Report
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-
     using Model.Core.DataDomain;
     using Model.Core.MetaModel.Product;
     using Model.Core.ResultModel;
-
     using Service.Core.Common.Interfaces;
 
     [ApiFunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss)]
@@ -45,14 +33,18 @@ namespace Fanex.Athena.Api.Report
 
         private readonly ILicenseeWinLossDataAccess _licenseeWinLossDataAccess;
 
+        private readonly IAppSettings _appSettings;
+
         public LicenseeWinLossReportController(
             IReportSettingService reportSettingService,
             ILanguageService langService,
+            IAppSettings appSettings,
             ILicenseeWinLossDataAccess licenseeWinLossDataAccess)
             : base(langService)
         {
             _reportSettingService = reportSettingService;
             _licenseeWinLossDataAccess = licenseeWinLossDataAccess;
+            _appSettings = appSettings;
         }
 
         [HttpPost]
@@ -97,7 +89,6 @@ namespace Fanex.Athena.Api.Report
 
             var propertyName = sortBy;
 
-            // Sort for grouping columns, get the real column name
             if (sortBy.EndsWith("Single", StringComparison.OrdinalIgnoreCase))
             {
                 propertyName = sortBy.Remove(sortBy.LastIndexOf("Single", StringComparison.OrdinalIgnoreCase));
@@ -181,6 +172,7 @@ namespace Fanex.Athena.Api.Report
             licenseeWinLoss.LicenseeWLPP = licenseeWLProducts.GetValueOrDefault(Product.PP, 0);
             licenseeWinLoss.LicenseeWLCC = licenseeWLProducts.GetValueOrDefault(Product.CC, 0);
             licenseeWinLoss.LicenseeWLSG = licenseeWLProducts.GetValueOrDefault(Product.SG, 0);
+            licenseeWinLoss.LicenseeWLVRG = licenseeWLProducts.GetValueOrDefault(Product.VRG, 0);
         }
 
         private static void SetTurnOverProductData(LicenseeWinLossGridViewModel licenseeWinLoss, IDictionary<string, decimal> turnOverProducts)
@@ -201,6 +193,7 @@ namespace Fanex.Athena.Api.Report
             licenseeWinLoss.TurnOverPP = turnOverProducts.GetValueOrDefault(Product.PP, 0);
             licenseeWinLoss.TurnOverCC = turnOverProducts.GetValueOrDefault(Product.CC, 0);
             licenseeWinLoss.TurnOverSG = turnOverProducts.GetValueOrDefault(Product.SG, 0);
+            licenseeWinLoss.TurnOverVRG = turnOverProducts.GetValueOrDefault(Product.VRG, 0);
         }
 
         private static bool IsProductVisible(IEnumerable<ProductOption> productOptions, ProductAccess productAccess, string productCode)
@@ -212,11 +205,10 @@ namespace Fanex.Athena.Api.Report
             LicenseeWinLossMetaModel metaModel,
             SortableReportResultModel<LicenseeWinLoss> data)
         {
-            var licenseeSession = SessionService.LicenseeSession;
             var userSession = SessionService.UserSession;
             const string FileName = "LicenseeWinLoss.xls";
             var templatePath = HostingEnvironment.MapPath(@"~/App_Data/Template/Reports/LicenseeWinLoss.xls");
-            var productAccess = ProductService.GetProductAccess(licenseeSession.LicenseeId, userSession.Language);
+            var productAccess = ProductService.GetProductAccess(_appSettings.LicenseeId, userSession.Language);
 
             if (metaModel.DrillDownLevel > 0)
             {
@@ -248,7 +240,7 @@ namespace Fanex.Athena.Api.Report
                 BTVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.BT),
                 COVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.CO),
                 BAVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.BA),
-                CustomerCommVisible = licenseeSession.IsAllowedCustomerComm
+                CustomerCommVisible = SessionService.LicenseeSession.IsAllowedCustomerComm
             };
 
             var excel = CreateExcel(templatePath, excelModel);
@@ -310,7 +302,7 @@ namespace Fanex.Athena.Api.Report
 
             if (IsValidParams(metaModel))
             {
-                metaModel.LicenseeId = SessionService.LicenseeSession.LicenseeId;
+                metaModel.LicenseeId = _appSettings.LicenseeId;
                 metaModel.DrillDownCurrencyId = currencyId;
                 metaModel.DrillDownCurrencyName = currencyName;
                 metaModel.DrillDownCustomerId = custId;
@@ -345,8 +337,9 @@ namespace Fanex.Athena.Api.Report
 
         protected internal virtual bool IsValidParams(LicenseeWinLossMetaModel metaModel)
         {
+            var licenseeInfo = SessionService.LicenseeSession;
             var setting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
-                SessionService.LicenseeSession.LicenseeName);
+                licenseeInfo.LicenseeName);
             if (setting == null)
             {
                 return true;

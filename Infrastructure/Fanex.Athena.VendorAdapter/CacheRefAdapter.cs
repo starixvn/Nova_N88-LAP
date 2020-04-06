@@ -16,9 +16,7 @@ namespace Fanex.Athena.VendorAdapter
 
         public static CacheRefAdapter Instance { get; } = new CacheRefAdapter();
 
-#pragma warning disable CS3003 // Type is not CLS-compliant
         public IRemotingRefService RemotingRefService => _remotingRefService.Value;
-#pragma warning restore CS3003 // Type is not CLS-compliant
 
         public string GetBettype(object bettypeId)
         {
@@ -60,12 +58,6 @@ namespace Fanex.Athena.VendorAdapter
             return RemotingRefService.GetLeagueName(leagueId.ToString(), GetCurrentIBCLanguageCode(), string.Empty);
         }
 
-        /// <summary>
-        /// Get bet type text by bet type and live indicator.
-        /// </summary>
-        /// <param name="betType">Bet type value.</param>
-        /// <param name="liveIndicator">Live or NonLive.</param>
-        /// <returns>Bet type text.</returns>
         public string GetBettype(int betType, bool liveIndicator)
         {
             const int SBMinOfMaxBettype = 120;

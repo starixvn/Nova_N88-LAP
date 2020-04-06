@@ -1,23 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="PropertyComparer.cs" company="Unknown">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Extension.Utility
+﻿namespace Fanex.Athena.Extension.Utility
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    /// <summary>
-    /// Compare 2 property properties for sorting.
-    /// </summary>
-    /// <remarks>
-    /// Taken from sample code in
-    /// MSDN article.
-    /// </remarks>
-    /// <typeparam name="T">Type parameter.</typeparam>
     public class PropertyComparer<T> : IComparer<T>
     {
         public PropertyComparer(string property, ListSortDirection direction)

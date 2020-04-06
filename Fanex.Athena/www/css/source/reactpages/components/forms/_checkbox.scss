@@ -1,4 +1,5 @@
 ﻿@import "../../abstracts/variables";
+@import "../../abstracts/mixins";
 $colorDefault: $black;
 
 input[type="checkbox"].checkbox {
@@ -8,60 +9,88 @@ input[type="checkbox"].checkbox {
 
     & + label {
         position: relative;
-        padding-left: 20px;
+        padding-left: 1.5em;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
         cursor: pointer;
-        display: inline-block;
-        height: 18px;
-        font-size: 12px;
-        color: $colorDefault;
-        margin: 0 5px 0 0;
-        line-height: 18px;
-        top: 4px;
-
-        &:before, &:after {
-            content: '';
-            left: 0;
-            position: absolute;
-        }
-
-        &:before {
-            width: 4px;
-            height: 11px;
-            border: 1px solid transparent;
-            -webkit-transform-origin: 20% 40%;
-            transform-origin: 100% 100%;
-            transform: rotateZ(37deg);
-        }
-
-        &:after {
-            top: 0;
-            width: 15px;
-            height: 15px;
-            background-color: transparent;
-            border: 1px solid $colorDefault;
-        }
+        margin: 0;
+        color: #333;
+        font-weight: normal;
+        min-height: unset;
     }
 
-    &:checked {
-        & + label {
-            &:before {
-                top: 0;
-                left: 2px;
-                border-right: 1px solid $colorDefault;
-                border-bottom: 1px solid $colorDefault;
-            }
-        }
+    & + label:before {
+        @include box-sizing(content-box);
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 12px;
+        height: 12px;
+        margin-top: -10px;
+        border: 1px solid $colorDefault;
+        text-align: center;
+        @include transition(all .2s ease);
+        @include border-radius(2px);
     }
 
-    &:disabled {
-        & + label:after {
-            border-color: $input-disabled-solid-color;
-        }
+    & + label:after {
+        @include box-sizing(content-box);
+        content: '';
+        position: absolute;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        -webkit-transform-origin: 50%;
+        transform-origin: 50%;
+        -webkit-transition: -webkit-transform .1s ease-out;
+        transition: -webkit-transform .1s ease-out;
+        transition: transform .1s ease-out;
+        transition: transform .1s ease-out,-webkit-transform .1s ease-out;
+        background-color: transparent;
+        top: 50%;
+        left: 2px;
+        width: 8px;
+        height: 3px;
+        margin-top: -7px;
+        border-style: solid;
+        border-color: #fff;
+        border-width: 0 0 2px 2px;
+        -o-border-image: none;
+        border-image: none;
+        -webkit-transform: rotate(-45deg) scale(0);
+        transform: rotate(-45deg) scale(0);
+    }
 
-        &:checked + label:before {
-            border-right-color: $input-disabled-solid-color;
-            border-bottom-color: $input-disabled-solid-color;
-        }
+    &:checked + label:before {
+        -webkit-animation: .1s ease-in borderscale;
+        animation: .1s ease-in borderscale;
+        background-color: #458A00;
+        border-color: #458A00;
+    }
+
+    &:checked + label:after {
+        content: '';
+        -webkit-transition: -webkit-transform .1s ease-out;
+        transition: -webkit-transform .1s ease-out;
+        transition: transform .1s ease-out;
+        transition: transform .1s ease-out,-webkit-transform .1s ease-out;
+        -webkit-transform: rotate(-45deg) scale(1);
+        transform: rotate(-45deg) scale(1);
+    }
+
+    &:disabled + label {
+        color: #b8b8b8;
+        cursor: not-allowed;
+    }
+
+    &:disabled + label:before {
+        box-shadow: none;
+        background-color: rgb(168, 168, 168);
+        border-color: rgb(168, 168, 168);
     }
 }
 

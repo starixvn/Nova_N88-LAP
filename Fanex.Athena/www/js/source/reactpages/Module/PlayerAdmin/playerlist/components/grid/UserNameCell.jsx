@@ -68,7 +68,6 @@ export const UserNameCell = (props) => {
                 !isClosedOrArchived && (
                     <button className="btn-default btn-link btn-icon cell-menu"
                         onMouseEnter={handleEnterContextMenu} onMouseLeave={handleLeaveContextMenu}>
-                        <i className="material-icons">edit</i>
                     </button>
                 )
             }

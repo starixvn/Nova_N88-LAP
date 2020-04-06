@@ -1,0 +1,45 @@
+﻿@using Fanex.Athena.Model.UserManagement.Enum;
+@using Fanex.Athena.Model.UserManagement.Model;
+@{
+    Layout = null;
+}
+@model LogExecSp
+
+@if (!ReferenceEquals(Model, null))
+{
+    if (Model.ActionId == (int)LogAction.N88_User_Insert)
+    {
+        @Html.Action("N88UserInsert", "Log", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.N88_User_Update)
+    {
+        @Html.Action("N88UserUpdate", "Log", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.N88_User_UpdateSite)
+    {
+        @Html.Action("N88UpdateSite", "Log", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.N88_Group_AssignFunction
+       || Model.ActionId == (int)LogAction.N88_User_AssignFunction)
+    {
+        @Html.Action("N88AssignPermission", "Log", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.N88_Group_Insert)
+    {
+        @Html.Action("N88GroupInsert", "Log", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.N88_Group_Update)
+    {
+        @Html.Action("N88GroupUpdate", "Log", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.N88_Group_UpdateStatus)
+    {
+        @Html.Action("N88GroupUpdateStatus", "Log", Model)
+    }
+}

@@ -118,19 +118,5 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
             //Assert
             _currencyValidation.Received(1).IsValidCurrency(currencyIdList);
         }
-
-        [Test]
-        public void IsValid_ByProduct_HavingCallProducationValidation()
-        {
-            //Arrange
-            const string functionKey = "winloss";
-            var option = new ProductValidationOption { IsValidProductCodeList = true, FunctionConfig = functionKey };
-            var model = new CasinoTurnoverMetaModel { ProductCodeList = "SB", BaseCurrency = "USD", Status = new[] { 1 } };
-            _productValidation.IsValid(Arg.Any<IMetaModelProductCodeList>(), Arg.Any<ProductValidationOption>()).Returns(true);
-            //Action
-            _validationService.IsValid(model, null, option);
-            //Assert
-            _productValidation.Received(1).IsValid(model, option);
-        }
     }
 }

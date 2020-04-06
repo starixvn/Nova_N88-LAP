@@ -1,9 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UrlExtension.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-namespace Fanex.Athena.Web.HtmlExtension
+﻿namespace Fanex.Athena.Web.HtmlExtension
 {
     using System.Configuration;
     using System.Text.RegularExpressions;

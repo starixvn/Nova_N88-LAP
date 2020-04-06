@@ -74,20 +74,12 @@ export default class ReportExcel {
 
     _buildDataRow(item, colIndex) {
         const columnConfig = this.columnConfigs[colIndex];
-        const shouldHideValue = !item.IsDeposit || item.IsArchived;
-        if (shouldHideValue && fieldListWithEmptyValueByStatus.indexOf(columnConfig.field) !== -1) {
-            return {
-                t: 's',
-                v: '',
-                s: columnConfig[MAIN_SECTION_STYLE]
-            };
-        }
-
         const value = item[columnConfig.field];
+        
         const displayedTextFunc = displayedTextByField[columnConfig.field];
         const displayedValue = this._shouldSetEmpty(value) ? '' :
             (displayedTextFunc ? displayedTextFunc(value) : value);
-
+        
         return {
             t: Excel.getCellType(displayedValue),
             v: displayedValue,
@@ -115,10 +107,6 @@ export default class ReportExcel {
 
     _getcolumnConfigs() {
         return [{
-            field: fields.Status,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
-            width: 60
-        }, {
             field: fields.UserName,
             [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 200

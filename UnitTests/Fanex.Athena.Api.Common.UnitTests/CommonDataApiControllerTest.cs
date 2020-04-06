@@ -4,24 +4,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Base;
-
-    using DataAccess.Core.Common.Interfaces;
-
+    using Fanex.Athena.Api.Base;
+    using Fanex.Athena.DataAccess.Core.Common.Interfaces;
     using Fanex.Athena.Model.Auth;
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.MetaModel.Common;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
-    using Model.Core.DTO.Common;
-    using Model.Core.MetaModel.Common;
-
     using NSubstitute;
-
     using NUnit.Framework;
-
-    using Service.Core.Common.Interfaces;
-    using Service.Core.Users.Interfaces;
-
     using UnitTest.Common.Helpers;
 
     public class CommonDataApiControllerTest

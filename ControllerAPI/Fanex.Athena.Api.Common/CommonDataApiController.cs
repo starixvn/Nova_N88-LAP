@@ -5,37 +5,27 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-
     using DataAccess.Core.Common.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
-
+    using Fanex.Athena.Web.ActionFilter;
     using Model.Core.MetaModel.Common;
-
     using ONEbook.UM.Filters;
-
     using Service.Core.Common.Interfaces;
     using Service.Core.Users.Interfaces;
-
-    using Web.ActionFilter;
 
     [CLSCompliant(false)]
     [CheckUMFilter]
     [XFrameOptionApi]
-    [FunctionAuthorization(PermissionKeys.BettingTicketCenter)]
+    [FunctionAuthorization(PermissionKeys.BetHistory)]
     public class CommonDataApiController : ApiController
     {
         private readonly ILanguageService _langService;
-
         private readonly ISportTypeDataAccess _sportTypeDataAccess;
-
         private readonly ISessionService _sessionService;
-
         private readonly ILeagueDataAccess _leagueDataAccess;
-
         private readonly IMatchDataAccess _matchDataAccess;
-
         private readonly IBetTypeService _betTypeService;
 
         public CommonDataApiController(
@@ -67,7 +57,7 @@
             var sports = await _sportTypeDataAccess.GetSportsAndProducts(
                  _sessionService.LicenseeSession.LicenseeId,
                  _sessionService.UserSession.Language,
-                 productCode).ConfigureAwait(false);
+                 productCode);
 
             return sports.Where(x => x.ParentId > -1).Select(x => new { value = x.ID, label = x.Name });
         }
@@ -78,18 +68,11 @@
             var bettypes = await _betTypeService.GetBettypesByProduct(
                 _sessionService.LicenseeSession.LicenseeId,
                 productCode,
-                _sessionService.UserSession.Language).ConfigureAwait(false);
+                _sessionService.UserSession.Language);
 
             return bettypes.Select(x => new { value = x.ID, label = x.Name });
         }
 
-        /// <summary>
-        /// Get Leagues of SB only
-        /// </summary>
-        /// <param name="fromDate"></param>
-        /// <param name="toDate"></param>
-        /// <param name="sportId"></param>
-        /// <returns></returns>
         [HttpGet]
         public async Task<IEnumerable<object>> GetLeagues(DateTime fromDate, DateTime toDate, int sportId = 0)
         {
@@ -103,7 +86,7 @@
                 AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList)
             };
 
-            var leagues = await _leagueDataAccess.GetLeaguesBySport(metaModel).ConfigureAwait(false);
+            var leagues = await _leagueDataAccess.GetLeaguesBySport(metaModel);
 
             return leagues.Select(x => new { value = x.LeagueId, label = x.LeagueName });
         }
@@ -111,7 +94,7 @@
         [HttpGet]
         public async Task<IEnumerable<object>> GetMatches(DateTime fromDate, DateTime toDate, int leagueid, int sportId = 0)
         {
-            var matches = await _matchDataAccess.GetMatchesByLeague(leagueid, fromDate, toDate, sportId).ConfigureAwait(false);
+            var matches = await _matchDataAccess.GetMatchesByLeague(leagueid, fromDate, toDate, sportId);
 
             return matches.Select(x => new { value = x.MatchId, label = x.MatchName });
         }

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AppSettings.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Extension.Utility
+﻿namespace Fanex.Athena.Extension.Utility
 {
     using System;
     using System.Collections.Generic;
@@ -52,14 +46,6 @@ namespace Fanex.Athena.Extension.Utility
             }
         }
 
-        public IEnumerable<int> LicenseeOfferNewForecast
-        {
-            get
-            {
-                return GetIntegers("LicenseeOfferNewForecast");
-            }
-        }
-
         public IEnumerable<int> LicenseeAllowCasinoTransfer
         {
             get
@@ -94,11 +80,6 @@ namespace Fanex.Athena.Extension.Utility
         public string ResultAmendmentAttachmentApiUrl
         {
             get { return GetValue(nameof(ResultAmendmentAttachmentApiUrl)); }
-        }
-
-        public bool IsEnabledMoveBetNotification
-        {
-            get { return int.Parse(GetValue("IsEnabledMoveBetNotification")) != 0; }
         }
 
         public string Environment
@@ -150,11 +131,6 @@ namespace Fanex.Athena.Extension.Utility
             get { return GetValue("DefaultBaseCurrency"); }
         }
 
-        public IEnumerable<int> LiveReportNoDetailLinkSports
-        {
-            get { return GetValue("LiveReportNoDetailLinkSports").Split(',').Select(n => Convert.ToInt32(n)); }
-        }
-
         #endregion Configurations
 
         #region Casino
@@ -176,6 +152,14 @@ namespace Fanex.Athena.Extension.Utility
         public string TempFilePath => GetValue("TempFilePath");
 
         #endregion Assign Currency
+
+        #region Licensee
+        public int LicenseeId
+        {
+            get { return int.Parse(GetValue("LicenseeId")); }
+        }
+        #endregion Licensee
+
 
         public string GetValue(string key)
         {

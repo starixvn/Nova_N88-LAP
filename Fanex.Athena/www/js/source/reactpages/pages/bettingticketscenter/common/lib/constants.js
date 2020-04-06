@@ -30,10 +30,10 @@ export const HeaderText = {
 export const DefaultPageSize = 50;
 
 export const tabKeys = {
-    advancedSearch: 'BTC_MultiCustomer',
-    singleCustomer: 'BTC_SingleCustomer',
-    refNo: 'BTC_RefNo',
-    running: 'BTC_Running'
+    advancedSearch: 'BetHistory_AdvancedSearch',
+    singleCustomer: 'BetHistory_SingleCustomer',
+    refNo: 'BetHistory_RefNo',
+    running: 'BetHistory_Running'
 }
 
 export const tabList = [

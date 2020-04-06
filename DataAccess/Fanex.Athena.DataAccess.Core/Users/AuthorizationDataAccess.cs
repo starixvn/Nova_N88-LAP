@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AuthorizationDataAccess.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Core.Users
+﻿namespace Fanex.Athena.DataAccess.Core.Users
 {
     using System;
     using Fanex.Athena.DataAccess.Core;

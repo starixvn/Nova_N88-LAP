@@ -1,31 +1,20 @@
 ﻿namespace Fanex.Athena.Service.Core.UnitTests.Users
 {
-    using Core.Users;
-    using Core.Users.Interfaces;
-
-    using DataAccess.Core.Common.Interfaces;
-    using DataAccess.Core.Users.Interfaces;
-
-    using Extension.Utility;
-
-    using Fanex.Athena.Model.Auth;
-    using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Utility;
-
-    using Model.Core.DataDomain;
-    using Model.Core.DTO.Common;
-
-    using NSubstitute;
-
-    using NUnit.Framework;
-
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Web;
     using System.Web.SessionState;
-
+    using Core.Users;
+    using Core.Users.Interfaces;
+    using DataAccess.Core.Common.Interfaces;
+    using DataAccess.Core.Users.Interfaces;
+    using Extension.Utility;
+    using Fanex.Athena.Model.Auth;
+    using Fanex.Athena.Service.StatelessCore.Utility;
+    using Fanex.N88.Core.Service.Interface;
+    using Model.Core.DTO.Common;
+    using NSubstitute;
+    using NUnit.Framework;
     using UnitTest.Common.Helpers;
 
     [TestFixture]
@@ -34,11 +23,11 @@
         private const int DefaultUserId = 1;
 
         private IAppSettings _appSettings;
-        private IFunctionService _functionService;
         private ILicenseeDataAccess _licenseeDataAccess;
         private ICurrencyDataAccess _currencyDataAccess;
         private ISessionStorage _sessionStorage;
         private ISessionService _sessionService;
+        private IUserService _userService;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -49,8 +38,8 @@
                 Arg.Do<LicenseeAuthInfo>(x => _sessionStorage.LicenseeAuthInfo.Returns(x)));
 
             _appSettings = Substitute.For<IAppSettings>();
-            _functionService = Substitute.For<IFunctionService>();
             _licenseeDataAccess = Substitute.For<ILicenseeDataAccess>();
+            _userService = Substitute.For<IUserService>();
             var licenseeList = new List<Licensee>
             {
                 new Licensee
@@ -59,12 +48,11 @@
                     Name = "12bet"
                 }
             };
-            _licenseeDataAccess.GetByUser(DefaultUserId).Returns(i => licenseeList);
             _currencyDataAccess = Substitute.For<ICurrencyDataAccess>();
             _sessionService = new SessionService(
-                _functionService,
                 _licenseeDataAccess,
                 _currencyDataAccess,
+                _userService,
                 _appSettings,
                 _sessionStorage);
         }
@@ -72,164 +60,9 @@
         [OneTimeTearDown]
         public void TearDown()
         {
-            _functionService = null;
             _licenseeDataAccess = null;
             _currencyDataAccess = null;
             _sessionService = null;
-        }
-
-        [Test]
-        public void UpdateLiceseeSession_WhenCall_LicenseeSessionIsCreatedProperly()
-        {
-            // Arrange
-            var licensees = new List<Licensee>
-            {
-                new Licensee { Id = 1, Name = "spondemo" },
-                new Licensee { Id = 2, Name = "12bet" },
-            };
-            _licenseeDataAccess.GetByUser(DefaultUserId).Returns(licensees);
-            _functionService.GetUserFunctionList(Arg.Any<int>(), Arg.Any<int>()).Returns(new List<Function>());
-            const int OldLicenseeId = 1;
-            const int NewLicenseeId = 2;
-            CreateDefaultNewSession(OldLicenseeId);
-
-            // Action
-            _sessionService.UpdateLiceseeSession(NewLicenseeId);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(_sessionService.LicenseeSession.LicenseeId, Is.EqualTo(NewLicenseeId));
-                Assert.That(_sessionService.LicenseeSession.LicenseeName, Is.EqualTo("12bet"));
-            });
-        }
-
-        [Test]
-        public void UpdateLiceseeSession_LicenseeIdIsZero_LicenseeSessionIsNotCreated()
-        {
-            // Arrange
-            var licensees = new List<Licensee>
-            {
-                new Licensee { Id = 1, Name = "spondemo" },
-                new Licensee { Id = 2, Name = "12bet" },
-            };
-            _licenseeDataAccess.GetByUser(DefaultUserId).Returns(licensees);
-            const int OldLicenseeId = 1;
-            const int NewLicenseeId = 0;
-            CreateDefaultNewSession(OldLicenseeId);
-
-            // Action
-            _sessionService.UpdateLiceseeSession(NewLicenseeId);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(_sessionService.LicenseeSession.LicenseeId, Is.EqualTo(OldLicenseeId));
-                Assert.That(_sessionService.LicenseeSession.LicenseeName, Is.EqualTo("spondemo"));
-            });
-        }
-
-        [Test]
-        public void UpdateLiceseeSession_FunctionListContainReportBalance_ReturnCorrectReportUrl()
-        {
-            // Arrange
-            var licensees = new List<Licensee>
-            {
-                new Licensee { Id = 1, Name = "spondemo" },
-                new Licensee { Id = 2, Name = "12bet" },
-            };
-            var functions = new List<Function> { new Function { FunctionId = 42,
-                FunctionKey = PermissionKeys.ReportLicenseeWinLoss } };
-            _licenseeDataAccess.GetByUser(DefaultUserId).Returns(licensees);
-            const int OldLicenseeId = 1;
-            const int NewLicenseeId = 2;
-            _functionService.GetUserFunctionList(NewLicenseeId, DefaultUserId).Returns(functions);
-            CreateDefaultNewSession(OldLicenseeId);
-
-            // Action
-            _sessionService.UpdateLiceseeSession(NewLicenseeId);
-
-            // Assert
-            Assert.That(_sessionService.UserSession.DefaultReportUrl, Is.EqualTo("LicenseeWinLossReport"));
-        }
-
-        [Test]
-        public void UpdateLiceseeSession_FunctionListIsNotContainReportBalance_ReturnCorrectReportUrl()
-        {
-            // Arrange
-            var licensees = new List<Licensee>
-            {
-                new Licensee { Id = 1, Name = "spondemo" },
-                new Licensee { Id = 2, Name = "12bet" },
-            };
-            var functions = new List<Function> { new Function {
-                FunctionId = 1, ParentId = 1,
-                IsActive = true,
-                Url = "TestUrl",
-            FunctionKey= PermissionKeys.BettingTicketCenter} };
-
-            _licenseeDataAccess.GetByUser(DefaultUserId).Returns(licensees);
-            const int OldLicenseeId = 1;
-            const int NewLicenseeId = 2;
-            _functionService.GetUserFunctionList(NewLicenseeId, DefaultUserId).Returns(functions);
-            CreateDefaultNewSession(OldLicenseeId);
-
-            // Action
-            _sessionService.UpdateLiceseeSession(NewLicenseeId);
-
-            // Assert
-            Assert.That(_sessionService.UserSession.DefaultReportUrl, Is.EqualTo("TestUrl"));
-        }
-
-        [Test]
-        public void UpdateLiceseeSession_FunctionListIsNotContainReportBalanceButIsActiveIsFalse_ReturnCorrectReportUrl()
-        {
-            // Arrange
-            var licensees = new List<Licensee>
-            {
-                new Licensee { Id = 1, Name = "spondemo" },
-                new Licensee { Id = 2, Name = "12bet" },
-            };
-            var functions = new List<Function> { new Function { FunctionId = 1,
-                ParentId = 1, IsActive = false, Url = "TestUrl",
-                FunctionKey = PermissionKeys.ReportLicenseeWinLoss } };
-            _licenseeDataAccess.GetByUser(DefaultUserId).Returns(licensees);
-            const int OldLicenseeId = 1;
-            const int NewLicenseeId = 2;
-            _functionService.GetUserFunctionList(NewLicenseeId, DefaultUserId).Returns(functions);
-            CreateDefaultNewSession(OldLicenseeId);
-
-            // Action
-            _sessionService.UpdateLiceseeSession(NewLicenseeId);
-
-            // Assert
-            Assert.That(_sessionService.UserSession.DefaultReportUrl, Is.EqualTo("LicenseeWinLossReport"));
-        }
-
-        [Test]
-        public void UpdateLiceseeSession_FunctionListIsNotContainReportBalanceButParentIdIsZero_ReturnCorrectReportUrl()
-        {
-            // Arrange
-            var licensees = new List<Licensee>
-            {
-                new Licensee { Id = 1, Name = "spondemo" },
-                new Licensee { Id = 2, Name = "12bet" },
-            };
-            var functions = new List<Function> { new Function {
-                FunctionId = 1, ParentId = 0, IsActive = true, Url = "TestUrl",
-                FunctionKey = PermissionKeys.BettingTicketCenter
-            } };
-            _licenseeDataAccess.GetByUser(DefaultUserId).Returns(licensees);
-            const int OldLicenseeId = 1;
-            const int NewLicenseeId = 2;
-            _functionService.GetUserFunctionList(NewLicenseeId, DefaultUserId).Returns(functions);
-            CreateDefaultNewSession(OldLicenseeId);
-
-            // Action
-            _sessionService.UpdateLiceseeSession(NewLicenseeId);
-
-            // Assert
-            Assert.That(_sessionService.UserSession.DefaultReportUrl, Is.EqualTo("LicenseeWinLossReport"));
         }
 
         [Test]
@@ -273,12 +106,10 @@
             Assert.That(result, Is.False);
         }
 
-
         [Test]
         public void GenerateAgentListXml_CurrencyIdIsNumberAndPositive_ReturnCorrectXmlString()
         {
             // Arrange
-            const int UserId = 1, LicenseeId = 1;
             var currencyUserList = new List<CurrencyUser>
             {
                 new CurrencyUser
@@ -298,7 +129,6 @@
                     AgentIdList = new[] { 3, 4, 5 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByUser(LicenseeId, UserId).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 
@@ -325,7 +155,6 @@
                     AgentIdList = new[] { 1, 2 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByUser(LicenseeId, UserId).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 
@@ -360,7 +189,6 @@
                     AgentIdList = new[] { 3 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByUser(LicenseeId, UserId).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"3\" Currency=\"2\"/></ROOT>";
 
@@ -395,7 +223,6 @@
                     AgentIdList = new[] { 3 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByUser(LicenseeId, UserId).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 
@@ -430,8 +257,7 @@
                     AgentIdList = new[] { 3 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByUser(LicenseeId, UserId).Returns(currencyUserList);
-            CreateDefaultNewSession(96);
+            CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/><Agent AgentId=\"3\" Currency=\"66\"/></ROOT>";
 
             // Action
@@ -474,69 +300,6 @@
             Assert.That(result, Is.EqualTo(captcha));
         }
 
-        [Test]
-        public void AssignCurrenciesToUserSession_IsNotFakeLicensee_DoNotMergeAgentListWithFakeLicenseeData()
-        {
-            // Arrange
-            const int LicenseeId = 1;
-            var currencyUserList = new List<CurrencyUser>
-            {
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 1,
-                    AgentId = 2,
-                    AgentIdList = new[] { 1, 2 }
-                },
-                new CurrencyUser
-                {
-                    IsActive = false,
-                    CurrencyId = 20,
-                }
-            };
-            var activeCurrencyUsers = currencyUserList.Where(x => x.IsActive);
-
-            var userSession = new UserAuthInfo();
-
-            // Action
-            _sessionService.AssignCurrenciesToUserSession(userSession, LicenseeId, currencyUserList);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(userSession.CurrencyList.Count, Is.EqualTo(activeCurrencyUsers.Count()));
-                Assert.That(userSession.CurrencyList.Keys.ElementAt(0), Is.EqualTo(activeCurrencyUsers.ElementAt(0).CurrencyId));
-                Assert.That(userSession.CurrencyAgentList.Keys.ElementAt(0), Is.EqualTo(activeCurrencyUsers.ElementAt(0).CurrencyId));
-                Assert.That(userSession.CurrencyAgentList.Values.ElementAt(0), Is.EqualTo(activeCurrencyUsers.ElementAt(0).AgentIdList));
-            });
-        }
-
-        [Test]
-        public void AssignCurrenciesToUserSession_KeenOceanLicensee_UpdateCurrencyForKeenOncean()
-        {
-            // Arrange
-            const int LicenseeId = LicenseeIdentity.KeenOcean;
-            var currencyUserList = new List<CurrencyUser>
-            {
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = CurrencyType.Hkd,
-                    CurrencyName = "USD",
-                    AgentId = 2,
-                    AgentIdList = new[] { 1, 2 }
-                }
-            };
-
-            var userSession = new UserAuthInfo();
-
-            // Action
-            _sessionService.AssignCurrenciesToUserSession(userSession, LicenseeId, currencyUserList);
-
-            // Assert
-            Assert.That(userSession.CurrencyList.Values.ElementAt(0), Is.EqualTo("CNY"));
-        }
-
         private static void MockHttpContext()
         {
             var httpContext = new HttpContext(
@@ -556,14 +319,13 @@
             HttpContext.Current = httpContext;
         }
 
-        private void CreateDefaultNewSession(int licenseeId = 1)
+        private void CreateDefaultNewSession()
         {
             MockHttpContext();
             const int UserId = 1;
             const int OnUserId = 2;
             const string UserName = "user1";
-            const bool IsInternal = false;
-            _sessionService.CreateNewSession(UserId, OnUserId, UserName, IsInternal, licenseeId);
+            _sessionService.CreateNewSession(UserId, OnUserId, UserName);
         }
     }
 }

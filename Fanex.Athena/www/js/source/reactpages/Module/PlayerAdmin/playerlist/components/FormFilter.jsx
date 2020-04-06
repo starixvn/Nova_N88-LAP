@@ -4,14 +4,10 @@ import { ActionCreators } from '../actions/index.js';
 import { bindActionCreators } from 'redux';
 import CheckBox from '@jsroot/components/CheckBox';
 import AdvancedSearch from './filter/AdvancedSearch';
-import SearchOption from './filter/SearchOption';
-import AthenaSearch from './filter/AthenaSearch';
-import { licenseeType } from '../lib/constants';
 import CollapsiblePanel from '@jsroot/components/collapsible-panel';
 import UserGuide from '@jsroot/components/UserGuide';
 import LangHelper from '@jsroot/lib/langHelper';
-import { searchOptions, baStatusList, specialLevelListWithColor, emailPattern, oddsGroupListWithStyle } from '../lib/constants';
-import UserNameInput from './filter/UserNameInput';
+import { searchOptions, baStatusList, specialLevelListWithColor, oddsGroupListWithStyle } from '../lib/constants';
 import QueryString from '@jsroot/lib/QueryString';
 import { encode } from '@jsroot/lib/htmlHelper';
 
@@ -28,8 +24,9 @@ export class FormFilter extends PureComponent {
 
         this.state = {
             isValidUserName: false,
-            bankAccountNumber: '',
-            email: '',
+            isValidsystemId: false,
+            userName: '',
+            systemId: '',
             currencyIdList: this.allCurrencyString,
             oddsGroup: this.allOddsGroupString,
             specialLevel: this.allSpecialLevel,
@@ -50,8 +47,8 @@ export class FormFilter extends PureComponent {
             this.setState({ isValidUserName: !!userName });
         }
 
-        const { type, isSubsidiary } = this.props;
-        this.props.getSiteSetting(type, isSubsidiary);
+        const { hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary } = this.props;
+        this.props.getSiteSetting(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -67,29 +64,21 @@ export class FormFilter extends PureComponent {
     }
 
     searchPlayer() {
-        const userName = this.userNameRef.current.value;
-        const { bankAccountNumber, email } = this.state;
-        if (!userName && !bankAccountNumber && !email) {
-            return;
-        }
+        const userName = this.state.userName;
+        const systemId = this.state.systemId;
 
-        const emailRegex = new RegExp(emailPattern);
-        if (email && !emailRegex.test(email)) {
-            window.alert(LangHelper.getSingleResource('InvalidEmail'));
-            return;
-        }
-
-        const { pagingOption, searchPlayer, currencyList } = this.props;
+        const { pagingOption, searchPlayer, currencyList, isAdvancedSearch } = this.props;
         const { specialLevel, currencyIdList, oddsGroup, isValidUserName, ...restParam } = this.state;
         const actualSpecialLevel = specialLevel.trim();
         const isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
-        const isSelectAllOddsGroup = oddsGroup.trim().split(',').length === Object.keys(oddsGroupListWithStyle).length;
 
         const param = {
             ...restParam,
             userName: encode(userName),
+            systemId: encode(systemId),
+            searchOption: isAdvancedSearch + 1,
             currencyIdList: isSelectAllCurrency ? '' : currencyIdList,
-            oddsGroup: isSelectAllOddsGroup ? '' : oddsGroup,
+            oddsGroup: oddsGroup,
             specialLevel: actualSpecialLevel === '' ? this.allSpecialLevel : actualSpecialLevel,
             pageSize: pagingOption.PageSize,
             pageIndex: 1
@@ -119,13 +108,20 @@ export class FormFilter extends PureComponent {
         this.setState({ [name]: value });
     }
 
-    handleUserNameChange = (value) => {
-        this.userNameRef.current.value = value;
-        this.setState({ isValidUserName: !!value });
+    handleUserNameChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({
+            userName: value,
+            isValidUserName: !!value
+        });
     }
 
-    showUserGuide() {
-
+    hangedelSystemIdChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({
+            systemId: value,
+            isValidsystemId: !!value
+        });
     }
 
     _renderUserGuide() {
@@ -138,19 +134,11 @@ export class FormFilter extends PureComponent {
             content={userGuideContent} />)
     }
 
-    _getUserNameLabel() {
-        return this.props.type === licenseeType.nonApi ?
-            LangHelper.getSingleResource("Username") :
-            `${LangHelper.getSingleResource("Username")}/${LangHelper.getSingleResource("VendorMemberID")}`
-    }
-
     render() {
-        const { bankAccountNumber, email, searchOption, isValidUserName, ...advancedSearchParam } = this.state;
-        const { type, isAdvancedSearch, isFilterCollapsing, currencyList, getSuggestionList, siteSetting } = this.props;
-        const { currencyIdList, oddsGroup, specialLevel } = advancedSearchParam;
+        const { bankAccountNumber, email, searchOption, isValidUserName, isValidsystemId, ...advancedSearchParam } = this.state;
+        const { type, isAdvancedSearch, isFilterCollapsing, currencyList, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission } = this.props;
 
-        const isValidParam = (isValidUserName || !!bankAccountNumber || !!email) &&
-            !!currencyIdList && !!oddsGroup && !!specialLevel;
+        const isValidParam = (isValidUserName || isValidsystemId || isAdvancedSearch);
         const iconToggle = {
             tag: 'div',
             className: isFilterCollapsing ? 'chevron down' : 'chevron up',
@@ -164,23 +152,29 @@ export class FormFilter extends PureComponent {
                     <div className="col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">
-                                {this._getUserNameLabel()}
-                                {(<SearchOption value={searchOption} onChange={this.handleChange} />)}
+                                Username
                             </label>
-                            <UserNameInput ref={this.userNameRef} onSelectItem={(value) => this.handleUserNameChange(value)}
-                                minChar={3} getSuggestionList={getSuggestionList} searchOption={searchOption}
+                            <input className="input-text" id="username" name="username" type="text"
                                 onKeyPress={this.handlePressEnter} onChange={(value) => this.handleUserNameChange(value)} />
                         </div>
                     </div>
 
-                    {type === licenseeType.nonApi && <AthenaSearch onChange={this.handleChange}
-                        bankAccountNumber={bankAccountNumber}
-                        email={email}
-                        onKeyPress={this.handlePressEnter} />}
+                    <div className="col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2">
+                        <div className="form-group">
+                            <label className="label-text">
+                                SystemID
+                            </label>
+                            <input className="input-text" id="systemID" name="systemID" type="text"
+                                onKeyPress={this.handlePressEnter} onChange={(value) => this.hangedelSystemIdChange(value)} />
+                        </div>
+                    </div>
+
                     {isAdvancedSearch && <AdvancedSearch
                         currencyList={currencyList}
                         param={advancedSearchParam}
-                        isAllowedBA={siteSetting.isAllowedBA}
+                        isAllowedBA={hasBaPermission.isallowed}
+                        isAllowedOddsGroup={hasOddsGroupPermission.isallowed}
+                        isAllowedSpecialLevel={hasSpecialLevelPermission.isallowed}
                         onChange={this.handleSpecificInputChange} />
                     }
 
@@ -211,8 +205,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ searchPlayer, setAdvancedSearch, setCollapseFilter, getSuggestionList, getSinglePlayer, getSiteSetting }, dispatch);
 }
 function mapStateToProps(state) {
-    const { type, isAdvancedSearch, isFilterCollapsing, pagingOption, currencyList, siteSetting, isSubsidiary } = state;
-    return Object.assign({}, { type, isAdvancedSearch, isFilterCollapsing, pagingOption, currencyList, siteSetting, isSubsidiary });
+    const { type, isAdvancedSearch, isFilterCollapsing, pagingOption, currencyList, isSubsidiary, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission } = state;
+    return Object.assign({}, { type, isAdvancedSearch, isFilterCollapsing, pagingOption, currencyList, isSubsidiary, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);

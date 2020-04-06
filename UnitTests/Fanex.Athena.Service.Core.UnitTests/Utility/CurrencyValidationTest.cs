@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using Fanex.Athena.Extension.Utility;
 using Fanex.Athena.Model.Auth;
 using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Service.Core.Users.Interfaces;
@@ -17,18 +17,20 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
     {
         private ICurrencyValidation _currencyValidation;
         private ISessionService _sessionService;
+        private IAppSettings _appSettings;
 
         [SetUp]
         public void Setup()
         {
             _sessionService = Substitute.For<ISessionService>();
+            _appSettings = Substitute.For<IAppSettings>();
 
             _sessionService.UserSession.Returns(new UserAuthInfo
             {
                 CurrencyList = new Dictionary<int, string> { { 1, "USD" }, { 2, "EUR" }, { 4, "IDR" } }
             });
             _sessionService.LicenseeSession.Returns(new LicenseeAuthInfo { LicenseeId = 1 });
-            _currencyValidation = new CurrencyValidation(_sessionService);
+            _currencyValidation = new CurrencyValidation(_sessionService, _appSettings);
         }
 
         [TearDown]

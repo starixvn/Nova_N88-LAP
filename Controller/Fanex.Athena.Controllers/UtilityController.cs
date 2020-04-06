@@ -1,27 +1,13 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UtilityController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers
+﻿namespace Fanex.Athena.Controllers
 {
-    using Extension.Utility;
-
-    using Model.Core.DataDomain;
-
-    using ONEbook.UM.Services;
-
-    using Resources;
-
-    using Service.Core.Common.Interfaces;
-
     using System.Web.Mvc;
     using System.Web.Security;
+    using Extension.Utility;
+    using Model.Core.DataDomain;
+    using ONEbook.UM.Services;
+    using Resources;
+    using Service.Core.Common.Interfaces;
 
-    /// <summary>
-    /// Utility controller.
-    /// </summary>
     [AllowAnonymous]
     public class UtilityController : Controller
     {
@@ -73,10 +59,6 @@ namespace Fanex.Athena.Controllers
             return View("~/Views/Desktop/Utility/LocationRestriction.cshtml");
         }
 
-        /// <summary>
-        /// The error page.
-        /// </summary>
-        /// <returns>The error information.</returns>
         public ActionResult Error()
         {
             var errorStr = string.Empty;

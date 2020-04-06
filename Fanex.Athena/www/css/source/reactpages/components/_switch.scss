@@ -1,11 +1,11 @@
 ﻿@import "vendors/switches";
-$bgOn: #CA3232;
+$bgOn: #13A306;
 $bgOff: #DFDFDF;
 $bgButtonOn: #fff;
 $bgButtonOff: #fff;
 $borderColor: #a7a0a0;
 $bgOffDisabled: #e9ecef;
-$bgOnDisabled: #f16d6d;
+$bgOnDisabled: #13A306;
 $colorButtonOff: #8c8686;
 
 .switch {
@@ -43,6 +43,7 @@ $colorButtonOff: #8c8686;
             &:checked {
                 & + .lever {
                     background-color: $bgOn;
+                    border-color: $bgOn;
 
                     &:before {
                         content: "ON";
@@ -64,6 +65,7 @@ $colorButtonOff: #8c8686;
                 &:checked {
                     & + .lever {
                         background-color: $bgOnDisabled;
+                        border-color: $bgOnDisabled;
                     }
                 }
             }

@@ -1,6 +1,7 @@
-﻿/*global _page, resolveClientUrl */
+﻿
+/*global _page, resolveClientUrl */
 
-define(['jquery', 'crypto-js'], function ($, CryptoJS) {
+define(['jquery'], function ($) {
     'use strict';
     function isIE() { return (/msie/i).test(navigator.userAgent) && !/opera/i.test(navigator.userAgent); }
     window.IE = isIE();
@@ -9,31 +10,6 @@ define(['jquery', 'crypto-js'], function ($, CryptoJS) {
         errUserName: 'Please input username and password',
         errValidCode: 'You must input validation code.'
     };
-
-    function getUserSalt() {
-        let salt;
-        const userName = $('#userName').val();
-        if (userName) {
-            const url = window.resolveClientUrl('Authorization/GetUserSalt?userName=' + userName);
-            $.ajax({
-                url: url,
-                type: 'GET',
-                async: false,
-                contentType: 'application/json; charset=utf-8',
-                cache: false,
-                beforeSend: function () {
-                },
-                success: function (result) {
-                    salt = result;
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ': ' + thrownError);
-                }
-            });
-        }
-
-        return salt;
-    }
 
     function getValidateImage() {
         const url = $('#captchaUrl').val();
@@ -97,12 +73,10 @@ define(['jquery', 'crypto-js'], function ($, CryptoJS) {
             const $loginToken = $('#LogInToken');
             const $loginTokenTemp = $('#LogInTokenTemp');
 
-            const userSalt = getUserSalt();
-
             $loginToken.val($loginTokenTemp.val());
             const $password = $('#passWord');
-            const hashPassword = CryptoJS.SHA1($password.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
-            const encryptedPass = CryptoJS.SHA1(hashPassword + $loginToken.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
+            const hashPassword = CryptoJS.CfsEnCode($password.val());
+            const encryptedPass = CryptoJS.SHA256(hashPassword + $loginToken.val());
             $password.val(encryptedPass);
             return true;
         };

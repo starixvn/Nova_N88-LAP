@@ -1,52 +1,72 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AuthorizationService.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Service.StatelessCore
+﻿namespace Fanex.Athena.Service.StatelessCore
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility.Interfaces;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Service.Interface;
 
     public class AuthorizationService : IAuthorizationService
     {
         private const int OneHourInSecond = 3600;
-
         private readonly IAthorizationDataAccess _authorizationDataAccess;
-
         private readonly ICustomMemoryCacheService _cache;
+        private readonly IUserService userService;
 
-        public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache)
+        public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache, IUserService userService)
         {
             _authorizationDataAccess = authorizationDataAccess;
             _cache = cache;
+            this.userService = userService;
         }
 
-        public bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys)
+        public bool HasPermissions(int userId, params string[] permissionKeys)
         {
-            if (userAuthInfo.ApplicationMode == AppMode.Parasitic)
-            {
-                if (userAuthInfo.IsSuperAdmin)
-                {
-                    return true;
-                }
+            var isHasPermission = false;
 
-                return userAuthInfo.PortalFunctionList.Any(i => permissionKeys.Contains(i.FunctionKey,
-                    StringComparer.InvariantCultureIgnoreCase)
-                || (i.SubFunctionKeys != null && i.SubFunctionKeys.Intersect(permissionKeys).Any()));
+            if (permissionKeys.Length == 1)
+            {
+                var policy = userService.GetPermission(userId, N88Settings.Settings.SiteId, permissionKeys.FirstOrDefault());
+
+                isHasPermission = policy > (int)Policy.None;
+            }
+            else
+            {
+                var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+
+                isHasPermission = userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) &&
+                    x.Policy > (int)Policy.None);
             }
 
-            return userAuthInfo.FunctionList.Any(x => permissionKeys.Contains(x.FunctionKey, StringComparer.InvariantCultureIgnoreCase));
+            return isHasPermission;
         }
+
+        public bool HasHostPermissions(int userId, params string[] permissionKeys)
+        {
+            var isHasPermission = false;
+
+            if (permissionKeys.Length == 1)
+            {
+                var policy = userService.GetPermission(userId, N88Settings.Settings.SiteId, permissionKeys.FirstOrDefault());
+
+                isHasPermission = policy == (int)Policy.Host;
+            }
+            else
+            {
+                var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+
+                isHasPermission = userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) && x.Policy == (int)Policy.Host);
+            }
+
+            return isHasPermission;
+        }
+
         public bool IsAllowedEditCommission(UserAuthInfo userAuthInfo)
         {
             if (userAuthInfo.ApplicationMode == AppMode.Parasitic)
@@ -58,7 +78,6 @@ namespace Fanex.Athena.Service.StatelessCore
                 return userAuthInfo.PortalFunctionList != null && userAuthInfo.PortalFunctionList.Any(i => i.FunctionKey
                       == PermissionKeys.CustomerInfoCommissionGroupList ||
                       (i.SubFunctionKeys != null && i.SubFunctionKeys.Contains(PermissionKeys.CustomerInfoCommissionGroupList)));
-
             }
             return userAuthInfo.FunctionList != null && userAuthInfo.FunctionList.Any(x => x.FunctionKey == PermissionKeys.CustomerInfoCommissionGroupList);
         }
@@ -74,7 +93,6 @@ namespace Fanex.Athena.Service.StatelessCore
                 return userAuthInfo.PortalFunctionList != null && (userAuthInfo.PortalFunctionList.Any(i => i.FunctionKey
                      == PermissionKeys.CustomerInfoSpecialBA
                      || (i.SubFunctionKeys != null && i.SubFunctionKeys.Contains(PermissionKeys.CustomerInfoSpecialBA))));
-
             }
             return userAuthInfo.FunctionList != null && userAuthInfo.FunctionList.Any(x => x.FunctionKey == PermissionKeys.CustomerInfoSpecialBA);
         }

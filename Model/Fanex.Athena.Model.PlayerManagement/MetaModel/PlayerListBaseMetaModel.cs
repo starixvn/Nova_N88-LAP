@@ -1,0 +1,15 @@
+﻿namespace Fanex.Athena.Model.PlayerManagement.MetaModel
+{
+    using Fanex.Athena.Model.Core.MetaModel;
+
+    public class PlayerListBaseMetaModel : IMetaModelCurrencyIdList, IMetaModelAgent, IMetaModelSiteName
+    {
+        public string SiteName { get; set; }
+
+        public string CurrencyIdList { get; set; }
+
+        public string AgentListXml { get; set; }
+
+        public bool IsExcludedTestData { get; set; }
+    }
+}

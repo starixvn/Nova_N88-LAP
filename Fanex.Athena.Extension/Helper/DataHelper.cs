@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DataHelper.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Extension.Helper
+﻿namespace Fanex.Athena.Extension.Helper
 {
     using Fanex.Athena.Resources;
 

@@ -148,7 +148,7 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push([56,"www/js/build/dev/pages/lib/common","www/js/build/dev/pages/lib/jqgrid"]);
+/******/ 	deferredModules.push([11,"www/js/build/dev/pages/lib/common","www/js/build/dev/pages/lib/jqgrid"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
@@ -7133,20 +7133,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
         },
 
         renderBreadCrumb: function (level, licenseeId) {
+            const $container = $('#level-link-container');
             const levelNumber = Number(level);
             if (levelNumber === 0) {
-                $('.breadCrumbHolder').hide();
+                $container.hide();
             }
             else {
-                $('.breadCrumbHolder').show();
-                $('#level-link-container .level0').show();
+                $container.show();
+                $container.find('.level0').show();
 
                 const isLevel2 = levelNumber === 2;
-                $('#level-link-container .level2').toggle(isLevel2).toggleClass('active', isLevel2);
+                $container.find('.level2').toggle(isLevel2).toggleClass('active', isLevel2);
 
                 const allowShowLevel1 = licenseeId ? licenseeId === LICENSEE_12BET : true;
-                $('#level-link-container .level1').toggle(allowShowLevel1);
-                $('#level-link-container .level1').toggleClass('active', allowShowLevel1 && !isLevel2);
+                $container.find('.level1').toggle(allowShowLevel1);
+                $container.find('.level1').toggleClass('active', allowShowLevel1 && !isLevel2);
             }
         }
     };
@@ -7157,7 +7158,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
 
 /***/ }),
 
-/***/ 56:
+/***/ 11:
 /*!******************************************************************!*\
   !*** multi ./www/js/source/pages/report/customerwinloss/main.js ***!
   \******************************************************************/

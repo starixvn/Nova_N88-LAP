@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LogController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.CustomerLog
+﻿namespace Fanex.Athena.Api.CustomerLog
 {
     using System.Collections.Generic;
     using System.Linq;

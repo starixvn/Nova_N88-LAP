@@ -1,9 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IAuthorizationService.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
+﻿
 namespace Fanex.Athena.Service.StatelessCore.Interfaces
 {
     using System.Collections.Generic;
@@ -12,7 +7,9 @@ namespace Fanex.Athena.Service.StatelessCore.Interfaces
 
     public interface IAuthorizationService
     {
-        bool HasPermissions(UserAuthInfo userAuthInfo, params string[] permissionKeys);
+        bool HasPermissions(int userId, params string[] permissionKeys);
+
+        bool HasHostPermissions(int userId, params string[] permissionKeys);
 
         bool HasPermissionOnData(IDictionary<int, int[]> currencyAgents, int custId, long transId);
 

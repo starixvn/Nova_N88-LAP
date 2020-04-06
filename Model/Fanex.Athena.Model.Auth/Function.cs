@@ -1,18 +1,8 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Function.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Model.Auth
+﻿namespace Fanex.Athena.Model.Auth
 {
-    using System;
-    using System.Resources;
     using Fanex.Athena.Resources;
+    using System;
 
-    /// <summary>
-    /// Function class.
-    /// </summary>
     [Serializable]
     public class Function
     {
@@ -45,5 +35,7 @@ namespace Fanex.Athena.Model.Auth
         public string FunctionKey { get; set; }
 
         public bool IsFunction { get; set; }
+
+        public int Policy { get; set; }
     }
 }

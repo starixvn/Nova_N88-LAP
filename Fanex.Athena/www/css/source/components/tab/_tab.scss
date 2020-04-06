@@ -1,9 +1,8 @@
 ﻿@import "../../scss/abstracts/variables";
 
 $colorText: $bgHeaderTableLevel1;
-$colorBorderBottom: #9e9e9e;
-$colorActiveTab: #f05b1f;
-
+$colorBorderBottom: #c4c4c4;
+$colorActiveTab: #e15f00;
 $tabheight: 40px;
 
 .header-tab {
@@ -35,12 +34,13 @@ $tabheight: 40px;
                 width: 100%;
                 height: 100%;
                 padding: 0 24px;
-                font-size: 14px;
+                font-size: 13px;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 transition: color .28s ease;
 
                 &.active {
+                    color: $colorActiveTab;
                     background-color: transparent;
                     font-weight: bold;
                     border-bottom: 3px solid $colorActiveTab;

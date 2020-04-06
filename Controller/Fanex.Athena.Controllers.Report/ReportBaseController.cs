@@ -1,16 +1,13 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-
-    using Model.Core.DTO.Common;
-    using Model.Core.MetaModel.Product;
-
-    using ONEbook.UM.Filters;
-
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Fanex.Athena.Model.Core.MetaModel.Product;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Model.Core.DTO.Common;
+    using ONEbook.UM.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]

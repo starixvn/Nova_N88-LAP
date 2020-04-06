@@ -1,0 +1,137 @@
+﻿@using Fanex.Athena.Model.UserManagement.Model;
+@model IPagedList<UserLoginLog>
+
+@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
+}
+@section pagejs {
+    <script src="@Url.ContentLink("/Scripts/Account/msgbox-0.0.1.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Account/NAP.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Log/LogLogin.js")" type="text/javascript"></script>
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm(null, null, FormMethod.Get, new { @role = "form", @class = "page-filter" }))
+    {
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group">
+                    <label class="label-text">@ViewResources.Name</label>
+                    <input type="text" class="input-text" value="@ViewBag.Criteria.Name" name="name" id="Name" autocomplete="off" />
+                    <input type="hidden" value="@ViewBag.Criteria.Name" id="hdnUsename" />
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group datetime">
+                    <label class="label-text">@ViewResources.From</label>
+                    <input type="date" class="input-text" value="@ViewBag.Criteria.From.ToString("yyyy-MM-dd")" name="From" id="From" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group datetime">
+                    <label class="label-text">@ViewResources.To</label>
+                    <input type="date" class="input-text" value="@ViewBag.Criteria.To.ToString("yyyy-MM-dd")" name="To" id="To" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group">
+                    <div class="button-group">
+                        <input type="submit" class="btn btn-submit" value="@ViewResources.Submit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <table class="table" id="table-loginlog">
+        <thead>
+            <tr class="level1">
+                <th>#</th>
+                <th>@ViewResources.LogID</th>
+                <th>@ViewResources.LogDate</th>
+                <th>@ViewResources.Username</th>
+                <th>@ViewResources.IP</th>
+                <th>@ViewResources.Domain_Name</th>
+                <th>@ViewResources.Browser_Name</th>
+                <th>@ViewResources.Platform</th>
+                <th>@ViewResources.Country</th>
+            </tr>
+        </thead>
+        <tbody id="grid-user">
+            @if (!ReferenceEquals(Model, null) && Model.Count() > 0)
+            {
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+                    var NA = "NA";
+
+                    <tr @Html.Raw(rowCss)>
+                        <td class="text-center">
+                            @((Model.PageSize * (Model.PageIndex) + i + 1))
+                        </td>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.LogDate
+                        </td>
+                        <td>
+                            @item.UserName
+                        </td>
+                        <td>
+                            @item.IP
+                        </td>
+                        <td>
+                            @item.DomainName
+                        </td>
+                        <td>
+                            @item.BrowserName
+                        </td>
+                        <td>
+                            @item.Platform
+                        </td>
+                        <td>
+                            @item.CountryCode.GetGeoName()
+                        </td>
+                    </tr>
+
+                    i++;
+                }
+            }
+            else
+            {
+                <tr class="no-info">
+                    <td colspan="12" class="text-center">
+                        @ViewResources.NoInformationAvailable
+                    </td>
+                </tr>
+            }
+        </tbody>
+        @if (Model != null && Model.Count() > 0)
+        {
+            <tfoot>
+                <tr class="page-container">
+                    <td colspan="12">
+                        <span class="items-per-page-wrp">
+                            @ViewResources.PageSize
+                            @Html.DropDownList("items-per-page", new List<SelectListItem> {
+                                new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
+                                new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
+                                new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
+                            }, new { id = string.Empty, @class = "items-per-page" })
+                        </span>
+                        <span class="paging">
+                            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("name", ViewBag.Criteria.Name)).Options(o => o.AddRouteValue("From", ViewBag.Criteria.From)).Options(o => o.AddRouteValue("To", ViewBag.Criteria.To)).Options(o => o.AddRouteValue("size", ViewBag.Criteria.PageSize))
+                        </span>
+                    </td>
+                </tr>
+            </tfoot>
+        }
+    </table>
+</div>

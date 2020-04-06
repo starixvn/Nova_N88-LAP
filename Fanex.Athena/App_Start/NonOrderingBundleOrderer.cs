@@ -3,9 +3,6 @@
     using System.Collections.Generic;
     using System.Web.Optimization;
 
-    /// <summary>
-    /// Non ordering bundle order.
-    /// </summary>
     internal class NonOrderingBundleOrderer : IBundleOrderer
     {
         #region IBundleOrderer Members

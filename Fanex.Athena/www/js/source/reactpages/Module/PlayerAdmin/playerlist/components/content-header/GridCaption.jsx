@@ -73,7 +73,7 @@ export class GridCaption extends React.Component {
         }
 
         const displayedColumn = buildDisplayedColumnObject(displayedColumnList);
-        const dataList = selectedPlayer ? [playerList.find(item => item.LicenseeCustId === selectedPlayer.licenseeCustId)] : playerList;
+        const dataList = selectedPlayer ? [playerList.find(item => item.IbcCustId === selectedPlayer.ibcCustId)] : playerList;
 
         exportExcel(dataList, param, displayedColumn);
     }

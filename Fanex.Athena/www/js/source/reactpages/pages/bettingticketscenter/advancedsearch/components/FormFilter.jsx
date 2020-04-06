@@ -50,8 +50,8 @@ export class FormFilter extends Component {
     }
 
     get isValidModel() {
-        return !!this.props.selectedProduct 
-            && !!this.props.selectedStatus 
+        return !!this.props.selectedProduct
+            && !!this.props.selectedStatus
             && !!this.props.selectedLiveStatus
             && !!this.props.selectedCurrency
             && validateBaseCurrency(this.props.selectedBaseCurrency);
@@ -125,7 +125,6 @@ export class FormFilter extends Component {
             if (contentType && contentType.indexOf('application/json') > -1) {
                 const RowsExceedLimitErrorCode = 1001;
                 Site.readAsJson(response.data, (result) => {
-
                     if (result.ErrorCode === RowsExceedLimitErrorCode) {
                         this._showExportWarning();
                     }
@@ -133,7 +132,6 @@ export class FormFilter extends Component {
                         const msg = result.ErrorMsg || LangHelper.getSingleResource("ErrorProcessingMsg");
                         alert(msg);
                     }
-
                 });
             } else {
                 const NoContentStatusCode = 204;
@@ -141,7 +139,7 @@ export class FormFilter extends Component {
                     alert(LangHelper.getSingleResource("NoInfo"));
                 }
                 else {
-                    const fileName = "BettingTicketsCenter_AdvancedSearch." +
+                    const fileName = "BetHistory_AdvancedSearch." +
                         (response.headers["content-type"] === "application/zip" ? "zip" : "xls");
 
                     Site.downloadFile(response.data, fileName);
@@ -168,7 +166,7 @@ export class FormFilter extends Component {
 
         return (<UserGuide
             title={LangHelper.getSingleResource("UserGuide")}
-            contentTitle={LangHelper.getSingleResource("BettingTicketCenter")}
+            contentTitle={LangHelper.getSingleResource("BetHistory")}
             onClick={this.showUserGuide}
             content={userGuideContent} />)
     }
@@ -298,7 +296,7 @@ export class FormFilter extends Component {
         }
         else {
             const currencyName = AppData.currencyList.find(x => x.Id == currencyIdList).Value;
-            
+
             if (!this.baseCurrencyList.find(x => x.label === currencyName)) {
                 baseCurrency = '';
                 this.baseCurrencyList = AppData.baseCurrencyList.slice(0);

@@ -1,12 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-
-using System;
-using System.IO;
-using System.Web.Mvc;
-
-namespace Fanex.Athena.Controllers.Base
+﻿namespace Fanex.Athena.Controllers.Base
 {
+    using System;
+    using System.IO;
+    using System.Web.Mvc;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+
     public class JsonNetResult : JsonResult
     {
         private readonly string _jsonString;

@@ -1,26 +1,19 @@
 ﻿namespace Fanex.Athena.Controllers.BetList
 {
-    using DataAccess.Core.Configuration.Interfaces;
-
-    using Excel.Base.Helpers;
-
-    using Fanex.Athena.Model.Core.DataDomain;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Utility;
-
-    using Model.BetList.MetaModel;
-    using Model.Core.DTO.Configuration;
-
-    using ONEbook.UM.Filters;
-
-    using Resources;
-
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
-
+    using DataAccess.Core.Configuration.Interfaces;
+    using Excel.Base.Helpers;
+    using Fanex.Athena.Model.Core.DataDomain;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Utility;
+    using Model.BetList.MetaModel;
+    using Model.Core.DTO.Configuration;
+    using ONEbook.UM.Filters;
+    using Resources;
     using VendorAdapter.Interfaces;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
@@ -86,17 +79,12 @@
             return BalanceUpDataAccessInstance.GetBalanceUp();
         }
 
-        /// <summary>
-        /// Set the Licensee Id, Balance Up Date.
-        /// Remove the UTC part of DateTime value.
-        /// </summary>
-        /// <param name="metaModel">The metal model.</param>
-        /// <returns>The bet list metal model.</returns>
         protected BetListMetaModel CreateDefaultMetaModel(BetListMetaModel metaModel = null)
         {
             var licenseeSession = SessionServiceInstance.LicenseeSession;
             var userSession = SessionServiceInstance.UserSession;
             var defaultMetaModel = metaModel ?? new BetListMetaModel();
+
             defaultMetaModel.LicenseeId = licenseeSession.LicenseeId;
             defaultMetaModel.UserId = userSession.UserId;
             defaultMetaModel.HasPlayerCom = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm;

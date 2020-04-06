@@ -701,7 +701,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var getSiteSetting = function getSiteSetting(licType, isSubsidiary) {
+var getSiteSetting = function getSiteSetting(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary) {
   return function (dispatch) {
     var service = new _lib_services_siteSettingService__WEBPACK_IMPORTED_MODULE_3__["default"]();
     service.getSetting().then(function (response) {
@@ -711,7 +711,7 @@ var getSiteSetting = function getSiteSetting(licType, isSubsidiary) {
       var isAllowedBA = !isSubsidiary && IsAllowedBA;
 
       if (isAllowedBA) {
-        var columnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_2__["buildColumnList"])(licType, isAllowedBA);
+        var columnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_2__["buildColumnList"])(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedBA);
         dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_1__["setDisplayedColumnList"])(columnList));
       }
 
@@ -808,10 +808,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var isAllowedStatement = window._pConfig.isAllowedStatement === 1;
 var AppContainer = function AppContainer(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_5__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_Loader__WEBPACK_IMPORTED_MODULE_4__["default"], {
     isLoading: props.isLoading
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormFilter__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Content__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PlayerDetail__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormFilter__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Content__WEBPACK_IMPORTED_MODULE_2__["default"], null), isAllowedStatement && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PlayerDetail__WEBPACK_IMPORTED_MODULE_6__["default"], null));
 };
 
 function mapStateToProps(state) {
@@ -932,7 +933,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
 /* harmony import */ var _jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @jsroot/components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
 /* harmony import */ var _components_sweet_alert__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../components/sweet-alert */ "./www/js/source/reactpages/components/sweet-alert/index.jsx");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -970,9 +971,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var MAX_WIDTH_PAGE = 1920;
-var DataGrid =
-/*#__PURE__*/
-function (_PureComponent) {
+var DataGrid = /*#__PURE__*/function (_PureComponent) {
   _inherits(DataGrid, _PureComponent);
 
   function DataGrid(props) {
@@ -1006,7 +1005,7 @@ function (_PureComponent) {
           displayedColumn: displayedColumn
         };
         dataRows.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_PlayerRow__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({
-          key: dataItem.LicenseeCustId
+          key: dataItem.IbcCustId
         }, rowProps)));
       }
 
@@ -1031,7 +1030,7 @@ function (_PureComponent) {
       }
 
       var dataList = selectedPlayer ? [playerList.find(function (item) {
-        return item.LicenseeCustId === selectedPlayer.licenseeCustId;
+        return item.IbcCustId === selectedPlayer.ibcCustId;
       })] : playerList;
       var displayedColumn = Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_12__["buildDisplayedColumnObject"])(displayedColumnList);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__["Table"], {
@@ -1095,16 +1094,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/components/CheckBox */ "./www/js/source/reactpages/components/CheckBox.jsx");
 /* harmony import */ var _filter_AdvancedSearch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./filter/AdvancedSearch */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/AdvancedSearch.jsx");
-/* harmony import */ var _filter_SearchOption__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./filter/SearchOption */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/SearchOption.jsx");
-/* harmony import */ var _filter_AthenaSearch__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./filter/AthenaSearch */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/AthenaSearch.jsx");
-/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-/* harmony import */ var _jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/components/collapsible-panel */ "./www/js/source/reactpages/components/collapsible-panel/index.jsx");
-/* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _filter_UserNameInput__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./filter/UserNameInput */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/UserNameInput.jsx");
-/* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-/* harmony import */ var _jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @jsroot/lib/htmlHelper */ "./www/js/source/reactpages/lib/htmlHelper.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/* harmony import */ var _jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/components/collapsible-panel */ "./www/js/source/reactpages/components/collapsible-panel/index.jsx");
+/* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
+/* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
+/* harmony import */ var _jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/lib/htmlHelper */ "./www/js/source/reactpages/lib/htmlHelper.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1144,13 +1140,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-
-
-var FormFilter =
-/*#__PURE__*/
-function (_PureComponent) {
+var FormFilter = /*#__PURE__*/function (_PureComponent) {
   _inherits(FormFilter, _PureComponent);
 
   function FormFilter(props) {
@@ -1184,32 +1174,47 @@ function (_PureComponent) {
       _this.setState(_defineProperty({}, name, value));
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleUserNameChange", function (value) {
-      _this.userNameRef.current.value = value;
+    _defineProperty(_assertThisInitialized(_this), "handleUserNameChange", function (event) {
+      var _event$target2 = event.target,
+          name = _event$target2.name,
+          value = _event$target2.value;
 
       _this.setState({
+        userName: value,
         isValidUserName: !!value
       });
     });
 
-    _this.allOddsGroupString = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_8__["oddsGroupListWithStyle"]).join(',');
+    _defineProperty(_assertThisInitialized(_this), "hangedelSystemIdChange", function (event) {
+      var _event$target3 = event.target,
+          name = _event$target3.name,
+          value = _event$target3.value;
+
+      _this.setState({
+        systemId: value,
+        isValidsystemId: !!value
+      });
+    });
+
+    _this.allOddsGroupString = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["oddsGroupListWithStyle"]).join(',');
     _this.allCurrencyString = props.currencyList.map(function (c) {
       return c.Id;
     }).join(',');
-    _this.allSpecialLevel = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_8__["specialLevelListWithColor"]).map(function (item) {
+    _this.allSpecialLevel = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["specialLevelListWithColor"]).map(function (item) {
       return item;
     }).join(',');
     _this.userGuide = _this._renderUserGuide();
     _this.userNameRef = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.state = {
       isValidUserName: false,
-      bankAccountNumber: '',
-      email: '',
+      isValidsystemId: false,
+      userName: '',
+      systemId: '',
       currencyIdList: _this.allCurrencyString,
       oddsGroup: _this.allOddsGroupString,
       specialLevel: _this.allSpecialLevel,
-      baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["baStatusList"].All,
-      searchOption: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["searchOptions"].matchPrefix
+      baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["baStatusList"].All,
+      searchOption: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["searchOptions"].matchPrefix
     };
     return _this;
   }
@@ -1217,8 +1222,8 @@ function (_PureComponent) {
   _createClass(FormFilter, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var ibcCustId = Number(_jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_13__["default"].getParam(window.location.href, 'custId'));
-      var licenseeCustId = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_13__["default"].getParam(window.location.href, 'licenseeCustId');
+      var ibcCustId = Number(_jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__["default"].getParam(window.location.href, 'custId'));
+      var licenseeCustId = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__["default"].getParam(window.location.href, 'licenseeCustId');
 
       if (ibcCustId || licenseeCustId) {
         var param = {
@@ -1226,7 +1231,7 @@ function (_PureComponent) {
           licenseeCustId: licenseeCustId
         };
         this.props.getSinglePlayer(param);
-        var userName = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_13__["default"].getParam(window.location.href, 'userName');
+        var userName = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__["default"].getParam(window.location.href, 'userName');
         this.userNameRef.current.value = userName;
         this.setState({
           isValidUserName: !!userName
@@ -1234,9 +1239,11 @@ function (_PureComponent) {
       }
 
       var _this$props = this.props,
-          type = _this$props.type,
+          hasBaPermission = _this$props.hasBaPermission,
+          hasOddsGroupPermission = _this$props.hasOddsGroupPermission,
+          hasSpecialLevelPermission = _this$props.hasSpecialLevelPermission,
           isSubsidiary = _this$props.isSubsidiary;
-      this.props.getSiteSetting(type, isSubsidiary);
+      this.props.getSiteSetting(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary);
     }
   }, {
     key: "componentDidUpdate",
@@ -1248,49 +1255,37 @@ function (_PureComponent) {
           currencyIdList: this.allCurrencyString,
           oddsGroup: this.allOddsGroupString,
           specialLevel: this.allSpecialLevel,
-          baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["baStatusList"].All
+          baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["baStatusList"].All
         });
       }
     }
   }, {
     key: "searchPlayer",
     value: function searchPlayer() {
-      var userName = this.userNameRef.current.value;
-      var _this$state = this.state,
-          bankAccountNumber = _this$state.bankAccountNumber,
-          email = _this$state.email;
-
-      if (!userName && !bankAccountNumber && !email) {
-        return;
-      }
-
-      var emailRegex = new RegExp(_lib_constants__WEBPACK_IMPORTED_MODULE_8__["emailPattern"]);
-
-      if (email && !emailRegex.test(email)) {
-        window.alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource('InvalidEmail'));
-        return;
-      }
-
+      var userName = this.state.userName;
+      var systemId = this.state.systemId;
       var _this$props2 = this.props,
           pagingOption = _this$props2.pagingOption,
           searchPlayer = _this$props2.searchPlayer,
-          currencyList = _this$props2.currencyList;
+          currencyList = _this$props2.currencyList,
+          isAdvancedSearch = _this$props2.isAdvancedSearch;
 
-      var _this$state2 = this.state,
-          specialLevel = _this$state2.specialLevel,
-          currencyIdList = _this$state2.currencyIdList,
-          oddsGroup = _this$state2.oddsGroup,
-          isValidUserName = _this$state2.isValidUserName,
-          restParam = _objectWithoutProperties(_this$state2, ["specialLevel", "currencyIdList", "oddsGroup", "isValidUserName"]);
+      var _this$state = this.state,
+          specialLevel = _this$state.specialLevel,
+          currencyIdList = _this$state.currencyIdList,
+          oddsGroup = _this$state.oddsGroup,
+          isValidUserName = _this$state.isValidUserName,
+          restParam = _objectWithoutProperties(_this$state, ["specialLevel", "currencyIdList", "oddsGroup", "isValidUserName"]);
 
       var actualSpecialLevel = specialLevel.trim();
       var isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
-      var isSelectAllOddsGroup = oddsGroup.trim().split(',').length === Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_8__["oddsGroupListWithStyle"]).length;
 
       var param = _objectSpread({}, restParam, {
-        userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_14__["encode"])(userName),
+        userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(userName),
+        systemId: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(systemId),
+        searchOption: isAdvancedSearch + 1,
         currencyIdList: isSelectAllCurrency ? '' : currencyIdList,
-        oddsGroup: isSelectAllOddsGroup ? '' : oddsGroup,
+        oddsGroup: oddsGroup,
         specialLevel: actualSpecialLevel === '' ? this.allSpecialLevel : actualSpecialLevel,
         pageSize: pagingOption.PageSize,
         pageIndex: 1
@@ -1299,53 +1294,44 @@ function (_PureComponent) {
       searchPlayer(param);
     }
   }, {
-    key: "showUserGuide",
-    value: function showUserGuide() {}
-  }, {
     key: "_renderUserGuide",
     value: function _renderUserGuide() {
       var userGuideContent = 'Player Admin User Guide';
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_10__["default"], {
-        title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource("UserGuide"),
-        contentTitle: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource("PlayerAdmin"),
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("UserGuide"),
+        contentTitle: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("PlayerAdmin"),
         onClick: this.showUserGuide,
         content: userGuideContent
       });
-    }
-  }, {
-    key: "_getUserNameLabel",
-    value: function _getUserNameLabel() {
-      return this.props.type === _lib_constants__WEBPACK_IMPORTED_MODULE_8__["licenseeType"].nonApi ? _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource("Username") : "".concat(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource("Username"), "/").concat(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource("VendorMemberID"));
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var _this$state3 = this.state,
-          bankAccountNumber = _this$state3.bankAccountNumber,
-          email = _this$state3.email,
-          searchOption = _this$state3.searchOption,
-          isValidUserName = _this$state3.isValidUserName,
-          advancedSearchParam = _objectWithoutProperties(_this$state3, ["bankAccountNumber", "email", "searchOption", "isValidUserName"]);
+      var _this$state2 = this.state,
+          bankAccountNumber = _this$state2.bankAccountNumber,
+          email = _this$state2.email,
+          searchOption = _this$state2.searchOption,
+          isValidUserName = _this$state2.isValidUserName,
+          isValidsystemId = _this$state2.isValidsystemId,
+          advancedSearchParam = _objectWithoutProperties(_this$state2, ["bankAccountNumber", "email", "searchOption", "isValidUserName", "isValidsystemId"]);
 
       var _this$props3 = this.props,
           type = _this$props3.type,
           isAdvancedSearch = _this$props3.isAdvancedSearch,
           isFilterCollapsing = _this$props3.isFilterCollapsing,
           currencyList = _this$props3.currencyList,
-          getSuggestionList = _this$props3.getSuggestionList,
-          siteSetting = _this$props3.siteSetting;
-      var currencyIdList = advancedSearchParam.currencyIdList,
-          oddsGroup = advancedSearchParam.oddsGroup,
-          specialLevel = advancedSearchParam.specialLevel;
-      var isValidParam = (isValidUserName || !!bankAccountNumber || !!email) && !!currencyIdList && !!oddsGroup && !!specialLevel;
+          hasBaPermission = _this$props3.hasBaPermission,
+          hasOddsGroupPermission = _this$props3.hasOddsGroupPermission,
+          hasSpecialLevelPermission = _this$props3.hasSpecialLevelPermission;
+      var isValidParam = isValidUserName || isValidsystemId || isAdvancedSearch;
       var iconToggle = {
         tag: 'div',
         className: isFilterCollapsing ? 'chevron down' : 'chevron up',
         style: {}
       };
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_6__["default"], {
         className: "page-filter",
         iconToggle: iconToggle,
         stickyFooter: this.userGuide,
@@ -1363,30 +1349,36 @@ function (_PureComponent) {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "label-text"
-      }, this._getUserNameLabel(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_SearchOption__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        value: searchOption,
-        onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_UserNameInput__WEBPACK_IMPORTED_MODULE_12__["default"], {
-        ref: this.userNameRef,
-        onSelectItem: function onSelectItem(value) {
-          return _this2.handleUserNameChange(value);
-        },
-        minChar: 3,
-        getSuggestionList: getSuggestionList,
-        searchOption: searchOption,
+      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "input-text",
+        id: "username",
+        name: "username",
+        type: "text",
         onKeyPress: this.handlePressEnter,
         onChange: function onChange(value) {
           return _this2.handleUserNameChange(value);
         }
-      }))), type === _lib_constants__WEBPACK_IMPORTED_MODULE_8__["licenseeType"].nonApi && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_AthenaSearch__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        onChange: this.handleChange,
-        bankAccountNumber: bankAccountNumber,
-        email: email,
-        onKeyPress: this.handlePressEnter
-      }), isAdvancedSearch && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_AdvancedSearch__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "label-text"
+      }, "SystemID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "input-text",
+        id: "systemID",
+        name: "systemID",
+        type: "text",
+        onKeyPress: this.handlePressEnter,
+        onChange: function onChange(value) {
+          return _this2.hangedelSystemIdChange(value);
+        }
+      }))), isAdvancedSearch && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_AdvancedSearch__WEBPACK_IMPORTED_MODULE_5__["default"], {
         currencyList: currencyList,
         param: advancedSearchParam,
-        isAllowedBA: siteSetting.isAllowedBA,
+        isAllowedBA: hasBaPermission.isallowed,
+        isAllowedOddsGroup: hasOddsGroupPermission.isallowed,
+        isAllowedSpecialLevel: hasSpecialLevelPermission.isallowed,
         onChange: this.handleSpecificInputChange
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-2 col-sm-2 col-lg-2 col-xl-1"
@@ -1399,7 +1391,7 @@ function (_PureComponent) {
         className: "btn btn-submit",
         disabled: !isValidParam,
         onClick: this.handleSubmit
-      }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource("Submit"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("Submit"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -1409,7 +1401,7 @@ function (_PureComponent) {
         onChange: function onChange(checked) {
           return _this2.props.setAdvancedSearch(checked);
         },
-        label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource("AdvancedSearch")
+        label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("AdvancedSearch")
       })))));
     }
   }]);
@@ -1440,16 +1432,20 @@ function mapStateToProps(state) {
       isFilterCollapsing = state.isFilterCollapsing,
       pagingOption = state.pagingOption,
       currencyList = state.currencyList,
-      siteSetting = state.siteSetting,
-      isSubsidiary = state.isSubsidiary;
+      isSubsidiary = state.isSubsidiary,
+      hasBaPermission = state.hasBaPermission,
+      hasOddsGroupPermission = state.hasOddsGroupPermission,
+      hasSpecialLevelPermission = state.hasSpecialLevelPermission;
   return Object.assign({}, {
     type: type,
     isAdvancedSearch: isAdvancedSearch,
     isFilterCollapsing: isFilterCollapsing,
     pagingOption: pagingOption,
     currencyList: currencyList,
-    siteSetting: siteSetting,
-    isSubsidiary: isSubsidiary
+    isSubsidiary: isSubsidiary,
+    hasBaPermission: hasBaPermission,
+    hasOddsGroupPermission: hasOddsGroupPermission,
+    hasSpecialLevelPermission: hasSpecialLevelPermission
   });
 }
 
@@ -1474,7 +1470,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/index.js");
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1499,9 +1495,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var PlayerDetail =
-/*#__PURE__*/
-function (_PureComponent) {
+var PlayerDetail = /*#__PURE__*/function (_PureComponent) {
   _inherits(PlayerDetail, _PureComponent);
 
   function PlayerDetail(props) {
@@ -1552,15 +1546,11 @@ function (_PureComponent) {
     value: function _renderTabList(tabList) {
       var _this2 = this;
 
-      var selectedPlayer = this.props.selectedPlayer;
+      console.log(tabList);
 
       var selectedTabName = this.props.selectedTabName || this._getDefaultSelectedTab();
 
-      var isDeposit = selectedPlayer.isDeposit,
-          isArchived = selectedPlayer.isArchived;
-      var renderedTabList = !isDeposit || isArchived ? tabList.filter(function (item) {
-        return !_lib_constants__WEBPACK_IMPORTED_MODULE_4__["excludedTabNameWithNonDepositAndArchived"].includes(item.Name);
-      }) : tabList;
+      var renderedTabList = tabList;
       return renderedTabList.map(function (item) {
         var actionUrl = _this2._buildActionUrl(item.SystemType, item.Action, item.Name);
 
@@ -1705,7 +1695,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1737,9 +1727,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var GridCaption =
-/*#__PURE__*/
-function (_React$Component) {
+var GridCaption = /*#__PURE__*/function (_React$Component) {
   _inherits(GridCaption, _React$Component);
 
   function GridCaption(props) {
@@ -1780,7 +1768,7 @@ function (_React$Component) {
 
       var displayedColumn = Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_7__["buildDisplayedColumnObject"])(displayedColumnList);
       var dataList = selectedPlayer ? [playerList.find(function (item) {
-        return item.LicenseeCustId === selectedPlayer.licenseeCustId;
+        return item.IbcCustId === selectedPlayer.ibcCustId;
       })] : playerList;
       exportExcel(dataList, param, displayedColumn);
     });
@@ -1906,7 +1894,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1933,9 +1921,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var AdvancedSearch =
-/*#__PURE__*/
-function (_React$Component) {
+var AdvancedSearch = /*#__PURE__*/function (_React$Component) {
   _inherits(AdvancedSearch, _React$Component);
 
   function AdvancedSearch(props) {
@@ -2000,7 +1986,9 @@ function (_React$Component) {
       var _this$props = this.props,
           currencyList = _this$props.currencyList,
           param = _this$props.param,
-          isAllowedBA = _this$props.isAllowedBA;
+          isAllowedBA = _this$props.isAllowedBA,
+          isAllowedOddsGroup = _this$props.isAllowedOddsGroup,
+          isAllowedSpecialLevel = _this$props.isAllowedSpecialLevel;
       var currencyIdList = param.currencyIdList,
           oddsGroup = param.oddsGroup,
           specialLevel = param.specialLevel,
@@ -2030,7 +2018,7 @@ function (_React$Component) {
         onChange: function onChange(currentItem, selectedItemsKey) {
           return _this2.handleChange('currencyIdList', selectedItemsKey);
         }
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), isAllowedOddsGroup && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -2045,7 +2033,7 @@ function (_React$Component) {
         onChange: function onChange(currentItem, selectedItemsKey) {
           return _this2.handleChange('oddsGroup', selectedItemsKey);
         }
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), isAllowedSpecialLevel && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -2094,308 +2082,6 @@ AdvancedSearch.propTypes = propTypes;
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/AthenaSearch.jsx":
-/*!***************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/AthenaSearch.jsx ***!
-  \***************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-
-
-
-
-var AthenaSearch = function AthenaSearch(props) {
-  var bankAccountNumber = props.bankAccountNumber,
-      email = props.email,
-      onChange = props.onChange,
-      onKeyPress = props.onKeyPress;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "label-text"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("BankAccountNumber")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "input-text",
-    id: "bankAccountNumber",
-    name: "bankAccountNumber",
-    type: "text",
-    value: bankAccountNumber,
-    autoComplete: "off",
-    onChange: onChange,
-    onKeyPress: onKeyPress,
-    placeholder: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('PlaceholderBankAccount')
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "label-text"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "input-text",
-    id: "email",
-    name: "email",
-    type: "text",
-    value: email,
-    autoComplete: "off",
-    onChange: onChange,
-    onKeyPress: onKeyPress,
-    placeholder: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('PlaceholderEmail')
-  }))));
-};
-
-var propTypes = {
-  bankAccountNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
-  email: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
-  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
-  onKeyPress: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired
-};
-AthenaSearch.propTypes = propTypes;
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AthenaSearch));
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/SearchOption.jsx":
-/*!***************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/SearchOption.jsx ***!
-  \***************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/components/dropdown */ "./www/js/source/reactpages/components/dropdown/index.js");
-/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var SearchOption = function SearchOption(props) {
-  var value = props.value,
-      onChange = props.onChange;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isOpen = _useState2[0],
-      setIsOpen = _useState2[1];
-
-  var handleToggleDropdown = function handleToggleDropdown() {
-    setIsOpen(!isOpen);
-  };
-
-  var handleClose = function handleClose() {
-    setIsOpen(false);
-  };
-
-  var toggleButton = {
-    className: 'toggle-outline toggle-outline-light'
-  };
-  var selectedValue = value || _lib_constants__WEBPACK_IMPORTED_MODULE_2__["searchOptions"].matchPrefix;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__["DropdownButton"], {
-    className: "search-option",
-    isOpen: isOpen,
-    toggleButton: toggleButton,
-    onToggle: handleToggleDropdown,
-    buttonLabel: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "material-icons"
-    }, "settings"),
-    onClose: handleClose
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], {
-    tag: "div"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "selection-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "radio",
-    name: "searchOption",
-    value: _lib_constants__WEBPACK_IMPORTED_MODULE_2__["searchOptions"].matchPrefix,
-    checked: selectedValue === _lib_constants__WEBPACK_IMPORTED_MODULE_2__["searchOptions"].matchPrefix,
-    onChange: onChange
-  }), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('MatchPrefix'), " \"", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "keyword"
-  }, "test"), "\"ABCD")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], {
-    tag: "div"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "selection-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "radio",
-    name: "searchOption",
-    value: _lib_constants__WEBPACK_IMPORTED_MODULE_2__["searchOptions"].matchCase,
-    checked: selectedValue === _lib_constants__WEBPACK_IMPORTED_MODULE_2__["searchOptions"].matchCase,
-    onChange: onChange
-  }), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('MatchCase'), " AB\"", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "keyword"
-  }, "test"), "\"CD")));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (SearchOption);
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/UserNameInput.jsx":
-/*!****************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/UserNameInput.jsx ***!
-  \****************************************************************************************************/
-/*! exports provided: UserNameInput, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserNameInput", function() { return UserNameInput; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/components/dropdown */ "./www/js/source/reactpages/components/dropdown/index.js");
-/* harmony import */ var _jsroot_components_utils_timer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/components/utils/timer */ "./www/js/source/reactpages/components/utils/timer.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
-
-
-var UserNameInput = react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(function (props, userNameRef) {
-  var onSelectItem = props.onSelectItem,
-      minChar = props.minChar,
-      getSuggestionList = props.getSuggestionList,
-      searchOption = props.searchOption,
-      onChange = props.onChange,
-      inputAttributes = _objectWithoutProperties(props, ["onSelectItem", "minChar", "getSuggestionList", "searchOption", "onChange"]);
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isOpenSuggestion = _useState2[0],
-      setIsOpenSuggestion = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      suggestionList = _useState4[0],
-      setSuggestionList = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      dropdownStyle = _useState6[0],
-      setDropdownStyle = _useState6[1];
-
-  var cachedDataRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])({});
-
-  var handleChange = function handleChange() {
-    var element = userNameRef.current;
-
-    if (!element) {
-      return;
-    }
-
-    var rect = element.getBoundingClientRect();
-    var style = {
-      left: rect.left,
-      top: rect.top + rect.height,
-      width: rect.width,
-      position: 'fixed'
-    };
-
-    var handleSuggestionResult = function handleSuggestionResult(resultData) {
-      setDropdownStyle(style);
-      setSuggestionList(resultData);
-      var hasData = resultData && resultData.length;
-      setIsOpenSuggestion(!!hasData);
-    };
-
-    var value = element.value;
-
-    if (value.length >= minChar) {
-      var cachedData = cachedDataRef.current;
-      var cacheKey = value + '_' + searchOption;
-
-      if (cachedData[cacheKey]) {
-        var result = cachedData[cacheKey];
-        handleSuggestionResult(result);
-      } else {
-        var param = {
-          keyword: value,
-          searchType: searchOption
-        };
-        getSuggestionList(param).then(function (response) {
-          var result = response.data || [];
-          handleSuggestionResult(result);
-          cachedData[cacheKey] = result;
-        });
-      }
-    } else {
-      setIsOpenSuggestion(false);
-      setSuggestionList([]);
-    }
-
-    onChange && onChange(value);
-  };
-
-  var debounceChange = _jsroot_components_utils_timer__WEBPACK_IMPORTED_MODULE_2__["default"].debounce(handleChange, 300);
-
-  var handleSelectSuggestionItem = function handleSelectSuggestionItem(value) {
-    onSelectItem && onSelectItem(value);
-    handleCloseDropdown();
-  };
-
-  var handleCloseDropdown = function handleCloseDropdown() {
-    setIsOpenSuggestion(false);
-  };
-
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pa-username"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
-    className: "input-text",
-    id: "userName",
-    name: "userName",
-    type: "text",
-    ref: userNameRef,
-    autoComplete: "off",
-    onChange: debounceChange
-  }, inputAttributes)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dropdown"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__["DropdownMenu"], {
-    isOpen: isOpenSuggestion,
-    style: dropdownStyle
-  }, suggestionList.map(function (item) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], {
-      key: item,
-      onClick: function onClick() {
-        return handleSelectSuggestionItem(item);
-      }
-    }, item);
-  }))));
-});
-/* harmony default export */ __webpack_exports__["default"] = (UserNameInput);
-
-/***/ }),
-
 /***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/BaStatusCell.jsx":
 /*!*************************************************************************************************!*\
   !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/BaStatusCell.jsx ***!
@@ -2441,11 +2127,13 @@ var BaStatusCell = function BaStatusCell(props) {
       OddsGroup = dataItem.OddsGroup,
       IsArchived = dataItem.IsArchived,
       LicenseeCustId = dataItem.LicenseeCustId;
+  var canView = hasBaPermission.isallowed;
+  var canUpdate = canView && hasBaPermission.policy == 2;
 
   var handleChangeBaStatus = function handleChangeBaStatus(event) {
     event.preventDefault();
 
-    if (!hasBaPermission) {
+    if (!canUpdate) {
       return;
     }
 
@@ -2499,9 +2187,9 @@ var BaStatusCell = function BaStatusCell(props) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
-    className: "center-align" + "".concat(!hasBaPermission ? ' ba-disabled' : '')
+    className: "center-align" + "".concat(!canUpdate ? ' ba-disabled' : '')
   }, !IsArchived && BaStatus !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_Switcher__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    disabled: !hasBaPermission,
+    disabled: !canUpdate,
     checked: BaStatus,
     onChange: handleChangeBaStatus
   }));
@@ -2703,7 +2391,8 @@ var OddsGroupCell = function OddsGroupCell(props) {
       hasOddsGroupPermission = props.hasOddsGroupPermission;
   var value = dataItem.OddsGroup;
   var style = _lib_constants__WEBPACK_IMPORTED_MODULE_3__["oddsGroupListWithStyle"][value];
-  var canUpdate = hasOddsGroupPermission && !dataItem.BaStatus;
+  var canView = hasOddsGroupPermission.isallowed;
+  var canUpdate = canView && hasOddsGroupPermission.policy == 2 && !dataItem.BaStatus;
 
   var handleToggleOddsGroup = function handleToggleOddsGroup(event) {
     if (!canUpdate) {
@@ -2948,40 +2637,32 @@ var PlayerRow = function PlayerRow(props) {
       displayedColumn = props.displayedColumn;
   var LicenseeCustId = dataItem.LicenseeCustId,
       SystemId = dataItem.SystemId,
-      RealName = dataItem.RealName,
       Currency = dataItem.Currency,
       CurrentBalance = dataItem.CurrentBalance,
       OutstandingBalance = dataItem.OutstandingBalance,
-      LastTransaction = dataItem.LastTransaction,
-      Email = dataItem.Email,
       OddsGroup = dataItem.OddsGroup,
-      SpecialLevel = dataItem.SpecialLevel,
-      IsDeposit = dataItem.IsDeposit,
-      IsArchived = dataItem.IsArchived;
-  var canShowMainColumn = IsDeposit && !IsArchived;
+      SpecialLevel = dataItem.SpecialLevel;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
     key: LicenseeCustId
-  }, displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].Status] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StatusCell__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].UserName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserNameCell__WEBPACK_IMPORTED_MODULE_7__["default"], {
     dataItem: dataItem
-  })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].UserName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserNameCell__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    dataItem: dataItem
-  })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].SystemId] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, SystemId), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].RealName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, RealName), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].Currency] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+  })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].SystemId] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, SystemId), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].Currency] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "center-align"
   }, Currency), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].CurrentBalance] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "right-align"
-  }, canShowMainColumn && _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_6__["default"].formatDecimal(CurrentBalance)), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].OutstandingBalance] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_6__["default"].formatDecimal(CurrentBalance)), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].OutstandingBalance] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "right-align"
-  }, canShowMainColumn && _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_6__["default"].formatDecimal(OutstandingBalance)), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].OddsGroup] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_6__["default"].formatDecimal(OutstandingBalance)), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].OddsGroup] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "center-align"
-  }, canShowMainColumn && OddsGroup !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OddsGroupCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, OddsGroup !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OddsGroupCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     dataItem: dataItem
   })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].BaStatus] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaStatusCell__WEBPACK_IMPORTED_MODULE_11__["default"], {
     dataItem: dataItem
   }), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].SpecialLevel] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "center-align"
-  }, canShowMainColumn && SpecialLevel !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SpecialLevelCell__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, SpecialLevel !== undefined && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SpecialLevelCell__WEBPACK_IMPORTED_MODULE_9__["default"], {
     dataItem: dataItem
-  })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].LastTransaction] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, LastTransaction), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].Email] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, Email));
+  })));
 };
 
 function mapDispatchToProps(dispatch) {
@@ -3034,9 +2715,11 @@ var SpecialLevelCell = function SpecialLevelCell(props) {
   var style = {
     backgroundColor: _lib_constants__WEBPACK_IMPORTED_MODULE_3__["specialLevelListWithColor"][value]
   };
+  var canView = hasSpecialLevelPermission.isallowed;
+  var canUpdate = canView && hasSpecialLevelPermission.policy == 2;
 
   var handleToggleSpecialLevel = function handleToggleSpecialLevel(event) {
-    if (!hasSpecialLevelPermission) {
+    if (!canUpdate) {
       return;
     }
 
@@ -3048,7 +2731,7 @@ var SpecialLevelCell = function SpecialLevelCell(props) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_DropdownLabel__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: hasSpecialLevelPermission ? '' : 'disabled',
+    className: canUpdate ? '' : 'disabled',
     text: Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_7__["getSpecialLevelText"])(value),
     labelStyle: style,
     onClick: handleToggleSpecialLevel
@@ -3590,9 +3273,7 @@ var UserNameCell = function UserNameCell(props) {
     className: "btn-default btn-link btn-icon cell-menu",
     onMouseEnter: handleEnterContextMenu,
     onMouseLeave: handleLeaveContextMenu
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "material-icons"
-  }, "edit")));
+  }));
 };
 
 function mapDispatchToProps(dispatch) {
@@ -3655,11 +3336,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var type = window.initialState.type;
-var hasBaPermission = window._pConfig.hasBaPermission === 1;
-var hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission === 1;
-var hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission === 1;
-var displayedColumnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__["buildDefaultColumnList"])(type);
+var hasBaPermission = window._pConfig.hasBaPermission;
+var hasOddsGroupPermission = window._pConfig.hasOddsGroupPermission;
+var hasSpecialLevelPermission = window._pConfig.hasSpecialLevelPermission;
+var isAllowedCustomerComm = window._pConfig.isAllowedCustomerComm === 1;
+var displayedColumnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__["buildDefaultColumnList"])(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission);
 var siteSetting = {
   isAllowedCustomerComm: false,
   isAllowedBA: false
@@ -3670,7 +3351,8 @@ var defaultState = _objectSpread({}, window.initialState, {
   hasBaPermission: hasBaPermission,
   siteSetting: siteSetting,
   hasOddsGroupPermission: hasOddsGroupPermission,
-  hasSpecialLevelPermission: hasSpecialLevelPermission
+  hasSpecialLevelPermission: hasSpecialLevelPermission,
+  isAllowedCustomerComm: isAllowedCustomerComm
 });
 
 var store = _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_5__["default"].createStore(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], defaultState);
@@ -3765,34 +3447,22 @@ var licenseeType = {
   nonApi: 1
 };
 var fields = {
-  Status: 'Status',
   UserName: 'UserName',
   SystemId: 'SystemId',
-  RealName: 'RealName',
   Currency: 'Currency',
   CurrentBalance: 'CurrentBalance',
   OutstandingBalance: 'OutstandingBalance',
   OddsGroup: 'OddsGroup',
   BaStatus: 'BaStatus',
-  SpecialLevel: 'SpecialLevel',
-  LastTransaction: 'LastTransaction',
-  Email: 'Email'
+  SpecialLevel: 'SpecialLevel'
 };
 var columnList = [{
-  key: fields.Status,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Status'),
-  show: true
-}, {
   key: fields.UserName,
   value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Username'),
   show: true
 }, {
   key: fields.SystemId,
   value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SystemId'),
-  show: true
-}, {
-  key: fields.RealName,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('RealName'),
   show: true
 }, {
   key: fields.Currency,
@@ -3817,14 +3487,6 @@ var columnList = [{
 }, {
   key: fields.SpecialLevel,
   value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SpecialLevel'),
-  show: true
-}, {
-  key: fields.LastTransaction,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('LastTransfer'),
-  show: true
-}, {
-  key: fields.Email,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Email'),
   show: true
 }];
 var contextMenuKeys = {
@@ -3887,7 +3549,7 @@ var searchOptions = {
 var defaultPagingOption = {
   PageIndex: 1,
   PageSize: 50,
-  PageList: [50],
+  PageList: [50, 100, 200, 300, 400, 500, 1000, 2000],
   TotalItem: null
 };
 var playerStatus = {
@@ -3913,15 +3575,12 @@ var headerText = {
   Status: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Status'),
   UserName: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Username'),
   SystemId: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SystemId'),
-  RealName: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('RealName'),
   Currency: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Currency'),
   CurrentBalance: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CurrentBalance'),
   OutstandingBalance: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OutstandingBalance'),
   OddsGroup: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OddsGroup'),
   BaStatus: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BAStatus'),
-  SpecialLevel: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SpecialLevel'),
-  LastTransaction: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('LastTransfer'),
-  Email: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Email')
+  SpecialLevel: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SpecialLevel')
 };
 var gridItemDropdownHeight = {
   'specialLevelDropdown': 231,
@@ -3939,7 +3598,7 @@ var apiInfo = {
     type: _constants_configInfo__WEBPACK_IMPORTED_MODULE_0__["systemType"].lrf
   },
   lapSearch: {
-    action: 'PlayerAdminContainer/Search',
+    action: 'api/PlayerList/Search',
     type: _constants_configInfo__WEBPACK_IMPORTED_MODULE_0__["systemType"].newAdmin
   },
   lapDataById: {
@@ -4054,22 +3713,38 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-var excludedKeyForApiType = [_constants__WEBPACK_IMPORTED_MODULE_0__["fields"].RealName, _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].Email, _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].LastTransaction];
-var buildDefaultColumnList = function buildDefaultColumnList(licType) {
-  var isApiType = licType === _constants__WEBPACK_IMPORTED_MODULE_0__["licenseeType"].api;
+var buildDefaultColumnList = function buildDefaultColumnList(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission) {
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(function (item) {
-    return item.key !== _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus && (!isApiType || !excludedKeyForApiType.includes(item.key));
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
+      return hasBaPermission.isallowed;
+    }
+
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].OddsGroup) {
+      return hasOddsGroupPermission.isallowed;
+    }
+
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].SpecialLevel) {
+      return hasSpecialLevelPermission.isallowed;
+    } else {
+      return true;
+    }
   }).map(function (item) {
     return _objectSpread({}, item);
   });
 };
-var buildColumnList = function buildColumnList(licType, isAllowedBA) {
-  var isApiType = licType === _constants__WEBPACK_IMPORTED_MODULE_0__["licenseeType"].api;
+var buildColumnList = function buildColumnList(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedBA) {
+  console.log(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission);
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(function (item) {
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
-      return isAllowedBA;
-    } else if (isApiType) {
-      return !excludedKeyForApiType.includes(item.key);
+      return isAllowedBA && hasBaPermission.isallowed;
+    }
+
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].OddsGroup) {
+      return hasOddsGroupPermission.isallowed;
+    }
+
+    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].SpecialLevel) {
+      return hasSpecialLevelPermission.isallowed;
     } else {
       return true;
     }
@@ -4105,9 +3780,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var GridHelper =
-/*#__PURE__*/
-function () {
+var GridHelper = /*#__PURE__*/function () {
   function GridHelper() {
     _classCallCheck(this, GridHelper);
   }
@@ -4115,34 +3788,24 @@ function () {
   _createClass(GridHelper, null, [{
     key: "renderHeader",
     value: function renderHeader(displayedColumn) {
-      var Status = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Status,
-          UserName = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].UserName,
+      var UserName = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].UserName,
           SystemId = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SystemId,
-          RealName = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].RealName,
           Currency = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Currency,
           CurrentBalance = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].CurrentBalance,
           OutstandingBalance = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OutstandingBalance,
           OddsGroup = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OddsGroup,
           BaStatus = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].BaStatus,
-          SpecialLevel = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel,
-          LastTransaction = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].LastTransaction,
-          Email = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Email;
+          SpecialLevel = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
         style: {
           height: 32
         }
-      }, displayedColumn[Status] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-        colWidth: 80,
-        sortBy: Status
-      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].Status), displayedColumn[UserName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
+      }, displayedColumn[UserName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
         colWidth: 160,
         sortBy: UserName
       }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].UserName), displayedColumn[SystemId] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
         colWidth: 100
-      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].SystemId), displayedColumn[RealName] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-        colWidth: 80,
-        sortBy: RealName
-      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].RealName), displayedColumn[Currency] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
+      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].SystemId), displayedColumn[Currency] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
         colWidth: 60,
         sortBy: Currency
       }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].Currency), displayedColumn[CurrentBalance] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
@@ -4160,12 +3823,7 @@ function () {
       }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].BaStatus), displayedColumn[SpecialLevel] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
         colWidth: 50,
         sortBy: SpecialLevel
-      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].SpecialLevel), displayedColumn[LastTransaction] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-        colWidth: 60,
-        sortBy: LastTransaction
-      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].LastTransaction), displayedColumn[Email] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-        colWidth: 100
-      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].Email));
+      }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].SpecialLevel));
     }
   }, {
     key: "calculateTopPosition",
@@ -4303,9 +3961,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var PlayerListDataHelper =
-/*#__PURE__*/
-function () {
+var PlayerListDataHelper = /*#__PURE__*/function () {
   function PlayerListDataHelper() {
     _classCallCheck(this, PlayerListDataHelper);
   }
@@ -4525,9 +4181,7 @@ var displayedTextByField = (_displayedTextByField = {}, _defineProperty(_display
 }), _displayedTextByField);
 var fieldListWithEmptyValueByStatus = [_constants__WEBPACK_IMPORTED_MODULE_2__["fields"].CurrentBalance, _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OutstandingBalance, _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OddsGroup, _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].BaStatus, _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel];
 
-var ReportExcel =
-/*#__PURE__*/
-function () {
+var ReportExcel = /*#__PURE__*/function () {
   function ReportExcel(data, displayedColumn, title) {
     _classCallCheck(this, ReportExcel);
 
@@ -4596,16 +4250,6 @@ function () {
     key: "_buildDataRow",
     value: function _buildDataRow(item, colIndex) {
       var columnConfig = this.columnConfigs[colIndex];
-      var shouldHideValue = !item.IsDeposit || item.IsArchived;
-
-      if (shouldHideValue && fieldListWithEmptyValueByStatus.indexOf(columnConfig.field) !== -1) {
-        return {
-          t: 's',
-          v: '',
-          s: columnConfig[MAIN_SECTION_STYLE]
-        };
-      }
-
       var value = item[columnConfig.field];
       var displayedTextFunc = displayedTextByField[columnConfig.field];
       var displayedValue = this._shouldSetEmpty(value) ? '' : displayedTextFunc ? displayedTextFunc(value) : value;
@@ -4652,34 +4296,31 @@ function () {
           _ref9,
           _ref10,
           _ref11,
-          _ref12,
           _this2 = this;
 
       return [(_ref = {
-        field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Status
-      }, _defineProperty(_ref, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref, "width", 60), _ref), (_ref2 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].UserName
-      }, _defineProperty(_ref2, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref2, "width", 200), _ref2), (_ref3 = {
+      }, _defineProperty(_ref, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref, "width", 200), _ref), (_ref2 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SystemId
-      }, _defineProperty(_ref3, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref3, "width", 200), _ref3), (_ref4 = {
+      }, _defineProperty(_ref2, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref2, "width", 200), _ref2), (_ref3 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].RealName
-      }, _defineProperty(_ref4, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref4, "width", 150), _ref4), (_ref5 = {
+      }, _defineProperty(_ref3, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref3, "width", 150), _ref3), (_ref4 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Currency
-      }, _defineProperty(_ref5, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref5, "width", 80), _ref5), (_ref6 = {
+      }, _defineProperty(_ref4, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref4, "width", 80), _ref4), (_ref5 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].CurrentBalance
-      }, _defineProperty(_ref6, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].decimal), _defineProperty(_ref6, "width", 130), _ref6), (_ref7 = {
+      }, _defineProperty(_ref5, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].decimal), _defineProperty(_ref5, "width", 130), _ref5), (_ref6 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OutstandingBalance
-      }, _defineProperty(_ref7, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].decimal), _defineProperty(_ref7, "width", 130), _ref7), (_ref8 = {
+      }, _defineProperty(_ref6, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].decimal), _defineProperty(_ref6, "width", 130), _ref6), (_ref7 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OddsGroup
-      }, _defineProperty(_ref8, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref8, "width", 70), _ref8), (_ref9 = {
+      }, _defineProperty(_ref7, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref7, "width", 70), _ref7), (_ref8 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].BaStatus
-      }, _defineProperty(_ref9, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref9, "width", 70), _ref9), (_ref10 = {
+      }, _defineProperty(_ref8, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref8, "width", 70), _ref8), (_ref9 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel
-      }, _defineProperty(_ref10, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref10, "width", 70), _ref10), (_ref11 = {
+      }, _defineProperty(_ref9, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center), _defineProperty(_ref9, "width", 70), _ref9), (_ref10 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].LastTransaction
-      }, _defineProperty(_ref11, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref11, "width", 150), _ref11), (_ref12 = {
+      }, _defineProperty(_ref10, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref10, "width", 150), _ref10), (_ref11 = {
         field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Email
-      }, _defineProperty(_ref12, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref12, "width", 200), _ref12)].filter(function (x) {
+      }, _defineProperty(_ref11, MAIN_SECTION_STYLE, _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].left), _defineProperty(_ref11, "width", 200), _ref11)].filter(function (x) {
         return !!_this2.displayedColumn[x.field];
       });
     }
@@ -4729,9 +4370,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var GridInteractionService =
-/*#__PURE__*/
-function () {
+var GridInteractionService = /*#__PURE__*/function () {
   function GridInteractionService() {
     _classCallCheck(this, GridInteractionService);
   }
@@ -4839,127 +4478,6 @@ function () {
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/lapPlayerQueryService.js":
-/*!******************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/lapPlayerQueryService.js ***!
-  \******************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LapPlayerQueryService; });
-/* harmony import */ var _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/playerListDataHelper */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/playerListDataHelper.js");
-/* harmony import */ var _helpers_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
-/* harmony import */ var _helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/playerDataBuilder */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/playerDataBuilder.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-var LapPlayerQueryService =
-/*#__PURE__*/
-function () {
-  function LapPlayerQueryService() {
-    _classCallCheck(this, LapPlayerQueryService);
-  }
-
-  _createClass(LapPlayerQueryService, null, [{
-    key: "fetchData",
-    value: function fetchData(param, commonService, apiInfo) {
-      var _this = this;
-
-      var lrfDataById = apiInfo.lrfDataById,
-          lapSearch = apiInfo.lapSearch;
-      return commonService.fetchData(lapSearch.type, lapSearch.action, _objectSpread({}, param)).then(function (lapResponse) {
-        var _lapResponse$data = lapResponse.data,
-            _lapResponse$data$Pla = _lapResponse$data.PlayerList,
-            lapPlayerList = _lapResponse$data$Pla === void 0 ? [] : _lapResponse$data$Pla,
-            _lapResponse$data$Tot = _lapResponse$data.TotalItem,
-            lapTotalItem = _lapResponse$data$Tot === void 0 ? 0 : _lapResponse$data$Tot;
-
-        if (!lapPlayerList || !lapPlayerList.length) {
-          return _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult();
-        }
-
-        return _this._fetchFromLrf(param, lrfDataById, lapPlayerList, commonService, lapTotalItem);
-      })["catch"](function () {
-        return _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult();
-      });
-    }
-  }, {
-    key: "_fetchFromLrf",
-    value: function _fetchFromLrf(param, lrfDataById, lapPlayerList, commonService, lapTotalItem) {
-      var idList = Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_1__["getCustIdListFromLapData"])(lapPlayerList);
-      var nonDepositOrArchivedList = lapPlayerList.filter(function (x) {
-        return Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_1__["isNonDepositOrArchived"])(x);
-      });
-
-      if (idList.length === 0) {
-        return {
-          playerList: Object(_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_2__["buildLapPlayerList"])(nonDepositOrArchivedList),
-          totalItem: lapTotalItem
-        };
-      }
-
-      var lrfParam = {
-        currencyIdList: param.currencyIdList,
-        idList: idList.join(','),
-        specialLevel: param.specialLevel,
-        oddsGroup: param.oddsGroup,
-        baFilter: param.baFilter,
-        pageSize: param.pageSize,
-        pageIndex: 1
-      };
-      return commonService.fetchData(lrfDataById.type, lrfDataById.action, lrfParam).then(function (lrfResponse) {
-        var lrfPlayerList = lrfResponse.data.DataList;
-        var filteredLapPlayerList = lapPlayerList.filter(function (x) {
-          return x.IBCCustId === 0 || lrfPlayerList.findIndex(function (p) {
-            return p.IbcCustId === x.IBCCustId;
-          }) !== -1;
-        });
-        var filteredItemCount = lapPlayerList.length - filteredLapPlayerList.length;
-        var totalItem = lapTotalItem - filteredItemCount;
-
-        if (!lrfPlayerList || !lrfPlayerList.length) {
-          return {
-            playerList: Object(_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_2__["buildLapPlayerList"])(filteredLapPlayerList),
-            totalItem: totalItem
-          };
-        }
-
-        var playerList = _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].mergePlayerList(lrfPlayerList, filteredLapPlayerList);
-        return {
-          playerList: playerList,
-          totalItem: totalItem
-        };
-      })["catch"](function () {
-        return {
-          playerList: Object(_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_2__["buildLapPlayerList"])(nonDepositOrArchivedList),
-          totalItem: nonDepositOrArchivedList.length
-        };
-      });
-    }
-  }]);
-
-  return LapPlayerQueryService;
-}();
-
-
-
-/***/ }),
-
 /***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/lrfPlayerQueryService.js":
 /*!******************************************************************************************************!*\
   !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/lrfPlayerQueryService.js ***!
@@ -4985,9 +4503,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var LrfPlayerQueryService =
-/*#__PURE__*/
-function () {
+var LrfPlayerQueryService = /*#__PURE__*/function () {
   function LrfPlayerQueryService() {
     _classCallCheck(this, LrfPlayerQueryService);
   }
@@ -4995,20 +4511,21 @@ function () {
   _createClass(LrfPlayerQueryService, null, [{
     key: "fetchData",
     value: function fetchData(param, commonService, apiInfo) {
-      var _this = this;
-
       var lrfSearch = apiInfo.lrfSearch,
           lapDataById = apiInfo.lapDataById;
       return commonService.fetchData(lrfSearch.type, lrfSearch.action, _objectSpread({}, param)).then(function (lrfResponse) {
         var _lrfResponse$data = lrfResponse.data,
-            lrfPlayerList = _lrfResponse$data.DataList,
+            DataList = _lrfResponse$data.DataList,
             TotalItem = _lrfResponse$data.TotalItem;
 
-        if (!lrfPlayerList || !lrfPlayerList.length) {
+        if (!DataList || !DataList.length) {
           return _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult();
         }
 
-        return _this._fetchFromLap(lrfPlayerList, lapDataById, commonService, TotalItem);
+        return {
+          playerList: DataList,
+          totalItem: TotalItem
+        };
       })["catch"](function () {
         return _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult();
       });
@@ -5073,9 +4590,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var PlayerCommandService =
-/*#__PURE__*/
-function () {
+var PlayerCommandService = /*#__PURE__*/function () {
   function PlayerCommandService() {
     _classCallCheck(this, PlayerCommandService);
 
@@ -5136,9 +4651,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var PlayerItemQueryService =
-/*#__PURE__*/
-function () {
+var PlayerItemQueryService = /*#__PURE__*/function () {
   function PlayerItemQueryService() {
     _classCallCheck(this, PlayerItemQueryService);
   }
@@ -5191,158 +4704,6 @@ function () {
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/playerMultipleQueryService.js":
-/*!***********************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/playerMultipleQueryService.js ***!
-  \***********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PlayerMultipleQueryService; });
-/* harmony import */ var _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/playerListDataHelper */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/playerListDataHelper.js");
-/* harmony import */ var _helpers_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
-/* harmony import */ var _helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/playerDataBuilder */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/playerDataBuilder.js");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-var PlayerMultipleQueryService =
-/*#__PURE__*/
-function () {
-  function PlayerMultipleQueryService() {
-    _classCallCheck(this, PlayerMultipleQueryService);
-  }
-
-  _createClass(PlayerMultipleQueryService, null, [{
-    key: "fetchData",
-    value: function fetchData(param, commonService, apiInfo) {
-      var lrfSearch = apiInfo.lrfSearch,
-          lapSearch = apiInfo.lapSearch;
-      var lrfPromise = commonService.fetchData(lrfSearch.type, lrfSearch.action, _objectSpread({}, param))["catch"](function (error) {
-        console.log(error.message);
-        window.alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('HttpError_Default'));
-        return {
-          data: {
-            DataList: [],
-            TotalItem: 0
-          }
-        };
-      });
-      var lapPromise = commonService.fetchData(lapSearch.type, lapSearch.action, _objectSpread({}, param))["catch"](function (error) {
-        console.log(error.message);
-        window.alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('HttpError_Default'));
-        return {
-          data: {
-            PlayerList: [],
-            TotalItem: 0
-          }
-        };
-      });
-      return this._getResult(param, lrfPromise, lapPromise, commonService, apiInfo);
-    }
-  }, {
-    key: "_getResult",
-    value: function _getResult(param, lrfPromise, lapPromise, commonService, apiInfo) {
-      var _this = this;
-
-      return commonService.fetchMultiple([lrfPromise, lapPromise], function (lrfResponse, lapResponse) {
-        var lrfPlayerList = lrfResponse.data.DataList;
-        var _lapResponse$data = lapResponse.data,
-            lapPlayerList = _lapResponse$data.PlayerList,
-            lapTotalItem = _lapResponse$data.TotalItem;
-        var lrfDataObject = _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getDataObject(lrfPlayerList, lapPlayerList);
-        var lapDataObject = _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getDataObject(lapPlayerList, lrfPlayerList);
-        var playerList = _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].mergePlayerList(lrfDataObject.commonList, lapDataObject.commonList);
-        var idListNotInLrf = Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_1__["getCustIdListFromLapData"])(lapDataObject.differenceList);
-
-        if (idListNotInLrf.length === 0) {
-          var nonDepositPlayerList = Object(_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_2__["buildLapPlayerList"])(lapDataObject.differenceList);
-          var finalPlayerList = playerList.length > 0 ? playerList.concat(nonDepositPlayerList) : nonDepositPlayerList;
-          return {
-            playerList: finalPlayerList,
-            totalItem: lapTotalItem
-          };
-        }
-
-        var lrfParam = {
-          currencyIdList: param.currencyIdList,
-          idList: idListNotInLrf.join(','),
-          specialLevel: param.specialLevel,
-          oddsGroup: param.oddsGroup,
-          baFilter: param.baFilter,
-          pageSize: param.pageSize,
-          pageIndex: 1
-        };
-        return _this._refetchFromLrf(lrfParam, lapDataObject, commonService, apiInfo).then(function (response) {
-          var nextPlayerList = response.playerList;
-          var filteredItemCount = lapDataObject.differenceList.length - nextPlayerList.length;
-          var totalItem = lapTotalItem - filteredItemCount;
-          return {
-            playerList: playerList.concat(nextPlayerList),
-            totalItem: totalItem
-          };
-        });
-      })["catch"](function (error) {
-        console.log(error.message);
-        return _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult();
-      });
-    }
-  }, {
-    key: "_refetchFromLrf",
-    value: function _refetchFromLrf(lrfParam, lapDataObject, commonService, apiInfo) {
-      var lrfDataById = apiInfo.lrfDataById;
-      var differenceList = lapDataObject.differenceList;
-      return commonService.fetchData(lrfDataById.type, lrfDataById.action, _objectSpread({}, lrfParam)).then(function (nextLrfResponse) {
-        var nextLrfPlayerList = nextLrfResponse.data.DataList;
-        var filteredLapPlayerList = differenceList.filter(function (x) {
-          return Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_1__["isNonDepositOrArchived"])(x) || nextLrfPlayerList.findIndex(function (p) {
-            return p.IbcCustId === x.IBCCustId;
-          }) !== -1;
-        });
-
-        if (!nextLrfPlayerList || !nextLrfPlayerList.length) {
-          return {
-            playerList: Object(_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_2__["buildLapPlayerList"])(filteredLapPlayerList)
-          };
-        }
-
-        var playerList = _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].mergePlayerList(nextLrfPlayerList, filteredLapPlayerList);
-        return {
-          playerList: playerList
-        };
-      })["catch"](function (error) {
-        console.log(error.message);
-        window.alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('HttpError_Default'));
-        return {
-          playerList: []
-        };
-      });
-    }
-  }]);
-
-  return PlayerMultipleQueryService;
-}();
-
-
-
-/***/ }),
-
 /***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/playerQueryService.js":
 /*!***************************************************************************************************!*\
   !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/playerQueryService.js ***!
@@ -5370,9 +4731,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var PlayerQueryService =
-/*#__PURE__*/
-function () {
+var PlayerQueryService = /*#__PURE__*/function () {
   function PlayerQueryService() {
     _classCallCheck(this, PlayerQueryService);
 
@@ -5443,9 +4802,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var PlayerSuggestionService =
-/*#__PURE__*/
-function () {
+var PlayerSuggestionService = /*#__PURE__*/function () {
   function PlayerSuggestionService() {
     _classCallCheck(this, PlayerSuggestionService);
 
@@ -5479,10 +4836,7 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return QueryServiceFactory; });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-/* harmony import */ var _lapPlayerQueryService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lapPlayerQueryService */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/lapPlayerQueryService.js");
-/* harmony import */ var _playerMultipleQueryService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./playerMultipleQueryService */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/playerMultipleQueryService.js");
-/* harmony import */ var _lrfPlayerQueryService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lrfPlayerQueryService */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/lrfPlayerQueryService.js");
+/* harmony import */ var _lrfPlayerQueryService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lrfPlayerQueryService */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/lrfPlayerQueryService.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -5491,38 +4845,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-
-
-
-var QueryServiceFactory =
-/*#__PURE__*/
-function () {
+var QueryServiceFactory = /*#__PURE__*/function () {
   function QueryServiceFactory() {
     _classCallCheck(this, QueryServiceFactory);
   }
 
   _createClass(QueryServiceFactory, null, [{
     key: "getPlayerListService",
-    value: function getPlayerListService(param) {
-      var bankAccountNumber = param.bankAccountNumber,
-          email = param.email;
-
-      if (bankAccountNumber || email) {
-        return _lapPlayerQueryService__WEBPACK_IMPORTED_MODULE_1__["default"];
-      } else if (this._isChangeAdvancedSearch(param)) {
-        return _lrfPlayerQueryService__WEBPACK_IMPORTED_MODULE_3__["default"];
-      } else {
-        return _playerMultipleQueryService__WEBPACK_IMPORTED_MODULE_2__["default"];
-      }
-    }
-  }, {
-    key: "_isChangeAdvancedSearch",
-    value: function _isChangeAdvancedSearch(param) {
-      var baFilter = param.baFilter,
-          currencyIdList = param.currencyIdList,
-          oddsGroup = param.oddsGroup,
-          specialLevel = param.specialLevel;
-      return Number(baFilter) !== 0 || currencyIdList !== '' || oddsGroup !== '' || Object.keys(_constants__WEBPACK_IMPORTED_MODULE_0__["specialLevelListWithColor"]).length !== specialLevel.split(',').length;
+    value: function getPlayerListService() {
+      return _lrfPlayerQueryService__WEBPACK_IMPORTED_MODULE_0__["default"];
     }
   }]);
 
@@ -5554,9 +4885,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var SiteSettingService =
-/*#__PURE__*/
-function () {
+var SiteSettingService = /*#__PURE__*/function () {
   function SiteSettingService() {
     _classCallCheck(this, SiteSettingService);
 
@@ -5581,7 +4910,7 @@ function () {
 /*!*************************************************************************************************!*\
   !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/reducers/filterHandlerReducer.js ***!
   \*************************************************************************************************/
-/*! exports provided: param, playerList, type, currencyList, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary, isAdvancedSearch, isFilterCollapsing */
+/*! exports provided: param, playerList, type, currencyList, hasBaPermission, isAllowedCustomerComm, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary, isAdvancedSearch, isFilterCollapsing */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5591,6 +4920,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "type", function() { return type; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "currencyList", function() { return currencyList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasBaPermission", function() { return hasBaPermission; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAllowedCustomerComm", function() { return isAllowedCustomerComm; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasOddsGroupPermission", function() { return hasOddsGroupPermission; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasSpecialLevelPermission", function() { return hasSpecialLevelPermission; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSubsidiary", function() { return isSubsidiary; });
@@ -5623,6 +4953,7 @@ var playerList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["defa
 var type = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {});
 var currencyList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])([], {});
 var hasBaPermission = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(false, {});
+var isAllowedCustomerComm = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(false, {});
 var hasOddsGroupPermission = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(false, {});
 var hasSpecialLevelPermission = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(false, {});
 var isSubsidiary = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(false, {});
@@ -5933,9 +5264,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var BaseCommonService =
-/*#__PURE__*/
-function () {
+var BaseCommonService = /*#__PURE__*/function () {
   function BaseCommonService() {
     _classCallCheck(this, BaseCommonService);
 
@@ -5993,9 +5322,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var FactoryCommonService =
-/*#__PURE__*/
-function () {
+var FactoryCommonService = /*#__PURE__*/function () {
   function FactoryCommonService() {
     _classCallCheck(this, FactoryCommonService);
   }
@@ -6010,33 +5337,13 @@ function () {
       }
 
       var applyApiTokenUrl = pageConfig.applyApiTokenUrl,
+          applyLinkTokenUrl = pageConfig.applyLinkTokenUrl,
           tabList = pageConfig.tabList;
-
-      if (!applyApiTokenUrl) {
-        throw new Error("Missing applyApiTokenUrl in window._pConfig");
-      }
-
-      if (!window.Identity) {
-        throw new Error("Missing Identity object");
-      }
-
-      var _window$Identity = window.Identity,
-          RootUrl = _window$Identity.RootUrl,
-          ApplyTokenUrl = _window$Identity.ApplyTokenUrl;
-
-      if (!RootUrl) {
-        throw new Error("Missing Identity.RootUrl");
-      }
-
-      if (!ApplyTokenUrl) {
-        throw new Error("Missing Identity.ApplyTokenUrl");
-      }
-
       var initialConfig = {
         tabList: tabList,
-        baseUrl: RootUrl,
+        baseUrl: pageConfig.hostUrl,
         applyApiTokenUrl: applyApiTokenUrl,
-        applyLinkTokenUrl: ApplyTokenUrl
+        applyLinkTokenUrl: applyLinkTokenUrl
       };
       return new _lapCommonService__WEBPACK_IMPORTED_MODULE_0__["default"](initialConfig);
     }
@@ -6060,11 +5367,12 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _baseCommonService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./baseCommonService */ "./www/js/source/reactpages/Module/lib/baseCommonService.js");
 /* harmony import */ var _constants_configInfo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/configInfo */ "./www/js/source/reactpages/Module/constants/configInfo.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -6100,20 +5408,20 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var defaultAjaxConfig = {
   method: 'post',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
-    'content-type': 'application/x-www-form-urlencoded'
+    'content-type': 'application/x-www-form-urlencoded',
+    '__RequestVerificationToken': _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].getXsrfToken()
   },
   withCredentials: false,
   responseType: 'json',
-  cancelToken: new axios__WEBPACK_IMPORTED_MODULE_2___default.a.CancelToken(function (cancel) {})
+  cancelToken: new axios__WEBPACK_IMPORTED_MODULE_3___default.a.CancelToken(function (cancel) {})
 };
 
-var LapCommonService =
-/*#__PURE__*/
-function (_BaseCommonService) {
+var LapCommonService = /*#__PURE__*/function (_BaseCommonService) {
   _inherits(LapCommonService, _BaseCommonService);
 
   function LapCommonService(initialConfig) {
@@ -6166,7 +5474,7 @@ function (_BaseCommonService) {
       var paramConfig = isGetMethod ? {
         params: params
       } : {
-        data: qs__WEBPACK_IMPORTED_MODULE_3___default.a.stringify(params)
+        data: qs__WEBPACK_IMPORTED_MODULE_4___default.a.stringify(params)
       };
       return _objectSpread({}, config, {}, paramConfig);
     }
@@ -6176,23 +5484,18 @@ function (_BaseCommonService) {
       var _this2 = this;
 
       var apiToken = "".concat(this._applyApiTokenUrl, "?").concat(this._buildApplyTokenQueryString(sysType, action));
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(apiToken).then(function (response) {
-        var _response$data = response.data,
-            Token = _response$data.Token,
-            ApiUrl = _response$data.ApiUrl;
-        var apiActionUrl = "".concat(ApiUrl, "/").concat(action);
+      return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(apiToken).then(function (response) {
+        var apiActionUrl = "".concat(action);
 
         var commonAjaxConfig = _this2._buildCommonAjaxConfig(configOption, apiActionUrl, params);
 
-        var headerConfig = _objectSpread({}, configOption.headers, {
-          'X-Auth-Token': Token
-        });
+        var headerConfig = _objectSpread({}, configOption.headers);
 
         var configWithXToken = _objectSpread({}, commonAjaxConfig, {
           headers: _objectSpread({}, headerConfig)
         });
 
-        return axios__WEBPACK_IMPORTED_MODULE_2___default()(configWithXToken);
+        return axios__WEBPACK_IMPORTED_MODULE_3___default()(configWithXToken);
       });
     }
   }, {
@@ -6207,7 +5510,7 @@ function (_BaseCommonService) {
 
         var ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
 
-        return axios__WEBPACK_IMPORTED_MODULE_2___default()(ajaxConfig);
+        return axios__WEBPACK_IMPORTED_MODULE_3___default()(ajaxConfig);
       } else {
         return this._fetchDataWithToken(sysType, action, params, config);
       }
@@ -6216,7 +5519,7 @@ function (_BaseCommonService) {
     key: "fetchMultiple",
     value: function fetchMultiple(promiseList, callback) {
       if (promiseList && promiseList.length) {
-        return axios__WEBPACK_IMPORTED_MODULE_2___default.a.all(promiseList).then(axios__WEBPACK_IMPORTED_MODULE_2___default.a.spread(callback));
+        return axios__WEBPACK_IMPORTED_MODULE_3___default.a.all(promiseList).then(axios__WEBPACK_IMPORTED_MODULE_3___default.a.spread(callback));
       }
     }
   }]);
@@ -6513,7 +5816,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6541,9 +5844,7 @@ var wrapperClasses = {
   OVERLAY_OPEN: "overlay-open"
 };
 
-var Overlay =
-/*#__PURE__*/
-function (_Component) {
+var Overlay = /*#__PURE__*/function (_Component) {
   _inherits(Overlay, _Component);
 
   function Overlay(props) {
@@ -6758,7 +6059,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _popup_Popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./popup/Popup */ "./www/js/source/reactpages/components/popup/Popup.jsx");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6783,9 +6084,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var UserGuide =
-/*#__PURE__*/
-function (_React$Component) {
+var UserGuide = /*#__PURE__*/function (_React$Component) {
   _inherits(UserGuide, _React$Component);
 
   function UserGuide(props) {
@@ -6872,7 +6171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -6901,9 +6200,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var CollapsiblePanel =
-/*#__PURE__*/
-function (_React$Component) {
+var CollapsiblePanel = /*#__PURE__*/function (_React$Component) {
   _inherits(CollapsiblePanel, _React$Component);
 
   function CollapsiblePanel(props) {
@@ -6958,7 +6255,7 @@ function (_React$Component) {
         transform: this.state.isCollapsed ? null : 'rotate(180deg)',
         color: '#fff',
         textAlign: 'center',
-        background: '#4c6274',
+        background: '#0F3630',
         height: "15px",
         width: "20px",
         "float": 'left'
@@ -7005,7 +6302,7 @@ var defaultProps = {
     position: 'absolute',
     left: 'calc(50% - 10px)',
     bottom: 0,
-    background: '#4c6274',
+    background: '#0F3630',
     textAlign: 'center'
   },
   iconToggle: {
@@ -7135,7 +6432,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -7165,9 +6462,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var DropdownItem =
-/*#__PURE__*/
-function (_Component) {
+var DropdownItem = /*#__PURE__*/function (_Component) {
   _inherits(DropdownItem, _Component);
 
   function DropdownItem(props) {
@@ -7249,7 +6544,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -7278,9 +6573,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var DropdownMenu =
-/*#__PURE__*/
-function (_Component) {
+var DropdownMenu = /*#__PURE__*/function (_Component) {
   _inherits(DropdownMenu, _Component);
 
   function DropdownMenu(props) {
@@ -7587,7 +6880,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icon */ "./www/js/source/reactpages/components/sweet-alert/icon.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -7621,9 +6914,7 @@ var ICON_CONTENTS = {
   warning: Object(_icon__WEBPACK_IMPORTED_MODULE_3__["warningIconMarkup"])(),
   success: Object(_icon__WEBPACK_IMPORTED_MODULE_3__["successIconMarkup"])()
 };
-var SweetAlert =
-/*#__PURE__*/
-function (_React$Component) {
+var SweetAlert = /*#__PURE__*/function (_React$Component) {
   _inherits(SweetAlert, _React$Component);
 
   function SweetAlert(props) {
@@ -7698,56 +6989,6 @@ SweetAlert.defaultProps = {
   buttons: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (SweetAlert);
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/components/utils/timer.js":
-/*!************************************************************!*\
-  !*** ./www/js/source/reactpages/components/utils/timer.js ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Timer; });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var DEFAULT_TIME_DELAY_MILLISECOND = 500;
-
-var Timer =
-/*#__PURE__*/
-function () {
-  function Timer() {
-    _classCallCheck(this, Timer);
-  }
-
-  _createClass(Timer, null, [{
-    key: "debounce",
-    value: function debounce(func, wait) {
-      var timeout;
-      return function () {
-        var context = this,
-            args = arguments;
-
-        var later = function later() {
-          func.apply(context, args);
-        };
-
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait || DEFAULT_TIME_DELAY_MILLISECOND);
-      };
-    }
-  }]);
-
-  return Timer;
-}();
-
-
 
 /***/ }),
 
@@ -7974,7 +7215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AppLayout; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7994,9 +7235,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var AppLayout =
-/*#__PURE__*/
-function (_Component) {
+var AppLayout = /*#__PURE__*/function (_Component) {
   _inherits(AppLayout, _Component);
 
   function AppLayout(props) {
@@ -8038,9 +7277,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var QueryString =
-/*#__PURE__*/
-function () {
+var QueryString = /*#__PURE__*/function () {
   function QueryString() {
     _classCallCheck(this, QueryString);
   }
@@ -8217,7 +7454,7 @@ var updateObjectInArray = function updateObjectInArray(array, indexItem, updated
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Excel; });
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8234,9 +7471,7 @@ var MapExcelType = {
 };
 var _XLSX = null;
 
-var Excel =
-/*#__PURE__*/
-function () {
+var Excel = /*#__PURE__*/function () {
   function Excel() {
     _classCallCheck(this, Excel);
   }
@@ -8372,9 +7607,7 @@ var DEFAULT_RESOURCE_NAME = "_language_en_US";
 var langCode = window.PageLanguage || "en-US";
 var resourceName = "_language_".concat(langCode.replace("-", "_"));
 
-var LangHelper =
-/*#__PURE__*/
-function () {
+var LangHelper = /*#__PURE__*/function () {
   function LangHelper() {
     _classCallCheck(this, LangHelper);
   }
@@ -8437,9 +7670,7 @@ var loggerMiddleware = Object(redux_logger__WEBPACK_IMPORTED_MODULE_0__["createL
   }
 });
 
-var Logger =
-/*#__PURE__*/
-function () {
+var Logger = /*#__PURE__*/function () {
   function Logger() {
     _classCallCheck(this, Logger);
   }
@@ -8474,9 +7705,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var NumberFormat =
-/*#__PURE__*/
-function () {
+var NumberFormat = /*#__PURE__*/function () {
   function NumberFormat() {
     _classCallCheck(this, NumberFormat);
   }
@@ -8520,6 +7749,100 @@ function () {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/lib/site.js":
+/*!**********************************************!*\
+  !*** ./www/js/source/reactpages/lib/site.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Site; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var _rootUrl = window.rootUrl || "/";
+
+var _xsrfToken = null;
+
+var Site = /*#__PURE__*/function () {
+  function Site() {
+    _classCallCheck(this, Site);
+  }
+
+  _createClass(Site, null, [{
+    key: "getXsrfToken",
+    value: function getXsrfToken() {
+      if (!_xsrfToken) {
+        _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
+      }
+
+      return _xsrfToken;
+    }
+  }, {
+    key: "resolveClientUrl",
+    value: function resolveClientUrl(relativeUrl) {
+      return _rootUrl + relativeUrl;
+    }
+  }, {
+    key: "convertDateToString",
+    value: function convertDateToString(date) {
+      return typeof date === "string" ? date : date.format("MM/DD/YYYY");
+    }
+  }, {
+    key: "asNull",
+    value: function asNull(text) {
+      if (text != null) {
+        text = text.trim();
+
+        if (text === '') {
+          return null;
+        }
+      }
+
+      return text;
+    }
+  }, {
+    key: "downloadFile",
+    value: function downloadFile(data, fileName) {
+      var url = window.URL.createObjectURL(new Blob([data]));
+      var link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', fileName);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    }
+  }, {
+    key: "readAsJson",
+    value: function readAsJson(blob, callback) {
+      var reader = new FileReader();
+
+      reader.onload = function () {
+        callback && callback(JSON.parse(reader.result));
+      };
+
+      reader.readAsText(blob);
+    }
+  }, {
+    key: "getRootUrl",
+    value: function getRootUrl() {
+      return _rootUrl;
+    }
+  }]);
+
+  return Site;
+}();
+
+
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/lib/store.js":
 /*!***********************************************!*\
   !*** ./www/js/source/reactpages/lib/store.js ***!
@@ -8543,9 +7866,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var Store =
-/*#__PURE__*/
-function () {
+var Store = /*#__PURE__*/function () {
   function Store() {
     _classCallCheck(this, Store);
   }
@@ -8604,7 +7925,7 @@ var defaultSubmitButton = {
 };
 var defaultCancelButton = {
   text: _langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Cancel'),
-  className: 'btn'
+  className: 'btn btn-cancel'
 };
 var defaultOkButton = {
   text: _langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OK'),

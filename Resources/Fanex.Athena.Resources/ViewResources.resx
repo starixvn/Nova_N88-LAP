@@ -466,9 +466,6 @@
   <data name="Handicap" xml:space="preserve">
     <value>Handicap</value>
   </data>
-  <data name="HandicapOverUnderLive" xml:space="preserve">
-    <value>Handicap/Over Under/Live</value>
-  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -558,9 +555,6 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
-  </data>
-  <data name="LiveReport" xml:space="preserve">
-    <value>Live Report</value>
   </data>
   <data name="LiveReportTitle" xml:space="preserve">
     <value>Live Report - {0}, {1} --&gt; {2} - {3}</value>
@@ -873,9 +867,6 @@
   <data name="SetAsDefaultGroup" xml:space="preserve">
     <value>Set as default group</value>
   </data>
-  <data name="SettledMatchCount" xml:space="preserve">
-    <value>Settled Match Count</value>
-  </data>
   <data name="ShowAllLeagues" xml:space="preserve">
     <value>Show All Leagues</value>
   </data>
@@ -938,9 +929,6 @@
   </data>
   <data name="TotalAway" xml:space="preserve">
     <value>Total Away</value>
-  </data>
-  <data name="TotalBets" xml:space="preserve">
-    <value>Total Bets</value>
   </data>
   <data name="TotalGoal" xml:space="preserve">
     <value>Total Goal</value>
@@ -1020,9 +1008,6 @@
   </data>
   <data name="WinLossByBetTypeTitle" xml:space="preserve">
     <value>Win Loss By Bet Type, {0} --&gt; {1} - {2}</value>
-  </data>
-  <data name="WinLossByProduct" xml:space="preserve">
-    <value>Win Loss By Products</value>
   </data>
   <data name="WinLossByProductTitle" xml:space="preserve">
     <value>Win Loss By Products, {0} --&gt; {1}, {2}</value>
@@ -1606,9 +1591,6 @@
   <data name="Odd_MY" xml:space="preserve">
     <value>MY</value>
   </data>
-  <data name="CustomerTurnover" xml:space="preserve">
-    <value>Customer Turnover     </value>
-  </data>
   <data name="TotalTurnover" xml:space="preserve">
     <value>Total Turnover</value>
   </data>
@@ -1663,10 +1645,6 @@
   <data name="EffectiveBettingValueNote" xml:space="preserve">
     <value>Effective Betting Value supports data from 09/01/2014</value>
   </data>
-  <data name="AGCasinoWinLoss" xml:space="preserve">
-    <value>AG Casino Win Loss</value>
-    <comment>#20896</comment>
-  </data>
   <data name="MaxBetPerDraw" xml:space="preserve">
     <value>Max Bet Per Draw</value>
     <comment>#23194</comment>
@@ -1675,7 +1653,7 @@
     <value>User Guide</value>
   </data>
   <data name="WrongUserNamePassword" xml:space="preserve">
-    <value>Wrong username or password.</value>
+    <value>Incorrect Password</value>
     <comment>#22443</comment>
   </data>
   <data name="UserNotExist" xml:space="preserve">
@@ -1688,10 +1666,6 @@
   <data name="CustomerLog" xml:space="preserve">
     <value>Customer Log</value>
     <comment>26174</comment>
-  </data>
-  <data name="AGCasinoBalance" xml:space="preserve">
-    <value>AG Casino Balance</value>
-    <comment>#26990</comment>
   </data>
   <data name="TransferIn" xml:space="preserve">
     <value>Transfer In</value>
@@ -1716,10 +1690,6 @@
   <data name="AlertSetOddsGroupForCustomerMsg" xml:space="preserve">
     <value>Are you sure you want to move this customer to odds group {0}?</value>
     <comment>#26561</comment>
-  </data>
-  <data name="ActiveCustomerSummary" xml:space="preserve">
-    <value>Active Customer Summary</value>
-    <comment>#29219</comment>
   </data>
   <data name="TotalActiveCustomer" xml:space="preserve">
     <value>Total active customers</value>
@@ -1748,9 +1718,6 @@
   <data name="CannotUpdateBetLimitForProduct" xml:space="preserve">
     <value>You cannot update member bet limit for product {0}.</value>
     <comment>#32647</comment>
-  </data>
-  <data name="GoldDeluxeWinLoss" xml:space="preserve">
-    <value>Gold Deluxe Win Loss</value>
   </data>
   <data name="ProductBT" xml:space="preserve">
     <value>Bet Trade</value>
@@ -1871,9 +1838,6 @@
   <data name="ProductCB" xml:space="preserve">
     <value>Colossus Bets</value>
     <comment>#63785</comment>
-  </data>
-  <data name="ColossusBetsWinLoss" xml:space="preserve">
-    <value>Colossus Bets Win Loss</value>
   </data>
   <data name="DisableColossusBets" xml:space="preserve">
     <value>Disable Colossus Bets</value>
@@ -2077,9 +2041,6 @@
   <data name="Tablet" xml:space="preserve">
     <value>Tablet</value>
     <comment>80687</comment>
-  </data>
-  <data name="SubsidiaryPerformance" xml:space="preserve">
-    <value>Subsidiary Performance</value>
   </data>
   <data name="ConvertAllFiguresToBaseCurrency" xml:space="preserve">
     <value>Convert all figures to Base Currency</value>
@@ -2321,10 +2282,6 @@
     <value>Your request can't be processed now due to busy server. Please try again later</value>
     <comment>103046</comment>
   </data>
-  <data name="CasinoTurnover" xml:space="preserve">
-    <value>Casino Turnover</value>
-    <comment>95178</comment>
-  </data>
   <data name="ValidBetAmount" xml:space="preserve">
     <value>Valid Bet Amount</value>
     <comment>95178</comment>
@@ -2546,10 +2503,6 @@
     <value>Total tickets</value>
     <comment>122789</comment>
   </data>
-  <data name="DailyBets" xml:space="preserve">
-    <value>Daily Bets</value>
-    <comment>122789</comment>
-  </data>
   <data name="PlayerName" xml:space="preserve">
     <value>Player Name</value>
     <comment>122789</comment>
@@ -2589,5 +2542,243 @@
   <data name="NativeApp" xml:space="preserve">
     <value>Native App</value>
     <comment>125824</comment>
+  </data>
+  <data name="HandicapOverUnderLive" xml:space="preserve">
+    <value>Handicap/Over Under/Live</value>
+  </data>
+  <data name="TotalBets" xml:space="preserve">
+    <value>Total Bets</value>
+  </data>
+  <data name="BetHistory" xml:space="preserve">
+    <value>Bet History</value>
+    <comment>80941</comment>
+  </data>
+  <data name="ConfirmUserPwd" xml:space="preserve">
+    <value>ConfirmUserPwd</value>
+  </data>
+  <data name="Confirm_Password" xml:space="preserve">
+    <value>Confirm_Password</value>
+  </data>
+  <data name="EmailFormatValidationMsg" xml:space="preserve">
+    <value>The {0} field is invalid.</value>
+  </data>
+  <data name="First_Name" xml:space="preserve">
+    <value>First_Name</value>
+  </data>
+  <data name="InputLengthValidationMsg" xml:space="preserve">
+    <value>The {0} field must be at least {2} and maximum {1} characters long.</value>
+  </data>
+  <data name="InvalidNameValidationMsg" xml:space="preserve">
+    <value>The Name field can only contain A-Z, a-z, 0-9, underscore, and spaces.</value>
+  </data>
+  <data name="Last_Name" xml:space="preserve">
+    <value>Last_Name</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="PropertiesMustMatchErrMsg" xml:space="preserve">
+    <value>'{0}' and '{1}' do not match.</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="UserPwd" xml:space="preserve">
+    <value>UserPwd</value>
+  </data>
+  <data name="Add_New_User_Success" xml:space="preserve">
+    <value>'{0}' account has been created successfully.</value>
+  </data>
+  <data name="Edit_User_Success" xml:space="preserve">
+    <value>'{0}' has been updated successfully. </value>
+  </data>
+  <data name="Create_New" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="Modified_Date" xml:space="preserve">
+    <value>Modified Date</value>
+  </data>
+  <data name="Modifier" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="NoInformationAvailable" xml:space="preserve">
+    <value>No Information Available</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="View_details_of" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Update_Password_Success" xml:space="preserve">
+    <value>'{0}' password has been reset successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
+  </data>
+  <data name="Update_Permission_Success" xml:space="preserve">
+    <value>Update Permission Success</value>
+  </data>
+  <data name="AssignPermission" xml:space="preserve">
+    <value>Assign Permission</value>
+  </data>
+  <data name="CreateNewUser" xml:space="preserve">
+    <value>Create New User</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="EditPermission" xml:space="preserve">
+    <value>Edit Permission</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="GroupPermission" xml:space="preserve">
+    <value>Group Permission</value>
+  </data>
+  <data name="Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="LastLoginDate" xml:space="preserve">
+    <value>Last Login Date</value>
+  </data>
+  <data name="ManageUser" xml:space="preserve">
+    <value>Manage User</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>New User</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="UserPermission" xml:space="preserve">
+    <value>User Permission</value>
+  </data>
+  <data name="Group_Name" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="Your_changes_were_saved" xml:space="preserve">
+    <value>Your changes were saved.  You will be redirected in &lt;span class='msec'&gt;{0}&lt;/span&gt; seconds.</value>
+  </data>
+  <data name="AddSuccessMsg" xml:space="preserve">
+    <value>{0} has been added successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
+  </data>
+  <data name="DuplicateMsg" xml:space="preserve">
+    <value>'{0}' already exists. Please choose another!</value>
+  </data>
+  <data name="Back_To_List" xml:space="preserve">
+    <value>Back To List</value>
+  </data>
+  <data name="Create_New_Group" xml:space="preserve">
+    <value>Create New Group</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page Size</value>
+  </data>
+  <data name="ActiveGroupConfirm" xml:space="preserve">
+    <value>Are you sure you want to {0} {1} ?</value>
+  </data>
+  <data name="ProductVRG" xml:space="preserve">
+    <value>Virtual Games</value>
+  </data>
+  <data name="Created_Date" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="EditSuccessMsg" xml:space="preserve">
+    <value>'{0}' has been updated successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="Update_Group" xml:space="preserve">
+    <value>Update Group</value>
+  </data>
+  <data name="Deactive" xml:space="preserve">
+    <value>Deactive</value>
+  </data>
+  <data name="InvalidStartNameValidationMsg" xml:space="preserve">
+    <value>Username cannot start with 'starix'</value>
+  </data>
+  <data name="Log_Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Log_Date" xml:space="preserve">
+    <value>Log Date</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Domain_Name" xml:space="preserve">
+    <value>Domain Name</value>
+  </data>
+  <data name="Browser_Name" xml:space="preserve">
+    <value>Browser Name</value>
+  </data>
+  <data name="Country_Code" xml:space="preserve">
+    <value>Country Code</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="ModifiedBy" xml:space="preserve">
+    <value>Modified By</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Field Name</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="NewValue" xml:space="preserve">
+    <value>New Value</value>
+  </data>
+  <data name="OldValue" xml:space="preserve">
+    <value>Old Value</value>
+  </data>
+  <data name="ExpiredDate" xml:space="preserve">
+    <value>Expired Date</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="NeverExpired" xml:space="preserve">
+    <value>Never Expired</value>
+  </data>
+  <data name="PortalAdmin" xml:space="preserve">
+    <value>Portal Admin</value>
+  </data>
+  <data name="SiteAdmin" xml:space="preserve">
+    <value>Site Admin</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Site Name</value>
+  </data>
+  <data name="InvalidStartGroupNameValidationMsg" xml:space="preserve">
+    <value>Group Name cannot start with 'starix'</value>
+  </data>
+  <data name="UserHasNoPermissionError" xml:space="preserve">
+    <value>Account has no permission on this site</value>
+  </data>
+  <data name="UsernameNotExisted" xml:space="preserve">
+    <value>Username is not existed</value>
   </data>
 </root>

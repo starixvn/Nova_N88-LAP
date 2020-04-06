@@ -28,6 +28,7 @@
         private const string KeyName = "__RequestVerificationToken";
 
         private readonly string[] _permissionKeys;
+        private readonly Policy _policy;
 
         public ApiFunctionAuthorizationAttribute()
         {
@@ -35,6 +36,12 @@
 
         public ApiFunctionAuthorizationAttribute(params string[] permissionKeys)
         {
+            _permissionKeys = permissionKeys;
+        }
+
+        public ApiFunctionAuthorizationAttribute(Policy policy, params string[] permissionKeys)
+        {
+            _policy = policy;
             _permissionKeys = permissionKeys;
         }
 
@@ -115,7 +122,15 @@
             if (authorized)
             {
                 var authorizationService = scope.Resolve<IAuthorizationService>();
-                authorized = authorizationService.HasPermissions(userSession, _permissionKeys);
+
+                if (_policy == Policy.Host)
+                {
+                    authorized = authorizationService.HasHostPermissions(userSession.UserId, _permissionKeys);
+                }
+                else
+                {
+                    authorized = authorizationService.HasPermissions(userSession.UserId, _permissionKeys);
+                }
             }
 
             return authorized;

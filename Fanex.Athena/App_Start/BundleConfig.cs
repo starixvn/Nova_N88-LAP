@@ -3,9 +3,6 @@
     using System.Web.Configuration;
     using System.Web.Optimization;
 
-    /// <summary>
-    /// Bundle config.
-    /// </summary>
     public static class BundleConfig
     {
         private const string JqueryUiMinCssPath = "~/Content/Library/start/jquery-ui.min.css";
@@ -38,8 +35,6 @@
             RegisterAccountLayoutStyles(bundles);
 
             RegisterjqGridLayoutStyles(bundles);
-
-            RegisterViewAgCasinoBalance(bundles);
         }
 
         #region JavaScripts Shared Layout
@@ -112,7 +107,7 @@
                 bundles,
                 "~/bundles/AccountLayoutStyles",
                 JqueryUiMinCssPath,
-                LrfGlobalContentCssPath,
+                //LrfGlobalContentCssPath,
                 "~/Content/FlatPopup/jquery.custom-scrollbar.css",
                 "~/Content/FlatPopup/jquery.flatpopup.css");
         }
@@ -134,27 +129,6 @@
         }
 
         #endregion CSS Shared Layout
-
-        #region Scripts & Styles Views
-
-        private static void RegisterViewAgCasinoBalance(BundleCollection bundles)
-        {
-            var bundle = new ScriptBundle("~/bundles/AgCasinoBalanceScripts")
-                .Include(
-                        "~/Scripts/Global/Paging.js",
-                        "~/Scripts/Report/agcasinobalance.js",
-                        "~/Scripts/Report/agcasinobalance.option.js");
-            AddNewScriptBundle(bundles, bundle);
-
-            AddStyleBundle(
-               bundles,
-               "~/bundles/AgCasinoBalanceStyles",
-               "~/Content/Report/agcasinobalance.css",
-               "~/Content/Plugin/Common/bread-crumb.css",
-               "~/Content/Global/Paging.css");
-        }
-
-        #endregion Scripts & Styles Views
 
         #region CSS Views
 

@@ -1,19 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AGCasinoBetListController.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers.BetList
+﻿namespace Fanex.Athena.Controllers.BetList
 {
-    using Fanex.Athena.Web.ActionFilter;
-
-    using Model.BetList.MetaModel;
-
-    using Resources;
-
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Fanex.Athena.Web.ActionFilter;
+    using Model.BetList.MetaModel;
+    using Resources;
 
     public class AGCasinoBetListController : BetListBaseController
     {

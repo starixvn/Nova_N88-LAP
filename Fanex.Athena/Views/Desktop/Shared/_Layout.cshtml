@@ -6,14 +6,13 @@
     var appSettings = DependencyResolver.Current.GetService<IAppSettings>();
     var licenseeSettingService = DependencyResolver.Current.GetService<ILicenseeSettingService>();
     var userSession = sessionService.UserSession;
-    var licSession = sessionService.LicenseeSession;
     var userCurrencies = userSession == null || userSession.CurrencyList == null ?
         new Dictionary<string, string>() :
         userSession.CurrencyList.ToDictionary(x => x.Key.ToString(), x => x.Value);
 
-    var hasCustComm = licSession != null && licSession.IsAllowedCustomerComm;
-    var isParasiticMode = userSession != null && userSession.ApplicationMode == AppMode.Parasitic;
-    var isFakeLicensee = licenseeSettingService.IsFakeLicensee(licSession.LicenseeName);
+    var hasCustComm = sessionService.LicenseeSession.IsAllowedCustomerComm;
+    var isParasiticMode = true; // NEED REVIEWS
+    var isFakeLicensee = licenseeSettingService.IsFakeLicensee(sessionService.LicenseeSession.LicenseeName);
     var langCode = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
 }
 <!DOCTYPE html>
@@ -27,7 +26,7 @@
     <link href="@Url.ContentLinkByEnv("/www/css/build/main.css")" rel="stylesheet" />
 
     @RenderSection("css", required: false)
-    <meta name="description" content="The Risk & Forecast System" />
+    <meta name="description" content="Administrator System" />
 </head>
 <body>
     <input type="hidden" id="RootUrl" value="@Url.Content("~/")" />

@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ProductDataAccess.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Core.Common
+﻿namespace Fanex.Athena.DataAccess.Core.Common
 {
     using System.Collections.Generic;
     using Extension.Helper;
@@ -20,7 +14,6 @@ namespace Fanex.Athena.DataAccess.Core.Common
         {
             var uspName = isActiveCustomerSummaryReport ? "Lrf_LicenseeProduct3rdSel_active" : "Lrf_LicenseeProduct3rdSel";
 
-            // All licensees have product Sb
             var allowedProducts = new List<Product> { new Product { IsOfferedSingleWallet = true, ProductCode = "SB", ProductName = ViewResources.Sportsbook } };
 
             using (var db = this.GetObjectDb(uspName))

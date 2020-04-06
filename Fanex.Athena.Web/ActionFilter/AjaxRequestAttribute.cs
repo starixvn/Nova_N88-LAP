@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AjaxRequestAttribute.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-namespace Fanex.Athena.Web.ActionFilter
+﻿namespace Fanex.Athena.Web.ActionFilter
 {
     using System;
     using System.Reflection;
     using System.Web.Mvc;
 
-    /// <summary>
-    ///  Ajax request attribute class.
-    /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class AjaxRequestAttribute : ActionMethodSelectorAttribute
     {

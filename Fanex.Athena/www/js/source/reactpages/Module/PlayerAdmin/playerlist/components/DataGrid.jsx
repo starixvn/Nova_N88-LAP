@@ -32,7 +32,7 @@ export class DataGrid extends PureComponent {
                 dataItem,
                 displayedColumn
             }
-            dataRows.push(<PlayerRow key={dataItem.LicenseeCustId} {...rowProps} />);
+            dataRows.push(<PlayerRow key={dataItem.IbcCustId} {...rowProps} />);
         }
 
         return dataRows;
@@ -54,7 +54,7 @@ export class DataGrid extends PureComponent {
             return <NoDataTitle />;
         }
 
-        const dataList = selectedPlayer ? [playerList.find(item => item.LicenseeCustId === selectedPlayer.licenseeCustId)] : playerList;
+        const dataList = selectedPlayer ? [playerList.find(item => item.IbcCustId === selectedPlayer.ibcCustId)] : playerList;
         const displayedColumn = buildDisplayedColumnObject(displayedColumnList);
 
         return (

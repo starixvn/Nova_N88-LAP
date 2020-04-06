@@ -1,14 +1,8 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ExcelResult.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Web.ResultExtension
+﻿namespace Fanex.Athena.Web.ResultExtension
 {
     using System.Web.Mvc;
     using NPOI.SS.UserModel;
-    using System;
+
     /// <summary>
     /// Excel Result.
     /// </summary>

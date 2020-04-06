@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Athena.Service.Core.UnitTests.Users
 {
-    using System.Collections.Generic;
 
     using Model.Core.DTO.Common;
 
@@ -26,28 +25,21 @@
         {
             // Arrange
             const int LicenseeId = 1;
-            var licensees = new List<Licensee>
-            {
-                new Licensee { Id = 1, Name = "spondemo" }
-            };
-            _licenseeDataAccess.GetByUser(DefaultUserId).Returns(licensees);
+            var licensee = new Licensee { Id = 1, Name = "spondemo" };
+            _licenseeDataAccess.GetLicenseeSettingById(DefaultUserId).Returns(licensee);
 
             // Action
-            CreateDefaultNewSession(LicenseeId);
+            CreateDefaultNewSession();
 
             // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(_sessionService.LicenseeSession.LicenseeId, Is.EqualTo(LicenseeId));
-                Assert.That(_sessionService.LicenseeSession.LicenseeName, Is.EqualTo("spondemo"));
-            });
+            Assert.That(_sessionService.LicenseeSession.LicenseeName, Is.EqualTo("spondemo"));
         }
 
         [Test]
         public void CreateNewSession_LicenseeIdIsZero_LicenseeSessionIsNull()
         {
             // Action
-            CreateDefaultNewSession(0);
+            CreateDefaultNewSession();
 
             // Assert
             Assert.That(_sessionService.LicenseeSession, Is.Null);

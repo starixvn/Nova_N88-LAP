@@ -8,6 +8,24 @@
 @import "../../components/tab.scss";
 @import "../../components/custom3rd/react-toastify.scss";
 
+.betlist-container {
+    .table-container {
+        .header-content {
+            .table {
+                thead {
+                    tr {
+                        th {
+                            background: #a2beba;
+                            color: #222;
+                            font-weight: normal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .table {
     line-height: inherit;
 }

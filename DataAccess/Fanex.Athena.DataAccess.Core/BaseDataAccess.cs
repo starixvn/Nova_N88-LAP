@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BaseDataAccess.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Core
+﻿namespace Fanex.Athena.DataAccess.Core
 {
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Common;

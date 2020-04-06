@@ -1,0 +1,75 @@
+﻿@using Fanex.Athena.Controllers.Account
+@using Fanex.Athena.Model.UserManagement.Criteria
+@model InsertCustCriteria
+
+@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    bool success = ViewBag.Success != null && ViewBag.Success;
+}
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/edituser.css")" rel="stylesheet" type="text/css" />
+}
+@section pagejs {
+    <script src="@Url.ContentLink("/Scripts/Account/msgbox-0.0.1.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Account/NAP.js")" type="text/javascript"></script>
+}
+
+<div class="container-fluid">
+    <div class="breadcrumb">
+        <a class="level level-link" href="javascript:;"
+           onclick="NAP.redirect('Account/Manage/', 0); return false;">@ViewResources.ManageUser</a>
+        <i class="icon-arrow"></i>
+        <a class="level" href="javascript:;">@ViewResources.NewUser</a>
+    </div>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-horizontal" }))
+    {
+        <div class="form-group">
+            @Html.ValidationSummary()
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Username, new { @class = "label-text required" })
+            @Html.TextBoxFor(c => c.Username, new { @class = "input-text", @autocomplete = "off" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.UserPwd, new { @class = "label-text required" })
+            @Html.PasswordFor(c => c.UserPwd, new { @class = "input-text" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.FirstName, new { @class = "label-text" })
+            @Html.TextBoxFor(c => c.FirstName, new { @class = "input-text", @autocomplete = "off" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.LastName, new { @class = "label-text" })
+            @Html.TextBoxFor(c => c.LastName, new { @class = "input-text", @autocomplete = "off" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Email, new { @class = "label-text" })
+            @Html.TextBoxFor(c => c.Email, new { @class = "input-text", @autocomplete = "off" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.GroupId, new { @class = "label-text required" })
+            @Html.DropDownListFor(c => c.GroupId, (List<SelectListItem>)ViewBag.GroupSelectList, new { @class = "input-text" })
+        </div>
+        <div class="form-group">
+            @if (!success)
+            {
+                <input type="submit" class="btn btn-submit" value="@ViewResources.Save" />
+                <button class="btn btn-cancel" onclick="NAP.redirect('Account/Manage/', 0); return false;">
+                    @ViewResources.Cancel
+                </button>
+            }
+        </div>
+    }
+</div>
+
+@if (success)
+{
+    string dialogMsg = string.Format(ViewResources.AddSuccessMsg, ViewResources.User + " '" + Model.Username + "'", 3);
+
+    <script type="text/javascript">
+        var url = 'Account/Manage';
+        NAP.showSuccessMsg('@dialogMsg', url, 4000);
+    </script>
+}

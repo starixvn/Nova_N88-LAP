@@ -1,59 +1,66 @@
 ﻿@{
     Layout = null;
-    var fucntionAddNewAccount = 47;
-    var functionCustCommGroup = 55;
-
-    var icons = new Dictionary<int, string>
-        {
-            { 1, "totalbet" }, { 2, "chart-bar" }, { 3, "table" }, { 5, "table" }, { 6, "administration" }, { 52, "table" }, { 4, "customer" }
-        };
+    var icons = new Dictionary<string, string>
+    {
+        { "BetHistory", "bet-history" },
+        { "Report", "table" },
+        { "PlayerManagement", "player-management" },
+        { "UserManagement", "user-management" },
+        { "LogManagement", "log-management" }
+    };
 }
-@model Fanex.Athena.Model.Core.ViewModel.MenuViewModel
+@using Fanex.Athena.Resources
+@using Fanex.N88.Core.Models
+@model IEnumerable<MenuItem>
+
+@helper getMenuTitle(MenuItem menu) {
+    if (string.IsNullOrWhiteSpace(menu.Key))
+    {
+        @menu.Name
+    }
+    else
+    {
+        @Menu.ResourceManager.GetString(menu.Key)
+    }
+}
 
 <ul class="collapsible2 collapsible-expandable" data-collapsible="accordion">
-    @foreach (var masterFunction in Model.MasterFunctions)
+    @{ IEnumerable<MenuItem> menus = Model.Where(t => t.Parent == null); }
+    @foreach (MenuItem menu in menus)
     {
-        var subFunctions = Model.UserDetailFunctions.ContainsKey(masterFunction.FunctionId)
-                    ? Model.UserDetailFunctions[masterFunction.FunctionId].Where(f => f.IsMenu).ToList()
-                    : null;
-        var subMenuCount = subFunctions != null ? subFunctions.Count : 0;
-        if (subMenuCount > 0)
-        {
-            <li class="menu-item has-sub">
+        IEnumerable<MenuItem> subMenus = Model.Where(t => t.Parent != null && t.Parent.Id == menu.Id);
+        <li class="menu-item @(subMenus.Any() ? "has-sub" : string.Empty)">
+            @if (menu.Url == "")
+            {
                 <a class="collapsible-header waves-effect">
-                    <i class="menu-icon icon-@(icons.ContainsKey(masterFunction.FunctionId) ? icons[masterFunction.FunctionId] : "table")" aria-hidden="true"></i>
-                    <span class="menu-title">@masterFunction.Name</span>
+                    <i class="menu-icon icon-@(icons.ContainsKey(menu.Key) ? icons[menu.Key] : "table")" aria-hidden="true"></i>
+                    <span class="menu-title">@getMenuTitle(menu)</span>
                     <i class="right icon-arrow"></i>
                 </a>
+            }
+            else
+            {
+                <a class="collapsible-header waves-effect" id="MenuItem@(menu.Id)" href="@Url.Content("~/" + menu.Url)" target="main">
+                    <i class="menu-icon icon-@(icons.ContainsKey(menu.Key) ? icons[menu.Key] : "table")" aria-hidden="true"></i>
+                    <span class="menu-title">@getMenuTitle(menu)</span>
+                </a>
+            }
 
+            @if (subMenus.Any())
+            {
                 <div class="collapsible-body">
                     <ul>
-                        @foreach (var subFunction in subFunctions)
+                        @foreach (MenuItem subMenu in subMenus)
                         {
-                            if (!Model.IsAllowedCustonmerCommission && subFunction.FunctionId == functionCustCommGroup)
-                            {
-                                continue;
-                            }
-                            if (Model.IsInternalLogin && subFunction.FunctionId == fucntionAddNewAccount)
-                            {
-                                continue;
-                            }
-
                             <li>
-                                <a id="MenuItem@(subFunction.FunctionId)" href="@Url.Content("~/" + subFunction.Url)" target="main">
-                                    @Html.Raw(subFunction.Name)
-
-                                    @if (subFunction.IsNew)
-                                    {
-                                        @Html.Raw("&nbsp;") <img src="@Url.ContentLink("/www/css/build/images/new_icon.gif")" alt='NEW' title='NEW' class='new_icon' />
-                                    }
+                                <a id="MenuItem@(subMenu.Id)" href="@Url.Content("~/" + subMenu.Url)" target="main">
+                                    @getMenuTitle(subMenu)
                                 </a>
                             </li>
                         }
                     </ul>
                 </div>
-            </li>
-        }
+            }
+        </li>
     }
 </ul>
-

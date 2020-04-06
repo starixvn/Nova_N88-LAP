@@ -1,69 +1,37 @@
-﻿///
-"use strict";
-var ResetPassword = (function ($) {
+﻿/* File Created: July 21, 2014 */
+/* global CryptoJS */
+'use strict';
+
+var ResetPassword = function () {
     return {
-        init: function () {
-            $('#btnSave').click(function () {
-                $('#resultMessage').hide();
-
-                // check password
-                var validPassword = false;
-                if ($('#Password').val().length <= 0) {
-                    $('#rfvPassword').show();
-                } else {
-                    validPassword = true;
-                    $('#rfvPassword').hide();
-                }
-
-                // check confirm password
-                var validConfirm = false;
-                if ($('#ConfirmPassword').val().length <= 0) {
-                    $('#rfvConfirm').show();
-                } else {
-                    $('#rfvConfirm').hide();
-                    validConfirm = true;
-                }
-
-                // compare two fields
-                var validClient = false;
-                if (validPassword && validConfirm) {
-                    if ($('#Password').val() !== $('#ConfirmPassword').val()) {
-                        $('#cvConfirm').show();
-                    }
-                    else {
-                        $('#cvConfirm').hide();
-                        validClient = true;
-                    }
-                }
-
-                if (validClient) {
-                    var form = $('#ResetPasswordForm');
-                    var url = form.attr('action');
-                    var params = form.serializeObject();
-
-                    $.ajax({
-                        type: 'POST',
-                        dataType: "json",
-                        cache: false,
-                        url: url,
-                        data: params,
-                        success: function (response) {
-                            $('#resultMessage').toggleClass('info', response.IsSuccessful)
-                                               .toggleClass('err', !response.IsSuccessful)
-                                               .html(response.Message).show()
-                                               .animate({ "opacity": "hidden" }, 10000, function () { $(this).fadeOut(1000); });
-                        }
-                    });
-                }
-            });
-
-            $('#btnCancel').click(function () {
-                parent.$('#manage-dialog').dialog('close');
-            });
-        }
+        mainForm: null,
+        userPwd: null,
+        confirmUserPwd: null,
+        hiddenForm: null,
+        newPassword: null,
+        confirmPassword: null
     };
-} (jQuery));
+};
 
 $(document).ready(function () {
-    ResetPassword.init();
+    ResetPassword.mainForm = $('#mainForm');
+    ResetPassword.userPwd = $('#UserPwd');
+    ResetPassword.confirmUserPwd = $('#ConfirmUserPwd');
+    ResetPassword.hiddenForm = $('#hiddenForm');
+    ResetPassword.newPassword = $('#newPassword');
+    ResetPassword.confirmPassword = $('#confirmPassword');
+
+    ResetPassword.mainForm.on('submit', function () {
+        if ($(this).valid()) {
+            var encryptPass = '';
+            encryptPass = CryptoJS.CfsEnCode(ResetPassword.userPwd.val());
+            ResetPassword.newPassword.val(encryptPass);
+            encryptPass = CryptoJS.CfsEnCode(ResetPassword.confirmUserPwd.val());
+            ResetPassword.confirmPassword.val(encryptPass);
+
+            ResetPassword.hiddenForm.submit();
+
+            return false;
+        }        
+    });
 });

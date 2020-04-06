@@ -1,34 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Web.Compilation;
-using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
-using System.Web.Mvc;
-using Autofac;
-using Autofac.Integration.Mvc;
-using Autofac.Integration.WebApi;
-using Fanex.Athena.Api.StatelessBase.Logger;
-using Fanex.Athena.DataAccess.Report;
-using Fanex.Athena.DataAccess.Report.Interfaces;
-using Fanex.Athena.Extension;
-using Fanex.Athena.Extension.Utility.Internal;
-using Fanex.Athena.Module.PlayerAdmin;
-using Fanex.Athena.Module.PlayerAdmin.Api;
-using Fanex.Athena.Service.Core.Users;
-using Fanex.Athena.Service.Core.Users.Interfaces;
-using Fanex.Athena.Service.StatelessCore;
-using Fanex.Athena.Service.StatelessCore.Extensions;
-using Fanex.Athena.Service.StatelessCore.Interfaces;
-using Fanex.Logging;
-using ONEbook.UM.Services;
-using ONEbook.UM.Services.Impl;
-
-namespace Fanex.Athena
+﻿namespace Fanex.Athena
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Reflection;
+    using System.Web.Compilation;
+    using System.Web.Http;
+    using System.Web.Http.ExceptionHandling;
+    using System.Web.Mvc;
+    using Autofac;
+    using Autofac.Core;
+    using Autofac.Integration.Mvc;
+    using Autofac.Integration.WebApi;
+    using Fanex.Athena.Api.PlayerManagement.Extensions;
+    using Fanex.Athena.Api.StatelessBase.Logger;
+    using Fanex.Athena.Extension;
+    using Fanex.Athena.Extension.Utility;
+    using Fanex.Athena.Extension.Utility.Internal;
+    using Fanex.Athena.Service.Core.Users;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Service.PlayerManagement;
+    using Fanex.Athena.Service.PlayerManagement.Interfaces;
+    using Fanex.Athena.Service.StatelessCore;
+    using Fanex.Athena.Service.StatelessCore.Extensions;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Logging;
+    using Fanex.N88.Core.Service.Impl;
+    using Fanex.N88.Core.Service.Interface;
+    using Fanex.N88.Core.Web.Session;
+    using ONEbook.UM.Services;
+    using ONEbook.UM.Services.Impl;
+
     public static class DIConfig
     {
         public static void Register()
@@ -46,9 +50,6 @@ namespace Fanex.Athena
             builder.RegisterFilterProvider();
             builder.RegisterWebApiFilterProvider(config);
             // generic types
-            builder.RegisterGeneric(typeof(ThirdPartyWinLossDataAccess<>))
-                .As(typeof(IThirdPartyWinLossDataAccess<>));
-
             RegisterThirdpartyServices(builder);
 
             RegisterSingleton(builder);
@@ -60,7 +61,11 @@ namespace Fanex.Athena
             builder.RegisterControllers(controllerAssemblies).PropertiesAutowired();
             builder.RegisterApiControllers(apiControllerAssemblies).PropertiesAutowired();
 
-
+            builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<GroupService>().As<IGroupService>();
+            builder.RegisterType<SiteService>().As<ISiteService>();
+            builder.RegisterType<SecurityService>().As<ISecurityService>();
+            builder.RegisterType<CurrentSession>().As<ICurrentSession>();
             builder.RegisterType<ApiExceptionLogger>().As<IExceptionLogger>();
 
             var container = builder.Build();
@@ -72,12 +77,7 @@ namespace Fanex.Athena
         private static void RegisterModule(ContainerBuilder builder, Assembly[] assemblies)
         {
             var moduleAssemblies = GetModuleAssemblies(assemblies);
-
-            builder.RegisteModuleApiModule(moduleAssemblies, "Fanex.Athena.Module.Dashboard");
-            builder.RegisteModuleModuleAndApi(moduleAssemblies, "Fanex.Athena.Module.Notification");
-
             builder.RegisteModulePlayerAdminApi(moduleAssemblies);
-            builder.RegisteModulePlayerAdmin(moduleAssemblies);
         }
 
         private static void RegisterHttpClient(ContainerBuilder builder)
@@ -103,8 +103,27 @@ namespace Fanex.Athena
         {
             builder.RegisterType<MaintenanceService>().As<IMaintenanceService>().SingleInstance();
 
-            builder.RegisterInstance(Logger.Log).As<Logging.ILogger>();
+            builder.RegisterInstance(Logger.Log).As<ILogger>();
             builder.RegisterType<RestSharp.RestClient>().As<RestSharp.IRestClient>().InstancePerDependency();
+        }
+
+        public static void RegisteModulePlayerAdminApi(this ContainerBuilder builder,
+         IEnumerable<Assembly> assemblies)
+        {
+            builder.RegisterType<CommonCustomerSettingLogFactory>()
+                .As<IBusinessLogBuilderFactory>()
+                .Keyed<IBusinessLogBuilderFactory>("PlayerAdminCommonCustomerSettingLogFactory");
+
+            builder.Register<PlayerStatementService>(x => new PlayerStatementService(x.Resolve<IAppSettings>(), x.ResolveNamed<HttpClient>("EXTServiceTokenClient")))
+                .As<IPlayerStatementService>()
+                .InstancePerDependency();
+
+            builder.RegisterType<BusinessLogService>()
+                .WithParameter(
+                new ResolvedParameter(
+                   (pi, ctx) => pi.ParameterType == typeof(IBusinessLogBuilderFactory),
+                   (pi, ctx) => ctx.ResolveKeyed<IBusinessLogBuilderFactory>("PlayerAdminCommonCustomerSettingLogFactory")))
+                   .Keyed<IBusinessLogService>("PlayerAdminCommonCustomerSettingLogService");
         }
 
         private static Assembly[] GetAssemblies()

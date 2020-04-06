@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Fanex.Athena.Extension.Utility;
 using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.Helper;
 using Fanex.Athena.Service.Core.Users.Interfaces;
@@ -12,10 +12,12 @@ namespace Fanex.Athena.Service.Core.Utility
     public class CurrencyValidation : ICurrencyValidation
     {
         private readonly ISessionService _sessionService;
+        private readonly IAppSettings _appSettings;
 
-        public CurrencyValidation(ISessionService sessionService)
+        public CurrencyValidation(ISessionService sessionService, IAppSettings appSettings)
         {
             _sessionService = sessionService;
+            _appSettings = appSettings;
         }
 
         public bool IsValidBaseCurrency(string baseCurrency, bool isAllowEmpty = true)
@@ -28,9 +30,7 @@ namespace Fanex.Athena.Service.Core.Utility
             var currencyList = _sessionService.UserSession.CurrencyList;
             if (isIncludeKeanOcean)
             {
-                return ValidateCurrencyWithKeanOceanOption(currencyId
-                    , currencyList
-                    , _sessionService.LicenseeSession.LicenseeId);
+                return ValidateCurrencyWithKeanOceanOption(currencyId, currencyList, _appSettings.LicenseeId);
             }
 
             return ValidateCurrency(currencyId, currencyList);
@@ -58,10 +58,9 @@ namespace Fanex.Athena.Service.Core.Utility
             {
                 return false;
             }
-            var items = currencyIdList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            int n;
-            return !items.Any(x => !int.TryParse(x, out n) || !_sessionService.UserSession.CurrencyList.ContainsKey(n));
+            var items = currencyIdList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            return !items.Any(x => !int.TryParse(x, out int n) || !_sessionService.UserSession.CurrencyList.ContainsKey(n));
         }
     }
 }

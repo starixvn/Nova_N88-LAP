@@ -3,7 +3,7 @@
 .side-nav {
     width: 260px;
     box-shadow: none;
-    background: #314453;
+    background: #0C2924;
     top: 64px;
     z-index: 997;
 
@@ -30,7 +30,7 @@
             line-height: 4rem;
             text-transform: uppercase;
             display: block;
-            color: #dbdbdb;
+            color: #989898;
 
             &:hover {
                 background: none;
@@ -69,10 +69,10 @@
             }
 
             &.active {
-                background: rgba(0,0,0,0.1);
+                background: #081C19;
 
                 > .collapsible-header {
-                    color: #f05b1f;
+                    color: #fff;
                     font-weight: bold;
 
                     i.icon-arrow {
@@ -97,7 +97,7 @@
                     padding-right: 0;
                     height: 25px;
                     line-height: 25px;
-                    color: #dbdbdb;
+                    color: #989898;
                     //--- truncate text ---//
                     width: 220px;
                     white-space: nowrap;
@@ -107,7 +107,7 @@
 
                 &:hover {
                     a {
-                        color: #f05b1f;
+                        color: #fff;
                     }
                 }
 
@@ -116,7 +116,7 @@
                 }
 
                 &.active {
-                    background: #f05b1f;
+                    background: none;
 
                     a {
                         color: #fff;

@@ -1,9 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="HSSFSheetExtension.cs" company="" >
-//  Copyright (c) . All rights reserved.
-// </copyright>
-
-namespace Fanex.Athena.Excel.Base.Extension
+﻿namespace Fanex.Athena.Excel.Base.Extension
 {
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;

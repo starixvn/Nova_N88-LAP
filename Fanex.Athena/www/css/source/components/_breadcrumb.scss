@@ -1,0 +1,32 @@
+﻿@import "../abstracts/mixins";
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    background: #F2F7FF;
+    border: 1px solid #CCDEF8;
+    @include box-sizing(border-box);
+    @include border-radius(3px);
+    padding: 9px 12px;
+    margin-bottom: 10px;
+
+    .icon-arrow {
+        color: #545454;
+        transform: rotate(-90deg);
+        margin: 0 10px;
+        font-size: 10px;
+    }
+
+    .level {
+        text-decoration: none;
+        font-size: 16px;
+        line-height: 19px;
+        color: #333;
+        cursor: text;
+
+        &.level-link {
+            color: #1C5FC3;
+            cursor: pointer;
+        }
+    }
+}

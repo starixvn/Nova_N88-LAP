@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "LAP - " + ViewResources.Report +
+    ViewBag.Title = ViewResources.Report +
     " - " + "Betting Tickets Center";
     Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
 }
@@ -37,8 +37,7 @@
     bettypeList: [],
     selectedBettype: 0,
     username: '',
-    isConvertAll: true,
-    hasExchange: '@Model.HasExchange.ToString()' === 'True'
+    isConvertAll: true
     };
     window._AppData = {
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),

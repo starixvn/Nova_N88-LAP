@@ -10,9 +10,6 @@ const entry = {
     [`${jsPath}/lib/langHelper`]: pathConfig.scriptPaths.languageResource,
     [`${jsPath}/lib/lang-zh-CN`]: pathConfig.scriptPaths.langCN,
     [`${cssPath}/vendor`]: pathConfig.cssPaths.layout,
-
-    [`${jsPath}/report/dailybets`]: pathConfig.scriptPaths.dailybets,
-    [`${cssPath}/dailybets/index`]: pathConfig.cssPaths.dailybets,
 }
 
 const devByPageConfig = {

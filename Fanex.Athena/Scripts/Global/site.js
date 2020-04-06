@@ -592,7 +592,6 @@ var Site = (function ($) {
             /// convert text to orther language
             /// </summary>
             /// <param name="enghlishName"></param>
-
             if (enghlishName == null || enghlishName === undefined) {
                 return enghlishName;
             }

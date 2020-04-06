@@ -1,8 +1,14 @@
 ﻿.page-container {
+    background-color: #e6e6e6;
     font-size: 1.1rem;
 
     .icon {
         font-family: 'icomoon' !important;
+        color: #545454;
+
+        &.disable {
+            color: #8e8e8e;
+        }
     }
 
     .page-first {

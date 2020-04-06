@@ -1,22 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SystemParlayBetListController.cs" company="">
-// Report controller
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers.BetList
+﻿namespace Fanex.Athena.Controllers.BetList
 {
-    #region Using
-
-    using Fanex.Athena.Web.ActionFilter;
-
-    using Model.BetList.MetaModel;
-    using Model.BetList.ViewModel;
-
     using System.Threading.Tasks;
     using System.Web.Mvc;
-
-    #endregion Using
+    using Fanex.Athena.Web.ActionFilter;
+    using Model.BetList.MetaModel;
+    using Model.BetList.ViewModel;
 
     public class SystemParlayBetListController : BetListBaseController
     {

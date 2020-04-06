@@ -69,45 +69,59 @@ $borderContainer: #d6d6d6;
 }
 /*End Search Option*/
 
-/*Right part*/
-.caret-block {
-    bottom: 0;
-
-    .icon-excel-wrapper {
-        margin-left: 10px;
-        background: $white;
-        text-align: center;
-        width: 24px;
-        height: 22px;
-    }
-    /*select column part*/
-    .multiple-select-container {
-        width: 103px;
-
-        .multiple-select-options-container {
-            width: 200px;
-            left: -110px;
-
-            .multiple-select-options {
-                max-height: 300px;
-            }
-        }
-
-        .multiple-select-label {
-            color: #fff;
-            border-bottom: none;
-
-            .text-display {
-                line-height: 13px;
-            }
-
-            &:hover {
-                color: #dec5c5;
+.table-container {
+    .header-content {
+        .table {
+            thead {
+                tr {
+                    th {
+                        background: #a2beba;
+                        color: #222;
+                        font-weight: normal;
+                    }
+                }
             }
         }
     }
 }
-/*End Right part*/
+
+.report-title-container {
+    .caret-block {
+        top: 8px;
+        bottom: 0;
+
+        .icon-excel-wrapper {
+            margin-left: 10px;
+            background: $white;
+            text-align: center;
+            width: 24px;
+            height: 22px;
+        }
+
+        /*select column part*/
+        .multiple-select-container {
+            width: 103px;
+
+            .multiple-select-options-container {
+                width: 200px;
+                left: -110px;
+
+                .multiple-select-options {
+                    max-height: 300px;
+                }
+            }
+
+            .multiple-select-label {
+                color: #fff;
+                border-bottom: none;
+
+                .text-display {
+                    line-height: 13px;
+                }
+            }
+        }
+    }
+}
 
 /*Tab*/
 .header-tab {
@@ -125,7 +139,7 @@ $borderContainer: #d6d6d6;
         font-size: 12px;
 
         &.active {
-            color: #f05b1f;
+            color: #e15f00;
         }
     }
 }

@@ -6,13 +6,16 @@ import Loader from '@jsroot/components/Loader';
 import AppLayout from '@jsroot/layouts/AppLayout';
 import PlayerDetail from './PlayerDetail';
 
+const isAllowedStatement = window._pConfig.isAllowedStatement === 1;
 export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader isLoading={props.isLoading} />
             <FormFilter />
             <Content />
-            <PlayerDetail />
+            {
+                isAllowedStatement && <PlayerDetail />
+            }
         </AppLayout>
     );
 }

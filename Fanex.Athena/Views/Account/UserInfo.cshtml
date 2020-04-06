@@ -1,0 +1,78 @@
+﻿@using Fanex.Athena.Model.UserManagement.Model
+@model User
+@{
+    Layout = null;
+}
+
+@if (!ReferenceEquals(Model, null))
+{
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <div class="label-text">@ViewResources.Username</div>
+        <div class="input-text">@Model.Username</div>
+    </div>
+    <div class="form-group">
+        <div class="label-text">@ViewResources.FirstName</div>
+        <div class="input-text">@Model.FirstName</div>
+    </div>
+    <div class="form-group line">
+        <div class="label-text">@ViewResources.LastName</div>
+        <div class="input-text">@Model.LastName</div>
+    </div>
+    <div class="form-group line">
+        <div class="label-text">@ViewResources.Email</div>
+        <div class="input-text">@Model.Email</div>
+    </div>
+    <div class="form-group">
+        <div class="label-text">@ViewResources.Group</div>
+        <div class="input-text">@(Model.Group != null ? Model.Group.Name : string.Empty)</div>
+    </div>
+    <div class="form-group">
+        <div class="label-text">@ViewResources.LastLoginDate</div>
+        <div class="input-text">
+            @if (Model.LastLoginDate != DateTime.MinValue)
+            {
+                @Model.LastLoginDate.ToFullDateString()
+            }
+            else
+            {
+                @ViewResources.NA
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="label-text"> @ViewResources.CreatedDate</div>
+        <div class="input-text">
+            @if (Model.CreatedDate != DateTime.MinValue)
+            {
+                @Model.CreatedDate.ToFullDateString()
+            }
+            else
+            {
+                @ViewResources.NA
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="label-text">@ViewResources.Creator</div>
+        <div class="input-text">@(Model.Creator != null ? Model.Creator.Username : string.Empty)</div>
+    </div>
+    <div class="form-group line">
+        <div class="label-text">@ViewResources.Modified_Date</div>
+        <div class="input-text">
+            @if (Model.ModifiedDate != DateTime.MinValue)
+            {
+                @Model.ModifiedDate.ToFullDateString()
+            }
+            else
+            {
+                @ViewResources.NA
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="label-text">@ViewResources.Modifier</div>
+        <div class="input-text">@(Model.Modifier != null ? Model.Modifier.Username : string.Empty)</div>
+    </div>
+</form>
+}

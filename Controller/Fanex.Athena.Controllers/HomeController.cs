@@ -1,17 +1,8 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="HomeController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers
+﻿namespace Fanex.Athena.Controllers
 {
-    using Fanex.Athena.Model.Auth.Enum;
-
-    using ONEbook.UM.Filters;
-
     using System.Web.Mvc;
-
+    using Fanex.Athena.Model.Auth.Enum;
+    using ONEbook.UM.Filters;
     using Web.ActionFilter;
 
     [CheckUMFilter]
@@ -31,18 +22,13 @@ namespace Fanex.Athena.Controllers
             return ReAuthorize("~/Views/Desktop/Home/IndexIpad.cshtml");
         }
 
-        /// <summary>
-        /// Checking existing user in the system.
-        /// </summary>
-        /// <param name="defaultView">The client device (IPAD or others).</param>
-        /// <returns>Redirect to sign in page or the home page.</returns>
         private ActionResult ReAuthorize(string defaultView)
         {
             if (!HttpContext.Response.IsRequestBeingRedirected)
             {
                 var user = SessionServiceInstance.UserSession;
                 if (user == null || user.UserId <= 0
-                    || string.IsNullOrEmpty(user.UserName) || SessionServiceInstance.LicenseeSession == null)
+                    || string.IsNullOrEmpty(user.UserName))
                 {
                     Session.Clear();
                     return RedirectToAction("LocationRestriction", "Utility");
@@ -60,8 +46,7 @@ namespace Fanex.Athena.Controllers
             ViewBag.OnUserId = userSession.OnUserId;
             ViewBag.IsInternal = userSession.IsInternal ? "1" : "0";
             ViewBag.HasRecheckIn = AppSettingInstance.LocalTest ? "0" : "1";
-            ViewBag.IsEnabledMoveBetNotification = AppSettingInstance.IsEnabledMoveBetNotification
-                && !IsFakeLicensee(SessionServiceInstance.LicenseeSession?.LicenseeName);
+            ViewBag.LicenseeName = siteNameList[AppSettingInstance.LicenseeId];
         }
     }
 }

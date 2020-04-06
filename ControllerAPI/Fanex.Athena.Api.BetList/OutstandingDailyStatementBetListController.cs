@@ -1,23 +1,14 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="OutstandingDailyStatementBetListController.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.BetList
+﻿namespace Fanex.Athena.Api.BetList
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Http;
-
     using Base;
     using Base.Attributes;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
     using Model.BetList.DTO;
     using Model.BetList.MetaModel;
-
     using Service.Core.Common.Interfaces;
 
     [ApiFunctionAuthorization(PermissionKeys.CustomerInfoCustomerList)]
@@ -41,12 +32,10 @@ namespace Fanex.Athena.Api.BetList
         [ValidationApiRequest]
         public async Task<dynamic> Index(BetListMetaModel metaModel)
         {
-            var licenseeSession = SessionService.LicenseeSession;
             var userSession = SessionService.UserSession;
-            metaModel.UserId = userSession.UserId;
-            metaModel.LicenseeId = licenseeSession.LicenseeId;
-            metaModel.ToDate = metaModel.ToDate.Date.AddDays(1).AddMinutes(-1);
-            metaModel.HasPlayerCom = licenseeSession.IsAllowedCustomerComm;
+
+            UpdateMetaModel(metaModel);
+
             if (_authorizationService.HasPermissionOnData(userSession.CurrencyAgentList, metaModel.CustId, metaModel.TransId))
             {
                 return await _betListApiClient.PostAsync("/OutstandingDailyStatementBetList/GetData",
@@ -54,6 +43,19 @@ namespace Fanex.Athena.Api.BetList
             }
 
             return new List<DailyStatement>();
+        }
+
+        private BetListMetaModel UpdateMetaModel(BetListMetaModel metaModel)
+        {
+            var licenseeSession = SessionService.LicenseeSession;
+            var userSession = SessionService.UserSession;
+
+            metaModel.UserId = userSession.UserId;
+            metaModel.LicenseeId = licenseeSession.LicenseeId;
+            metaModel.ToDate = metaModel.ToDate.Date.AddDays(1).AddMinutes(-1);
+            metaModel.HasPlayerCom = licenseeSession.IsAllowedCustomerComm;
+
+            return metaModel;
         }
     }
 }

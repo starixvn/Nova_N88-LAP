@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "LAP - " + ViewResources.Report +
+    ViewBag.Title = ViewResources.Report +
     " - " + "Betting Tickets Center";
     Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
 }
@@ -23,8 +23,7 @@
     username: "",
     selectedBaseCurrency: '@ViewBag.SelectedBaseCurrency',
     isLoading: false,
-    isConvertAll: true,
-    hasExchange: '@ViewBag.HasExchange.ToString()' === 'True'
+    isConvertAll: true
     };
     window._AppData = {
     isAllowedCustomerComm: @Model.ToJson(),

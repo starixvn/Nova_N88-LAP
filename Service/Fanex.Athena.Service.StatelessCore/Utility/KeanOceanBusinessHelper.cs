@@ -13,19 +13,6 @@
     /// </summary>
     public static class KeanOceanBusinessHelper
     {
-        public static IEnumerable<CurrencyUser> ModifyCurrenciesForKeenOcean(IEnumerable<CurrencyUser> currencies)
-        {
-            var currencyList = currencies.Where(x => x.CurrencyId != CurrencyType.Cny).ToList();
-
-            var currency = currencyList.FirstOrDefault(x => x.CurrencyId == CurrencyType.Hkd && !x.CurrencyName.Equals("CNY"));
-            if (currency != null)
-            {
-                currency.CurrencyName = "CNY";
-            }
-
-            return currencyList;
-        }
-
         public static void KeepHKDCurrencyName(IEnumerable<CurrencyUser> currencies)
         {
             var currency = currencies.FirstOrDefault(x => x.CurrencyId == CurrencyType.Hkd);

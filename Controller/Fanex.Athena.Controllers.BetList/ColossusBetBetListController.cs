@@ -1,26 +1,13 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ColossusBetBetListController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers.BetList
+﻿namespace Fanex.Athena.Controllers.BetList
 {
-    #region Using
-
-    using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Service.StatelessCore.Utility;
-
-    using Model.BetList.MetaModel;
-    using Model.BetList.ViewModel;
-
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.UI;
-
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Service.StatelessCore.Utility;
+    using Model.BetList.MetaModel;
+    using Model.BetList.ViewModel;
     using Web.ActionFilter;
-
-    #endregion Using
 
     [FunctionAuthorization(PermissionKeys.ReportColossusBetsWinLoss)]
     public class ColossusBetBetListController : BetListBaseController

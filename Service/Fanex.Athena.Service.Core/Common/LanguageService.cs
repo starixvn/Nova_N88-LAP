@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LanguageService.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Service.Core.Common
+﻿namespace Fanex.Athena.Service.Core.Common
 {
     using System.Globalization;
     using System.Threading;

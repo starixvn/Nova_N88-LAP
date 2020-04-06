@@ -18,8 +18,6 @@
 
         IEnumerable<string> LicenseesWithLargeData { get; }
 
-        IEnumerable<int> LicenseeOfferNewForecast { get; }
-
         IEnumerable<int> LicenseeAllowCasinoTransfer { get; }
 
         IEnumerable<int> LicenseeOfferStatusFunction { get; }
@@ -38,8 +36,6 @@
             Justification = "Reviewed. Suppression is OK here.")]
         string ResultAmendmentAttachmentApiUrl { get; }
 
-        bool IsEnabledMoveBetNotification { get; }
-
         string DefaultBaseCurrency { get; }
 
         bool EnableAssignCurrency { get; }
@@ -56,8 +52,6 @@
 
         bool IsShowAllDataForSettleMatchCountReport { get; }
 
-        IEnumerable<int> LiveReportNoDetailLinkSports { get; }
-
         bool LocalTest { get; }
 
         DateTime MaxDate { get; }
@@ -71,5 +65,7 @@
         string GetValue(string key);
 
         int BetListApiClientTimeOutMinutes { get; }
+
+        int LicenseeId { get; }
     }
 }

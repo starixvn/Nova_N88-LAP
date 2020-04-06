@@ -1,183 +1,302 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AccountController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Controllers.Account
+﻿namespace Fanex.Athena.Controllers.Account
 {
-    using Extension.Utility;
-
-    using Model.Core.DTO.Common;
-    using Model.Core.MetaModel.Account;
-
-    using Resources;
-
-    using Service.Core.Users.Interfaces;
-
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Auth.Enum;
+    using Fanex.Athena.Model.UserManagement.Criteria;
+    using Fanex.Athena.Model.UserManagement.Model;
+    using Fanex.Athena.Service.UserManagement.Service.Interfaces;
+    using Fanex.Athena.Web.ActionFilter;
+    using Fanex.Common;
+    using Fanex.N88.Core.Configuration;
+    using MvcPaging;
 
-    using Web.ActionFilter;
-
-    public class AccountController : AccountBaseController
+    [FunctionAuthorization(PermissionKeys.ManageUser)]
+    public class AccountController : CultureBaseController
     {
-        private readonly IUserService _userService;
+        private readonly IUserService userService;
+        private readonly IFunctionService functionService;
 
-        public AccountController(
-            IUserService userService)
+        public AccountController(IUserService userService, IFunctionService functionService)
         {
-            _userService = userService;
+            this.userService = userService;
+            this.functionService = functionService;
         }
 
-        public ActionResult Manage()
+        public ActionResult Manage(
+             int page = 1,
+            int size = 10,
+            string username = "",
+            int groupId = 0,
+            int statusId = 1)
         {
-            var userSession = SessionServiceInstance.UserSession;
-            var licenseeSession = SessionServiceInstance.LicenseeSession;
-            var model = _userService.GetByLicensee(licenseeSession.LicenseeId, userSession.IsInternal)
-                .Where(i => i.UserID != userSession.UserId).ToList();
-
-            return View("~/Views/Account/Manage.cshtml", model);
-        }
-
-        #region Edit Account
-
-        /// <summary>
-        /// Internal user only allow editing internal users.
-        /// And licensee admin only allow editing licensee user.
-        /// </summary>
-        /// <returns>The action result.</returns>
-        [HttpGet]
-        public ActionResult EditAccount()
-        {
-            var userSession = SessionServiceInstance.UserSession;
-            var userId = GetUserId();
-
-            if (userId > 0 && userId != userSession.UserId)
+            var criteria = new SearchUserCriteria
             {
-                var user = _userService.GetUserInfo(SessionServiceInstance.LicenseeSession.LicenseeId, userId);
+                PageIndex = page,
+                PageSize = size,
+                Username = username,
+                GroupId = groupId,
+                SiteId = N88Settings.Settings.SiteId,
+                Status = statusId,
+                TotalRows = 0,
+                Environment = N88Settings.Settings.Environment
+            };
 
-                if (user != null && user.IsInternal == userSession.IsInternal)
+            ViewBag.HasHostPermission = HasPermission(PermissionKeys.ManageUser, (int)Policy.Host);
+            ViewBag.GroupSelectList = GetGroups();
+            ViewBag.Criteria = criteria;
+            ViewBag.CurrentUserId = SessionServiceInstance.UserSession.UserId;
+            ViewBag.currentUserLevel = userService.GetUserSiteLevel(SessionServiceInstance.UserSession.UserId, N88Settings.Settings.SiteId);
+            IEnumerable<UserLevel> users = userService.SearchUser(criteria);
+
+            return View("~/Views/Account/Manage.cshtml", users.ToPagedList(criteria.PageIndex - 1, criteria.PageSize, criteria.TotalRows));
+        }
+
+        public ActionResult UserInfo(int id)
+        {
+            return View(userService.GetById(id));
+        }
+
+        [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult UpdateStatus(int id, bool isActive)
+        {
+            var assignSiteCriteria = new UpdateSiteToUserCriteria
+            {
+                UserId = id,
+                SiteId = N88Settings.Settings.SiteId,
+                Level = (int)Constant.Level.User,
+                IsActive = isActive,
+                ModifiedBy = SessionServiceInstance.UserSession.UserId,
+                ModifiedDate = DateTime.Now,
+                IsNeverExpired = true
+            };
+            UpdateCriteria(assignSiteCriteria);
+            var assignResult = userService.UpdateSite(assignSiteCriteria);
+
+            if (assignResult != null && assignResult.IsSuccessful)
+            {
+                ViewBag.Success = true;
+                return Json(Constant.Ok);
+            }
+
+            return new EmptyResult();
+        }
+
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult NewUser()
+        {
+            ViewBag.GroupSelectList = GetGroups();
+            var criteria = new InsertCustCriteria();
+            ViewBag.Success = false;
+            return View("~/Views/Account/NewUser.cshtml", criteria);
+        }
+
+        [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult NewUser(InsertCustCriteria criteria)
+        {
+            ViewBag.GroupSelectList = GetGroups();
+
+            if (ModelState.IsValid)
+            {
+                if (userService.CheckUsernameExist(criteria.Username, true, N88Settings.Settings.SiteId))
                 {
-                    var model = new EditAccountMetaModel
-                    {
-                        UserName = user.Username,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        Status = user.Status,
-                        UserId = user.UserID
-                    };
+                    ModelState.AddModelError("Username", string.Format("Duplicate User {0}", criteria.Username));
+                    return View("~/Views/Account/NewUser.cshtml", criteria);
+                }
 
-                    return View("~/Views/Account/EditAccount.cshtml", model);
+                criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
+                criteria.FirstName = criteria.FirstName ?? string.Empty;
+                criteria.LastName = criteria.LastName ?? string.Empty;
+                criteria.Email = criteria.Email ?? string.Empty;
+                criteria.IsLicenseeUser = true;
+                criteria.SiteId = N88Settings.Settings.SiteId;
+
+                UpdateCriteria(criteria);
+                var result = userService.Insert(criteria);
+                if (result != null && result.IsSuccessful)
+                {
+                    var assignSiteCriteria = new AssignSiteUserCriteria
+                    {
+                        CreatedBy = SessionServiceInstance.UserSession.UserId,
+                        CreatedDate = DateTime.Now,
+                        UserId = criteria.UserId,
+                        SiteId = N88Settings.Settings.SiteId,
+                        Level = (int)Constant.Level.User,
+                        IsActive = true,
+                        IsNeverExpired = true,
+                    };
+                    UpdateCriteria(assignSiteCriteria);
+                    var assignResult = userService.AssignSite(assignSiteCriteria);
+
+                    if (assignResult != null && assignResult.IsSuccessful)
+                    {
+                        ViewBag.Success = true;
+                        ViewBag.UserId = criteria.UserId;
+                    }
                 }
             }
 
-            return View("~/Views/Account/EditAccount.cshtml", null);
+            return View("~/Views/Account/NewUser.cshtml", criteria);
         }
 
-        /// <summary>
-        /// Edit account.
-        /// </summary>
-        /// <param name="model">The account metal model.</param>
-        /// <returns>The JSON result.</returns>
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult Edit(int id)
+        {
+            var criteria = new UpdateCustCriteria();
+
+            var user = userService.GetById(id);
+            criteria.UserId = user.Id;
+            criteria.FirstName = user.FirstName;
+            criteria.LastName = user.LastName;
+            criteria.Email = user.Email;
+            criteria.Username = user.Username;
+            criteria.GroupId = user.Group != null ? user.Group.Id : 0;
+
+            ViewBag.GroupSelectList = GetGroups();
+
+            return View("~/Views/Account/EditUser.cshtml", criteria);
+        }
+
         [HttpPost]
-        [CustomValidateAntiForgery]
-        public JsonResult EditAccount(EditAccountMetaModel model)
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult Edit(UpdateCustCriteria criteria)
+        {
+            ViewBag.GroupSelectList = GetGroups();
+
+            if (ModelState.IsValid)
+            {
+                criteria.FirstName = criteria.FirstName ?? string.Empty;
+                criteria.LastName = criteria.LastName ?? string.Empty;
+                criteria.Email = criteria.Email ?? string.Empty;
+
+                UpdateCriteria(criteria);
+                CommandResult result = userService.Update(criteria);
+
+                if (result != null && result.IsSuccessful)
+                {
+                    ViewBag.Success = true;
+                }
+            }
+
+            return View("~/Views/Account/EditUser.cshtml", criteria);
+        }
+
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult AssignPermission(int id)
+        {
+            var user = userService.GetById(id);
+            var criteria = new AssignFunctionUserCriteria
+            {
+                UserId = id,
+                Username = user.Username,
+                SiteId = N88Settings.Settings.SiteId
+            };
+
+            ViewBag.GroupFuncPolicyList = functionService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+            ViewBag.FunctionList = functionService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
+            ViewBag.UserFuncPolicyList = functionService.GetByUserAndSite(criteria.UserId, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+
+            return View("~/Views/Account/AssignPermission.cshtml", criteria);
+        }
+
+        [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult AssignPermission(AssignFunctionUserCriteria criteria)
+        {
+            var user = userService.GetById(criteria.UserId);
+
+            criteria.Username = user.Username;
+            criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
+            criteria.ModifiedDate = DateTime.Now;
+
+            UpdateCriteria(criteria);
+            var result = userService.AssignFunction(criteria);
+
+            ViewBag.FunctionList = functionService.GetBySiteInHierarchy(criteria.SiteId, N88Settings.Settings.Environment, true).ToList();
+            if (result != null && result.IsSuccessful)
+            {
+                ViewBag.Success = true;
+
+                ViewBag.UserFuncPolicyList = functionService.GetByUserAndSite(criteria.UserId, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+            }
+
+            if (!ReferenceEquals(user.Group, null))
+            {
+                ViewBag.GroupFuncPolicyList = functionService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, N88Settings.Settings.Environment).ToList();
+            }
+
+            return View("~/Views/Account/AssignPermission.cshtml", criteria);
+        }
+
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult ResetPassword(int id)
+        {
+            var user = userService.GetById(id);
+            var criteria = new ResetPasswordCustCriteria
+            {
+                UserId = user.Id,
+                Username = user.Username,
+                UserPwd = string.Empty,
+                ConfirmUserPwd = string.Empty,
+                Token = GenerateToken()
+            };
+
+            return View("~/Views/Account/ResetPassword.cshtml", criteria);
+        }
+
+        [HttpPost]
+        [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
+        public ActionResult ResetPassword(ResetPasswordCustCriteria criteria)
         {
             if (ModelState.IsValid)
             {
-                var userSession = SessionServiceInstance.UserSession;
-                var licenseeId = SessionServiceInstance.LicenseeSession.LicenseeId;
-                var user = _userService.GetUserInfo(licenseeId, model.UserId);
+                UpdateCriteria(criteria);
+                var result = userService.UpdatePassword(criteria);
 
-                if (user != null && user.IsInternal == userSession.IsInternal)
+                if (result != null && result.IsSuccessful)
                 {
-                    // set info
-                    user.FirstName = string.IsNullOrEmpty(model.FirstName) ? string.Empty : model.FirstName.Trim();
-                    user.LastName = string.IsNullOrEmpty(model.LastName) ? string.Empty : model.LastName.Trim();
-                    user.Status = model.Status;
-                    user.Request = new Request
-                    {
-                        Ip = Request.UserHostAddress,
-                        Language = userSession.Language
-                    };
-                    user.Licensee = new Licensee { Id = licenseeId };
-
-                    // proceed updating
-                    var resultInfo = _userService.UpdateInfo(user, userSession.UserId);
-                    if (resultInfo.IsSuccessful)
-                    {
-                        resultInfo.Message = ViewResources.UpdateAccountSuccessMsg;
-                    }
-
-                    return Json(resultInfo);
+                    ViewBag.Success = true;
                 }
             }
 
-            return JsonErrorResult(ViewResources.InvalidRequestMsg);
+            criteria.Token = GenerateToken();
+            return View("~/Views/Account/ResetPassword.cshtml", criteria);
         }
 
-        #endregion Edit Account
-
-        #region Reset Password
-
-        /// <summary>
-        /// Reset password.
-        /// </summary>
-        /// <returns>The action result.</returns>
-        [HttpGet]
-        public ActionResult ResetPassword()
+        private string GenerateToken()
         {
-            var model = new ResetPasswordMetaModel
+            return Guid.NewGuid().ToString("N");
+        }
+
+        private IEnumerable<SelectListItem> GetGroups()
+        {
+            var groupCriteria = new GetAllGroupCriteria
             {
-                UserId = GetUserId(),
-                UserName = this.Request.Params["UserName"],
-                FirstName = this.Request.Params["FirstName"],
-                LastName = this.Request.Params["LastName"]
+                IsLicenseeGroup = true,
+                SiteId = N88Settings.Settings.SiteId
             };
 
-            return View("~/Views/Account/ResetPassword.cshtml", model);
+            return userService.GetSettingGroups(groupCriteria);
         }
 
-        [HttpPost]
-        [CustomValidateAntiForgery]
-        public JsonResult ResetPassword(ResetPasswordMetaModel model)
+        private void UpdateCriteria(LogExecSpCriteria criteria)
         {
-            if (!ModelState.IsValid)
-            {
-                return JsonErrorResult(ViewResources.InvalidRequestMsg);
-            }
-
-            var userSession = SessionServiceInstance.UserSession;
-            var user = _userService.GetUserInfo(SessionServiceInstance.LicenseeSession.LicenseeId, model.UserId);
-
-            if (user == null || user.IsInternal != userSession.IsInternal)
-            {
-                return JsonErrorResult(ViewResources.InvalidRequestMsg);
-            }
-
-            if (!Util.IsPasswordValid(model.Password))
-            {
-                return JsonErrorResult(ViewResources.PasswordNoteMsg);
-            }
-
-            user.Request = new Request
-            {
-                Ip = Request.UserHostAddress,
-                Language = userSession.Language
-            };
-            user.Password = model.Password;
-
-            var resultInfo = _userService.ResetPassword(user, userSession.UserId);
-            const int ErrorCode = -3;
-
-            return Json(new ResultInfo
-            {
-                Code = resultInfo.IsSuccessful ? 0 : ErrorCode,
-                Message = resultInfo.IsSuccessful ? ViewResources.ResetPasswordSuccessMsg : resultInfo.Message
-            });
+            criteria.CurrentUserId = SessionServiceInstance.UserSession.UserId;
+            criteria.CurrentSiteId = N88Settings.Settings.SiteId;
+            criteria.LoginIp = HttpContext.Request.UserHostAddress;
+            criteria.LogDate = DateTime.Now;
         }
 
-        #endregion Reset Password
+        private bool HasPermission(string functionKey, int policy)
+        {
+            var userFunctions = SessionServiceInstance.UserSession.FunctionList;
+
+            return userFunctions.Any(function => function.FunctionKey == functionKey && function.Policy >= policy);
+        }
     }
 }

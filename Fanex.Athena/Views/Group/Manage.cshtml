@@ -1,0 +1,183 @@
+﻿@using Fanex.Athena.Model.UserManagement.Model
+@model IPagedList<GroupData>
+@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    var groupList = (IEnumerable<GroupData>)ViewBag.GroupList;
+    var langCode = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
+}
+@section pagecss {
+    <link href="@Url.ContentLink("/Content/Plugin/tipsy/tipsy-1.0.0.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLinkByEnv("/www/css/build/pages/user/manageuser.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentLink("/Content/Account/msgbox-0.0.1.css")" rel="stylesheet" type="text/css" />
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/language.chunk.js")"></script>
+    @if (langCode != "en-US")
+    {
+        <script src="@Url.ContentLinkByEnv("/www/js/build/language-" + langCode + ".chunk.js")"></script>
+    }
+    <script src="@Url.ContentLinkByEnv("/www/js/build/pages/lib/common.chunk.js")"></script>
+    <script src="@Url.ContentLink("/Scripts/Account/msgbox-0.0.1.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Account/NAP.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Group/Manage.js")" type="text/javascript"></script>
+    <script src="@Url.ContentLink("/Scripts/Plugin/tipsy/tipsy-1.0.0.js")" type="text/javascript"></script>
+}
+<div class="container-fluid">
+    <input type="hidden" id="PageLanguage" value="@langCode" />
+    @using (Html.BeginForm(null, null, FormMethod.Get, new { @role = "form", @class = "page-filter" }))
+    {
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                <div class="form-group">
+                    <label class="label-text">@ViewResources.GroupName</label>
+                    <input type="text" class="input-text" value="@ViewBag.Criteria.GroupName" name="groupName" id="groupName" autocomplete="off" />
+                    <input type="hidden" value="@ViewBag.Criteria.GroupName" id="name" />
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 col-xl-1">
+                <div class="form-group">
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-submit">@ViewResources.Submit</button>
+                    </div>
+                </div>
+            </div>
+            @if (ViewBag.HasEditRight)
+            {
+                <div class="col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div class="form-group">
+                        <div class="button-group">
+                            @Html.ActionLink(ViewResources.NewGroup, "AddNew", "Group", new { }, new { @class = "btn btn-add" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+<table class="table">
+    <thead>
+        <tr class="level1">
+            <th>#</th>
+            <th>@ViewResources.Name</th>
+            <th>@ViewResources.Users</th>
+            <th>@ViewResources.Description</th>
+            <th>@ViewResources.Modified_Date</th>
+            <th>@ViewResources.Modifier</th>
+            <th>@ViewResources.Active</th>
+            <th class="text-center">
+                @if (ViewBag.HasEditRight)
+                {
+                    @ViewResources.Action
+                }
+                else
+                {
+                    @ViewResources.Permission
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody id="contentMenuItem">
+        @if (!ReferenceEquals(Model, null) && Model.Count() > 0)
+        {
+            int i = 0;
+
+            foreach (GroupData group in Model)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+                <tr @Html.Raw(rowCss)>
+                    <td class="text-center">@(i + 1)</td>
+                    <td>
+                        <a href="javascript:;" gid="@group.GroupId" class="lnk-group-info"
+                           title="@ViewResources.View_details_of '@group.GroupName'">@group.GroupName</a>
+                    </td>
+                    <td class="text-center col-action">
+                        @if (group.NumOfUser > 0 && ViewBag.HasManageUserRight)
+                        {
+                            string title = string.Format("View users of '{0}'", group.GroupName);
+
+                            <a href="@Url.Action("Manage", "Account", new { groupId = group.GroupId })"
+                               gid="@group.GroupId" gname="@group.GroupName" class="num-of-user" title="@title">@group.NumOfUser</a>
+                        }
+                        else
+                        {
+                            @group.NumOfUser
+                        }
+                    </td>
+                    <td>@group.Description</td>
+                    <td class="text-center col-datetime">@group.ModifiedDate.ToFullDateString()</td>
+                    <td>@group.ModifierUsername</td>
+                    <td class="text-center col-action">
+                        @if (ViewBag.HasEditRight)
+                        {
+                            string activateText = group.IsActive ? "Deactivate" : "Activate";
+                            var ckbname = string.Format("chk-group-{0}", group.GroupId);
+                            <div class="js-tipsy-s" title="@string.Format("{0} '{1}'", activateText, group.GroupName)">
+                                <input type="checkbox" class="checkbox" name="@ckbname" id="@ckbname"
+                                       gid="@group.GroupId" gname="@group.GroupName"
+                                       @(group.IsActive ? "checked" : string.Empty) />
+                                <label for="@ckbname"></label>
+                            </div>
+                        }
+                        else
+                        {
+                            if (group.IsActive)
+                            {
+                                <input type="checkbox" class="checkbox" name="@string.Format("chk-group-{0}", group.GroupId)" disabled checked />
+                                <label></label>
+                            }
+                        }
+                    </td>
+                    <td class="text-center col-action">
+                        <span class="btn-action icon-settings"></span>
+                        <div class="action-wrapper">
+                            <ul class="dropdown">
+                                @if (ViewBag.HasEditRight)
+                                {
+                                    <li>
+                                        @Html.ActionLink(string.Format("Edit '{0}' Details", group.GroupName),
+                             "Edit", new { id = group.GroupId })
+                                    </li>
+                                }
+                                <li>
+                                    @Html.ActionLink(string.Format("Edit Permission of '{0}'", group.GroupName),
+                         "AssignPermission", new { id = group.GroupId })
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+                i++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10" class="text-center">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+        }
+    </tbody>
+    @if (Model != null && Model.Count() > 0)
+    {
+        <tfoot>
+            <tr class="page-container">
+                <td colspan="12">
+                    <span class="items-per-page-wrp">
+                        @ViewResources.PageSize
+                        @Html.DropDownList("items-per-page", new List<SelectListItem> {
+                            new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
+                            new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
+                            new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
+                        }, new { id = string.Empty, @class = "items-per-page" })
+                    </span>
+                    <span class="paging">
+                        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("groupName", ViewBag.Criteria.GroupName)).Options(o => o.AddRouteValue("size", ViewBag.Criteria.PageSize))
+                    </span>
+                </td>
+            </tr>
+        </tfoot>
+    }
+</table>
+</div>

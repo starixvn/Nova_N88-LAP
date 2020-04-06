@@ -2,6 +2,7 @@
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Fanex.Athena.DataAccess.Core.Configuration;
+using Fanex.Athena.Extension.Helper;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.StatelessCore.Utility;
@@ -15,6 +16,12 @@ namespace Fanex.Athena.Api.Base.Attributes
 
         public bool BindUserId { get; set; }
 
+        public bool BindLicenseeName { get; set; }
+
+        public bool BindLanguage { get; set; }
+
+        public bool BindIp { get; set; }
+
         public bool BindBalanceUpAndMoveBet { get; set; }
 
         private static readonly ISessionStorage _sessionStorage = new SessionStorage();
@@ -22,6 +29,7 @@ namespace Fanex.Athena.Api.Base.Attributes
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             var userSession = _sessionStorage.UserAuthInfo;
+            var licenseeSession = _sessionStorage.LicenseeAuthInfo;
             var actionArgument = actionContext.ActionArguments;
             if (BindAgent)
             {
@@ -31,6 +39,22 @@ namespace Fanex.Athena.Api.Base.Attributes
             if (BindUserId)
             {
                 AutoBindMetaModelService.MapUserId(actionArgument, userSession.UserId);
+            }
+
+            if (BindLicenseeName)
+            {
+                AutoBindMetaModelService.MapSiteName(actionArgument, licenseeSession.LicenseeName);
+            }
+
+            if (BindLanguage)
+            {
+                AutoBindMetaModelService.MapLanguage(actionArgument);
+            }
+
+            if (BindIp)
+            {
+                AutoBindMetaModelService.MapIp(actionArgument,
+                    ClientHelper.GetClientIp(actionContext.Request));
             }
 
             if (BindBalanceUpAndMoveBet)

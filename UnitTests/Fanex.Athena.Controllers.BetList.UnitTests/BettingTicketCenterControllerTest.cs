@@ -13,7 +13,7 @@
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+    using Fanex.N88.Core.Service.Interface;
     using Model.BetList.ViewModel;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
@@ -33,7 +33,8 @@
 
         private IBalanceUpDataAccess _balanceUpDataAccess;
 
-        private IAuthorizationService _authService;
+        private IUserService _userService;
+
 
         [OneTimeSetUp]
         public override void FixtureSetUp()
@@ -42,11 +43,12 @@
 
             _productService = Substitute.For<IProductService>();
             _balanceUpDataAccess = Substitute.For<IBalanceUpDataAccess>();
+            _userService = Substitute.For<IUserService>();
+
             _balanceUpDataAccess.GetBalanceUp().Returns(new BalanceUp
             {
                 BalanceUpDay = BalanceUpDate
             });
-            _authService = Substitute.For<IAuthorizationService>();
 
             SetUpDefaultFakeData();
         }
@@ -57,13 +59,14 @@
             base.FixtureTearDown();
 
             _productService = null;
-            _authService = null;
+            _balanceUpDataAccess = null;
+            _userService = null;
         }
 
         [TestCase(PermissionKeys.BtcAdvancedSearch, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
-        [TestCase(PermissionKeys.BtcSingleCustomer, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml")]
-        [TestCase(PermissionKeys.BtcRefNo, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml")]
-        [TestCase(PermissionKeys.BtcRunning, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml")]
+        [TestCase(PermissionKeys.BetHistorySingleCustomer, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryRefNo, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryRunning, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml")]
         [TestCase(PermissionKeys.BtcAdvancedSearch, AppMode.Parasitic, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
         public void Index_CheckByPermission_ReturnCorrectView(string permissionKey, AppMode appMode, string expectedView)
         {
@@ -155,7 +158,7 @@
             using (var controller = CreateController(hasExchangePermission))
             {
                 // Arrange
-                CreateAndStubUserSession(PermissionKeys.BtcRefNo);
+                CreateAndStubUserSession(PermissionKeys.BetHistoryRefNo);
                 var productKN = new Product { ProductCode = Product.KN, ProductName = FakeHelper.Create<string>() };
                 var productLT = new Product { ProductCode = Product.LT, ProductName = FakeHelper.Create<string>() };
                 var productSB = new Product { ProductCode = Product.SB, ProductName = FakeHelper.Create<string>() };
@@ -209,7 +212,7 @@
             using (var controller = CreateController(hasExchangePermission))
             {
                 // Arrange
-                CreateAndStubUserSession(PermissionKeys.BtcRunning);
+                CreateAndStubUserSession(PermissionKeys.BetHistoryRunning);
                 var productCodes = MockProductService();
 
                 // Action
@@ -222,7 +225,6 @@
                     Assert.That(viewModel.CurrencyList, Is.EqualTo(DefaultUserSession.CurrencyList));
                     Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
-                    Assert.That(viewModel.HasExchange, Is.EqualTo(hasExchangePermission));
                 });
             }
         }
@@ -253,7 +255,7 @@
             using (var controller = CreateController(hasExchangePermission))
             {
                 // Arrange
-                CreateAndStubUserSession(PermissionKeys.BtcSingleCustomer);
+                CreateAndStubUserSession(PermissionKeys.BetHistorySingleCustomer);
                 var productCodes = MockProductService();
 
                 // Action
@@ -268,7 +270,6 @@
                     Assert.That(viewModel.PlatformList, Is.Not.Empty);
                     Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
-                    Assert.That(viewModel.HasExchange, Is.EqualTo(hasExchangePermission));
                 });
             }
         }
@@ -315,16 +316,13 @@
                     Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
                     Assert.That(viewModel.MinDate, Is.EqualTo(BalanceUpDate));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
-                    Assert.That(viewModel.HasExchange, Is.EqualTo(hasExchangePermission));
                 });
             }
         }
 
         private BettingTicketCenterController CreateController(bool hasExchangePermission = true)
         {
-            _authService.CheckProductBelongsTo(SessionService.LicenseeSession.LicenseeName, ProductTypes.Exchange).Returns(hasExchangePermission);
-
-            return new BettingTicketCenterController(_productService, _balanceUpDataAccess, _authService)
+            return new BettingTicketCenterController(_productService, _balanceUpDataAccess, _userService)
             {
                 LangService = LangService,
                 SessionServiceInstance = SessionService

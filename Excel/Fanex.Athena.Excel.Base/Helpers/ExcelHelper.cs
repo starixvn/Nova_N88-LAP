@@ -9,9 +9,6 @@
 
     public static class ExcelHelper
     {
-        /// <summary>
-        /// This method is obsolete, please try to remove it for me.
-        /// </summary>
         public static int AssignRowContent(IRow row, DataRow data, IEnumerable<string> columnNameList, int columnStart = 0)
         {
             var tableColumns = data.Table.Columns;

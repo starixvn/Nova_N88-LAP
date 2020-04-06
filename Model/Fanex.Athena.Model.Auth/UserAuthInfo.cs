@@ -1,14 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UserSession.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-using System;
-
-namespace Fanex.Athena.Model.Auth
+﻿namespace Fanex.Athena.Model.Auth
 {
     using Fanex.Athena.Model.Auth.Enum;
+    using Fanex.N88.Core.Models;
+    using System;
     using System.Collections.Generic;
+
     [Serializable]
     public class UserAuthInfo
     {
@@ -21,15 +17,15 @@ namespace Fanex.Athena.Model.Auth
         public string UserName { get; set; }
 
         public byte UserLevel { get; set; }
+
         public byte SubsidiaryViewType { get; set; }
+
         public int? WhiteLabelID { get; set; }
+
         public string OperatorId { get; set; }
+
         public bool IsSuperAdmin { get; set; }
-        /// <summary>
-        /// Gets or sets Language Code.
-        /// Default: en-US.
-        /// </summary>
-        /// <value>The Language Code.</value>
+
         public string Language { get; set; }
 
         /// <summary>
@@ -56,5 +52,7 @@ namespace Fanex.Athena.Model.Auth
 
         public AppMode ApplicationMode { get; set; }
         public string DefaultBaseCurrency { get; set; } = string.Empty;
+
+        public IList<MenuItem> MenuItemList { get; set; }
     }
 }

@@ -148,7 +148,7 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push([40,"www/js/build/dev/pages/lib/common","www/js/build/dev/pages/lib/jqgrid"]);
+/******/ 	deferredModules.push([10,"www/js/build/dev/pages/lib/common","www/js/build/dev/pages/lib/jqgrid"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
@@ -4576,6 +4576,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
         const SPORT_GLOBALGAMING = 219;
         const SPORT_CARDCLUB = 165;
         const SPORT_SG = 247;
+        const SPORT_VRG = 245;
         const BETLIST_META_MODEL = '#BetListMetaModel';
 
         let _sortColumnName, _sortOrder;
@@ -4976,6 +4977,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 });
             },
 
+            viewVRGResult: function (gamePlayId, platform, title) {
+                const url = Site.resolveClientUrl('VirtualGamesResultPopup/Index');
+                Site.blockUI();
+               
+                $.get(url + '?gamePlayId=' + gamePlayId + '&platform=' + platform, function (result) {
+                    if (result !== '') {
+                        showResultPopUp(result, { width: 800, height: 380, title: title });
+                        Site.unBlockUI();
+                    }
+                });
+            },
+
             viewAllBetResult: function (trasdesc, betcheck, bettype, title) {
                 const url = Site.resolveClientUrl('ResultReport/AllBetResult?transdesc=' +
                     encodeURIComponent(trasdesc) + '&betcheck=' + betcheck + '&bettype=' + bettype);
@@ -5002,6 +5015,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
             viewResult: function (matchid, raceNo, bettype, sporttype, refno,
                 username, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs) {
                 const title = Site.getSingleResource('Result');
+                const defaultPlatform = 'd';  // desktop
 
                 if (sporttype === SPORT_RNG_GAME || sporttype === SPORT_RNG_MINIGAME || sporttype === SPORT_RNG_MOBILE) {
                     _me.viewRngCasinoResult(title, refno);
@@ -5017,6 +5031,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 }
                 else if (sporttype === SPORT_SG) {
                     _me.viewSGResult(custid, extension2, title);
+                }
+                else if (sporttype === SPORT_VRG) {
+                    _me.viewVRGResult(refno, defaultPlatform, title);
                 }
                 else if (sporttype === SPORT_ALLBET) {
                     _me.viewAllBetResult(transdecs, extension2, bettype, title);
@@ -6084,20 +6101,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
         },
 
         renderBreadCrumb: function (level, licenseeId) {
+            const $container = $('#level-link-container');
             const levelNumber = Number(level);
             if (levelNumber === 0) {
-                $('.breadCrumbHolder').hide();
+                $container.hide();
             }
             else {
-                $('.breadCrumbHolder').show();
-                $('#level-link-container .level0').show();
+                $container.show();
+                $container.find('.level0').show();
 
                 const isLevel2 = levelNumber === 2;
-                $('#level-link-container .level2').toggle(isLevel2).toggleClass('active', isLevel2);
+                $container.find('.level2').toggle(isLevel2).toggleClass('active', isLevel2);
 
                 const allowShowLevel1 = licenseeId ? licenseeId === LICENSEE_12BET : true;
-                $('#level-link-container .level1').toggle(allowShowLevel1);
-                $('#level-link-container .level1').toggleClass('active', allowShowLevel1 && !isLevel2);
+                $container.find('.level1').toggle(allowShowLevel1);
+                $container.find('.level1').toggleClass('active', allowShowLevel1 && !isLevel2);
             }
         }
     };
@@ -6108,7 +6126,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
 
 /***/ }),
 
-/***/ 40:
+/***/ 10:
 /*!************************************************************!*\
   !*** multi ./www/js/source/pages/betlist/customer/main.js ***!
   \************************************************************/

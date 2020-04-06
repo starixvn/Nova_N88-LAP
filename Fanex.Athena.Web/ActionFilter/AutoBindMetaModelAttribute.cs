@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Fanex.Athena.Model.Auth;
-using Fanex.Athena.Model.Core.MetaModel;
 using Fanex.Athena.Extension.Helper;
+using Fanex.Athena.Model.Core.MetaModel;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
@@ -21,13 +20,17 @@ namespace Fanex.Athena.Web.ActionFilter
         public bool BindCurrencyList { get; set; }
 
         public bool BindUserId { get; set; }
+
         public bool BindSiteName { get; set; }
+
         public bool BindLicenseeContract { get; set; }
 
         public bool BindLanguage { get; set; }
 
         public bool BindIp { get; set; }
+
         public IProductService ProductService { get; set; }
+
         public ILicenseeSettingService LicenseeSettingService { get; set; }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

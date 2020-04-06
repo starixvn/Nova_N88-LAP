@@ -1,0 +1,112 @@
+﻿/* global NAP: false */
+"use strict";
+
+var ManageUser = (function () {
+    return {
+        grid: null
+    };
+}(jQuery));
+
+$(document).ready(function () {
+    ManageUser.grid = $('.table');
+
+    ManageUser.grid.find('.lnk-user-info').tipsy({ gravity: 'w' });
+
+    ManageUser.grid.on('click', '.lnk-user-info', function () {
+        var $this = $(this),
+            userId = $this.attr('uid'),
+            username = $this.text();
+
+        $.ajax({
+            url: NAP.resolveClientUrl("Account/UserInfo?id=" + userId),
+            type: 'GET',
+            dataType: 'html',
+            cache: false,
+            success: function (result) {
+                if (result.length > 0) {
+                    NAP.popup("Details of '" + username + "'", result);
+                }
+            },
+            error: function (xhr, status, err) {
+                NAP.handleAjaxError(xhr, status, err);
+            }
+        });
+    });
+
+    ManageUser.grid.on('click', '.btn-action:not(.disabled)', function (e) {
+        var $this = $(this),
+            parent = $this.parent(),
+            dropdown = parent.find('.dropdown');
+
+        if (parent.hasClass('active')) {
+            parent.removeClass('active');
+            dropdown.hide();
+        } else {
+            ManageUser.grid.find('.active').removeClass('active').find('.dropdown').hide();
+            dropdown.show();
+            parent.addClass('active');
+        }
+
+        e.stopPropagation();
+    });
+
+    $('body, header, #headline, #body').on('click', function () {
+        ManageUser.grid.find('.col-action.active').removeClass('active').find('.dropdown').hide();
+    });
+    
+    ManageUser.grid.on('change', '.items-per-page', function () {
+        var $this = $(this),
+            pageSize = $this.val(),
+            username = $('#Username').val(),
+            groupId = $('#GroupId').val(),
+            statusId = $('#StatusId').val();
+
+        var url = NAP.resolveClientUrl('Account/Manage' +
+            '?username=' + username +
+            '&groupid=' + groupId +
+            '&size=' + pageSize +
+            '&page=' + 1 +
+            '&statusId=' + statusId);
+
+        window.location.replace(url);
+    });
+
+    ManageUser.grid.on('click', '.active-deactive-link', function () {
+        var $this = $(this),
+            activeText = $this.attr('activatetext'),
+            iseditable = $this.attr('iseditable'),
+            isActive = activeText == "Activate",
+            userId = $this.attr('userid'),
+            userName = $this.attr('username'),
+            msg = "Are you sure you want to " + activeText + " '" + userName + "'?";
+
+        if (!iseditable) {
+            return;
+        }
+
+        NAP.headlineMsgBox.confirm(msg, function () {
+            $.ajax({
+                url: NAP.resolveClientUrl("Account/UpdateStatus" + "?id=" + userId + "&isActive=" + isActive),
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                cache: false,
+                success: function () {
+                    var username = $('#Username').val(),
+                        groupId = $('#GroupId').val(),
+                        statusId = $('#StatusId').val();
+
+                    var url = NAP.resolveClientUrl('Account/Manage' +
+                        '?username=' + username +
+                        '&groupid=' + groupId +
+                        '&statusId=' + statusId);
+
+                    window.location.replace(url);
+                },
+                error: function (xhr, status, err) {
+                    NAP.handleAjaxError(xhr, status, err);
+                }
+            });
+        });
+    });
+});

@@ -1,16 +1,6 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISessionService.cs" company="">
-// The  session service.
-// </copyright>
-// <summary>
-//   The  session service.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Fanex.Athena.Service.Core.Users.Interfaces
+﻿namespace Fanex.Athena.Service.Core.Users.Interfaces
 {
     using System.Collections.Generic;
-
     using Fanex.Athena.Model.Auth;
 
     public interface ISessionService
@@ -27,14 +17,10 @@ namespace Fanex.Athena.Service.Core.Users.Interfaces
             int userId,
             int onuserId,
             string userName,
-            bool isInternal,
-            int licenseeId = 0,
             string language = "en-US");
-
-        void UpdateLiceseeSession(int licenseeId);
 
         bool UpdateLanguage(string languageCode);
 
-        void AssignCurrenciesToUserSession(UserAuthInfo userSession, int licenseeId, IEnumerable<CurrencyUser> currencyUserList = null);
+        void AssignCurrenciesToUserSession(UserAuthInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null);
     }
 }

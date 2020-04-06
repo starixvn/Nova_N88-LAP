@@ -3,18 +3,15 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-
-    using Base;
-    using Base.Attributes;
+    using Fanex.Athena.Api.Base;
+    using Fanex.Athena.Api.Base.Attributes;
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.BetList.MetaModel;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
 
-    using Model.BetList.MetaModel;
-
-    using Service.Core.Common.Interfaces;
-
-    [ApiFunctionAuthorization(PermissionKeys.BettingTicketCenter)]
+    [ApiFunctionAuthorization(PermissionKeys.BetHistory)]
     public class BettingTicketCenterController : BaseApiController
     {
         private readonly IBetListApiClient _betListApiClient;
@@ -28,7 +25,7 @@
         }
 
         [HttpPost]
-        [ApiFunctionAuthorization(PermissionKeys.BtcSingleCustomer)]
+        [ApiFunctionAuthorization(PermissionKeys.BetHistorySingleCustomer)]
         [ValidationApiRequest]
         public async Task<dynamic> GetBySingleCustomer(SingleCustomersBetListMetaModel metaModel)
         {
@@ -36,14 +33,14 @@
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList);
 
-            return await _betListApiClient.PostAsync("/BettingTicketCenter/GetBySingleCustomer",
+            return await _betListApiClient.PostAsync(
+                "/BettingTicketCenter/GetBySingleCustomer",
                 metaModel,
-                userSession.Language
-                ).ConfigureAwait(false);
+                userSession.Language);
         }
 
         [HttpPost]
-        [ApiFunctionAuthorization(PermissionKeys.BtcRefNo)]
+        [ApiFunctionAuthorization(PermissionKeys.BetHistoryRefNo)]
         [ValidationApiRequest]
         public async Task<dynamic> GetByRefno(RefNoBetListMetaModel metaModel)
         {
@@ -51,14 +48,14 @@
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
 
-            return await _betListApiClient.PostAsync("/BettingTicketCenter/GetByRefno",
+            return await _betListApiClient.PostAsync(
+                "/BettingTicketCenter/GetByRefno",
                 metaModel,
-                userSession.Language
-                ).ConfigureAwait(false);
+                userSession.Language);
         }
 
         [HttpPost]
-        [ApiFunctionAuthorization(PermissionKeys.BtcRunning)]
+        [ApiFunctionAuthorization(PermissionKeys.BetHistoryRunning)]
         [ValidationApiRequest(IsValidCurrencyList = true)]
         public async Task<dynamic> GetByRunning(BaseBettingTicketMetaModel metaModel)
         {
@@ -68,10 +65,10 @@
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, currencyList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
 
-            return await _betListApiClient.PostAsync("/BettingTicketCenter/GetByRunning",
+            return await _betListApiClient.PostAsync(
+                "/BettingTicketCenter/GetByRunning",
                 metaModel,
-                userSession.Language
-                ).ConfigureAwait(false);
+                userSession.Language);
         }
     }
 }

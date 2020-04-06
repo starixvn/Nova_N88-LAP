@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ILicenseeWinLossDataAccess.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.DataAccess.Report.Interfaces
+﻿namespace Fanex.Athena.DataAccess.Report.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

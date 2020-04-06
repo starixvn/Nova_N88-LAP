@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LogController.GroupCommission.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.Api.CustomerLog
+﻿namespace Fanex.Athena.Api.CustomerLog
 {
     using System.Threading.Tasks;
     using System.Web.Http;

@@ -14,9 +14,12 @@ export const SpecialLevelCell = (props) => {
     const { dataItem, specialLevelDropdownPosition, setCurrentActivePlayer, setSpecialLevelDropdownPosition, hasSpecialLevelPermission } = props;
     const value = dataItem.SpecialLevel;
     const style = { backgroundColor: specialLevelListWithColor[value] };
-
+   
+    const canView = hasSpecialLevelPermission.isallowed;
+    const canUpdate = canView && hasSpecialLevelPermission.policy == 2;
+    
     const handleToggleSpecialLevel = (event) => {
-        if(!hasSpecialLevelPermission){
+        if(!canUpdate){
             return;
         }
 
@@ -27,7 +30,7 @@ export const SpecialLevelCell = (props) => {
         setSpecialLevelDropdownPosition(newPosition);
     }
 
-    return <DropdownLabel className={hasSpecialLevelPermission ? '' : 'disabled'} text={getSpecialLevelText(value)} labelStyle={style} onClick={handleToggleSpecialLevel} />
+    return <DropdownLabel className={canUpdate ? '' : 'disabled'} text={getSpecialLevelText(value)} labelStyle={style} onClick={handleToggleSpecialLevel} />
 }
 
 function mapDispatchToProps(dispatch) {

@@ -37,7 +37,7 @@ namespace Fanex.Athena.Web.ActionFilter
             {
                 base.OnAuthorization(filterContext);
                 var userSession = _sessionStorage.UserAuthInfo;
-                var authorized = userSession != null && userSession.ApplicationMode == _appMode;
+                var authorized = userSession != null;
                 if (!authorized)
                 {
                     var routeValue = new

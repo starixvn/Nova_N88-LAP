@@ -1,9 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CustomAuthorizeAttribute.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-namespace Fanex.Athena.Web.ActionFilter
+﻿namespace Fanex.Athena.Web.ActionFilter
 {
     using System;
     using System.Web.Mvc;
@@ -33,7 +28,7 @@ namespace Fanex.Athena.Web.ActionFilter
             if (!skipAuthorization)
             {
                 base.OnAuthorization(filterContext);
-                var authorized = _sessionStorage.LicenseeAuthInfo != null && _sessionStorage.UserAuthInfo != null;
+                var authorized = _sessionStorage.UserAuthInfo != null;
                 if (!authorized)
                 {
                     var routeValue = new

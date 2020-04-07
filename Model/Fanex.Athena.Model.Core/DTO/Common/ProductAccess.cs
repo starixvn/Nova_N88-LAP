@@ -104,6 +104,14 @@ namespace Fanex.Athena.Model.Core.DTO.Common
             }
         }
 
+        public bool IsAllowI4D
+        {
+            get
+            {
+                return ProductList.Any(p => p.ProductCode == Product.I4D);
+            }
+        }
+
         public bool IsAllow(int productId)
         {
             return ProductList.Any(p => p.ProductID == productId);

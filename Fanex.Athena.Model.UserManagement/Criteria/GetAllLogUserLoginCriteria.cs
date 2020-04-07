@@ -17,6 +17,12 @@
 
         [Display(Name = "Site", ResourceType = typeof(ViewResources))]
         public int SiteId { get; set; }
+        public bool IsExcludeIT 
+        { 
+            get {
+                return true;
+            } 
+        }
 
         public int PageIndex { get; set; }
         public int PageSize { get; set; }

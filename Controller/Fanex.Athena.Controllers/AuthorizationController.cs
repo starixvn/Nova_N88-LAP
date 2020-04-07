@@ -153,7 +153,12 @@
                 }
             }
 
+            var currentLicenseeId = AppSettingInstance.LicenseeId;
+
             ViewBag.LogInToken = CreateToken();
+            ViewBag.LogoLoginUrl = $"/www/assets/images/logo-login-{currentLicenseeId}.svg";
+            ViewBag.Title = $"{siteNameList[currentLicenseeId]} Admin Site";
+
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
 

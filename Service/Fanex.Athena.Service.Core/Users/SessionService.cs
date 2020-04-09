@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Service.Core.Users
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
@@ -83,13 +84,14 @@
                 OnUserId = onuserId,
                 UserName = userName,
                 Language = language,
-                DefaultReportUrl = GetDefaultUrl(functions),
                 FunctionList = GetUserFunction(functions).ToList(),
                 DefaultBaseCurrency = appSettings.DefaultBaseCurrency
             };
 
             AssignMenuToUserSession(userSession);
             AssignCurrenciesToUserSession(userSession);
+
+            userSession.DefaultReportUrl = GetDefaultUrl(userSession.MenuItemList);
 
             var licensee = licenseeDataAccess.GetLicenseeSettingById(appSettings.LicenseeId);
             AssignSessions(userSession, GenerateLicenseeInfo(licensee));
@@ -109,14 +111,14 @@
             return false;
         }
 
-        private static string GetDefaultUrl(IEnumerable<FunctionPolicy> functionList)
+        private static string GetDefaultUrl(IEnumerable<N88.Core.Models.MenuItem> menutItems)
         {
-            if (!functionList.Any(x => x.Function.Key.Equals(PermissionKeys.BetHistory)))
+            if (!menutItems.Any(x => !string.IsNullOrWhiteSpace(x.Url) && x.Url.Equals(PermissionKeys.BetHistory, StringComparison.InvariantCultureIgnoreCase)))
             {
-                var firstFunction = functionList.FirstOrDefault(x => x.Function.Parent !=null && x.Function.Parent.Id > 0 && x.Policy != 0 );
-                if (firstFunction != null)
+                var menuItem = menutItems.FirstOrDefault(x => x.Policy != (byte)Policy.None);
+                if (menuItem != null)
                 {
-                    return firstFunction.Function.Key;
+                    return menuItem.Url;
                 }
             }
 
@@ -167,7 +169,7 @@
 
             functionPolicies.ForEach(function =>
             {
-                if(function.Policy != (int)Policy.None)
+                if (function.Policy != (int)Policy.None)
                 {
                     functions.Add(new Function
                     {

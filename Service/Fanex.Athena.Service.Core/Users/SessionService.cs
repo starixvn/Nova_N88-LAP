@@ -113,16 +113,21 @@
 
         private static string GetDefaultUrl(IEnumerable<N88.Core.Models.MenuItem> menutItems)
         {
-            if (!menutItems.Any(x => !string.IsNullOrWhiteSpace(x.Url) && x.Url.Equals(PermissionKeys.BetHistory, StringComparison.InvariantCultureIgnoreCase)))
+            var defaultUrl = string.Empty;
+            if (menutItems.Any(x => x.Url.Equals(DefaultPagePath, StringComparison.InvariantCultureIgnoreCase)))
             {
-                var menuItem = menutItems.FirstOrDefault(x => x.Policy != (byte)Policy.None);
-                if (menuItem != null)
-                {
-                    return menuItem.Url;
-                }
+                defaultUrl = DefaultPagePath;
             }
 
-            return DefaultPagePath;
+            var menuItem = menutItems.FirstOrDefault(x => x.Parent != null
+                     && !string.IsNullOrWhiteSpace(x.Url)
+                     && x.Policy != (byte)Policy.None);
+            if (menuItem != null)
+            {
+                defaultUrl = menuItem.Url;
+            }
+
+            return defaultUrl;
         }
 
         private static LicenseeAuthInfo GenerateLicenseeInfo(Licensee selectedLicensee)

@@ -8,7 +8,6 @@
     using DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth;
-    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.N88.Core.Configuration;
@@ -113,12 +112,12 @@
 
         private static string GetDefaultUrl(IEnumerable<N88.Core.Models.MenuItem> menutItems)
         {
-            var defaultUrl = string.Empty;
-            if (menutItems.Any(x => x.Url.Equals(DefaultPagePath, StringComparison.InvariantCultureIgnoreCase)))
+            if (menutItems.Any(x => x.Key.Equals("BetHistory", StringComparison.InvariantCultureIgnoreCase)))
             {
-                defaultUrl = DefaultPagePath;
+                return DefaultPagePath;
             }
 
+            var defaultUrl = string.Empty;
             var menuItem = menutItems.FirstOrDefault(x => x.Parent != null
                      && !string.IsNullOrWhiteSpace(x.Url)
                      && x.Policy != (byte)Policy.None);

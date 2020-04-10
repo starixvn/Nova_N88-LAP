@@ -943,9 +943,7 @@ var DEFAULT_RESOURCE_NAME = "_language_en_US";
 var langCode = window.PageLanguage || "en-US";
 var resourceName = "_language_".concat(langCode.replace("-", "_"));
 
-var LangHelper =
-/*#__PURE__*/
-function () {
+var LangHelper = /*#__PURE__*/function () {
   function LangHelper() {
     _classCallCheck(this, LangHelper);
   }

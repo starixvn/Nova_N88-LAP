@@ -7,7 +7,6 @@
     using DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth;
-    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.N88.Core.Configuration;
@@ -17,7 +16,6 @@
 
     public class SessionService : ISessionService
     {
-        private const string DefaultPagePath = "BettingTicketCenter";
         private const string UserSessionKey = "UserSessionKey";
 
         private readonly ILicenseeDataAccess licenseeDataAccess;
@@ -83,7 +81,6 @@
                 OnUserId = onuserId,
                 UserName = userName,
                 Language = language,
-                DefaultReportUrl = GetDefaultUrl(functions),
                 FunctionList = GetUserFunction(functions).ToList(),
                 DefaultBaseCurrency = appSettings.DefaultBaseCurrency
             };
@@ -107,20 +104,6 @@
             }
 
             return false;
-        }
-
-        private static string GetDefaultUrl(IEnumerable<FunctionPolicy> functionList)
-        {
-            if (!functionList.Any(x => x.Function.Key.Equals(PermissionKeys.BetHistory)))
-            {
-                var firstFunction = functionList.FirstOrDefault(x => x.Function.Parent !=null && x.Function.Parent.Id > 0 && x.Policy != 0 );
-                if (firstFunction != null)
-                {
-                    return firstFunction.Function.Key;
-                }
-            }
-
-            return DefaultPagePath;
         }
 
         private static LicenseeAuthInfo GenerateLicenseeInfo(Licensee selectedLicensee)
@@ -167,7 +150,7 @@
 
             functionPolicies.ForEach(function =>
             {
-                if(function.Policy != (int)Policy.None)
+                if (function.Policy != (int)Policy.None)
                 {
                     functions.Add(new Function
                     {

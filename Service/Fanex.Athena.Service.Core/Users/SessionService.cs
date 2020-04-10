@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Athena.Service.Core.Users
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
@@ -17,7 +16,6 @@
 
     public class SessionService : ISessionService
     {
-        private const string DefaultPagePath = "BettingTicketCenter";
         private const string UserSessionKey = "UserSessionKey";
 
         private readonly ILicenseeDataAccess licenseeDataAccess;
@@ -90,8 +88,6 @@
             AssignMenuToUserSession(userSession);
             AssignCurrenciesToUserSession(userSession);
 
-            userSession.DefaultReportUrl = GetDefaultUrl(userSession.MenuItemList);
-
             var licensee = licenseeDataAccess.GetLicenseeSettingById(appSettings.LicenseeId);
             AssignSessions(userSession, GenerateLicenseeInfo(licensee));
         }
@@ -108,25 +104,6 @@
             }
 
             return false;
-        }
-
-        private static string GetDefaultUrl(IEnumerable<N88.Core.Models.MenuItem> menutItems)
-        {
-            if (menutItems.Any(x => x.Key.Equals("BetHistory", StringComparison.InvariantCultureIgnoreCase)))
-            {
-                return DefaultPagePath;
-            }
-
-            var defaultUrl = string.Empty;
-            var menuItem = menutItems.FirstOrDefault(x => x.Parent != null
-                     && !string.IsNullOrWhiteSpace(x.Url)
-                     && x.Policy != (byte)Policy.None);
-            if (menuItem != null)
-            {
-                defaultUrl = menuItem.Url;
-            }
-
-            return defaultUrl;
         }
 
         private static LicenseeAuthInfo GenerateLicenseeInfo(Licensee selectedLicensee)

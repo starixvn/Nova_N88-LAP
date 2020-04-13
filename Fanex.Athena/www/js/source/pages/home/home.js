@@ -13,10 +13,6 @@ define([
             Site.initialize();
             initEvent();
             activeDefaultMenuItem();
-            setTimeout(function () {
-                const $mainFrame = $('#mainFrame');
-                $mainFrame.attr('src', $mainFrame.data('src'));
-            }, 100);
 
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();
@@ -81,13 +77,22 @@ define([
         }
 
         function activeDefaultMenuItem() {
-            let defaultUrl = $('#DefaultUrl').val();
-            defaultUrl = defaultUrl.replace(/\/index$/i, ''); // remove the last '/Index'
             const $menuItem = $('#left-menu .menu-item a').filter(function () {
-                return $(this).attr('href') === defaultUrl;
+                const url = $(this).attr('href');
+                return url && url.length > 0;
             });
-            $('.collapsible2').collapsibleMenu('activeMenuItem', $menuItem);
-            $menuItem.trigger('click.menuevent');
+
+            if ($menuItem && $menuItem.length > 0) {
+                $('.collapsible2').collapsibleMenu('activeMenuItem', $($menuItem[0]));
+                $($menuItem[0]).trigger('click.menuevent');
+
+                setTimeout(function () {
+                    const $mainFrame = $('#mainFrame');
+
+                    $mainFrame.attr('src', $($menuItem[0]).attr('href'));
+                    $mainFrame.attr('data-src', $($menuItem[0]).attr('href'));
+                }, 100);
+            }
         }
 
         return {

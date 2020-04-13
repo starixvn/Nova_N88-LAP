@@ -97,7 +97,7 @@ var _window$_language_zh_;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// Generated at: 4/3/2020 4:49:28 PM
+// Generated at: 4/9/2020 9:04:38 AM
 window._language_zh_TW = (_window$_language_zh_ = {
   AA: "客客",
   AbnormalBet: "非正規註單",

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 4/3/2020 4:49:28 PM
+// Generated at: 4/9/2020 9:04:38 AM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -887,6 +887,7 @@ window._language_en_US = {
   VirtualSoccerAsianCup: "Virtual Soccer Asian Cup",
   VirtualSoccerChampionsCup: "Virtual Soccer Champions Cup",
   VirtualSoccerEnglishPremier: "Virtual Soccer English Premier",
+  VirtualSoccerEuroCup: "Virtual Soccer Euro Cup",
   VirtualSoccerLeague: "Virtual Soccer League",
   VirtualSoccerNation: "Virtual Soccer Nation",
   VirtualSoccerWorldCup: "Virtual Soccer World Cup",
@@ -942,9 +943,7 @@ var DEFAULT_RESOURCE_NAME = "_language_en_US";
 var langCode = window.PageLanguage || "en-US";
 var resourceName = "_language_".concat(langCode.replace("-", "_"));
 
-var LangHelper =
-/*#__PURE__*/
-function () {
+var LangHelper = /*#__PURE__*/function () {
   function LangHelper() {
     _classCallCheck(this, LangHelper);
   }

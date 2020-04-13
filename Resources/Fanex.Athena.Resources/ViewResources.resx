@@ -2796,4 +2796,7 @@
   <data name="VirtualSoccerEnglishPremier" xml:space="preserve">
     <value>Virtual Soccer English Premier</value>
   </data>
+  <data name="VirtualSoccerEuroCup" xml:space="preserve">
+    <value>Virtual Soccer Euro Cup</value>
+  </data>
 </root>

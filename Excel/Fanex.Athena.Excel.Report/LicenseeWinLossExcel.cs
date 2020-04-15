@@ -41,9 +41,9 @@
         private const int ColumnCashOutCommission = 54;
         private const int ColumnBaCommission = 55;
         private const int ColumnAmtDueToBetTrade = 56;
-        private const int ColumnAmtDueToBa = 55;
+        private const int ColumnAmtDueToBa = 57;
 
-        private const int ColumnTemplateCount = 57;
+        private const int ColumnTemplateCount = 58;
 
         private const int RowContentTemplate = 3;
         private const int RowGrantTotal = 6;

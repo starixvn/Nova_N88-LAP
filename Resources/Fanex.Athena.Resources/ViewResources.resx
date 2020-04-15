@@ -2799,4 +2799,7 @@
   <data name="VirtualSoccerEuroCup" xml:space="preserve">
     <value>Virtual Soccer Euro Cup</value>
   </data>
+  <data name="ProductTG" xml:space="preserve">
+    <value>Table Game</value>
+  </data>
 </root>

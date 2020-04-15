@@ -53,6 +53,7 @@ namespace Fanex.Athena.Controllers.Report.Result
             ViewBag.IsAllowedKeno = productAccess.IsAllowKN;
             ViewBag.IsAllowedVRG = productAccess.IsAllowVRG;
             ViewBag.IsAllowedLottery = productAccess.IsAllow(Product.LT);
+            ViewBag.IsAllowedTG = productAccess.IsAllow(Product.TG);
             return View("~/Views/Desktop/Report/Result/Main.cshtml", model);
         }
 

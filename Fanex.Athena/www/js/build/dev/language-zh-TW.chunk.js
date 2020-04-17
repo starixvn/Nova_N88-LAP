@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 4/9/2020 9:04:38 AM
+﻿// Generated at: 4/16/2020 4:27:46 PM
 window._language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
@@ -285,7 +285,6 @@ Edit:"編輯",
 EditAccount:"編輯賬號",
 Editedby:"編輯者",
 EditGroup:"編輯組別",
-EditSuccessMsg:"Host",
 EditSuccessMsg:"&apos;{0}&apos; has been updated successfully. You will be redirected in &lt;span class=&apos;msec&apos;&gt;{1}&lt;/span&gt; seconds.",
 EffectiveBettingValue:"有效投注額",
 EffectiveBettingValueNote:"有效投注額支援09/01/2014之後數據",
@@ -543,6 +542,7 @@ ProductCS:"娛樂城",
 ProductKN:"快樂彩",
 ProductNG:"百練賽",
 ProductSB:"體育博彩",
+ProductTG:"桌面遊戲",
 ProductVRG:"虛擬娛樂城",
 ProductVS:"虛擬運動",
 ProductVS2:"虛擬運動2",

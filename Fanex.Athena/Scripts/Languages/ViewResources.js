@@ -1,4 +1,4 @@
-﻿// Generated at: 4/9/2020 9:04:18 AM
+﻿// Generated at: 4/17/2020 8:58:37 AM
 var _language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -597,6 +597,7 @@ ProductPP:"PP",
 ProductPTCS:"Playtech Casino",
 ProductSB:"Sportsbook",
 ProductSG:"SG",
+ProductTG:"Table Game",
 ProductVB:"Macau Games",
 ProductVG:"Macau",
 ProductVRG:"Virtual Games",

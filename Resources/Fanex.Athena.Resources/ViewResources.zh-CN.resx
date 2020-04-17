@@ -2264,4 +2264,7 @@
   <data name="ESportsMobile" xml:space="preserve">
     <value>电子竞技 手机</value>
   </data>
+  <data name="ProductTG" xml:space="preserve">
+    <value>桌面游戏</value>
+  </data>
 </root>

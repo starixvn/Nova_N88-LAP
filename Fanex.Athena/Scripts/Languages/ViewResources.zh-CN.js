@@ -1,4 +1,4 @@
-﻿// Generated at: 4/9/2020 9:04:18 AM
+﻿// Generated at: 4/17/2020 8:58:37 AM
 var _language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -488,6 +488,7 @@ ProductCS:"娱乐城",
 ProductKN:"快乐彩",
 ProductNG:"百练赛",
 ProductSB:"体育博彩",
+ProductTG:"桌面游戏",
 ProductVRG:"虚拟娱乐城",
 ProductVS:"虚拟运动",
 ProductVS2:"虚拟运动2",

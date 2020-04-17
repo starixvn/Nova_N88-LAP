@@ -1,4 +1,4 @@
-﻿// Generated at: 4/9/2020 9:04:18 AM
+﻿// Generated at: 4/17/2020 8:58:37 AM
 var _language_zh_Hans = {
 AA:"客客",
 AbnormalBet:"非正规注单",

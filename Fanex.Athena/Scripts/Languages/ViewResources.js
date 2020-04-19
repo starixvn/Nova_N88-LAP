@@ -1,4 +1,4 @@
-﻿// Generated at: 4/17/2020 8:58:37 AM
+﻿// Generated at: 4/19/2020 11:00:57 AM
 var _language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -589,6 +589,7 @@ ProductCO:"Cash Out",
 ProductCS:"RNG Casino",
 ProductFW:"Fishing World",
 ProductGD:"Gold Deluxe",
+ProductI4D:"Indo 4D",
 ProductKN:"RNG Keno",
 ProductLC:"Live Casino",
 ProductLT:"Lottery",

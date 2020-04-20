@@ -173,5 +173,10 @@
             var value = GetValue(key);
             return string.IsNullOrWhiteSpace(value) ? new int[] { } : value.Split(',').Select(n => Convert.ToInt32(n));
         }
+
+        public bool IsEnabledMoveBetNotification
+        {
+            get { return int.Parse(GetValue("IsEnabledMoveBetNotification")) != 0; }
+        }
     }
 }

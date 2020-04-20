@@ -67,5 +67,7 @@
         int BetListApiClientTimeOutMinutes { get; }
 
         int LicenseeId { get; }
+
+        bool IsEnabledMoveBetNotification { get; }
     }
 }

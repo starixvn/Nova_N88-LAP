@@ -159,4 +159,10 @@
   <data name="UserLog" xml:space="preserve">
     <value>User Log</value>
   </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="Resettlement" xml:space="preserve">
+    <value>Resettlement</value>
+  </data>
 </root>

@@ -730,6 +730,7 @@
     <Content Include="SiteConfig\Web.PROGOAL123.config">
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
+    <Content Include="Views\Desktop\Notification\Notification.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -811,6 +812,7 @@
     <Content Include="www\js\source\pages\customer\customerlog\loginlog\loginlog.js" />
     <Content Include="www\js\source\pages\customer\customerlog\loginlog\loginlog.option.js" />
     <Content Include="www\js\source\pages\customer\customerlog\loginlog\main.js" />
+    <Content Include="www\js\source\pages\home\notification.js" />
     <Content Include="www\js\source\reactpages\actions\pagingOptionAction.js" />
     <Content Include="www\js\source\reactpages\actions\reportTitleAction.js" />
     <Content Include="www\js\source\reactpages\actions\requestParamAction.js" />
@@ -4933,6 +4935,10 @@
     <ProjectReference Include="..\DataAccess\Fanex.Athena.DataAccess.Report\Fanex.Athena.DataAccess.Report.csproj">
       <Project>{5653BC29-0843-4D75-9140-5B370DF2F88C}</Project>
       <Name>Fanex.Athena.DataAccess.Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Athena.Controllers.Notification\Fanex.Athena.Controllers.Notification.csproj">
+      <Project>{b33d0ccb-dc1a-4ceb-9a17-8d12cb4badb1}</Project>
+      <Name>Fanex.Athena.Controllers.Notification</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Athena.Extension\Fanex.Athena.Extension.csproj">
       <Project>{71F95E53-36D0-4091-828D-ED14C9939C35}</Project>

@@ -152,7 +152,8 @@
                 Product.PP,
                 Product.VRG,
                 Product.TG,
-                Product.I4D
+                Product.I4D,
+				Product.SBC
             };
 
             var productAccess = _productService.GetSingleWalletProductAccess(

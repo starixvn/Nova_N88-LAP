@@ -5443,6 +5443,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saba Club.
+        /// </summary>
+        public static string ProductSBC {
+            get {
+                return ResourceManager.GetString("ProductSBC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SG.
         /// </summary>
         public static string ProductSG {

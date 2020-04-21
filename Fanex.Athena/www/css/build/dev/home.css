@@ -5888,7 +5888,7 @@ header nav {
         border-width: 3.5px 3.5px 0 3.5px; }
   .nav-wrapper .right-block .notifications-block {
     position: relative;
-    margin: 5px;
+    margin: 0 5px;
     cursor: pointer; }
     .nav-wrapper .right-block .notifications-block .number-notifications {
       background-color: #d91a1a;

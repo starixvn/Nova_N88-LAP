@@ -11,9 +11,6 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    /// <summary>
-    /// Used by LAP container
-    /// </summary>
     [ApiOneAuthorization]
     public class NotificationApiController : ExternalApiBaseController
     {

@@ -1,8 +1,3 @@
-// -----------------------------------------------------------------------
-// <copyright file="IMoveBetDataAccess.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-
 namespace Fanex.Athena.DataAccess.Core.Configuration.Interfaces
 {
     using System.Threading.Tasks;

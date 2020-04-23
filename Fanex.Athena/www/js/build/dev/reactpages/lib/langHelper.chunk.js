@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 4/9/2020 9:04:38 AM
+// Generated at: 4/19/2020 11:01:19 AM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -684,6 +684,7 @@ window._language_en_US = {
   ProductCS: "RNG Casino",
   ProductFW: "Fishing World",
   ProductGD: "Gold Deluxe",
+  ProductI4D: "Indo 4D",
   ProductKN: "RNG Keno",
   ProductLC: "Live Casino",
   ProductLT: "Lottery",
@@ -692,6 +693,7 @@ window._language_en_US = {
   ProductPTCS: "Playtech Casino",
   ProductSB: "Sportsbook",
   ProductSG: "SG",
+  ProductTG: "Table Game",
   ProductVB: "Macau Games",
   ProductVG: "Macau",
   ProductVRG: "Virtual Games",
@@ -943,7 +945,9 @@ var DEFAULT_RESOURCE_NAME = "_language_en_US";
 var langCode = window.PageLanguage || "en-US";
 var resourceName = "_language_".concat(langCode.replace("-", "_"));
 
-var LangHelper = /*#__PURE__*/function () {
+var LangHelper =
+/*#__PURE__*/
+function () {
   function LangHelper() {
     _classCallCheck(this, LangHelper);
   }

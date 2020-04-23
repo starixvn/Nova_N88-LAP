@@ -16,7 +16,7 @@
     using System.Web.Mvc;
     using System.Web.SessionState;
 
-    [FunctionAuthorization(PermissionKeys.ResultAmendmentNotificationReport)]
+    [FunctionAuthorization(PermissionKeys.Resettlement)]
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
     public class NotificationReportController : CultureBaseController

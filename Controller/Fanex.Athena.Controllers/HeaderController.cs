@@ -27,7 +27,7 @@
                 UserName = userSession.UserName,
                 CurrentLicenseeId = currentLicenseeId,
                 IsFakeLicensee = false,
-                IsAllowedNotification = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ResultAmendmentNotificationReport),
+                IsAllowedNotification = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.Resettlement),
                 LogoTextUrl = $"/www/assets/images/logo-text-{currentLicenseeId}.svg"
         };
             return View("~/Views/Desktop/Header/Index.cshtml", viewModel);

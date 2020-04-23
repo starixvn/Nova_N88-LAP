@@ -54,6 +54,6 @@
 
         /*Notification*/
 
-        public const string ResultAmendmentNotificationReport = "ResultAmendment_Recalculation";
+        public const string Resettlement = "Resettlement";
     }
 }

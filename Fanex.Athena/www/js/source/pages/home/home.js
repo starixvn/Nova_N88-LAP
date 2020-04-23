@@ -3,15 +3,17 @@
 define([
     'common/site',
     './recheckin',
+    './notification',
     'lib/jquery.cookie',
     'lib/jquery.marquee',
     'components/selectlist',
     'lib/jquery.jclock',
     'vendor-materialize'],
-    function (Site, Recheckin) {
+    function (Site, Recheckin, Notification) {
         function initialize() {
             Site.initialize();
             initEvent();
+            Notification.add();
             activeDefaultMenuItem();
 
             if ($('#HasRecheckIn').val() === '1') {

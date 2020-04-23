@@ -1574,6 +1574,222 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./www/js/source/extensions/jquery.extension.js":
+/*!******************************************************!*\
+  !*** ./www/js/source/extensions/jquery.extension.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(jQuery) {﻿///
+
+(function ($) {
+    $.fn.checkboxgroup = function () {
+        var $parent = $(this).parent();
+        var allChk = this.first();
+        var elseChk = this.slice(1);
+
+        allChk.prop('checked', elseChk.filter(":checked").length === elseChk.length);
+
+        allChk.change(function () {
+            var thisIsChecked = $(this).is(':checked');
+            elseChk.prop('checked', thisIsChecked);
+            $parent.toggleClass("invalid", !thisIsChecked);
+        });
+
+        elseChk.change(function () {
+            if ($(this).is(':checked')) {
+                allChk.prop('checked', elseChk.filter(":checked").length === elseChk.length);
+            } else {
+                allChk.prop('checked', false);
+            }
+
+            $parent.toggleClass("invalid", elseChk.filter(":checked").length === 0);
+        });
+
+        return this;
+    };
+
+    $.fn.showHide = function (isShow) {
+        if (isShow) {
+            this.show();
+        } else {
+            this.hide();
+        }
+
+        return this;
+    };
+
+    jQuery.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+    jQuery.fn.tableRowSpan = function (colIndexs, effectToIndex) {
+        /// <summary>
+        /// Created by Alex@20130228
+        /// set table rowspan
+        /// </summary>
+        /// <param name="colIndexs">column indexs</param>
+        /// <param name="effectToIndex">set rowspan for this columns base on lasted column in [colIndexs]</param>
+        if (effectToIndex !== undefined) {
+            if ($.inArray(effectToIndex, colIndexs) > -1) {
+                return;
+            }
+        }
+
+        function process(table, colIdx) {
+            var that;
+            var ethat;
+            var ethis;
+            var rowspan = 1;
+            var len = table.rows.length - 1;
+            for(var index = 0; index <= len; index++)
+            {
+                var currentRow = table.rows[index];                
+                var td = currentRow.cells[colIdx];
+                if(td) {
+                    ethis = currentRow.cells[effectToIndex];
+                    var found = that != null && $(td).html() === $(that).html();
+                    if (found && index < len) {
+                        rowspan++;
+                        $(td).hide();
+                        if (effectToIndex !== undefined) {
+                            $(ethis).hide();
+                        }
+                        //.remove// do your action for the old cell here
+                    }
+                    else if (found && index === len) {
+                        //do your action for lasted row
+                        $(td).hide();
+                        rowspan++;
+                        $(that).attr("rowSpan", rowspan);
+                        that = td;
+                        if (effectToIndex !== undefined) {
+                            $(ethis).hide();
+                            $(ethat).attr("rowSpan", rowspan);
+                            ethat = ethis;
+                        }
+                        rowspan = 1;
+                        // do your action for the colSpan cell here
+                    }
+                    else {
+                        if (effectToIndex !== undefined) {
+                            $(ethat).attr("rowSpan", rowspan);
+                            ethat = ethis;
+                        }
+                        $(that).attr("rowSpan", rowspan);
+                        // do your action for the colSpan cell here
+                        that = td;
+                        rowspan = 1;
+                    }
+                    that = (that == null) ? td : that;
+                    if (effectToIndex !== undefined) {
+                        ethat = (ethat == null) ? ethis : ethat;
+                    }
+                    // set the that if not already set
+                }
+            }
+        }
+
+        return this.each(function () {
+            for (var i = 0; i < colIndexs.length; i++) {
+                process(this, colIndexs[i]);
+            }
+        });
+    };
+
+    jQuery.fn.numbericTextBox = function (min, max) {
+        var thousandFormater = function (x) {
+            var value = x.toString();
+            var pattern = /(-?\d+)(\d{3})/;
+            while (pattern.test(value)) {
+                value = value.replace(pattern, "$1,$2");
+            }
+            return value;
+        };
+
+        var maxLength = max.toString().length;
+
+        this.each(function (i, e) {
+            $(e).keydown(function (event) {
+                // Allow: backspace, delete, tab, escape, and enter
+                if (event.keyCode === 46 || event.keyCode === 8 || event.keyCode === 9 || event.keyCode === 27 || event.keyCode === 13 ||
+                // Allow: Ctrl+A
+                    (event.keyCode === 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                    (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                        event.preventDefault();
+                    }
+                }
+            }).keyup(function (event) {
+                var textBox = event.target;
+                var value = textBox.value.replace(/,/g, '');
+
+                if (value.length > maxLength) {
+                    value = value.slice(0, maxLength);
+                }
+
+                if (value < min) {
+                    value = min;
+                }
+                else if (value > max) {
+                    value = max;
+                }
+
+                textBox.value = thousandFormater(value);
+            });
+        });
+
+        return this;
+    };
+
+    $.fn.hasVerticalScrollBar = function () {
+        return this.length > 0 ? this.get(0).scrollHeight > this.height() : false;
+    };
+    $.fn.hasHorizontalScrollBar = function () {
+        return this.length > 0 ? this.get(0).scrollWidth > this.width() : false;
+    };
+})(jQuery);
+
+jQuery.extend({
+    format: function () {
+        /// <summary>
+        /// simply format method
+        /// </summary>
+        /// <returns type="string">formated string</returns>
+        var formatted = arguments[0];
+        var passValue = jQuery.grep(arguments, function (n, i) { return i > 0; });
+        for (var arg in passValue) {
+            if (passValue.hasOwnProperty(arg)) {
+                formatted = formatted.replace("{" + arg + "}", passValue[arg]);
+            }
+        }
+        return formatted;
+    }
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js-exposed")))
+
+/***/ }),
+
 /***/ "./www/js/source/extensions/prototype.js":
 /*!***********************************************!*\
   !*** ./www/js/source/extensions/prototype.js ***!
@@ -2157,14 +2373,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
     __webpack_require__(/*! common/site */ "./www/js/source/common/site.js"),
     __webpack_require__(/*! ./recheckin */ "./www/js/source/pages/home/recheckin.js"),
+    __webpack_require__(/*! ./notification */ "./www/js/source/pages/home/notification.js"),
     __webpack_require__(/*! lib/jquery.cookie */ "./www/js/source/lib/jquery.cookie.js"),
     __webpack_require__(/*! lib/jquery.marquee */ "./www/js/source/lib/jquery.marquee.js"),
     __webpack_require__(/*! components/selectlist */ "./www/js/source/components/selectlist.js"),
     __webpack_require__(/*! lib/jquery.jclock */ "./www/js/source/lib/jquery.jclock.js"),
-    __webpack_require__(/*! vendor-materialize */ "./www/js/source/vendors/materialize/materialize.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (Site, Recheckin) {
+    __webpack_require__(/*! vendor-materialize */ "./www/js/source/vendors/materialize/materialize.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (Site, Recheckin, Notification) {
         function initialize() {
             Site.initialize();
             initEvent();
+            Notification.add();
             activeDefaultMenuItem();
 
             if ($('#HasRecheckIn').val() === '1') {
@@ -2281,6 +2499,213 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     'use strict';
     $(Home.initialize);
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js-exposed")))
+
+/***/ }),
+
+/***/ "./www/js/source/pages/home/notification.js":
+/*!**************************************************!*\
+  !*** ./www/js/source/pages/home/notification.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿
+
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! common/site */ "./www/js/source/common/site.js"), __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"), __webpack_require__(/*! common/popup */ "./www/js/source/common/popup.js"), __webpack_require__(/*! extensions/jquery.extension */ "./www/js/source/extensions/jquery.extension.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (Site, moment, Popup) {
+        const NOTIFICATION_ITEM = '<li class="notification-item" id="notification-item-{0}" title="{1}">' +
+                                '<a href="javascript:void(0)">{2}</a><span class="type">{3}</span><span class="date-time">{4}</span>' +
+                                '</li>';
+        const GET_NOTIFICATION_URL = 'NotificationReport/GetNotificationMessages';
+        const MARK_NOTIFICATION = 'NotificationReport/MarkNotificationAsRead';
+        const POPUP_ID = 'view-notification';
+        const POPUP_CONTENT_MIN_HEIGHT = 300;
+
+        let $notificationDdl = '';
+        let $notificationLabel = '';
+        let _newMsg = null;
+        let _totalMsg = 0;
+
+        function openDetailPopup(message, index) {
+            const popup = $('#' + POPUP_ID);
+            if (popup.is(':visible')) {
+                popup.find('a.popup-close').click();
+            }
+
+            const options = {
+                modal: true,
+                title: Site.getSingleResource('ViewNotification'),
+                height: '80%',
+                id: POPUP_ID,
+                width: '55%',
+                onOpened: function () {
+                    const popupHeight = $('.wrapContent', '.view-notification').height();
+                    const subjectHeight = $('.subject', '.view-notification').height();
+                    const dateTimeHeight = $('.date-time', '.view-notification').height();
+                    const height = popupHeight - subjectHeight - dateTimeHeight - 60;
+
+                    if (height > POPUP_CONTENT_MIN_HEIGHT) {
+                        $('.content', '.view-notification').height(height);
+                    }
+                },
+                onClose: function () {
+                    const postData = {
+                        MessageType: message.Type,
+                        MessageId: message.Id
+                    };
+
+                    markMessageAsRead(postData, index);
+                    $('#' + POPUP_ID).remove();
+                }
+            };
+
+            const buttons = [
+                {
+                    text: Site.getSingleResource('Close'),
+                    isClosedOnClick: true,
+                    classes: 'btn btn-close'
+                }];
+
+            const popupContent = '<div class="view-notification">'
+                                + '<p class="subject">' + Site.getSingleResource('Subject') + ': ' + message.Subject + '</p>'
+                                + '<p class="date-time">' + moment(message.DateTime).format('MM/DD/YYYY') + '</p>'
+                                + '<div class="content">' + (message.Content || '') + '</div>'
+                                + '</div>';
+
+            Popup.openPopupWithButton(popupContent, options, buttons);
+        }
+
+        function addNotificationItems(data) {
+            $notificationDdl.find('.notification-item').remove();
+            updateNumberLabel(data.TotalRows);
+
+            const $container = $notificationDdl.find('.first-notification').parent();
+            if (data.DataList !== null && data.DataList.length > 0) {
+                data.DataList.forEach(function (item, index) {
+                    const time = moment(item.DateTime).format('MM/DD/YYYY');
+                    const subject = item.Subject || '';
+                    const message = $($.format(NOTIFICATION_ITEM,
+                        index,
+                        subject,
+                        (subject.length > 100 ? subject.substr(0, 97) + '...' : subject),
+                        Site.getSingleResource(item.Type),
+                        time));
+                    message.on('click', function () {
+                        openDetailPopup(item, index);
+                    });
+
+                    $container.append(message);
+                });
+            }
+        }
+
+        function markMessageAsRead(postData, index) {
+            $.ajax({
+                url: Site.resolveClientUrl(MARK_NOTIFICATION),
+                type: 'POST',
+                data: postData,
+                dataType: 'json',
+                cache: false,
+                success: function (response) {
+                    setTimeout(function () {
+                        if (_newMsg === null && response.IsSuccessful) {
+                            updateNumberLabel(_totalMsg - 1);
+                            $notificationDdl.find('#notification-item-' + index).remove();
+                        }
+                    }, 100);
+                }
+            });
+        }
+
+        function updateNumberLabel(num) {
+            const $numberOfMsg = $('.number-notifications', '.notifications-block');
+
+            _totalMsg = num;
+
+            if (num <= 0) {
+                $numberOfMsg.remove();
+            }
+            else {
+                if ($numberOfMsg.length) {
+                    $numberOfMsg.text(num);
+                }
+                else {
+                    $notificationLabel.append('<span class="number-notifications">' + num + '</span>');
+                }
+            }
+        }
+
+        function showNotification(isShow) {
+            if (isShow) {
+                $notificationDdl.show();
+            }
+            else {
+                $notificationDdl.hide();
+                if (_newMsg !== null) {
+                    addNotificationItems(_newMsg);
+                }
+            }
+        }
+
+        function addNotification() {
+            $notificationDdl = $('#notificationmsg');
+
+            if ($notificationDdl.length === 0) {
+                return;
+            }
+
+            $notificationLabel = $('.notification-button', '.notifications-block');
+
+            $notificationLabel.click(function (e) {
+                e.stopPropagation();
+                showNotification(!$notificationDdl.is(':visible'));
+            });
+
+            const apiUrl = Site.resolveClientUrl(GET_NOTIFICATION_URL);
+
+            const processNotification = function () {
+                $.ajax({
+                    url: apiUrl,
+                    type: 'GET',
+                    cache: false,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if ($notificationDdl.is(':visible')) {
+                            _newMsg = data;
+                            return;
+                        }
+
+                        _newMsg = null;
+                        addNotificationItems(data);
+                    },
+                    statusCode: {
+                        403: function () { }
+                    }
+                });
+            };
+
+            $('html').on('click', function () {
+                if ($notificationDdl.is(':visible')) {
+                    showNotification(false);
+                }
+            });
+            $(window).on('blur', function () {
+                if ($notificationDdl.is(':visible')) {
+                    showNotification(false);
+                }
+            });
+
+            processNotification();
+            setInterval(processNotification, 60000);
+            $notificationDdl.mCustomScrollbar({ theme: 'minimal' });
+        }
+
+        return {
+            add: addNotification
+        };
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js-exposed")))
 

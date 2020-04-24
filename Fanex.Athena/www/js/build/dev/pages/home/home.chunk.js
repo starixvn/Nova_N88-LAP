@@ -2448,33 +2448,29 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         }
 
         function activeDefaultMenuItem() {
-            const defaultUrl = '/bettingticketcenter1';
+            const defaultUrl = '/bettingticketcenter';
 
-            let $defaultMenuItem = $('#left-menu .menu-item a').filter(function () {
+            let $menuItem = $('#left-menu .menu-item a').filter(function () {
                 const url = $(this).attr('href');
                 return url && url.toLowerCase().endsWith(defaultUrl);
             });
 
-            if (!$defaultMenuItem || ($defaultMenuItem && $defaultMenuItem.length === 0)) {
-                const $menuItem = $('#left-menu .menu-item a').filter(function () {
+            if ($menuItem && $menuItem.length === 0) {
+                $menuItem = $('#left-menu .menu-item a').filter(function () {
                     const url = $(this).attr('href');
                     return url && url.length > 0;
                 });
-
-                if ($menuItem && $menuItem.length > 0) {
-                    $defaultMenuItem = $menuItem[0];
-                }
             }
 
-            if ($defaultMenuItem && $defaultMenuItem.length > 0) {
-                $('.collapsible2').collapsibleMenu('activeMenuItem', $($defaultMenuItem));
-                $($defaultMenuItem).trigger('click.menuevent');
+            if ($menuItem && $menuItem.length > 0) {
+                $('.collapsible2').collapsibleMenu('activeMenuItem', $($menuItem[0]));
+                $($menuItem[0]).trigger('click.menuevent');
 
                 setTimeout(function () {
                     const $mainFrame = $('#mainFrame');
 
-                    $mainFrame.attr('src', $($defaultMenuItem).attr('href'));
-                    $mainFrame.attr('data-src', $($defaultMenuItem).attr('href'));
+                    $mainFrame.attr('src', $($menuItem[0]).attr('href'));
+                    $mainFrame.attr('data-src', $($menuItem[0]).attr('href'));
                 }, 100);
             }
         }

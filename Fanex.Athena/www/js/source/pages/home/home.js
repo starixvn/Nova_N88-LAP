@@ -79,14 +79,14 @@ define([
         }
 
         function activeDefaultMenuItem() {
-            const defaultUrl = '/bettingticketcenter';
+            const defaultUrl = '/bettingticketcenter1';
 
             let $defaultMenuItem = $('#left-menu .menu-item a').filter(function () {
                 const url = $(this).attr('href');
                 return url && url.toLowerCase().endsWith(defaultUrl);
             });
 
-            if ($defaultMenuItem == null) {
+            if (!$defaultMenuItem || ($defaultMenuItem && $defaultMenuItem.length === 0)) {
                 const $menuItem = $('#left-menu .menu-item a').filter(function () {
                     const url = $(this).attr('href');
                     return url && url.length > 0;
@@ -97,7 +97,7 @@ define([
                 }
             }
 
-            if ($defaultMenuItem) {
+            if ($defaultMenuItem && $defaultMenuItem.length > 0) {
                 $('.collapsible2').collapsibleMenu('activeMenuItem', $($defaultMenuItem));
                 $($defaultMenuItem).trigger('click.menuevent');
 

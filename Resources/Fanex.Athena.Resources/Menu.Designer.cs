@@ -133,6 +133,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notification.
+        /// </summary>
+        public static string Notification {
+            get {
+                return ResourceManager.GetString("Notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Player Administration.
         /// </summary>
         public static string PlayerAdministration {
@@ -156,6 +165,15 @@ namespace Fanex.Athena.Resources {
         public static string Report {
             get {
                 return ResourceManager.GetString("Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resettlement.
+        /// </summary>
+        public static string Resettlement {
+            get {
+                return ResourceManager.GetString("Resettlement", resourceCulture);
             }
         }
         

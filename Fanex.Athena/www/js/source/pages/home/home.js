@@ -3,15 +3,17 @@
 define([
     'common/site',
     './recheckin',
+    './notification',
     'lib/jquery.cookie',
     'lib/jquery.marquee',
     'components/selectlist',
     'lib/jquery.jclock',
     'vendor-materialize'],
-    function (Site, Recheckin) {
+    function (Site, Recheckin, Notification) {
         function initialize() {
             Site.initialize();
             initEvent();
+            Notification.add();
             activeDefaultMenuItem();
 
             if ($('#HasRecheckIn').val() === '1') {
@@ -77,10 +79,19 @@ define([
         }
 
         function activeDefaultMenuItem() {
-            const $menuItem = $('#left-menu .menu-item a').filter(function () {
+            const defaultUrl = '/bettingticketcenter';
+
+            let $menuItem = $('#left-menu .menu-item a').filter(function () {
                 const url = $(this).attr('href');
-                return url && url.length > 0;
+                return url && url.toLowerCase().endsWith(defaultUrl);
             });
+
+            if ($menuItem && $menuItem.length === 0) {
+                $menuItem = $('#left-menu .menu-item a').filter(function () {
+                    const url = $(this).attr('href');
+                    return url && url.length > 0;
+                });
+            }
 
             if ($menuItem && $menuItem.length > 0) {
                 $('.collapsible2').collapsibleMenu('activeMenuItem', $($menuItem[0]));

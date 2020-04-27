@@ -5888,7 +5888,7 @@ header nav {
         border-width: 3.5px 3.5px 0 3.5px; }
   .nav-wrapper .right-block .notifications-block {
     position: relative;
-    margin: 5px;
+    margin: 0 5px;
     cursor: pointer; }
     .nav-wrapper .right-block .notifications-block .number-notifications {
       background-color: #d91a1a;
@@ -5904,7 +5904,7 @@ header nav {
     .nav-wrapper .right-block .notifications-block .notification-content {
       background-color: #4C6375;
       top: 30px;
-      left: -45px;
+      left: -245px;
       width: 32rem;
       margin-left: 20px;
       z-index: 999;
@@ -6223,7 +6223,7 @@ header nav {
   font-size: 1.2em; }
 
 .view-notification .content {
-  padding: 5px;
+  padding: 0 5px;
   border: solid 1px #d1dae1;
   position: relative;
   height: 100%;

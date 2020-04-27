@@ -1,7 +1,9 @@
 ﻿namespace Fanex.Athena.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using Fanex.Athena.Extension.Utility;
+    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.ViewModel;
     using Web.ActionFilter;
@@ -25,7 +27,7 @@
                 UserName = userSession.UserName,
                 CurrentLicenseeId = currentLicenseeId,
                 IsFakeLicensee = false,
-                IsAllowedNotification = false,
+                IsAllowedNotification = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.Resettlement),
                 LogoTextUrl = $"/www/assets/images/logo-text-{currentLicenseeId}.svg"
         };
             return View("~/Views/Desktop/Header/Index.cshtml", viewModel);

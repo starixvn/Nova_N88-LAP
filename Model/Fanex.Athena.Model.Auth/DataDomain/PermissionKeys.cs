@@ -51,5 +51,9 @@
         public const string PlayerAdminUpdateOddsGroup = "PlayerAdmin_PL_OddGroups";
 
         public const string AccountInfo = "pa_acc_Info";
+
+        /*Notification*/
+
+        public const string Resettlement = "Resettlement";
     }
 }

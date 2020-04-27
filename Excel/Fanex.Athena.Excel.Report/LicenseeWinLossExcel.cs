@@ -51,8 +51,8 @@
         private const int RowTotalNoSolidBorder = 5;
         private const int RowTotalSolidBorder = 4;
 
-        private const int TotalLicenseeWlProductColumn = 21;
-        private const int TotalTurnoverProductColumn = 21;
+        private const int TotalLicenseeWlProductColumn = 22;
+        private const int TotalTurnoverProductColumn = 22;
 
         private static readonly string[] IgnoredLicenseeWLProducts = new[] { Product.BA };
         private static readonly string[] IgnoredTurnoverProducts = new[] { Product.BT, Product.CO };

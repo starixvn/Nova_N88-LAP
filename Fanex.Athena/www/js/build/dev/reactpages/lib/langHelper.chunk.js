@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 4/19/2020 11:01:19 AM
+// Generated at: 4/27/2020 2:03:04 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -301,6 +301,7 @@ window._language_en_US = {
   DeepLink: "Deep Link",
   DefaultGroup: "Default Group",
   DefaultGroupMsg: "This is the default group. Do you want to proceed?",
+  DelayPayout: "Delay Payout",
   Delete: "Delete",
   DeleteCommissionGroup: "Delete Commission group",
   DeleteGroup: "Delete Group",

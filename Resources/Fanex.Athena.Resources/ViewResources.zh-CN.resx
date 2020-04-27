@@ -2267,4 +2267,7 @@
   <data name="ProductTG" xml:space="preserve">
     <value>桌面游戏</value>
   </data>
+  <data name="DelayPayout" xml:space="preserve">
+    <value>延迟付款</value>
+  </data>
 </root>

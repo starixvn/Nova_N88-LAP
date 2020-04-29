@@ -847,9 +847,8 @@
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
     <Content Include="Views\Desktop\Notification\Notification.cshtml" />
-    <Content Include="Views\Desktop\BetList\SexyGaming\Main.cshtml" />
-    <Content Include="Views\Desktop\BetList\SBCDetail\Main.cshtml" />
-    <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
+	<Content Include="Views\Desktop\BetList\SexyGaming\Main.cshtml" />
+    <Content Include="Views\Desktop\BetList\SBCDetail\Main.cshtml" />	<Content Include="Views\Desktop\Report\WinLoss\Main.cshtml" />    <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\info.scss" />
@@ -5148,7 +5147,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55049</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55045/</IISUrl>
+          <IISUrl>http://localhost:55046/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

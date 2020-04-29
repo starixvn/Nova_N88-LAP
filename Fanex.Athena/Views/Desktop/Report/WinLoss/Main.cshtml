@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = ViewResources.Report +
+    " - " + "Win Loss";
+    Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+
+    var serializer = new JavaScriptSerializer();
+}
+@model Fanex.Athena.Model.Report.ViewModel.WinLossViewModel
+
+@using System.Web.Script.Serialization
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/report/winloss.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/report/winloss.chunk.js")"></script>
+}
+
+@section globaljscode{
+    window.initialState = {
+    isLoading: false,
+    type: 0,
+    currencyList:  @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key.ToString(), Value = x.Value, Status = true }).ToJson()),
+    isSubsidiary:  0
+    };
+
+    window._pConfig = {
+    };
+}
+<div id="app-container">
+</div>

@@ -2,12 +2,12 @@
 {
     public static class PermissionKeys
     {
-
         /*NAP Menu Permission*/
         public const string ManageUser = "ManageLicenseeUser";
         public const string ReportLicenseeWinLoss = "LicenseeWinLoss";
         public const string ReportCustomerWinLoss = "CustomerWinLoss";
         public const string ReportCashOutWinLoss = "CashOutWinLoss";
+        public const string ReportWinLoss = "WinLoss";
         public const string BtcAdvancedSearch = "BtcAdvancedSearch";
         public const string ManageGroup = "ManageLicenseeGroup";
 

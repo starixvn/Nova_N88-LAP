@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
-    var loginToken = ViewBag.LogInToken as string;
+    string loginToken = ViewBag.LogInToken as string;
+    var logoUrl = string.Format("/www/assets/images/logo-login-{0}.svg", ViewBag.LicenseeId) as string;
 }
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,7 @@
         <div class="page-content">
             <form class="form-content" action="@Url.Content("~/Authorization/SignIn")" method="post" name="fLogin" id="fLogin">
                 @Html.AntiForgeryToken()
-                <img class="logo" src="@Url.ContentLink((string)ViewBag.LogoLoginUrl)">
+                <img class="logo" src="@Url.ContentLink(logoUrl)">
                 <div class="input-field col s12">
                     <div class="input-icon-group">
                         <i class="icon icon-account" aria-hidden="true"></i>

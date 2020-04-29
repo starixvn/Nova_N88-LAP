@@ -33,69 +33,61 @@ namespace Fanex.Athena
 
         public void Application_Error(object sender, EventArgs e)
         {
-            var deploymentMode = ConfigurationManager.AppSettings["DeploymentMode"];
-            if (string.IsNullOrEmpty(deploymentMode) || !deploymentMode.Equals("Static"))
+            // Code that runs when an unhandled error occurs
+            var exception = Server.GetLastError();
+            var isIgnore = exception is HttpAntiForgeryException
+                          || exception is HttpException
+                       || (exception.TargetSite.DeclaringType == typeof(ActionDescriptor) &&
+                            exception.TargetSite.Name == "ExtractParameterFromDictionary");
+            // Exception when passing wrong data type to action method
+            if (!isIgnore)
             {
-                // Code that runs when an unhandled error occurs
-                var exception = Server.GetLastError();
-                var isIgnore = exception is HttpAntiForgeryException
-                              || exception is HttpException
-                           || (exception.TargetSite.DeclaringType == typeof(ActionDescriptor) &&
-                                exception.TargetSite.Name == "ExtractParameterFromDictionary");
-                // Exception when passing wrong data type to action method
-                if (!isIgnore)
-                {
-                    LogService.Error(LogMessageHelper.GenerateMessage(exception), exception);
-                }
+                LogService.Error(LogMessageHelper.GenerateMessage(exception), exception);
             }
         }
 
         [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties that don't access instance data should be static", Justification = "Reviewed.")]
         public void Application_Start(object sender, EventArgs e)
         {
-            var deploymentMode = ConfigurationManager.AppSettings["DeploymentMode"];
-            if (string.IsNullOrEmpty(deploymentMode) || !deploymentMode.Equals("Static"))
-            {
-                LogManager
-                    .SetDefaultLogCategory(ConfigurationManager.AppSettings["Fanex.Logging-LogCategory"])
-                    .Use(new SentryLogging(new SentryEngineOptions
-                    {
-                        Dsn = new Dsn(ConfigurationManager.AppSettings["Sentry-Dsn"])
-                    }));
+            LogManager
+                .SetDefaultLogCategory(ConfigurationManager.AppSettings["Fanex.Logging-LogCategory"])
+                .Use(new SentryLogging(new SentryEngineOptions
+                {
+                    Dsn = new Dsn(ConfigurationManager.AppSettings["Sentry-Dsn"])
+                }));
 
-                ViewEngines.Engines.Clear();
-                ViewEngines.Engines.Add(new RazorViewEngine());
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
 
-                AreaRegistration.RegisterAllAreas();
-                GlobalFilters.Filters.Add(new CustomAuthorizeAttribute());
-                RouteTable.Routes.IgnoreRoute("favicon.ico");
-                RouteConfig.RegisterRoutes(RouteTable.Routes);
+            AreaRegistration.RegisterAllAreas();
+            GlobalFilters.Filters.Add(new CustomAuthorizeAttribute());
+            RouteTable.Routes.IgnoreRoute("favicon.ico");
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-                BundleConfig.RegisterBundles(BundleTable.Bundles);
-                /*Web API*/
-                GlobalConfiguration.Configuration.EnableCors();
-                GlobalConfiguration.Configuration.Filters.Add(new CustomApiAuthorizeAttribute());
-                GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
-                /*End Web API*/
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            /*Web API*/
+            GlobalConfiguration.Configuration.EnableCors();
+            GlobalConfiguration.Configuration.Filters.Add(new CustomApiAuthorizeAttribute());
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+            /*End Web API*/
 
-                AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
 
-                DbSettingProviderManager
-                    .StartNewSession()
-                    .WithSqlServer(resourcePath: "~/SpNameConfig/FanexSpName.xml")
-                    .Run();
+            DbSettingProviderManager
+                .StartNewSession()
+                .WithSqlServer(resourcePath: "~/SpNameConfig/FanexSpName.xml")
+                .Run();
 
-                RefDataTypeContainer
-                .ConnectTo(new Uri(ConfigurationManager.AppSettings["Fanex.RemotingRef.Service.Url"]))
-                .FromApplication("Fanex.LAP");
+            RefDataTypeContainer
+            .ConnectTo(new Uri(ConfigurationManager.AppSettings["Fanex.RemotingRef.Service.Url"]))
+            .FromApplication("Fanex.LAP");
 
-                DIConfig.Register();
-                CompositeResolver.RegisterAndSetAsDefault(
-                       // resolver custom types first
-                       NativeDateTimeResolver.Instance,
-                       // finally use standard resolver
-                       ContractlessStandardResolver.Instance);
-            }
+            DIConfig.Register();
+            CompositeResolver.RegisterAndSetAsDefault(
+                   // resolver custom types first
+                   NativeDateTimeResolver.Instance,
+                   // finally use standard resolver
+                   ContractlessStandardResolver.Instance);
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

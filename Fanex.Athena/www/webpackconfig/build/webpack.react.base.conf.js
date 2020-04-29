@@ -21,7 +21,6 @@ function generateConfig(environment) {
             [`${jsPath}/lib/lang-zh-TW`]: pathConfig.scriptPaths.langTW,
 
             [`${jsPath}/notification/notification`]: pathConfig.scriptPaths.notification,
-            [`${jsPath}/report/speciallicenseewl`]: pathConfig.scriptPaths.speciallicenseewl,
             [`${jsPath}/bettingticketscenter/advancedsearch`]: pathConfig.scriptPaths.bettingticketscenter_advancedsearch,
             [`${jsPath}/bettingticketscenter/singlecustomer`]: pathConfig.scriptPaths.bettingticketscenter_singlecustomer,
             [`${jsPath}/bettingticketscenter/refno`]: pathConfig.scriptPaths.bettingticketscenter_refno,
@@ -33,6 +32,9 @@ function generateConfig(environment) {
             [`${jsPath}/playeradmin/single-customer`]: pathConfig.scriptPaths.singleCustomer,
             [`${jsPath}/playeradmin/playerwinloss`]: pathConfig.scriptPaths.playerwinloss,
             [`${jsPath}/playeradmin/statement`]: pathConfig.scriptPaths.statement,
+
+            [`${jsPath}/report/speciallicenseewl`]: pathConfig.scriptPaths.speciallicenseewl,
+            [`${jsPath}/report/winloss`]: pathConfig.scriptPaths.winlossreport,
 
             /*css*/
             [`${cssPath}/vendor`]: pathConfig.cssPaths.layout,
@@ -46,6 +48,8 @@ function generateConfig(environment) {
             [`${cssPath}/playeradmin/betlimit`]: pathConfig.cssPaths.playerbetlimit,
             [`${cssPath}/playeradmin/playerwinloss`]: pathConfig.cssPaths.playerwinloss,
             [`${cssPath}/playeradmin/statement`]: pathConfig.cssPaths.statement,
+
+            [`${cssPath}/report/winloss`]: pathConfig.cssPaths.winlossreport,
         },
         output: {
             path: pathConfig.projectRoot,

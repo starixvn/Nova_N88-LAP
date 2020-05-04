@@ -5,7 +5,12 @@ import { Provider } from 'react-redux';
 import Store from '@jsroot/lib/store';
 import reducers from './reducers';
 
-const defaultState = {  }
+const defaultState = {
+   ...window.initialState, 
+   ...{
+     selectedGroupByOption: 1
+   }
+}
 const store = Store.createStore(reducers, defaultState);
 
 const App = () => {

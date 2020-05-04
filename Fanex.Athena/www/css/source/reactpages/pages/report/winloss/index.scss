@@ -1,0 +1,26 @@
+@import '../../../abstracts/variables';
+@import '../../../components/forms/checkbox';
+@import '../../../components/forms/radio-buttons';
+@import '../../../components/date-range/styles';
+@import '../../../components/react-multiselect';
+@import '../../../components/autocomplete';
+@import '../../../components/popup';
+@import "../../../components/react-grid";
+@import "../../../components/paging";
+@import "../../../components/switch";
+@import "../../../components/alert/index";
+
+
+.winloss-report {
+    .group-filter {
+        .form-group {
+            display: inline-block;
+            .radio-group {
+                margin-left: 30px;
+                span {
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
+}

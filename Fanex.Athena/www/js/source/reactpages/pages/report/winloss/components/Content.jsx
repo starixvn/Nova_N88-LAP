@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ActionCreators from '../actions';
+import { Pager } from '@9softstudio/react-grid';
+import DataGrid from './DataGrid';
+import GridCaption from './GridCaption';
+import { ActionCreators } from '../actions'
 
 export const Content = props => { 
     return (
         <div>
-            {'Content'}}
+            {/* <GridCaption /> */}
+            <DataGrid />
+            <Pager />
         </div>
     )
 }

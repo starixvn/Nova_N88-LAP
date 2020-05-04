@@ -4,10 +4,10 @@ export default class AppLayout extends Component {
   constructor(props) {
     super(props);
   }
-
+  
   render() {
     return (
-      <div id="container" className="container-fluid">
+      <div id="container" className={`container-fluid ${this.props.className || ''}`}>
         {this.props.children}
       </div>
     );

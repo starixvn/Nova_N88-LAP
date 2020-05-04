@@ -203,5 +203,14 @@ namespace Fanex.Athena.Resources {
                 return ResourceManager.GetString("UserManagement", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Win Loss Report.
+        /// </summary>
+        public static string WinLossReport {
+            get {
+                return ResourceManager.GetString("WinLossReport", resourceCulture);
+            }
+        }
     }
 }

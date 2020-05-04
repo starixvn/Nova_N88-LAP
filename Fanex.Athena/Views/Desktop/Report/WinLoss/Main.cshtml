@@ -19,14 +19,31 @@
 
 @section globaljscode{
     window.initialState = {
+    selectedDateType: 1,
+    dateRange: { fromDate: "05/04/2020", toDate: "05/04/2020" },
+    isExcludeTest: true,
+    noDraw: true,
     isLoading: false,
-    type: 0,
-    currencyList:  @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key.ToString(), Value = x.Value, Status = true }).ToJson()),
-    isSubsidiary:  0
+    selectedBaseCurrency: "INH",
+    selectedCurrency: "2,3,6,9,13,20,51,61,70,92",
+    selectedProduct: "SB,NG,BA,VS,KN,CO,VS2,LT,TG,I4D",
+    username: "",
     };
 
-    window._pConfig = {
-    };
+    window._AppData = {
+    dateTypes: [{ value: 1, label: 'Settled Date'}, { value: 2, label: 'Created Date' }],
+    dateConstraint: {
+    limitedMonthRange: 6,
+    maxDate: "05/04/2020",
+    minDate: "1/1/2017" },
+
+    productOptions: [{"Code":"SB","Name":"Sportsbook","Status":true},{"Code":"NG","Name":"Number Game","Status":true},{"Code":"BA","Name":"BA","Status":true},{"Code":"VS","Name":"Virtual Sports","Status":true},{"Code":"KN","Name":"RNG Keno","Status":true},{"Code":"CO","Name":"Cash Out","Status":true},{"Code":"VS2","Name":"Virtual Sports 2","Status":true},{"Code":"LT","Name":"Lottery","Status":true},{"Code":"TG","Name":"Table Game","Status":true},{"Code":"I4D","Name":"Indo 4D","Status":true}],
+
+    baseCurrencyList: [{"value":"EUR","label":"EUR"},{"value":"USD","label":"USD"},{"value":"GBP","label":"GBP"},{"value":"MYR","label":"MYR"},{"value":"CNY","label":"CNY"},{"value":"THB","label":"THB"},{"value":"IDR","label":"IDR"},{"value":"INH","label":"INH"}],
+
+    currencyList: [{"key":2,"value":"MYR","status":true},{"key":3,"value":"USD","status":true},{"key":6,"value":"EUR","status":true},{"key":9,"value":"AUD","status":true},{"key":13,"value":"CNY","status":true},{"key":20,"value":"UUS","status":true},{"key":51,"value":"INH","status":true},{"key":61,"value":"INR","status":true},{"key":70,"value":"MKK","status":true},{"key":92,"value":"HKD","status":true}],
+    }
+
 }
 <div id="app-container">
 </div>

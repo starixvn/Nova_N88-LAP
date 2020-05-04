@@ -147,4 +147,7 @@
   <data name="UserManagement" xml:space="preserve">
     <value>User Management - CN</value>
   </data>
+  <data name="WinLossReport" xml:space="preserve">
+    <value>WinLossReport</value>
+  </data>
 </root>

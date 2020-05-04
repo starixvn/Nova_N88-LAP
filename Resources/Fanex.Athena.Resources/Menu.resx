@@ -165,4 +165,7 @@
   <data name="Resettlement" xml:space="preserve">
     <value>Resettlement</value>
   </data>
+  <data name="WinLossReport" xml:space="preserve">
+    <value>Win Loss Report</value>
+  </data>
 </root>

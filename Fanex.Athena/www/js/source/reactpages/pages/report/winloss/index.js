@@ -4,13 +4,16 @@ import AppContainer from './components/AppContainer';
 import { Provider } from 'react-redux';
 import Store from '@jsroot/lib/store';
 import reducers from './reducers';
+import { displayedColumns } from './constants/gridContants';
 
 const defaultState = {
    ...window.initialState, 
    ...{
-     selectedGroupByOption: 1
+     selectedGroupByOption: 1,
+     displayedColumns: displayedColumns 
    }
 }
+
 const store = Store.createStore(reducers, defaultState);
 
 const App = () => {

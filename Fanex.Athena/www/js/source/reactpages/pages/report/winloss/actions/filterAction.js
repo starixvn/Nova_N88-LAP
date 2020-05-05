@@ -1,4 +1,4 @@
-import * as types from './types';
+import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION  } from './types';
 import { setDateRange } from '@jsroot/actions/dateRangeAction';
 import { setSelectedCurrency } from '@jsroot/actions/currencyAction';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
@@ -8,21 +8,21 @@ import { changeIsExcludeTest } from '@jsroot/actions/excludeTestAction';
 
 const setNoDraw = isNoDraw => {
     return {
-        type: types.SET_NO_DRAW,
+        type: SET_NO_DRAW,
         data: isNoDraw
     }
 }
 
 const setSelectedDateType = selectedDateType => {
     return {
-        type: types.SET_SELECTED_DATE_TYPE,
+        type: SET_SELECTED_DATE_TYPE,
         data: selectedDateType
     }
 }
 
 const setSelectedGroupByOption = groupByOption => {
     return {
-        type: types.SET_SELECTED_GROUP_BY_OPTION,
+        type: SET_SELECTED_GROUP_BY_OPTION,
         data: groupByOption
     }
 }

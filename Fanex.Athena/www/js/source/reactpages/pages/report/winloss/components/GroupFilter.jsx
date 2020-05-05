@@ -13,7 +13,6 @@ export const GroupFilter = props => {
 
     const isDisabledSubmit = false;
     const _submit = () => {
-
     }
 
     return (
@@ -32,13 +31,22 @@ export const GroupFilter = props => {
                     <button type="button" className="btn btn-submit" disabled={isDisabledSubmit} onClick={_submit}>{LangHelper.getSingleResource("Submit")}</button>
                 </div>
             </div>
-
+            <div className="row">
+                <div className="col-1 note" style={{ flex: "0 0 4%" }}>
+                    {LangHelper.getSingleResource('Note')}:
+                    </div>
+                <div className="col-9 note">
+                    {LangHelper.getSingleResource('The report is reported in GMT+8')}
+                    <br />
+                    {LangHelper.getSingleResource('This report is reported gross revenue, have not yet deducted cost, fee, ect...')}
+                </div>
+            </div>
         </CollapsiblePanel>
     )
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSelectedGroupByOption  } = ActionCreators;
+    const { setSelectedGroupByOption } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         setSelectedGroupByOption
     }, dispatch))

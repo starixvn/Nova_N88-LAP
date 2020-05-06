@@ -2068,4 +2068,7 @@
   <data name="ESportsMobile" xml:space="preserve">
     <value>电子竞技 手机</value>
   </data>
+  <data name="DelayPayout" xml:space="preserve">
+    <value>延迟付款</value>
+  </data>
 </root>

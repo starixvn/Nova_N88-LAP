@@ -1915,6 +1915,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delay Payout.
+        /// </summary>
+        public static string DelayPayout {
+            get {
+                return ResourceManager.GetString("DelayPayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {

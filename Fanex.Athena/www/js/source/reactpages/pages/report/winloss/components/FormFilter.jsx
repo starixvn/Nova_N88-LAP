@@ -11,6 +11,9 @@ import LangHelper from '@jsroot/lib/langHelper'
 import DataSourceHelper from '@jsroot/lib/dataSourceHelper'
 import AppData from '@jsroot/lib/AppData'
 import ActionCreators from '../actions'
+import GroupFilter from './filter/GroupFilter';
+import ParamHelper from '../libs/helpers/paramHelper';
+import { DateFilterTypes } from '../constants/filterConsts';
 
 export class FormFilter extends PureComponent {
     constructor(props) {
@@ -21,12 +24,12 @@ export class FormFilter extends PureComponent {
         const { dateRange } = this.props;
         const dateConstraint = AppData.dateConstraint;
         return (
-                <DateRange
-                    startDate={dateRange.fromDate} endDate={dateRange.toDate}
-                    minDate={dateConstraint.minDate} maxDate={dateConstraint.maxDate}
-                    toDate={dateRange.toDate} limitedMonthRange={dateConstraint.limitedMonthRange}
-                    onChange={this._onChangeDateRange}
-                />
+            <DateRange
+                startDate={dateRange.fromDate} endDate={dateRange.toDate}
+                minDate={dateConstraint.minDate} maxDate={dateConstraint.maxDate}
+                toDate={dateRange.toDate} limitedMonthRange={dateConstraint.limitedMonthRange}
+                onChange={this._onChangeDateRange}
+            />
         )
     }
 
@@ -41,7 +44,7 @@ export class FormFilter extends PureComponent {
     }
 
     _renderCurrencySelectList() {
-        const { selectedCurrency, setSelectedCurrency} = this.props;
+        const { selectedCurrency, setSelectedCurrency } = this.props;
         const currencyList = AppData.currencyList;
         const dataSource = DataSourceHelper.CreateDataSourceFrom(currencyList, selectedCurrency);
         return currencyList && currencyList.length && (
@@ -65,11 +68,10 @@ export class FormFilter extends PureComponent {
     }
 
     _renderDateTypeSelectList() {
-        const dateTypes = AppData.dateTypes;
-        return dateTypes && dateTypes.length && (
+        return (
             <Select instanceId="ddlDateType"
                 value={this.props.selectedDateType}
-                options={dateTypes}
+                options={DateFilterTypes}
                 onChange={(item) => this.props.setSelectedDateType(item.value)} />
         );
     }
@@ -88,8 +90,14 @@ export class FormFilter extends PureComponent {
         ) : null;
     }
 
+    _handleSubmit = event => {
+        event.preventDefault();
+        const newRequestParam = ParamHelper.toAPIParams(this.props);
+        this.props.fetchReportData(newRequestParam);
+    }
+
     render() {
-        return (
+        return (<React.Fragment>
             <CollapsiblePanel className="page-filter">
                 <div className="row">
                     <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
@@ -122,7 +130,7 @@ export class FormFilter extends PureComponent {
                     <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("BaseCurrency")}</label>
-                        {this._renderBaseCurrencySelectList()}
+                            {this._renderBaseCurrencySelectList()}
                         </div>
                     </div>
                     <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
@@ -143,13 +151,16 @@ export class FormFilter extends PureComponent {
                     </div>
                 </div>
             </CollapsiblePanel>
+            <GroupFilter onSubmit={this._handleSubmit} />
+        </React.Fragment>
         )
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSelectedDateType, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency, changeIsExcludeTest, setNoDraw } = ActionCreators;
+    const { fetchReportData, setSelectedDateType, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency, changeIsExcludeTest, setNoDraw } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
+        fetchReportData,
         setSelectedDateType,
         setDateRange,
         setSelectedProduct,
@@ -162,7 +173,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    const { selectedDateType, dateRange, username, selectedProduct, selectedCurrency, selectedBaseCurrency, isExcludeTest, noDraw} = state;
+    const { selectedDateType, dateRange, username, selectedProduct, selectedCurrency, selectedBaseCurrency, isExcludeTest, noDraw } = state;
     return Object.assign({}, {
         selectedDateType,
         dateRange,

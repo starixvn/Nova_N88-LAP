@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import ReportTitle from '@jsroot/components/ReportTitle';
 import MultipleSelect from '@9softstudio/react-multiselect';
 import LangHelper from '@jsroot/lib/langHelper';
-import ActionCreators from '../actions';
+import ActionCreators from '../../actions';
 
 export class GridCaption extends React.Component {
     constructor(props) {
@@ -53,20 +53,13 @@ export class GridCaption extends React.Component {
         )
     }
 
-    // handleExportExcel = () => {
-    //     const { playerList, param, displayedColumnList, exportExcel, selectedPlayer } = this.props;
-    //     if (displayedColumnList.filter(x => x.show).length === 0) {
-    //         window.alert(LangHelper.getSingleResource("NoInfo"));
-    //         return;
-    //     }
-
-    //     const displayedColumn = buildDisplayedColumnObject(displayedColumnList);
-    //     const dataList = selectedPlayer ? [playerList.find(item => item.IbcCustId === selectedPlayer.ibcCustId)] : playerList;
-
-    //     exportExcel(dataList, param, displayedColumn);
-    //}
+    
 
     render() {
+        if (!this.props.gridData.dataList) {
+            return null;
+        }
+
         const Content = <>{this._buildLeftPart()}{this._buildRightPart()}</>;
         return (<ReportTitle tag="div" content={Content} />)
     }
@@ -78,8 +71,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    const { selectedBaseCurrency, displayedColumns } = state;
-    return Object.assign({}, { selectedBaseCurrency, displayedColumns });
+    const { selectedBaseCurrency, displayedColumns, gridData } = state;
+    return Object.assign({}, { selectedBaseCurrency, displayedColumns, gridData });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridCaption);

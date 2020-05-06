@@ -1,19 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ActionCreators from '../actions';
+import ActionCreators from '../../actions';
 import CollapsiblePanel from '@jsroot/components/collapsible-panel';
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import LangHelper from '@jsroot/lib/langHelper';
-import { GroupByOptions } from '../constants/groupFilterConsts';
+import { GroupByOptions } from '../../constants/filterConsts';
 
 export const GroupFilter = props => {
 
-    const { setSelectedGroupByOption, selectedGroupByOption } = props;
+    const { setSelectedGroupByOption, selectedGroupByOption, onSubmit } = props;
 
     const isDisabledSubmit = false;
-    const _submit = () => {
-    }
 
     return (
         <CollapsiblePanel className="group-filter page-filter">
@@ -28,7 +26,7 @@ export const GroupFilter = props => {
             </div>
             <div className="form-group">
                 <div className="button-group">
-                    <button type="button" className="btn btn-submit" disabled={isDisabledSubmit} onClick={_submit}>{LangHelper.getSingleResource("Submit")}</button>
+                    <button type="button" className="btn btn-submit" disabled={isDisabledSubmit} onClick={onSubmit}>{LangHelper.getSingleResource("Submit")}</button>
                 </div>
             </div>
             <div className="row">
@@ -54,11 +52,12 @@ function mapDispatchToProps(dispatch) {
 
 
 function mapStateToProps(state) {
-    const { selectedGroupByOption } = state;
+    const { selectedGroupByOption, requestParam } = state;
     return Object.assign({}, {
-        selectedGroupByOption
+        selectedGroupByOption,
+        requestParam
     })
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(GroupFilter);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(GroupFilter));

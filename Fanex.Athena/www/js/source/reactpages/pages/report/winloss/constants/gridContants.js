@@ -7,7 +7,7 @@ export const columnKeys = {
     betCount: 'betCount',
     betAmount: 'betAmount',
     uniquePlayers: 'uniquePlayers',
-    margin: 'margin',
+    margin: 'margin'
 }
 
 export const displayedColumns = [
@@ -32,4 +32,12 @@ export const dataColumns = {
     [columnKeys.betAmount]: { sortBy: 'betAmount', colWidth: 100, className: "right-align" },
     [columnKeys.uniquePlayers]: { sortBy: 'uniquePlayers', colWidth: 100, className: "right-align" },
     [columnKeys.margin]: { sortBy: 'margin', colWidth: 100, className: "right-align" }
+}
+
+
+export const defaultPagingOption =  {
+    PageIndex: 1,
+    PageSize: 500,
+    TotalItem: 0,
+    PageList: [500, 1000, 1500, 2000]
 }

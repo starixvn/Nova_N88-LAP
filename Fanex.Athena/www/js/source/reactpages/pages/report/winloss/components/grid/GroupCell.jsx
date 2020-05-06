@@ -13,23 +13,29 @@ export const GroupCell = props => {
     const _isDrillDown = rowData.isDrillDown || false; 
 
     const _handleDrillDown = () => {
-        const rowIndex = gridData.findIndex(_ => _[columnKeys.group] === name);
+        const dataList = gridData.dataList;
+        const rowIndex = dataList.findIndex(_ => _[columnKeys.group] === name);
         if (rowIndex === -1) {
             return;
         }
 
-        const newGridData = [...gridData];
+        const newDataList = [...dataList];
         if (_isDrillDown) {
-            newGridData.splice(rowIndex + 1, rowData.drillDownData.length)
+            newDataList.splice(rowIndex + 1, rowData.drillDownData.length)
         } else {
-            newGridData.splice(rowIndex + 1, 0, ...rowData.drillDownData);
+            newDataList.splice(rowIndex + 1, 0, ...rowData.drillDownData);
         }
 
-        newGridData[rowIndex] = {
+        newDataList[rowIndex] = {
             ...rowData, 
             ...{ isDrillDown: !_isDrillDown }
         }
-         
+
+        const newGridData = {
+            ...gridData,
+            ...{ dataList: newDataList }
+        }
+
         setGridData(newGridData);
     }
 

@@ -7,3 +7,8 @@ export const GroupByOptions = [
     { label: LangHelper.getSingleResource("Currency"), value: 4 },
     { label: LangHelper.getSingleResource("Player"), value: 5 }
 ];
+
+export const DateFilterTypes = [
+    { value: 1, label: LangHelper.getSingleResource('SettledDate')},
+    { value: 2, label: LangHelper.getSingleResource('CreatedDate') }
+];

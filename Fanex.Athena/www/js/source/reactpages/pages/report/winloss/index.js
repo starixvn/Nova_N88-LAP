@@ -6,11 +6,28 @@ import Store from '@jsroot/lib/store';
 import reducers from './reducers';
 import { displayedColumns } from './constants/gridContants';
 
+const gridData = () => {
+  const data = []
+  for(let i = 0; i < 100; i++) {
+     const item = {
+       ...{ group: 'adsa' + i, turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 },
+       ...{ drillDownData: 
+        [
+          { group: 'adsa' + i + ' - child' + i, turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 },
+          { group: 'adsa' + i + ' - child' + i, turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 },
+          { group: 'adsa' + i + ' - child' + i, turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 }
+      ]}
+     }
+      data.push(item)
+  }
+  return data;
+} 
 const defaultState = {
    ...window.initialState, 
    ...{
      selectedGroupByOption: 1,
-     displayedColumns: displayedColumns 
+     displayedColumns: displayedColumns,
+     gridData: gridData()
    }
 }
 

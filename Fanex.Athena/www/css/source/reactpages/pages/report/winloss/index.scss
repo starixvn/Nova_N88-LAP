@@ -23,7 +23,29 @@
         }
     }
 
+    .table > tbody tr td {
+        padding: 8px 10px;
+    }
+
     .note {
         color: red;
+    }
+
+    .right {
+        float: right;
+    }
+
+    .icon-arrow {
+        cursor: pointer;
+        transition-property: transform;
+        transition-duration: 0.3s;
+    }
+
+    .arrow-down {
+        transform: rotate(0deg);
+    }
+
+    .arrow-right {
+        transform: rotate(-90deg);
     }
 }

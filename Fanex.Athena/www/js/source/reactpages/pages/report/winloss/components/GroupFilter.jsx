@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
+import ActionCreators from '../actions';
 import CollapsiblePanel from '@jsroot/components/collapsible-panel';
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import LangHelper from '@jsroot/lib/langHelper';
@@ -49,7 +49,7 @@ function mapDispatchToProps(dispatch) {
     const { setSelectedGroupByOption } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         setSelectedGroupByOption
-    }, dispatch))
+    }), dispatch)
 }
 
 

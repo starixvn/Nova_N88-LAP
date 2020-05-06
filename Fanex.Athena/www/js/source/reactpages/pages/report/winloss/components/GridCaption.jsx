@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import ReportTitle from '@jsroot/components/ReportTitle';
 import MultipleSelect from '@9softstudio/react-multiselect';
 import LangHelper from '@jsroot/lib/langHelper';
-import { ActionCreators } from '../actions';
+import ActionCreators from '../actions';
 
 export class GridCaption extends React.Component {
     constructor(props) {

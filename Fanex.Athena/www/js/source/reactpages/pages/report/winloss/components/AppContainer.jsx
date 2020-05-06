@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
+import ActionCreators from '../actions';
 import AppLayout from '@jsroot/layouts/AppLayout';
 import FormFilter from './FormFilter';
 import GroupFilter from './GroupFilter';

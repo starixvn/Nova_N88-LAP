@@ -1,4 +1,5 @@
 import { SET_DISPLAYED_COLUMNS } from './types';
+import { setGridData } from '@jsroot/actions/gridDataAction';
 
 export const setDisplayedColumns = columns => {
     return {
@@ -8,5 +9,6 @@ export const setDisplayedColumns = columns => {
 }
 
 export default {
-    setDisplayedColumns
+    setDisplayedColumns,
+    setGridData
 }

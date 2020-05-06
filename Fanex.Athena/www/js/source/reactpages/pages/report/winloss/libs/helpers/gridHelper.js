@@ -2,35 +2,34 @@ import React from 'react';
 import { HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import NumberFormat from '@jsroot/lib/numberFormat';
 import { dataColumns, columnKeys, defaultDisplayedColumns } from '../../constants/gridContants';
+import GroupCell from '../../components/grid/GroupCell';
 
 export default class GridHelper {
     static renderHeader(displayedColumns) {
-        const objectColumns = GridHelper.toObjectColumns(displayedColumns);
-        let tempRowObject;
+        const objectColumns = this.toObjectColumns(displayedColumns);
+        let objectColumn;
         return (
             <HeaderRow style={{ height: '32px' }}>
-                {(tempRowObject = objectColumns[columnKeys.group]) && tempRowObject.show && <HeaderCell {...dataColumns[columnKeys.group]}>{tempRowObject.name}</HeaderCell>}
-                {(tempRowObject = objectColumns[columnKeys.turnover]) && tempRowObject.show && <HeaderCell {...dataColumns[columnKeys.group]}>{tempRowObject.name}</HeaderCell>}
-                {(tempRowObject = objectColumns[columnKeys.ggr]) && tempRowObject.show && <HeaderCell {...dataColumns[columnKeys.group]}>{tempRowObject.name}</HeaderCell>}
-                {(tempRowObject = objectColumns[columnKeys.betCount]) && tempRowObject.show && <HeaderCell {...dataColumns[columnKeys.group]}>{tempRowObject.name}</HeaderCell>}
-                {(tempRowObject = objectColumns[columnKeys.betAmount]) && tempRowObject.show && <HeaderCell {...dataColumns[columnKeys.group]}>{tempRowObject.name}</HeaderCell>}
-                {(tempRowObject = objectColumns[columnKeys.uniquePlayers]) && tempRowObject.show && <HeaderCell {...dataColumns[columnKeys.group]}>{tempRowObject.name}</HeaderCell>}
-                {(tempRowObject = objectColumns[columnKeys.margin]) && tempRowObject.show && <HeaderCell {...dataColumns[columnKeys.group]}>{tempRowObject.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.group]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.turnover]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.ggr]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.betCount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.betAmount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.uniquePlayers]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.margin]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
             </HeaderRow>
         )
     }
 
     static renderBody(listData, displayedColumns) {
-        const objectColumns = GridHelper.toObjectColumns(displayedColumns);
-        return listData.map(rowData => this.renderRow(rowData, objectColumns));
+        const objectColumns = this.toObjectColumns(displayedColumns);
+        return listData.map((rowData, index) => this.renderRow(rowData, index, objectColumns));
     }
-
-    static renderRow(rowData, objectColumns) {
+      
+    static renderRow(rowData, index, objectColumns) {
         return (
-            <Row>
-                {objectColumns[columnKeys.group].show && <Cell className={dataColumns[columnKeys.group].className}>
-                    {rowData[columnKeys.group]}
-                </Cell>}
+            <Row key={'row-' + index}>
+                {objectColumns[columnKeys.group].show && <GroupCell rowData={rowData} className={dataColumns[columnKeys.group].className} />}
                 {objectColumns[columnKeys.turnover].show && <Cell className={dataColumns[columnKeys.turnover].className}>
                     {NumberFormat.format(rowData[columnKeys.turnover], 2)}
                 </Cell>}

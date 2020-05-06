@@ -10,7 +10,7 @@ import { DateRange } from '@jsroot/components/date-range'
 import LangHelper from '@jsroot/lib/langHelper'
 import DataSourceHelper from '@jsroot/lib/dataSourceHelper'
 import AppData from '@jsroot/lib/AppData'
-import { ActionCreators } from '../actions'
+import ActionCreators from '../actions'
 
 export class FormFilter extends PureComponent {
     constructor(props) {

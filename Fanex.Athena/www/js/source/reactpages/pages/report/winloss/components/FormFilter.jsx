@@ -8,11 +8,11 @@ import CollapsiblePanel from '@jsroot/components/collapsible-panel'
 import CheckBox from '@jsroot/components/CheckBox'
 import { DateRange } from '@jsroot/components/date-range'
 import LangHelper from '@jsroot/lib/langHelper'
-import DataSourceHelper from '@jsroot/lib/dataSourceHelper'
 import AppData from '@jsroot/lib/AppData'
 import ActionCreators from '../actions'
 import GroupFilter from './filter/GroupFilter';
-import ParamHelper from '../libs/helpers/paramHelper';
+import QueryHelper from '../libs/helpers/queryHelper';
+import CollectionHelper from '../libs/helpers/collectionHelper';
 import { DateFilterTypes } from '../constants/filterConsts';
 
 export class FormFilter extends PureComponent {
@@ -46,7 +46,7 @@ export class FormFilter extends PureComponent {
     _renderCurrencySelectList() {
         const { selectedCurrency, setSelectedCurrency } = this.props;
         const currencyList = AppData.currencyList;
-        const dataSource = DataSourceHelper.CreateDataSourceFrom(currencyList, selectedCurrency);
+        const dataSource = CollectionHelper.createDataSourceFrom(currencyList, selectedCurrency);
         return currencyList && currencyList.length && (
             <MultipleSelect id="ddlCurrency"
                 language={LangHelper.currentLanguage}
@@ -92,8 +92,9 @@ export class FormFilter extends PureComponent {
 
     _handleSubmit = event => {
         event.preventDefault();
-        const newRequestParam = ParamHelper.toAPIParams(this.props);
-        this.props.fetchReportData(newRequestParam);
+        const newRequestParam = QueryHelper.toAPIParams(this.props);
+        this.props.setRequestParam(newRequestParam);
+        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdatePagingOption);
     }
 
     render() {
@@ -158,7 +159,8 @@ export class FormFilter extends PureComponent {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { fetchReportData, setSelectedDateType, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency, changeIsExcludeTest, setNoDraw } = ActionCreators;
+    const { fetchReportData, setSelectedDateType, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
+         changeIsExcludeTest, setNoDraw, setRequestParam, setPagingOption } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
         setSelectedDateType,
@@ -168,12 +170,15 @@ function mapDispatchToProps(dispatch) {
         setSelectedCurrency,
         setSelectedBaseCurrency,
         changeIsExcludeTest,
-        setNoDraw
+        setNoDraw,
+        setRequestParam,
+        setPagingOption
     }), dispatch);
 }
 
 function mapStateToProps(state) {
-    const { selectedDateType, dateRange, username, selectedProduct, selectedCurrency, selectedBaseCurrency, isExcludeTest, noDraw } = state;
+    const { selectedDateType, dateRange, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
+         isExcludeTest, noDraw, selectedGroupByOption } = state;
     return Object.assign({}, {
         selectedDateType,
         dateRange,
@@ -182,7 +187,8 @@ function mapStateToProps(state) {
         isExcludeTest,
         noDraw,
         selectedCurrency,
-        selectedBaseCurrency
+        selectedBaseCurrency,
+        selectedGroupByOption
     });
 };
 

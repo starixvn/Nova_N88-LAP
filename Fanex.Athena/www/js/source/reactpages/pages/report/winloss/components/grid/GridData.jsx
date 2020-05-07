@@ -5,14 +5,16 @@ import { Table } from '@9softstudio/react-grid';
 import ActionCreators from '../../actions';
 import NoDataTitle from '@jsroot/components/NoDataTitle';
 import GridHelper from '../../libs/helpers/gridHelper';
+import QueryHelper from '../../libs/helpers/queryHelper';
+import CollectionHelper from '../../libs/helpers/collectionHelper';
 
 const MAX_WIDTH_PAGE = 1920;
 
-export const GridData = (props) => {
+export const GridData = props => {
 
     const MAX_WIDTH = Math.min(document.body.clientWidth, MAX_WIDTH_PAGE);
 
-    const { gridData, displayedColumns, pagingOption, requestParam, setPagingOption, setGridData, fetchReportData } = props;
+    const { gridData, displayedColumns, pagingOption, requestParam, isLoading, setGridData, fetchReportData } = props;
     const { dataList, dataTotal } = gridData;
        
     if (!dataList) {
@@ -22,22 +24,22 @@ export const GridData = (props) => {
         return <NoDataTitle />;
     }
 
-    const _handleSort = useCallback((sortBy, sortOrder) => {
+    const _handleSort = useCallback((sortBy, sortType) => {
+        const sortedDataList = CollectionHelper.sort(dataList, sortBy, sortType);
+        const newGridData = {
+            ...gridData,
+            ...{ dataList: [...sortedDataList] }
+        }
+        setGridData(newGridData);
     })
 
     const _handlePaging = useCallback((pageIndex, pageSize) => {
-        const newPagingOption = {
-            ...pagingOption,
-            ...{ PageIndex: pageIndex, PageSize: pageSize }
-        }
-
         const params = {
             ...requestParam,
             pageIndex,
             pageSize
         }
-        fetchReportData(params);
-        setPagingOption(newPagingOption);
+        fetchReportData(params, QueryHelper.callBackToUpdatePagingOption);
     })
 
     const objectColumns = useMemo(() => GridHelper.toObjectColumns(displayedColumns), [displayedColumns]);
@@ -59,7 +61,7 @@ export const GridData = (props) => {
                 onPaging={_handlePaging}
                 onSort={_handleSort}
                 containerPadding={30}
-                shouldResetScrollPosition={false}
+                shouldResetScrollPosition={isLoading}
                 />
         </React.Fragment>
     );
@@ -71,8 +73,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    const { gridData, displayedColumns, requestParam, pagingOption } = state;
-    return Object.assign({}, { gridData, displayedColumns, requestParam, pagingOption });
+    const { gridData, displayedColumns, requestParam, pagingOption, isLoading } = state;
+    return Object.assign({}, { gridData, displayedColumns, requestParam, pagingOption, isLoading });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(GridData));

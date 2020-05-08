@@ -2808,4 +2808,7 @@
   <data name="DelayedPayout" xml:space="preserve">
     <value>Delayed Payout</value>
   </data>
+  <data name="ProductSXG" xml:space="preserve">
+    <value>Sexy Gaming</value>
+  </data>
 </root>

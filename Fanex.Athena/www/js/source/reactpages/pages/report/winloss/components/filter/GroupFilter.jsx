@@ -34,9 +34,9 @@ export const GroupFilter = props => {
                     {LangHelper.getSingleResource('Note')}:
                     </div>
                 <div className="col-9 note">
-                    {LangHelper.getSingleResource('The report is reported in GMT+8')}
+                    {LangHelper.getSingleResource('NoteReportInGMT8')}
                     <br />
-                    {LangHelper.getSingleResource('This report is reported gross revenue, have not yet deducted cost, fee, ect...')}
+                    {LangHelper.getSingleResource('NoteReportGrossRevenue')}
                 </div>
             </div>
         </CollapsiblePanel>

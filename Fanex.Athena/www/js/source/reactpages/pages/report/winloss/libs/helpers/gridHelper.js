@@ -1,9 +1,9 @@
 import React from 'react';
 import { HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
-import NumberFormat from '@jsroot/lib/numberFormat';
 import LangHelper from '@jsroot/lib/langHelper';
 import { dataColumns, columnKeys, defaultDisplayedColumns } from '../../constants/gridContants';
-import GroupCell from '../../components/grid/GroupCell';
+import DecimalCell from '../../components/grid/DecimalCell';
+import GridRow from '../../components/grid/GridRow';
 
 export default class GridHelper {
     static renderHeader(objectColumns) {
@@ -22,62 +22,27 @@ export default class GridHelper {
     }
 
     static renderBody(dataList, objectColumns) {
-        return dataList.map((rowData, index) => this.renderRow(rowData, index, objectColumns));
+        return dataList.map(rowData => <GridRow key={`row-${rowData[columnKeys.group]}-${rowData.parent}`} rowData={rowData} objectColumns={objectColumns} />);
     }
 
     static renderFooter(totalData, objectColumns) {
         const row = (<Row className="fixed-table-grant-total" key="totalRow">
-                {objectColumns[columnKeys.group].show && <Cell className={dataColumns[columnKeys.group].className}>
-                    {LangHelper.getSingleResource("Total")}
-                </Cell>}
-                {objectColumns[columnKeys.turnover].show && <Cell className={dataColumns[columnKeys.turnover].className}>
-                    {NumberFormat.format(totalData[columnKeys.turnover], 2)}
-                </Cell>}
-                {objectColumns[columnKeys.ggr].show && <Cell className={dataColumns[columnKeys.ggr].className}>
-                    {NumberFormat.format(totalData[columnKeys.ggr], 2)}
-                </Cell>}
-                {objectColumns[columnKeys.betCount].show && <Cell className={dataColumns[columnKeys.betCount].className}>
-                    {NumberFormat.format(totalData[columnKeys.betCount], 2)}
-                </Cell>}
-                {objectColumns[columnKeys.betAmount].show && <Cell className={dataColumns[columnKeys.betAmount].className}>
-                    {NumberFormat.format(totalData[columnKeys.betAmount], 2)}
-                </Cell>}
-                {objectColumns[columnKeys.uniquePlayers].show && <Cell className={dataColumns[columnKeys.uniquePlayers].className}>
-                    {totalData[columnKeys.uniquePlayers]}
-                </Cell>}
-                {objectColumns[columnKeys.margin].show && <Cell className={dataColumns[columnKeys.margin].className}>
-                    {NumberFormat.format(totalData[columnKeys.margin], 2) + '%'}
-                </Cell>}
+            {objectColumns[columnKeys.group].show && <Cell className="center-align">
+                {LangHelper.getSingleResource("Total")}
+            </Cell>}
+            {objectColumns[columnKeys.turnover].show && <DecimalCell value={totalData[columnKeys.turnover]} className={dataColumns[columnKeys.turnover].className} />}
+            {objectColumns[columnKeys.ggr].show && <DecimalCell value={totalData[columnKeys.ggr]} className={dataColumns[columnKeys.ggr].className} />}
+            {objectColumns[columnKeys.betCount].show && <Cell className={dataColumns[columnKeys.betCount].className}>
+                {totalData[columnKeys.betCount]}
+            </Cell>}
+            {objectColumns[columnKeys.betAmount].show && <DecimalCell value={totalData[columnKeys.betAmount]} className={dataColumns[columnKeys.betAmount].className} />}
+            {objectColumns[columnKeys.uniquePlayers].show && <Cell className={dataColumns[columnKeys.uniquePlayers].className}>
+                {totalData[columnKeys.uniquePlayers]}
+            </Cell>}
+            {objectColumns[columnKeys.margin].show && <DecimalCell value={totalData[columnKeys.margin]} className={dataColumns[columnKeys.turnover].className} />}
         </Row>)
 
         return [row];
-    }
-
-    static renderRow(rowData, index, objectColumns) {
-        const highLight = rowData.parent > -1 ? ' high-light' : '';
-        return (
-            <Row key={'row-' + index}>
-                {objectColumns[columnKeys.group].show && <GroupCell rowData={rowData} className={dataColumns[columnKeys.group].className + highLight} />}
-                {objectColumns[columnKeys.turnover].show && <Cell className={dataColumns[columnKeys.turnover].className + highLight}>
-                    {NumberFormat.format(rowData[columnKeys.turnover], 2)}
-                </Cell>}
-                {objectColumns[columnKeys.ggr].show && <Cell className={dataColumns[columnKeys.ggr].className + highLight}>
-                    {NumberFormat.format(rowData[columnKeys.ggr], 2)}
-                </Cell>}
-                {objectColumns[columnKeys.betCount].show && <Cell className={dataColumns[columnKeys.betCount].className + highLight}>
-                    {NumberFormat.format(rowData[columnKeys.betCount], 2)}
-                </Cell>}
-                {objectColumns[columnKeys.betAmount].show && <Cell className={dataColumns[columnKeys.betAmount].className + highLight}>
-                    {NumberFormat.format(rowData[columnKeys.betAmount], 2)}
-                </Cell>}
-                {objectColumns[columnKeys.uniquePlayers].show && <Cell className={dataColumns[columnKeys.uniquePlayers].className + highLight}>
-                    {rowData[columnKeys.uniquePlayers]}
-                </Cell>}
-                {objectColumns[columnKeys.margin].show && <Cell className={dataColumns[columnKeys.margin].className + highLight}>
-                    {NumberFormat.format(rowData[columnKeys.margin], 2) + '%'}
-                </Cell>}
-            </Row>
-        )
     }
 
     static toObjectColumns(displayedColumns) {

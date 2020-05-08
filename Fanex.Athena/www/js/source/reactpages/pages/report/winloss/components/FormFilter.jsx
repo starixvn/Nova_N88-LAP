@@ -119,7 +119,7 @@ export class FormFilter extends PureComponent {
                             <AutoComplete
                                 onSelect={(value) => this.props.setUsername(value)}
                                 onInput={(value) => this.props.setUsername(value)}
-                                htmlAttributes={{ placeholder: LangHelper.getSingleResource("ExternalIdOrSystemId") }} />
+                                />
                         </div>
                     </div>
                     <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
@@ -130,7 +130,7 @@ export class FormFilter extends PureComponent {
                     </div>
                     <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
                         <div className="form-group">
-                            <label className="label-text">{LangHelper.getSingleResource("BaseCurrency")}</label>
+                            <label className="label-text">{LangHelper.getSingleResource("DisplayCurrency")}</label>
                             {this._renderBaseCurrencySelectList()}
                         </div>
                     </div>

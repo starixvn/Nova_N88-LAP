@@ -34,11 +34,11 @@ export class GridCaption extends React.Component {
     }
 
     _buildLeftPart() {
-        const { selectedBaseCurrency } = this.props;
+        const { baseCurrency, fromDate, toDate } = this.props.requestParam;
         return (<span key="searchResult">{`
-        ${LangHelper.getSingleResource('WinLossReport')}:
-         ${'1/23/123'} - ${'12/23/1203'},
-          ${LangHelper.getSingleResource('DisplayCurrency')}:  ${selectedBaseCurrency}`}
+        ${LangHelper.getSingleResource('WinLoss')}:
+         ${fromDate} - ${toDate},
+          ${LangHelper.getSingleResource('DisplayCurrency')}:  ${baseCurrency}`}
         </span>);
     }
 
@@ -52,8 +52,6 @@ export class GridCaption extends React.Component {
             </span>
         )
     }
-
-    
 
     render() {
         if (!this.props.gridData.dataList) {
@@ -71,8 +69,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    const { selectedBaseCurrency, displayedColumns, gridData } = state;
-    return Object.assign({}, { selectedBaseCurrency, displayedColumns, gridData });
+    const { selectedBaseCurrency, displayedColumns, gridData, requestParam } = state;
+    return Object.assign({}, { selectedBaseCurrency, displayedColumns, gridData, requestParam });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridCaption);

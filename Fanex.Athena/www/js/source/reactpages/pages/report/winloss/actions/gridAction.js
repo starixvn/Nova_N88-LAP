@@ -7,14 +7,14 @@ import QueryService from '../libs/queryService';
 
 const gridData = () => {
     const data = []
-    for(let i = 0; i < 1000; i++) {
+    for(let i = 0; i < 500; i++) {
        const item = {
-         ...{ group: 'adsa' + i, turnover: Math.random() * 90000, ggr: Math.random() * 90000, betCount: Math.random() * 90000, betAmount: Math.random() * 90000, uniquePlayers: Math.floor(Math.random() * 1000), margin: Math.random() * 50 },
+         ...{ group: 'adsa' + i, turnover: Math.random() * 90000 - 40000, ggr: Math.random() * 90000 - 40000, betCount: Math.floor(Math.random() * 1000), betAmount: Math.random() * 90000 - 40000, uniquePlayers: Math.floor(Math.random() * 1000), margin: Math.random() * 50 - 20 },
          ...{ drillDownData: 
           [
-            { parent: i, group: 'adsa' + i + ' - child' + i, turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 },
-            {  parent: i, group: 'adsa' + i + ' - child' + i, turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 },
-            {  parent: i, group: 'adsa' + i + ' - child' + i, turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 }
+            { parent: i, group: 'childA' , turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 },
+            {  parent: i, group: 'childB', turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 },
+            {  parent: i, group: 'childC', turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 }
         ]}
        }
         data.push(item)
@@ -22,7 +22,7 @@ const gridData = () => {
     return {
       dataList: data,
       dataTotal: {
-         turnover: 12312321.1232, ggr: 12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 
+         turnover: 12312321.1232, ggr: -12312321.12412412, betCount: 123123, betAmount: 123123, uniquePlayers: 123123, margin: 35 
       },
       pageSize: 500,
       pageIndex: 1,

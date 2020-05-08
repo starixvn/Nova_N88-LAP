@@ -123,6 +123,7 @@
     <Compile Include="CashOutBetListController.cs" />
     <Compile Include="GlobalGamingBetListController.cs" />
     <Compile Include="CardClubBetListController.cs" />
+    <Compile Include="SexyGamingBetListController.cs" />
     <Compile Include="SGBetListController.cs" />
     <Compile Include="PragmaticPlayBetListController.cs" />
     <Compile Include="RNGCasinoBetListController.cs" />

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 5/11/2020 1:19:56 PM
+﻿// Generated at: 4/29/2020 4:36:22 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -301,7 +301,7 @@ DecimalOdds:"decimal odds",
 DeepLink:"Deep Link",
 DefaultGroup:"Default Group",
 DefaultGroupMsg:"This is the default group. Do you want to proceed?",
-DelayedPayout:"Delayed Payout",
+DelayPayout:"Delay Payout",
 Delete:"Delete",
 DeleteCommissionGroup:"Delete Commission group",
 DeleteGroup:"Delete Group",
@@ -694,6 +694,7 @@ ProductPP:"PP",
 ProductPTCS:"Playtech Casino",
 ProductSB:"Sportsbook",
 ProductSG:"SG",
+ProductSXG:"Sexy Gaming",
 ProductTG:"Table Game",
 ProductVB:"Macau Games",
 ProductVG:"Macau",

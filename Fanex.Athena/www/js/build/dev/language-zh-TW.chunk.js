@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 5/11/2020 1:19:56 PM
+﻿// Generated at: 4/29/2020 4:36:22 PM
 window._language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
@@ -265,7 +265,7 @@ DecimalOdds:"歐洲盤賠率",
 DeepLink:"深度鏈結",
 DefaultGroup:"預設組",
 DefaultGroupMsg:"這是默認組。是否繼續?",
-DelayedPayout:"延遲結算",
+DelayPayout:"延遲付款",
 Delete:"刪除",
 DeleteCommissionGroup:"刪除佣金群組",
 DeleteGroup:"刪除組",

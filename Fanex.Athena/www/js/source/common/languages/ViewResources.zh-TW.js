@@ -1,5 +1,4 @@
-﻿// Generated at: 5/12/2020 4:21:41 PM
-window._language_zh_TW = {
+﻿// Generated at: 5/11/2020 1:19:56 PMwindow._language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
 AccessDeniedMsg:"對不起，您沒有權限訪問此頁面。",

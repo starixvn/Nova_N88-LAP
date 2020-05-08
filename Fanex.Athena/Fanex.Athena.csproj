@@ -1592,7 +1592,6 @@
     <Content Include="www\js\source\common\languages\ViewResources.zh-TW.js">
       <DependentUpon>ViewResources.tt</DependentUpon>
     </Content>
-    <Content Include="www\js\source\common\languages\ViewResources1.txt" />
     <Content Include="www\js\source\common\popup.js" />
     <Content Include="www\js\source\common\querystring.js" />
     <Content Include="www\js\source\reactpages\lib\QueryString.js" />

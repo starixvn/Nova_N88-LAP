@@ -28,6 +28,23 @@ namespace Fanex.Athena.Controllers.Report
             return view;
         }
 
+        public async Task<JsonResult> GetData()
+        {
+            var data = await _reportAPIClient.PostStringAsync("api/WinLossReport/GetData", new { }, Language, 10).ConfigureAwait(false);
+            var json = JsonString(data);
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return json;
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> GetData(WinLossViewModel vm)
+        {
+            var data = await _reportAPIClient.PostStringAsync("api/WinLossReport/GetData", new { }, Language, 10).ConfigureAwait(false);
+            var json = JsonString(data);
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return json;
+        }
+
         private ViewResult CreateView(WinLossViewModel vm)
         {
             return View("~/Views/Desktop/Report/WinLoss/Main.cshtml", vm);

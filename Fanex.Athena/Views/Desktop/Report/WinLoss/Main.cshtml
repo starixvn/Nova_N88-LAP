@@ -1,13 +1,11 @@
 ﻿@{
-    ViewBag.Title = ViewResources.Report +
-    " - " + "Win Loss";
+    ViewBag.Title = ViewResources.Report + " - " + ViewResources.WinLoss;
     Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
-
-    var serializer = new JavaScriptSerializer();
 }
 @model Fanex.Athena.Model.Report.ViewModel.WinLossViewModel
 
-@using System.Web.Script.Serialization
+@{
+}
 
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/report/winloss.css")" rel="stylesheet" type="text/css" />
@@ -26,17 +24,17 @@
     isLoading: false,
     selectedBaseCurrency: "INH",
     selectedCurrency: "2,3,6,9,13,20,51,61,70,92",
-    selectedProduct: "SB,NG,BA,VS,KN,CO,VS2,LT,TG,I4D",
+    selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
     username: "",
     };
 
     window._AppData = {
     dateConstraint: {
-    limitedMonthRange: 1,
-    maxDate: "05/04/2020",
+    limitedMonthRange: 36,
+    maxDate: "12/04/2020",
     minDate: "1/1/2017" },
 
-    productOptions: [{"Code":"SB","Name":"Sportsbook","Status":true},{"Code":"NG","Name":"Number Game","Status":true},{"Code":"BA","Name":"BA","Status":true},{"Code":"VS","Name":"Virtual Sports","Status":true},{"Code":"KN","Name":"RNG Keno","Status":true},{"Code":"CO","Name":"Cash Out","Status":true},{"Code":"VS2","Name":"Virtual Sports 2","Status":true},{"Code":"LT","Name":"Lottery","Status":true},{"Code":"TG","Name":"Table Game","Status":true},{"Code":"I4D","Name":"Indo 4D","Status":true}],
+    productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
 
     baseCurrencyList: [{"value":"EUR","label":"EUR"},{"value":"USD","label":"USD"},{"value":"GBP","label":"GBP"},{"value":"MYR","label":"MYR"},{"value":"CNY","label":"CNY"},{"value":"THB","label":"THB"},{"value":"IDR","label":"IDR"},{"value":"INH","label":"INH"}],
 

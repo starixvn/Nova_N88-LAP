@@ -11,6 +11,6 @@ namespace Fanex.Athena.Model.Core.MetaModel
     /// </summary>
     public interface IMetaModelCurrencyIdList
     {
-         string CurrencyIdList { get; set; }
+        string CurrencyIdList { get; set; }
     }
 }

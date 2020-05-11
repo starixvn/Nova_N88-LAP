@@ -1,11 +1,11 @@
-﻿using System;
-using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
-using Fanex.Athena.DataAccess.Core.Configuration;
+﻿using Fanex.Athena.DataAccess.Core.Configuration;
 using Fanex.Athena.Extension.Helper;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.StatelessCore.Utility;
+using System;
+using System.Web.Http.Controllers;
+using System.Web.Http.Filters;
 
 namespace Fanex.Athena.Api.Base.Attributes
 {
@@ -17,6 +17,8 @@ namespace Fanex.Athena.Api.Base.Attributes
         public bool BindUserId { get; set; }
 
         public bool BindLicenseeName { get; set; }
+
+        public bool BindLicenseeId { get; set; }
 
         public bool BindLanguage { get; set; }
 
@@ -44,6 +46,11 @@ namespace Fanex.Athena.Api.Base.Attributes
             if (BindLicenseeName)
             {
                 AutoBindMetaModelService.MapSiteName(actionArgument, licenseeSession.LicenseeName);
+            }
+
+            if (BindLicenseeId)
+            {
+                AutoBindMetaModelService.MapLicenseeId(actionArgument, licenseeSession.LicenseeId);
             }
 
             if (BindLanguage)

@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Athena.DataAccess.Core.Common
 {
-    using System.Collections.Generic;
     using Extension.Helper;
     using Fanex.Athena.DataAccess.Core;
     using Fanex.Athena.DataAccess.Core.Common.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Common;
     using Resources;
+    using System.Collections.Generic;
 
     public class ProductDataAccess : BaseDataAccess, IProductDataAccess
     {
@@ -37,6 +37,15 @@
                 }
 
                 return allowedProducts;
+            }
+        }
+
+        public IEnumerable<TpProduct> GetListTpProduct()
+        {
+            const string UspName = "N88_GetListGameType";
+            using (var db = GetObjectDb(UspName))
+            {
+                return db.Query<TpProduct>();
             }
         }
     }

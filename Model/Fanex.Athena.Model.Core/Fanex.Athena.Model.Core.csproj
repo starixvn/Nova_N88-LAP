@@ -151,6 +151,7 @@
     <Compile Include="DTO\Common\Licensee.cs" />
     <Compile Include="DTO\Common\Match.cs" />
     <Compile Include="DTO\Common\ResultInfoGeneric.cs" />
+    <Compile Include="DTO\Common\TpProduct.cs" />
     <Compile Include="DTO\Configuration\FakeLicenseeSetting.cs" />
     <Compile Include="DTO\Configuration\MoveBetNotification.cs" />
     <Compile Include="DTO\Configuration\ReportSetting.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="MetaModel\IMetaModelIP.cs" />
     <Compile Include="MetaModel\IMetaModelLanguage.cs" />
     <Compile Include="MetaModel\IMetaModelFunctionContract.cs" />
+    <Compile Include="MetaModel\IMetaModelLicenseeId.cs" />
     <Compile Include="MetaModel\IMetaModelProduct.cs" />
     <Compile Include="MetaModel\IMetaModelProductCodeList.cs" />
     <Compile Include="MetaModel\IMetalModelValidation.cs" />

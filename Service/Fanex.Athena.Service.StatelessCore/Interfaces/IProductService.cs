@@ -1,8 +1,7 @@
 ﻿namespace Fanex.Athena.Service.StatelessCore.Interfaces
 {
-    using System.Collections.Generic;
-
     using Fanex.Athena.Model.Core.DTO.Common;
+    using System.Collections.Generic;
 
     public interface IProductService
     {
@@ -11,5 +10,7 @@
         IList<Product> GetProductList(int licenseeId, string languageCode);
 
         ProductAccess GetSingleWalletProductAccess(int licenseeId, string languageCode, string functionConfigKey = null);
+
+        IEnumerable<TpProduct> GetListTpProduct();
     }
 }

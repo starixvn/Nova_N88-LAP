@@ -1,16 +1,18 @@
 ﻿namespace Fanex.Athena.Api.Base
 {
+    using Fanex.Athena.Service.Core.Common.Interfaces;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+    using NPOI.SS.UserModel;
+    using ONEbook.UM.Filters;
     using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Web.Http;
-    using Fanex.Athena.Service.Core.Common.Interfaces;
-    using Fanex.Athena.Service.Core.Users.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using NPOI.SS.UserModel;
-    using ONEbook.UM.Filters;
 
     [CheckUMFilter]
     [XFrameOptionApi]
@@ -24,6 +26,8 @@
         }
 
         protected IDictionary<int, string> UserCurrencyList => SessionService.UserSession.CurrencyList;
+
+        protected string Language => SessionService.UserSession.Language;
 
         public IProductService ProductService { get; set; }
         public ISessionService SessionService { get; set; }
@@ -64,5 +68,16 @@
             var currentLanguage = _langService.GetCurrentLanguage();
             _langService.SetPageCulture(currentLanguage);
         }
+
+        protected internal T FromJson<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json, DefaultJsonSettings);
+        }
+
+        protected internal virtual JsonSerializerSettings DefaultJsonSettings { get; } = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
     }
 }

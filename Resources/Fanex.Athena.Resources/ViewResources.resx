@@ -2805,7 +2805,7 @@
   <data name="ProductI4D" xml:space="preserve">
     <value>Indo 4D</value>
   </data>
-  <data name="DelayPayout" xml:space="preserve">
-    <value>Delay Payout</value>
+  <data name="DelayedPayout" xml:space="preserve">
+    <value>Delayed Payout</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿// Generated at: 4/27/2020 2:01:52 PM
+﻿// Generated at: 5/11/2020 1:19:34 PM
 var _language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -206,7 +206,7 @@ DecimalOdds:"decimal odds",
 DeepLink:"Deep Link",
 DefaultGroup:"Default Group",
 DefaultGroupMsg:"This is the default group. Do you want to proceed?",
-DelayPayout:"Delay Payout",
+DelayedPayout:"Delayed Payout",
 Delete:"Delete",
 DeleteCommissionGroup:"Delete Commission group",
 DeleteGroup:"Delete Group",

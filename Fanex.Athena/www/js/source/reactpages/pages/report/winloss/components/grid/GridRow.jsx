@@ -6,7 +6,7 @@ import DecimalCell from '../../components/grid/DecimalCell';
 
 const GridRow = props => {
     const { rowData, objectColumns } = props;
-    const hasParent = rowData.parent > -1;
+    const hasParent = rowData.hasParent;
     const highLight = hasParent ? ' high-light' : '';
     const groupChildClassName = hasParent ? ' right-align' : '';
     return <Row>
@@ -16,7 +16,7 @@ const GridRow = props => {
         {objectColumns[columnKeys.betCount].show && <Cell className={dataColumns[columnKeys.betCount].className + highLight}>
             {rowData[columnKeys.betCount]}
         </Cell>}
-        {objectColumns[columnKeys.betAmount].show && <DecimalCell value={rowData[columnKeys.betAmount]} className={dataColumns[columnKeys.betAmount].className + highLight} />}
+        {objectColumns[columnKeys.avgBetAmount].show && <DecimalCell value={rowData[columnKeys.avgBetAmount]} className={dataColumns[columnKeys.avgBetAmount].className + highLight} />}
         {objectColumns[columnKeys.uniquePlayers].show && <Cell className={dataColumns[columnKeys.uniquePlayers].className + highLight}>
             {rowData[columnKeys.uniquePlayers]}
         </Cell>}

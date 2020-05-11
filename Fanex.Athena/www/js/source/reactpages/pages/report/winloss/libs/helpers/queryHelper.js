@@ -22,15 +22,15 @@ export default class QueryHelper {
         }
     }
 
-    static callBackToUpdatePagingOption = response => {
-        const { totalItems, pageIndex, pageSize } = response;
+    static callBackToUpdatePagingOption = (pageIndex, pageSize) => response => {
+        const { totalRows } = response;
         const { pagingOption } = store.getState();
         const newPagingOption = {
             ...pagingOption,
             ...{
                 PageIndex: pageIndex,           
                 PageSize: pageSize,
-                TotalItem: totalItems
+                TotalItem: totalRows
             }
         }
         store.dispatch(setPagingOption(newPagingOption));

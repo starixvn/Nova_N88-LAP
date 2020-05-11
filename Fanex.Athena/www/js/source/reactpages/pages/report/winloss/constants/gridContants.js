@@ -5,7 +5,7 @@ export const columnKeys = {
     turnover: 'turnover',
     ggr: 'ggr',
     betCount: 'betCount',
-    betAmount: 'betAmount',
+    avgBetAmount: 'avgBetAmount',
     uniquePlayers: 'uniquePlayers',
     margin: 'margin'
 }
@@ -14,7 +14,7 @@ export const displayedColumns = [
     { key: columnKeys.turnover, name: LangHelper.getSingleResource('Turnover'), show: true },
     { key: columnKeys.ggr, name: LangHelper.getSingleResource('GGR'), show: true },
     { key: columnKeys.betCount, name: LangHelper.getSingleResource('BetCount'), show: true },
-    { key: columnKeys.betAmount, name: LangHelper.getSingleResource('AvgBetAmount'), show: true },
+    { key: columnKeys.avgBetAmount, name: LangHelper.getSingleResource('AvgBetAmount'), show: true },
     { key: columnKeys.uniquePlayers, name: LangHelper.getSingleResource('UniquePlayers'), show: true },
     { key: columnKeys.margin, name: LangHelper.getSingleResource('Margin'), show: true },
 ]
@@ -29,7 +29,7 @@ export const dataColumns = {
     [columnKeys.turnover]: { sortBy: columnKeys.turnover, colWidth: 100, className: "right-align" },
     [columnKeys.ggr]: { sortBy: columnKeys.ggr, colWidth: 100, className: "right-align" },
     [columnKeys.betCount]: { sortBy: columnKeys.betCount, colWidth: 100, className:"right-align" },
-    [columnKeys.betAmount]: { sortBy: columnKeys.betAmount, colWidth: 100, className: "right-align" },
+    [columnKeys.avgBetAmount]: { sortBy: columnKeys.avgBetAmount, colWidth: 100, className: "right-align" },
     [columnKeys.uniquePlayers]: { sortBy: columnKeys.uniquePlayers, colWidth: 100, className: "right-align" },
     [columnKeys.margin]: { sortBy: columnKeys.margin, colWidth: 100, className: "right-align" }
 }

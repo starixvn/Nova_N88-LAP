@@ -15,8 +15,8 @@ export const GridData = props => {
     const MAX_WIDTH = Math.min(document.body.clientWidth, MAX_WIDTH_PAGE);
 
     const { gridData, displayedColumns, pagingOption, requestParam, isLoading, setGridData, fetchReportData } = props;
-    const { dataList, dataTotal } = gridData;
-       
+    const { dataList, totalData } = gridData;
+
     if (!dataList) {
         return null;
     }
@@ -25,10 +25,11 @@ export const GridData = props => {
     }
 
     const _handleSort = useCallback((sortBy, sortType) => {
-        const sortedDataList = CollectionHelper.sort(dataList, sortBy, sortType);
+        const originalDataList = GridHelper.resetGridDataList(dataList);
+        const sortedOriginalDataList = CollectionHelper.sort(originalDataList, sortBy, sortType);
         const newGridData = {
             ...gridData,
-            ...{ dataList: [...sortedDataList] }
+            ...{ dataList: sortedOriginalDataList }
         }
         setGridData(newGridData);
     })
@@ -39,13 +40,13 @@ export const GridData = props => {
             pageIndex,
             pageSize
         }
-        fetchReportData(params, QueryHelper.callBackToUpdatePagingOption);
+        fetchReportData(params, QueryHelper.callBackToUpdatePagingOption(pageIndex, pageSize));
     })
 
     const objectColumns = useMemo(() => GridHelper.toObjectColumns(displayedColumns), [displayedColumns]);
-    const headers = useMemo(() => GridHelper.renderHeader(objectColumns), [objectColumns]);
+    const header = useMemo(() => GridHelper.renderHeader(objectColumns), [objectColumns]);
     const body = useMemo(() => GridHelper.renderBody(dataList, objectColumns), [dataList, objectColumns]);
-    const footer = useMemo(() => GridHelper.renderFooter(dataTotal, objectColumns), [dataTotal, objectColumns]);
+    const footer = useMemo(() => GridHelper.renderFooter(totalData, objectColumns), [totalData, objectColumns]);
 
     return (
         <React.Fragment>
@@ -53,7 +54,7 @@ export const GridData = props => {
                 autoWidth={true}
                 maxWidth={MAX_WIDTH}
                 autoHeight={true}
-                header={headers}
+                header={header}
                 body={body}
                 footer={footer}
                 isPaging={true}
@@ -62,7 +63,7 @@ export const GridData = props => {
                 onSort={_handleSort}
                 containerPadding={30}
                 shouldResetScrollPosition={isLoading}
-                />
+            />
         </React.Fragment>
     );
 }
@@ -75,7 +76,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     const { gridData, displayedColumns, requestParam, pagingOption, isLoading } = state;
     return Object.assign({}, { gridData, displayedColumns, requestParam, pagingOption, isLoading });
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(GridData));
 

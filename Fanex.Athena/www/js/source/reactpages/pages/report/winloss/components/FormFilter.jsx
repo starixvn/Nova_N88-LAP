@@ -14,6 +14,7 @@ import GroupFilter from './filter/GroupFilter';
 import QueryHelper from '../libs/helpers/queryHelper';
 import CollectionHelper from '../libs/helpers/collectionHelper';
 import { DateFilterTypes } from '../constants/filterConsts';
+import { defaultPagingOption } from '../constants/gridContants';
 
 export class FormFilter extends PureComponent {
     constructor(props) {
@@ -94,7 +95,7 @@ export class FormFilter extends PureComponent {
         event.preventDefault();
         const newRequestParam = QueryHelper.toAPIParams(this.props);
         this.props.setRequestParam(newRequestParam);
-        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdatePagingOption);
+        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdatePagingOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize));
     }
 
     render() {
@@ -160,7 +161,7 @@ export class FormFilter extends PureComponent {
 
 function mapDispatchToProps(dispatch) {
     const { fetchReportData, setSelectedDateType, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
-         changeIsExcludeTest, setNoDraw, setRequestParam, setPagingOption } = ActionCreators;
+         changeIsExcludeTest, setNoDraw, setRequestParam } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
         setSelectedDateType,
@@ -171,8 +172,7 @@ function mapDispatchToProps(dispatch) {
         setSelectedBaseCurrency,
         changeIsExcludeTest,
         setNoDraw,
-        setRequestParam,
-        setPagingOption
+        setRequestParam
     }), dispatch);
 }
 

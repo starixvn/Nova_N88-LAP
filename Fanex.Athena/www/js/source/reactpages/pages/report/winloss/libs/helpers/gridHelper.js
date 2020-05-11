@@ -14,7 +14,7 @@ export default class GridHelper {
                 {(objectColumn = objectColumns[columnKeys.turnover]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.turnover]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.ggr]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.ggr]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.betCount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.betCount]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.betAmount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.betAmount]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.avgBetAmount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.avgBetAmount]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.uniquePlayers]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.uniquePlayers]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.margin]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.margin]}>{objectColumn.name}</HeaderCell>}
             </HeaderRow>
@@ -35,7 +35,7 @@ export default class GridHelper {
             {objectColumns[columnKeys.betCount].show && <Cell className={dataColumns[columnKeys.betCount].className}>
                 {totalData[columnKeys.betCount]}
             </Cell>}
-            {objectColumns[columnKeys.betAmount].show && <DecimalCell value={totalData[columnKeys.betAmount]} className={dataColumns[columnKeys.betAmount].className} />}
+            {objectColumns[columnKeys.avgBetAmount].show && <DecimalCell value={totalData[columnKeys.avgBetAmount]} className={dataColumns[columnKeys.avgBetAmount].className} />}
             {objectColumns[columnKeys.uniquePlayers].show && <Cell className={dataColumns[columnKeys.uniquePlayers].className}>
                 {totalData[columnKeys.uniquePlayers]}
             </Cell>}
@@ -43,6 +43,14 @@ export default class GridHelper {
         </Row>)
 
         return [row];
+    }
+
+    static resetGridDataList(dataList) {
+        return dataList.filter(_ => {
+            const noParent = !_.hasParent;
+            noParent && (_.isDrillDown = false);
+            return noParent;
+        });
     }
 
     static toObjectColumns(displayedColumns) {

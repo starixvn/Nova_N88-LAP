@@ -1,5 +1,5 @@
 export const Url = {
-    reportByGroup: 'WinLossReport/GetData'
+    reportByGroup: 'Api/WinLossReport/GetData'
 };
 
 export const errorResponse = {

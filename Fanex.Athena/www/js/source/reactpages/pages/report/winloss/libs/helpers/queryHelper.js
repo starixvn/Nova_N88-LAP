@@ -9,12 +9,12 @@ export default class QueryHelper {
             ...requestParam,
             ...{
                 username, 
-                currencyIdList: selectedCurrency,
+                currencyIds: selectedCurrency,
                 baseCurrency: selectedBaseCurrency,
-                products: selectedProduct,
+                productIds: selectedProduct,
                 dateType: selectedDateType,
-                includeTestData: !isExcludeTest, 
-                noDraw,
+                isIncludedTestData: !isExcludeTest, 
+                isNoDrawTicket: noDraw,
                 fromDate: Site.convertDateToString(dateRange.fromDate),
                 toDate: Site.convertDateToString(dateRange.toDate),
                 groupBy: selectedGroupByOption 

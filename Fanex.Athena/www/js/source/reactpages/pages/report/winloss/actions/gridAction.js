@@ -3,6 +3,7 @@ import { setGridData } from '@jsroot/actions/gridDataAction';
 import { setPagingOption } from '@jsroot/actions/pagingOptionAction';
 import { setRequestParam } from '@jsroot/actions/requestParamAction';
 import { toggleLoader } from '@jsroot/actions/loaderAction';
+import LangHelper from '@jsroot/lib/langHelper';
 import QueryService from '../libs/queryService';
 
 const gridData = () => {
@@ -37,7 +38,10 @@ export const fetchReportData = (params, afterSuccess) => async dispatch => {
     //     setTimeout(() => resolve(gridData()), 1000);
     // });
     const response = await QueryService.getReportData(params);
-    response.isSuccess && afterSuccess && afterSuccess(response.data);
+    if(!response.isSuccess) {
+        alert(LangHelper.getSingleResource("ErrorProcessingMsg"));
+    } 
+    afterSuccess && afterSuccess(response.data);
     dispatch(setGridData(response.data));
     dispatch(toggleLoader(false));
 }

@@ -15,6 +15,10 @@ export default class QueryService {
         catch(e) {
             console.log(e)
         }
-        return errorResponse
+
+        return  { 
+            ...errorResponse,
+            ...{ data: { gridData: {} } }
+        };
     }
 }

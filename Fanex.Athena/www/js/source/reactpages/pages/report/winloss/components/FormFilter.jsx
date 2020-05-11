@@ -39,7 +39,7 @@ export class FormFilter extends PureComponent {
             this.props.setDateRange(date);
         }
         else {
-            const message = LangHelper.getSingleResource("DateRangeExceedMsg").replace("{0}", 1);
+            const message = LangHelper.getSingleResource("DateRangeExceedMsg").replace("{0}", AppData.dateConstraint.limitedMonthRange);
             alert(message);
         }
     }
@@ -83,9 +83,9 @@ export class FormFilter extends PureComponent {
             <MultipleSelect id="ProductList"
                 language={LangHelper.currentLanguage}
                 dataSource={productOptions}
-                keyField={"Code"}
-                valueField={"Name"}
-                statusField={"Status"}
+                keyField={"key"}
+                valueField={"value"}
+                statusField={"status"}
                 onChange={(currentItem, selectedItemsKey) => this.props.setSelectedProduct(selectedItemsKey)}
             />
         ) : null;

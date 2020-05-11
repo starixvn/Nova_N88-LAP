@@ -22,7 +22,7 @@ export default class GridHelper {
     }
 
     static renderBody(dataList, objectColumns) {
-        return dataList.map(rowData => <GridRow key={`row-${rowData[columnKeys.group]}-${rowData.parent}`} rowData={rowData} objectColumns={objectColumns} />);
+        return dataList.map(rowData => <GridRow key={`row-${rowData[columnKeys.group]}-${rowData.parent || ''}`} rowData={rowData} objectColumns={objectColumns} />);
     }
 
     static renderFooter(totalData, objectColumns) {
@@ -39,7 +39,10 @@ export default class GridHelper {
             {objectColumns[columnKeys.uniquePlayers].show && <Cell className={dataColumns[columnKeys.uniquePlayers].className}>
                 {totalData[columnKeys.uniquePlayers]}
             </Cell>}
-            {objectColumns[columnKeys.margin].show && <DecimalCell value={totalData[columnKeys.margin]} className={dataColumns[columnKeys.turnover].className} />}
+            {objectColumns[columnKeys.margin].show && <DecimalCell value={totalData[columnKeys.margin]} className={dataColumns[columnKeys.turnover].className} >
+                {'%'}
+            </DecimalCell>
+            }
         </Row>)
 
         return [row];
@@ -47,7 +50,7 @@ export default class GridHelper {
 
     static resetGridDataList(dataList) {
         return dataList.filter(_ => {
-            const noParent = !_.hasParent;
+            const noParent = !_.parent ? true : false;
             noParent && (_.isDrillDown = false);
             return noParent;
         });

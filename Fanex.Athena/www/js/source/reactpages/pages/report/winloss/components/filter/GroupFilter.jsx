@@ -9,9 +9,7 @@ import { GroupByOptions } from '../../constants/filterConsts';
 
 export const GroupFilter = props => {
 
-    const { setSelectedGroupByOption, selectedGroupByOption, onSubmit } = props;
-
-    const isDisabledSubmit = false;
+    const { setSelectedGroupByOption, selectedGroupByOption, onSubmit, isDisabledSubmit } = props;
 
     return (
         <CollapsiblePanel className="group-filter page-filter">

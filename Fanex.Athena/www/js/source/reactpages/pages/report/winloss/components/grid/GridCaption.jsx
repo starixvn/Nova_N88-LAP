@@ -5,6 +5,7 @@ import ReportTitle from '@jsroot/components/ReportTitle';
 import MultipleSelect from '@9softstudio/react-multiselect';
 import LangHelper from '@jsroot/lib/langHelper';
 import ActionCreators from '../../actions';
+import QueryService from '../../libs/queryService';
 
 export class GridCaption extends React.Component {
     constructor(props) {
@@ -19,6 +20,24 @@ export class GridCaption extends React.Component {
             return item.show === isShow ? item : { ...item, show: isShow };
         })
         setDisplayedColumns(newColumnList);
+    }
+
+    handleExportExcel = event => {
+        event.preventDefault();
+        const { requestParam, pagingOption } = this.props;
+        if (!requestParam) {
+            return;
+        }
+
+        const params = {
+            ...requestParam,
+            ...{
+                pageIndex: pagingOption.PageIndex,
+                pageSize: pagingOption.PageSize
+            }
+        }
+
+        QueryService.exportReportData(params);
     }
 
     _buildDisplayedColumnList() {
@@ -36,9 +55,9 @@ export class GridCaption extends React.Component {
     _buildLeftPart() {
         const { baseCurrency, fromDate, toDate } = this.props.requestParam;
         return (<span key="searchResult">{`
-        ${LangHelper.getSingleResource('WinLoss')}:
+        ${LangHelper.getSingleResource('WinLoss')},
          ${fromDate} - ${toDate},
-          ${LangHelper.getSingleResource('DisplayCurrency')}:  ${baseCurrency}`}
+          ${LangHelper.getSingleResource('DisplayCurrency')}: ${baseCurrency}`}
         </span>);
     }
 
@@ -46,7 +65,7 @@ export class GridCaption extends React.Component {
         return (
             <span className="caret-block">
                 {this._buildDisplayedColumnList()}
-                <span className="icon-excel-wrapper" onClick={() => { }}>
+                <span className="icon-excel-wrapper" onClick={this.handleExportExcel}>
                     <i className="icon-excel" title={LangHelper.getSingleResource('ExportToExcel')}></i>
                 </span>
             </span>
@@ -69,8 +88,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    const { selectedBaseCurrency, displayedColumns, gridData, requestParam } = state;
-    return Object.assign({}, { selectedBaseCurrency, displayedColumns, gridData, requestParam });
+    const { selectedBaseCurrency, displayedColumns, gridData, requestParam, pagingOption } = state;
+    return Object.assign({}, { selectedBaseCurrency, displayedColumns, gridData, requestParam, pagingOption });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridCaption);

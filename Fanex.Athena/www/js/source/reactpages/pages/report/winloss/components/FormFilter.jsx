@@ -67,7 +67,7 @@ export class FormFilter extends PureComponent {
                 onChange={(item) => this.props.setSelectedBaseCurrency(item.value)} />
         );
     }
-
+ 
     _renderDateTypeSelectList() {
         return (
             <Select instanceId="ddlDateType"
@@ -153,7 +153,7 @@ export class FormFilter extends PureComponent {
                     </div>
                 </div>
             </CollapsiblePanel>
-            <GroupFilter onSubmit={this._handleSubmit} />
+            <GroupFilter isDisabledSubmit={!this.props.selectedCurrency || !this.props.selectedProduct} onSubmit={this._handleSubmit} />
         </React.Fragment>
         )
     }

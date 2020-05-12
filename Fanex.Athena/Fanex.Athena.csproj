@@ -683,6 +683,8 @@
     <Content Include="www\css\build\dev\reactpages\playeradmin\running-betlist.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\running-betlist.css" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\statement.css" />
+    <Content Include="www\css\build\dev\reactpages\report\winloss.chunk.js" />
+    <Content Include="www\css\build\dev\reactpages\report\winloss.css" />
     <Content Include="www\css\build\dev\reactpages\speciallicenseewl\index.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\speciallicenseewl\index.css" />
     <Content Include="www\css\build\dev\reactpages\subsidiaryperformance\index.chunk.js" />
@@ -847,9 +849,11 @@
       <DependentUpon>Web.config.tt</DependentUpon>
     </Content>
     <Content Include="Views\Desktop\Notification\Notification.cshtml" />
-	<Content Include="Views\Desktop\BetList\SexyGaming\Main.cshtml" />
-    <Content Include="Views\Desktop\BetList\SBCDetail\Main.cshtml" />	<Content Include="Views\Desktop\Report\WinLoss\Main.cshtml" />    <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
-    <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
+    <Content Include="Views\Desktop\BetList\SexyGaming\Main.cshtml" />
+    <Content Include="Views\Desktop\BetList\SBCDetail\Main.cshtml" />    <Content Include="Views\Desktop\Report\WinLoss\Main.cshtml" />
+    <Content Include="www\css\build\dev\reactpages\report\winloss.chunk.js.map" />
+    <Content Include="www\css\build\dev\reactpages\report\winloss.css.map" />
+    <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />    <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\info.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\success.scss" />
@@ -887,6 +891,7 @@
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\report\speciallicenseewl.chunk.js" />
+    <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\js\build\pro\language-zh-CN.chunk.js" />
     <Content Include="www\js\build\pro\language-zh-Hans.chunk.js" />
     <Content Include="www\js\build\pro\language-zh-TW.chunk.js" />
@@ -1521,7 +1526,6 @@
     <Content Include="www\css\source\components\list\_list.scss" />
     <Content Include="www\css\source\components\daterangepicker\_singledatepicker.scss" />
     <Content Include="www\css\source\components\popupnotification\_popupnotification.scss" />
-    <Content Include="Deployment.PROStatic.ignore" />
     <Content Include="SiteConfig\WebConfigTransforms\DEV.config" />
     <Content Include="App_Data\Template\Reports\CashOutWinLoss.xls" />
     <Content Include="Content\Utility\font\Roboto-Regular.ttf" />
@@ -2124,6 +2128,7 @@
     <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownItem.test.js.snap" />
     <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownMenu.test.js.snap" />
     <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownToggle.test.js.snap" />
+    <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

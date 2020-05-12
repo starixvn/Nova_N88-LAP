@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 4/29/2020 4:36:22 PM
+// Generated at: 5/11/2020 1:19:56 PM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -273,7 +273,7 @@ window._language_zh_CN = {
   DeepLink: "深度链结",
   DefaultGroup: "默认组",
   DefaultGroupMsg: "这是默认组。是否继续?",
-  DelayPayout: "延迟付款",
+  DelayedPayout: "延迟结算",
   Delete: "删除",
   DeleteCommissionGroup: "删除佣金群组",
   DeleteGroup: "删除组",
@@ -584,6 +584,7 @@ window._language_zh_CN = {
   ProductKN: "快乐彩",
   ProductNG: "百练赛",
   ProductSB: "体育博彩",
+  ProductSXG: "性感百家",
   ProductTG: "桌面游戏",
   ProductVRG: "虚拟娱乐城",
   ProductVS: "虚拟运动",

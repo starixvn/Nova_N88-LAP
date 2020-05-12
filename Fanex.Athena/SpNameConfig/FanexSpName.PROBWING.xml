@@ -54,6 +54,10 @@
     <Setting Key="Lrf_SelMatchByLeague" SpName="Lrf_SelMatchByLeague" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
     <Setting Key="Lrf_SelSportDetail" SpName="Lrf_SelSportDetail" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
     <Setting Key="Lrf_SelBetTypesByProduct" SpName="Lrf_SelBetTypesByProduct" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
+    <Setting Key="N88_GetListGameType" SpName="N88_GetListGameType" DbName="DBEXT.bodb02.bodbLicenseeNet">
+      <Mapping DataField="Type" ObjectProperty="Id" />
+      <Mapping DataField="TypeName" ObjectProperty="Name" />
+    </Setting>
   </Function>
 
   <Function Name="CustomerLog">
@@ -99,3 +103,4 @@
     <Setting Key="N88_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
   </Function>
 </Functions>
+		

@@ -27,6 +27,14 @@
         },
 		new SiteInfo
         {
+            SiteEnvironment = SiteEnvironment.PROBWING
+        },
+		new SiteInfo
+        {
+            SiteEnvironment = SiteEnvironment.PROGOAL123
+        },
+		new SiteInfo
+        {
             SiteEnvironment = SiteEnvironment.MNL
         }
     };
@@ -39,6 +47,8 @@
         UAT,
 		SIT,
         PRO,
+		PROBWING,
+		PROGOAL123,
 		MNL
     }
 

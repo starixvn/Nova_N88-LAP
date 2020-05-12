@@ -29,6 +29,7 @@
             var vm = new WinLossViewModel
             {
                 BaseCurrency = DefaultBaseCurrency,
+                CurrencyList = CurrencyList,
                 TpProducts = tpProducts
             };
             return vm;

@@ -6,6 +6,7 @@
     using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
 
@@ -13,7 +14,7 @@
     public class WinLossReportController : BaseApiController
     {
         private const string InternalReportUrl = "Api/WinLossReport/GetData";
-        private const int Timeout = 30;
+        private const string InternalExportReportUrl = "Api/WinLossReport/ExportData";
 
         private readonly IReportAPIClient _reportAPIClient;
 
@@ -29,19 +30,18 @@
         [ValidationApiRequest]
         public async Task<dynamic> GetData(WinLossMetaModel metaModel)
         {
-            var json = await _reportAPIClient.PostStringAsync(InternalReportUrl, metaModel, Language, Timeout).ConfigureAwait(false);
-            var data = FromJson<dynamic>(json);
+            var json = await _reportAPIClient.PostStringAsync(InternalReportUrl, metaModel, Language).ConfigureAwait(false);
+            var data = ToObject<dynamic>(json);
             return data;
         }
 
         [HttpPost]
+        [ApiAutoBindMetaModel(BindLicenseeId = true)]
         [ValidationApiRequest]
-        [ApiAutoBindMetaModel]
-        public async Task<dynamic> ExportData(WinLossMetaModel metaModel)
+        public async Task<HttpResponseMessage> ExportData(WinLossMetaModel metaModel)
         {
-            var json = await _reportAPIClient.PostStringAsync("Api/WinLossReport/ExportData", metaModel, Language, 10).ConfigureAwait(false);
-            var data = FromJson<dynamic>(json);
-            return data;
+            var response = await _reportAPIClient.PostAsync(InternalExportReportUrl, metaModel, Language).ConfigureAwait(false);
+            return ToStreamResponse(response.Item1, response.Item2);
         }
     }
 }

@@ -8,7 +8,7 @@
     using NPOI.SS.UserModel;
     using ONEbook.UM.Filters;
     using System;
-    using System.Collections.Generic;
+    using System.IO;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -24,8 +24,6 @@
         {
             _langService = languageService ?? throw new ArgumentNullException(nameof(languageService));
         }
-
-        protected IDictionary<int, string> UserCurrencyList => SessionService.UserSession.CurrencyList;
 
         protected string Language => SessionService.UserSession.Language;
 
@@ -62,6 +60,24 @@
             return result;
         }
 
+        protected internal virtual HttpResponseMessage ToStreamResponse(Stream stream, string mediaType, string fileName = default)
+        {
+            var result = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StreamContent(stream)
+            };
+
+            result.Headers.TransferEncodingChunked = true;
+
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = fileName
+            };
+
+            return result;
+        }
+
         protected override void Initialize(System.Web.Http.Controllers.HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
@@ -69,7 +85,7 @@
             _langService.SetPageCulture(currentLanguage);
         }
 
-        protected internal T FromJson<T>(string json)
+        protected internal T ToObject<T>(string json)
         {
             return JsonConvert.DeserializeObject<T>(json, DefaultJsonSettings);
         }

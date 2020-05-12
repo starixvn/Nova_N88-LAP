@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
-using Fanex.Athena.Extension.Helper;
+﻿using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
 using Fanex.Athena.Extension.Utility;
 using Fanex.Athena.Model.Auth;
 using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.MetaModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Athena.Service.StatelessCore.Utility
 {
@@ -121,6 +119,7 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
                 actionArguments[item.Key] = value;
             }
         }
+
         public static void MapSiteName(IDictionary<string, object> actionArguments)
         {
             if (actionArguments.ContainsKey("sitename")
@@ -134,6 +133,16 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
                     model.SiteName = siteName;
                     actionArguments[item.Key] = model;
                 }
+            }
+        }
+
+        public static void MapLicenseeId(IDictionary<string, object> actionArguments, int licenseeId)
+        {
+            var item = actionArguments.FirstOrDefault(x => x.Value is IMetaModelLicenseeId);
+
+            if (item.Value is IMetaModelLicenseeId value)
+            {
+                value.LicenseeId = licenseeId;
             }
         }
 

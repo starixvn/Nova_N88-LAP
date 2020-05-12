@@ -2,9 +2,17 @@
     ViewBag.Title = ViewResources.Report + " - " + ViewResources.WinLoss;
     Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
 }
+
+@using Fanex.Athena.Model.Core.DataDomain
+
 @model Fanex.Athena.Model.Report.ViewModel.WinLossViewModel
 
 @{
+    var baseCurrencyList = SystemConstants.BaseCurrencyList.Select(c => new
+    {
+        value = c.Value,
+        label = c.Value
+    }).ToList();
 }
 
 @section pagecss {
@@ -18,12 +26,12 @@
 @section globaljscode{
     window.initialState = {
     selectedDateType: 1,
-    dateRange: { fromDate: "05/04/2020", toDate: "05/04/2020" },
+    dateRange: { fromDate: '@DateTime.Today.ToString("MM/dd/yyyy")', toDate: '@DateTime.Today.ToString("MM/dd/yyyy")' },
     isExcludeTest: true,
     noDraw: true,
     isLoading: false,
-    selectedBaseCurrency: "INH",
-    selectedCurrency: "2,3,6,9,13,20,51,61,70,92",
+    selectedBaseCurrency: '@Model.BaseCurrency',
+    selectedCurrency: '@string.Join(",", Model.CurrencyList.Select(x => x.Key).ToArray())',
     selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
     username: "",
     };
@@ -31,14 +39,13 @@
     window._AppData = {
     dateConstraint: {
     limitedMonthRange: 36,
-    maxDate: "12/04/2020",
-    minDate: "1/1/2017" },
+    minDate: '@DateTime.Now.AddYears(-4).ToString("MM/dd/yyyy")',
+    maxDate: '@DateTime.Now.ToString("MM/dd/yyyy")'
+    },
 
     productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
-
-    baseCurrencyList: [{"value":"EUR","label":"EUR"},{"value":"USD","label":"USD"},{"value":"GBP","label":"GBP"},{"value":"MYR","label":"MYR"},{"value":"CNY","label":"CNY"},{"value":"THB","label":"THB"},{"value":"IDR","label":"IDR"},{"value":"INH","label":"INH"}],
-
-    currencyList: [{"key":2,"value":"MYR","status":true},{"key":3,"value":"USD","status":true},{"key":6,"value":"EUR","status":true},{"key":9,"value":"AUD","status":true},{"key":13,"value":"CNY","status":true},{"key":20,"value":"UUS","status":true},{"key":51,"value":"INH","status":true},{"key":61,"value":"INR","status":true},{"key":70,"value":"MKK","status":true},{"key":92,"value":"HKD","status":true}],
+    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+    currencyList: @Html.Raw(Model.CurrencyList.Select(x => new { key = x.Key, value = x.Value, status = true }).ToJson()),
     }
 
 }

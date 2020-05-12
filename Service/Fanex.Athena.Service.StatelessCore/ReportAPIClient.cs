@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Fanex.Athena.Model.Core.DataDomain;
+using Fanex.Athena.Service.StatelessCore.Abstraction;
+using Fanex.Athena.Service.StatelessCore.Interfaces;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-
-using Fanex.Athena.Model.Core.DataDomain;
-using Fanex.Athena.Service.StatelessCore.Abstraction;
-using Fanex.Athena.Service.StatelessCore.Interfaces;
 
 namespace Fanex.Athena.Service.StatelessCore
 {

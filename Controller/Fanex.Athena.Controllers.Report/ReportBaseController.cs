@@ -21,16 +21,6 @@
 
         protected string DefaultBaseCurrency => SessionServiceInstance.UserSession.DefaultBaseCurrency;
 
-        protected string Language => LangService.GetCurrentLanguage();
-
-        protected int LicenseeId => SessionServiceInstance.LicenseeSession.LicenseeId;
-
-        protected IEnumerable<ProductOption> GetProductOptionList(string functionConfigKey = null)
-        {
-            var productAccess = ProductServiceInstance.GetSingleWalletProductAccess(LicenseeId, Language, functionConfigKey);
-            return ToProductOptions(productAccess.ProductList);
-        }
-
         protected static IList<ProductOption> ToProductOptions(IEnumerable<Product> productList)
         {
             return productList.Select(i => new ProductOption

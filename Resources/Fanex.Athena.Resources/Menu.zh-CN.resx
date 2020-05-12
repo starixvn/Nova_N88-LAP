@@ -148,6 +148,7 @@
     <value>User Management - CN</value>
   </data>
   <data name="WinLossReport" xml:space="preserve">
-    <value>WinLossReport</value>
+    <value>Win Loss</value>
+    <comment>133254</comment>
   </data>
 </root>

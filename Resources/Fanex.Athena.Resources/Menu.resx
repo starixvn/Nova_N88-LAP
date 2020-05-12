@@ -166,6 +166,7 @@
     <value>Resettlement</value>
   </data>
   <data name="WinLossReport" xml:space="preserve">
-    <value>Win Loss Report</value>
+    <value>Win Loss</value>
+    <comment>133254</comment>
   </data>
 </root>

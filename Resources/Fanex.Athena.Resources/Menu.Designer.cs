@@ -205,7 +205,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Win Loss Report.
+        ///   Looks up a localized string similar to Win Loss.
         /// </summary>
         public static string WinLossReport {
             get {

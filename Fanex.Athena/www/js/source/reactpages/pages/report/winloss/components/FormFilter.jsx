@@ -67,7 +67,7 @@ export class FormFilter extends PureComponent {
                 onChange={(item) => this.props.setSelectedBaseCurrency(item.value)} />
         );
     }
- 
+
     _renderDateTypeSelectList() {
         return (
             <Select instanceId="ddlDateType"
@@ -120,7 +120,7 @@ export class FormFilter extends PureComponent {
                             <AutoComplete
                                 onSelect={(value) => this.props.setUsername(value)}
                                 onInput={(value) => this.props.setUsername(value)}
-                                />
+                            />
                         </div>
                     </div>
                     <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
@@ -135,6 +135,8 @@ export class FormFilter extends PureComponent {
                             {this._renderBaseCurrencySelectList()}
                         </div>
                     </div>
+                </div>
+                <div className="row">
                     <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="ExcludeTestData"
@@ -161,7 +163,7 @@ export class FormFilter extends PureComponent {
 
 function mapDispatchToProps(dispatch) {
     const { fetchReportData, setSelectedDateType, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
-         changeIsExcludeTest, setNoDraw, setRequestParam } = ActionCreators;
+        changeIsExcludeTest, setNoDraw, setRequestParam } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
         setSelectedDateType,
@@ -178,7 +180,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     const { selectedDateType, dateRange, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
-         isExcludeTest, noDraw, selectedGroupByOption } = state;
+        isExcludeTest, noDraw, selectedGroupByOption } = state;
     return Object.assign({}, {
         selectedDateType,
         dateRange,

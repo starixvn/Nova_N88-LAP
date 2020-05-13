@@ -14,7 +14,7 @@ export const GridData = props => {
 
     const MAX_WIDTH = Math.min(document.body.clientWidth, MAX_WIDTH_PAGE);
 
-    const { gridData, displayedColumns, pagingOption, requestParam, isLoading, setGridData, fetchReportData } = props;
+    const { gridData, displayedColumns, pagingOption, requestParam, isLoading, setGridData, setSortOption, fetchReportData } = props;
     const { dataList, totalData } = gridData;
 
     if (!dataList) {
@@ -32,6 +32,7 @@ export const GridData = props => {
             ...{ dataList: sortedOriginalDataList }
         }
         setGridData(newGridData);
+        setSortOption({ sortBy, sortType });
     })
 
     const _handlePaging = useCallback((pageIndex, pageSize) => {
@@ -69,8 +70,8 @@ export const GridData = props => {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setPagingOption, setGridData, fetchReportData } = ActionCreators;
-    return bindActionCreators({ setPagingOption, setGridData, fetchReportData }, dispatch);
+    const { setSortOption, setGridData, fetchReportData } = ActionCreators;
+    return bindActionCreators({ setSortOption, setGridData, fetchReportData }, dispatch);
 }
 
 function mapStateToProps(state) {

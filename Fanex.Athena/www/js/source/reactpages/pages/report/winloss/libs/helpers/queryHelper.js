@@ -1,6 +1,7 @@
 import Site from '@jsroot/lib/site';
 import store from '../store';
 import { setPagingOption } from '../../actions/gridAction';
+import { PagingGroups } from '../../constants/filterConsts';
 
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
@@ -17,7 +18,7 @@ export default class QueryHelper {
                 isNoDrawTicket: noDraw,
                 fromDate: Site.convertDateToString(dateRange.fromDate),
                 toDate: Site.convertDateToString(dateRange.toDate),
-                groupBy: selectedGroupByOption 
+                groupBy: selectedGroupByOption
             }
         }
     }
@@ -35,4 +36,9 @@ export default class QueryHelper {
         }
         store.dispatch(setPagingOption(newPagingOption));
     }
+
+    // static isGroupPaging(groupBy) {
+    //     return PagingGroups.some(_ => _ === groupBy);
+    // }
 }
+

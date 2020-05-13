@@ -3,9 +3,10 @@ using System;
 
 namespace Fanex.Athena.Model.Report.MetaModel
 {
-    public class WinLossMetaModel : IMetaModelValidation, IMetaModelLicenseeId
+    public class WinLossMetaModel : IMetaModelValidation, IMetaModelLicenseeId, IMetaModelCurrencyIdList
     {
         private const int DefaultPageSize = 500;
+        private const int MaxPageSize = 2000;
 
         public WinLossMetaModel()
         {
@@ -20,7 +21,7 @@ namespace Fanex.Athena.Model.Report.MetaModel
         public DateTime ToDate { get; set; }
         public string ProductIds { get; set; }
         public string UserName { get; set; }
-        public string CurrencyIds { get; set; }
+        public string CurrencyIdList { get; set; }
         public bool IsIncludedTestData { get; set; }
         public bool IsNoDrawTicket { get; set; }
         public int PageIndex { get; set; }
@@ -46,6 +47,7 @@ namespace Fanex.Athena.Model.Report.MetaModel
         public bool IsValid => LicenseeId > 0 &&
             GroupBy >= 1 && GroupBy <= 5 &&
             DateType >= 1 && DateType <= 2 &&
-            FromDate <= ToDate;
+            FromDate <= ToDate &&
+            PageSize <= MaxPageSize;
     }
 }

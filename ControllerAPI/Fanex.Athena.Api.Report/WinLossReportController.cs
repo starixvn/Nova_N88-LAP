@@ -16,30 +16,30 @@
         private const string InternalReportUrl = "Api/WinLossReport/GetData";
         private const string InternalExportReportUrl = "Api/WinLossReport/ExportData";
 
-        private readonly IReportApiClient _reportAPIClient;
+        private readonly IReportApiClient _reportApiClient;
 
         public WinLossReportController(IReportApiClient reportAPIClient,
             ILanguageService langService)
             : base(langService)
         {
-            _reportAPIClient = reportAPIClient;
+            _reportApiClient = reportAPIClient;
         }
 
         [HttpPost]
         [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidCurrencyList = true)]
         public async Task<dynamic> GetData(WinLossMetaModel metaModel)
         {
-            var data = await _reportAPIClient.PostAsync<dynamic>(InternalReportUrl, metaModel, Language).ConfigureAwait(false);
+            var data = await _reportApiClient.PostAsync<dynamic>(InternalReportUrl, metaModel, Language).ConfigureAwait(false);
             return data;
         }
 
         [HttpPost]
         [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidCurrencyList = true)]
         public async Task<HttpResponseMessage> ExportData(WinLossMetaModel metaModel)
         {
-            var response = await _reportAPIClient.PostAsync(InternalExportReportUrl, metaModel, Language).ConfigureAwait(false);
+            var response = await _reportApiClient.PostAsync(InternalExportReportUrl, metaModel, Language).ConfigureAwait(false);
             return ToStreamResponse(response.Item1, response.Item2);
         }
     }

@@ -14,13 +14,13 @@
     public class CustomerWinLossReportController : ReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;
-        private readonly IReportAPIClient _reportAPIClient;
+        private readonly IReportApiClient _reportAPIClient;
 
         private const int TimeOutInSecond = 180;
 
         public CustomerWinLossReportController(
             IReportSettingService reportSettingService,
-            IReportAPIClient reportAPIClient
+            IReportApiClient reportAPIClient
             )
         {
             _reportSettingService = reportSettingService;

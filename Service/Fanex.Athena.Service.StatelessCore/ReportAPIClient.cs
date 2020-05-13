@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.Service.StatelessCore
 {
-    public class ReportAPIClient : BaseApiClient, IReportAPIClient
+    public class ReportApiClient : BaseApiClient, IReportApiClient
     {
         private const string DefaultContentType = "application/octet-stream";
 
-        public ReportAPIClient(HttpClient client) : base(client)
+        public ReportApiClient(HttpClient client) : base(client)
         {
         }
 
@@ -22,15 +22,15 @@ namespace Fanex.Athena.Service.StatelessCore
         public async Task<Tuple<Stream, string>> PostAsync(string path, object value, string language, MediaType mediaType = MediaType.Json, int timeOut = 100)
         {
             return await HandleAsync(path, value, language, mediaType, async (response) =>
-             {
-                 var contentType = response.Content.Headers.ContentType?.MediaType ?? DefaultContentType;
-                 if (response.StatusCode == HttpStatusCode.NoContent)
-                 {
-                     Stream emptyStream = new MemoryStream();
-                     return Tuple.Create(emptyStream, contentType);
-                 }
-                 return Tuple.Create(await response.Content.ReadAsStreamAsync(), contentType);
-             },
+            {
+                var contentType = response.Content.Headers.ContentType?.MediaType ?? DefaultContentType;
+                if (response.StatusCode == HttpStatusCode.NoContent)
+                {
+                    Stream emptyStream = new MemoryStream();
+                    return Tuple.Create(emptyStream, contentType);
+                }
+                return Tuple.Create(await response.Content.ReadAsStreamAsync(), contentType);
+            },
             false, timeOut).ConfigureAwait(false);
         }
     }

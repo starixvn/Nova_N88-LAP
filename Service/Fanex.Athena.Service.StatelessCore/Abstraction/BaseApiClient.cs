@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Fanex.Athena.Model.Core.DataDomain;
+using Fanex.Athena.Service.StatelessCore.CustomException;
+using Fanex.Athena.Service.StatelessCore.Interfaces;
+using MessagePack;
+using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Fanex.Athena.Model.Core.DataDomain;
-using Fanex.Athena.Service.StatelessCore.CustomException;
-using MessagePack;
-using Newtonsoft.Json;
 
 namespace Fanex.Athena.Service.StatelessCore.Abstraction
 {
-    public class BaseApiClient
+    public class BaseApiClient : IBaseApiClient
     {
         private const string LANGUAGEKEY = "Language";
         private const string MsgPackContentType = "application/x-msgpack";

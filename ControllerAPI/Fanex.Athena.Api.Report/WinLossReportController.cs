@@ -16,9 +16,9 @@
         private const string InternalReportUrl = "Api/WinLossReport/GetData";
         private const string InternalExportReportUrl = "Api/WinLossReport/ExportData";
 
-        private readonly IReportAPIClient _reportAPIClient;
+        private readonly IReportApiClient _reportAPIClient;
 
-        public WinLossReportController(IReportAPIClient reportAPIClient,
+        public WinLossReportController(IReportApiClient reportAPIClient,
             ILanguageService langService)
             : base(langService)
         {
@@ -30,8 +30,7 @@
         [ValidationApiRequest]
         public async Task<dynamic> GetData(WinLossMetaModel metaModel)
         {
-            var json = await _reportAPIClient.PostStringAsync(InternalReportUrl, metaModel, Language).ConfigureAwait(false);
-            var data = ToObject<dynamic>(json);
+            var data = await _reportAPIClient.PostAsync<dynamic>(InternalReportUrl, metaModel, Language).ConfigureAwait(false);
             return data;
         }
 

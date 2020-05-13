@@ -175,9 +175,9 @@
              .OnRelease(x => x.Dispose());
             builder.RegisterType<SessionStorage>().As<ISessionStorage>().SingleInstance();
             builder.RegisterType<SessionService>().As<ISessionService>().SingleInstance();
-            builder.Register<ReportAPIClient>(x => new ReportAPIClient(
+            builder.Register<ReportApiClient>(x => new ReportApiClient(
                  x.ResolveNamed<HttpClient>("ReportAPIClient")
-                )).As<IReportAPIClient>().SingleInstance();
+                )).As<IReportApiClient>().SingleInstance();
 
             builder.Register<BetListApiClient>(x => new BetListApiClient(
                  x.ResolveNamed<HttpClient>("BETLISTAPICLIENT")

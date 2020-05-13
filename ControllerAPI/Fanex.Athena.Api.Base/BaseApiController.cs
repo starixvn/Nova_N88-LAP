@@ -85,11 +85,6 @@
             _langService.SetPageCulture(currentLanguage);
         }
 
-        protected internal T ToObject<T>(string json)
-        {
-            return JsonConvert.DeserializeObject<T>(json, DefaultJsonSettings);
-        }
-
         protected internal virtual JsonSerializerSettings DefaultJsonSettings { get; } = new JsonSerializerSettings
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,

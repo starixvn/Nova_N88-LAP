@@ -2845,4 +2845,9 @@
   <data name="UniquePlayers" xml:space="preserve">
     <value>#Unique Players</value>
     <comment>#133254</comment>
-  </data></root>
+  </data>  
+  <data name="IncludeTestData" xml:space="preserve">
+    <value>Include Test Data</value>
+    <comment>133254</comment>
+  </data>
+</root>

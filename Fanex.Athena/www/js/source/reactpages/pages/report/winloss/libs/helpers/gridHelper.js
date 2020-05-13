@@ -32,13 +32,9 @@ export default class GridHelper {
             </Cell>}
             {objectColumns[columnKeys.turnover].show && <DecimalCell value={totalData[columnKeys.turnover]} className={dataColumns[columnKeys.turnover].className} />}
             {objectColumns[columnKeys.ggr].show && <DecimalCell value={totalData[columnKeys.ggr]} className={dataColumns[columnKeys.ggr].className} />}
-            {objectColumns[columnKeys.betCount].show && <Cell className={dataColumns[columnKeys.betCount].className}>
-                {totalData[columnKeys.betCount]}
-            </Cell>}
+            {objectColumns[columnKeys.betCount].show && <DecimalCell value={totalData[columnKeys.betCount]} className={dataColumns[columnKeys.betCount].className} digits={0} />}
             {objectColumns[columnKeys.avgBetAmount].show && <DecimalCell value={totalData[columnKeys.avgBetAmount]} className={dataColumns[columnKeys.avgBetAmount].className} />}
-            {objectColumns[columnKeys.uniquePlayers].show && <Cell className={dataColumns[columnKeys.uniquePlayers].className}>
-                {totalData[columnKeys.uniquePlayers]}
-            </Cell>}
+            {objectColumns[columnKeys.uniquePlayers].show && <DecimalCell value={totalData[columnKeys.uniquePlayers]} className={dataColumns[columnKeys.uniquePlayers].className} digits={0} />}
             {objectColumns[columnKeys.margin].show && <DecimalCell value={totalData[columnKeys.margin]} className={dataColumns[columnKeys.turnover].className} >
                 {'%'}
             </DecimalCell>

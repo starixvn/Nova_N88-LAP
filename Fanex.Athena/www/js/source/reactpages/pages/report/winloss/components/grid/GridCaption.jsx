@@ -24,16 +24,17 @@ export class GridCaption extends React.Component {
 
     handleExportExcel = event => {
         event.preventDefault();
-        const { requestParam, pagingOption } = this.props;
+        const { requestParam, pagingOption, sortOption } = this.props;
         if (!requestParam) {
             return;
         }
 
         const params = {
             ...requestParam,
+            ...sortOption,
             ...{
                 pageIndex: pagingOption.PageIndex,
-                pageSize: pagingOption.PageSize
+                pageSize: pagingOption.PageSize,
             }
         }
 
@@ -88,8 +89,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    const { selectedBaseCurrency, displayedColumns, gridData, requestParam, pagingOption } = state;
-    return Object.assign({}, { selectedBaseCurrency, displayedColumns, gridData, requestParam, pagingOption });
+    const { selectedBaseCurrency, displayedColumns, gridData, requestParam, pagingOption, sortOption } = state;
+    return Object.assign({}, { selectedBaseCurrency, displayedColumns, gridData, requestParam, pagingOption, sortOption });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridCaption);

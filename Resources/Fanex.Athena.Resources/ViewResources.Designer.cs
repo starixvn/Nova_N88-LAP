@@ -3211,6 +3211,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include Test Data.
+        /// </summary>
+        public static string IncludeTestData {
+            get {
+                return ResourceManager.GetString("IncludeTestData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect Max Bet.
         /// </summary>
         public static string IncorrectMaxBet {

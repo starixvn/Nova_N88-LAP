@@ -2269,7 +2269,7 @@
   </data>
   <data name="DelayedPayout" xml:space="preserve">
     <value>延迟结算</value>
-  </data>  
+  </data>
   <data name="AvgBetAmount" xml:space="preserve">
     <value>Avg. Bet Amount</value>
     <comment>#133254</comment>
@@ -2305,4 +2305,7 @@
   <data name="ProductSXG" xml:space="preserve">
     <value>性感百家</value>
   </data>
-</root>
+  <data name="IncludeTestData" xml:space="preserve">
+    <value>Include Test Data</value>
+    <comment>133254</comment>
+  </data></root>

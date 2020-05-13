@@ -140,9 +140,9 @@ export class FormFilter extends PureComponent {
                     <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="ExcludeTestData"
-                                checked={this.props.isExcludeTest}
-                                onChange={checked => this.props.changeIsExcludeTest(checked)}
-                                label={LangHelper.getSingleResource("ExcludeTestData")} />
+                                checked={!this.props.isExcludeTest}
+                                onChange={checked => this.props.changeIsExcludeTest(!checked)}
+                                label={LangHelper.getSingleResource("IncludeTestData")} />
                         </div>
                     </div>
                     <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">

@@ -10,7 +10,7 @@ export default class QueryHelper {
             ...requestParam,
             ...{
                 username, 
-                currencyIds: selectedCurrency,
+                currencyIdList: selectedCurrency,
                 baseCurrency: selectedBaseCurrency,
                 productIds: selectedProduct,
                 dateType: selectedDateType,

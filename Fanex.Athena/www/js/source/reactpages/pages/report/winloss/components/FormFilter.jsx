@@ -108,13 +108,13 @@ export class FormFilter extends PureComponent {
                             {this._renderDateRange()}
                         </div>
                     </div>
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Product")}</label>
                             {this._renderProductSelectList()}
                         </div>
                     </div>
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Username")}</label>
                             <AutoComplete
@@ -123,13 +123,13 @@ export class FormFilter extends PureComponent {
                             />
                         </div>
                     </div>
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Currency")}</label>
                             {this._renderCurrencySelectList()}
                         </div>
                     </div>
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("DisplayCurrency")}</label>
                             {this._renderBaseCurrencySelectList()}

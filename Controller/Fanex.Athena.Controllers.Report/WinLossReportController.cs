@@ -25,12 +25,16 @@
 
         private WinLossViewModel CreateViewModel()
         {
+            var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportWinLoss, LicenseeName);
             var tpProducts = ProductServiceInstance.GetListTpProduct();
             var vm = new WinLossViewModel
             {
                 BaseCurrency = DefaultBaseCurrency,
                 CurrencyList = CurrencyList,
-                TpProducts = tpProducts
+                TpProducts = tpProducts,
+                MaxDate = reportSetting.MaxDate,
+                MinDate = reportSetting.MinDate,
+                LimitMonthRange = reportSetting.LimitMonthRange
             };
             return vm;
         }

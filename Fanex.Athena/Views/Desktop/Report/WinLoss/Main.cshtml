@@ -26,7 +26,7 @@
 @section globaljscode{
     window.initialState = {
     selectedDateType: 1,
-    dateRange: { fromDate: '@DateTime.Today.ToString("MM/dd/yyyy")', toDate: '@DateTime.Today.ToString("MM/dd/yyyy")' },
+    dateRange: { fromDate: '@Model.FromDate.ToString("MM/dd/yyyy")', toDate: '@Model.ToDate.ToString("MM/dd/yyyy")' },
     isExcludeTest: true,
     noDraw: true,
     isLoading: false,
@@ -38,9 +38,9 @@
 
     window._AppData = {
     dateConstraint: {
-    limitedMonthRange: 36,
-    minDate: '@DateTime.Now.AddYears(-4).ToString("MM/dd/yyyy")',
-    maxDate: '@DateTime.Now.ToString("MM/dd/yyyy")'
+    limitedMonthRange: @Model.LimitMonthRange,
+    minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
+    maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
     },
 
     productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),

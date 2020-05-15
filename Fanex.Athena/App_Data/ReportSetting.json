@@ -14,5 +14,12 @@
     "MinDateString": "",
     "MaxDateString": "today",
     "LimitRecentDays": 90
+  },
+  {
+    "ReportKey": "WinLossReport",
+    "MaxDateString": "yesterday",
+    "LimitRecentMonths": 48,
+    "LimitMonthRange": 36,
+    "TimeZone": 8
   }
 ]

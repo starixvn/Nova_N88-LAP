@@ -21,6 +21,8 @@
 
         protected string DefaultBaseCurrency => SessionServiceInstance.UserSession.DefaultBaseCurrency;
 
+        protected string LicenseeName => SessionServiceInstance.LicenseeSession.LicenseeName;
+
         protected static IList<ProductOption> ToProductOptions(IEnumerable<Product> productList)
         {
             return productList.Select(i => new ProductOption

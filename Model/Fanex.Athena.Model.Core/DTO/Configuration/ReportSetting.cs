@@ -24,6 +24,8 @@ namespace Fanex.Athena.Model.Core.DTO.Configuration
 
         public int LimitRecentDays { get; set; }
 
+        public int LimitMonthRange { get; set; }
+
         public int? TimeZone { get; set; }
     }
 }

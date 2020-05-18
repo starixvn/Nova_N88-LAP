@@ -17,11 +17,11 @@ export default class CollectionHelper {
         if (!items || !items.length) {
             return [];
         }
-        const comparer = this.buidComparer(sortBy, sortType);
+        const comparer = this.buildComparer(sortBy, sortType);
         return items.sort(comparer);
     }
 
-    static buidComparer = (property, sortType) => {
+    static buildComparer = (property, sortType) => {
         const sortFactor = sortType === 'asc' ? 1 : -1;
         return (elment1, element2) => {
             let value;

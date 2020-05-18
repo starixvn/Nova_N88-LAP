@@ -95,7 +95,7 @@ export class FormFilter extends PureComponent {
         event.preventDefault();
         const newRequestParam = QueryHelper.toAPIParams(this.props);
         this.props.setRequestParam(newRequestParam);
-        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdatePagingOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize));
+        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdateGridOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize));
     }
 
     render() {

@@ -1,7 +1,7 @@
 import Site from '@jsroot/lib/site';
 import store from '../store';
-import { setPagingOption } from '../../actions/gridAction';
-import { PagingGroups } from '../../constants/filterConsts';
+import { setPagingOption, setSortOption } from '../../actions/gridAction';
+import { defaultSortOption } from '../../constants/gridContants';
 
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
@@ -23,7 +23,7 @@ export default class QueryHelper {
         }
     }
 
-    static callBackToUpdatePagingOption = (pageIndex, pageSize) => response => {
+    static callBackToUpdateGridOption = (pageIndex, pageSize) => response => {
         const { totalRows } = response;
         const { pagingOption } = store.getState();
         const newPagingOption = {
@@ -35,10 +35,7 @@ export default class QueryHelper {
             }
         }
         store.dispatch(setPagingOption(newPagingOption));
+        store.dispatch(setSortOption(defaultSortOption));
     }
-
-    // static isGroupPaging(groupBy) {
-    //     return PagingGroups.some(_ => _ === groupBy);
-    // }
 }
 

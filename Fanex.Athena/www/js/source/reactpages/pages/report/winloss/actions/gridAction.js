@@ -25,7 +25,7 @@ export const setDisplayedColumns = columns => {
     }
 }
 
-export { setPagingOption }
+export { setPagingOption, setSortOption }
 
 export default {
     setDisplayedColumns,

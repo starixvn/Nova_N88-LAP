@@ -37,7 +37,7 @@
         [HttpPost]
         [ApiAutoBindMetaModel(BindLicenseeId = true, BindCurrencyIdList = true)]
         [ValidationApiRequest(IsValidCurrencyList = true)]
-        public async Task<HttpResponseMessage> ExportData(WinLossMetaModel metaModel)
+        public async Task<HttpResponseMessage> ExportData(ExportWinLossMetaModel metaModel)
         {
             var response = await _reportApiClient.PostAsync(InternalExportReportUrl, metaModel, Language).ConfigureAwait(false);
             return ToStreamResponse(response.Item1, response.Item2);

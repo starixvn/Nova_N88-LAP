@@ -41,3 +41,8 @@ export const defaultPagingOption =  {
     TotalItem: 0,
     PageList: [500, 1000, 1500, 2000]
 }
+
+export const defaultSortOption = {
+    sortBy: null,
+    sortType: null
+}

@@ -1,6 +1,6 @@
 import Store from '@jsroot/lib/store';
 import reducers from '../reducers';
-import { displayedColumns, defaultPagingOption } from '../constants/gridContants';
+import { displayedColumns, defaultPagingOption, defaultSortOption } from '../constants/gridContants';
 
 const defaultState = {
    ...window.initialState, 
@@ -9,6 +9,7 @@ const defaultState = {
      gridData: {},
      requestParam: {},
      pagingOption: defaultPagingOption,
+     sortOption: defaultSortOption,
      selectedGroupByOption: 1,
      displayedColumns: displayedColumns,
    }

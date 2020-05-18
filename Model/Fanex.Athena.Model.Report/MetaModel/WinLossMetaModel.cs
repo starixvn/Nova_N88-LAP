@@ -3,7 +3,7 @@ using System;
 
 namespace Fanex.Athena.Model.Report.MetaModel
 {
-    public class WinLossMetaModel : IMetaModelValidation, IMetaModelLicenseeId, IMetaModelCurrencyIdList
+    public class WinLossMetaModel : IMetaModelValidation, IMetaModelLicenseeId, IMetaModelCurrencyIdList, IMetaModelIncludedTestData
     {
         private const int DefaultPageSize = 500;
         private const int MaxPageSize = 2000;

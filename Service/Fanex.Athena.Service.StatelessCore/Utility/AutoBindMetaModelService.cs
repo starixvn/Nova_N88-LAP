@@ -11,6 +11,18 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
 {
     public static class AutoBindMetaModelService
     {
+        public static void MapCurrencyIdList(IDictionary<string, object> actionArguments)
+        {
+            var isBind = IsMetaModel(actionArguments, out IMetaModelCurrencyIdList itemWithCurrencyIdList) && !string.IsNullOrEmpty(itemWithCurrencyIdList.CurrencyIdList);
+            isBind &= IsMetaModel(actionArguments, out IMetaModelIncludedTestData itemWithIncludedTestData) && !itemWithIncludedTestData.IsIncludedTestData;
+            if (isBind)
+            {
+                var currenyIdStringList = itemWithCurrencyIdList.CurrencyIdList.Trim().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                currenyIdStringList.Remove(CurrencyType.Uus.ToString());
+                itemWithCurrencyIdList.CurrencyIdList = string.Join(",", currenyIdStringList);
+            }
+        }
+
         public static void MapAgentXml(IDictionary<string, object> actionArguments)
         {
             if (actionArguments.ContainsKey("currencyAgentList")
@@ -186,6 +198,19 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
                 value.MoveBetsDay = temp.MoveBetsDay;
                 actionArguments[item.Key] = value;
             }
+        }
+
+        private static bool IsMetaModel<T>(IDictionary<string, object> actionArguments, out T model)
+            where T : class
+        {
+            var metaModel = actionArguments.FirstOrDefault(x => x.Value is T);
+            if (metaModel.Value is T value)
+            {
+                model = value;
+                return true;
+            }
+            model = null;
+            return false;
         }
     }
 }

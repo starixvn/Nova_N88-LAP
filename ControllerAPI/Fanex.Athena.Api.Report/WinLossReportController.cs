@@ -26,7 +26,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
+        [ApiAutoBindMetaModel(BindLicenseeId = true, BindCurrencyIdList = true)]
         [ValidationApiRequest(IsValidCurrencyList = true)]
         public async Task<dynamic> GetData(WinLossMetaModel metaModel)
         {
@@ -35,7 +35,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
+        [ApiAutoBindMetaModel(BindLicenseeId = true, BindCurrencyIdList = true)]
         [ValidationApiRequest(IsValidCurrencyList = true)]
         public async Task<HttpResponseMessage> ExportData(WinLossMetaModel metaModel)
         {

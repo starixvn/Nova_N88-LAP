@@ -3598,7 +3598,7 @@ const setSelectedGroupByOption = groupByOption => {
 /*!*****************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/actions/gridAction.js ***!
   \*****************************************************************************/
-/*! exports provided: fetchReportData, setDisplayedColumns, setPagingOption, default */
+/*! exports provided: fetchReportData, setDisplayedColumns, setPagingOption, setSortOption, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3611,6 +3611,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "setPagingOption", function() { return _jsroot_actions_pagingOptionAction__WEBPACK_IMPORTED_MODULE_2__["setPagingOption"]; });
 
 /* harmony import */ var _jsroot_actions_sortOptionAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/actions/sortOptionAction */ "./www/js/source/reactpages/actions/sortOptionAction.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "setSortOption", function() { return _jsroot_actions_sortOptionAction__WEBPACK_IMPORTED_MODULE_3__["setSortOption"]; });
+
 /* harmony import */ var _jsroot_actions_requestParamAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/actions/requestParamAction */ "./www/js/source/reactpages/actions/requestParamAction.js");
 /* harmony import */ var _jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/actions/loaderAction */ "./www/js/source/reactpages/actions/loaderAction.js");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
@@ -3862,7 +3864,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       event.preventDefault();
       const newRequestParam = _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_13__["default"].toAPIParams(this.props);
       this.props.setRequestParam(newRequestParam);
-      this.props.fetchReportData(newRequestParam, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_13__["default"].callBackToUpdatePagingOption(_constants_gridContants__WEBPACK_IMPORTED_MODULE_16__["defaultPagingOption"].PageIndex, _constants_gridContants__WEBPACK_IMPORTED_MODULE_16__["defaultPagingOption"].PageSize));
+      this.props.fetchReportData(newRequestParam, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_13__["default"].callBackToUpdateGridOption(_constants_gridContants__WEBPACK_IMPORTED_MODULE_16__["defaultPagingOption"].PageIndex, _constants_gridContants__WEBPACK_IMPORTED_MODULE_16__["defaultPagingOption"].PageSize));
     });
   }
 
@@ -4423,14 +4425,14 @@ const GridData = props => {
       pageSize
     });
 
-    fetchReportData(params, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_7__["default"].callBackToUpdatePagingOption(pageIndex, pageSize));
+    fetchReportData(params, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_7__["default"].callBackToUpdateGridOption(pageIndex, pageSize));
   });
 
   const objectColumns = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].toObjectColumns(displayedColumns), [displayedColumns]);
   const header = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderHeader(objectColumns), [objectColumns]);
   const body = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderBody(dataList, objectColumns), [dataList, objectColumns]);
   const footer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderFooter(totalData, objectColumns), [totalData, objectColumns]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Table"], {
+  return !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Table"], {
     minWidth: 650,
     autoWidth: true,
     maxWidth: MAX_WIDTH,
@@ -4701,7 +4703,7 @@ const DateFilterTypes = [{
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js ***!
   \*********************************************************************************/
-/*! exports provided: columnKeys, displayedColumns, defaultDisplayedColumns, dataColumns, defaultPagingOption */
+/*! exports provided: columnKeys, displayedColumns, defaultDisplayedColumns, dataColumns, defaultPagingOption, defaultSortOption */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4711,6 +4713,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultDisplayedColumns", function() { return defaultDisplayedColumns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dataColumns", function() { return dataColumns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultPagingOption", function() { return defaultPagingOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultSortOption", function() { return defaultSortOption; });
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
 const columnKeys = {
@@ -4794,6 +4797,10 @@ const defaultPagingOption = {
   PageSize: 500,
   TotalItem: 0,
   PageList: [500, 1000, 1500, 2000]
+};
+const defaultSortOption = {
+  sortBy: null,
+  sortType: null
 };
 
 /***/ }),
@@ -4894,13 +4901,13 @@ class CollectionHelper {
       return [];
     }
 
-    const comparer = this.buidComparer(sortBy, sortType);
+    const comparer = this.buildComparer(sortBy, sortType);
     return items.sort(comparer);
   }
 
 }
 
-_defineProperty(CollectionHelper, "buidComparer", (property, sortType) => {
+_defineProperty(CollectionHelper, "buildComparer", (property, sortType) => {
   const sortFactor = sortType === 'asc' ? 1 : -1;
   return (elment1, element2) => {
     let value;
@@ -5029,7 +5036,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store */ "./www/js/source/reactpages/pages/report/winloss/libs/store.js");
 /* harmony import */ var _actions_gridAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/gridAction */ "./www/js/source/reactpages/pages/report/winloss/actions/gridAction.js");
-/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+/* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5065,14 +5072,11 @@ class QueryHelper {
       toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__["default"].convertDateToString(dateRange.toDate),
       groupBy: selectedGroupByOption
     });
-  } // static isGroupPaging(groupBy) {
-  //     return PagingGroups.some(_ => _ === groupBy);
-  // }
-
+  }
 
 }
 
-_defineProperty(QueryHelper, "callBackToUpdatePagingOption", (pageIndex, pageSize) => response => {
+_defineProperty(QueryHelper, "callBackToUpdateGridOption", (pageIndex, pageSize) => response => {
   const {
     totalRows
   } = response;
@@ -5087,6 +5091,7 @@ _defineProperty(QueryHelper, "callBackToUpdatePagingOption", (pageIndex, pageSiz
   });
 
   _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_actions_gridAction__WEBPACK_IMPORTED_MODULE_2__["setPagingOption"])(newPagingOption));
+  _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_actions_gridAction__WEBPACK_IMPORTED_MODULE_2__["setSortOption"])(_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["defaultSortOption"]));
 });
 
 /***/ }),
@@ -5178,6 +5183,7 @@ const defaultState = _objectSpread({}, window.initialState, {}, {
   gridData: {},
   requestParam: {},
   pagingOption: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultPagingOption"],
+  sortOption: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultSortOption"],
   selectedGroupByOption: 1,
   displayedColumns: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["displayedColumns"]
 });

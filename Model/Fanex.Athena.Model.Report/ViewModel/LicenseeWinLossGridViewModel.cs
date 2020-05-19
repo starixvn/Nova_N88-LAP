@@ -113,6 +113,8 @@ namespace Fanex.Athena.Model.Report.ViewModel
         public decimal LicenseeWLI4D { get; set; }
 
         public decimal LicenseeWLSXG { get; set; }
+        
+        public decimal LicenseeWLSBC { get; set; }
 
         public virtual decimal TotalLicenseeWL
         {
@@ -122,7 +124,7 @@ namespace Fanex.Athena.Model.Report.ViewModel
                     LicenseeWLKN + LicenseeWLBT + LicenseeWLAGC + LicenseeWLVB + LicenseeWLAB +
                     LicenseeWLFW + LicenseeWLCO + LicenseeWLVS2 + LicenseeWLLT + LicenseeWLPP +
                     LicenseeWLCC + LicenseeWLSG + LicenseeWLVRG + LicenseeWLTG + LicenseeWLI4D +
-                    LicenseeWLSXG;
+                    LicenseeWLSXG + LicenseeWLSBC;
             }
         }
 
@@ -174,6 +176,8 @@ namespace Fanex.Athena.Model.Report.ViewModel
         public decimal TurnOverI4D { get; set; }
 
         public decimal TurnOverSXG { get; set; }
+        
+        public decimal TurnOverSBC { get; set; }
 
         public virtual decimal TotalTurnOver
         {
@@ -182,7 +186,8 @@ namespace Fanex.Athena.Model.Report.ViewModel
                 return TurnOverBA + TurnOverNG + TurnOverSB + TurnOverVS + TurnOverCS +
                     TurnOverKN + TurnOverBT + TurnOverAGC + TurnOverVB + TurnOverAB +
                     TurnOverFW + TurnOverVS2 + TurnOverLT + TurnOverPP + TurnOverCC +
-                    TurnOverSG + TurnOverVRG + TurnOverTG + TurnOverI4D + TurnOverSXG;
+                    TurnOverSG + TurnOverVRG + TurnOverTG + TurnOverI4D + TurnOverSXG +
+                    TurnOverSBC;
             }
         }
 

@@ -1,9 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Product.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-namespace Fanex.Athena.Model.Core.DTO.Common
+﻿namespace Fanex.Athena.Model.Core.DTO.Common
 {
     using System;
 
@@ -63,6 +58,8 @@ namespace Fanex.Athena.Model.Core.DTO.Common
         public const string I4D = "I4D";
 
         public const string SXG = "SXG";
+
+        public const string SBC = "SBC";
 
         #endregion Field
 

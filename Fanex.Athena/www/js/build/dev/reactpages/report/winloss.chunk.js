@@ -4794,9 +4794,9 @@ const dataColumns = {
 };
 const defaultPagingOption = {
   PageIndex: 1,
-  PageSize: 500,
+  PageSize: 10,
   TotalItem: 0,
-  PageList: [500, 1000, 1500, 2000]
+  PageList: [10, 50, 100, 150, 200]
 };
 const defaultSortOption = {
   sortBy: null,

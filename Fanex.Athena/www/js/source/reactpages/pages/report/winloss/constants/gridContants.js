@@ -23,7 +23,6 @@ export const defaultDisplayedColumns = [
     { key: columnKeys.group, name: LangHelper.getSingleResource('Group'), show: true },
 ]
 
-
 export const dataColumns = {
     [columnKeys.group]: { sortBy: columnKeys.group, colWidth: 100, className: "left-align" },
     [columnKeys.turnover]: { sortBy: columnKeys.turnover, colWidth: 100, className: "right-align" },
@@ -34,12 +33,11 @@ export const dataColumns = {
     [columnKeys.margin]: { sortBy: columnKeys.margin, colWidth: 100, className: "right-align" }
 }
 
-
 export const defaultPagingOption =  {
     PageIndex: 1,
-    PageSize: 500,
+    PageSize: 10,
     TotalItem: 0,
-    PageList: [500, 1000, 1500, 2000]
+    PageList: [10, 50, 100, 150, 200]
 }
 
 export const defaultSortOption = {

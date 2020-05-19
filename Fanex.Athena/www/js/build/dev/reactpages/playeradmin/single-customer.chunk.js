@@ -1708,6 +1708,17 @@ var BetListLayout = /*#__PURE__*/function (_Component) {
 
         _this2._openPopup(url, title);
       };
+
+      window.showSabaClubDetails = function (transId, winlostDate, custId, transType) {
+        var _this2$props14 = _this2.props,
+            rootUrl = _this2$props14.rootUrl,
+            baseCurrency = _this2$props14.baseCurrency;
+        var url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSBCDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
+
+        var title = _this2._getResource('ProductSBC') + ' - ' + _this2._getResource('DetailedBetlist') + ' - ' + _this2._formatDateString(winlostDate);
+
+        _this2._openPopup(url, title);
+      };
     }
   }, {
     key: "componentWillUnmount",
@@ -1729,6 +1740,7 @@ var BetListLayout = /*#__PURE__*/function (_Component) {
       window.showSingleMatchParlayDetail = undefined;
       window.showSGDetails = undefined;
       window.showSexyGamingBetDetails = undefined;
+      window.showSabaClubDetails = undefined;
     }
   }, {
     key: "_getResource",
@@ -2220,6 +2232,17 @@ var BetList = /*#__PURE__*/function () {
     key: "getSGDetailUrl",
     value: function getSGDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
       var url = rootUrl + 'SGBetList/Detail';
+      url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
+      url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
+      url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
+      url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
+      url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
+      return url;
+    }
+  }, {
+    key: "getSBCDetailUrl",
+    value: function getSBCDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
+      var url = rootUrl + 'SabaClubBetList/Detail';
       url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
       url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
       url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);

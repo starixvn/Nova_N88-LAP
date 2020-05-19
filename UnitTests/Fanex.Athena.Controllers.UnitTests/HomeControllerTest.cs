@@ -105,28 +105,6 @@
         }
 
         [Test]
-        public void Index_InvalidLicenseeSession_RedirectToLocationRestriction()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                StubLicenseeSessionData(null);
-
-                controller.ControllerContext.HttpContext.Response.IsRequestBeingRedirected.Returns(false);
-
-                // Action
-                var result = controller.Index() as RedirectToRouteResult;
-
-                // Assert
-                Assert.Multiple(() =>
-                {
-                    Assert.That(result.RouteValues["action"], Is.EqualTo("LocationRestriction"));
-                    Assert.That(result.RouteValues["controller"], Is.EqualTo("Utility"));
-                });
-            }
-        }
-
-        [Test]
         public void Index_IsNotRequestBeingRedirected_ReturnIndexView()
         {
             using (var controller = CreateController())

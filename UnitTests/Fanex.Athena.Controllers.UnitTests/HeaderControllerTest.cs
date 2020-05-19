@@ -55,8 +55,6 @@
                 const bool HasRecheckIn = true;
                 AppSettings.LocalTest.Returns(!HasRecheckIn);
 
-                const bool IsFakeLicensee = true;
-                _licenseeSettingService.IsFakeLicensee(Arg.Any<string>()).Returns(IsFakeLicensee);
                 // Action
                 var result = controller.Index() as ViewResult;
                 var model = (HeaderPageViewModel)result.Model;
@@ -72,7 +70,6 @@
                     Assert.That(model.HasRecheckIn, Is.EqualTo(HasRecheckIn));
                     Assert.That(model.UserName, Is.EqualTo(DefaultUserSession.UserName));
                     Assert.That(model.CurrentLicenseeId, Is.EqualTo(DefaultLicenseeSession.LicenseeId));
-                    Assert.That(model.IsFakeLicensee, Is.EqualTo(IsFakeLicensee));
                 });
             }
         }

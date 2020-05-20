@@ -1,8 +1,8 @@
 ﻿namespace Fanex.Athena.DataAccess.Core.Common.Interfaces
 {
+    using Fanex.Athena.Model.Core.DTO.Common;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Fanex.Athena.Model.Core.DTO.Common;
 
     public interface IBetTypeDataAccess
     {

@@ -39,14 +39,5 @@
                 return allowedProducts;
             }
         }
-
-        public IEnumerable<TpProduct> GetListTpProduct()
-        {
-            const string UspName = "N88_GetListGameType";
-            using (var db = GetObjectDb(UspName))
-            {
-                return db.Query<TpProduct>();
-            }
-        }
     }
 }

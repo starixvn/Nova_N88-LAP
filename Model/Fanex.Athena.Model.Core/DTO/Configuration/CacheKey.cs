@@ -7,6 +7,7 @@
         public static readonly string MemorycacheCommonLicenseeCust = "MemoryCache_Common_LicenseeCust";
         public static readonly string MemorycacheCommonProduct = "MemoryCache_Common_Product";
         public static readonly string MemorycacheCommonTpProduct = "MemoryCache_Common_TpProduct";
+        public static readonly string MemorycacheCommonTpCurrency = "MemoryCache_Common_TpCurrency_{0}";
         public static readonly string MemorycacheSubsidiaryListByLicensee = "MemoryCache_SubsidiaryList_{0}";
         public static readonly string MemorycacheGroupSubsidiaryListByLicensee = "MemoryCache_GroupSubsidiaryList_{0}";
     }

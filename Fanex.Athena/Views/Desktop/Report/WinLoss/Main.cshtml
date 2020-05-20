@@ -31,7 +31,7 @@
     noDraw: true,
     isLoading: false,
     selectedBaseCurrency: '@Model.BaseCurrency',
-    selectedCurrency: '@string.Join(",", Model.CurrencyList.Select(x => x.Key).ToArray())',
+    selectedCurrency: '@string.Join(",", Model.TpCurrencies.Select(x => x.ID).ToArray())',
     selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
     username: "",
     };
@@ -45,7 +45,7 @@
 
     productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
-    currencyList: @Html.Raw(Model.CurrencyList.Select(x => new { key = x.Key, value = x.Value, status = true }).ToJson()),
+    currencyList: @Html.Raw(Model.TpCurrencies.Select(x => new { key = x.ID, value = x.Name, status = true }).ToJson()),
     }
 
 }

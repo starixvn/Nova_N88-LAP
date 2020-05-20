@@ -19,8 +19,6 @@
 
     public class ProductService : IProductService
     {
-        private const int ExpireTimeInSecond = 86400;
-
         private readonly IProductDataAccess _productDataAccess;
 
         private readonly IAppSettings _appSettings;
@@ -75,22 +73,6 @@
             var productList = allowedProducts.Any() ? originalProducts.Where(i => i.IsOfferedSingleWallet && allowedProducts.Contains(i.ProductCode)).ToList()
                 : originalProducts;
             return new ProductAccess(productList);
-        }
-
-        public IEnumerable<TpProduct> GetListTpProduct()
-        {
-            var cacheKey = CacheKey.MemorycacheCommonTpProduct;
-            var productList = _cache.Get<IEnumerable<TpProduct>>(cacheKey);
-
-            if (productList != null && productList.Any())
-            {
-                return productList;
-            }
-
-            productList = _productDataAccess.GetListTpProduct();
-            _cache.Set(cacheKey, productList, ExpireTimeInSecond);
-
-            return productList;
         }
 
         #endregion

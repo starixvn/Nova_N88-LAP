@@ -6,7 +6,5 @@
     public interface IProductDataAccess
     {
         IList<Product> GetProductAccessList(int licenseeId, bool isActiveCustomerSummaryReport = false);
-
-        IEnumerable<TpProduct> GetListTpProduct();
     }
 }

@@ -23,6 +23,8 @@
 
         protected string LicenseeName => SessionServiceInstance.LicenseeSession.LicenseeName;
 
+        protected int LicenseeId => SessionServiceInstance.LicenseeSession.LicenseeId;
+
         protected static IList<ProductOption> ToProductOptions(IEnumerable<Product> productList)
         {
             return productList.Select(i => new ProductOption

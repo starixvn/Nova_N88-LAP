@@ -26,8 +26,6 @@ namespace Fanex.Athena.Api.Base.Attributes
 
         public bool BindBalanceUpAndMoveBet { get; set; }
 
-        public bool BindCurrencyIdList { get; set; }
-
         private static readonly ISessionStorage _sessionStorage = new SessionStorage();
 
         public override void OnActionExecuting(HttpActionContext actionContext)
@@ -35,11 +33,6 @@ namespace Fanex.Athena.Api.Base.Attributes
             var userSession = _sessionStorage.UserAuthInfo;
             var licenseeSession = _sessionStorage.LicenseeAuthInfo;
             var actionArgument = actionContext.ActionArguments;
-
-            if (BindCurrencyIdList)
-            {
-                AutoBindMetaModelService.MapCurrencyIdList(actionArgument);
-            }
 
             if (BindAgent)
             {

@@ -26,8 +26,8 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true, BindCurrencyIdList = true)]
-        [ValidationApiRequest(IsValidCurrencyList = true)]
+        [ApiAutoBindMetaModel(BindLicenseeId = true)]
+        [ValidationApiRequest]
         public async Task<dynamic> GetData(WinLossMetaModel metaModel)
         {
             var data = await _reportApiClient.PostAsync<dynamic>(InternalReportUrl, metaModel, Language).ConfigureAwait(false);
@@ -35,8 +35,8 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true, BindCurrencyIdList = true)]
-        [ValidationApiRequest(IsValidCurrencyList = true)]
+        [ApiAutoBindMetaModel(BindLicenseeId = true)]
+        [ValidationApiRequest]
         public async Task<HttpResponseMessage> ExportData(ExportWinLossMetaModel metaModel)
         {
             var response = await _reportApiClient.PostAsync(InternalExportReportUrl, metaModel, Language).ConfigureAwait(false);

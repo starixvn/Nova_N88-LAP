@@ -11,18 +11,6 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
 {
     public static class AutoBindMetaModelService
     {
-        public static void MapCurrencyIdList(IDictionary<string, object> actionArguments)
-        {
-            var isBind = IsMetaModel(actionArguments, out IMetaModelCurrencyIdList itemWithCurrencyIdList) && !string.IsNullOrEmpty(itemWithCurrencyIdList.CurrencyIdList);
-            isBind &= IsMetaModel(actionArguments, out IMetaModelIncludedTestData itemWithIncludedTestData) && !itemWithIncludedTestData.IsIncludedTestData;
-            if (isBind)
-            {
-                var currenyIdStringList = itemWithCurrencyIdList.CurrencyIdList.Trim().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                currenyIdStringList.Remove(CurrencyType.Uus.ToString());
-                itemWithCurrencyIdList.CurrencyIdList = string.Join(",", currenyIdStringList);
-            }
-        }
-
         public static void MapAgentXml(IDictionary<string, object> actionArguments)
         {
             if (actionArguments.ContainsKey("currencyAgentList")

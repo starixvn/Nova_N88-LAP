@@ -95,6 +95,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Interfaces\ITpService.cs" />
+    <Compile Include="Common\TpService.cs" />
     <Compile Include="Helper\JsonSerializerHelper.cs" />
     <Compile Include="Users\Interfaces\ISessionStorage.cs" />
     <Compile Include="Users\SessionStorage.cs" />

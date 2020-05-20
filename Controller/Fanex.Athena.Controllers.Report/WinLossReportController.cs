@@ -2,6 +2,7 @@
 {
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Report.ViewModel;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using System.Web.Mvc;
@@ -10,10 +11,12 @@
     public class WinLossReportController : ReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;
+        private readonly ITpService _tpService;
 
-        public WinLossReportController(IReportSettingService reportSettingService)
+        public WinLossReportController(IReportSettingService reportSettingService, ITpService tpService)
         {
             _reportSettingService = reportSettingService;
+            _tpService = tpService;
         }
 
         [HttpGet]
@@ -26,11 +29,12 @@
         private WinLossViewModel CreateViewModel()
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportWinLoss, LicenseeName);
-            var tpProducts = ProductServiceInstance.GetListTpProduct();
+            var tpProducts = _tpService.GetListTpProduct();
+            var tpCurrencies = _tpService.GetListTpCurrency(LicenseeId);
             var vm = new WinLossViewModel
             {
                 BaseCurrency = DefaultBaseCurrency,
-                CurrencyList = CurrencyList,
+                TpCurrencies = tpCurrencies,
                 TpProducts = tpProducts,
                 MaxDate = reportSetting.MaxDate,
                 MinDate = reportSetting.MinDate,

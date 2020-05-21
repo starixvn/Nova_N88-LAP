@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 5/12/2020 4:21:41 PM
+// Generated at: 5/21/2020 4:50:32 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -150,6 +150,7 @@ window._language_en_US = {
   Aug: "Aug",
   August: "August",
   AvailableFunds: "Available Funds",
+  AvgBetAmount: "Avg. Bet Amount",
   Away: "Away",
   AwayNoBet: "Away No Bet",
   BA: "BA",
@@ -319,6 +320,7 @@ window._language_en_US = {
   DisableMacauGames: "Disable Macau Games",
   DisableProduct: "Disable {0}",
   DisableRNGCasino: "Disable RNG Casino",
+  DisplayCurrency: "Display Currency",
   Domain_Name: "Domain Name",
   Dontshowagain: "Don&apos;t show again",
   DormantCustomers: "Dormant Customers",
@@ -401,6 +403,7 @@ window._language_en_US = {
   GameType: "Game Type",
   GameTypeName: "Game Type Name",
   General: "General",
+  GGR: "GGR",
   Go: "Go",
   GoldDeluxeNotOfferCurrency: "Gold Deluxe is not offered for this currency.",
   GoldDeluxeWinLossGuidelineContent: "Any query before 4PM GMT-4 will return the data up to 4PM of the day before. You can filter data up to 3 months per query.",
@@ -442,6 +445,7 @@ window._language_en_US = {
   HttpError_Default: "Oops... you are here because of a system error, please notify the administrators",
   Inactive: "Inactive",
   IncludeDrawData: "Include Draw data",
+  IncludeTestData: "Include Test Data",
   IncorrectMaxBet: "Incorrect Max Bet",
   IncorrectMaxBetPerDraw: "Incorrect Max Bet Per Draw",
   IncorrectMaxPerBall: "Incorrect Max Per Ball",
@@ -592,6 +596,7 @@ window._language_en_US = {
   No: "No",
   NoBettypeFound: "No bet type found.",
   NoCustomerFoundMsg: "No customer found.",
+  NoDraw: "No Draw",
   NoDraws: "No Draws",
   NoDrawsForTurnoverOnly: "No Draws For Turnover Only",
   NoGoal: "No Goal",
@@ -607,6 +612,8 @@ window._language_en_US = {
   Normal: "Normal",
   NotAllowBA: "This licensee is not allowed BA",
   Note: "Note",
+  NoteReportGrossRevenue: "This report is reported gross revenue, have not yet deducted cost, fee, ect...",
+  NoteReportInGMT8: "The report is reported in GMT+8",
   Notification: "Notification",
   NotificationDateRangeLimitNote: "Data is available within 6 months",
   Nov: "Nov",
@@ -749,6 +756,7 @@ window._language_en_US = {
   SessionLoggedMsg: "You have logged in from another session or your login session has expired",
   SetAsDefaultGroup: "Set as default group",
   SettleAmount: "Settle Amount",
+  SettledDate: "Settled Date",
   Show: "Show",
   ShowAllLeagues: "Show All Leagues",
   ShowOldValue: "Show old value",
@@ -831,6 +839,7 @@ window._language_en_US = {
   UndermaintenanceMsg: "We are having server maintenance, website will be unavailable from {0} until {1}. Sorry for the inconveniences caused!",
   UnderSettlement: "Under Settlement",
   Unfreeze: "Unfreeze",
+  UniquePlayers: "#Unique Players",
   Unknown: "Unknown",
   Update: "Update",
   Update_Group: "Update Group",
@@ -938,46 +947,25 @@ window._language_en_US = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LangHelper; });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var DEFAULT_RESOURCE_NAME = "_language_en_US";
-var langCode = window.PageLanguage || "en-US";
-var resourceName = "_language_".concat(langCode.replace("-", "_"));
-
-var LangHelper = /*#__PURE__*/function () {
-  function LangHelper() {
-    _classCallCheck(this, LangHelper);
+const DEFAULT_RESOURCE_NAME = "_language_en_US";
+const langCode = window.PageLanguage || "en-US";
+const resourceName = `_language_${langCode.replace("-", "_")}`;
+class LangHelper {
+  static get currentLanguage() {
+    return langCode;
   }
 
-  _createClass(LangHelper, null, [{
-    key: "getSingleResource",
-    value: function getSingleResource(key) {
-      var langHandler = window[resourceName];
-      return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
-    }
-  }, {
-    key: "getResources",
-    value: function getResources(keys) {
-      var langHandler = window[resourceName];
-      return keys.map(function (key) {
-        return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
-      });
-    }
-  }, {
-    key: "currentLanguage",
-    get: function get() {
-      return langCode;
-    }
-  }]);
+  static getSingleResource(key) {
+    var langHandler = window[resourceName];
+    return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
+  }
 
-  return LangHelper;
-}();
+  static getResources(keys) {
+    var langHandler = window[resourceName];
+    return keys.map(key => langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key);
+  }
 
-
+}
 
 /***/ }),
 

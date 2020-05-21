@@ -1,4 +1,6 @@
-﻿window._language_zh_CN = {AA:"客客",
+﻿// Generated at: 5/21/2020 4:50:32 PM
+window._language_zh_CN = {
+AA:"客客",
 AbnormalBet:"非正规注单",
 AccessDeniedMsg:"对不起, 您没有权限访问此页面。",
 Account:"账号",

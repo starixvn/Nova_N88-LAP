@@ -1,4 +1,6 @@
-﻿window._language_en_US = {AA:"AA",
+﻿// Generated at: 5/21/2020 4:50:32 PM
+window._language_en_US = {
+AA:"AA",
 AbnormalBet:"Abnormal Bet",
 AccessDeniedMsg:"Sorry, You don&apos;t have permission to access this page.",
 Account:"Account",

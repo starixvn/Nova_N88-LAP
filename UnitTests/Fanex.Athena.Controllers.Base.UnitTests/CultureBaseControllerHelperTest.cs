@@ -33,8 +33,8 @@
 
         protected static readonly LicenseeAuthInfo DefaultLicenseeSession = new LicenseeAuthInfo
         {
-            LicenseeId = 100,
-            LicenseeName = "Spondemo"
+            LicenseeId = 402,
+            LicenseeName = "N88"
         };
 
         protected UrlHelper Url { get; set; }
@@ -83,6 +83,11 @@
         protected void StubLicenseeSessionData(LicenseeAuthInfo fakeLicenseeSession)
         {
             SessionService.LicenseeSession.Returns(fakeLicenseeSession);
+            if(fakeLicenseeSession != null)
+            {
+                AppSettings.LicenseeId.Returns(fakeLicenseeSession.LicenseeId);
+            }
+
         }
 
         protected void StubGetValueAppSettings(string valueName, string fakeValue)

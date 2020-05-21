@@ -241,11 +241,33 @@ class BetList {
         return url;
     }
 
+    getSBCDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
+        let url = rootUrl + 'SabaClubBetList/Detail';
+        url = QueryString.setParam(url, 'transId', transId);
+        url = QueryString.setParam(url, 'date', winlostDate);
+        url = QueryString.setParam(url, 'custId', custId);
+        url = QueryString.setParam(url, 'transType', transType);
+        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
+
+        return url;
+    }
+
     getVRGResultUrl(rootUrl, gamePlayId, platform) {
         let url = rootUrl + 'VirtualGamesResultPopup/Index';
         console.log(gamePlayId)
         url = QueryString.setParam(url, 'gamePlayId', gamePlayId);
         url = QueryString.setParam(url, 'platform', platform);
+
+        return url;
+    }
+
+    getSexyGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
+        let url = rootUrl + 'SexyGamingBetList/Detail';
+        url = QueryString.setParam(url, 'transId', transId);
+        url = QueryString.setParam(url, 'date', winlostDate);
+        url = QueryString.setParam(url, 'custId', custId);
+        url = QueryString.setParam(url, 'transType', transType);
+        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
 
         return url;
     }
@@ -295,6 +317,15 @@ class BetList {
 
         return url;
 
+    }
+
+    getSexyGamingResultUrl(rootUrl, transdesc, matchCode, bettype) {
+        let url = rootUrl + 'ResultReport/SexyGaming';
+        url = QueryString.setParam(url, 'matchCode', matchCode);
+        url = QueryString.setParam(url, 'bettype', bettype);
+        url = QueryString.setParam(url, 'transdesc', encodeURIComponent(transdesc));
+
+        return url;
     }
 
     getGlobalGamingResultUrl(rootUrl, custid, gameId) {

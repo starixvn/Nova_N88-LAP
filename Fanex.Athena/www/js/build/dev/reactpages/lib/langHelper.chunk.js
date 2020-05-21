@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 5/11/2020 1:19:56 PM
+// Generated at: 5/12/2020 4:21:41 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -693,7 +693,9 @@ window._language_en_US = {
   ProductPP: "PP",
   ProductPTCS: "Playtech Casino",
   ProductSB: "Sportsbook",
+  ProductSBC: "Saba.club",
   ProductSG: "SG",
+  ProductSXG: "Sexy Gaming",
   ProductTG: "Table Game",
   ProductVB: "Macau Games",
   ProductVG: "Macau",
@@ -946,9 +948,7 @@ var DEFAULT_RESOURCE_NAME = "_language_en_US";
 var langCode = window.PageLanguage || "en-US";
 var resourceName = "_language_".concat(langCode.replace("-", "_"));
 
-var LangHelper =
-/*#__PURE__*/
-function () {
+var LangHelper = /*#__PURE__*/function () {
   function LangHelper() {
     _classCallCheck(this, LangHelper);
   }

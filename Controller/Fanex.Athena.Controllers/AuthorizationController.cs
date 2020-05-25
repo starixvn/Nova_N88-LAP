@@ -87,7 +87,7 @@
             SetErrorForView(0, string.Empty);
             ViewBag.LogInToken = CreateToken();
             ViewBag.LogoLoginUrl = $"/www/assets/images/logo-login-{currentLicenseeId}.svg";
-            ViewBag.Title = $"{siteNameList[currentLicenseeId]} Admin Site";
+            ViewBag.Title = $"{siteNameList[currentLicenseeId]} MPA Site";
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
 
@@ -157,7 +157,7 @@
 
             ViewBag.LogInToken = CreateToken();
             ViewBag.LogoLoginUrl = $"/www/assets/images/logo-login-{currentLicenseeId}.svg";
-            ViewBag.Title = $"{siteNameList[currentLicenseeId]} Admin Site";
+            ViewBag.Title = $"{siteNameList[currentLicenseeId]} MPA Site";
 
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
@@ -194,7 +194,7 @@
             var ssoLoginParam = new SSOLoginParameter
             {
                 UserId = userId,
-                SiteId =  n88Settings.SiteId,
+                SiteId = n88Settings.SiteId,
                 Domain = CurrentContext.DomainName,
                 CheckOnUserId = onuserId,
                 IP = CurrentContext.IP,

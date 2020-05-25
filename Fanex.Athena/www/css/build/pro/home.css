@@ -3809,6 +3809,9 @@ textarea {
 .icon-notification:before {
   content: "\E90C"; }
 
+.icon-notification-white:before {
+  content: "\E91C"; }
+
 .icon-s-arrow:before {
   content: "\E90D"; }
 

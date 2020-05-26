@@ -4378,7 +4378,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-const MAX_WIDTH_PAGE = 1660;
+const MAX_WIDTH_PAGE = 1920;
 const GridData = props => {
   const MAX_WIDTH = Math.min(document.body.clientWidth, MAX_WIDTH_PAGE);
   const {
@@ -4428,10 +4428,10 @@ const GridData = props => {
     fetchReportData(params, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_7__["default"].callBackToUpdateGridOption(pageIndex, pageSize));
   });
 
-  const objectColumns = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].toObjectColumns(displayedColumns), [displayedColumns]);
-  const header = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderHeader(objectColumns), [objectColumns]);
-  const body = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderBody(dataList, objectColumns), [dataList, objectColumns]);
-  const footer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderFooter(totalData, objectColumns), [totalData, objectColumns]);
+  const objectColumns = _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].toObjectColumns(displayedColumns);
+  const header = _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderHeader(objectColumns);
+  const body = _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderBody(dataList, objectColumns);
+  const footer = _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderFooter(totalData, objectColumns);
   return !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Table"], {
     minWidth: 650,
     autoWidth: true,

@@ -8,11 +8,11 @@ import ActionCreators from '../actions'
 
 export const Content = props => { 
     return (
-        <div>
+        <>
             <GridCaption />
             <GridData />
             <Pager />
-        </div>
+        </>
     )
 }
 

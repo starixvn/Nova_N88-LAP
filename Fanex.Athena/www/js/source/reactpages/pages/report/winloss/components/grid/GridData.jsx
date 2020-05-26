@@ -8,7 +8,7 @@ import GridHelper from '../../libs/helpers/gridHelper';
 import QueryHelper from '../../libs/helpers/queryHelper';
 import CollectionHelper from '../../libs/helpers/collectionHelper';
 
-const MAX_WIDTH_PAGE = 1920;
+const MAX_WIDTH_PAGE = 1660;
 
 export const GridData = props => {
 

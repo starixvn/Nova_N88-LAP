@@ -8,7 +8,7 @@ import GridHelper from '../../libs/helpers/gridHelper';
 import QueryHelper from '../../libs/helpers/queryHelper';
 import CollectionHelper from '../../libs/helpers/collectionHelper';
 
-const MAX_WIDTH_PAGE = 1660;
+const MAX_WIDTH_PAGE = 1920;
 
 export const GridData = props => {
 
@@ -44,10 +44,10 @@ export const GridData = props => {
         fetchReportData(params, QueryHelper.callBackToUpdateGridOption(pageIndex, pageSize));
     })
 
-    const objectColumns = useMemo(() => GridHelper.toObjectColumns(displayedColumns), [displayedColumns]);
-    const header = useMemo(() => GridHelper.renderHeader(objectColumns), [objectColumns]);
-    const body = useMemo(() => GridHelper.renderBody(dataList, objectColumns), [dataList, objectColumns]);
-    const footer = useMemo(() => GridHelper.renderFooter(totalData, objectColumns), [totalData, objectColumns]);
+    const objectColumns = GridHelper.toObjectColumns(displayedColumns);
+    const header = GridHelper.renderHeader(objectColumns);
+    const body = GridHelper.renderBody(dataList, objectColumns);
+    const footer = GridHelper.renderFooter(totalData, objectColumns);
 
     return (
         !isLoading && <React.Fragment>

@@ -44,13 +44,13 @@ export const GridData = props => {
         fetchReportData(params, QueryHelper.callBackToUpdateGridOption(pageIndex, pageSize));
     })
 
-    const objectColumns = GridHelper.toObjectColumns(displayedColumns);
-    const header = GridHelper.renderHeader(objectColumns);
-    const body = GridHelper.renderBody(dataList, objectColumns);
-    const footer = GridHelper.renderFooter(totalData, objectColumns);
+    const objectColumns = useMemo(() => GridHelper.toObjectColumns(displayedColumns), [displayedColumns]);
+    const header = useMemo(() => GridHelper.renderHeader(objectColumns), [objectColumns]);
+    const body = useMemo(() => GridHelper.renderBody(dataList, objectColumns), [dataList, objectColumns]);
+    const footer = useMemo(() => GridHelper.renderFooter(totalData, objectColumns), [totalData, objectColumns]);
 
     return (
-        !isLoading && <React.Fragment>
+       <React.Fragment>
             <Table minWidth={650}
                 autoWidth={true}
                 maxWidth={MAX_WIDTH}

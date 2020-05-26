@@ -74,7 +74,8 @@
         public ActionResult SignIn()
         {
             SetErrorForView(0, string.Empty);
-			AssignLoginInfoToViewBag();            return View("~/Views/Desktop/Authorization/SignIn.cshtml");
+            AssignLoginInfoToViewBag();
+            return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
 
         [CheckUMFilter]

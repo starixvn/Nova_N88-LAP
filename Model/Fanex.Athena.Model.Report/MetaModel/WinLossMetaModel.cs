@@ -5,7 +5,7 @@ namespace Fanex.Athena.Model.Report.MetaModel
 {
     public class WinLossMetaModel : IMetaModelValidation, IMetaModelLicenseeId
     {
-        private const int DefaultPageSize = 10;
+        private const int DefaultPageSize = 500;
         private const int MaxPageSize = 2000;
 
         public WinLossMetaModel()

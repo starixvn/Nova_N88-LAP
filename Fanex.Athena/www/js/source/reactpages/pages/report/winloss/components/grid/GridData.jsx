@@ -50,7 +50,7 @@ export const GridData = props => {
     const footer = useMemo(() => GridHelper.renderFooter(totalData, objectColumns), [totalData, objectColumns]);
 
     return (
-       <React.Fragment>
+       !isLoading && <React.Fragment>
             <Table minWidth={650}
                 autoWidth={true}
                 maxWidth={MAX_WIDTH}

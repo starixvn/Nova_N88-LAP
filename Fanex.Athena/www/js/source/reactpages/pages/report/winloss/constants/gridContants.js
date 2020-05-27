@@ -35,9 +35,9 @@ export const dataColumns = {
 
 export const defaultPagingOption =  {
     PageIndex: 1,
-    PageSize: 10,
+    PageSize: 500,
     TotalItem: 0,
-    PageList: [10, 50, 100, 150, 200]
+    PageList: [500, 1000, 1500, 2000]
 }
 
 export const defaultSortOption = {

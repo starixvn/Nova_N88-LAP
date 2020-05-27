@@ -4432,7 +4432,7 @@ const GridData = props => {
   const header = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderHeader(objectColumns), [objectColumns]);
   const body = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderBody(dataList, objectColumns), [dataList, objectColumns]);
   const footer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderFooter(totalData, objectColumns), [totalData, objectColumns]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Table"], {
+  return !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Table"], {
     minWidth: 650,
     autoWidth: true,
     maxWidth: MAX_WIDTH,
@@ -4794,9 +4794,9 @@ const dataColumns = {
 };
 const defaultPagingOption = {
   PageIndex: 1,
-  PageSize: 10,
+  PageSize: 500,
   TotalItem: 0,
-  PageList: [10, 50, 100, 150, 200]
+  PageList: [500, 1000, 1500, 2000]
 };
 const defaultSortOption = {
   sortBy: null,

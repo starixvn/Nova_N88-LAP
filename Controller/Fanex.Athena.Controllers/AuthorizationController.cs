@@ -1,20 +1,5 @@
 ﻿namespace Fanex.Athena.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Web;
-    using System.Web.Caching;
-    using System.Web.Mvc;
-    using System.Web.Security;
-    using System.Web.UI;
     using Extension.Utility.Interfaces;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth;
@@ -31,6 +16,21 @@
     using ONEbook.UM.Filters;
     using ONEbook.UM.Services;
     using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Web;
+    using System.Web.Caching;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using System.Web.UI;
 
     public class AuthorizationController : CultureBaseController
     {
@@ -73,21 +73,8 @@
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult SignIn()
         {
-            var requestHost = Request.Url.AbsoluteUri;
-
-            var isInternalDomain = requestHost.Contains(AppSettingInstance.GetValue("InternalSubDomain"));
-
-            var currentLicenseeId = AppSettingInstance.LicenseeId;
-
-            if (!isInternalDomain)
-            {
-                return RedirectToAction("LocationRestriction", "Utility");
-            }
-
             SetErrorForView(0, string.Empty);
-            ViewBag.LogInToken = CreateToken();
-            ViewBag.LogoLoginUrl = $"/www/assets/images/logo-login-{currentLicenseeId}.svg";
-            ViewBag.Title = $"{siteNameList[currentLicenseeId]} MPA Site";
+            AssignLoginInfoToViewBag();
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
 
@@ -132,7 +119,6 @@
                             if (HasAnyPermission(user.Id))
                             {
                                 CreateSession(user, onUserId);
-                                CreateAuthInfo(user, onUserId);
 
                                 return RedirectToAction("Index", "Home");
                             }
@@ -153,11 +139,7 @@
                 }
             }
 
-            var currentLicenseeId = AppSettingInstance.LicenseeId;
-
-            ViewBag.LogInToken = CreateToken();
-            ViewBag.LogoLoginUrl = $"/www/assets/images/logo-login-{currentLicenseeId}.svg";
-            ViewBag.Title = $"{siteNameList[currentLicenseeId]} MPA Site";
+            AssignLoginInfoToViewBag();
 
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
         }
@@ -187,6 +169,13 @@
             }
 
             return new RedirectResult("~/Auth/Index");
+        }
+
+        private void AssignLoginInfoToViewBag()
+        {
+            ViewBag.LogInToken = CreateToken();
+            ViewBag.LicenseeId = AppSettingInstance.LicenseeId;
+            ViewBag.Title = $"{siteNameList[AppSettingInstance.LicenseeId]} MPA Site";
         }
 
         private int SSOLogin(int userId, int onuserId)

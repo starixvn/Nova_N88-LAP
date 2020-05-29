@@ -13,9 +13,9 @@
     [N88Auth(FunctionKey = PermissionKeys.ReportLicenseeWinLoss, Policy = Policy.Read)]
     public class PromotionPrizeReportController : CultureBaseController
     {
-        private readonly IReportAPIClient _reportAPIClient;
+        private readonly IReportApiClient _reportAPIClient;
 
-        public PromotionPrizeReportController(IReportAPIClient reportAPIClient)
+        public PromotionPrizeReportController(IReportApiClient reportAPIClient)
         {
             _reportAPIClient = reportAPIClient;
         }

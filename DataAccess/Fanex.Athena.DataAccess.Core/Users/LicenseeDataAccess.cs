@@ -1,9 +1,10 @@
 ﻿namespace Fanex.Athena.DataAccess.Core.Users
 {
-    using System;
     using Fanex.Athena.DataAccess.Core;
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Common;
+    using System;
+    using System.Collections.Generic;
 
     public class LicenseeDataAccess : BaseDataAccess, ILicenseeDataAccess
     {

@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Web.SessionState;
     using Fanex.Athena.Model.Core.MetaModel.Product;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Model.Core.DTO.Common;
     using ONEbook.UM.Filters;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.SessionState;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
@@ -16,6 +16,14 @@
         public const int PageSizeExcel = int.MaxValue - 1000;
 
         public IProductService ProductServiceInstance { get; set; }
+
+        protected IDictionary<int, string> CurrencyList => SessionServiceInstance.UserSession.CurrencyList;
+
+        protected string DefaultBaseCurrency => SessionServiceInstance.UserSession.DefaultBaseCurrency;
+
+        protected string LicenseeName => SessionServiceInstance.LicenseeSession.LicenseeName;
+
+        protected int LicenseeId => SessionServiceInstance.LicenseeSession.LicenseeId;
 
         protected static IList<ProductOption> ToProductOptions(IEnumerable<Product> productList)
         {

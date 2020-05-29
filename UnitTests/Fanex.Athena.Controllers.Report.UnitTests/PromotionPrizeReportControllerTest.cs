@@ -13,14 +13,14 @@
 
     public class PromotionPrizeReportControllerTest : CultureBaseControllerHelperTest
     {
-        private IReportAPIClient _reportAPIClient;
+        private IReportApiClient _reportAPIClient;
 
         [OneTimeSetUp]
         public override void FixtureSetUp()
         {
             base.FixtureSetUp();
 
-            _reportAPIClient = Substitute.For<IReportAPIClient>();
+            _reportAPIClient = Substitute.For<IReportApiClient>();
 
             SetUpDefaultFakeData();
         }

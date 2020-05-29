@@ -138,6 +138,7 @@
     <Compile Include="Result\ResultKenoReportController.cs" />
     <Compile Include="Result\ResultPopup\VirtualGamesResultPopupController.cs" />
     <Compile Include="Result\ResultReportController.cs" />
+    <Compile Include="WinLossReportController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -157,7 +157,7 @@
                         FunctionId = function.Function.Id,
                         FunctionKey = function.Function.Key,
                         Policy = function.Policy,
-                        ParentId = function.Function.Parent != null ? function.Function.Parent.Id : 0
+                        ParentId = function.Function.Parent?.Id ?? 0
                     });
                 }
             });

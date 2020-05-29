@@ -21,7 +21,7 @@
     [TestFixture]
     public class CustomerWinLossReportControllerTest : CultureBaseControllerHelperTest
     {
-        private IReportAPIClient _reportApiClient;
+        private IReportApiClient _reportApiClient;
 
         private const int TimeOutInSecond = 180;
 
@@ -125,7 +125,7 @@
                 FunctionNames.CustomerWinLoss).Returns(expectedProductAccess ?? new ProductAccess(new List<Product>()));
 
             var licenseeSettingService = stubLicenseeSettingService ?? Substitute.For<ILicenseeSettingService>();
-            _reportApiClient = Substitute.For<IReportAPIClient>();
+            _reportApiClient = Substitute.For<IReportApiClient>();
 
             return new CustomerWinLossReportController(reportSettingService, _reportApiClient)
             {

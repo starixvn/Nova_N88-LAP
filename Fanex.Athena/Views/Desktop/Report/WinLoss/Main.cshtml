@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = ViewResources.Report + " - " + ViewResources.WinLoss;
+    Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+}
+
+@using Fanex.Athena.Model.Core.DataDomain
+
+@model Fanex.Athena.Model.Report.ViewModel.WinLossViewModel
+
+@{
+    var baseCurrencyList = SystemConstants.BaseCurrencyList.Select(c => new
+    {
+        value = c.Value,
+        label = c.Value
+    }).ToList();
+}
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/report/winloss.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/report/winloss.chunk.js")"></script>
+}
+
+@section globaljscode{
+    window.initialState = {
+    selectedDateType: 1,
+    dateRange: { fromDate: '@Model.FromDate.ToString("MM/dd/yyyy")', toDate: '@Model.ToDate.ToString("MM/dd/yyyy")' },
+    isExcludeTest: true,
+    noDraw: true,
+    isLoading: false,
+    selectedBaseCurrency: '@Model.BaseCurrency',
+    selectedCurrency: '@string.Join(",", Model.TpCurrencies.Select(x => x.ID).ToArray())',
+    selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
+    username: "",
+    };
+
+    window._AppData = {
+    dateConstraint: {
+    limitedMonthRange: @Model.LimitMonthRange,
+    minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
+    maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
+    },
+
+    productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
+    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+    currencyList: @Html.Raw(Model.TpCurrencies.Select(x => new { key = x.ID, value = x.Name, status = true }).ToJson()),
+    }
+
+}
+<div id="app-container">
+</div>

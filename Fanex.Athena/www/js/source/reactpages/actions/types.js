@@ -44,3 +44,5 @@ export const SET_REPORT_TITLE = "SET_REPORT_TITLE"
 
 /* Live Status  */
 export const SET_PAGING_OPTION = 'SET_PAGING_OPTION';
+
+export const SET_SORT_OPTION = 'SET_SORT_OPTION';

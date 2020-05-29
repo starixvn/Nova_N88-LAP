@@ -1,16 +1,18 @@
 ﻿namespace Fanex.Athena.Api.Base
 {
+    using Fanex.Athena.Service.Core.Common.Interfaces;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+    using NPOI.SS.UserModel;
+    using ONEbook.UM.Filters;
     using System;
-    using System.Collections.Generic;
+    using System.IO;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Web.Http;
-    using Fanex.Athena.Service.Core.Common.Interfaces;
-    using Fanex.Athena.Service.Core.Users.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using NPOI.SS.UserModel;
-    using ONEbook.UM.Filters;
 
     [CheckUMFilter]
     [XFrameOptionApi]
@@ -23,7 +25,7 @@
             _langService = languageService ?? throw new ArgumentNullException(nameof(languageService));
         }
 
-        protected IDictionary<int, string> UserCurrencyList => SessionService.UserSession.CurrencyList;
+        protected string Language => SessionService.UserSession.Language;
 
         public IProductService ProductService { get; set; }
         public ISessionService SessionService { get; set; }
@@ -58,11 +60,35 @@
             return result;
         }
 
+        protected internal virtual HttpResponseMessage ToStreamResponse(Stream stream, string mediaType, string fileName = default)
+        {
+            var result = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StreamContent(stream)
+            };
+
+            result.Headers.TransferEncodingChunked = true;
+
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = fileName
+            };
+
+            return result;
+        }
+
         protected override void Initialize(System.Web.Http.Controllers.HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
             var currentLanguage = _langService.GetCurrentLanguage();
             _langService.SetPageCulture(currentLanguage);
         }
+
+        protected internal virtual JsonSerializerSettings DefaultJsonSettings { get; } = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
     }
 }

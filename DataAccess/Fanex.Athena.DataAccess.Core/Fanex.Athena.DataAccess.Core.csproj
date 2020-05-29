@@ -82,10 +82,12 @@
     <Compile Include="Common\Interfaces\IProductDataAccess.cs" />
     <Compile Include="Common\Interfaces\ISportTypeDataAccess.cs" />
     <Compile Include="Common\CurrencyDataAccess.cs" />
+    <Compile Include="Common\Interfaces\ITpDataAccess.cs" />
     <Compile Include="Common\LeagueDataAccess.cs" />
     <Compile Include="Common\MatchDataAccess.cs" />
     <Compile Include="Common\ProductDataAccess.cs" />
     <Compile Include="Common\SportTypeDataAccess.cs" />
+    <Compile Include="Common\TpDataAccess.cs" />
     <Compile Include="Configuration\BalanceUpDataAccess.cs" />
     <Compile Include="Configuration\Interfaces\IBalanceUpDataAccess.cs" />
     <Compile Include="Configuration\Interfaces\IMoveBetDataAccess.cs" />

@@ -5,10 +5,11 @@ import { defaultSortOption } from '../../constants/gridContants';
 
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
-         selectedProduct, selectedDateType, isExcludeTest, noDraw, dateRange, selectedGroupByOption }) {
+         selectedProduct, selectedDateType, isExcludeTest, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption }) {
         return {
             ...requestParam,
             ...{
+                UserNameFilterId: userNameFilterOption,
                 username, 
                 currencyIdList: selectedCurrency,
                 baseCurrency: selectedBaseCurrency,
@@ -16,6 +17,7 @@ export default class QueryHelper {
                 dateType: selectedDateType,
                 isIncludedTestData: !isExcludeTest, 
                 isNoDrawTicket: noDraw,
+                drilldownInOriginalCurrency: drilldownInOriginalCurrency,
                 fromDate: Site.convertDateToString(dateRange.fromDate),
                 toDate: Site.convertDateToString(dateRange.toDate),
                 groupBy: selectedGroupByOption

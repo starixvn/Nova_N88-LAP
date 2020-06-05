@@ -8,6 +8,8 @@
 @import "../../../components/react-grid";
 @import "../../../components/paging";
 @import "../../../components/switch";
+@import "../../../components/dropdown";
+@import "../../../components/dropdownlabel";
 @import "../../../components/alert/index";
 
 .winloss-report {
@@ -89,8 +91,21 @@
         }
     }
 
+    .search-option {
+        [type="radio"]:not(:checked),
+        [type="radio"]:checked {
+            position: relative;
+            left: 0;
+            opacity: 1; 
+        }
+    }
+
     .note {
         color: $red;
+    }
+
+    .material-icons {
+        font-size: 12px;
     }
 
     .high-light {

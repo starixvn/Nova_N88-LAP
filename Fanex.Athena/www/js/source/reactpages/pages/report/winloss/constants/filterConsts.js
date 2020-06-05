@@ -21,6 +21,12 @@ export const PagingGroups = [
 ]
 
 export const DateFilterTypes = [
-    { value: 1, label: LangHelper.getSingleResource('SettledDate')},
+    { value: 1, label: LangHelper.getSingleResource('SettledDate') },
     { value: 2, label: LangHelper.getSingleResource('CreatedDate') }
+];
+
+export const UserNameFilterOptions = [
+    { value: 1, label: LangHelper.getSingleResource('UserName') },
+    { value: 2, label: LangHelper.getSingleResource('SabaId') },
+    { value: 3, label: LangHelper.getSingleResource('SabaSystemId') },
 ];

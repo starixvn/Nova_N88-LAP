@@ -1,4 +1,4 @@
-import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION  } from './types';
+import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION } from './types';
 import { setDateRange } from '@jsroot/actions/dateRangeAction';
 import { setSelectedCurrency } from '@jsroot/actions/currencyAction';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
@@ -10,6 +10,20 @@ const setNoDraw = isNoDraw => {
     return {
         type: SET_NO_DRAW,
         data: isNoDraw
+    }
+}
+
+const setDrilldownInOriginalCurrency = isOriginalCurrency => {
+    return {
+        type: DRILLDOWN_IN_ORIGINAL_CURRENCY,
+        data: isOriginalCurrency
+    }
+}
+
+const setUserNameFilterOption = userNameOption => {
+    return {
+        type: USERNAME_FILTER_OPTION,
+        data: userNameOption
     }
 }
 
@@ -31,10 +45,12 @@ export default {
     setSelectedDateType,
     setDateRange,
     setSelectedProduct,
+    setUserNameFilterOption,
     setUsername,
     setSelectedCurrency,
     setSelectedBaseCurrency,
     changeIsExcludeTest,
     setNoDraw,
+    setDrilldownInOriginalCurrency,
     setSelectedGroupByOption
 }

@@ -4348,7 +4348,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("DisplayCurrency")), this._renderBaseCurrencySelectList()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2"
+      className: "col-12 col-md-3 col-sm-2 col-lg-2 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -4357,7 +4357,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       onChange: checked => this.props.changeIsExcludeTest(!checked),
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("IncludeTestData")
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-2 col-sm-2 col-lg-1 col-xl-2"
+      className: "col-12 col-md-3 col-sm-2 col-lg-1 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -4366,7 +4366,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       onChange: checked => this.props.setNoDraw(checked),
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("NoDraw")
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-2 col-sm-2 col-lg-4 col-xl-2"
+      className: "col-12 col-md-4 col-sm-2 col-lg-4 col-xl-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -5271,45 +5271,45 @@ const defaultDisplayedColumns = [{
 const dataColumns = {
   [columnKeys.group]: {
     sortBy: columnKeys.group,
-    colWidth: 100,
+    colWidth: 80,
     className: "left-align"
   },
   [columnKeys.sabaId]: {
-    colWidth: 100,
+    colWidth: 80,
     className: "left-align"
   },
   [columnKeys.sabaSystemId]: {
-    colWidth: 100,
+    colWidth: 80,
     className: "left-align"
   },
   [columnKeys.turnover]: {
     sortBy: columnKeys.turnover,
-    colWidth: 100,
+    colWidth: 70,
     className: "right-align"
   },
   [columnKeys.ggr]: {
     sortBy: columnKeys.ggr,
-    colWidth: 100,
+    colWidth: 70,
     className: "right-align"
   },
   [columnKeys.betCount]: {
     sortBy: columnKeys.betCount,
-    colWidth: 100,
+    colWidth: 50,
     className: "right-align"
   },
   [columnKeys.avgBetAmount]: {
     sortBy: columnKeys.avgBetAmount,
-    colWidth: 100,
+    colWidth: 70,
     className: "right-align"
   },
   [columnKeys.uniquePlayers]: {
     sortBy: columnKeys.uniquePlayers,
-    colWidth: 100,
+    colWidth: 50,
     className: "right-align"
   },
   [columnKeys.margin]: {
     sortBy: columnKeys.margin,
-    colWidth: 100,
+    colWidth: 50,
     className: "right-align"
   }
 };

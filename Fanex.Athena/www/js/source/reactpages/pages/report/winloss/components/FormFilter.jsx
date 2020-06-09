@@ -13,7 +13,7 @@ import ActionCreators from '../actions'
 import GroupFilter from './filter/GroupFilter';
 import QueryHelper from '../libs/helpers/queryHelper';
 import CollectionHelper from '../libs/helpers/collectionHelper';
-import { DateFilterTypes, UserNameFilterOptions } from '../constants/filterConsts';
+import { DateFilterTypeOptions, UserNameFilterOptions } from '../constants/filterConsts';
 import { defaultPagingOption } from '../constants/gridContants';
 import SelectOption from '../components/filter/SelectOption';
 
@@ -70,15 +70,6 @@ export class FormFilter extends PureComponent {
         );
     }
 
-    _renderDateTypeSelectList() {
-        return (
-            <Select instanceId="ddlDateType"
-                value={this.props.selectedDateType}
-                options={DateFilterTypes}
-                onChange={(item) => this.props.setSelectedDateType(item.value)} />
-        );
-    }
-
     _renderProductSelectList() {
         const productOptions = AppData.productOptions;
         return productOptions && productOptions.length ? (
@@ -99,7 +90,8 @@ export class FormFilter extends PureComponent {
         return <>
             <label className="label-text">
                 <span>{optionName.label}</span>
-                {<SelectOption value={userNameFilterOption}
+                {<SelectOption name={'userNameInputSearch'}
+                    value={userNameFilterOption}
                     onChange={value => setUserNameFilterOption(value)}
                     options={UserNameFilterOptions} />}
             </label>
@@ -107,6 +99,21 @@ export class FormFilter extends PureComponent {
                 onSelect={(value) => this.props.setUsername(value)}
                 onInput={(value) => this.props.setUsername(value)}
             />
+        </>
+    }
+    
+    _renderDateFilter() {
+        const { selectedDateType, setSelectedDateType } = this.props;
+        const optionName = DateFilterTypeOptions.find(option => option.value === selectedDateType);
+        return <>
+            <label className="label-text">
+                <span>{optionName.label}</span>
+                {<SelectOption name={'dateTypeFilter'}
+                    value={selectedDateType}
+                    onChange={value => setSelectedDateType(value)}
+                    options={DateFilterTypeOptions} />}
+                {this._renderDateRange()}
+            </label>
         </>
     }
 
@@ -123,8 +130,7 @@ export class FormFilter extends PureComponent {
                 <div className="row">
                     <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
                         <div className="form-group">
-                            {this._renderDateTypeSelectList()}
-                            {this._renderDateRange()}
+                            {this._renderDateFilter()}
                         </div>
                     </div>
                     <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
@@ -160,7 +166,7 @@ export class FormFilter extends PureComponent {
                                 label={LangHelper.getSingleResource("IncludeTestData")} />
                         </div>
                     </div>
-                    <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
+                    <div className="col-12 col-md-2 col-sm-2 col-lg-1 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="NoDraw"
                                 checked={this.props.noDraw}
@@ -168,7 +174,7 @@ export class FormFilter extends PureComponent {
                                 label={LangHelper.getSingleResource("NoDraw")} />
                         </div>
                     </div>
-                    <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
+                    <div className="col-12 col-md-2 col-sm-2 col-lg-4 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="DrilldownInOriginalCurrency"
                                 checked={this.props.drilldownInOriginalCurrency}

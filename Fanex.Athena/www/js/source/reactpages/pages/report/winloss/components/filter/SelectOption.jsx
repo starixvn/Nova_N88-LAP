@@ -2,9 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { DropdownButton, DropdownItem } from '@jsroot/components/dropdown';
 import PropTypes from 'prop-types';
 
-const SearchOption = (props) => {
+const SearchOption = props => {
 
-    const { value, onChange, options, valueField, labelField } = props;
+    const { value, onChange, options, name, valueField, labelField } = props;
     const [isOpen, setIsOpen] = useState(false);
 
     const selectedOption = useMemo(() => options.find(_ => _[valueField] === value), [value]);
@@ -26,25 +26,25 @@ const SearchOption = (props) => {
     const toggleButton = {
         className: 'toggle-outline toggle-outline-light'
     }
-    
-    const renderDropdownList = () => {
+
+    const dropdownList = useMemo(() => {
         return options.map(option => {
-            return <DropdownItem key={`DropdownItem-${option.value}`} tag="div">
-                    <label className="selection-item">
-                        <input type="radio" name="radioOption" id={`radioOption-${option.value}`} value={option[valueField]}
-                            checked={option.value === selectedOption[valueField]} onChange={handleChange} />
+            return <DropdownItem key={`DropdownItem-${name}-${option.value}`} tag="div">
+                <label className="selection-item">
+                    <input type="radio" name={`radioOption-${name}`} value={option[valueField]}
+                        checked={option.value === selectedOption[valueField]} onChange={handleChange} />
                             &nbsp;&nbsp;{option[labelField]}
-                    </label>
-        </DropdownItem>
+                </label>
+            </DropdownItem>
         })
-    }
+    }, [options, selectedOption]);
 
     return (
         <DropdownButton className="search-option" isOpen={isOpen} toggleButton={toggleButton}
             onToggle={handleToggleDropdown}
             buttonLabel={(<i className="material-icons">settings</i>)}
             onClose={handleClose}>
-                {renderDropdownList()}
+            {dropdownList}
         </DropdownButton>
     )
 }
@@ -62,4 +62,4 @@ const defaultProps = {
 SearchOption.propTypes = propTypes;
 SearchOption.defaultProps = defaultProps;
 
-export default React.memo(SearchOption);
+export default SearchOption;

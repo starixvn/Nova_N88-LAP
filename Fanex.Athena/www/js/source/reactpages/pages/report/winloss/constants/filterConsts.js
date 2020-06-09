@@ -1,6 +1,6 @@
 import LangHelper from '@jsroot/lib/langHelper';
 
-const GroupByOptionIds = {
+export const GroupByOptionIds = {
     date: 1,
     month: 2,
     product: 3,
@@ -16,17 +16,13 @@ export const GroupByOptions = [
     { label: LangHelper.getSingleResource("Player"), value: GroupByOptionIds.player }
 ];
 
-export const PagingGroups = [
-    GroupByOptionIds.player
-]
-
-export const DateFilterTypes = [
+export const DateFilterTypeOptions = [
     { value: 1, label: LangHelper.getSingleResource('SettledDate') },
     { value: 2, label: LangHelper.getSingleResource('CreatedDate') }
 ];
 
 export const UserNameFilterOptions = [
-    { value: 1, label: LangHelper.getSingleResource('UserName') },
+    { value: 1, label: LangHelper.getSingleResource('Username') },
     { value: 2, label: LangHelper.getSingleResource('SabaId') },
     { value: 3, label: LangHelper.getSingleResource('SabaSystemId') },
 ];

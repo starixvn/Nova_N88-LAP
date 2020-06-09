@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 5/21/2020 4:50:32 PM
+// Generated at: 6/8/2020 4:08:53 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -330,6 +330,7 @@ window._language_en_US = {
   DrawGame: "Draw Game",
   DrawNoBet: "Draw No Bet",
   DrawNoDraw: "Draw/No Draw",
+  DrilldownInOriginalCurrency: "Display group breakdown in original currency",
   DuplicateMsg: "&apos;{0}&apos; already exists. Please choose another!",
   Edit: "Edit",
   Edit_User_Success: "&apos;{0}&apos; has been updated successfully.",
@@ -737,6 +738,8 @@ window._language_en_US = {
   RNGCasinoUpdateSettingUnAvailableMsg: "RNG Casino Database is not currently available. Please try again later.",
   Running: "Running",
   Sa: "Sa",
+  SabaId: "Saba Id",
+  SabaSystemId: "Saba System Id",
   Saturday: "Saturday",
   Save: "Save",
   SB: "SB",

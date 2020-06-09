@@ -3028,6 +3028,338 @@ function parseInput(input, format, timeOfDay) {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/components/dropdown/DropdownButton.jsx":
+/*!*************************************************************************!*\
+  !*** ./www/js/source/reactpages/components/dropdown/DropdownButton.jsx ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _DropdownToggle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DropdownToggle */ "./www/js/source/reactpages/components/dropdown/DropdownToggle.jsx");
+/* harmony import */ var _DropdownMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DropdownMenu */ "./www/js/source/reactpages/components/dropdown/DropdownMenu.jsx");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+
+
+const DropdownButton = props => {
+  const {
+    className,
+    children,
+    toggleButton,
+    dropdownMenu,
+    isOpen,
+    onOpen,
+    onClose,
+    onToggle,
+    buttonLabel
+  } = props,
+        attrs = _objectWithoutProperties(props, ["className", "children", "toggleButton", "dropdownMenu", "isOpen", "onOpen", "onClose", "onToggle", "buttonLabel"]);
+
+  const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown', className);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
+    className: classes
+  }, attrs), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DropdownToggle__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({}, toggleButton, {
+    onClick: onToggle
+  }), buttonLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DropdownMenu__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({}, dropdownMenu, {
+    isOpen: isOpen,
+    onOpen: onOpen,
+    onClose: onClose
+  }), children));
+};
+
+const propTypes = {
+  buttonLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any,
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node.isRequired,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  isOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  onOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onClose: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onToggle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  toggleButton: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    caret: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+    className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+    onClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+    tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+  dropdownMenu: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node.isRequired,
+    className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  })
+};
+const defaultProps = {
+  toggleButton: {
+    className: 'toggle-default'
+  }
+};
+DropdownButton.propTypes = propTypes;
+DropdownButton.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (DropdownButton);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/dropdown/DropdownItem.jsx":
+/*!***********************************************************************!*\
+  !*** ./www/js/source/reactpages/components/dropdown/DropdownItem.jsx ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+class DropdownItem extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "handleClick", e => {
+      e.preventDefault();
+
+      if (this.props.disabled) {
+        return;
+      }
+
+      this.props.onClick && this.props.onClick(e);
+    });
+  }
+
+  render() {
+    const _this$props = this.props,
+          {
+      tag,
+      className,
+      active
+    } = _this$props,
+          props = _objectWithoutProperties(_this$props, ["tag", "className", "active"]);
+
+    const Tag = tag;
+    const type = Tag === 'button' && props.onClick ? 'button' : undefined;
+    const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-item', className, {
+      disabled: props.disabled,
+      active
+    });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes,
+      type: type
+    }, props));
+  }
+
+}
+
+const propTypes = {
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+  active: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  onClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+};
+const defaultProps = {
+  tag: 'button',
+  disabled: false
+};
+DropdownItem.propTypes = propTypes;
+DropdownItem.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (DropdownItem);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/dropdown/DropdownMenu.jsx":
+/*!***********************************************************************!*\
+  !*** ./www/js/source/reactpages/components/dropdown/DropdownMenu.jsx ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+
+class DropdownMenu extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const _this$props = this.props,
+          {
+      tag,
+      className,
+      isOpen,
+      onOpen,
+      onClose
+    } = _this$props,
+          attrs = _objectWithoutProperties(_this$props, ["tag", "className", "isOpen", "onOpen", "onClose"]);
+
+    const Tag = tag;
+    const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-menu', className);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      isOpening: isOpen,
+      onOpen: onOpen,
+      onClose: onClose
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes
+    }, attrs)));
+  }
+
+}
+
+const propTypes = {
+  tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node.isRequired,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  isOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  onOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onClose: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+const defaultProps = {
+  tag: 'div'
+};
+DropdownMenu.propTypes = propTypes;
+DropdownMenu.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (DropdownMenu);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/dropdown/DropdownToggle.jsx":
+/*!*************************************************************************!*\
+  !*** ./www/js/source/reactpages/components/dropdown/DropdownToggle.jsx ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+const DropdownToggle = props => {
+  const {
+    className,
+    tag,
+    caret
+  } = props,
+        attrs = _objectWithoutProperties(props, ["className", "tag", "caret"]);
+
+  const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-toggle', className, {
+    'site-caret': caret
+  });
+  const Tag = tag;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+    className: classes
+  }, attrs));
+};
+
+const propTypes = {
+  caret: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  onClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+};
+const defaultProps = {
+  caret: true,
+  tag: 'button'
+};
+DropdownToggle.propTypes = propTypes;
+DropdownToggle.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (DropdownToggle);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/dropdown/index.js":
+/*!***************************************************************!*\
+  !*** ./www/js/source/reactpages/components/dropdown/index.js ***!
+  \***************************************************************/
+/*! exports provided: DropdownToggle, DropdownMenu, DropdownItem, DropdownButton */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DropdownToggle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DropdownToggle */ "./www/js/source/reactpages/components/dropdown/DropdownToggle.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DropdownToggle", function() { return _DropdownToggle__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _DropdownMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DropdownMenu */ "./www/js/source/reactpages/components/dropdown/DropdownMenu.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DropdownMenu", function() { return _DropdownMenu__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _DropdownItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DropdownItem */ "./www/js/source/reactpages/components/dropdown/DropdownItem.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DropdownItem", function() { return _DropdownItem__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _DropdownButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DropdownButton */ "./www/js/source/reactpages/components/dropdown/DropdownButton.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DropdownButton", function() { return _DropdownButton__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+
+
+
+
+
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/components/radio/Radio.jsx":
 /*!*************************************************************!*\
   !*** ./www/js/source/reactpages/components/radio/Radio.jsx ***!
@@ -3566,6 +3898,20 @@ const setNoDraw = isNoDraw => {
   };
 };
 
+const setDrilldownInOriginalCurrency = isOriginalCurrency => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["DRILLDOWN_IN_ORIGINAL_CURRENCY"],
+    data: isOriginalCurrency
+  };
+};
+
+const setUserNameFilterOption = userNameOption => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["USERNAME_FILTER_OPTION"],
+    data: userNameOption
+  };
+};
+
 const setSelectedDateType = selectedDateType => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_DATE_TYPE"],
@@ -3584,11 +3930,13 @@ const setSelectedGroupByOption = groupByOption => {
   setSelectedDateType,
   setDateRange: _jsroot_actions_dateRangeAction__WEBPACK_IMPORTED_MODULE_1__["setDateRange"],
   setSelectedProduct: _jsroot_actions_productAction__WEBPACK_IMPORTED_MODULE_5__["setSelectedProduct"],
+  setUserNameFilterOption,
   setUsername: _jsroot_actions_usernameAction__WEBPACK_IMPORTED_MODULE_4__["setUsername"],
   setSelectedCurrency: _jsroot_actions_currencyAction__WEBPACK_IMPORTED_MODULE_2__["setSelectedCurrency"],
   setSelectedBaseCurrency: _jsroot_actions_baseCurrencyAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedBaseCurrency"],
   changeIsExcludeTest: _jsroot_actions_excludeTestAction__WEBPACK_IMPORTED_MODULE_6__["changeIsExcludeTest"],
   setNoDraw,
+  setDrilldownInOriginalCurrency,
   setSelectedGroupByOption
 });
 
@@ -3684,7 +4032,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/actions/types.js ***!
   \************************************************************************/
-/*! exports provided: SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION, SET_DISPLAYED_COLUMNS, SET_REPORT_DATA */
+/*! exports provided: SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION, SET_DISPLAYED_COLUMNS, SET_REPORT_DATA, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3694,11 +4042,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_GROUP_BY_OPTION", function() { return SET_SELECTED_GROUP_BY_OPTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_DISPLAYED_COLUMNS", function() { return SET_DISPLAYED_COLUMNS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_REPORT_DATA", function() { return SET_REPORT_DATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DRILLDOWN_IN_ORIGINAL_CURRENCY", function() { return DRILLDOWN_IN_ORIGINAL_CURRENCY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USERNAME_FILTER_OPTION", function() { return USERNAME_FILTER_OPTION; });
 const SET_SELECTED_DATE_TYPE = 'SET_SELECTED_DATE_TYPE';
 const SET_NO_DRAW = 'SET_NO_DRAW';
 const SET_SELECTED_GROUP_BY_OPTION = 'SET_SELECTED_GROUP_BY_OPTION';
 const SET_DISPLAYED_COLUMNS = 'SET_DISPLAYED_COLUMNS';
 const SET_REPORT_DATA = 'SET_REPORT_DATA';
+const DRILLDOWN_IN_ORIGINAL_CURRENCY = 'DRILLDOWN_IN_ORIGINAL_CURRENCY';
+const USERNAME_FILTER_OPTION = 'USERNAME_FILTER_OPTION';
 
 /***/ }),
 
@@ -3828,7 +4180,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_helpers_collectionHelper__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../libs/helpers/collectionHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/collectionHelper.js");
 /* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
 /* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
+/* harmony import */ var _components_filter_SelectOption__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../components/filter/SelectOption */ "./www/js/source/reactpages/pages/report/winloss/components/filter/SelectOption.jsx");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3912,15 +4266,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     });
   }
 
-  _renderDateTypeSelectList() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      instanceId: "ddlDateType",
-      value: this.props.selectedDateType,
-      options: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_15__["DateFilterTypes"],
-      onChange: item => this.props.setSelectedDateType(item.value)
-    });
-  }
-
   _renderProductSelectList() {
     const productOptions = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_10__["default"].productOptions;
     return productOptions && productOptions.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_4___default.a, {
@@ -3934,6 +4279,41 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     }) : null;
   }
 
+  _renderUserNameInputSearch() {
+    const {
+      userNameFilterOption,
+      setUserNameFilterOption
+    } = this.props;
+    const optionName = _constants_filterConsts__WEBPACK_IMPORTED_MODULE_15__["UserNameFilterOptions"].find(option => option.value === userNameFilterOption);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "label-text"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, optionName.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_filter_SelectOption__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      name: 'userNameInputSearch',
+      value: userNameFilterOption,
+      onChange: value => setUserNameFilterOption(value),
+      options: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_15__["UserNameFilterOptions"]
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_auto_complete__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      onSelect: value => this.props.setUsername(value),
+      onInput: value => this.props.setUsername(value)
+    }));
+  }
+
+  _renderDateFilter() {
+    const {
+      selectedDateType,
+      setSelectedDateType
+    } = this.props;
+    const optionName = _constants_filterConsts__WEBPACK_IMPORTED_MODULE_15__["DateFilterTypeOptions"].find(option => option.value === selectedDateType);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "label-text"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, optionName.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_filter_SelectOption__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      name: 'dateTypeFilter',
+      value: selectedDateType,
+      onChange: value => setSelectedDateType(value),
+      options: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_15__["DateFilterTypeOptions"]
+    }), this._renderDateRange()));
+  }
+
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_6__["default"], {
       className: "page-filter"
@@ -3943,7 +4323,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
-    }, this._renderDateTypeSelectList(), this._renderDateRange())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, this._renderDateFilter())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
@@ -3953,12 +4333,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-      className: "label-text"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("Username")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_auto_complete__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      onSelect: value => this.props.setUsername(value),
-      onInput: value => this.props.setUsername(value)
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, this._renderUserNameInputSearch())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
@@ -3982,7 +4357,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       onChange: checked => this.props.changeIsExcludeTest(!checked),
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("IncludeTestData")
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2"
+      className: "col-12 col-md-2 col-sm-2 col-lg-1 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -3990,6 +4365,15 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       checked: this.props.noDraw,
       onChange: checked => this.props.setNoDraw(checked),
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("NoDraw")
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-12 col-md-2 col-sm-2 col-lg-4 col-xl-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      id: "DrilldownInOriginalCurrency",
+      checked: this.props.drilldownInOriginalCurrency,
+      onChange: checked => this.props.setDrilldownInOriginalCurrency(checked),
+      label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("DrilldownInOriginalCurrency")
     }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_GroupFilter__WEBPACK_IMPORTED_MODULE_12__["default"], {
       isDisabledSubmit: !this.props.selectedCurrency || !this.props.selectedProduct,
       onSubmit: this._handleSubmit
@@ -4009,18 +4393,22 @@ function mapDispatchToProps(dispatch) {
     setSelectedBaseCurrency,
     changeIsExcludeTest,
     setNoDraw,
-    setRequestParam
+    setRequestParam,
+    setDrilldownInOriginalCurrency,
+    setUserNameFilterOption
   } = _actions__WEBPACK_IMPORTED_MODULE_11__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(Object.assign({}, {
     fetchReportData,
     setSelectedDateType,
     setDateRange,
     setSelectedProduct,
+    setUserNameFilterOption,
     setUsername,
     setSelectedCurrency,
     setSelectedBaseCurrency,
     changeIsExcludeTest,
     setNoDraw,
+    setDrilldownInOriginalCurrency,
     setRequestParam
   }), dispatch);
 }
@@ -4035,15 +4423,19 @@ function mapStateToProps(state) {
     selectedBaseCurrency,
     isExcludeTest,
     noDraw,
-    selectedGroupByOption
+    selectedGroupByOption,
+    drilldownInOriginalCurrency,
+    userNameFilterOption
   } = state;
   return Object.assign({}, {
     selectedDateType,
     dateRange,
+    userNameFilterOption,
     username,
     selectedProduct,
     isExcludeTest,
     noDraw,
+    drilldownInOriginalCurrency,
     selectedCurrency,
     selectedBaseCurrency,
     selectedGroupByOption
@@ -4142,6 +4534,95 @@ function mapStateToProps(state) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/winloss/components/filter/SelectOption.jsx":
+/*!******************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/winloss/components/filter/SelectOption.jsx ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/components/dropdown */ "./www/js/source/reactpages/components/dropdown/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+const SearchOption = props => {
+  const {
+    value,
+    onChange,
+    options,
+    name,
+    valueField,
+    labelField
+  } = props;
+  const [isOpen, setIsOpen] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const selectedOption = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => options.find(_ => _[valueField] === value), [value]);
+
+  const handleToggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleChange = event => {
+    let changedValue = event.target.value;
+    changedValue = parseInt(changedValue);
+    onChange && onChange(changedValue);
+  };
+
+  const toggleButton = {
+    className: 'toggle-outline toggle-outline-light'
+  };
+  const dropdownList = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => {
+    return options.map(option => {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], {
+        key: `DropdownItem-${name}-${option.value}`,
+        tag: "div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "selection-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: `radioOption-${name}`,
+        value: option[valueField],
+        checked: option.value === selectedOption[valueField],
+        onChange: handleChange
+      }), "\xA0\xA0", option[labelField]));
+    });
+  }, [options, selectedOption]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_dropdown__WEBPACK_IMPORTED_MODULE_1__["DropdownButton"], {
+    className: "search-option",
+    isOpen: isOpen,
+    toggleButton: toggleButton,
+    onToggle: handleToggleDropdown,
+    buttonLabel: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "material-icons"
+    }, "settings"),
+    onClose: handleClose
+  }, dropdownList);
+};
+
+const propTypes = {
+  valueField: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
+  labelField: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string
+};
+const defaultProps = {
+  valueField: 'value',
+  labelField: 'label'
+};
+SearchOption.propTypes = propTypes;
+SearchOption.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (SearchOption);
 
 /***/ }),
 
@@ -4513,10 +4994,15 @@ const GridRow = props => {
   const hasParent = rowData.parent ? true : false;
   const highLight = hasParent ? ' high-light' : '';
   const groupChildClassName = hasParent ? ' right-align' : '';
+  let objectColumn;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], null, objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].group].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_GroupCell__WEBPACK_IMPORTED_MODULE_3__["default"], {
     rowData: rowData,
     className: highLight + groupChildClassName
-  }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].turnover].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaId]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaId].className + highLight
+  }, rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaId]), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaSystemId]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaSystemId].className + highLight
+  }, rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaSystemId]), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].turnover].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
     value: rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].turnover],
     className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].turnover].className + highLight
   }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].ggr].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -4655,14 +5141,15 @@ function mapStateToProps(state) {
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js ***!
   \*********************************************************************************/
-/*! exports provided: GroupByOptions, PagingGroups, DateFilterTypes */
+/*! exports provided: GroupByOptionIds, GroupByOptions, DateFilterTypeOptions, UserNameFilterOptions */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptionIds", function() { return GroupByOptionIds; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptions", function() { return GroupByOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagingGroups", function() { return PagingGroups; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFilterTypes", function() { return DateFilterTypes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFilterTypeOptions", function() { return DateFilterTypeOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserNameFilterOptions", function() { return UserNameFilterOptions; });
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
 const GroupByOptionIds = {
@@ -4688,13 +5175,22 @@ const GroupByOptions = [{
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("Player"),
   value: GroupByOptionIds.player
 }];
-const PagingGroups = [GroupByOptionIds.player];
-const DateFilterTypes = [{
+const DateFilterTypeOptions = [{
   value: 1,
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SettledDate')
 }, {
   value: 2,
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('CreatedDate')
+}];
+const UserNameFilterOptions = [{
+  value: 1,
+  label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Username')
+}, {
+  value: 2,
+  label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SabaId')
+}, {
+  value: 3,
+  label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SabaSystemId')
 }];
 
 /***/ }),
@@ -4715,9 +5211,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultPagingOption", function() { return defaultPagingOption; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultSortOption", function() { return defaultSortOption; });
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _filterConsts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+
 
 const columnKeys = {
   group: 'group',
+  sabaId: 'sabaId',
+  sabaSystemId: 'sabaSystemId',
   turnover: 'turnover',
   ggr: 'ggr',
   betCount: 'betCount',
@@ -4726,6 +5226,18 @@ const columnKeys = {
   margin: 'margin'
 };
 const displayedColumns = [{
+  key: columnKeys.sabaId,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SabaId'),
+  show: true,
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_1__["GroupByOptionIds"].player],
+  isTotalColumn: true
+}, {
+  key: columnKeys.sabaSystemId,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SabaSystemId'),
+  show: true,
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_1__["GroupByOptionIds"].player],
+  isTotalColumn: true
+}, {
   key: columnKeys.turnover,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Turnover'),
   show: true
@@ -4753,11 +5265,20 @@ const displayedColumns = [{
 const defaultDisplayedColumns = [{
   key: columnKeys.group,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Group'),
-  show: true
+  show: true,
+  isTotalColumn: true
 }];
 const dataColumns = {
   [columnKeys.group]: {
     sortBy: columnKeys.group,
+    colWidth: 100,
+    className: "left-align"
+  },
+  [columnKeys.sabaId]: {
+    colWidth: 100,
+    className: "left-align"
+  },
+  [columnKeys.sabaSystemId]: {
     colWidth: 100,
     className: "left-align"
   },
@@ -4963,7 +5484,7 @@ class GridHelper {
       style: {
         height: '32px'
       }
-    }, (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].group]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].group], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].margin]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].margin], objectColumn.name));
+    }, (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].group]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].group], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaId]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaId], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaSystemId]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaSystemId], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].margin]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].margin], objectColumn.name));
   }
 
   static renderBody(dataList, objectColumns) {
@@ -4975,12 +5496,20 @@ class GridHelper {
   }
 
   static renderFooter(totalData, objectColumns) {
+    const totalColumns = this.getTotalColumns(objectColumns);
+    let objectColumn;
     const row = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], {
       className: "fixed-table-grant-total",
       key: "totalRow"
     }, objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].group].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-      className: "center-align"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("Total")), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      key: "total",
+      className: "center-align",
+      colSpan: totalColumns.length
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("Total")), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaId]) && !objectColumn.isTotalColumn && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaId].className
+    }), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaSystemId]) && !objectColumn.isTotalColumn && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaSystemId].className
+    }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
       value: totalData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover],
       className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover].className
     }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -5004,6 +5533,11 @@ class GridHelper {
     return [row];
   }
 
+  static getTotalColumns(objectColumns) {
+    const totalColumns = Object.values(objectColumns).filter(_ => _.show && _.isTotalColumn);
+    return totalColumns;
+  }
+
   static resetGridDataList(dataList) {
     return dataList.filter(_ => {
       const noParent = !_.parent ? true : false;
@@ -5017,6 +5551,34 @@ class GridHelper {
     return displayedColumns.reduce((accumulator, currentValue) => _objectSpread({}, accumulator, {}, {
       [currentValue.key]: currentValue
     }), {});
+  }
+
+}
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js":
+/*!***********************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GroupHelper; });
+class GroupHelper {
+  static getDislayedColumns(displayedColumns, groupBy) {
+    const displayedAllowCols = displayedColumns.filter(col => {
+      const allowGroups = col.allowGroups;
+
+      if (!allowGroups) {
+        return true;
+      }
+
+      return allowGroups.some(_groupBy => _groupBy === groupBy);
+    });
+    return displayedAllowCols;
   }
 
 }
@@ -5037,11 +5599,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store */ "./www/js/source/reactpages/pages/report/winloss/libs/store.js");
 /* harmony import */ var _actions_gridAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/gridAction */ "./www/js/source/reactpages/pages/report/winloss/actions/gridAction.js");
 /* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
+/* harmony import */ var _helpers_groupHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/groupHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5057,10 +5621,13 @@ class QueryHelper {
     selectedDateType,
     isExcludeTest,
     noDraw,
+    drilldownInOriginalCurrency,
     dateRange,
-    selectedGroupByOption
+    selectedGroupByOption,
+    userNameFilterOption
   }) {
     return _objectSpread({}, requestParam, {}, {
+      userNameFilterId: userNameFilterOption,
       username,
       currencyIdList: selectedCurrency,
       baseCurrency: selectedBaseCurrency,
@@ -5068,6 +5635,7 @@ class QueryHelper {
       dateType: selectedDateType,
       isIncludedTestData: !isExcludeTest,
       isNoDrawTicket: noDraw,
+      drilldownInOriginalCurrency: drilldownInOriginalCurrency,
       fromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__["default"].convertDateToString(dateRange.fromDate),
       toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__["default"].convertDateToString(dateRange.toDate),
       groupBy: selectedGroupByOption
@@ -5081,7 +5649,8 @@ _defineProperty(QueryHelper, "callBackToUpdateGridOption", (pageIndex, pageSize)
     totalRows
   } = response;
   const {
-    pagingOption
+    pagingOption,
+    selectedGroupByOption
   } = _store__WEBPACK_IMPORTED_MODULE_1__["default"].getState();
 
   const newPagingOption = _objectSpread({}, pagingOption, {}, {
@@ -5090,8 +5659,10 @@ _defineProperty(QueryHelper, "callBackToUpdateGridOption", (pageIndex, pageSize)
     TotalItem: totalRows
   });
 
+  const displayedAllowColumns = _helpers_groupHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["displayedColumns"], selectedGroupByOption);
   _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_actions_gridAction__WEBPACK_IMPORTED_MODULE_2__["setPagingOption"])(newPagingOption));
   _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_actions_gridAction__WEBPACK_IMPORTED_MODULE_2__["setSortOption"])(_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["defaultSortOption"]));
+  _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_actions_gridAction__WEBPACK_IMPORTED_MODULE_2__["setDisplayedColumns"])(displayedAllowColumns));
 });
 
 /***/ }),
@@ -5168,11 +5739,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/store */ "./www/js/source/reactpages/lib/store.js");
 /* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers */ "./www/js/source/reactpages/pages/report/winloss/reducers/index.js");
 /* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
+/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+/* harmony import */ var _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../libs/helpers/groupHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -5184,8 +5759,8 @@ const defaultState = _objectSpread({}, window.initialState, {}, {
   requestParam: {},
   pagingOption: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultPagingOption"],
   sortOption: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultSortOption"],
-  selectedGroupByOption: 1,
-  displayedColumns: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["displayedColumns"]
+  selectedGroupByOption: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionIds"].date,
+  displayedColumns: _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["displayedColumns"], _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionIds"].date)
 });
 
 const store = _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].createStore(_reducers__WEBPACK_IMPORTED_MODULE_1__["default"], defaultState);
@@ -5230,6 +5805,18 @@ const noDraw = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__[
   }
 
 });
+const drilldownInOriginalCurrency = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["DRILLDOWN_IN_ORIGINAL_CURRENCY"]](state, action) {
+    return action.data;
+  }
+
+});
+const userNameFilterOption = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["USERNAME_FILTER_OPTION"]](state, action) {
+    return action.data;
+  }
+
+});
 const selectedGroupByOption = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_GROUP_BY_OPTION"]](state, action) {
     return action.data;
@@ -5240,10 +5827,12 @@ const selectedGroupByOption = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPOR
   selectedDateType,
   dateRange: _jsroot_reducers_dateRangeReducer__WEBPACK_IMPORTED_MODULE_2__["dateRange"],
   selectedProduct: _jsroot_reducers_productReducer__WEBPACK_IMPORTED_MODULE_6__["selectedProduct"],
+  userNameFilterOption,
   username: _jsroot_reducers_usernameReducer__WEBPACK_IMPORTED_MODULE_5__["username"],
   selectedCurrency: _jsroot_reducers_currencyReducer__WEBPACK_IMPORTED_MODULE_3__["selectedCurrency"],
   selectedBaseCurrency: _jsroot_reducers_baseCurrencyReducer__WEBPACK_IMPORTED_MODULE_4__["selectedBaseCurrency"],
   noDraw,
+  drilldownInOriginalCurrency,
   isExcludeTest: _jsroot_reducers_excludeTestReducer__WEBPACK_IMPORTED_MODULE_7__["isExcludeTest"],
   selectedGroupByOption
 });

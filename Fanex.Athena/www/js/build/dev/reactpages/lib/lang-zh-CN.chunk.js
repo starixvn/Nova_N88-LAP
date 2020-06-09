@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 5/21/2020 4:50:32 PM
+// Generated at: 6/8/2020 4:08:53 PM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -293,6 +293,7 @@ window._language_zh_CN = {
   DrawGame: "和局",
   DrawNoBet: "获胜球队(平局退款)",
   DrawNoDraw: "平局/不是和局",
+  DrilldownInOriginalCurrency: "Display group breakdown in original currency",
   Edit: "编辑",
   EditAccount: "编辑账号",
   Editedby: "编辑者",
@@ -623,6 +624,8 @@ window._language_zh_CN = {
   RNGCasinoUpdateSettingUnAvailableMsg: "RNG Casino Database is not currently available. Please try again later.",
   Running: "进行中",
   Sa: "Sa",
+  SabaId: "Saba Id",
+  SabaSystemId: "Saba System Id",
   Saturday: "星期日",
   Save: "保存",
   SB: "体育博彩",

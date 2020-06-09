@@ -1,6 +1,8 @@
 import Store from '@jsroot/lib/store';
 import reducers from '../reducers';
 import { displayedColumns, defaultPagingOption, defaultSortOption } from '../constants/gridContants';
+import { GroupByOptionIds  } from '../constants/filterConsts';
+import GroupHelper from '../libs/helpers/groupHelper';
 
 const defaultState = {
    ...window.initialState, 
@@ -10,8 +12,8 @@ const defaultState = {
      requestParam: {},
      pagingOption: defaultPagingOption,
      sortOption: defaultSortOption,
-     selectedGroupByOption: 1,
-     displayedColumns: displayedColumns,
+     selectedGroupByOption: GroupByOptionIds.date,
+     displayedColumns: GroupHelper.getDislayedColumns(displayedColumns, GroupByOptionIds.date)
    }
 }
 

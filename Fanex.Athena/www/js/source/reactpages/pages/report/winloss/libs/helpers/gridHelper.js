@@ -11,6 +11,8 @@ export default class GridHelper {
         return (
             <HeaderRow style={{ height: '32px' }}>
                 {(objectColumn = objectColumns[columnKeys.group]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.sabaId]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.sabaId]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.sabaSystemId]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.sabaSystemId]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.turnover]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.turnover]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.ggr]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.ggr]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.betCount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.betCount]}>{objectColumn.name}</HeaderCell>}
@@ -24,11 +26,17 @@ export default class GridHelper {
     static renderBody(dataList, objectColumns) {
         return dataList.map(rowData => <GridRow key={`row-${rowData[columnKeys.group]}-${rowData.parent || ''}`} rowData={rowData} objectColumns={objectColumns} />);
     }
-
+    
     static renderFooter(totalData, objectColumns) {
+        const totalColumns = this.getTotalColumns(objectColumns);
+        let objectColumn;
         const row = (<Row className="fixed-table-grant-total" key="totalRow">
-            {objectColumns[columnKeys.group].show && <Cell className="center-align">
+            {objectColumns[columnKeys.group].show && <Cell key="total" className="center-align" colSpan={totalColumns.length} >
                 {LangHelper.getSingleResource("Total")}
+            </Cell>}
+            {(objectColumn = objectColumns[columnKeys.sabaId]) && !objectColumn.isTotalColumn && objectColumn.show && <Cell className={dataColumns[columnKeys.sabaId].className}  >
+            </Cell>}
+            {(objectColumn = objectColumns[columnKeys.sabaSystemId]) && !objectColumn.isTotalColumn && objectColumn.show  && <Cell className={dataColumns[columnKeys.sabaSystemId].className}  >
             </Cell>}
             {objectColumns[columnKeys.turnover].show && <DecimalCell value={totalData[columnKeys.turnover]} className={dataColumns[columnKeys.turnover].className} />}
             {objectColumns[columnKeys.ggr].show && <DecimalCell value={totalData[columnKeys.ggr]} className={dataColumns[columnKeys.ggr].className} />}
@@ -42,6 +50,11 @@ export default class GridHelper {
         </Row>)
 
         return [row];
+    }
+
+    static getTotalColumns(objectColumns) {
+        const totalColumns = Object.values(objectColumns).filter(_ => _.show && _.isTotalColumn);
+        return totalColumns;
     }
 
     static resetGridDataList(dataList) {

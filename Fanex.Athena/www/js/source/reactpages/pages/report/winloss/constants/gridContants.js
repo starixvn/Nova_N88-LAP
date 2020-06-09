@@ -1,7 +1,10 @@
 import LangHelper from '@jsroot/lib/langHelper';
+import { GroupByOptionIds } from './filterConsts';
 
 export const columnKeys = {
     group: 'group',
+    sabaId: 'sabaId',
+    sabaSystemId: 'sabaSystemId',
     turnover: 'turnover',
     ggr: 'ggr',
     betCount: 'betCount',
@@ -11,6 +14,8 @@ export const columnKeys = {
 }
 
 export const displayedColumns = [
+    { key: columnKeys.sabaId, name: LangHelper.getSingleResource('SabaId'), show: true, allowGroups: [ GroupByOptionIds.player ], isTotalColumn: true },
+    { key: columnKeys.sabaSystemId, name: LangHelper.getSingleResource('SabaSystemId'), show: true, allowGroups: [ GroupByOptionIds.player ], isTotalColumn: true },
     { key: columnKeys.turnover, name: LangHelper.getSingleResource('Turnover'), show: true },
     { key: columnKeys.ggr, name: LangHelper.getSingleResource('GGR'), show: true },
     { key: columnKeys.betCount, name: LangHelper.getSingleResource('BetCount'), show: true },
@@ -20,11 +25,13 @@ export const displayedColumns = [
 ]
 
 export const defaultDisplayedColumns = [
-    { key: columnKeys.group, name: LangHelper.getSingleResource('Group'), show: true },
+    { key: columnKeys.group, name: LangHelper.getSingleResource('Group'), show: true, isTotalColumn: true },
 ]
 
 export const dataColumns = {
     [columnKeys.group]: { sortBy: columnKeys.group, colWidth: 100, className: "left-align" },
+    [columnKeys.sabaId]: { colWidth: 100, className: "left-align" },
+    [columnKeys.sabaSystemId]: { colWidth: 100, className: "left-align" },
     [columnKeys.turnover]: { sortBy: columnKeys.turnover, colWidth: 100, className: "right-align" },
     [columnKeys.ggr]: { sortBy: columnKeys.ggr, colWidth: 100, className: "right-align" },
     [columnKeys.betCount]: { sortBy: columnKeys.betCount, colWidth: 100, className:"right-align" },

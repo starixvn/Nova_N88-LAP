@@ -2845,9 +2845,21 @@
   <data name="UniquePlayers" xml:space="preserve">
     <value>#Unique Players</value>
     <comment>#133254</comment>
-  </data>  
+  </data>
   <data name="IncludeTestData" xml:space="preserve">
     <value>Include Test Data</value>
     <comment>133254</comment>
+  </data>
+  <data name="DrilldownInOriginalCurrency" xml:space="preserve">
+    <value>Display group breakdown in original currency</value>
+    <comment>135372</comment>
+  </data>
+  <data name="SabaId" xml:space="preserve">
+    <value>Saba Id</value>
+    <comment>135372</comment>
+  </data>
+  <data name="SabaSystemId" xml:space="preserve">
+    <value>Saba System Id</value>
+    <comment>135372</comment>
   </data>
 </root>

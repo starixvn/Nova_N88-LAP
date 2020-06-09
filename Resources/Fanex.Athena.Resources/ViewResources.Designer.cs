@@ -2176,6 +2176,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display group breakdown in original currency.
+        /// </summary>
+        public static string DrilldownInOriginalCurrency {
+            get {
+                return ResourceManager.GetString("DrilldownInOriginalCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; already exists. Please choose another!.
         /// </summary>
         public static string DuplicateMsg {
@@ -5835,6 +5844,24 @@ namespace Fanex.Athena.Resources {
         public static string Sa {
             get {
                 return ResourceManager.GetString("Sa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saba Id.
+        /// </summary>
+        public static string SabaId {
+            get {
+                return ResourceManager.GetString("SabaId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saba System Id.
+        /// </summary>
+        public static string SabaSystemId {
+            get {
+                return ResourceManager.GetString("SabaSystemId", resourceCulture);
             }
         }
         

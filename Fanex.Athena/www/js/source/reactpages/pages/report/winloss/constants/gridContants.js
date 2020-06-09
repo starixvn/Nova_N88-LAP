@@ -29,15 +29,15 @@ export const defaultDisplayedColumns = [
 ]
 
 export const dataColumns = {
-    [columnKeys.group]: { sortBy: columnKeys.group, colWidth: 100, className: "left-align" },
-    [columnKeys.sabaId]: { colWidth: 100, className: "left-align" },
-    [columnKeys.sabaSystemId]: { colWidth: 100, className: "left-align" },
-    [columnKeys.turnover]: { sortBy: columnKeys.turnover, colWidth: 100, className: "right-align" },
-    [columnKeys.ggr]: { sortBy: columnKeys.ggr, colWidth: 100, className: "right-align" },
-    [columnKeys.betCount]: { sortBy: columnKeys.betCount, colWidth: 100, className:"right-align" },
-    [columnKeys.avgBetAmount]: { sortBy: columnKeys.avgBetAmount, colWidth: 100, className: "right-align" },
-    [columnKeys.uniquePlayers]: { sortBy: columnKeys.uniquePlayers, colWidth: 100, className: "right-align" },
-    [columnKeys.margin]: { sortBy: columnKeys.margin, colWidth: 100, className: "right-align" }
+    [columnKeys.group]: { sortBy: columnKeys.group, colWidth: 80, className: "left-align" },
+    [columnKeys.sabaId]: { colWidth: 80, className: "left-align" },
+    [columnKeys.sabaSystemId]: { colWidth: 80, className: "left-align" },
+    [columnKeys.turnover]: { sortBy: columnKeys.turnover, colWidth: 70, className: "right-align" },
+    [columnKeys.ggr]: { sortBy: columnKeys.ggr, colWidth: 70, className: "right-align" },
+    [columnKeys.betCount]: { sortBy: columnKeys.betCount, colWidth: 50, className:"right-align" },
+    [columnKeys.avgBetAmount]: { sortBy: columnKeys.avgBetAmount, colWidth: 70, className: "right-align" },
+    [columnKeys.uniquePlayers]: { sortBy: columnKeys.uniquePlayers, colWidth: 50, className: "right-align" },
+    [columnKeys.margin]: { sortBy: columnKeys.margin, colWidth: 50, className: "right-align" }
 }
 
 export const defaultPagingOption =  {

@@ -158,7 +158,7 @@ export class FormFilter extends PureComponent {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-md-3 col-sm-2 col-lg-2 col-xl-2">
+                    <div className="col-12 col-md-3 col-sm-2 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="ExcludeTestData"
                                 checked={!this.props.isExcludeTest}
@@ -166,7 +166,7 @@ export class FormFilter extends PureComponent {
                                 label={LangHelper.getSingleResource("IncludeTestData")} />
                         </div>
                     </div>
-                    <div className="col-12 col-md-3 col-sm-2 col-lg-1 col-xl-2">
+                    <div className="col-12 col-md-3 col-sm-2 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="NoDraw"
                                 checked={this.props.noDraw}

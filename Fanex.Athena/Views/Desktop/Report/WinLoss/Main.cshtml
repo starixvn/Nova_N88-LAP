@@ -29,10 +29,12 @@
     dateRange: { fromDate: '@Model.FromDate.ToString("MM/dd/yyyy")', toDate: '@Model.ToDate.ToString("MM/dd/yyyy")' },
     isExcludeTest: true,
     noDraw: true,
+    drilldownInOriginalCurrency: false,
     isLoading: false,
     selectedBaseCurrency: '@Model.BaseCurrency',
     selectedCurrency: '@string.Join(",", Model.TpCurrencies.Select(x => x.ID).ToArray())',
     selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
+    userNameFilterOption: 1,
     username: "",
     };
 

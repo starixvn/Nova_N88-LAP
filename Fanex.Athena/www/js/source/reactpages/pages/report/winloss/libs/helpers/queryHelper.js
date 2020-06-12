@@ -1,14 +1,16 @@
 import Site from '@jsroot/lib/site';
 import store from '../store';
-import { setPagingOption, setSortOption } from '../../actions/gridAction';
-import { defaultSortOption } from '../../constants/gridContants';
+import { setPagingOption, setSortOption, setDisplayedColumns } from '../../actions/gridAction';
+import { defaultSortOption, displayedColumns } from '../../constants/gridContants';
+import GroupHelper from '../helpers/groupHelper';
 
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
-         selectedProduct, selectedDateType, isExcludeTest, noDraw, dateRange, selectedGroupByOption }) {
+         selectedProduct, selectedDateType, isExcludeTest, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption }) {
         return {
             ...requestParam,
             ...{
+                userNameFilterId: userNameFilterOption,
                 username, 
                 currencyIdList: selectedCurrency,
                 baseCurrency: selectedBaseCurrency,
@@ -16,6 +18,7 @@ export default class QueryHelper {
                 dateType: selectedDateType,
                 isIncludedTestData: !isExcludeTest, 
                 isNoDrawTicket: noDraw,
+                drilldownInOriginalCurrency: drilldownInOriginalCurrency,
                 fromDate: Site.convertDateToString(dateRange.fromDate),
                 toDate: Site.convertDateToString(dateRange.toDate),
                 groupBy: selectedGroupByOption
@@ -25,7 +28,7 @@ export default class QueryHelper {
 
     static callBackToUpdateGridOption = (pageIndex, pageSize) => response => {
         const { totalRows } = response;
-        const { pagingOption } = store.getState();
+        const { pagingOption, selectedGroupByOption } = store.getState();
         const newPagingOption = {
             ...pagingOption,
             ...{
@@ -34,8 +37,11 @@ export default class QueryHelper {
                 TotalItem: totalRows
             }
         }
+        const displayedAllowColumns = GroupHelper.getDislayedColumns(displayedColumns, selectedGroupByOption);
+
         store.dispatch(setPagingOption(newPagingOption));
         store.dispatch(setSortOption(defaultSortOption));
+        store.dispatch(setDisplayedColumns(displayedAllowColumns));
     }
 }
 

@@ -1,4 +1,4 @@
-﻿// Generated at: 5/21/2020 4:50:32 PM
+﻿// Generated at: 6/8/2020 4:08:53 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -235,6 +235,7 @@ DrawFilter:"Draw filter",
 DrawGame:"Draw Game",
 DrawNoBet:"Draw No Bet",
 DrawNoDraw:"Draw/No Draw",
+DrilldownInOriginalCurrency:"Display group breakdown in original currency",
 DuplicateMsg:"&apos;{0}&apos; already exists. Please choose another!",
 Edit:"Edit",
 Edit_User_Success:"&apos;{0}&apos; has been updated successfully.",
@@ -642,6 +643,8 @@ RngCasinoAndBingoExcludedNote:"RNG Casino and Bingo are not included in the repo
 RNGCasinoUpdateSettingUnAvailableMsg:"RNG Casino Database is not currently available. Please try again later.",
 Running:"Running",
 Sa:"Sa",
+SabaId:"Saba Id",
+SabaSystemId:"Saba System Id",
 Saturday:"Saturday",
 Save:"Save",
 SB:"SB",

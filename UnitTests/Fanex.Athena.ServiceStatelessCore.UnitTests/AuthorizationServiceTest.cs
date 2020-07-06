@@ -8,6 +8,7 @@ using Fanex.Athena.Model.Auth.DataDomain;
 using Fanex.Athena.Model.Auth.Enum;
 using Fanex.Athena.Service.StatelessCore;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
+using Fanex.N88.Core.Configuration;
 using Fanex.N88.Core.Service.Interface;
 using NSubstitute;
 
@@ -26,13 +27,16 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
 
         private IUserService _userService;
 
+        private N88Settings _n88Settings;
+
         [SetUp]
         public void SetUp()
         {
             _authorizationDataAccess = Substitute.For<IAthorizationDataAccess>();
             _cache = Substitute.For<ICustomMemoryCacheService>();
             _userService = Substitute.For<IUserService>();
-            _authorizationService = new AuthorizationService(_authorizationDataAccess, _cache, _userService);
+            _n88Settings = new N88Settings();
+            _authorizationService = new AuthorizationService(_authorizationDataAccess, _cache, _userService, _n88Settings);
         }
 
         [TearDown]

@@ -7,9 +7,10 @@
     using Base.UnitTests;
     using Extension.Utility.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Models;
     using Fanex.N88.Core.Service.Interface;
     using Model.Core.DataDomain;
-    using Model.Core.DTO.Common;
     using NSubstitute;
     using NUnit.Framework;
     using ONEbook.UM.Services;
@@ -284,27 +285,6 @@
         }
 
         [Test]
-        public void ChangePassword_WhenPost_IsInternalUser_ReturnAccessDenied()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                SessionService.UserSession.IsInternal = true;
-
-                // Action
-                var result = controller.ChangePassword("oldpassword", "1234aa") as JsonResult;
-                var data = result.Data as dynamic;
-
-                // Assert
-                Assert.Multiple(() =>
-                {
-                    Assert.That(data.errCode, Is.EqualTo(ErrorType.AccessDenied));
-                    Assert.That(data.errMsg, Is.EqualTo(ViewResources.AccessDeniedMsg));
-                });
-            }
-        }
-
-        [Test]
         public void ChangePassword_WhenPost_ValidData_CallServiceCorrectly()
         {
             using (var controller = CreateController())
@@ -312,19 +292,19 @@
                 // Arrange
                 const string OldPassword = "oldpassword";
                 const string NewPassword = "1234aa";
-                const int ErrorCode = 999;
+                const string NewHashPassword = "56E8A2D78170E87C928E480797CC73";
+                var user = new User() { Username = "abc", Password = "8058E861808058FDD87DD98889A08D" };
 
                 SessionService.UserSession.IsInternal = false;
+                _userService.Get(Arg.Any<int>()).Returns(user);
 
                 // Action
                 var result = controller.ChangePassword(OldPassword, NewPassword) as JsonResult;
-                var data = result.Data as dynamic;
 
                 // Assert
                 Assert.Multiple(() =>
                 {
-                    _sercurityService.Received().UpdatePassword(Arg.Any<int>(), Arg.Any<int>(), NewPassword);
-                    Assert.That(data.errCode, Is.EqualTo(ErrorCode));
+                    _sercurityService.Received().UpdatePassword(Arg.Any<int>(), Arg.Any<int>(), NewHashPassword);
                 });
             }
         }
@@ -342,7 +322,8 @@
                 ControllerContext = ControllerContext,
                 LangService = LangService,
                 SessionServiceInstance = SessionService,
-                AppSettingInstance = AppSettings
+                AppSettingInstance = AppSettings,
+                n88Settings = new N88Settings()
             };
         }
     }

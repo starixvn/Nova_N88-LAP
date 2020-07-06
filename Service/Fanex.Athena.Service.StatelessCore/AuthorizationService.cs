@@ -17,13 +17,15 @@
         private const int OneHourInSecond = 3600;
         private readonly IAthorizationDataAccess _authorizationDataAccess;
         private readonly ICustomMemoryCacheService _cache;
-        private readonly IUserService userService;
+        private readonly IUserService _userService;
+        private readonly N88Settings _n88Settings;
 
-        public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache, IUserService userService)
+        public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache, IUserService userService, N88Settings n88Settings = null)
         {
             _authorizationDataAccess = authorizationDataAccess;
             _cache = cache;
-            this.userService = userService;
+            _userService = userService;
+            _n88Settings = n88Settings ?? N88Settings.Settings;
         }
 
         public bool HasPermissions(int userId, params string[] permissionKeys)
@@ -32,13 +34,13 @@
 
             if (permissionKeys.Length == 1)
             {
-                var policy = userService.GetPermission(userId, N88Settings.Settings.SiteId, permissionKeys.FirstOrDefault());
+                var policy = _userService.GetPermission(userId, _n88Settings.SiteId, permissionKeys.FirstOrDefault());
 
                 isHasPermission = policy > (int)Policy.None;
             }
             else
             {
-                var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+                var userFuntion = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment);
 
                 isHasPermission = userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) &&
                     x.Policy > (int)Policy.None);
@@ -53,13 +55,13 @@
 
             if (permissionKeys.Length == 1)
             {
-                var policy = userService.GetPermission(userId, N88Settings.Settings.SiteId, permissionKeys.FirstOrDefault());
+                var policy = _userService.GetPermission(userId, _n88Settings.SiteId, permissionKeys.FirstOrDefault());
 
                 isHasPermission = policy == (int)Policy.Host;
             }
             else
             {
-                var userFuntion = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment);
+                var userFuntion = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment);
 
                 isHasPermission = userFuntion.Any(x => permissionKeys.Contains(x.Function.Key, StringComparer.InvariantCultureIgnoreCase) && x.Policy == (int)Policy.Host);
             }

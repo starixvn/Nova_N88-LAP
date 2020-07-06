@@ -11,6 +11,7 @@
     using Extension.Utility;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Utility;
+    using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Service.Interface;
     using Model.Core.DTO.Common;
     using NSubstitute;
@@ -28,6 +29,7 @@
         private ISessionStorage _sessionStorage;
         private ISessionService _sessionService;
         private IUserService _userService;
+        private N88Settings _n88Settings;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -48,13 +50,16 @@
                     Name = "12bet"
                 }
             };
+            _licenseeDataAccess.GetLicenseeSettingById(Arg.Any<int>()).Returns(licenseeList[0]);
             _currencyDataAccess = Substitute.For<ICurrencyDataAccess>();
+            _n88Settings = new N88Settings();
             _sessionService = new SessionService(
                 _licenseeDataAccess,
                 _currencyDataAccess,
                 _userService,
                 _appSettings,
-                _sessionStorage);
+                _sessionStorage,
+                _n88Settings);
         }
 
         [OneTimeTearDown]

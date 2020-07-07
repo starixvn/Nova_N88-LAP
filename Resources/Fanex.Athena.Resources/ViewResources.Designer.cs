@@ -5857,6 +5857,24 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saba Products Win Loss.
+        /// </summary>
+        public static string SabaProductsWinLoss {
+            get {
+                return ResourceManager.GetString("SabaProductsWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saba Products WL.
+        /// </summary>
+        public static string SabaProductsWL {
+            get {
+                return ResourceManager.GetString("SabaProductsWL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saba System Id.
         /// </summary>
         public static string SabaSystemId {
@@ -7500,6 +7518,15 @@ namespace Fanex.Athena.Resources {
         public static string WinLoss {
             get {
                 return ResourceManager.GetString("WinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Win Loss Analysis.
+        /// </summary>
+        public static string WinLossAnalysis {
+            get {
+                return ResourceManager.GetString("WinLossAnalysis", resourceCulture);
             }
         }
         

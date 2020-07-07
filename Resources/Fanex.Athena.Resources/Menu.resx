@@ -121,7 +121,7 @@
     <value>Bet History</value>
   </data>
   <data name="LicenseeWinLoss" xml:space="preserve">
-    <value>Licensee Win Loss</value>
+    <value>Saba Products Win Loss</value>
   </data>
   <data name="CustomerWinLoss" xml:space="preserve">
     <value>Customer Win Loss</value>
@@ -166,7 +166,7 @@
     <value>Resettlement</value>
   </data>
   <data name="WinLossReport" xml:space="preserve">
-    <value>Win Loss</value>
+    <value>Win Loss Analysis</value>
     <comment>133254</comment>
   </data>
 </root>

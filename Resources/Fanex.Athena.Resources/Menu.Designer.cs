@@ -97,7 +97,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Licensee Win Loss.
+        ///   Looks up a localized string similar to Saba Products Win Loss.
         /// </summary>
         public static string LicenseeWinLoss {
             get {
@@ -205,7 +205,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Win Loss.
+        ///   Looks up a localized string similar to Win Loss Analysis.
         /// </summary>
         public static string WinLossReport {
             get {

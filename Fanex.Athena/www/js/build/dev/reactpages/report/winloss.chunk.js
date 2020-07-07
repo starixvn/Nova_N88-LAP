@@ -4759,7 +4759,7 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       key: "searchResult"
     }, `
-        ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource('WinLoss')},
+        ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource('WinLossAnalysis')},
          ${fromDate} - ${toDate},
           ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource('DisplayCurrency')}: ${baseCurrency}`);
   }
@@ -5344,7 +5344,7 @@ const Url = {
   exportReportByGroup: 'Api/WinLossReport/ExportData'
 };
 const FileNameExport = {
-  reportByGroup: 'WinLossReport.xlsx'
+  reportByGroup: 'WinLossAnalysisReport.xlsx'
 };
 const errorResponse = {
   data: null,

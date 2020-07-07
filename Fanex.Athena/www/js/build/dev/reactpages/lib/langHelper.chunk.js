@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 6/8/2020 4:08:53 PM
+// Generated at: 7/7/2020 5:22:17 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -739,6 +739,8 @@ window._language_en_US = {
   Running: "Running",
   Sa: "Sa",
   SabaId: "Saba Id",
+  SabaProductsWinLoss: "Saba Products Win Loss",
+  SabaProductsWL: "Saba Products WL",
   SabaSystemId: "Saba System Id",
   Saturday: "Saturday",
   Save: "Save",
@@ -922,6 +924,7 @@ window._language_en_US = {
   Welcome: "Welcome",
   WhiteLabel: "Whitelabel",
   WinLoss: "Win Loss",
+  WinLossAnalysis: "Win Loss Analysis",
   WinLossByBetType: "Win Loss By Bet Type",
   WinLossByBetTypeTitle: "Win Loss By Bet Type, {0} --&gt; {1} - {2}",
   WinLossByLeague: "Win Loss By Leagues",

@@ -66,15 +66,14 @@
             _userService = null;
         }
 
-        [TestCase(PermissionKeys.BtcAdvancedSearch, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
-        [TestCase(PermissionKeys.BetHistorySingleCustomer, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml")]
-        [TestCase(PermissionKeys.BetHistoryRefNo, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml")]
-        [TestCase(PermissionKeys.BetHistoryRunning, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml")]
-        [TestCase(PermissionKeys.BetHistoryAdvancedSearch, AppMode.Parasitic, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
-        public void Index_CheckByPermission_ReturnCorrectView(string permissionKey, AppMode appMode, string expectedView)
+        [TestCase(PermissionKeys.BetHistorySingleCustomer, "~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryRefNo, "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryRunning, "~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryAdvancedSearch, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
+        public void Index_CheckByPermission_ReturnCorrectView(string permissionKey, string expectedView)
         {
             // Arrange
-            CreateAndStubUserSession(permissionKey, appMode);
+            CreateAndStubUserSession(permissionKey);
             MockProductService();
 
             using (var controller = CreateController())
@@ -147,7 +146,7 @@
 
                 var expectedProductsNote = string.Format(
                     ViewResources.BettingTicketCenter_RefnoTabNote2,
-                    productKN.ProductName + ", " + productLT.ProductName,
+                    productKN.ProductName,
                     BalanceUpDate.ToString(FormatKey.DateFormat));
 
                 // Action
@@ -320,7 +319,7 @@
             return productCodes;
         }
 
-        private void CreateAndStubUserSession(string permissionKey, AppMode appMode = AppMode.Parasitic)
+        private void CreateAndStubUserSession(string permissionKey)
         {
             var functionPolicy = new FunctionPolicy()
             {

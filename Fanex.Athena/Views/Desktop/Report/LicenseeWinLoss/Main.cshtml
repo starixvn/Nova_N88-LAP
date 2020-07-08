@@ -1,13 +1,13 @@
 ﻿@model Fanex.Athena.Model.Report.ViewModel.LicenseeWinLossViewModel
 @{
     ViewBag.Title = ViewResources.Report +
-    " - " + ViewResources.LicenseeWinLoss;
+    " - " + ViewResources.SabaProductsWinLoss;
     Layout = "~/Views/Desktop/Shared/_Report.jqGridLayout.cshtml";
 }
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/pages/reports/licenseewinloss.css")" rel="stylesheet" />
 }
-@section pagejs { 
+@section pagejs {
     <script src="@Url.ContentLinkByEnv("/www/js/build/pages/reports/licenseewinloss.chunk.js")"></script>
 }
 

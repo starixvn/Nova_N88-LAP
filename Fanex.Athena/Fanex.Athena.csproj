@@ -1844,23 +1844,6 @@
     <Content Include="Jasmine\SpecRunnerSingleTesting.html" />
     <Content Include="package.json" />
     <Content Include="karma.conf.js" />
-    <Content Include="Scripts\Languages\ViewResources.js">
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Languages\ViewResources.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Languages\ViewResources.zh-CN.js">
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Languages\ViewResources.zh-Hans.js">
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Languages\ViewResources.zh-TW.js">
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
     <Content Include="Scripts\Library\jquery.marquee.js" />
     <Content Include="Scripts\Library\moment.min.js" />
     <Content Include="Scripts\Plugin\FlatPopup\jquery.custom-scrollbar.js" />
@@ -5020,10 +5003,6 @@
     <Content Include="Content\Web.config" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <Content Include="Views\Shared\_Report.jqGridLayout.cshtml" />
-    <None Include="Scripts\Languages\ViewResources.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ViewResources.txt</LastGenOutput>
-    </None>
     <Content Include="Views\Shared\_AccountLayout.cshtml" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Views\Authorization\ChangePass.cshtml" />

@@ -606,9 +606,9 @@
     <Content Include="App_Data\UserGuide\CustomerWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\CustomerWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\CustomerWL\en-US.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWL\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWL\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWL\en-US.htm" />
+    <Content Include="App_Data\UserGuide\SabaProductsWL\zh-CN.htm" />
+    <Content Include="App_Data\UserGuide\SabaProductsWL\zh-TW.htm" />
+    <Content Include="App_Data\UserGuide\SabaProductsWL\en-US.htm" />
     <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
     <Content Include="Content\FlatPopup\book.png" />
     <Content Include="Content\FlatPopup\close_pop.png" />

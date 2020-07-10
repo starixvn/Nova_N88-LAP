@@ -40,19 +40,6 @@ namespace Fanex.Athena.Web.UnitTests.ActionFilter
         }
 
         [Test]
-        public void OnAuthorization_NotSkipAuthorization_GetLicenseeSession()
-        {
-            // Arrange
-            var filterContext = CreateFilterContext(false);
-
-            // Action
-            _attribute.OnAuthorization(filterContext);
-
-            // Assert
-            var temp = _sessionStorage.Received(1).LicenseeAuthInfo;
-        }
-
-        [Test]
         public void OnAuthorization_NotAuthorized_AssignCorrectRouteValues()
         {
             // Arrange

@@ -8,11 +8,13 @@
     using Base.UnitTests;
 
     using DataAccess.Core.Configuration.Interfaces;
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Models;
+    using Fanex.N88.Core.Models.ValueObject;
     using Fanex.N88.Core.Service.Interface;
     using Model.BetList.ViewModel;
     using Model.Core.DataDomain;
@@ -35,6 +37,7 @@
 
         private IUserService _userService;
 
+        private N88Settings _n88Settings;
 
         [OneTimeSetUp]
         public override void FixtureSetUp()
@@ -63,15 +66,14 @@
             _userService = null;
         }
 
-        [TestCase(PermissionKeys.BtcAdvancedSearch, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
-        [TestCase(PermissionKeys.BetHistorySingleCustomer, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml")]
-        [TestCase(PermissionKeys.BetHistoryRefNo, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml")]
-        [TestCase(PermissionKeys.BetHistoryRunning, AppMode.Self, "~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml")]
-        [TestCase(PermissionKeys.BtcAdvancedSearch, AppMode.Parasitic, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
-        public void Index_CheckByPermission_ReturnCorrectView(string permissionKey, AppMode appMode, string expectedView)
+        [TestCase(PermissionKeys.BetHistorySingleCustomer, "~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryRefNo, "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryRunning, "~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml")]
+        [TestCase(PermissionKeys.BetHistoryAdvancedSearch, "~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml")]
+        public void Index_CheckByPermission_ReturnCorrectView(string permissionKey, string expectedView)
         {
             // Arrange
-            CreateAndStubUserSession(permissionKey, appMode);
+            CreateAndStubUserSession(permissionKey);
             MockProductService();
 
             using (var controller = CreateController())
@@ -81,31 +83,6 @@
 
                 // Assert
                 Assert.That(expectedView, Is.EqualTo(result.ViewName));
-            }
-        }
-
-        [Test]
-        public void Index_IsSuperAdmin_HaveAllPermissionsOfTab()
-        {
-            // Arrange
-            var userSession = JsonConvert.DeserializeObject<UserAuthInfo>(JsonConvert.SerializeObject(DefaultUserSession));
-            userSession.ApplicationMode = AppMode.Parasitic;
-            userSession.IsSuperAdmin = true;
-            StubUserSessionData(userSession);
-            MockProductService();
-
-            const int TotalTabCount = 4;
-
-            using (var controller = CreateController())
-            {
-                // Action
-                var result = controller.Index() as ViewResult;
-                var tabList = (result.Model as BettingTicketCenterViewModel).TabList;
-                var hasAllPermissionsOfTab = BtcViewInfo.TabList.Intersect(tabList).Count() == TotalTabCount;
-
-                // Assert
-                Assert.That("~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml", Is.EqualTo(result.ViewName));
-                Assert.That(hasAllPermissionsOfTab, Is.True);
             }
         }
 
@@ -151,11 +128,10 @@
             }
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void RefNo_WhenCall_ReturnCorrectViewBag(bool hasExchangePermission)
+        [Test]
+        public void RefNo_WhenCall_ReturnCorrectViewBag()
         {
-            using (var controller = CreateController(hasExchangePermission))
+            using (var controller = CreateController())
             {
                 // Arrange
                 CreateAndStubUserSession(PermissionKeys.BetHistoryRefNo);
@@ -170,7 +146,7 @@
 
                 var expectedProductsNote = string.Format(
                     ViewResources.BettingTicketCenter_RefnoTabNote2,
-                    productKN.ProductName + ", " + productLT.ProductName,
+                    productKN.ProductName,
                     BalanceUpDate.ToString(FormatKey.DateFormat));
 
                 // Action
@@ -181,7 +157,6 @@
                 {
                     Assert.That(result.ViewBag.SelectedBaseCurrency, Is.EqualTo(DefaultUserSession.DefaultBaseCurrency));
                     Assert.That(result.ViewBag.ProductsRequireUseNameNote, Is.EqualTo(expectedProductsNote));
-                    Assert.That((bool)result.ViewBag.HasExchange, Is.EqualTo(hasExchangePermission));
                 });
             }
         }
@@ -205,11 +180,10 @@
             }
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void Running_WhenCall_ReturnCorrectViewModel(bool hasExchangePermission)
+        [Test]
+        public void Running_WhenCall_ReturnCorrectViewModel()
         {
-            using (var controller = CreateController(hasExchangePermission))
+            using (var controller = CreateController())
             {
                 // Arrange
                 CreateAndStubUserSession(PermissionKeys.BetHistoryRunning);
@@ -248,11 +222,10 @@
             }
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void SingleCustomer_WhenCall_ReturnCorrectViewModel(bool hasExchangePermission)
+        [Test]
+        public void SingleCustomer_WhenCall_ReturnCorrectViewModel()
         {
-            using (var controller = CreateController(hasExchangePermission))
+            using (var controller = CreateController())
             {
                 // Arrange
                 CreateAndStubUserSession(PermissionKeys.BetHistorySingleCustomer);
@@ -297,7 +270,7 @@
         [TestCase(false)]
         public void AdvancedSearch_WhenCall_ReturnCorrectViewModel(bool hasExchangePermission)
         {
-            using (var controller = CreateController(hasExchangePermission))
+            using (var controller = CreateController())
             {
                 // Arrange
                 CreateAndStubUserSession(PermissionKeys.BtcAdvancedSearch);
@@ -320,12 +293,14 @@
             }
         }
 
-        private BettingTicketCenterController CreateController(bool hasExchangePermission = true)
+        private BettingTicketCenterController CreateController()
         {
-            return new BettingTicketCenterController(_productService, _balanceUpDataAccess, _userService)
+            _n88Settings = new N88Settings();
+
+            return new BettingTicketCenterController(_productService, _balanceUpDataAccess, _userService, _n88Settings)
             {
                 LangService = LangService,
-                SessionServiceInstance = SessionService
+                SessionServiceInstance = SessionService,
             };
         }
 
@@ -344,19 +319,18 @@
             return productCodes;
         }
 
-        private void CreateAndStubUserSession(string permissionKey, AppMode appMode = AppMode.Parasitic)
+        private void CreateAndStubUserSession(string permissionKey)
         {
-            var userSession = JsonConvert.DeserializeObject<UserAuthInfo>(JsonConvert.SerializeObject(DefaultUserSession));
-            userSession.ApplicationMode = appMode;
-            userSession.PortalFunctionList = new OneAuthPermission[]
+            var functionPolicy = new FunctionPolicy()
             {
-                    new OneAuthPermission { FunctionKey =  permissionKey }
+                Policy = (byte)Policy.Host,
+                Function = new Function
+                {
+                    Key = permissionKey
+                }
             };
-            userSession.FunctionList = new List<Function>
-            {
-                new Function { FunctionKey =  permissionKey }
-            };
-            StubUserSessionData(userSession);
+
+            _userService.GetPermissions(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>(), Arg.Any<string>()).Returns(new List<FunctionPolicy> { functionPolicy });
         }
     }
 }

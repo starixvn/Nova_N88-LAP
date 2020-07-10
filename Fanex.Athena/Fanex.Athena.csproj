@@ -606,9 +606,9 @@
     <Content Include="App_Data\UserGuide\CustomerWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\CustomerWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\CustomerWL\en-US.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWL\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWL\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\LicenseeWL\en-US.htm" />
+    <Content Include="App_Data\UserGuide\SabaProductsWL\zh-CN.htm" />
+    <Content Include="App_Data\UserGuide\SabaProductsWL\zh-TW.htm" />
+    <Content Include="App_Data\UserGuide\SabaProductsWL\en-US.htm" />
     <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
     <Content Include="Content\FlatPopup\book.png" />
     <Content Include="Content\FlatPopup\close_pop.png" />
@@ -852,10 +852,12 @@
     </Content>
     <Content Include="Views\Desktop\Notification\Notification.cshtml" />
     <Content Include="Views\Desktop\BetList\SexyGaming\Main.cshtml" />
-    <Content Include="Views\Desktop\BetList\SBCDetail\Main.cshtml" />    <Content Include="Views\Desktop\Report\WinLoss\Main.cshtml" />
+    <Content Include="Views\Desktop\BetList\SBCDetail\Main.cshtml" />
+    <Content Include="Views\Desktop\Report\WinLoss\Main.cshtml" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.chunk.js.map" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.css.map" />
-    <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />    <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
+    <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
+    <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\info.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\success.scss" />
@@ -1270,6 +1272,33 @@
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\singlecustomer\reducers\index.js" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\running\actions\index.js" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\running\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\actions\filterAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\actions\gridAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\actions\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\actions\types.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\AppContainer.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\Content.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\filter\GroupFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\filter\SelectOption.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\FormFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\grid\DecimalCell.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\grid\GridCaption.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\grid\GridData.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\grid\GridRow.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\components\grid\GroupCell.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\constants\filterConsts.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\constants\gridContants.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\constants\queryConsts.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\libs\helpers\collectionHelper.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\libs\helpers\gridHelper.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\libs\helpers\groupHelper.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\libs\helpers\queryHelper.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\libs\queryService.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\libs\store.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\reducers\filterReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\reducers\gridReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winloss\reducers\index.js" />
     <Content Include="www\js\source\reactpages\reducers\convertAllReducer.js" />
     <Content Include="www\js\source\reactpages\reducers\pagingOptionReducer.js" />
     <Content Include="www\js\source\reactpages\reducers\requestParamReducer.js" />
@@ -1815,23 +1844,6 @@
     <Content Include="Jasmine\SpecRunnerSingleTesting.html" />
     <Content Include="package.json" />
     <Content Include="karma.conf.js" />
-    <Content Include="Scripts\Languages\ViewResources.js">
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Languages\ViewResources.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Languages\ViewResources.zh-CN.js">
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Languages\ViewResources.zh-Hans.js">
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Languages\ViewResources.zh-TW.js">
-      <DependentUpon>ViewResources.tt</DependentUpon>
-    </Content>
     <Content Include="Scripts\Library\jquery.marquee.js" />
     <Content Include="Scripts\Library\moment.min.js" />
     <Content Include="Scripts\Plugin\FlatPopup\jquery.custom-scrollbar.js" />
@@ -4991,10 +5003,6 @@
     <Content Include="Content\Web.config" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <Content Include="Views\Shared\_Report.jqGridLayout.cshtml" />
-    <None Include="Scripts\Languages\ViewResources.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ViewResources.txt</LastGenOutput>
-    </None>
     <Content Include="Views\Shared\_AccountLayout.cshtml" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Views\Authorization\ChangePass.cshtml" />

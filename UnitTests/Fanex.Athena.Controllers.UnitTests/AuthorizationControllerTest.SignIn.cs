@@ -13,26 +13,6 @@
     public partial class AuthorizationControllerTest
     {
         [Test]
-        public void SignIn_WhenGet_NotInternalDomain_RedirectToLocationRestriction()
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                StubGetValueAppSettings("InternalSubDomain", "fakeurl");
-
-                // Action
-                var result = controller.SignIn() as RedirectToRouteResult;
-
-                // Assert
-                Assert.Multiple(() =>
-                {
-                    Assert.That(result.RouteValues["action"], Is.EqualTo("LocationRestriction"));
-                    Assert.That(result.RouteValues["controller"], Is.EqualTo("Utility"));
-                });
-            }
-        }
-
-        [Test]
         public void SignIn_WhenGet_IsInternalDomain_ReturnCorrectView()
         {
             using (var controller = CreateController())

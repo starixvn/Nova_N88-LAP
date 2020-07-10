@@ -22,7 +22,7 @@
         public IAppSettings AppSettingInstance { get; set; }
         public ILicenseeSettingService LicenseeSettingServiceInstance { get; set; }
 
-        protected N88Settings n88Settings;
+        public N88Settings n88Settings;
 
         private readonly ICurrentContext currentContext = new CurrentContext();
 

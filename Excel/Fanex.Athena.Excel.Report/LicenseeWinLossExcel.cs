@@ -207,7 +207,7 @@
             var title = ReportExcelHelper.GetTitleCurrencyName(_excelModel.ConvertingOption, _excelModel.MetaModel);
 
             var reportTitle = ReportExcelHelper.GenerateReportTitle(
-                ViewResources.LicenseeWinLoss,
+                ViewResources.SabaProductsWinLoss,
                 _excelModel.MetaModel.FromDate,
                 _excelModel.MetaModel.ToDate,
                 title);

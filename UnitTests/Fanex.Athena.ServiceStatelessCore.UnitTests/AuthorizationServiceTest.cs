@@ -8,6 +8,7 @@ using Fanex.Athena.Model.Auth.DataDomain;
 using Fanex.Athena.Model.Auth.Enum;
 using Fanex.Athena.Service.StatelessCore;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
+using Fanex.N88.Core.Configuration;
 using Fanex.N88.Core.Service.Interface;
 using NSubstitute;
 
@@ -26,13 +27,16 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
 
         private IUserService _userService;
 
+        private N88Settings _n88Settings;
+
         [SetUp]
         public void SetUp()
         {
             _authorizationDataAccess = Substitute.For<IAthorizationDataAccess>();
             _cache = Substitute.For<ICustomMemoryCacheService>();
             _userService = Substitute.For<IUserService>();
-            _authorizationService = new AuthorizationService(_authorizationDataAccess, _cache, _userService);
+            _n88Settings = new N88Settings();
+            _authorizationService = new AuthorizationService(_authorizationDataAccess, _cache, _userService, _n88Settings);
         }
 
         [TearDown]
@@ -231,64 +235,35 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
             Assert.That(result, Is.False);
         }
 
-        [TestCase("alex", "alex2", "any,any2", false, false)]
-        [TestCase("alex", "any2", "alex,any2", false, true)]
-        [TestCase("alex", "any2", "alex", false, true)]
-        [TestCase("alex", "alex2", "any,any2", true, true)]
-        public void HasPermissions_WhenCallWithPortalFunctionKey_ReturnCorrectResult(
-            string permissionKey1,
-            string permissinKey2,
-            string userPermissionKey,
-            bool isAdmin,
-            bool expectedResult)
+        [TestCase(new string[] { "alex", "alex2" }, "any,any2", false)]
+        [TestCase(new string[] { "alex", "any2" }, "alex,any2", true)]
+        [TestCase(new string[] { "alex" }, "alex", true)]
+        public void HasPermissions_WhenCallWithFunctionKey_ReturnCorrectResult(string[] permissionKey, string userPermissionKey, bool expectedResult)
         {
             //Arrange
-            var userFunctionList = userPermissionKey.Split(',').Select(x => new OneAuthPermission { FunctionKey = x }).ToArray();
-            var userAuthInfo = new UserAuthInfo { PortalFunctionList = userFunctionList, IsSuperAdmin = isAdmin, ApplicationMode = AppMode.Parasitic };
+            var userID = 1;
+            var userFunctionList = CreateUserPermission(userPermissionKey);
+            if (permissionKey.Length == 1)
+            {
+                _userService.GetPermission(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>()).Returns((byte)Policy.Read);
+            }
+            else
+            {
+                _userService.GetPermissions(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>(), Arg.Any<string>()).Returns(userFunctionList);
+            }
 
             //Action
-
-            var result = _authorizationService.HasPermissions(userAuthInfo.UserId, permissionKey1, permissinKey2);
+            var result = _authorizationService.HasPermissions(userID, permissionKey);
 
             //Assert
 
             Assert.AreEqual(expectedResult, result);
         }
 
-        [TestCase("alex", "alex2", "any,any2", false)]
-        [TestCase("alex", "any2", "alex,any2", true)]
-        [TestCase("alex", "any2", "alex", true)]
-        public void HasPermissions_WhenCallWithPortalSubFunctionKey_ReturnCorrectResult(string permissionKey1, string permissinKey2, string userPermissionKey, bool expectedResult)
+        private List<N88.Core.Models.ValueObject.FunctionPolicy> CreateUserPermission(string userPermissionKey)
         {
-            //Arrange
-            var userFunctionList = new OneAuthPermission[] { new OneAuthPermission { SubFunctionKeys = userPermissionKey.Split(',') } };
-            var userAuthInfo = new UserAuthInfo { PortalFunctionList = userFunctionList, ApplicationMode = AppMode.Parasitic };
-
-            //Action
-
-            var result = _authorizationService.HasPermissions(userAuthInfo.UserId, permissionKey1, permissinKey2);
-
-            //Assert
-
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        [TestCase("alex", "alex2", "any,any2", false)]
-        [TestCase("alex", "any2", "alex,any2", true)]
-        [TestCase("alex", "any2", "alex", true)]
-        public void HasPermissions_WhenCallWithFunctionKey_ReturnCorrectResult(string permissionKey1, string permissinKey2, string userPermissionKey, bool expectedResult)
-        {
-            //Arrange
-            var userFunctionList = userPermissionKey.Split(',').Select(x => new Function { FunctionKey = x }).ToList();
-            var userAuthInfo = new UserAuthInfo { FunctionList = userFunctionList, ApplicationMode = AppMode.Self };
-
-            //Action
-
-            var result = _authorizationService.HasPermissions(userAuthInfo.UserId, permissionKey1, permissinKey2);
-
-            //Assert
-
-            Assert.AreEqual(expectedResult, result);
+            return userPermissionKey.Split(',')
+              .Select(x => new N88.Core.Models.ValueObject.FunctionPolicy() { Function = new N88.Core.Models.Function() { Key = x }, Policy = (byte)Policy.Read }).ToList();
         }
     }
 }

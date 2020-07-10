@@ -18,24 +18,27 @@
     {
         private const string UserSessionKey = "UserSessionKey";
 
-        private readonly ILicenseeDataAccess licenseeDataAccess;
-        private readonly ICurrencyDataAccess currencyDataAccess;
-        private readonly IUserService userService;
-        private readonly ISessionStorage sessionStorage;
-        private readonly IAppSettings appSettings;
+        private readonly ILicenseeDataAccess _licenseeDataAccess;
+        private readonly ICurrencyDataAccess _currencyDataAccess;
+        private readonly IUserService _userService;
+        private readonly ISessionStorage _sessionStorage;
+        private readonly IAppSettings _appSettings;
+        private readonly N88Settings _n88Settings;
 
         public SessionService(
             ILicenseeDataAccess licenseeDataAccess,
             ICurrencyDataAccess currencyDataAccess,
             IUserService userService,
             IAppSettings appSettings,
-            ISessionStorage sessionStorage)
+            ISessionStorage sessionStorage,
+            N88Settings n88Settings = null)
         {
-            this.licenseeDataAccess = licenseeDataAccess;
-            this.currencyDataAccess = currencyDataAccess;
-            this.sessionStorage = sessionStorage;
-            this.appSettings = appSettings;
-            this.userService = userService;
+            _licenseeDataAccess = licenseeDataAccess;
+            _currencyDataAccess = currencyDataAccess;
+            _sessionStorage = sessionStorage;
+            _appSettings = appSettings;
+            _userService = userService;
+            _n88Settings = n88Settings ?? N88Settings.Settings;
         }
 
         #region Public Properties
@@ -44,7 +47,7 @@
         {
             get
             {
-                return sessionStorage.LicenseeAuthInfo;
+                return _sessionStorage.LicenseeAuthInfo;
             }
         }
 
@@ -52,19 +55,19 @@
         {
             get
             {
-                return sessionStorage.UserAuthInfo;
+                return _sessionStorage.UserAuthInfo;
             }
         }
 
         public string CaptchaCode
         {
-            get { return sessionStorage.CaptchaCode; }
-            set { sessionStorage.CaptchaCode = value; }
+            get { return _sessionStorage.CaptchaCode; }
+            set { _sessionStorage.CaptchaCode = value; }
         }
 
         public void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession)
         {
-            sessionStorage.AssignSessions(userSession, licenseeSession);
+            _sessionStorage.AssignSessions(userSession, licenseeSession);
         }
 
         public void CreateNewSession(
@@ -73,7 +76,7 @@
             string userName,
             string language = "en-US")
         {
-            var functions = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment).ToList();
+            var functions = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
 
             var userSession = new UserAuthInfo
             {
@@ -82,13 +85,13 @@
                 UserName = userName,
                 Language = language,
                 FunctionList = GetUserFunction(functions).ToList(),
-                DefaultBaseCurrency = appSettings.DefaultBaseCurrency
+                DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
             };
 
             AssignMenuToUserSession(userSession);
             AssignCurrenciesToUserSession(userSession);
 
-            var licensee = licenseeDataAccess.GetLicenseeSettingById(appSettings.LicenseeId);
+            var licensee = _licenseeDataAccess.GetLicenseeSettingById(_appSettings.LicenseeId);
             AssignSessions(userSession, GenerateLicenseeInfo(licensee));
         }
 
@@ -119,7 +122,7 @@
 
         public void AssignCurrenciesToUserSession(UserAuthInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null)
         {
-            var currencyUsers = currencyUserList ?? currencyDataAccess.GetCurrenciesByLicensee(appSettings.LicenseeId);
+            var currencyUsers = currencyUserList ?? _currencyDataAccess.GetCurrenciesByLicensee(_appSettings.LicenseeId);
 
             var currencyList = currencyUsers
                 .Where(x => x.IsActive)
@@ -137,8 +140,8 @@
 
         private void AssignMenuToUserSession(UserAuthInfo userSessionInfo)
         {
-            var menuItems = userService.GetMenuItem(userSessionInfo.UserId, N88Settings.Settings.SiteId,
-                N88Settings.Settings.Environment, true)
+            var menuItems = _userService.GetMenuItem(userSessionInfo.UserId, _n88Settings.SiteId,
+                _n88Settings.Environment, true)
                 .OrderBy(x => x.DisplayOrder).ToList();
 
             userSessionInfo.MenuItemList = menuItems;

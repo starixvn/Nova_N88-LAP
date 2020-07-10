@@ -56,7 +56,7 @@ export class GridCaption extends React.Component {
     _buildLeftPart() {
         const { baseCurrency, fromDate, toDate } = this.props.requestParam;
         return (<span key="searchResult">{`
-        ${LangHelper.getSingleResource('WinLoss')},
+        ${LangHelper.getSingleResource('WinLossAnalysis')},
          ${fromDate} - ${toDate},
           ${LangHelper.getSingleResource('DisplayCurrency')}: ${baseCurrency}`}
         </span>);

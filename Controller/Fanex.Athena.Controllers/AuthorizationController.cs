@@ -42,12 +42,12 @@
 
         private const int SSOExpiredTimeInSeconds = 30;
 
-        private readonly IMaintenanceService maintenanceService;
-        private readonly IFormsAuthenticationService formAuthenticationService;
-        private readonly IUserService userService;
-        private readonly IGroupService groupService;
-        private readonly ISecurityService securityService;
-        private readonly ISiteService siteService;
+        private readonly IMaintenanceService _maintenanceService;
+        private readonly IFormsAuthenticationService _formAuthenticationService;
+        private readonly IUserService _userService;
+        private readonly IGroupService _groupService;
+        private readonly ISecurityService _securityService;
+        private readonly ISiteService _siteService;
         private readonly HashAlgorithm _hashAlgorithm;
 
         public AuthorizationController(
@@ -58,12 +58,12 @@
             ISecurityService securityService,
             ISiteService siteService)
         {
-            this.maintenanceService = maintenanceService;
-            this.formAuthenticationService = formAuthenticationService;
-            this.userService = userService;
-            this.groupService = groupService;
-            this.securityService = securityService;
-            this.siteService = siteService;
+            _maintenanceService = maintenanceService;
+            _formAuthenticationService = formAuthenticationService;
+            _userService = userService;
+            _groupService = groupService;
+            _securityService = securityService;
+            _siteService = siteService;
             _hashAlgorithm = new SHA256Managed();
         }
 
@@ -101,7 +101,7 @@
             }
             else
             {
-                var user = userService.Get(model.UserName.Trim(), n88Settings.SiteId);
+                var user = _userService.Get(model.UserName.Trim(), n88Settings.SiteId);
                 if (user != null)
                 {
                     var crypPassword = GetHash(user.Password + model.LogInToken);
@@ -157,7 +157,7 @@
 
                 if (newOnUserId > 0)
                 {
-                    var user = userService.Get(userId);
+                    var user = _userService.Get(userId);
                     if (user != null)
                     {
                         CreateSession(user, newOnUserId);
@@ -193,13 +193,13 @@
                 Platform = CurrentContext.Platform,
                 LoginDate = DateTime.Now
             };
-            return securityService.SSOLogin(ssoLoginParam);
+            return _securityService.SSOLogin(ssoLoginParam);
         }
 
         private bool IsValidateTime(string time)
         {
             var cfsDescryptTime = Data.Cryptography.DecryptPassword(time.Replace(" ", "+"));
-            var serverTime = securityService.GetTime();
+            var serverTime = _securityService.GetTime();
             var serverDateTime = DateTime.Parse(serverTime);
             var expiration = serverDateTime - DateTime.Parse(cfsDescryptTime);
 
@@ -250,21 +250,21 @@
                 LoginDate = DateTime.Now
             };
 
-            var onlineUserId = securityService.Login(loginParam);
+            var onlineUserId = _securityService.Login(loginParam);
 
             return onlineUserId;
         }
 
         private bool IsExistNapSite(User user)
         {
-            return (userService.GetSiteLevel(user.Id, N88Settings.Settings.Environment)).Any(s => s.Site.Id == n88Settings.SiteId && s.IsActive);
+            return (_userService.GetSiteLevel(user.Id, N88Settings.Settings.Environment)).Any(s => s.Site.Id == n88Settings.SiteId && s.IsActive);
         }
 
         private bool IsExistNapGroup(User user)
         {
             if (user.Group != null)
             {
-                var group = groupService.Get(user.Group.Id);
+                var group = _groupService.Get(user.Group.Id);
 
                 if (group != null && !group.IsActive)
                 {
@@ -277,7 +277,7 @@
 
         private bool HasAnyPermission(int userId)
         {
-            var functions = userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment).ToList();
+            var functions = _userService.GetPermissions(userId, N88Settings.Settings.SiteId, string.Empty, N88Settings.Settings.Environment).ToList();
             return functions.Any(function => function.Policy > (int)Policy.None);
         }
 
@@ -291,14 +291,14 @@
 
             if (n88Settings.EnableReCheckIn)
             {
-                if (!siteService.IsActivated(n88Settings.SiteId))
+                if (!_siteService.IsActivated(n88Settings.SiteId))
                 {
                     errorCode = ErrorType.AccessDenied;
                     errorMsg = ViewResources.InvalidRequestOrNotAuthorizedMsg;
                 }
-                else if (maintenanceService.IsUnderMaintenance())
+                else if (_maintenanceService.IsUnderMaintenance())
                 {
-                    var time = maintenanceService.GetUnderMaintenanceTime();
+                    var time = _maintenanceService.GetUnderMaintenanceTime();
                     errorMsg = string.Format(ViewResources.UndermaintenanceMsg, time.From, time.To);
                     errorCode = ErrorType.UnderMaintenance;
                 }
@@ -316,11 +316,11 @@
                         errorCode = ErrorType.SessionOverride;
                         errorMsg = ViewResources.SessionLoggedMsg;
                     }
-                    else if (securityService.ReCheckIn(userSession.OnUserId, n88Settings.SiteId) > 0)
+                    else if (_securityService.ReCheckIn(userSession.OnUserId, n88Settings.SiteId) > 0)
                     {
                         errorCode = ErrorType.KickedOut;
                         errorMsg = ViewResources.SessionLoggedMsg;
-                        formAuthenticationService.SignOut();
+                        _formAuthenticationService.SignOut();
                     }
                 }
             }
@@ -390,13 +390,13 @@
                 });
             }
 
-            var user = userService.Get(SessionServiceInstance.UserSession.UserId);
+            var user = _userService.Get(SessionServiceInstance.UserSession.UserId);
             string hashOldPassword = Cryptography.CfsEnCode(oldPassword);
 
             if (string.Equals(hashOldPassword, user.Password, StringComparison.CurrentCultureIgnoreCase))
             {
                 string hashNewPassword = Cryptography.CfsEnCode(newPassword);
-                var result = securityService.UpdatePassword(n88Settings.SiteId, SessionServiceInstance.UserSession.UserId, hashNewPassword);
+                var result = _securityService.UpdatePassword(n88Settings.SiteId, SessionServiceInstance.UserSession.UserId, hashNewPassword);
                 if (result)
                 {
                     return Json(new
@@ -465,7 +465,7 @@
         {
             SessionServiceInstance.CreateNewSession(user.Id, onUserId, user.Username);
 
-            formAuthenticationService.SetAuthCookie(user.Username, false);
+            _formAuthenticationService.SetAuthCookie(user.Username, false);
         }
 
         private void DoSignOut()
@@ -473,12 +473,12 @@
             var userSession = SessionServiceInstance.UserSession;
             if (userSession != null)
             {
-                securityService.Logout(userSession.OnUserId);
+                _securityService.Logout(userSession.OnUserId);
             }
 
             Session.Clear();
             ClearCookies();
-            formAuthenticationService.SignOut();
+            _formAuthenticationService.SignOut();
         }
 
         private void SetErrorForView(int errorCode, string errorMsg)

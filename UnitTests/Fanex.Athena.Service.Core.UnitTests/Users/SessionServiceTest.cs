@@ -11,6 +11,7 @@
     using Extension.Utility;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Utility;
+    using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Service.Interface;
     using Model.Core.DTO.Common;
     using NSubstitute;
@@ -28,6 +29,7 @@
         private ISessionStorage _sessionStorage;
         private ISessionService _sessionService;
         private IUserService _userService;
+        private N88Settings _n88Settings;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -48,13 +50,16 @@
                     Name = "12bet"
                 }
             };
+            _licenseeDataAccess.GetLicenseeSettingById(Arg.Any<int>()).Returns(licenseeList[0]);
             _currencyDataAccess = Substitute.For<ICurrencyDataAccess>();
+            _n88Settings = new N88Settings();
             _sessionService = new SessionService(
                 _licenseeDataAccess,
                 _currencyDataAccess,
                 _userService,
                 _appSettings,
-                _sessionStorage);
+                _sessionStorage,
+                _n88Settings);
         }
 
         [OneTimeTearDown]
@@ -129,6 +134,7 @@
                     AgentIdList = new[] { 3, 4, 5 }
                 }
             };
+            _currencyDataAccess.GetCurrenciesByLicensee(Arg.Any<int>()).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 
@@ -143,7 +149,6 @@
         public void GenerateAgentListXml_CurrencyIdIsNumberAndNegative_ReturnCorrectXmlString()
         {
             // Arrange
-            const int UserId = 1, LicenseeId = 1;
             var currencyUserList = new List<CurrencyUser>
             {
                 new CurrencyUser
@@ -155,6 +160,7 @@
                     AgentIdList = new[] { 1, 2 }
                 }
             };
+            _currencyDataAccess.GetCurrenciesByLicensee(Arg.Any<int>()).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 
@@ -169,7 +175,6 @@
         public void GenerateAgentListXml_CurrencyIdIsNumberAndExcludeTestDataParamIsFalse_ReturnCorrectXmlString()
         {
             // Arrange
-            const int UserId = 1, LicenseeId = 1;
             var currencyUserList = new List<CurrencyUser>
             {
                 new CurrencyUser
@@ -189,6 +194,7 @@
                     AgentIdList = new[] { 3 }
                 }
             };
+            _currencyDataAccess.GetCurrenciesByLicensee(Arg.Any<int>()).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"3\" Currency=\"2\"/></ROOT>";
 
@@ -203,7 +209,6 @@
         public void GenerateAgentListXml_CurrencyIdIsListAndContainUUSCurrency_ReturnCorrectXmlString()
         {
             // Arrange
-            const int UserId = 1, LicenseeId = 1;
             var currencyUserList = new List<CurrencyUser>
             {
                 new CurrencyUser
@@ -223,45 +228,12 @@
                     AgentIdList = new[] { 3 }
                 }
             };
+            _currencyDataAccess.GetCurrenciesByLicensee(Arg.Any<int>()).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 
             // Action
             var result = AuthParameterHelper.GenerateAgentListXml(_sessionService.UserSession.CurrencyAgentList, new[] { 1, 20 }, true);
-
-            // Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
-        }
-
-        [Test]
-        public void GenerateAgentListXml_CallWithKeenOceanLicensee_ReturnXmlRootString()
-        {
-            // Arrange
-            const int UserId = 1, LicenseeId = 96;
-            var currencyUserList = new List<CurrencyUser>
-            {
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 1,
-                    CurrencyName = "USD",
-                    AgentId = 2,
-                    AgentIdList = new[] { 1, 2 }
-                },
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 66,
-                    CurrencyName = "EUR",
-                    AgentId = 3,
-                    AgentIdList = new[] { 3 }
-                }
-            };
-            CreateDefaultNewSession();
-            var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/><Agent AgentId=\"3\" Currency=\"66\"/></ROOT>";
-
-            // Action
-            var result = AuthParameterHelper.GenerateAgentListXml(_sessionService.UserSession.CurrencyAgentList, new[] { 0, 1 }, false);
 
             // Assert
             Assert.That(result, Is.EqualTo(expectedResult));

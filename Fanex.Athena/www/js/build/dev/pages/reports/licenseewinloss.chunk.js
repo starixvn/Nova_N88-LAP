@@ -7799,7 +7799,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
         'use strict';
         const REPORT_BY_MONTHLY = 2;
         const VALID_MONTH_RANGE = 3;
-        const EXCEL_FILENAME = 'LicenseeWinLoss.xls';
+        const EXCEL_FILENAME = 'SabaProductsWinLoss.xls';
         const EXCEL_PP_FILENAME = 'PromotionPrize.xls';
 
         const cacheData = {};
@@ -7836,8 +7836,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 };
 
                 Site.addUserGuide({
-                    resourceName: 'LicenseeWL',
-                    title: Site.getSingleResource('LicenseeWinLoss')
+                    resourceName: 'SabaProductsWL',
+                    title: Site.getSingleResource('SabaProductsWinLoss')
                 });
                 MultiSelect.initProductList();
                 DatePicker.initDateRangePicker();
@@ -7984,7 +7984,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
             },
 
             setReportTitle: function (currencyId, fromdate, todate, currencyName) {
-                const titlePattern = Site.getSingleResource('LicenseeWinLoss') + ', {0} → {1} - {2}';
+                const titlePattern = Site.getSingleResource('SabaProductsWinLoss') + ', {0} → {1} - {2}';
                 const currencyNameOnTitle = currencyName ? Site.getSingleResource('Viewin').replace('{0}', currencyName.toUpperCase())
                     : Report.getCurrencyNameForReportTitle(currencyId);
 
@@ -7994,7 +7994,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     currencyNameOnTitle);
                 $('.report-title').html(title);
                 $('.panel-heading').removeClass('hide');
-
             },
 
             showPromotionPrizeLink: function (isShow) {
@@ -8090,16 +8089,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     _level = levelNumber;
                 }
                 const param =
-                {
-                    ProductOptions: $.parseJSON(_submitData.ProductOptions),
-                    DrawFilter: _submitData.DrawFilter,
-                    IsExcludedTestData: _submitData.IsExcludedTestData,
-                    CurrencyId: _submitData.CurrencyId,
-                    ReportBy: _submitData.ReportBy,
-                    FromDate: _submitData.FromDate,
-                    ToDate: _submitData.ToDate,
-                    BaseCurrency: $('#BaseCurrency').attr('data-original')
-                };
+                    {
+                        ProductOptions: $.parseJSON(_submitData.ProductOptions),
+                        DrawFilter: _submitData.DrawFilter,
+                        IsExcludedTestData: _submitData.IsExcludedTestData,
+                        CurrencyId: _submitData.CurrencyId,
+                        ReportBy: _submitData.ReportBy,
+                        FromDate: _submitData.FromDate,
+                        ToDate: _submitData.ToDate,
+                        BaseCurrency: $('#BaseCurrency').attr('data-original')
+                    };
                 const drilldownDate = new Date(datetime);
                 const dateRange = Report.GetDrilldownDateRange(param.ReportBy, param.FromDate, param.ToDate, drilldownDate);
                 const drillDownFDate = moment(dateRange.FromDate).format('MM/DD/YYYY');

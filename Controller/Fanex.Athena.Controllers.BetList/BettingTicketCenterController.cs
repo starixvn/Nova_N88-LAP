@@ -21,16 +21,19 @@
     {
         private readonly IProductService _productService;
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
-        private readonly IUserService userService;
+        private readonly IUserService _userService;
+        private readonly N88Settings _n88Settings;
 
         public BettingTicketCenterController(
             IProductService productService,
             IBalanceUpDataAccess balanceUpDataAccess,
-            IUserService userService)
+            IUserService userService,
+            N88Settings n88Settings = null)
         {
             _productService = productService;
             _balanceUpDataAccess = balanceUpDataAccess;
-            this.userService = userService;
+            _userService = userService;
+            _n88Settings = n88Settings ?? N88Settings.Settings;
         }
 
         public ActionResult Index()
@@ -130,11 +133,11 @@
 
         private IEnumerable<string> GetEnableTabList()
         {
-            var functionKeys = userService.GetPermissions(
+            var functionKeys = _userService.GetPermissions(
                 SessionServiceInstance.UserSession.UserId,
-                N88Settings.Settings.SiteId,
+                _n88Settings.SiteId,
                 string.Empty,
-                N88Settings.Settings.Environment)
+                _n88Settings.Environment)
                     .Where(x => x.Policy == (byte)Policy.Read || x.Policy == (byte)Policy.Host)
                     .Select(x => x.Function.Key);
 
@@ -154,7 +157,7 @@
                 Product.TG,
                 Product.I4D,
                 Product.SXG,
-		Product.SBC
+                Product.SBC
             };
 
             var productAccess = _productService.GetSingleWalletProductAccess(

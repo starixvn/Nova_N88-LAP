@@ -4,7 +4,7 @@ export const Url = {
 };
 
 export const FileNameExport = {
-    reportByGroup: 'WinLossReport.xlsx'
+    reportByGroup: 'WinLossAnalysisReport.xlsx'
 }
 
 export const errorResponse = {

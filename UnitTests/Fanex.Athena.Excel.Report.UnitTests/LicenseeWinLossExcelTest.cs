@@ -123,7 +123,7 @@ namespace Fanex.Athena.Excel.Report.UnitTests
                 excelModel.MetaModel);
 
             var reportTitle = ReportExcelHelper.GenerateReportTitle(
-                ViewResources.LicenseeWinLoss,
+                ViewResources.SabaProductsWinLoss,
                 excelModel.MetaModel.FromDate,
                 excelModel.MetaModel.ToDate,
                 title);

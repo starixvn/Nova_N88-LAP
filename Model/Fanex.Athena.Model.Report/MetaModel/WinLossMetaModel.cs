@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.Model.Core.MetaModel;
 using System;
+using System.Linq;
 
 namespace Fanex.Athena.Model.Report.MetaModel
 {
@@ -7,6 +8,7 @@ namespace Fanex.Athena.Model.Report.MetaModel
     {
         private const int DefaultPageSize = 500;
         private const int MaxPageSize = 2000;
+        private static readonly int[] ListTimezoneValid = new[] { 8, -4, 0 };
 
         public WinLossMetaModel()
         {
@@ -18,6 +20,7 @@ namespace Fanex.Athena.Model.Report.MetaModel
         public int LicenseeId { get; set; }
         public byte DateType { get; set; }
         public byte GroupBy { get; set; }
+        public int Timezone { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public string ProductIds { get; set; }
@@ -52,6 +55,7 @@ namespace Fanex.Athena.Model.Report.MetaModel
             DateType >= 1 && DateType <= 2 &&
             UserNameFilterId >= 1 && UserNameFilterId <= 3 &&
             FromDate <= ToDate &&
-            PageSize <= MaxPageSize;
+            PageSize <= MaxPageSize &&
+            ListTimezoneValid.Any(_ => _ == Timezone);
     }
 }

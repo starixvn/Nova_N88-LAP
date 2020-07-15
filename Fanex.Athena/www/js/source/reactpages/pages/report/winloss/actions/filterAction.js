@@ -1,4 +1,4 @@
-import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION } from './types';
+import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE } from './types';
 import { setDateRange } from '@jsroot/actions/dateRangeAction';
 import { setSelectedCurrency } from '@jsroot/actions/currencyAction';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
@@ -41,6 +41,13 @@ const setSelectedGroupByOption = groupByOption => {
     }
 }
 
+const setSelectedTimezone = timezone => {
+    return {
+        type: SET_SELECTED_TIMEZONE,
+        data: timezone
+    }
+}
+
 export default {
     setSelectedDateType,
     setDateRange,
@@ -52,5 +59,6 @@ export default {
     changeIsExcludeTest,
     setNoDraw,
     setDrilldownInOriginalCurrency,
-    setSelectedGroupByOption
+    setSelectedGroupByOption,
+    setSelectedTimezone
 }

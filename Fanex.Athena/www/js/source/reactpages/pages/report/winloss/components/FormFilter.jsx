@@ -13,7 +13,7 @@ import ActionCreators from '../actions'
 import GroupFilter from './filter/GroupFilter';
 import QueryHelper from '../libs/helpers/queryHelper';
 import CollectionHelper from '../libs/helpers/collectionHelper';
-import { DateFilterTypeOptions, UserNameFilterOptions } from '../constants/filterConsts';
+import { DateFilterTypeOptions, UserNameFilterOptions, TimezoneOptions } from '../constants/filterConsts';
 import { defaultPagingOption } from '../constants/gridContants';
 import SelectOption from '../components/filter/SelectOption';
 
@@ -70,6 +70,15 @@ export class FormFilter extends PureComponent {
         );
     }
 
+    _renderTimezoneSelectList() {
+        return (
+            <Select instanceId="ddlTimezone"
+                value={this.props.selectedTimezone}
+                options={TimezoneOptions}
+                onChange={(item) => this.props.setSelectedTimezone(item.value)} />
+        );
+    }
+
     _renderProductSelectList() {
         const productOptions = AppData.productOptions;
         return productOptions && productOptions.length ? (
@@ -101,7 +110,7 @@ export class FormFilter extends PureComponent {
             />
         </>
     }
-    
+
     _renderDateFilter() {
         const { selectedDateType, setSelectedDateType } = this.props;
         const optionName = DateFilterTypeOptions.find(option => option.value === selectedDateType);
@@ -128,18 +137,18 @@ export class FormFilter extends PureComponent {
         return (<React.Fragment>
             <CollapsiblePanel className="page-filter">
                 <div className="row">
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
                         <div className="form-group">
                             {this._renderDateFilter()}
                         </div>
                     </div>
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Product")}</label>
                             {this._renderProductSelectList()}
                         </div>
                     </div>
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
+                    <div className="col-12 col-md-6 col-sm-6 col-lg-2 col-xl-2">
                         <div className="form-group">
                             {this._renderUserNameInputSearch()}
                         </div>
@@ -158,7 +167,13 @@ export class FormFilter extends PureComponent {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-md-3 col-sm-2 col-lg-3 col-xl-2">
+                    <div className="col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2">
+                        <div className="form-group">
+                            <label className="label-text">{LangHelper.getSingleResource("DisplayTimezone")}</label>
+                            {this._renderTimezoneSelectList()}
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="ExcludeTestData"
                                 checked={!this.props.isExcludeTest}
@@ -166,7 +181,7 @@ export class FormFilter extends PureComponent {
                                 label={LangHelper.getSingleResource("IncludeTestData")} />
                         </div>
                     </div>
-                    <div className="col-12 col-md-3 col-sm-2 col-lg-3 col-xl-2">
+                    <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="NoDraw"
                                 checked={this.props.noDraw}
@@ -174,7 +189,7 @@ export class FormFilter extends PureComponent {
                                 label={LangHelper.getSingleResource("NoDraw")} />
                         </div>
                     </div>
-                    <div className="col-12 col-md-4 col-sm-2 col-lg-4 col-xl-3">
+                    <div className="col-12 col-md-6 col-sm-4 col-lg-4 col-xl-3">
                         <div className="form-group">
                             <CheckBox id="DrilldownInOriginalCurrency"
                                 checked={this.props.drilldownInOriginalCurrency}
@@ -192,7 +207,7 @@ export class FormFilter extends PureComponent {
 
 function mapDispatchToProps(dispatch) {
     const { fetchReportData, setSelectedDateType, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
-        changeIsExcludeTest, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption } = ActionCreators;
+        changeIsExcludeTest, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
         setSelectedDateType,
@@ -206,12 +221,13 @@ function mapDispatchToProps(dispatch) {
         setNoDraw,
         setDrilldownInOriginalCurrency,
         setRequestParam,
+        setSelectedTimezone
     }), dispatch);
 }
 
 function mapStateToProps(state) {
     const { selectedDateType, dateRange, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
-        isExcludeTest, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption } = state;
+        isExcludeTest, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone } = state;
     return Object.assign({}, {
         selectedDateType,
         dateRange,
@@ -223,7 +239,8 @@ function mapStateToProps(state) {
         drilldownInOriginalCurrency,
         selectedCurrency,
         selectedBaseCurrency,
-        selectedGroupByOption
+        selectedGroupByOption,
+        selectedTimezone
     });
 };
 

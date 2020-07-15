@@ -1,4 +1,4 @@
-﻿// Generated at: 7/7/2020 5:22:17 PM
+﻿// Generated at: 7/15/2020 10:40:17 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -226,6 +226,7 @@ DisableMacauGames:"Disable Macau Games",
 DisableProduct:"Disable {0}",
 DisableRNGCasino:"Disable RNG Casino",
 DisplayCurrency:"Display Currency",
+DisplayTimezone:"Display Timezone",
 Domain_Name:"Domain Name",
 Dontshowagain:"Don&apos;t show again",
 DormantCustomers:"Dormant Customers",
@@ -310,6 +311,9 @@ GameType:"Game Type",
 GameTypeName:"Game Type Name",
 General:"General",
 GGR:"GGR",
+GMT0:"GMT+0",
+GMT8:"GMT+8",
+GMTNegative4:"GMT-4",
 Go:"Go",
 GoldDeluxeNotOfferCurrency:"Gold Deluxe is not offered for this currency.",
 GoldDeluxeWinLossGuidelineContent:"Any query before 4PM GMT-4 will return the data up to 4PM of the day before. You can filter data up to 3 months per query.",

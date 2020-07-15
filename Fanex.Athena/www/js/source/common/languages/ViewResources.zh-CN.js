@@ -1,4 +1,4 @@
-﻿// Generated at: 7/7/2020 5:22:17 PM
+﻿// Generated at: 7/15/2020 10:40:17 AM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -191,6 +191,7 @@ DH:"和主",
 DisableAgCasino:"Disable AG Casino",
 DisableRNGCasino:"停用娱乐城",
 DisplayCurrency:"Display Currency",
+DisplayTimezone:"Display Timezone",
 Dontshowagain:"不再显示",
 DoubleChance:"双重机会",
 Draw:"和局",
@@ -251,6 +252,9 @@ GameType:"游戏类型",
 GameTypeName:"游戏类型名称",
 General:"常规",
 GGR:"GGR",
+GMT0:"GMT+0",
+GMT8:"GMT+8",
+GMTNegative4:"GMT-4",
 Go:"开始",
 GoldDeluxeWinLossGuidelineContent:"在GMT-4下午4点之前的任何查询将依据前一天下午4点的数据。您每次查询可以过滤最多3个月内的数据。",
 GotoCustomerList:"转至会员名单",

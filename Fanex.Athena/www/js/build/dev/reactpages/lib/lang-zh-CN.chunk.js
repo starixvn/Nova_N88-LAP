@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 7/15/2020 10:40:17 AM
+// Generated at: 7/16/2020 5:02:15 PM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -530,7 +530,6 @@ window._language_zh_CN = {
   NotAllowBA: "此Licensee不允许投注总计",
   Note: "注意",
   NoteReportGrossRevenue: "This report is reported gross revenue, have not yet deducted cost, fee, ect...",
-  NoteReportInGMT8: "The report is reported in GMT+8",
   Notification: "通知",
   NotificationDateRangeLimitNote: "最多可以检索六个月前的资料",
   Nov: "十一月",

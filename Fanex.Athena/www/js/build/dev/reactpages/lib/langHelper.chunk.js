@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 7/15/2020 10:40:17 AM
+// Generated at: 7/16/2020 5:02:15 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -618,7 +618,6 @@ window._language_en_US = {
   NotAllowBA: "This licensee is not allowed BA",
   Note: "Note",
   NoteReportGrossRevenue: "This report is reported gross revenue, have not yet deducted cost, fee, ect...",
-  NoteReportInGMT8: "The report is reported in GMT+8",
   Notification: "Notification",
   NotificationDateRangeLimitNote: "Data is available within 6 months",
   Nov: "Nov",

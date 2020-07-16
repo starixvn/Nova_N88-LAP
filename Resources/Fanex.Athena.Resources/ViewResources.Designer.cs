@@ -4768,15 +4768,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The report is reported in GMT+8.
-        /// </summary>
-        public static string NoteReportInGMT8 {
-            get {
-                return ResourceManager.GetString("NoteReportInGMT8", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Notification.
         /// </summary>
         public static string Notification {

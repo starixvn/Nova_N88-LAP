@@ -2834,10 +2834,6 @@
     <value>This report is reported gross revenue, have not yet deducted cost, fee, ect...</value>
     <comment>#133254</comment>
   </data>
-  <data name="NoteReportInGMT8" xml:space="preserve">
-    <value>The report is reported in GMT+8</value>
-    <comment>#133254</comment>
-  </data>
   <data name="SettledDate" xml:space="preserve">
     <value>Settled Date</value>
     <comment>#133254</comment>

@@ -1,4 +1,5 @@
-import { SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION } from '../actions/types';
+import { SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION,
+     DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE } from '../actions/types';
 import createReducer from '@jsroot/lib/createReducer.js';
 import { dateRange } from '@jsroot/reducers/dateRangeReducer';
 import { selectedCurrency } from '@jsroot/reducers/currencyReducer';
@@ -37,6 +38,12 @@ const selectedGroupByOption = createReducer({}, {
     }
 });
 
+const selectedTimezone = createReducer({}, {
+    [SET_SELECTED_TIMEZONE](state, action) {
+        return action.data
+    }
+});
+
 export default {
     selectedDateType,
     dateRange,
@@ -48,5 +55,6 @@ export default {
     noDraw,
     drilldownInOriginalCurrency,
     isExcludeTest,
-    selectedGroupByOption
+    selectedGroupByOption,
+    selectedTimezone
 }

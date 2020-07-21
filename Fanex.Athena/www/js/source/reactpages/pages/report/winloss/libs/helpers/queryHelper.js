@@ -6,7 +6,7 @@ import GroupHelper from '../helpers/groupHelper';
 
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
-         selectedProduct, selectedDateType, isExcludeTest, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption }) {
+         selectedProduct, selectedDateType, isExcludeTest, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption, selectedTimezone }) {
         return {
             ...requestParam,
             ...{
@@ -21,7 +21,8 @@ export default class QueryHelper {
                 drilldownInOriginalCurrency: drilldownInOriginalCurrency,
                 fromDate: Site.convertDateToString(dateRange.fromDate),
                 toDate: Site.convertDateToString(dateRange.toDate),
-                groupBy: selectedGroupByOption
+                groupBy: selectedGroupByOption,
+                timezone: selectedTimezone
             }
         }
     }

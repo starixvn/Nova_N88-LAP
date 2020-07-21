@@ -3926,6 +3926,13 @@ const setSelectedGroupByOption = groupByOption => {
   };
 };
 
+const setSelectedTimezone = timezone => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_TIMEZONE"],
+    data: timezone
+  };
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   setSelectedDateType,
   setDateRange: _jsroot_actions_dateRangeAction__WEBPACK_IMPORTED_MODULE_1__["setDateRange"],
@@ -3937,7 +3944,8 @@ const setSelectedGroupByOption = groupByOption => {
   changeIsExcludeTest: _jsroot_actions_excludeTestAction__WEBPACK_IMPORTED_MODULE_6__["changeIsExcludeTest"],
   setNoDraw,
   setDrilldownInOriginalCurrency,
-  setSelectedGroupByOption
+  setSelectedGroupByOption,
+  setSelectedTimezone
 });
 
 /***/ }),
@@ -4032,7 +4040,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/actions/types.js ***!
   \************************************************************************/
-/*! exports provided: SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION, SET_DISPLAYED_COLUMNS, SET_REPORT_DATA, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION */
+/*! exports provided: SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION, SET_DISPLAYED_COLUMNS, SET_REPORT_DATA, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4044,6 +4052,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_REPORT_DATA", function() { return SET_REPORT_DATA; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DRILLDOWN_IN_ORIGINAL_CURRENCY", function() { return DRILLDOWN_IN_ORIGINAL_CURRENCY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USERNAME_FILTER_OPTION", function() { return USERNAME_FILTER_OPTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_TIMEZONE", function() { return SET_SELECTED_TIMEZONE; });
 const SET_SELECTED_DATE_TYPE = 'SET_SELECTED_DATE_TYPE';
 const SET_NO_DRAW = 'SET_NO_DRAW';
 const SET_SELECTED_GROUP_BY_OPTION = 'SET_SELECTED_GROUP_BY_OPTION';
@@ -4051,6 +4060,7 @@ const SET_DISPLAYED_COLUMNS = 'SET_DISPLAYED_COLUMNS';
 const SET_REPORT_DATA = 'SET_REPORT_DATA';
 const DRILLDOWN_IN_ORIGINAL_CURRENCY = 'DRILLDOWN_IN_ORIGINAL_CURRENCY';
 const USERNAME_FILTER_OPTION = 'USERNAME_FILTER_OPTION';
+const SET_SELECTED_TIMEZONE = 'SET_SELECTED_TIMEZONE';
 
 /***/ }),
 
@@ -4266,6 +4276,15 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     });
   }
 
+  _renderTimezoneSelectList() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      instanceId: "ddlTimezone",
+      value: this.props.selectedTimezone,
+      options: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_15__["TimezoneOptions"],
+      onChange: item => this.props.setSelectedTimezone(item.value)
+    });
+  }
+
   _renderProductSelectList() {
     const productOptions = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_10__["default"].productOptions;
     return productOptions && productOptions.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_4___default.a, {
@@ -4320,17 +4339,17 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
+      className: "col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, this._renderDateFilter())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
+      className: "col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("Product")), this._renderProductSelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
+      className: "col-12 col-md-6 col-sm-6 col-lg-2 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, this._renderUserNameInputSearch())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4348,7 +4367,13 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("DisplayCurrency")), this._renderBaseCurrencySelectList()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-3 col-sm-2 col-lg-3 col-xl-2"
+      className: "col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "label-text"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("DisplayTimezone")), this._renderTimezoneSelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -4357,7 +4382,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       onChange: checked => this.props.changeIsExcludeTest(!checked),
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("IncludeTestData")
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-3 col-sm-2 col-lg-3 col-xl-2"
+      className: "col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -4366,7 +4391,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       onChange: checked => this.props.setNoDraw(checked),
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("NoDraw")
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-4 col-sm-2 col-lg-4 col-xl-3"
+      className: "col-12 col-md-6 col-sm-4 col-lg-4 col-xl-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -4395,7 +4420,8 @@ function mapDispatchToProps(dispatch) {
     setNoDraw,
     setRequestParam,
     setDrilldownInOriginalCurrency,
-    setUserNameFilterOption
+    setUserNameFilterOption,
+    setSelectedTimezone
   } = _actions__WEBPACK_IMPORTED_MODULE_11__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(Object.assign({}, {
     fetchReportData,
@@ -4409,7 +4435,8 @@ function mapDispatchToProps(dispatch) {
     changeIsExcludeTest,
     setNoDraw,
     setDrilldownInOriginalCurrency,
-    setRequestParam
+    setRequestParam,
+    setSelectedTimezone
   }), dispatch);
 }
 
@@ -4425,7 +4452,8 @@ function mapStateToProps(state) {
     noDraw,
     selectedGroupByOption,
     drilldownInOriginalCurrency,
-    userNameFilterOption
+    userNameFilterOption,
+    selectedTimezone
   } = state;
   return Object.assign({}, {
     selectedDateType,
@@ -4438,7 +4466,8 @@ function mapStateToProps(state) {
     drilldownInOriginalCurrency,
     selectedCurrency,
     selectedBaseCurrency,
-    selectedGroupByOption
+    selectedGroupByOption,
+    selectedTimezone
   });
 }
 
@@ -4510,7 +4539,7 @@ const GroupFilter = props => {
     }
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('Note'), ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-9 note"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportInGMT8'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportGrossRevenue'))));
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportGrossRevenue'))));
 };
 
 function mapDispatchToProps(dispatch) {
@@ -5141,7 +5170,7 @@ function mapStateToProps(state) {
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js ***!
   \*********************************************************************************/
-/*! exports provided: GroupByOptionIds, GroupByOptions, DateFilterTypeOptions, UserNameFilterOptions */
+/*! exports provided: GroupByOptionIds, GroupByOptions, DateFilterTypeOptions, UserNameFilterOptions, TimezoneOptions */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5150,6 +5179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptions", function() { return GroupByOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFilterTypeOptions", function() { return DateFilterTypeOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserNameFilterOptions", function() { return UserNameFilterOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TimezoneOptions", function() { return TimezoneOptions; });
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
 const GroupByOptionIds = {
@@ -5191,6 +5221,16 @@ const UserNameFilterOptions = [{
 }, {
   value: 3,
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SabaSystemId')
+}];
+const TimezoneOptions = [{
+  value: 8,
+  label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('GMT8')
+}, {
+  value: -4,
+  label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('GMTNegative4')
+}, {
+  value: 0,
+  label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('GMT0')
 }];
 
 /***/ }),
@@ -5624,7 +5664,8 @@ class QueryHelper {
     drilldownInOriginalCurrency,
     dateRange,
     selectedGroupByOption,
-    userNameFilterOption
+    userNameFilterOption,
+    selectedTimezone
   }) {
     return _objectSpread({}, requestParam, {}, {
       userNameFilterId: userNameFilterOption,
@@ -5638,7 +5679,8 @@ class QueryHelper {
       drilldownInOriginalCurrency: drilldownInOriginalCurrency,
       fromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__["default"].convertDateToString(dateRange.fromDate),
       toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__["default"].convertDateToString(dateRange.toDate),
-      groupBy: selectedGroupByOption
+      groupBy: selectedGroupByOption,
+      timezone: selectedTimezone
     });
   }
 
@@ -5760,6 +5802,7 @@ const defaultState = _objectSpread({}, window.initialState, {}, {
   pagingOption: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultPagingOption"],
   sortOption: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultSortOption"],
   selectedGroupByOption: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionIds"].date,
+  selectedTimezone: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["TimezoneOptions"][0].value,
   displayedColumns: _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["displayedColumns"], _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionIds"].date)
 });
 
@@ -5823,6 +5866,12 @@ const selectedGroupByOption = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPOR
   }
 
 });
+const selectedTimezone = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_TIMEZONE"]](state, action) {
+    return action.data;
+  }
+
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   selectedDateType,
   dateRange: _jsroot_reducers_dateRangeReducer__WEBPACK_IMPORTED_MODULE_2__["dateRange"],
@@ -5834,7 +5883,8 @@ const selectedGroupByOption = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPOR
   noDraw,
   drilldownInOriginalCurrency,
   isExcludeTest: _jsroot_reducers_excludeTestReducer__WEBPACK_IMPORTED_MODULE_7__["isExcludeTest"],
-  selectedGroupByOption
+  selectedGroupByOption,
+  selectedTimezone
 });
 
 /***/ }),

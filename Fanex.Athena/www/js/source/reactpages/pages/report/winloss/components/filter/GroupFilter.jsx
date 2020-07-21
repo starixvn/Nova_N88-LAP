@@ -32,8 +32,6 @@ export const GroupFilter = props => {
                     {LangHelper.getSingleResource('Note')}:
                     </div>
                 <div className="col-9 note">
-                    {LangHelper.getSingleResource('NoteReportInGMT8')}
-                    <br />
                     {LangHelper.getSingleResource('NoteReportGrossRevenue')}
                 </div>
             </div>

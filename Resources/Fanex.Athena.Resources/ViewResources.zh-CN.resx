@@ -2290,10 +2290,6 @@
     <value>This report is reported gross revenue, have not yet deducted cost, fee, ect...</value>
     <comment>#133254</comment>
   </data>
-  <data name="NoteReportInGMT8" xml:space="preserve">
-    <value>The report is reported in GMT+8</value>
-    <comment>#133254</comment>
-  </data>
   <data name="SettledDate" xml:space="preserve">
     <value>Settled Date</value>
     <comment>#133254</comment>
@@ -2320,5 +2316,21 @@
   <data name="SabaSystemId" xml:space="preserve">
     <value>Saba System Id</value>
     <comment>135372</comment>
+  </data>
+  <data name="DisplayTimezone" xml:space="preserve">
+    <value>Display Timezone</value>
+    <comment>137064</comment>
+  </data>
+  <data name="GMT0" xml:space="preserve">
+    <value>GMT+0</value>
+    <comment>137064</comment>
+  </data>
+  <data name="GMT8" xml:space="preserve">
+    <value>GMT+8</value>
+    <comment>137064</comment>
+  </data>
+  <data name="GMTNegative4" xml:space="preserve">
+    <value>GMT-4</value>
+    <comment>137064</comment>
   </data>
 </root>

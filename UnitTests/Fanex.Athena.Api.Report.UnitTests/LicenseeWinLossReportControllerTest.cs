@@ -36,7 +36,9 @@
     {
         private IReportSettingService _reportSettingService;
 
-        private ILicenseeWinLossDataAccess _dataAccess;
+        private ILicenseeWinLossDataAccess _licenseeWinLossDataAccess;
+
+        private IAppSettings _appSettings;
 
         private LicenseeWinLossReportController _controller;
 
@@ -45,8 +47,9 @@
         {
             base.FixtureSetUp();
 
-            _dataAccess = Substitute.For<ILicenseeWinLossDataAccess>();
+            _licenseeWinLossDataAccess = Substitute.For<ILicenseeWinLossDataAccess>();
             _reportSettingService = Substitute.For<IReportSettingService>();
+            _appSettings = Substitute.For<IAppSettings>();
             CreateController();
 
             MockSessionData();
@@ -57,7 +60,8 @@
             _controller = Substitute.ForPartsOf<LicenseeWinLossReportController>(
                             _reportSettingService,
                             LangService,
-                            _dataAccess);
+                            _appSettings,
+                            _licenseeWinLossDataAccess);
             _controller.SessionService = SessionService;
             _controller.ProductService = ProductService;
 
@@ -70,7 +74,7 @@
             base.FixtureTearDown();
 
             _controller = null;
-            _dataAccess = null;
+            _licenseeWinLossDataAccess = null;
         }
 
         [TearDown]
@@ -288,7 +292,6 @@
             });
         }
 
-        [TestCase(1, 1)]
         [TestCase(2, 0)]
         public void Index_ExportToExcel_LevelGreaterThan0_ExportWithCorrectData(int level, int currencyId)
         {
@@ -303,7 +306,7 @@
             metaModel.CurrencyId = currencyId;
             metaModel.IsExportExcel = true;
 
-            SetUpForGettingData(metaModel, level, totalItem: 0);
+            SetUpForGettingData(metaModel, level, 0);
 
             SetUpForExportingExcel();
 
@@ -396,15 +399,15 @@
 
             if (level == 0)
             {
-                _dataAccess.GetSummaryWinloss(metaModel, Arg.Any<IDictionary<int, string>>(), !metaModel.IsExportExcel).Returns(result);
+                _licenseeWinLossDataAccess.GetSummaryWinloss(metaModel, Arg.Any<IDictionary<int, string>>(), !metaModel.IsExportExcel).Returns(result);
             }
             else if (level == 1)
             {
-                _dataAccess.GetAgentWinlossDetail(metaModel, Arg.Any<IDictionary<int, string>>(), !metaModel.IsExportExcel).Returns(result);
+                _licenseeWinLossDataAccess.GetAgentWinlossDetail(metaModel, Arg.Any<IDictionary<int, string>>(), !metaModel.IsExportExcel).Returns(result);
             }
             else
             {
-                _dataAccess.GetCustomerWinlossDetail(metaModel, Arg.Any<IDictionary<int, string>>(), !metaModel.IsExportExcel).Returns(result);
+                _licenseeWinLossDataAccess.GetCustomerWinlossDetail(metaModel, Arg.Any<IDictionary<int, string>>(), !metaModel.IsExportExcel).Returns(result);
             }
 
             return result;

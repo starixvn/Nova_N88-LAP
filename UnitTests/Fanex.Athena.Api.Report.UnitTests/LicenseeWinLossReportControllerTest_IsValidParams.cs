@@ -6,6 +6,7 @@
     using Base.UnitTests;
 
     using DataAccess.Report.Interfaces;
+    using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.MetaModel.Product;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
@@ -23,15 +24,18 @@
     {
         private IReportSettingService _reportSettingService;
 
-        private ILicenseeWinLossDataAccess _dataAccess;
+        private ILicenseeWinLossDataAccess _licenseeWinLossDataAccess;
+
+        private IAppSettings _appSettings;
 
         private LicenseeWinLossReportController _controller;
 
         [SetUp]
         public void SetUp()
         {
-            _dataAccess = Substitute.For<ILicenseeWinLossDataAccess>();
+            _licenseeWinLossDataAccess = Substitute.For<ILicenseeWinLossDataAccess>();
             _reportSettingService = Substitute.For<IReportSettingService>();
+            _appSettings = Substitute.For<IAppSettings>();
             CreateController();
 
             MockSessionData();
@@ -42,7 +46,8 @@
             _controller = Substitute.ForPartsOf<LicenseeWinLossReportController>(
                             _reportSettingService,
                             LangService,
-                            _dataAccess);
+                            _appSettings,
+                            _licenseeWinLossDataAccess);
             _controller.SessionService = SessionService;
             _controller.ProductService = ProductService;
 

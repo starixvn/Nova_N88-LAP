@@ -1,0 +1,112 @@
+@import '../../../abstracts/variables';
+// @import '../../../components/forms/checkbox';
+@import '../../../components/forms/radio-buttons';
+// @import '../../../components/react-multiselect';
+// @import '../../../components/autocomplete';
+// @import '../../../components/popup';
+// @import "../../../components/react-grid";
+// @import "../../../components/paging";
+// @import "../../../components/switch";
+//  @import "../../../components/dropdown";
+// @import "../../../components/dropdownlabel";
+@import "./mixins";
+@import "./common";
+
+.marketing-report {
+    .widget {
+        .widget-title {
+            background: #a2beba;
+            padding: 10px 15px;
+            color: $black;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            i {
+                margin-right: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    .sticky-box-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .sticky-box {
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+    }
+
+    .sticky-box {
+        width: 170px;
+        height: 160px;
+        padding: 10px 10px;
+        background: #DDD9C3;
+        border: 1px solid #cbd8ec;
+        box-sizing: border-box;
+    }
+
+    .sticky-box-title {
+        color: #0070C0;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .sticky-box-description {
+        height: 20px;
+        color: #808080
+    }
+
+    .sticky-box-content {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .sticky-box-compare-title {
+        float: left;
+        position: relative;
+        bottom: -35px;
+    }
+
+    .sticky-box-rate {
+        float: right;
+        position: relative;
+        bottom: -33px;
+        width: 35px;
+        height: 20px;
+
+        .triangle-top-left {
+            position: absolute;
+        }
+
+        .rate {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    .triangle-top-left-green {
+        @include make-triangle-top-left($colorActive)
+    }
+
+    .arrow {
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+    }
+
+    .arrow-up  {
+        border-bottom: 7px solid $black;
+    }
+      
+    .arrow-down {
+        border-top: 7px solid $black;
+    }
+}

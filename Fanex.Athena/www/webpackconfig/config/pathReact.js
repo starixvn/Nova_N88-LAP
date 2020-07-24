@@ -16,7 +16,8 @@ var cssPaths = {
     playerwinloss: "./www/css/source/reactpages/pages/playeradmin/playerwinloss.scss",
     statement: "./www/css/source/reactpages/pages/playeradmin/statement.scss",
 
-    winlossreport: "./www/css/source/reactpages/pages/report/winloss/index.scss"
+    winlossreport: "./www/css/source/reactpages/pages/report/winloss/index.scss",
+    marketingreport: "./www/css/source/reactpages/pages/report/marketing/index.scss"
 };
 
 var scriptPaths = {
@@ -44,7 +45,8 @@ var scriptPaths = {
     playerwinloss: "./www/js/source/reactpages/Module/PlayerAdmin/playerwinloss/components/index.jsx",
     statement: "./www/js/source/reactpages/Module/PlayerAdmin/statement/components/index.jsx",
 
-    winlossreport: "./www/js/source/reactpages/pages/report/winloss/index.js"
+    winlossreport: "./www/js/source/reactpages/pages/report/winloss/index.js",
+    marketingreport: "./www/js/source/reactpages/pages/report/marketing/index.js"
 };
 module.exports = {
     projectRoot: projectRoot,

@@ -35,6 +35,7 @@ function generateConfig(environment) {
 
             [`${jsPath}/report/speciallicenseewl`]: pathConfig.scriptPaths.speciallicenseewl,
             [`${jsPath}/report/winloss`]: pathConfig.scriptPaths.winlossreport,
+            [`${jsPath}/report/marketing`]: pathConfig.scriptPaths.marketingreport,
 
             /*css*/
             [`${cssPath}/vendor`]: pathConfig.cssPaths.layout,
@@ -50,6 +51,7 @@ function generateConfig(environment) {
             [`${cssPath}/playeradmin/statement`]: pathConfig.cssPaths.statement,
 
             [`${cssPath}/report/winloss`]: pathConfig.cssPaths.winlossreport,
+            [`${cssPath}/report/marketing`]: pathConfig.cssPaths.marketingreport,
         },
         output: {
             path: pathConfig.projectRoot,

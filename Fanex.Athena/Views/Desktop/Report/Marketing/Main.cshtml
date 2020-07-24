@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = ViewResources.MarketingReport;
+    Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+}
+
+@using Fanex.Athena.Model.Core.DataDomain
+
+@model Fanex.Athena.Model.Report.ViewModel.MarketingViewModel
+
+@{
+    var baseCurrencyList = SystemConstants.BaseCurrencyList.Select(c => new
+    {
+        value = c.Value,
+        label = c.Value
+    }).ToList();
+}
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/report/marketing.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/report/marketing.chunk.js")"></script>
+}
+
+@section globaljscode{
+    window.initialState = {
+    isLoading: false,
+    selectedBaseCurrency: '@Model.BaseCurrency',
+    };
+
+    window._AppData = {
+    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+    }
+
+}
+<div id="app-container">
+</div>

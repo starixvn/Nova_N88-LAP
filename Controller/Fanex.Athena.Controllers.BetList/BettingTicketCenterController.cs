@@ -149,6 +149,7 @@
             var productsRequireUseName = new[]
             {
                 Product.KN,
+                Product.LT,
                 Product.CS,
                 Product.AB,
                 Product.CC,

@@ -20,7 +20,6 @@
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
     using Model.Core.DTO.Configuration;
-    using Newtonsoft.Json;
     using NSubstitute;
 
     using NUnit.Framework;
@@ -146,7 +145,7 @@
 
                 var expectedProductsNote = string.Format(
                     ViewResources.BettingTicketCenter_RefnoTabNote2,
-                    productKN.ProductName,
+                    productKN.ProductName + ", " + productLT.ProductName,
                     BalanceUpDate.ToString(FormatKey.DateFormat));
 
                 // Action

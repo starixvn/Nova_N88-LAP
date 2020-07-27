@@ -7094,7 +7094,7 @@ class NumberFormat {
   }
 
   static format(value, digits = 0) {
-    if (typeof value !== "number" || isNaN(value)) {
+    if (!this.isNumber(value)) {
       return "";
     }
 
@@ -7107,6 +7107,10 @@ class NumberFormat {
     const absoluteValue = Math.abs(value);
     const rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
     return sign * rounded;
+  }
+
+  static isNumber(value) {
+    return typeof value !== "number" || isNaN(value) ? false : true;
   }
 
   static parseToString(number) {

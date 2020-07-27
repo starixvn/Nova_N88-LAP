@@ -4,8 +4,7 @@ import NumberFormat from '@jsroot/lib/numberFormat';
 import NumberHelper from '../../libs/helpers/numberHelper';
 
 const StickyCompareBox = props => {
-
-    const { title, description, value, rate } = props;
+    const { title, description, value, rate, showGrowthRateSympol } = props;
 
     const _renderTitle = () => {
         return (<div className="sticky-box-title">
@@ -20,16 +19,18 @@ const StickyCompareBox = props => {
     }
 
     const _renderValue = () => {
+        const isNumber = NumberFormat.isNumber(value);
         return (<div className="sticky-box-content">
-            {NumberFormat.format(value)}
+            {isNumber ? NumberFormat.format(value) : value}
         </div>)
     }
 
     const _renderRate = () => {
-        const rateDisplay = NumberHelper.displayRate(rate);
-        const color = rate >= 0 ? 'green' : 'red';
+        const roundedRate = NumberFormat.round(rate, 0);
+        const rateDisplay = NumberHelper.displayRate(roundedRate);
+        const color = roundedRate >= 0 ? 'green' : 'red';
         return (<div className="sticky-box-rate">
-            <div className="triangle-top-left-green"></div>
+            {showGrowthRateSympol !== false && <div className="triangle-top-left-green"></div>}
             <div className={`rate ${color}`}>{rateDisplay}</div>
         </div>)
     }

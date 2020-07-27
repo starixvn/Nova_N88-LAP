@@ -1,19 +1,12 @@
 @import '../../../abstracts/variables';
-// @import '../../../components/forms/checkbox';
 @import '../../../components/forms/radio-buttons';
-// @import '../../../components/react-multiselect';
-// @import '../../../components/autocomplete';
-// @import '../../../components/popup';
-// @import "../../../components/react-grid";
-// @import "../../../components/paging";
-// @import "../../../components/switch";
-//  @import "../../../components/dropdown";
-// @import "../../../components/dropdownlabel";
 @import "./mixins";
 @import "./common";
 
 .marketing-report {
     .widget {
+        background: $white;
+
         .widget-title {
             background: #a2beba;
             padding: 10px 15px;
@@ -26,11 +19,28 @@
                 cursor: pointer;
             }
         }
+
+        .widget-content {
+            position: relative;
+            border: 1px solid #d6d6d6;
+            padding-bottom: 15px;
+        }
+
+        .no-data-widget {
+            padding-top: 10px;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .loading-process {
+            position: absolute !important;
+        }
     }
     
     .sticky-box-container {
         display: flex;
         flex-wrap: wrap;
+        padding-bottom: 15px;
 
         .sticky-box {
             margin-right: 15px;

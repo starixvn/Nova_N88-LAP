@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import ActionCreators from '../../actions';
+import Loader from '@jsroot/components/Loader';
+import LangHelper from '@jsroot/lib/langHelper'
 
 export const Widget = props => {
-    const { title, children } = props;
+    const { title, isLoading, children } = props;
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     const _renderTitle = () => {
@@ -14,22 +13,19 @@ export const Widget = props => {
         </div>)
     }
 
+    const _renderNoData = () => {
+        return (<p className="no-data-widget">
+            {LangHelper.getSingleResource('NoInfo')}
+        </p>)
+    }
+
     return (<div className="widget">
         {_renderTitle()}
-        <div className="widget-content" style={{ display: isCollapsed ? 'none' : 'block' }}>
-            {children}
-        </div>
+        {<div className="widget-content" style={{ display: isCollapsed ? 'none' : 'block' }}>
+            <Loader isLoading={isLoading} />
+            {children || _renderNoData()}
+        </div>}
     </div>)
 }
 
-function mapStateToProps(state) {
-    const { } = state;
-    return Object.assign({}, {});
-}
-
-function mapDispatchToProps(dispatch) {
-    const { } = ActionCreators;
-    return bindActionCreators({}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Widget);
+export default React.memo(Widget);

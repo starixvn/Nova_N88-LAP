@@ -1,7 +1,7 @@
-import * as loaderAction from '@jsroot/actions/loaderAction';
 import filterAction from './filterAction';
+import dataAction from './dataAction';
 
 export default {
-    ...loaderAction,
-    ...filterAction
+    ...filterAction,
+    ...dataAction
 }

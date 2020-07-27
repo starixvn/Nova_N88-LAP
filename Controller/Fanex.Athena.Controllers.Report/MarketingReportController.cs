@@ -2,14 +2,18 @@
 {
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Report.ViewModel;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using System.Web.Mvc;
 
-    [FunctionAuthorization(PermissionKeys.ReportWinLoss)]
+    [FunctionAuthorization(PermissionKeys.ReportMarketing)]
     public class MarketingReportController : ReportBaseController
     {
-        public MarketingReportController()
+        private readonly IReportSettingService _reportSettingService;
+
+        public MarketingReportController(IReportSettingService reportSettingService)
         {
+            _reportSettingService = reportSettingService;
         }
 
         [HttpGet]
@@ -21,9 +25,12 @@
 
         private MarketingViewModel CreateViewModel()
         {
+            var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportMarketing, LicenseeName);
+
             var vm = new MarketingViewModel
             {
-                BaseCurrency = DefaultBaseCurrency
+                BaseCurrency = DefaultBaseCurrency,
+                Today = reportSetting.MaxDate
             };
             return vm;
         }

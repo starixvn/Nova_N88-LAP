@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    [ApiFunctionAuthorization(PermissionKeys.ReportWinLoss)]
+    [ApiFunctionAuthorization(PermissionKeys.ReportMarketing)]
     public class MarketingReportController : BaseApiController
     {
         private const string PerformanceHighlightUrl = "Api/PerformanceHighlight/GetData";

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = ViewResources.MarketingReport;
+    ViewBag.Title = ViewResources.Report + " - " + ViewResources.Marketing;
     Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
 }
 
@@ -25,12 +25,12 @@
 
 @section globaljscode{
     window.initialState = {
-    isLoading: false,
-    selectedBaseCurrency: '@Model.BaseCurrency',
+        selectedBaseCurrency: '@Model.BaseCurrency',
     };
 
     window._AppData = {
-    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+        baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+        today: '@Model.Today.ToString("MM/dd/yyyy")'
     }
 
 }

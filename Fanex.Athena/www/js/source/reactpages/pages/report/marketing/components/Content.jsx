@@ -19,7 +19,7 @@ export const Content = props => {
         const { fromDate, toDate } = reportDate;
         // const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
         const reportDateRange = DateTimeHelper.isEqualDate(fromDate, toDate) ? DateTimeHelper.formatDateStructureToString(reportDate.fromDate)
-            : `${DateTimeHelper.formatDateStructureToString(reportDate.fromDate)} => ${DateTimeHelper.formatDateStructureToString(reportDate.toDate)}`;
+            : `${DateTimeHelper.formatDateStructureToString(reportDate.fromDate)} - ${DateTimeHelper.formatDateStructureToString(reportDate.toDate)}`;
         const content = `${reportName}, ${reportDateRange}`;
         return <ReportTitle tag="div" content={content} />
     }

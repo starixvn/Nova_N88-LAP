@@ -36,7 +36,7 @@ export const PerformanceHighlightWidget = props => {
     const _renderPaidUsersBox = () => {
         const { paidUsers, growthRatePaidUsers } = performanceHighlightData;
         return (<StickyCompareBox
-            title={LangHelper.getSingleResource('PU(APA)')}
+            title={'PU (APA)'}
             description={LangHelper.getSingleResource('PaidUsers')}
             value={paidUsers}
             rate={growthRatePaidUsers}

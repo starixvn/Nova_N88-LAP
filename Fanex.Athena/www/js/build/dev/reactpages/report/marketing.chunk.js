@@ -1197,7 +1197,7 @@ const Content = props => {
       toDate
     } = reportDate; // const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
 
-    const reportDateRange = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].isEqualDate(fromDate, toDate) ? _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.fromDate) : `${_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.fromDate)} => ${_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.toDate)}`;
+    const reportDateRange = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].isEqualDate(fromDate, toDate) ? _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.fromDate) : `${_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.fromDate)} - ${_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.toDate)}`;
     const content = `${reportName}, ${reportDateRange}`;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_ReportTitle__WEBPACK_IMPORTED_MODULE_2__["default"], {
       tag: "div",
@@ -1674,7 +1674,7 @@ const PerformanceHighlightWidget = props => {
       growthRatePaidUsers
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_StickyCompareBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('PU(APA)'),
+      title: 'PU (APA)',
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('PaidUsers'),
       value: paidUsers,
       rate: growthRatePaidUsers

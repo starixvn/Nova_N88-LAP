@@ -2,6 +2,7 @@
 {
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Report.ViewModel;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using System.Web.Mvc;
@@ -10,10 +11,12 @@
     public class MarketingReportController : ReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;
+        private readonly ITpService _tpService;
 
-        public MarketingReportController(IReportSettingService reportSettingService)
+        public MarketingReportController(IReportSettingService reportSettingService, ITpService tpService)
         {
             _reportSettingService = reportSettingService;
+            _tpService = tpService;
         }
 
         [HttpGet]
@@ -26,10 +29,12 @@
         private MarketingViewModel CreateViewModel()
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportMarketing, LicenseeName);
+            var tpProducts = _tpService.GetListTpProduct();
 
             var vm = new MarketingViewModel
             {
                 BaseCurrency = DefaultBaseCurrency,
+                TpProducts = tpProducts,
                 Today = reportSetting.MaxDate
             };
             return vm;

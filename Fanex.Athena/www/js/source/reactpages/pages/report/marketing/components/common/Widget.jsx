@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Loader from '@jsroot/components/Loader';
-import LangHelper from '@jsroot/lib/langHelper'
+import LangHelper from '@jsroot/lib/langHelper';
 
 export const Widget = props => {
     const { title, isLoading, children } = props;

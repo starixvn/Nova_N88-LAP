@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
-import ActionCreators from '../../actions';
-import Widget from '../common/Widget';
-import StickyCompareBox from '../common/StickyCompareBox';
-import DateTimeHelper from '../../libs/helpers/dateTimeHelper';
-import FilterHelper from '../../libs/helpers/filterHelper';
+import ActionCreators from '../../../actions';
+import Widget from '../../common/Widget';
+import StickyCompareBox from '../../common/StickyCompareBox';
+import DateTimeHelper from '../../../libs/helpers/dateTimeHelper';
+import FilterHelper from '../../../libs/helpers/filterHelper';
 
 export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
@@ -17,12 +17,12 @@ export const PerformanceHighlightWidget = props => {
         if (!globalFilter) {
             return;
         }
-        const apiParams = FilterHelper.getPerformanceHighlightWidgetAPIParams(globalFilter);
+        const apiParams = FilterHelper.getPerformanceHighlightAPIParams(globalFilter);
         setLoading(true);
         fetchPeformanceHighlightData(apiParams, () => setLoading(false))
     }, [globalFilter]);
 
-    const _title = React.useMemo(() => LangHelper.getSingleResource('BusinessPerformanceHighlights'));
+    const _title = React.useMemo(() => LangHelper.getSingleResource('BusinessPerformanceHighlights'), []);
 
     const _renderTotalUsersBox = () => {
         const { totalUsers, growthRateTotalUsers } = performanceHighlightData;

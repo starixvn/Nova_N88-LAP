@@ -1,11 +1,17 @@
 @import '../../../abstracts/variables';
 @import '../../../components/forms/radio-buttons';
+@import '../../../components/react-multiselect';
 @import "./mixins";
 @import "./common";
 
 .marketing-report {
+    .report-title {
+        text-transform: uppercase;
+    }
+
     .widget {
         background: $white;
+        margin-bottom: 20px;
 
         .widget-title {
             background: #a2beba;
@@ -23,7 +29,7 @@
         .widget-content {
             position: relative;
             border: 1px solid #d6d6d6;
-            padding-bottom: 15px;
+            padding: 15px;
         }
 
         .no-data-widget {
@@ -40,7 +46,6 @@
     .sticky-box-container {
         display: flex;
         flex-wrap: wrap;
-        padding: 10px;
 
         .sticky-box {
             margin-right: 15px;
@@ -55,7 +60,7 @@
         background: #EEF8F6;
         border: 1px solid #A2BEBA;
         box-sizing: border-box;
-        color: #164F46;
+        color: $colorMain;
     }
 
     .sticky-box-title {
@@ -84,7 +89,6 @@
         float: right;
         position: relative;
         bottom: -13px;
-
         .triangle-top-left, .triangle-bottom-left  {
             position: absolute;
         }
@@ -128,5 +132,12 @@
       
     .arrow-down {
         border-top: 7px solid $black;
+    }
+
+    //user
+
+    .chart-container {
+        height: 450px;
+        position: relative;
     }
 }

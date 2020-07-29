@@ -2,21 +2,53 @@ import DateTimeHelper from './dateTimeHelper';
 import { ReportDateOptionValues, CompareDateOptionValues } from '../../constants/filterConst';
 
 export default class FilterHelper {
-    static getCommonAPIParams = globalFilterData => {
-        const { selectedBaseCurrency, reportDate, compareDate } = globalFilterData;
-        const apiParams = {
-            baseCurrency: selectedBaseCurrency,
+    static getCommonAPIParams = ({ reportDate }) => {
+        const params = {
             fromDate: DateTimeHelper.formatDateStructureToString(reportDate.fromDate),
             toDate: DateTimeHelper.formatDateStructureToString(reportDate.toDate),
-            compareFromDate: DateTimeHelper.formatDateStructureToString(compareDate.fromDate),
-            compareToDate: DateTimeHelper.formatDateStructureToString(compareDate.toDate)
         }
-        return apiParams;
+        return params;
     }
 
-    static getPerformanceHighlightWidgetAPIParams = filterData => {
-        const commonParams = this.getCommonAPIParams(filterData);
-        return commonParams;
+    static getPerformanceHighlightAPIParams = filterData => {
+        const { reportDate, compareDate } = filterData;
+        const commonParams = this.getCommonAPIParams({ reportDate });
+        const params = {
+            ...commonParams,
+            ...{
+                compareFromDate: DateTimeHelper.formatDateStructureToString(compareDate.fromDate),
+                compareToDate: DateTimeHelper.formatDateStructureToString(compareDate.toDate)
+            }
+        }
+
+        return params;
+    }
+
+    static getUserActivitiesAPIParams = filterData => {
+        const { reportDate, viewMode } = filterData;
+        const commonParams = this.getCommonAPIParams({ reportDate });
+        const params = {
+            ...commonParams,
+            ...{ 
+                viewMode 
+            }
+        }
+
+        return params;
+    }
+
+    static getAvgRevenueAPIParams = filterData => {
+        const { reportDate, selectedBaseCurrency, products } = filterData;
+        const commonParams = this.getCommonAPIParams({ reportDate });
+        const params = {
+            ...commonParams,
+            ...{ 
+                 productIds: products,
+                 baseCurrency: selectedBaseCurrency
+            }
+        }
+
+        return params;
     }
 
     static ReportDateGenerateRangeSelections = {
@@ -74,6 +106,7 @@ export default class FilterHelper {
         }
     }
 
-    static DefaultReportDate = { fromDate: DateTimeHelper.getYesterday(), toDate: DateTimeHelper.getYesterday() }
+    static DefaultReportDate = this.ReportDateGenerateRangeSelections[ReportDateOptionValues.yesterday]();
+    static DefaultReportDateLast7Days = this.ReportDateGenerateRangeSelections[ReportDateOptionValues.last7Days]();
     static DefaultCompareDate = this.CompareDateGenerateRangeSelections[CompareDateOptionValues.previousPeriod](this.DefaultReportDate);
 }

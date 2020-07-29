@@ -13,7 +13,7 @@ import TimePeriodSelect from './common/TimePeriodSelect';
 
 export const FormFilter = props => {
     const { setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter,
-        selectedBaseCurrency, reportDate, compareDate
+        selectedBaseCurrency, reportDate, compareDate, viewMode
     } = props;
 
     const _renderBaseCurrencySelectList = () => {
@@ -29,21 +29,25 @@ export const FormFilter = props => {
     const _renderViewModeOptions = () => {
         return (<RadioGroup
             name={'ViewBy'}
-            value={ViewByOptions[0].value}
+            value={viewMode}
             options={ViewByOptions}
             onChange={setViewMode}
         />)
     }
+
+    const _onChangeReportDateSelection = React.useCallback(selectedRange => {
+        setReportDate(selectedRange);
+        setCompareDate(FilterHelper.CompareDateGenerateRangeSelections[CompareDateOptionValues.previousPeriod](selectedRange)); //reset to default selection
+    })
+
+    const _onChangeCompareDateSelection = React.useCallback(selectedRange => setCompareDate(selectedRange))
 
     const _renderReportDateSelection = () => {
         return (<TimePeriodSelect
             selectOptions={ReportDateSelectionOptions}
             selectOptionGenerateRange={FilterHelper.ReportDateGenerateRangeSelections}
             selectedRange={reportDate}
-            onChange={selectedRange => {
-                setReportDate(selectedRange);
-                setCompareDate(FilterHelper.CompareDateGenerateRangeSelections[CompareDateOptionValues.previousPeriod](selectedRange)); //reset to default selection
-            }}
+            onChange={_onChangeReportDateSelection}
         />)
     }
 
@@ -53,12 +57,12 @@ export const FormFilter = props => {
             selectOptionGenerateRange={FilterHelper.CompareDateGenerateRangeSelections}
             selectedRange={compareDate}
             selectedDependRange={reportDate}
-            onChange={selectedRange => setCompareDate(selectedRange)}
+            onChange={_onChangeCompareDateSelection}
         />)
     }
 
     const _onSubmit = () => {
-        const globalFilter = { reportDate, compareDate, selectedBaseCurrency };
+        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency };
         setGlobalFilter(globalFilter);
     }
 
@@ -79,18 +83,18 @@ export const FormFilter = props => {
                 </div>
             </div>
             <div className="row">
-                {/* <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
+                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("ViewBy")}</label>
                         {_renderViewModeOptions()}
                     </div>
-                </div> */}
-                {/* <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
+                </div>
+                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("DisplayCurrency")}</label>
                         {_renderBaseCurrencySelectList()}
                     </div>
-                </div> */}
+                </div>
                 <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                     <div className="form-group">
                         <div className="button-group">

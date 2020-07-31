@@ -1418,7 +1418,8 @@ const StickyCompareBox = props => {
     description,
     value,
     rate,
-    showGrowthRateSympol
+    showGrowthRateSympol,
+    isNegativeMean
   } = props;
 
   const _renderTitle = () => {
@@ -1440,14 +1441,33 @@ const StickyCompareBox = props => {
     }, isNumber ? _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(value) : value);
   };
 
+  const _getColorRate = rate => {
+    if (rate === 0) {
+      return '';
+    }
+
+    return rate > 0 ? 'green' : 'red';
+  };
+
+  const _getArrowColor = rate => {
+    return rate >= 0 ? 'border-top-green' : 'border-top-red';
+  };
+
   const _renderRate = () => {
     const roundedRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(rate, 0);
     const rateDisplay = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_3__["default"].displayRate(roundedRate);
-    const color = roundedRate >= 0 ? 'green' : 'red';
+
+    const _roundedRate = isNegativeMean ? -roundedRate : roundedRate;
+
+    const color = _getColorRate(_roundedRate);
+
+    const arrowColor = _getArrowColor(_roundedRate);
+
+    const arrow = _roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sticky-box-rate"
-    }, showGrowthRateSympol !== false && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "triangle-top-left-green"
+    }, showGrowthRateSympol !== false && roundedRate !== 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: `${arrow} ${arrowColor}`
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: `rate ${color}`
     }, rateDisplay));
@@ -1721,6 +1741,7 @@ const PerformanceHighlightWidget = props => {
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('CR'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('ChurnRate'),
       value: `${_jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].round(churnRate, 0)}%`,
+      isNegativeMean: true,
       rate: differentChurnRate,
       showGrowthRateSympol: false
     });
@@ -2091,7 +2112,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NumberHelper; });
 class NumberHelper {
   static displayRate(rate) {
-    return `${rate >= 0 ? '+' : ''}${rate}%`;
+    return `${rate > 0 ? '+' : ''}${rate}%`;
   }
 
 }

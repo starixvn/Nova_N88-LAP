@@ -135,51 +135,59 @@
     margin-top: 5px; }
 
 .marketing-report .sticky-box {
-  width: 170px;
-  height: 160px;
+  width: 200px;
+  height: 140px;
   padding: 10px 10px;
-  background: #DDD9C3;
-  border: 1px solid #cbd8ec;
-  box-sizing: border-box; }
+  background: #EEF8F6;
+  border: 1px solid #A2BEBA;
+  box-sizing: border-box;
+  color: #164F46; }
 
 .marketing-report .sticky-box-title {
-  color: #0070C0;
   font-weight: bold;
-  font-size: 13px; }
+  font-size: 15px; }
 
 .marketing-report .sticky-box-description {
   height: 20px;
-  color: #808080; }
+  color: #38796F; }
 
 .marketing-report .sticky-box-content {
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
-  margin-top: 20px; }
+  font-size: 32px; }
 
 .marketing-report .sticky-box-compare-title {
   float: left;
   position: relative;
-  bottom: -35px; }
+  bottom: -12px; }
 
 .marketing-report .sticky-box-rate {
   float: right;
   position: relative;
-  bottom: -33px;
-  width: 35px;
-  height: 20px; }
-  .marketing-report .sticky-box-rate .triangle-top-left {
+  bottom: -13px; }
+  .marketing-report .sticky-box-rate .triangle-top-left, .marketing-report .sticky-box-rate .triangle-bottom-left {
     position: absolute; }
+  .marketing-report .sticky-box-rate .border-top-green {
+    border-top-color: #458a00; }
+  .marketing-report .sticky-box-rate .border-top-red {
+    border-top-color: #e51c23; }
   .marketing-report .sticky-box-rate .rate {
-    position: absolute;
-    right: 0;
-    bottom: 0; }
+    float: right;
+    margin-left: 12px; }
 
-.marketing-report .triangle-top-left-green {
+.marketing-report .triangle-top-left {
   width: 0;
   height: 0;
   border-right: 9px solid transparent;
-  border-top: 8px solid #458a00; }
+  border-top: 8px solid #2c2c2c; }
+
+.marketing-report .triangle-bottom-left {
+  width: 0;
+  height: 0;
+  border-right: 9px solid transparent;
+  border-top: 8px solid #2c2c2c;
+  float: left;
+  transform: rotate(-90deg); }
 
 .marketing-report .arrow {
   display: inline-block;

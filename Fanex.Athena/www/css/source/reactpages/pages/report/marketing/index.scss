@@ -36,7 +36,7 @@
             position: absolute !important;
         }
     }
-    
+
     .sticky-box-container {
         display: flex;
         flex-wrap: wrap;
@@ -49,58 +49,68 @@
     }
 
     .sticky-box {
-        width: 170px;
-        height: 160px;
+        width: 200px;
+        height: 140px;
         padding: 10px 10px;
-        background: #DDD9C3;
-        border: 1px solid #cbd8ec;
+        background: #EEF8F6;
+        border: 1px solid #A2BEBA;
         box-sizing: border-box;
+        color: #164F46;
     }
 
     .sticky-box-title {
-        color: #0070C0;
         font-weight: bold;
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .sticky-box-description {
         height: 20px;
-        color: #808080
+        color: #38796F;
     }
 
     .sticky-box-content {
         text-align: center;
         font-weight: bold;
-        font-size: 20px;
-        margin-top: 20px;
+        font-size: 32px;
     }
 
     .sticky-box-compare-title {
         float: left;
         position: relative;
-        bottom: -35px;
+        bottom: -12px;
     }
 
     .sticky-box-rate {
         float: right;
         position: relative;
-        bottom: -33px;
-        width: 35px;
-        height: 20px;
+        bottom: -13px;
 
-        .triangle-top-left {
+        .triangle-top-left, .triangle-bottom-left  {
             position: absolute;
+        }
+
+        .border-top-green {
+            border-top-color: $colorActive;    
+        }
+
+        .border-top-red {
+            border-top-color: $red;    
         }
 
         .rate {
-            position: absolute;
-            right: 0;
-            bottom: 0;
+            float: right;
+            margin-left: 12px;
         }
     }
 
-    .triangle-top-left-green {
-        @include make-triangle-top-left($colorActive)
+    .triangle-top-left {
+        @include make-triangle-top-left()
+    }
+
+    .triangle-bottom-left {
+        @include make-triangle-top-left();
+        float: left;
+        transform: rotate(-90deg);
     }
 
     .arrow {

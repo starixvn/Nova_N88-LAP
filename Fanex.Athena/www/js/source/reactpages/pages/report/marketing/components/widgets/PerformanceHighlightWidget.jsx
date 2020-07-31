@@ -71,6 +71,7 @@ export const PerformanceHighlightWidget = props => {
             title={LangHelper.getSingleResource('CR')}
             description={LangHelper.getSingleResource('ChurnRate')}
             value={`${NumberFormat.round(churnRate, 0)}%`}
+            isNegativeMean={true}
             rate={differentChurnRate}
             showGrowthRateSympol={false}
         />)

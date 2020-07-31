@@ -4,7 +4,7 @@ import NumberFormat from '@jsroot/lib/numberFormat';
 import NumberHelper from '../../libs/helpers/numberHelper';
 
 const StickyCompareBox = props => {
-    const { title, description, value, rate, showGrowthRateSympol } = props;
+    const { title, description, value, rate, showGrowthRateSympol, isNegativeMean } = props;
 
     const _renderTitle = () => {
         return (<div className="sticky-box-title">
@@ -25,12 +25,26 @@ const StickyCompareBox = props => {
         </div>)
     }
 
+    const _getColorRate = rate => {
+        if (rate === 0) {
+            return '';
+        }
+        return rate > 0 ? 'green' : 'red';
+    }
+
+    const _getArrowColor = rate => {
+        return rate >= 0 ? 'border-top-green' : 'border-top-red';
+    }
+
     const _renderRate = () => {
         const roundedRate = NumberFormat.round(rate, 0);
         const rateDisplay = NumberHelper.displayRate(roundedRate);
-        const color = roundedRate >= 0 ? 'green' : 'red';
+        const _roundedRate = isNegativeMean ? -roundedRate : roundedRate;
+        const color = _getColorRate(_roundedRate);
+        const arrowColor = _getArrowColor(_roundedRate);
+        const arrow = _roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
         return (<div className="sticky-box-rate">
-            {showGrowthRateSympol !== false && <div className="triangle-top-left-green"></div>}
+            {showGrowthRateSympol !== false && roundedRate !== 0 && <div className={`${arrow} ${arrowColor}`}></div>}
             <div className={`rate ${color}`}>{rateDisplay}</div>
         </div>)
     }

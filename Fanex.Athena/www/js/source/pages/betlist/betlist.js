@@ -18,6 +18,7 @@
         const SPORT_SG = 247;
         const SPORT_VRG = 245;
         const SPORT_SXG = 243;
+        const SPORT_SBC = 200;
         const BETLIST_META_MODEL = '#BetListMetaModel';
 
         let _sortColumnName, _sortOrder;
@@ -407,6 +408,17 @@
                 });
             },
 
+            viewSabaClubResult: function (custId, gameId, gameRoundId, title) {
+                const url = Site.resolveClientUrl('SabaClubResultPopup/Index');
+                Site.blockUI();
+                $.get(url + '?custid=' + custId + '&gameId=' + gameId + '&gameRoundId=' + gameRoundId, function (result) {
+                    if (result !== '') {
+                        showResultPopUp(result, { width: 800, height: 380, title: title });
+                        Site.unBlockUI();
+                    }
+                });
+            },
+
             viewSGResult: function (custId, gamePlayId, title) {
                 const url = Site.resolveClientUrl('SGResultPopup/Index');
                 Site.blockUI();
@@ -478,6 +490,9 @@
                 }
                 else if (sporttype === SPORT_CARDCLUB) {
                     _me.viewCardClubResult(custid, bettype, extension2, title);
+                }
+                else if (sporttype === SPORT_SBC) {
+                    _me.viewSabaClubResult(custid, bettype, extension2, title);
                 }
                 else if (sporttype === SPORT_SG) {
                     _me.viewSGResult(custid, extension2, title);

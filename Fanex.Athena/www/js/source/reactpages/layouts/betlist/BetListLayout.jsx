@@ -10,11 +10,10 @@ class BetListLayout extends Component {
         super(props);
 
         this.state = {
-            isShowPopup : false,
+            isShowPopup: false,
             popupUrl: null,
             popupTitle: null
         };
-
     }
 
     componentDidMount() {
@@ -42,6 +41,10 @@ class BetListLayout extends Component {
             }
             else if (sporttype === SportType.CARDCLUB) {
                 const url = BetList.getCardClubResultUrl(rootUrl, custid, bettype, extension2);
+                this._showThirdPartyResult(url, title);
+            }
+            else if (sporttype === SportType.SBC) {
+                const url = BetList.getSabaClubResultUrl(rootUrl, custid, bettype, extension2);
                 this._showThirdPartyResult(url, title);
             }
             else if (sporttype === SportType.SG) {
@@ -319,7 +322,7 @@ class BetListLayout extends Component {
                     this._afterShow();
                 }).catch((error) => {
                     this._afterShow();
-                   console.log(error);
+                    console.log(error);
                 });
         }
         else {
@@ -391,24 +394,24 @@ class BetListLayout extends Component {
     }
 
     _openPopup(url, title) {
-        this.setState({ isShowPopup: true, popupUrl: url, popupTitle: title});
+        this.setState({ isShowPopup: true, popupUrl: url, popupTitle: title });
     }
 
-    _closePopup(){
+    _closePopup() {
         this.setState({ isShowPopup: false });
     }
 
     render() {
         return (
             <div className="betlist-layout">
-                 {this.props.children}
-                 {this.state.isShowPopup &&
+                {this.props.children}
+                {this.state.isShowPopup &&
                     <Popup isShow={true}
-                            iframeUrl={this.state.popupUrl}
-                            title={this.state.popupTitle}
-                            width={900} height={600}
-                            onClose={() => this._closePopup()}
-                        >
+                        iframeUrl={this.state.popupUrl}
+                        title={this.state.popupTitle}
+                        width={900} height={600}
+                        onClose={() => this._closePopup()}
+                    >
                     </Popup>}
             </div>
         );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LangHelper from '@jsroot/lib/langHelper';
+import { decode } from '@jsroot/lib/htmlHelper';
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import ActionCreators from '../../actions';
 import Widget from '../common/Widget';
@@ -12,6 +13,7 @@ import { ReportDateSelectionOptions, ReportDateOptionValues, ViewModeOptionValue
 import FilterHelper from '../../libs/helpers/filterHelper';
 import { ChartMode, ChartModeOptions, UserActivitiesChartDataMapping } from '../../constants/chartConst';
 import DataService from '../../libs/services/dataService';
+
 
 export const UserActivitiesWidget = props => {
     const { globalFilter, userActivitiesData, fetchUserActivitiesData } = props;
@@ -25,7 +27,7 @@ export const UserActivitiesWidget = props => {
         _reloadData(globalFilter.reportDate);
     }, [globalFilter])
 
-    const _title = React.useMemo(() => LangHelper.getSingleResource('UserActivities'), []);
+    const _title = React.useMemo(() => decode(LangHelper.getSingleResource('UserActivities')), []);
 
     const _reportDateSelectOptions = React.useMemo(() => {
         const isDailyMode = viewMode === ViewModeOptionValues.Daily;
@@ -58,6 +60,7 @@ export const UserActivitiesWidget = props => {
         return (<div className="row">
             <div className="col-12 col-md-6 col-sm-6 col-lg-5 col-xl-3">
                 <div className="form-group">
+                    <label className="label-text">{LangHelper.getSingleResource("ReportDate")}</label>
                     <TimePeriodSelect
                         selectOptions={_reportDateSelectOptions}
                         selectOptionGenerateRange={FilterHelper.ReportDateGenerateRangeSelections}

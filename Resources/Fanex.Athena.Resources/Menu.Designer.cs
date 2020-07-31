@@ -133,6 +133,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marketing.
+        /// </summary>
+        public static string MarketingReport {
+            get {
+                return ResourceManager.GetString("MarketingReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notification.
         /// </summary>
         public static string Notification {

@@ -148,7 +148,11 @@
     <value>User Management - CN</value>
   </data>
   <data name="WinLossReport" xml:space="preserve">
-    <value>Win Loss</value>
+    <value>Win Loss Analysis</value>
     <comment>133254</comment>
+  </data>
+  <data name="MarketingReport" xml:space="preserve">
+    <value>Marketing</value>
+    <comment>137395</comment>
   </data>
 </root>

@@ -2333,4 +2333,60 @@
     <value>GMT-4</value>
     <comment>137064</comment>
   </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marketing</value>
+    <comment>137395</comment>
+  </data>
+  <data name="ActiveUsers" xml:space="preserve">
+    <value>Active Users</value>
+    <comment>137395</comment>
+  </data>
+  <data name="BusinessPerformanceHighlights" xml:space="preserve">
+    <value>Business Performance Highlights</value>
+    <comment>137395</comment>
+  </data>
+  <data name="ChurnRate" xml:space="preserve">
+    <value>Churn Rate</value>
+    <comment>137395</comment>
+  </data>
+  <data name="CompareDate" xml:space="preserve">
+    <value>Compare Date</value>
+    <comment>137395</comment>
+  </data>
+  <data name="Last30Days" xml:space="preserve">
+    <value>Last 30 days</value>
+    <comment>137395</comment>
+  </data>
+  <data name="Last7Days" xml:space="preserve">
+    <value>Last 7 days</value>
+    <comment>137395</comment>
+  </data>
+  <data name="NewlyRegisteredUsers" xml:space="preserve">
+    <value>Newly Registered Users</value>
+    <comment>137395</comment>
+  </data>
+  <data name="PaidUsers" xml:space="preserve">
+    <value>Paid Users</value>
+    <comment>137395</comment>
+  </data>
+  <data name="PreviousPeriod" xml:space="preserve">
+    <value>Previous Period</value>
+    <comment>137395</comment>
+  </data>
+  <data name="ReportDate" xml:space="preserve">
+    <value>Report Date</value>
+    <comment>137395</comment>
+  </data>
+  <data name="RetentionRate" xml:space="preserve">
+    <value>Retention Rate</value>
+    <comment>137395</comment>
+  </data>
+  <data name="SamePeriodLastYear" xml:space="preserve">
+    <value>Same Period Last Year</value>
+    <comment>137395</comment>
+  </data>
+  <data name="TotalUsers" xml:space="preserve">
+    <value>Total Users</value>
+    <comment>137395</comment>
+  </data>
 </root>

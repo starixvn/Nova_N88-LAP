@@ -1,0 +1,132 @@
+@import '../../../abstracts/variables';
+@import '../../../components/forms/radio-buttons';
+@import "./mixins";
+@import "./common";
+
+.marketing-report {
+    .widget {
+        background: $white;
+
+        .widget-title {
+            background: #a2beba;
+            padding: 10px 15px;
+            color: $black;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            i {
+                margin-right: 5px;
+                cursor: pointer;
+            }
+        }
+
+        .widget-content {
+            position: relative;
+            border: 1px solid #d6d6d6;
+            padding-bottom: 15px;
+        }
+
+        .no-data-widget {
+            padding-top: 10px;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .loading-process {
+            position: absolute !important;
+        }
+    }
+
+    .sticky-box-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+
+        .sticky-box {
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+    }
+
+    .sticky-box {
+        width: 200px;
+        height: 140px;
+        padding: 10px 10px;
+        background: #EEF8F6;
+        border: 1px solid #A2BEBA;
+        box-sizing: border-box;
+        color: #164F46;
+    }
+
+    .sticky-box-title {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .sticky-box-description {
+        height: 20px;
+        color: #38796F;
+    }
+
+    .sticky-box-content {
+        text-align: center;
+        font-weight: bold;
+        font-size: 32px;
+    }
+
+    .sticky-box-compare-title {
+        float: left;
+        position: relative;
+        bottom: -12px;
+    }
+
+    .sticky-box-rate {
+        float: right;
+        position: relative;
+        bottom: -13px;
+
+        .triangle-top-left, .triangle-bottom-left  {
+            position: absolute;
+        }
+
+        .border-top-green {
+            border-top-color: $colorActive;    
+        }
+
+        .border-top-red {
+            border-top-color: $red;    
+        }
+
+        .rate {
+            float: right;
+            margin-left: 12px;
+        }
+    }
+
+    .triangle-top-left {
+        @include make-triangle-top-left()
+    }
+
+    .triangle-bottom-left {
+        @include make-triangle-top-left();
+        float: left;
+        transform: rotate(-90deg);
+    }
+
+    .arrow {
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+    }
+
+    .arrow-up  {
+        border-bottom: 7px solid $black;
+    }
+      
+    .arrow-down {
+        border-top: 7px solid $black;
+    }
+}

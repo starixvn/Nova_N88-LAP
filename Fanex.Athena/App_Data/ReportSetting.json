@@ -21,5 +21,10 @@
     "LimitRecentMonths": 48,
     "LimitMonthRange": 3,
     "TimeZone": 8
+  },
+  {
+    "ReportKey": "MarketingReport",
+    "MaxDateString": "today",
+    "TimeZone": 8
   }
 ]

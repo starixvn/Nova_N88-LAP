@@ -8,6 +8,7 @@
         public const string ReportCustomerWinLoss = "CustomerWinLoss";
         public const string ReportCashOutWinLoss = "CashOutWinLoss";
         public const string ReportWinLoss = "WinLossReport";
+        public const string ReportMarketing = "MarketingReport";
         public const string BtcAdvancedSearch = "BtcAdvancedSearch";
         public const string ManageGroup = "ManageLicenseeGroup";
 

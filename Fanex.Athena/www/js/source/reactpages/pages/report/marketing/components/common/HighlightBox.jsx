@@ -3,7 +3,7 @@ import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
 import NumberHelper from '../../libs/helpers/numberHelper';
 
-const StickyCompareBox = props => {
+const HighlightBox = props => {
     const { title, description, value, rate, showGrowthRateSympol, isNegativeMean } = props;
 
     const _renderTitle = () => {
@@ -29,7 +29,7 @@ const StickyCompareBox = props => {
         if (rate === 0) {
             return '';
         }
-        return rate > 0 ? 'green' : 'red';
+        return rate > 0 ? 'green-color' : 'red-color';
     }
 
     const _getArrowColor = rate => {
@@ -58,4 +58,4 @@ const StickyCompareBox = props => {
     </div>)
 }
 
-export default React.memo(StickyCompareBox);
+export default React.memo(HighlightBox);

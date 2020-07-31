@@ -21,6 +21,13 @@ export default class DateTimeHelper {
         return diffDays;
     }
 
+    static getDiffDaysOfDateStructure = (dateStructure1, dateStructure2) => {
+        const dateObject1 = this.convertToDateObject(dateStructure1);
+        const dateObject2 = this.convertToDateObject(dateStructure2);
+        const diffDays = this.getDiffDays(dateObject1, dateObject2);
+        return diffDays;
+    }
+
     static addDays = (date, numberOfDays) => {
         const cloneDate = new Date(date);
         const newDate = new Date(cloneDate.setDate(cloneDate.getDate() + numberOfDays));;
@@ -31,6 +38,15 @@ export default class DateTimeHelper {
         const cloneDate = new Date(date);
         const newDate = new Date(cloneDate.setFullYear(cloneDate.getFullYear() + numberOfYears));;
         return newDate;
+    }
+
+    static formatDateRangeToString = (fromDate, toDate) => {
+        const displayFromDate = this.formatDateStructureToString(fromDate);
+        if (this.isEqualDate(fromDate, toDate)) {
+            return displayFromDate;
+        }
+        const displayToDate = this.formatDateStructureToString(toDate);
+        return `${displayFromDate} - ${displayToDate}`;
     }
 
     static formatDateStructureToString = ({ year, month, day }) => {

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
-import ActionCreators from '../../../actions';
-import Widget from '../../common/Widget';
-import StickyCompareBox from '../../common/StickyCompareBox';
-import DateTimeHelper from '../../../libs/helpers/dateTimeHelper';
-import FilterHelper from '../../../libs/helpers/filterHelper';
+import ActionCreators from '../../actions';
+import Widget from '../common/Widget';
+import HighlightBox from '../common/HighlightBox';
+import DateTimeHelper from '../../libs/helpers/dateTimeHelper';
+import DataService from '../../libs/services/dataService';
 
 export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
@@ -17,7 +17,7 @@ export const PerformanceHighlightWidget = props => {
         if (!globalFilter) {
             return;
         }
-        const apiParams = FilterHelper.getPerformanceHighlightAPIParams(globalFilter);
+        const apiParams = DataService.getPerformanceHighlightAPIParams(globalFilter);
         setLoading(true);
         fetchPeformanceHighlightData(apiParams, () => setLoading(false))
     }, [globalFilter]);
@@ -26,7 +26,7 @@ export const PerformanceHighlightWidget = props => {
 
     const _renderTotalUsersBox = () => {
         const { totalUsers, growthRateTotalUsers } = performanceHighlightData;
-        return (<StickyCompareBox
+        return (<HighlightBox
             title={LangHelper.getSingleResource('TotalUsers')}
             value={totalUsers}
             rate={growthRateTotalUsers}
@@ -35,7 +35,7 @@ export const PerformanceHighlightWidget = props => {
 
     const _renderPaidUsersBox = () => {
         const { paidUsers, growthRatePaidUsers } = performanceHighlightData;
-        return (<StickyCompareBox
+        return (<HighlightBox
             title={'PU (APA)'}
             description={LangHelper.getSingleResource('PaidUsers')}
             value={paidUsers}
@@ -45,7 +45,7 @@ export const PerformanceHighlightWidget = props => {
 
     const _renderActiveUsersBox = () => {
         const { activeUsers, growthRateActiveUsers } = performanceHighlightData;
-        return (<StickyCompareBox
+        return (<HighlightBox
             title={LangHelper.getSingleResource('AU')}
             description={LangHelper.getSingleResource('ActiveUsers')}
             value={activeUsers}
@@ -55,7 +55,7 @@ export const PerformanceHighlightWidget = props => {
 
     const _renderNewlyRegisteredUsersBox = () => {
         const { newlyRegisterUsers, growthRateNewlyRegisterUsers } = performanceHighlightData;
-        return (<StickyCompareBox
+        return (<HighlightBox
             title={LangHelper.getSingleResource('NRU')}
             description={LangHelper.getSingleResource('NewlyRegisteredUsers')}
             value={newlyRegisterUsers}
@@ -67,7 +67,7 @@ export const PerformanceHighlightWidget = props => {
         const { fromDate, toDate } = globalFilter.reportDate;
         const { churnRate, differentChurnRate } = performanceHighlightData;
         const isSingleDate = DateTimeHelper.isEqualDate(fromDate, toDate);
-        return !isSingleDate && (<StickyCompareBox
+        return !isSingleDate && (<HighlightBox
             title={LangHelper.getSingleResource('CR')}
             description={LangHelper.getSingleResource('ChurnRate')}
             value={`${NumberFormat.round(churnRate, 0)}%`}
@@ -81,7 +81,7 @@ export const PerformanceHighlightWidget = props => {
         const { fromDate, toDate } = globalFilter.reportDate;
         const { retentionRate, differentRetentionRate } = performanceHighlightData;
         const isSingleDate = DateTimeHelper.isEqualDate(fromDate, toDate);
-        return !isSingleDate && (<StickyCompareBox
+        return !isSingleDate && (<HighlightBox
             title={LangHelper.getSingleResource('RR')}
             description={LangHelper.getSingleResource('RetentionRate')}
             value={`${NumberFormat.round(retentionRate, 0)}%`}

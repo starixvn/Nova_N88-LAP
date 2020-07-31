@@ -1,4 +1,4 @@
-import { SET_VIEW_MODE, SET_REPORT_DATE, SET_COMPARE_DATE, SET_GLOBAL_FILTER } from './types';
+import { SET_VIEW_MODE, SET_REPORT_DATE, SET_COMPARE_DATE, SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER } from './types';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
 
 const setViewMode = viewMode => {
@@ -29,10 +29,18 @@ const setGlobalFilter = filterData => {
     }
 }
 
+const setCollapseFormFilter = isCollapsed => {
+    return {
+        type: SET_COLLAPSE_FORM_FILTER,
+        data: isCollapsed
+    }
+}
+
 export default {
     setSelectedBaseCurrency,
     setViewMode,
     setReportDate,
     setCompareDate,
-    setGlobalFilter
+    setGlobalFilter,
+    setCollapseFormFilter
 }

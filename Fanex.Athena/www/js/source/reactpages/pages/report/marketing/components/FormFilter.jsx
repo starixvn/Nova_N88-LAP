@@ -7,19 +7,23 @@ import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import LangHelper from '@jsroot/lib/langHelper'
 import AppData from '@jsroot/lib/AppData'
 import ActionCreators from '../actions'
-import { ViewByOptions, ViewByOptionKeys, ReportDateSelectionOptions, CompareDateSelectionOptions, CompareDateOptionValues } from '../constants/filterConst';
+import { ViewModeOptions, ReportDateSelectionOptions, CompareDateSelectionOptions, CompareDateOptionValues, ViewModeOptionValues } from '../constants/filterConst';
 import FilterHelper from '../libs/helpers/filterHelper';
 import TimePeriodSelect from './common/TimePeriodSelect';
 
 export const FormFilter = props => {
-    const { setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter,
+    const { setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter, setCollapseFormFilter,
         selectedBaseCurrency, reportDate, compareDate, viewMode
     } = props;
+
+    const _isSupportViewMode = React.useMemo(() => {
+        return FilterHelper.isSupportViewMode(reportDate);
+    }, [reportDate])
 
     const _renderBaseCurrencySelectList = () => {
         const baseCurrencyList = AppData.baseCurrencyList;
         return baseCurrencyList && baseCurrencyList.length && (
-            <Select instanceId="ddlBasedCurrency"
+            <Select instanceId="baseCurrency"
                 value={selectedBaseCurrency}
                 options={baseCurrencyList}
                 onChange={(item) => setSelectedBaseCurrency(item.value)} />
@@ -28,9 +32,9 @@ export const FormFilter = props => {
 
     const _renderViewModeOptions = () => {
         return (<RadioGroup
-            name={'ViewBy'}
+            name={'ViewMode'}
             value={viewMode}
-            options={ViewByOptions}
+            options={ViewModeOptions}
             onChange={setViewMode}
         />)
     }
@@ -62,12 +66,13 @@ export const FormFilter = props => {
     }
 
     const _onSubmit = () => {
-        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency };
+        const _viewMode = _isSupportViewMode ? viewMode : ViewModeOptionValues.Daily;
+        const globalFilter = { reportDate, compareDate, viewMode: _viewMode, selectedBaseCurrency };
         setGlobalFilter(globalFilter);
     }
 
     return (<React.Fragment>
-        <CollapsiblePanel className="page-filter">
+        <CollapsiblePanel className="page-filter" onCollapse={() => setCollapseFormFilter(true)} onExpand={() => setCollapseFormFilter(false)}>
             <div className="row">
                 <div className="col-12 col-md-6 col-sm-6 col-lg-5 col-xl-3">
                     <div className="form-group">
@@ -83,13 +88,13 @@ export const FormFilter = props => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
+                {_isSupportViewMode && <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("ViewBy")}</label>
                         {_renderViewModeOptions()}
                     </div>
-                </div>
-                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
+                </div>}
+                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-1">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("DisplayCurrency")}</label>
                         {_renderBaseCurrencySelectList()}
@@ -119,13 +124,14 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter } = ActionCreators;
+    const { setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter, setCollapseFormFilter } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         setSelectedBaseCurrency,
         setViewMode,
         setReportDate,
         setCompareDate,
-        setGlobalFilter
+        setGlobalFilter,
+        setCollapseFormFilter
     }), dispatch);
 }
 

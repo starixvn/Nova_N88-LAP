@@ -1,3 +1,4 @@
+import React from 'react';
 import LangHelper from '@jsroot/lib/langHelper';
 
 export const ChartMode = {
@@ -6,11 +7,11 @@ export const ChartMode = {
 }
 
 export const ChartModeOptions = [
-    { value: ChartMode.Bar, label: 'Bar chart' },
-    { value: ChartMode.Line, label: 'Line chart' }
+    { value: ChartMode.Bar, label: <i className="icon-bar-chart" />},
+    { value: ChartMode.Line, label: <i className="icon-line-chart" /> }
 ]
 
-export const ChartColor = {
+const ChartColor = {
     Color1: '#F16F37',
     Color2: '#194170' 
 }

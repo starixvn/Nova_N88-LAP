@@ -16,12 +16,13 @@ namespace Fanex.Athena.Controllers.Report.Result.ResultPopup
         }
 
         [HttpGet]
-        public async Task<string> Index(string custId, string gameRoundId, string gameId)
+        public async Task<string> Index(string custId, string siteId, string gameRoundId, string gameId)
         {
             var language = SessionServiceInstance.UserSession.Language;
             var model = new
             {
                 custId,
+                siteId,
                 gameRoundId,
                 gameId,
                 languageCode = language

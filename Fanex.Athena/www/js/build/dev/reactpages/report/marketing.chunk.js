@@ -766,6 +766,30 @@ function createReducer(initialState, handlers) {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/lib/htmlHelper.js":
+/*!****************************************************!*\
+  !*** ./www/js/source/reactpages/lib/htmlHelper.js ***!
+  \****************************************************/
+/*! exports provided: encode, decode */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "encode", function() { return encode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decode", function() { return decode; });
+const encode = text => {
+  const p = document.createElement("p");
+  p.textContent = text;
+  return p.innerHTML;
+};
+const decode = html => {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = html;
+  return txt.value;
+};
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/lib/langHelper.js":
 /*!****************************************************!*\
   !*** ./www/js/source/reactpages/lib/langHelper.js ***!
@@ -990,6 +1014,18 @@ const fetchPeformanceHighlightData = (params, callBack) => async dispatch => {
   callBack && callBack();
 };
 
+const fetchUserActivitiesData = (params, callBack) => async dispatch => {
+  const response = await _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__["default"].fetchUserActivitiesData(params);
+  dispatch(setUserActivitiesData(response.data));
+  callBack && callBack();
+};
+
+const fetchAvgRevenueData = (params, callBack) => async dispatch => {
+  const response = await _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__["default"].fetchAvgRevenueData(params);
+  dispatch(setAvgRevenueData(response.data));
+  callBack && callBack(response.data);
+};
+
 const setPeformanceHighlightData = data => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_PERFORMANCE_HIGHLIGHT_DATA"],
@@ -997,9 +1033,24 @@ const setPeformanceHighlightData = data => {
   };
 };
 
+const setUserActivitiesData = data => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_USER_ACTIVITIES_DATA"],
+    data: data
+  };
+};
+
+const setAvgRevenueData = data => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_AVG_REVENUE_DATA"],
+    data: data
+  };
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   fetchPeformanceHighlightData,
-  setPeformanceHighlightData
+  fetchUserActivitiesData,
+  fetchAvgRevenueData
 });
 
 /***/ }),
@@ -1046,12 +1097,20 @@ const setGlobalFilter = filterData => {
   };
 };
 
+const setCollapseFormFilter = isCollapsed => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_COLLAPSE_FORM_FILTER"],
+    data: isCollapsed
+  };
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   setSelectedBaseCurrency: _jsroot_actions_baseCurrencyAction__WEBPACK_IMPORTED_MODULE_1__["setSelectedBaseCurrency"],
   setViewMode,
   setReportDate,
   setCompareDate,
-  setGlobalFilter
+  setGlobalFilter,
+  setCollapseFormFilter
 });
 
 /***/ }),
@@ -1083,7 +1142,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!**************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/marketing/actions/types.js ***!
   \**************************************************************************/
-/*! exports provided: SET_REPORT_DATE, SET_COMPARE_DATE, SET_VIEW_MODE, SET_GLOBAL_FILTER, SET_PERFORMANCE_HIGHLIGHT_DATA */
+/*! exports provided: SET_REPORT_DATE, SET_COMPARE_DATE, SET_VIEW_MODE, SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER, SET_PERFORMANCE_HIGHLIGHT_DATA, SET_USER_ACTIVITIES_DATA, SET_AVG_REVENUE_DATA */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1092,12 +1151,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_COMPARE_DATE", function() { return SET_COMPARE_DATE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIEW_MODE", function() { return SET_VIEW_MODE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_GLOBAL_FILTER", function() { return SET_GLOBAL_FILTER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_COLLAPSE_FORM_FILTER", function() { return SET_COLLAPSE_FORM_FILTER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PERFORMANCE_HIGHLIGHT_DATA", function() { return SET_PERFORMANCE_HIGHLIGHT_DATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_USER_ACTIVITIES_DATA", function() { return SET_USER_ACTIVITIES_DATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_AVG_REVENUE_DATA", function() { return SET_AVG_REVENUE_DATA; });
 const SET_REPORT_DATE = 'SET_REPORT_DATE';
 const SET_COMPARE_DATE = 'SET_COMPARE_DATE';
 const SET_VIEW_MODE = 'SET_VIEW_MODE';
 const SET_GLOBAL_FILTER = 'SET_GLOBAL_FILTER';
+const SET_COLLAPSE_FORM_FILTER = 'SET_COLLAPSED_FORM_FILTER';
 const SET_PERFORMANCE_HIGHLIGHT_DATA = 'SET_PERFORMANCE_HIGHLIGHT_DATA';
+const SET_USER_ACTIVITIES_DATA = 'SET_USER_ACTIVITIES_DATA';
+const SET_AVG_REVENUE_DATA = 'SET_AVG_REVENUE_DATA';
 
 /***/ }),
 
@@ -1113,36 +1178,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppContainer", function() { return AppContainer; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _jsroot_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/layouts/AppLayout */ "./www/js/source/reactpages/layouts/AppLayout.jsx");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
-/* harmony import */ var _FormFilter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FormFilter */ "./www/js/source/reactpages/pages/report/marketing/components/FormFilter.jsx");
-/* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Content */ "./www/js/source/reactpages/pages/report/marketing/components/Content.jsx");
-
-
-
+/* harmony import */ var _jsroot_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/layouts/AppLayout */ "./www/js/source/reactpages/layouts/AppLayout.jsx");
+/* harmony import */ var _FormFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormFilter */ "./www/js/source/reactpages/pages/report/marketing/components/FormFilter.jsx");
+/* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Content */ "./www/js/source/reactpages/pages/report/marketing/components/Content.jsx");
 
 
 
 
 const AppContainer = props => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     className: "marketing-report"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormFilter__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Content__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormFilter__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Content__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
-
-function mapStateToProps(state) {
-  const {} = state;
-  return Object.assign({}, {});
-}
-
-function mapDispatchToProps(dispatch) {
-  const {} = _actions__WEBPACK_IMPORTED_MODULE_4__["default"];
-  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({}, dispatch);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(AppContainer));
+/* harmony default export */ __webpack_exports__["default"] = (AppContainer);
 
 /***/ }),
 
@@ -1164,7 +1212,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
 /* harmony import */ var _widgets_PerformanceHighlightWidget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./widgets/PerformanceHighlightWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget.jsx");
-/* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
+/* harmony import */ var _widgets_UserActivitiesWidget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./widgets/UserActivitiesWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/UserActivitiesWidget.jsx");
+/* harmony import */ var _widgets_AvgRevenueWidget__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./widgets/AvgRevenueWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/AvgRevenueWidget.jsx");
+/* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
+
+
 
 
 
@@ -1175,8 +1227,29 @@ __webpack_require__.r(__webpack_exports__);
 
 const Content = props => {
   const {
-    globalFilter
+    globalFilter,
+    isCollapsedFormFilter
   } = props;
+
+  if (!globalFilter) {
+    return null;
+  }
+
+  const {
+    selectedBaseCurrency,
+    reportDate
+  } = globalFilter;
+  const {
+    fromDate,
+    toDate
+  } = reportDate;
+
+  const _maxHeightPixel = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
+    const {
+      innerHeight
+    } = window;
+    return innerHeight - (isCollapsedFormFilter ? 100 : 220) + 'px';
+  }, [isCollapsedFormFilter]);
 
   const _renderTitle = () => {
     const reportName = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Marketing');
@@ -1188,17 +1261,9 @@ const Content = props => {
       });
     }
 
-    const {
-      selectedBaseCurrency,
-      reportDate
-    } = globalFilter;
-    const {
-      fromDate,
-      toDate
-    } = reportDate; // const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
-
-    const reportDateRange = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].isEqualDate(fromDate, toDate) ? _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.fromDate) : `${_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.fromDate)} - ${_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_7__["default"].formatDateStructureToString(reportDate.toDate)}`;
-    const content = `${reportName}, ${reportDateRange}`;
+    const displayCurrency = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
+    const reportDateRange = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__["default"].formatDateRangeToString(fromDate, toDate);
+    const content = `${reportName}, ${reportDateRange}, ${displayCurrency}`;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_ReportTitle__WEBPACK_IMPORTED_MODULE_2__["default"], {
       tag: "div",
       content: content
@@ -1207,15 +1272,22 @@ const Content = props => {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "marketing-content"
-  }, _renderTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_PerformanceHighlightWidget__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  }, _renderTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "widget-list",
+    style: {
+      maxHeight: _maxHeightPixel
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_PerformanceHighlightWidget__WEBPACK_IMPORTED_MODULE_6__["default"], null), !_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__["default"].isEqualDate(fromDate, toDate) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_UserActivitiesWidget__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_AvgRevenueWidget__WEBPACK_IMPORTED_MODULE_8__["default"], null)));
 };
 
 function mapStateToProps(state) {
   const {
-    globalFilter
+    globalFilter,
+    isCollapsedFormFilter
   } = state;
   return Object.assign({}, {
-    globalFilter
+    globalFilter,
+    isCollapsedFormFilter
   });
 }
 
@@ -1270,15 +1342,21 @@ const FormFilter = props => {
     setReportDate,
     setCompareDate,
     setGlobalFilter,
+    setCollapseFormFilter,
     selectedBaseCurrency,
     reportDate,
-    compareDate
+    compareDate,
+    viewMode
   } = props;
+
+  const _isSupportViewMode = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
+    return _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_10__["default"].isSupportViewMode(reportDate);
+  }, [reportDate]);
 
   const _renderBaseCurrencySelectList = () => {
     const baseCurrencyList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_7__["default"].baseCurrencyList;
     return baseCurrencyList && baseCurrencyList.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      instanceId: "ddlBasedCurrency",
+      instanceId: "baseCurrency",
       value: selectedBaseCurrency,
       options: baseCurrencyList,
       onChange: item => setSelectedBaseCurrency(item.value)
@@ -1287,22 +1365,26 @@ const FormFilter = props => {
 
   const _renderViewModeOptions = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      name: 'ViewBy',
-      value: _constants_filterConst__WEBPACK_IMPORTED_MODULE_9__["ViewByOptions"][0].value,
-      options: _constants_filterConst__WEBPACK_IMPORTED_MODULE_9__["ViewByOptions"],
+      name: 'ViewMode',
+      value: viewMode,
+      options: _constants_filterConst__WEBPACK_IMPORTED_MODULE_9__["ViewModeOptions"],
       onChange: setViewMode
     });
   };
+
+  const _onChangeReportDateSelection = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedRange => {
+    setReportDate(selectedRange);
+    setCompareDate(_libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_10__["default"].CompareDateGenerateRangeSelections[_constants_filterConst__WEBPACK_IMPORTED_MODULE_9__["CompareDateOptionValues"].previousPeriod](selectedRange)); //reset to default selection
+  });
+
+  const _onChangeCompareDateSelection = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedRange => setCompareDate(selectedRange));
 
   const _renderReportDateSelection = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_11__["default"], {
       selectOptions: _constants_filterConst__WEBPACK_IMPORTED_MODULE_9__["ReportDateSelectionOptions"],
       selectOptionGenerateRange: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_10__["default"].ReportDateGenerateRangeSelections,
       selectedRange: reportDate,
-      onChange: selectedRange => {
-        setReportDate(selectedRange);
-        setCompareDate(_libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_10__["default"].CompareDateGenerateRangeSelections[_constants_filterConst__WEBPACK_IMPORTED_MODULE_9__["CompareDateOptionValues"].previousPeriod](selectedRange)); //reset to default selection
-      }
+      onChange: _onChangeReportDateSelection
     });
   };
 
@@ -1312,21 +1394,26 @@ const FormFilter = props => {
       selectOptionGenerateRange: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_10__["default"].CompareDateGenerateRangeSelections,
       selectedRange: compareDate,
       selectedDependRange: reportDate,
-      onChange: selectedRange => setCompareDate(selectedRange)
+      onChange: _onChangeCompareDateSelection
     });
   };
 
   const _onSubmit = () => {
+    const _viewMode = _isSupportViewMode ? viewMode : _constants_filterConst__WEBPACK_IMPORTED_MODULE_9__["ViewModeOptionValues"].Daily;
+
     const globalFilter = {
       reportDate,
       compareDate,
+      viewMode: _viewMode,
       selectedBaseCurrency
     };
     setGlobalFilter(globalFilter);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: "page-filter"
+    className: "page-filter",
+    onCollapse: () => setCollapseFormFilter(true),
+    onExpand: () => setCollapseFormFilter(false)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1343,7 +1430,19 @@ const FormFilter = props => {
     className: "label-text"
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource("CompareDate")), _renderCompareDateSelection()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
+  }, _isSupportViewMode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "label-text"
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource("ViewBy")), _renderViewModeOptions())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "label-text"
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource("DisplayCurrency")), _renderBaseCurrencySelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -1378,14 +1477,16 @@ function mapDispatchToProps(dispatch) {
     setViewMode,
     setReportDate,
     setCompareDate,
-    setGlobalFilter
+    setGlobalFilter,
+    setCollapseFormFilter
   } = _actions__WEBPACK_IMPORTED_MODULE_8__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(Object.assign({}, {
     setSelectedBaseCurrency,
     setViewMode,
     setReportDate,
     setCompareDate,
-    setGlobalFilter
+    setGlobalFilter,
+    setCollapseFormFilter
   }), dispatch);
 }
 
@@ -1393,10 +1494,46 @@ function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/pages/report/marketing/components/common/StickyCompareBox.jsx":
-/*!************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/pages/report/marketing/components/common/StickyCompareBox.jsx ***!
-  \************************************************************************************************/
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/common/BarChart.jsx":
+/*!****************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/common/BarChart.jsx ***!
+  \****************************************************************************************/
+/*! exports provided: BarChart, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BarChart", function() { return BarChart; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+/* harmony import */ var _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../libs/helpers/chartHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/chartHelper.js");
+
+
+
+const BarChart = props => {
+  const {
+    data,
+    dataMapping
+  } = props;
+
+  const _chartData = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildBarChartData(data, dataMapping);
+
+  const _chartOptions = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildBarChartOptions(_chartData.labels);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
+    data: _chartData,
+    options: _chartOptions
+  });
+};
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BarChart));
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/common/HighlightBox.jsx":
+/*!********************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/common/HighlightBox.jsx ***!
+  \********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1412,13 +1549,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const StickyCompareBox = props => {
+const HighlightBox = props => {
   const {
     title,
     description,
     value,
     rate,
-    showGrowthRateSympol,
     isNegativeMean
   } = props;
 
@@ -1446,7 +1582,7 @@ const StickyCompareBox = props => {
       return '';
     }
 
-    return rate > 0 ? 'green' : 'red';
+    return rate > 0 ? 'green-color' : 'red-color';
   };
 
   const _getArrowColor = rate => {
@@ -1463,10 +1599,10 @@ const StickyCompareBox = props => {
 
     const arrowColor = _getArrowColor(_roundedRate);
 
-    const arrow = _roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
+    const arrow = roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sticky-box-rate"
-    }, showGrowthRateSympol !== false && roundedRate !== 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, roundedRate !== 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: `${arrow} ${arrowColor}`
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: `rate ${color}`
@@ -1480,7 +1616,43 @@ const StickyCompareBox = props => {
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), _renderRate());
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(StickyCompareBox));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(HighlightBox));
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/common/LineChart.jsx":
+/*!*****************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/common/LineChart.jsx ***!
+  \*****************************************************************************************/
+/*! exports provided: LineChart, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LineChart", function() { return LineChart; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+/* harmony import */ var _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../libs/helpers/chartHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/chartHelper.js");
+
+
+
+const LineChart = props => {
+  const {
+    data,
+    dataMapping
+  } = props;
+
+  const _chartData = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildLineChartData(data, dataMapping);
+
+  const _chartOptions = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildLineChartOptions(_chartData.labels);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__["Line"], {
+    data: _chartData,
+    options: _chartOptions
+  });
+};
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(LineChart));
 
 /***/ }),
 
@@ -1519,24 +1691,13 @@ const TimePeriodSelect = props => {
     onChange && onChange(range);
   };
 
-  const _displayRange = () => {
-    const displayFromDate = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].formatDateStructureToString(fromDate);
-
-    if (_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].isEqualDate(fromDate, toDate)) {
-      return displayFromDate;
-    }
-
-    const displayToDate = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].formatDateStructureToString(toDate);
-    return `${displayFromDate} - ${displayToDate}`;
-  };
-
   const _getCurrentSelectOption = () => {
     const currentSelection = selectOptions.find(_ => {
       const range = selectOptionGenerateRange[_.value](selectedDependRange);
 
       return _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].isEqualDate(fromDate, range.fromDate) && _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].isEqualDate(toDate, range.toDate);
     });
-    return currentSelection;
+    return currentSelection || selectOptions[0];
   };
 
   const _renderSelectOptions = () => {
@@ -1551,21 +1712,12 @@ const TimePeriodSelect = props => {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
+    className: "time-period-select"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-md-5 col-sm-5 col-lg-5 col-xl-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group"
-  }, _renderSelectOptions())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-md-7 col-sm-7 col-lg-7 col-xl-7"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "input-text disabled",
-    value: _displayRange(),
-    disabled: true
-  }))));
+    className: "time-period-select-time"
+  }, _renderSelectOptions()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "time-period-display-time"
+  }, _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].formatDateRangeToString(fromDate, toDate)));
 };
 /* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(TimePeriodSelect));
 
@@ -1600,7 +1752,10 @@ const Widget = props => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "widget-title"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: `${isCollapsed ? "arrow-up" : "arrow-down"} ${"arrow"}`,
+      className: "icon-arrow",
+      style: {
+        transform: isCollapsed ? 'rotate(-180deg)' : null
+      },
       onClick: () => setIsCollapsed(!isCollapsed)
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, title));
   };
@@ -1626,6 +1781,196 @@ const Widget = props => {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/AvgRevenueWidget.jsx":
+/*!*************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/AvgRevenueWidget.jsx ***!
+  \*************************************************************************************************/
+/*! exports provided: AvgRevenueWidget, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AvgRevenueWidget", function() { return AvgRevenueWidget; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/components/radio/RadioGroup */ "./www/js/source/reactpages/components/radio/RadioGroup.jsx");
+/* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @9softstudio/react-multiselect */ "./node_modules/@9softstudio/react-multiselect/dist/index.js");
+/* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../common/TimePeriodSelect */ "./www/js/source/reactpages/pages/report/marketing/components/common/TimePeriodSelect.jsx");
+/* harmony import */ var _common_BarChart__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../common/BarChart */ "./www/js/source/reactpages/pages/report/marketing/components/common/BarChart.jsx");
+/* harmony import */ var _common_LineChart__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../common/LineChart */ "./www/js/source/reactpages/pages/report/marketing/components/common/LineChart.jsx");
+/* harmony import */ var _constants_filterConst__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../constants/filterConst */ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js");
+/* harmony import */ var _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../libs/helpers/filterHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/filterHelper.js");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _constants_chartConst__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../constants/chartConst */ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const AvgRevenueWidget = props => {
+  const {
+    globalFilter,
+    avgRevenueData,
+    fetchAvgRevenueData
+  } = props;
+  const [reportDate, setReportDate] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(globalFilter.reportDate);
+  const [products, setProducts] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].defaultSelectedProduct);
+  const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [chartMode, setChartMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_chartConst__WEBPACK_IMPORTED_MODULE_15__["ChartMode"].Bar);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    setReportDate(globalFilter.reportDate);
+
+    _reloadData(globalFilter.reportDate);
+  }, [globalFilter]);
+
+  const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AvgRevenue')} (${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Viewin').replace('{0}', globalFilter.selectedBaseCurrency)})`, [globalFilter.selectedBaseCurrency]);
+
+  const _chartData = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
+    if (!avgRevenueData) {
+      return null;
+    }
+
+    const data = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_14__["default"].filterDataWithSelectedProducts(avgRevenueData, products);
+    return data;
+  }, [products, avgRevenueData]);
+
+  const _onChangeReportDate = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedRange => {
+    setReportDate(selectedRange);
+
+    _reloadData(selectedRange);
+  }, []);
+
+  const _reloadData = reportDate => {
+    setLoading(true);
+    const {
+      selectedBaseCurrency
+    } = globalFilter;
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_14__["default"].getAvgRevenueAPIParams({
+      reportDate,
+      products: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].defaultSelectedProduct,
+      selectedBaseCurrency
+    });
+    fetchAvgRevenueData(apiParams, data => {
+      setLoading(false);
+    });
+  };
+
+  const _renderChart = () => {
+    if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_15__["ChartMode"].Bar) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_BarChart__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        data: _chartData,
+        dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_15__["AvgRevenueChartDataMapping"]
+      });
+    }
+
+    if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_15__["ChartMode"].Line) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_LineChart__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        data: _chartData,
+        dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_15__["AvgRevenueChartDataMapping"]
+      });
+    }
+
+    return null;
+  };
+
+  const _renderFilter = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-12 col-md-6 col-sm-6 col-lg-4 col-xl-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "label-text"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("ReportDate")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      selectOptions: _constants_filterConst__WEBPACK_IMPORTED_MODULE_12__["ReportDateSelectionOptions"],
+      selectOptionGenerateRange: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_13__["default"].ReportDateGenerateRangeSelections,
+      selectedRange: reportDate,
+      onChange: _onChangeReportDate
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "label-text"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("Product")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      id: "ProductList",
+      language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].currentLanguage,
+      dataSource: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].productOptions,
+      keyField: "key",
+      valueField: "value",
+      statusField: "status",
+      onChange: (_, selectedItemsKey) => setProducts(selectedItemsKey)
+    }))));
+  };
+
+  const _renderBody = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chart-body"
+    }, _renderChart());
+  };
+
+  const _renderFooter = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chart-footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      name: 'AvgRevenue-ViewChartMode',
+      value: _constants_chartConst__WEBPACK_IMPORTED_MODULE_15__["ChartMode"].Bar,
+      options: _constants_chartConst__WEBPACK_IMPORTED_MODULE_15__["ChartModeOptions"],
+      onChange: setChartMode
+    }));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    title: _title,
+    isLoading: isLoading
+  }, avgRevenueData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "avg-revenue-container"
+  }, _renderFilter(), _renderBody(), _renderFooter()));
+};
+
+function mapStateToProps(state) {
+  const {
+    globalFilter,
+    avgRevenueData
+  } = state;
+  return Object.assign({}, {
+    globalFilter,
+    avgRevenueData
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  const {
+    fetchAvgRevenueData
+  } = _actions__WEBPACK_IMPORTED_MODULE_7__["default"];
+  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
+    fetchAvgRevenueData
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AvgRevenueWidget)));
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget.jsx":
 /*!***********************************************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget.jsx ***!
@@ -1644,9 +1989,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
 /* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
-/* harmony import */ var _common_StickyCompareBox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/StickyCompareBox */ "./www/js/source/reactpages/pages/report/marketing/components/common/StickyCompareBox.jsx");
+/* harmony import */ var _common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/HighlightBox */ "./www/js/source/reactpages/pages/report/marketing/components/common/HighlightBox.jsx");
 /* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
-/* harmony import */ var _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../libs/helpers/filterHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/filterHelper.js");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
 
 
 
@@ -1669,19 +2014,19 @@ const PerformanceHighlightWidget = props => {
       return;
     }
 
-    const apiParams = _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getPerformanceHighlightWidgetAPIParams(globalFilter);
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_9__["default"].getPerformanceHighlightAPIParams(globalFilter);
     setLoading(true);
     fetchPeformanceHighlightData(apiParams, () => setLoading(false));
   }, [globalFilter]);
 
-  const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('BusinessPerformanceHighlights'));
+  const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('BusinessPerformanceHighlights'), []);
 
   const _renderTotalUsersBox = () => {
     const {
       totalUsers,
       growthRateTotalUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_StickyCompareBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalUsers'),
       value: totalUsers,
       rate: growthRateTotalUsers
@@ -1693,7 +2038,7 @@ const PerformanceHighlightWidget = props => {
       paidUsers,
       growthRatePaidUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_StickyCompareBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       title: 'PU (APA)',
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('PaidUsers'),
       value: paidUsers,
@@ -1706,7 +2051,7 @@ const PerformanceHighlightWidget = props => {
       activeUsers,
       growthRateActiveUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_StickyCompareBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AU'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('ActiveUsers'),
       value: activeUsers,
@@ -1719,7 +2064,7 @@ const PerformanceHighlightWidget = props => {
       newlyRegisterUsers,
       growthRateNewlyRegisterUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_StickyCompareBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NRU'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NewlyRegisteredUsers'),
       value: newlyRegisterUsers,
@@ -1737,13 +2082,12 @@ const PerformanceHighlightWidget = props => {
       differentChurnRate
     } = performanceHighlightData;
     const isSingleDate = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_8__["default"].isEqualDate(fromDate, toDate);
-    return !isSingleDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_StickyCompareBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return !isSingleDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('CR'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('ChurnRate'),
       value: `${_jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].round(churnRate, 0)}%`,
       isNegativeMean: true,
-      rate: differentChurnRate,
-      showGrowthRateSympol: false
+      rate: differentChurnRate
     });
   };
 
@@ -1757,12 +2101,11 @@ const PerformanceHighlightWidget = props => {
       differentRetentionRate
     } = performanceHighlightData;
     const isSingleDate = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_8__["default"].isEqualDate(fromDate, toDate);
-    return !isSingleDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_StickyCompareBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return !isSingleDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('RR'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('RetentionRate'),
       value: `${_jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].round(retentionRate, 0)}%`,
-      rate: differentRetentionRate,
-      showGrowthRateSympol: false
+      rate: differentRetentionRate
     });
   };
 
@@ -1798,23 +2141,254 @@ function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js":
-/*!**********************************************************************************!*\
-  !*** ./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js ***!
-  \**********************************************************************************/
-/*! exports provided: ReportDateOptionValues, CompareDateOptionValues, ViewByOptionKeys, ViewByOptions, ReportDateSelectionOptions, CompareDateSelectionOptions */
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/UserActivitiesWidget.jsx":
+/*!*****************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/UserActivitiesWidget.jsx ***!
+  \*****************************************************************************************************/
+/*! exports provided: UserActivitiesWidget, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserActivitiesWidget", function() { return UserActivitiesWidget; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/htmlHelper */ "./www/js/source/reactpages/lib/htmlHelper.js");
+/* harmony import */ var _jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/components/radio/RadioGroup */ "./www/js/source/reactpages/components/radio/RadioGroup.jsx");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/TimePeriodSelect */ "./www/js/source/reactpages/pages/report/marketing/components/common/TimePeriodSelect.jsx");
+/* harmony import */ var _common_BarChart__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../common/BarChart */ "./www/js/source/reactpages/pages/report/marketing/components/common/BarChart.jsx");
+/* harmony import */ var _common_LineChart__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../common/LineChart */ "./www/js/source/reactpages/pages/report/marketing/components/common/LineChart.jsx");
+/* harmony import */ var _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../constants/filterConst */ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js");
+/* harmony import */ var _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../libs/helpers/filterHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/filterHelper.js");
+/* harmony import */ var _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../constants/chartConst */ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const UserActivitiesWidget = props => {
+  const {
+    globalFilter,
+    userActivitiesData,
+    fetchUserActivitiesData
+  } = props;
+  const {
+    viewMode
+  } = globalFilter;
+  const [reportDate, setReportDate] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(globalFilter.reportDate);
+  const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [chartMode, setChartMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Bar);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    setReportDate(globalFilter.reportDate);
+
+    _reloadData(globalFilter.reportDate);
+  }, [globalFilter]);
+
+  const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_4__["decode"])(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('UserActivities')), []);
+
+  const _reportDateSelectOptions = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
+    const isDailyMode = viewMode === _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__["ViewModeOptionValues"].Daily;
+    return _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__["ReportDateSelectionOptions"].filter(_ => _.value !== _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__["ReportDateOptionValues"].yesterday && (isDailyMode || _.value !== _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__["ReportDateOptionValues"].last7Days));
+  }, [viewMode]);
+
+  const _onChangeReportDate = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedRange => {
+    setReportDate(selectedRange);
+
+    _reloadData(selectedRange);
+  });
+
+  const _reloadData = reportDate => {
+    setLoading(true);
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_14__["default"].getUserActivitiesAPIParams({
+      reportDate,
+      viewMode
+    });
+    fetchUserActivitiesData(apiParams, () => setLoading(false));
+  };
+
+  const _renderChart = () => {
+    if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Bar) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_BarChart__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        data: userActivitiesData,
+        dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["UserActivitiesChartDataMapping"]
+      });
+    }
+
+    if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Line) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_LineChart__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        data: userActivitiesData,
+        dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["UserActivitiesChartDataMapping"]
+      });
+    }
+
+    return null;
+  };
+
+  const _renderFilter = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-12 col-md-6 col-sm-6 col-lg-5 col-xl-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "label-text"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("ReportDate")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      selectOptions: _reportDateSelectOptions,
+      selectOptionGenerateRange: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_12__["default"].ReportDateGenerateRangeSelections,
+      selectedRange: reportDate,
+      onChange: _onChangeReportDate
+    }))));
+  };
+
+  const _renderBody = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chart-body"
+    }, _renderChart());
+  };
+
+  const _renderFooter = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chart-footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      name: 'UserActivities-ViewChartMode',
+      value: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Bar,
+      options: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartModeOptions"],
+      onChange: setChartMode
+    }));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    title: _title,
+    isLoading: isLoading
+  }, userActivitiesData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "user-activities-container"
+  }, _renderFilter(), _renderBody(), _renderFooter()));
+};
+
+function mapStateToProps(state) {
+  const {
+    globalFilter,
+    userActivitiesData
+  } = state;
+  return Object.assign({}, {
+    globalFilter,
+    userActivitiesData
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  const {
+    fetchUserActivitiesData
+  } = _actions__WEBPACK_IMPORTED_MODULE_6__["default"];
+  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
+    fetchUserActivitiesData
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(UserActivitiesWidget)));
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js":
+/*!*********************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js ***!
+  \*********************************************************************************/
+/*! exports provided: ChartMode, ChartModeOptions, UserActivitiesChartDataMapping, AvgRevenueChartDataMapping */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChartMode", function() { return ChartMode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChartModeOptions", function() { return ChartModeOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserActivitiesChartDataMapping", function() { return UserActivitiesChartDataMapping; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AvgRevenueChartDataMapping", function() { return AvgRevenueChartDataMapping; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+
+
+const ChartMode = {
+  Bar: 1,
+  Line: 2
+};
+const ChartModeOptions = [{
+  value: ChartMode.Bar,
+  label: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon-bar-chart"
+  })
+}, {
+  value: ChartMode.Line,
+  label: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon-line-chart"
+  })
+}];
+const ChartColor = {
+  Color1: '#F16F37',
+  Color2: '#194170'
+};
+const UserActivitiesChartDataMapping = {
+  labelField: 'time',
+  datasets: [{
+    legend: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('AUActiveUsers'),
+    dataField: 'activeUsers',
+    color: ChartColor.Color1
+  }, {
+    legend: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NRUNewlyRegisterdUsers'),
+    dataField: 'newlyRegisterUsers',
+    color: ChartColor.Color2
+  }]
+};
+const AvgRevenueChartDataMapping = {
+  labelField: 'productName',
+  datasets: [{
+    legend: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ARPUAllUsers'),
+    dataField: 'allUsersRevenue',
+    color: ChartColor.Color1
+  }, {
+    legend: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ARPPUPaidUsers'),
+    dataField: 'paidUsersRevenue',
+    color: ChartColor.Color2
+  }]
+};
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js":
+/*!**********************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js ***!
+  \**********************************************************************************/
+/*! exports provided: NumberDaysOfWeek, ReportDateOptionValues, CompareDateOptionValues, ViewModeOptionValues, ViewModeOptions, ReportDateSelectionOptions, CompareDateSelectionOptions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NumberDaysOfWeek", function() { return NumberDaysOfWeek; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportDateOptionValues", function() { return ReportDateOptionValues; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompareDateOptionValues", function() { return CompareDateOptionValues; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewByOptionKeys", function() { return ViewByOptionKeys; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewByOptions", function() { return ViewByOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewModeOptionValues", function() { return ViewModeOptionValues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewModeOptions", function() { return ViewModeOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportDateSelectionOptions", function() { return ReportDateSelectionOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompareDateSelectionOptions", function() { return CompareDateSelectionOptions; });
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
+const NumberDaysOfWeek = 7;
 const ReportDateOptionValues = {
   yesterday: 1,
   last7Days: 2,
@@ -1824,15 +2398,15 @@ const CompareDateOptionValues = {
   previousPeriod: 1,
   samePeriodLastYear: 2
 };
-const ViewByOptionKeys = {
+const ViewModeOptionValues = {
   Daily: 1,
   Weekly: 2
 };
-const ViewByOptions = [{
-  value: ViewByOptionKeys.Daily,
+const ViewModeOptions = [{
+  value: ViewModeOptionValues.Daily,
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Daily')
 }, {
-  value: ViewByOptionKeys.Weekly,
+  value: ViewModeOptionValues.Weekly,
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Weekly')
 }];
 const ReportDateSelectionOptions = [{
@@ -1868,7 +2442,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errorResponse", function() { return errorResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "successResponse", function() { return successResponse; });
 const Url = {
-  performanceHighlight: 'Api/MarketingReport/PerformanceHighlight'
+  performanceHighlight: 'Api/MarketingReport/PerformanceHighlight',
+  userActivities: 'Api/MarketingReport/UserActivities',
+  avgRevenue: 'Api/MarketingReport/AvgRevenue'
 };
 const errorResponse = {
   data: null,
@@ -1912,6 +2488,170 @@ Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WE
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/chartHelper.js":
+/*!*************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/libs/helpers/chartHelper.js ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChartHelper; });
+/* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class ChartHelper {}
+
+_defineProperty(ChartHelper, "buildBarChartData", (data, chartDataMapping) => {
+  const labels = data.map(_ => _[chartDataMapping.labelField]);
+  const datasets = chartDataMapping.datasets.map(dataMapping => {
+    const valueOfCols = data.map(item => item[dataMapping.dataField]);
+    return {
+      label: dataMapping.legend,
+      data: valueOfCols,
+      backgroundColor: dataMapping.color
+    };
+  });
+  return {
+    labels,
+    datasets
+  };
+});
+
+_defineProperty(ChartHelper, "buildLineChartData", (data, chartDataMapping) => {
+  const labels = data.map(_ => _[chartDataMapping.labelField]);
+  const datasets = chartDataMapping.datasets.map(dataMapping => {
+    const valueOfCols = data.map(item => item[dataMapping.dataField]);
+    return {
+      label: dataMapping.legend,
+      data: valueOfCols,
+      lineTension: 0,
+      pointRadius: 1,
+      borderWidth: 2,
+      fill: false,
+      borderColor: dataMapping.color,
+      backgroundColor: dataMapping.color,
+      pointBorderColor: dataMapping.color,
+      pointBackgroundColor: dataMapping.color
+    };
+  });
+  return {
+    labels,
+    datasets
+  };
+});
+
+_defineProperty(ChartHelper, "buildBarChartOptions", labels => {
+  return {
+    maintainAspectRatio: false,
+    legend: {
+      position: 'bottom',
+      labels: {
+        boxWidth: 10,
+        boxHeight: 5,
+        padding: 20,
+        usePointStyle: true
+      },
+      onHover: function (e) {
+        e.target.style.cursor = 'pointer';
+      }
+    },
+    hover: {
+      animationDuration: 0
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          const dataSet = data.datasets[tooltipItem.datasetIndex];
+          return _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].round(dataSet.data[tooltipItem.index], 2);
+        }
+      }
+    },
+    scales: {
+      xAxes: [_objectSpread({}, {
+        barPercentage: 1,
+        categoryPercentage: 0.6
+      }, {}, {
+        display: true,
+        gridLines: {
+          display: false
+        },
+        labels: {
+          show: true
+        },
+        labels
+      })],
+      yAxes: [{
+        display: true,
+        labels: {
+          show: true
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+});
+
+_defineProperty(ChartHelper, "buildLineChartOptions", labels => {
+  return {
+    maintainAspectRatio: false,
+    legend: {
+      position: 'bottom',
+      labels: {
+        boxWidth: 10,
+        boxHeight: 5,
+        padding: 20,
+        usePointStyle: true
+      },
+      onHover: function (e) {
+        e.target.style.cursor = 'pointer';
+      }
+    },
+    hover: {
+      animationDuration: 0
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          const dataSet = data.datasets[tooltipItem.datasetIndex];
+          return _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].round(dataSet.data[tooltipItem.index], 2);
+        }
+      }
+    },
+    scales: {
+      xAxes: [_objectSpread({}, {
+        display: true,
+        gridLines: {
+          display: false
+        },
+        labels: {
+          show: true
+        },
+        labels
+      })],
+      yAxes: [{
+        display: true,
+        labels: {
+          show: true
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+});
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js":
 /*!****************************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js ***!
@@ -1950,6 +2690,13 @@ _defineProperty(DateTimeHelper, "getDiffDays", (date1, date2) => {
   return diffDays;
 });
 
+_defineProperty(DateTimeHelper, "getDiffDaysOfDateStructure", (dateStructure1, dateStructure2) => {
+  const dateObject1 = DateTimeHelper.convertToDateObject(dateStructure1);
+  const dateObject2 = DateTimeHelper.convertToDateObject(dateStructure2);
+  const diffDays = DateTimeHelper.getDiffDays(dateObject1, dateObject2);
+  return diffDays;
+});
+
 _defineProperty(DateTimeHelper, "addDays", (date, numberOfDays) => {
   const cloneDate = new Date(date);
   const newDate = new Date(cloneDate.setDate(cloneDate.getDate() + numberOfDays));
@@ -1962,6 +2709,17 @@ _defineProperty(DateTimeHelper, "addYears", (date, numberOfYears) => {
   const newDate = new Date(cloneDate.setFullYear(cloneDate.getFullYear() + numberOfYears));
   ;
   return newDate;
+});
+
+_defineProperty(DateTimeHelper, "formatDateRangeToString", (fromDate, toDate) => {
+  const displayFromDate = DateTimeHelper.formatDateStructureToString(fromDate);
+
+  if (DateTimeHelper.isEqualDate(fromDate, toDate)) {
+    return displayFromDate;
+  }
+
+  const displayToDate = DateTimeHelper.formatDateStructureToString(toDate);
+  return `${displayFromDate} - ${displayToDate}`;
 });
 
 _defineProperty(DateTimeHelper, "formatDateStructureToString", ({
@@ -2019,25 +2777,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class FilterHelper {}
 
-_defineProperty(FilterHelper, "getCommonAPIParams", globalFilterData => {
+_defineProperty(FilterHelper, "isSupportViewMode", reportDate => {
   const {
-    selectedBaseCurrency,
-    reportDate,
-    compareDate
-  } = globalFilterData;
-  const apiParams = {
-    baseCurrency: selectedBaseCurrency,
-    fromDate: _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(reportDate.fromDate),
-    toDate: _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(reportDate.toDate),
-    compareFromDate: _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
-    compareToDate: _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate)
-  };
-  return apiParams;
-});
+    fromDate,
+    toDate
+  } = reportDate;
+  const diffDays = _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getDiffDaysOfDateStructure(fromDate, toDate);
 
-_defineProperty(FilterHelper, "getPerformanceHighlightWidgetAPIParams", filterData => {
-  const commonParams = FilterHelper.getCommonAPIParams(filterData);
-  return commonParams;
+  if (diffDays >= _constants_filterConst__WEBPACK_IMPORTED_MODULE_1__["NumberDaysOfWeek"]) {
+    return true;
+  }
+
+  return false;
 });
 
 _defineProperty(FilterHelper, "ReportDateGenerateRangeSelections", {
@@ -2091,10 +2842,7 @@ _defineProperty(FilterHelper, "CompareDateGenerateRangeSelections", {
   }
 });
 
-_defineProperty(FilterHelper, "DefaultReportDate", {
-  fromDate: _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getYesterday(),
-  toDate: _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getYesterday()
-});
+_defineProperty(FilterHelper, "DefaultReportDate", FilterHelper.ReportDateGenerateRangeSelections[_constants_filterConst__WEBPACK_IMPORTED_MODULE_1__["ReportDateOptionValues"].yesterday]());
 
 _defineProperty(FilterHelper, "DefaultCompareDate", FilterHelper.CompareDateGenerateRangeSelections[_constants_filterConst__WEBPACK_IMPORTED_MODULE_1__["CompareDateOptionValues"].previousPeriod](FilterHelper.DefaultReportDate));
 
@@ -2116,6 +2864,98 @@ class NumberHelper {
   }
 
 }
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js":
+/*!**************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DataService; });
+/* harmony import */ var _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class DataService {}
+
+_defineProperty(DataService, "getCommonAPIParams", ({
+  reportDate
+}) => {
+  const params = {
+    fromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(reportDate.fromDate),
+    toDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(reportDate.toDate)
+  };
+  return params;
+});
+
+_defineProperty(DataService, "getPerformanceHighlightAPIParams", filterData => {
+  const {
+    reportDate,
+    compareDate
+  } = filterData;
+  const commonParams = DataService.getCommonAPIParams({
+    reportDate
+  });
+
+  const params = _objectSpread({}, commonParams, {}, {
+    compareFromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
+    compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate)
+  });
+
+  return params;
+});
+
+_defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
+  const {
+    reportDate,
+    viewMode
+  } = filterData;
+  const commonParams = DataService.getCommonAPIParams({
+    reportDate
+  });
+
+  const params = _objectSpread({}, commonParams, {}, {
+    viewMode
+  });
+
+  return params;
+});
+
+_defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
+  const {
+    reportDate,
+    selectedBaseCurrency,
+    products
+  } = filterData;
+  const commonParams = DataService.getCommonAPIParams({
+    reportDate
+  });
+
+  const params = _objectSpread({}, commonParams, {}, {
+    productIds: products,
+    baseCurrency: selectedBaseCurrency
+  });
+
+  return params;
+});
+
+_defineProperty(DataService, "filterDataWithSelectedProducts", (avgRevenueData, products) => {
+  const selectedProducts = products.split(',');
+  const dicSelectedProducts = selectedProducts.reduce((prevValue, currentValue) => _objectSpread({}, prevValue, {
+    [currentValue]: true
+  }), {});
+  const newData = avgRevenueData.filter(_ => dicSelectedProducts[_.productId]);
+  return newData;
+});
 
 /***/ }),
 
@@ -2142,8 +2982,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class QueryService {}
 
 _defineProperty(QueryService, "fetchPerformanceHighlightData", async params => {
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_1__["Url"].performanceHighlight, params));
+  return data;
+});
+
+_defineProperty(QueryService, "fetchUserActivitiesData", async params => {
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_1__["Url"].userActivities, params));
+  return data;
+});
+
+_defineProperty(QueryService, "fetchAvgRevenueData", async params => {
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_1__["Url"].avgRevenue, params));
+  return data;
+});
+
+_defineProperty(QueryService, "fetchData", async apiCall => {
   try {
-    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_1__["Url"].performanceHighlight, params);
+    const response = await apiCall();
 
     if (response.status === 200) {
       return _objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_1__["successResponse"], {}, {
@@ -2171,6 +3026,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/store */ "./www/js/source/reactpages/lib/store.js");
 /* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers */ "./www/js/source/reactpages/pages/report/marketing/reducers/index.js");
 /* harmony import */ var _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../libs/helpers/filterHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/filterHelper.js");
+/* harmony import */ var _constants_filterConst__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/filterConst */ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2181,7 +3037,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 const defaultState = _objectSpread({}, window.initialState, {}, {
+  isCollapsedFormFilter: false,
+  viewMode: _constants_filterConst__WEBPACK_IMPORTED_MODULE_3__["ViewModeOptionValues"].Daily,
   reportDate: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_2__["default"].DefaultReportDate,
   compareDate: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_2__["default"].DefaultCompareDate
 });
@@ -2210,8 +3069,22 @@ const performanceHighlightData = Object(_jsroot_lib_createReducer_js__WEBPACK_IM
   }
 
 });
+const userActivitiesData = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_USER_ACTIVITIES_DATA"]](state, action) {
+    return action.data;
+  }
+
+});
+const avgRevenueData = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_AVG_REVENUE_DATA"]](state, action) {
+    return action.data;
+  }
+
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
-  performanceHighlightData
+  performanceHighlightData,
+  userActivitiesData,
+  avgRevenueData
 });
 
 /***/ }),
@@ -2255,12 +3128,19 @@ const globalFilter = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODUL
   }
 
 });
+const isCollapsedFormFilter = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_COLLAPSE_FORM_FILTER"]](state, action) {
+    return action.data;
+  }
+
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   selectedBaseCurrency: _jsroot_reducers_baseCurrencyReducer__WEBPACK_IMPORTED_MODULE_2__["selectedBaseCurrency"],
   viewMode,
   reportDate,
   compareDate,
-  globalFilter
+  globalFilter,
+  isCollapsedFormFilter
 });
 
 /***/ }),

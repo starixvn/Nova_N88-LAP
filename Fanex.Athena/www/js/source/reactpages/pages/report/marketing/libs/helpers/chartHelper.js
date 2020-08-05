@@ -1,3 +1,5 @@
+import NumberFormat from '@jsroot/lib/numberFormat';
+
 export default class ChartHelper {
     static buildBarChartData = (data, chartDataMapping) => {
         const labels = data.map(_ => _[chartDataMapping.labelField]);
@@ -58,6 +60,14 @@ export default class ChartHelper {
             hover: {
                 animationDuration: 0
             },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        const dataSet = data.datasets[tooltipItem.datasetIndex];
+                        return NumberFormat.round(dataSet.data[tooltipItem.index], 2);
+                    }
+                }
+            },
             scales: {
                 xAxes: [
                     {
@@ -106,6 +116,14 @@ export default class ChartHelper {
             },
             hover: {
                 animationDuration: 0
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        const dataSet = data.datasets[tooltipItem.datasetIndex];
+                        return NumberFormat.round(dataSet.data[tooltipItem.index], 2);
+                    }
+                }
             },
             scales: {
                 xAxes: [

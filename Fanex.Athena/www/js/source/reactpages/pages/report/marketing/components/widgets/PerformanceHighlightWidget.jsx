@@ -73,7 +73,6 @@ export const PerformanceHighlightWidget = props => {
             value={`${NumberFormat.round(churnRate, 0)}%`}
             isNegativeMean={true}
             rate={differentChurnRate}
-            showGrowthRateSympol={false}
         />)
     }
 
@@ -86,7 +85,6 @@ export const PerformanceHighlightWidget = props => {
             description={LangHelper.getSingleResource('RetentionRate')}
             value={`${NumberFormat.round(retentionRate, 0)}%`}
             rate={differentRetentionRate}
-            showGrowthRateSympol={false}
         />)
     }
 

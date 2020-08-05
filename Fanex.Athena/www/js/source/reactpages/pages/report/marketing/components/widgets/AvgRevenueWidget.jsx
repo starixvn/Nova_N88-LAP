@@ -64,7 +64,7 @@ export const AvgRevenueWidget = props => {
 
     const _renderFilter = () => {
         return (<div className="row">
-            <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-3">
+            <div className="col-12 col-md-6 col-sm-6 col-lg-4 col-xl-3">
                 <div className="form-group">
                     <label className="label-text">{LangHelper.getSingleResource("ReportDate")}</label>
                     <TimePeriodSelect

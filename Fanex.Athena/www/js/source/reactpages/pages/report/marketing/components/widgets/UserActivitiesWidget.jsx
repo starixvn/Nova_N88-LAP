@@ -14,7 +14,6 @@ import FilterHelper from '../../libs/helpers/filterHelper';
 import { ChartMode, ChartModeOptions, UserActivitiesChartDataMapping } from '../../constants/chartConst';
 import DataService from '../../libs/services/dataService';
 
-
 export const UserActivitiesWidget = props => {
     const { globalFilter, userActivitiesData, fetchUserActivitiesData } = props;
     const { viewMode } = globalFilter;

@@ -1519,7 +1519,7 @@ const BarChart = props => {
 
   const _chartData = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildBarChartData(data, dataMapping);
 
-  const _chartOptions = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildBarChartOptions(_chartData.labels);
+  const _chartOptions = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildBarChartOptions(_chartData.labels, dataMapping.isDecimal);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
     data: _chartData,
@@ -1645,7 +1645,7 @@ const LineChart = props => {
 
   const _chartData = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildLineChartData(data, dataMapping);
 
-  const _chartOptions = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildLineChartOptions(_chartData.labels);
+  const _chartOptions = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildLineChartOptions(_chartData.labels, dataMapping.isDecimal);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__["Line"], {
     data: _chartData,
@@ -2345,6 +2345,7 @@ const ChartColor = {
 };
 const UserActivitiesChartDataMapping = {
   labelField: 'time',
+  isDecimal: false,
   datasets: [{
     legend: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('AUActiveUsers'),
     dataField: 'activeUsers',
@@ -2357,6 +2358,7 @@ const UserActivitiesChartDataMapping = {
 };
 const AvgRevenueChartDataMapping = {
   labelField: 'productName',
+  isDecimal: true,
   datasets: [{
     legend: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ARPUAllUsers'),
     dataField: 'allUsersRevenue',
@@ -2547,7 +2549,7 @@ _defineProperty(ChartHelper, "buildLineChartData", (data, chartDataMapping) => {
   };
 });
 
-_defineProperty(ChartHelper, "buildBarChartOptions", labels => {
+_defineProperty(ChartHelper, "buildBarChartOptions", (labels, isDecimal) => {
   return {
     maintainAspectRatio: false,
     legend: {
@@ -2567,10 +2569,7 @@ _defineProperty(ChartHelper, "buildBarChartOptions", labels => {
     },
     tooltips: {
       callbacks: {
-        label: function (tooltipItem, data) {
-          const dataSet = data.datasets[tooltipItem.datasetIndex];
-          return _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].round(dataSet.data[tooltipItem.index], 2);
-        }
+        label: ChartHelper.tooltipFunc(isDecimal)
       }
     },
     scales: {
@@ -2600,7 +2599,7 @@ _defineProperty(ChartHelper, "buildBarChartOptions", labels => {
   };
 });
 
-_defineProperty(ChartHelper, "buildLineChartOptions", labels => {
+_defineProperty(ChartHelper, "buildLineChartOptions", (labels, isDecimal) => {
   return {
     maintainAspectRatio: false,
     legend: {
@@ -2620,10 +2619,7 @@ _defineProperty(ChartHelper, "buildLineChartOptions", labels => {
     },
     tooltips: {
       callbacks: {
-        label: function (tooltipItem, data) {
-          const dataSet = data.datasets[tooltipItem.datasetIndex];
-          return _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].round(dataSet.data[tooltipItem.index], 2);
-        }
+        label: ChartHelper.tooltipFunc(isDecimal)
       }
     },
     scales: {
@@ -2648,6 +2644,11 @@ _defineProperty(ChartHelper, "buildLineChartOptions", labels => {
       }]
     }
   };
+});
+
+_defineProperty(ChartHelper, "tooltipFunc", isDecimal => (tooltipItem, data) => {
+  const dataSet = data.datasets[tooltipItem.datasetIndex];
+  return _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].format(dataSet.data[tooltipItem.index], isDecimal ? 2 : 0);
 });
 
 /***/ }),

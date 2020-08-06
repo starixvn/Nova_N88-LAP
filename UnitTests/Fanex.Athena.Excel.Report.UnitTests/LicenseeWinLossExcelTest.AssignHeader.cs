@@ -59,7 +59,7 @@ namespace Fanex.Athena.Excel.Report.UnitTests
                 row1.Cells[ColumnAmtDueToBetTrade].Received(1).SetCellValue(ViewResources.AmtDueToBetTrade);
                 row1.Cells[ColumnAmtDueToBa].Received(1).SetCellValue(ViewResources.AmtDueToBA);
 
-                row2.Cells[ColumnCustomerWl].Received(1).SetCellValue(ViewResources.WinLossAnalysis);
+                row2.Cells[ColumnCustomerWl].Received(1).SetCellValue(ViewResources.WinLoss);
                 row2.Cells[ColumnCustomerComm].Received(1).SetCellValue(ViewResources.Comm);
                 row2.Cells[ColumnCustomerTotal].Received(1).SetCellValue(ViewResources.Total);
 

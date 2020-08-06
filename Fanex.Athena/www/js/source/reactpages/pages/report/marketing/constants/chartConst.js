@@ -18,6 +18,7 @@ const ChartColor = {
 
 export const UserActivitiesChartDataMapping = {
     labelField: 'time',
+    isDecimal: false, 
     datasets: [
         {
             legend: LangHelper.getSingleResource('AUActiveUsers'),
@@ -34,6 +35,7 @@ export const UserActivitiesChartDataMapping = {
 
 export const AvgRevenueChartDataMapping = {
     labelField: 'productName',
+    isDecimal: true, 
     datasets: [
         {
             legend: LangHelper.getSingleResource('ARPUAllUsers'),

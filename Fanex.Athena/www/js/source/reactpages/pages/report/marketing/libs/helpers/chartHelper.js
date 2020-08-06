@@ -42,7 +42,7 @@ export default class ChartHelper {
         }
     }
 
-    static buildBarChartOptions = labels => {
+    static buildBarChartOptions = (labels, isDecimal) => {
         return {
             maintainAspectRatio: false,
             legend: {
@@ -62,10 +62,7 @@ export default class ChartHelper {
             },
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
-                        const dataSet = data.datasets[tooltipItem.datasetIndex];
-                        return NumberFormat.round(dataSet.data[tooltipItem.index], 2);
-                    }
+                    label: this.tooltipFunc(isDecimal)
                 }
             },
             scales: {
@@ -99,7 +96,7 @@ export default class ChartHelper {
         }
     }
 
-    static buildLineChartOptions = labels => {
+    static buildLineChartOptions = (labels, isDecimal) => {
         return {
             maintainAspectRatio: false,
             legend: {
@@ -119,10 +116,7 @@ export default class ChartHelper {
             },
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
-                        const dataSet = data.datasets[tooltipItem.datasetIndex];
-                        return NumberFormat.round(dataSet.data[tooltipItem.index], 2);
-                    }
+                    label: this.tooltipFunc(isDecimal)
                 }
             },
             scales: {
@@ -153,5 +147,10 @@ export default class ChartHelper {
                 ]
             }
         }
+    }
+
+    static tooltipFunc = isDecimal => (tooltipItem, data) => {
+        const dataSet = data.datasets[tooltipItem.datasetIndex];
+        return NumberFormat.format(dataSet.data[tooltipItem.index], isDecimal ? 2 : 0);
     }
 }

@@ -5,7 +5,7 @@ import ChartHelper from '../../libs/helpers/chartHelper';
 export const BarChart = props => {
     const { data, dataMapping } = props;
     const _chartData = ChartHelper.buildBarChartData(data, dataMapping);
-    const _chartOptions = ChartHelper.buildBarChartOptions(_chartData.labels);
+    const _chartOptions = ChartHelper.buildBarChartOptions(_chartData.labels, dataMapping.isDecimal);
     return (
         <Bar data={_chartData} options={_chartOptions} />
     )

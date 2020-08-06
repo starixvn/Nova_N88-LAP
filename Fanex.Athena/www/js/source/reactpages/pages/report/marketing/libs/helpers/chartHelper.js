@@ -52,9 +52,6 @@ export default class ChartHelper {
                     boxHeight: 5,
                     padding: 20,
                     usePointStyle: true
-                },
-                onHover: function (e) {
-                    e.target.style.cursor = 'pointer';
                 }
             },
             hover: {
@@ -107,9 +104,6 @@ export default class ChartHelper {
                     padding: 20,
                     usePointStyle: true
                 },
-                onHover: function (e) {
-                    e.target.style.cursor = 'pointer';
-                }
             },
             hover: {
                 animationDuration: 0

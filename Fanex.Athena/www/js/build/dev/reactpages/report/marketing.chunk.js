@@ -2559,6 +2559,12 @@ _defineProperty(ChartHelper, "buildBarChartOptions", (labels, isDecimal) => {
         boxHeight: 5,
         padding: 20,
         usePointStyle: true
+      },
+      onHover: function (e) {
+        e.target.style.cursor = 'pointer';
+      },
+      onLeave: function (e) {
+        e.target.style.cursor = '';
       }
     },
     hover: {
@@ -2606,6 +2612,12 @@ _defineProperty(ChartHelper, "buildLineChartOptions", (labels, isDecimal) => {
         boxHeight: 5,
         padding: 20,
         usePointStyle: true
+      },
+      onHover: function (e) {
+        e.target.style.cursor = 'pointer';
+      },
+      onLeave: function (e) {
+        e.target.style.cursor = '';
       }
     },
     hover: {

@@ -1,0 +1,95 @@
+﻿namespace Fanex.Athena.Controllers.Report.UnitTests
+{
+    using Fanex.Athena.Controllers.Base.UnitTests;
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.DTO.Configuration;
+    using Fanex.Athena.Model.Report.ViewModel;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Athena.UnitTest.Common.Helpers;
+    using Fanex.Athena.UnitTest.Common.NUnitExtensions;
+    using NSubstitute;
+    using NUnit.Framework;
+    using System.Collections.Generic;
+
+    public class MarketingReportControllerTest : CultureBaseControllerHelperTest
+    {
+        private IReportSettingService _reportSettingService;
+        private ITpService _tpService;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _reportSettingService = Substitute.For<IReportSettingService>();
+            _tpService = Substitute.For<ITpService>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _reportSettingService = null;
+            _tpService = null;
+        }
+
+        [OneTimeSetUp]
+        public override void FixtureSetUp()
+        {
+            base.FixtureSetUp();
+            SetUpDefaultFakeData();
+        }
+
+        [Test]
+        public void Index_WhenCall_ReturnCorrectViewLink()
+        {
+            //Arrange
+            _reportSettingService.GetSetting(Arg.Any<string>(), Arg.Any<string>()).Returns(FakeHelper.Create<ReportSetting>());
+            _tpService.GetListTpProduct().Returns(FakeHelper.Create<IEnumerable<TpProduct>>());
+            const string expectedResult = "~/Views/Desktop/Report/Marketing/Main.cshtml";
+
+            using (var controller = CreateController())
+            {
+                //Act
+                var actualResult = controller.Index();
+
+                //Assert
+                Assert.AreEqual(expectedResult, actualResult.ViewName);
+            }
+        }
+
+        [Test]
+        public void Index_WhenCall_ReturnCorrectViewModel()
+        {
+            //Arrange
+            var fakeTpProducts = FakeHelper.Create<IEnumerable<TpProduct>>();
+            var fakeReportSetting = FakeHelper.Create<ReportSetting>();
+
+            _reportSettingService.GetSetting(Arg.Any<string>(), Arg.Any<string>()).Returns(fakeReportSetting);
+            _tpService.GetListTpProduct().Returns(fakeTpProducts);
+
+            var expectedResult = new MarketingViewModel
+            {
+                BaseCurrency = DefaultUserSession.DefaultBaseCurrency,
+                TpProducts = fakeTpProducts,
+                Today = fakeReportSetting.MaxDate
+            };
+
+            using (var controller = CreateController())
+            {
+                //Act
+                var actualResult = controller.Index();
+
+                //Assert
+                Assert.That(actualResult.Model, Tobe.SameProperties(expectedResult));
+            }
+        }
+
+        private MarketingReportController CreateController()
+        {
+            return new MarketingReportController(_reportSettingService, _tpService)
+            {
+                LangService = LangService,
+                SessionServiceInstance = SessionService
+            };
+        }
+    }
+}

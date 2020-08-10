@@ -520,6 +520,24 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ARPPU - Paid Users.
+        /// </summary>
+        public static string ARPPUPaidUsers {
+            get {
+                return ResourceManager.GetString("ARPPUPaidUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ARPU - All Users.
+        /// </summary>
+        public static string ARPUAllUsers {
+            get {
+                return ResourceManager.GetString("ARPUAllUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Asia.
         /// </summary>
         public static string Asia {
@@ -534,6 +552,15 @@ namespace Fanex.Athena.Resources {
         public static string AssignPermission {
             get {
                 return ResourceManager.GetString("AssignPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AU - Active Users.
+        /// </summary>
+        public static string AUActiveUsers {
+            get {
+                return ResourceManager.GetString("AUActiveUsers", resourceCulture);
             }
         }
         
@@ -570,6 +597,15 @@ namespace Fanex.Athena.Resources {
         public static string AvgBetAmount {
             get {
                 return ResourceManager.GetString("AvgBetAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avg Revenue.
+        /// </summary>
+        public static string AvgRevenue {
+            get {
+                return ResourceManager.GetString("AvgRevenue", resourceCulture);
             }
         }
         
@@ -4876,6 +4912,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NRU - Newly Registered Users.
+        /// </summary>
+        public static string NRUNewlyRegisterdUsers {
+            get {
+                return ResourceManager.GetString("NRUNewlyRegisterdUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number Game No.
         /// </summary>
         public static string NumberGameNo {
@@ -7248,6 +7293,15 @@ namespace Fanex.Athena.Resources {
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User&apos;s Activities.
+        /// </summary>
+        public static string UserActivities {
+            get {
+                return ResourceManager.GetString("UserActivities", resourceCulture);
             }
         }
         

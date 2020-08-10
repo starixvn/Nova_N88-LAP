@@ -137,7 +137,10 @@
     <Compile Include="DTO\LicenseeWinLoss.cs" />
     <Compile Include="MetaModel\BaseDrilldownReportMetaModel.cs" />
     <Compile Include="MetaModel\BaseReportMetaModel.cs" />
+    <Compile Include="MetaModel\Marketing\AvgRevenueMetaModel.cs" />
+    <Compile Include="MetaModel\Marketing\BaseMarketingMetaModel.cs" />
     <Compile Include="MetaModel\Marketing\PerformanceHighlightMetaModel.cs" />
+    <Compile Include="MetaModel\Marketing\UserActivitiesMetaModel.cs" />
     <Compile Include="MetaModel\PromotionPrizeMetaModel.cs" />
     <Compile Include="MetaModel\Result\GetSportResultMetaModel.cs" />
     <Compile Include="MetaModel\Result\ResultMetaModel.cs" />

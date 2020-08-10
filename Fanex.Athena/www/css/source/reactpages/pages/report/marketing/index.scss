@@ -1,9 +1,40 @@
 @import '../../../abstracts/variables';
 @import '../../../components/forms/radio-buttons';
-@import "./mixins";
-@import "./common";
+@import '../../../components/react-multiselect';
+
+@mixin make-triangle-top-left() {
+    width: 0;
+    height: 0;
+    border-right: 9px solid transparent;
+    border-top: 8px solid $black;    
+}
 
 .marketing-report {
+
+    .report-title {
+        text-transform: uppercase;
+    }
+
+    .widget-list {
+        border: 1px solid #d6d6d6;
+        border-top: none;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 5x;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: grey;
+            border-radius: 5px;
+        }
+    }
+
     .widget {
         background: $white;
 
@@ -14,16 +45,18 @@
             font-size: 12px;
             font-weight: bold;
             text-transform: uppercase;
-            i {
+
+            .icon-arrow {
                 margin-right: 5px;
+                float: left;
+                font-weight: bold;
                 cursor: pointer;
             }
         }
 
         .widget-content {
             position: relative;
-            border: 1px solid #d6d6d6;
-            padding-bottom: 15px;
+            padding: 25px 15px;
         }
 
         .no-data-widget {
@@ -40,7 +73,6 @@
     .sticky-box-container {
         display: flex;
         flex-wrap: wrap;
-        padding: 10px;
 
         .sticky-box {
             margin-right: 15px;
@@ -55,7 +87,7 @@
         background: #EEF8F6;
         border: 1px solid #A2BEBA;
         box-sizing: border-box;
-        color: #164F46;
+        color: $colorMain;
     }
 
     .sticky-box-title {
@@ -84,7 +116,6 @@
         float: right;
         position: relative;
         bottom: -13px;
-
         .triangle-top-left, .triangle-bottom-left  {
             position: absolute;
         }
@@ -106,27 +137,74 @@
     .triangle-top-left {
         @include make-triangle-top-left()
     }
-
     .triangle-bottom-left {
         @include make-triangle-top-left();
         float: left;
         transform: rotate(-90deg);
     }
 
-    .arrow {
-        display: inline-block;
-        vertical-align: middle;
-        width: 0;
-        height: 0;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
+	.time-period-select {
+        display: flex;
+        .time-period-select-time {
+             width: 45%;
+        }
+
+        .time-period-display-time {
+            width: 55%;
+            text-align: center;
+            border-bottom: 1px solid #9e9e9e;
+            margin-left: -2px;
+            color: $colorLabelText;
+        }
+	}
+
+
+    .icon-arrow {
+        transition: 0.3s transform ease;
     }
 
-    .arrow-up  {
-        border-bottom: 7px solid $black;
+	.radio-group {
+        span {
+            margin-right: 10px;
+        }
+
+        .icon-bar-chart, .icon-line-chart {
+            position: relative;
+            top: -10px;
+        }
     }
-      
-    .arrow-down {
-        border-top: 7px solid $black;
+
+    .chart-body {
+        height: 450px;
+        position: relative;
+    }
+
+    .chart-footer {
+        padding-top: 15px;
+    }
+
+    .green-color {
+        color: $colorActive
+    }
+    
+    .red-color {
+        color: $red;
+    }
+
+    
+    .icon-bar-chart {
+        background: url("../../../images/bar-chart-icon.svg") no-repeat;
+        width: 80px;
+        height: 30px;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .icon-line-chart {
+        background: url("../../../images/line-chart-icon.svg") no-repeat;
+        width: 80px;
+        height: 30px;
+        cursor: pointer;
+        display: inline-block;
     }
 }

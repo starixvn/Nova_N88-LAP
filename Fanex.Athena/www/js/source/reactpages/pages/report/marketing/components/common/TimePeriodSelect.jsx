@@ -11,21 +11,12 @@ export const TimePeriodSelect = props => {
         onChange && onChange(range);
     }
 
-    const _displayRange = () => {
-        const displayFromDate = DateTimeHelper.formatDateStructureToString(fromDate);
-        if (DateTimeHelper.isEqualDate(fromDate, toDate)) {
-            return displayFromDate;
-        }
-        const displayToDate = DateTimeHelper.formatDateStructureToString(toDate);
-        return `${displayFromDate} - ${displayToDate}`;
-    }
-
     const _getCurrentSelectOption = () => {
         const currentSelection = selectOptions.find(_ => {
             const range = selectOptionGenerateRange[_.value](selectedDependRange);
             return DateTimeHelper.isEqualDate(fromDate, range.fromDate) && DateTimeHelper.isEqualDate(toDate, range.toDate)
         });
-        return currentSelection;
+        return currentSelection || selectOptions[0];
     }
 
     const _renderSelectOptions = () => {
@@ -39,16 +30,12 @@ export const TimePeriodSelect = props => {
     }
 
     return (
-        <div className="row">
-            <div className="col-12 col-md-5 col-sm-5 col-lg-5 col-xl-5">
-                <div className="form-group">
-                    {_renderSelectOptions()}
-                </div>
+        <div className="time-period-select">
+            <div className="time-period-select-time" >
+                {_renderSelectOptions()}
             </div>
-            <div className="col-12 col-md-7 col-sm-7 col-lg-7 col-xl-7">
-                <div className="form-group">
-                    <input type="text" className="input-text disabled" value={_displayRange()} disabled={true} />
-                </div>
+            <div className="time-period-display-time" >
+                {DateTimeHelper.formatDateRangeToString(fromDate, toDate)}
             </div>
         </div>
     )

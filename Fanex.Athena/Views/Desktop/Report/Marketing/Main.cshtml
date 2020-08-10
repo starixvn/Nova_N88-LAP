@@ -25,11 +25,13 @@
 
 @section globaljscode{
     window.initialState = {
-        selectedBaseCurrency: '@Model.BaseCurrency',
+    selectedBaseCurrency: '@Model.BaseCurrency'
     };
 
     window._AppData = {
         baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+        productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
+        defaultSelectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
         today: '@Model.Today.ToString("MM/dd/yyyy")'
     }
 

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 7/27/2020 9:45:22 AM
+// Generated at: 7/31/2020 3:35:31 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -146,12 +146,16 @@ window._language_en_US = {
   Archived: "Archived",
   ArchivedDate: "Archived Date",
   AreYouSure: "Are you sure you want to procceed?",
+  ARPPUPaidUsers: "ARPPU - Paid Users",
+  ARPUAllUsers: "ARPU - All Users",
   Asia: "Asia",
   AssignPermission: "Assign Permission",
+  AUActiveUsers: "AU - Active Users",
   Aug: "Aug",
   August: "August",
   AvailableFunds: "Available Funds",
   AvgBetAmount: "Avg. Bet Amount",
+  AvgRevenue: "Avg Revenue",
   Away: "Away",
   AwayNoBet: "Away No Bet",
   BA: "BA",
@@ -630,6 +634,7 @@ window._language_en_US = {
   NotificationDateRangeLimitNote: "Data is available within 6 months",
   Nov: "Nov",
   November: "November",
+  NRUNewlyRegisterdUsers: "NRU - Newly Registered Users",
   NumberGameNo: "Number Game No",
   OANDANote: "Please note that all conversions to base currency (EURO,USD) are for reference only.",
   Oct: "Oct",
@@ -894,6 +899,7 @@ window._language_en_US = {
   UpdateToLockedConfirmMsg: "Are you sure you want to change the status of this player to LOCKED?",
   UpdateUnSuccess: "Update unsucessfully!",
   User: "User",
+  UserActivities: "User&apos;s Activities",
   UserGuide: "User Guide",
   UserHasNoPermissionError: "Account has no permission on this site",
   UserInformation: "User Information",

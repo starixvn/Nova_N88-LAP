@@ -1,0 +1,100 @@
+﻿namespace Fanex.Athena.Controllers.Report.UnitTests
+{
+    using Fanex.Athena.Controllers.Base.UnitTests;
+    using Fanex.Athena.Model.Core.DataDomain;
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.DTO.Configuration;
+    using Fanex.Athena.Model.Report.ViewModel;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Athena.UnitTest.Common.Helpers;
+    using Fanex.Athena.UnitTest.Common.NUnitExtensions;
+    using NSubstitute;
+    using NUnit.Framework;
+    using System.Collections.Generic;
+
+    public class WinLossReportControllerTest : CultureBaseControllerHelperTest
+    {
+        private IReportSettingService _reportSettingService;
+        private ITpService _tpService;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _reportSettingService = Substitute.For<IReportSettingService>();
+            _tpService = Substitute.For<ITpService>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _reportSettingService = null;
+            _tpService = null;
+        }
+
+        [OneTimeSetUp]
+        public override void FixtureSetUp()
+        {
+            base.FixtureSetUp();
+            SetUpDefaultFakeData();
+        }
+
+        [Test]
+        public void Index_WhenCall_ReturnCorrectViewLink()
+        {
+            //Arrange
+            _reportSettingService.GetSetting(Arg.Any<string>(), Arg.Any<string>()).Returns(FakeHelper.Create<ReportSetting>());
+            const string expectedResult = "~/Views/Desktop/Report/WinLoss/Main.cshtml";
+
+            using (var controller = CreateController())
+            {
+                //Act
+                var actualResult = controller.Index();
+
+                //Assert
+                Assert.AreEqual(expectedResult, actualResult.ViewName);
+            }
+        }
+
+        [Test]
+        public void Index_WhenCall_ReturnCorrectViewModel()
+        {
+            //Arrange
+            var fakeTpProducts = FakeHelper.Create<IEnumerable<TpProduct>>();
+            var fakeReportSetting = FakeHelper.Create<ReportSetting>();
+            var fakeTpCurrency = FakeHelper.Create<IEnumerable<Currency>>();
+
+            _reportSettingService.GetSetting(Arg.Any<string>(), Arg.Any<string>()).Returns(fakeReportSetting);
+            _tpService.GetListTpProduct().Returns(fakeTpProducts);
+            _tpService.GetListTpCurrency(DefaultLicenseeSession.LicenseeId).Returns(fakeTpCurrency);
+
+            var expectedResult = new WinLossViewModel
+            {
+                BaseCurrency = DefaultUserSession.DefaultBaseCurrency,
+                TpCurrencies = fakeTpCurrency,
+                TpProducts = fakeTpProducts,
+                MaxDate = fakeReportSetting.MaxDate,
+                MinDate = fakeReportSetting.MinDate,
+                LimitMonthRange = fakeReportSetting.LimitMonthRange
+            };
+
+            using (var controller = CreateController())
+            {
+                //Act
+                var actualResult = controller.Index();
+
+                //Assert
+                Assert.That(actualResult.Model, Tobe.SameProperties(expectedResult));
+            }
+        }
+
+        private WinLossReportController CreateController()
+        {
+            return new WinLossReportController(_reportSettingService, _tpService)
+            {
+                LangService = LangService,
+                SessionServiceInstance = SessionService
+            };
+        }
+    }
+}

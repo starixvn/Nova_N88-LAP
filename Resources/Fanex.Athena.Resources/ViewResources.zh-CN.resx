@@ -2389,4 +2389,28 @@
     <value>Total Users</value>
     <comment>137395</comment>
   </data>
+  <data name="ARPPUPaidUsers" xml:space="preserve">
+    <value>ARPPU - Paid Users</value>
+    <comment>137395</comment>
+  </data>
+  <data name="ARPUAllUsers" xml:space="preserve">
+    <value>ARPU - All Users</value>
+    <comment>137395</comment>
+  </data>
+  <data name="AUActiveUsers" xml:space="preserve">
+    <value>AU - Active Users</value>
+    <comment>137395</comment>
+  </data>
+  <data name="AvgRevenue" xml:space="preserve">
+    <value>Avg Revenue</value>
+    <comment>137395</comment>
+  </data>
+  <data name="NRUNewlyRegisterdUsers" xml:space="preserve">
+    <value>NRU - Newly Registered Users</value>
+    <comment>137395</comment>
+  </data>
+  <data name="UserActivities" xml:space="preserve">
+    <value>User's Activities</value>
+    <comment>137395</comment>
+  </data>
 </root>

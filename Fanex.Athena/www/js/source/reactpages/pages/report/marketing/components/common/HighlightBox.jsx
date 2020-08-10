@@ -3,8 +3,8 @@ import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
 import NumberHelper from '../../libs/helpers/numberHelper';
 
-const StickyCompareBox = props => {
-    const { title, description, value, rate, showGrowthRateSympol, isNegativeMean } = props;
+const HighlightBox = props => {
+    const { title, description, value, rate, isNegativeMean } = props;
 
     const _renderTitle = () => {
         return (<div className="sticky-box-title">
@@ -29,7 +29,7 @@ const StickyCompareBox = props => {
         if (rate === 0) {
             return '';
         }
-        return rate > 0 ? 'green' : 'red';
+        return rate > 0 ? 'green-color' : 'red-color';
     }
 
     const _getArrowColor = rate => {
@@ -42,9 +42,9 @@ const StickyCompareBox = props => {
         const _roundedRate = isNegativeMean ? -roundedRate : roundedRate;
         const color = _getColorRate(_roundedRate);
         const arrowColor = _getArrowColor(_roundedRate);
-        const arrow = _roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
+        const arrow = roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
         return (<div className="sticky-box-rate">
-            {showGrowthRateSympol !== false && roundedRate !== 0 && <div className={`${arrow} ${arrowColor}`}></div>}
+            {roundedRate !== 0 && <div className={`${arrow} ${arrowColor}`}></div>}
             <div className={`rate ${color}`}>{rateDisplay}</div>
         </div>)
     }
@@ -58,4 +58,4 @@ const StickyCompareBox = props => {
     </div>)
 }
 
-export default React.memo(StickyCompareBox);
+export default React.memo(HighlightBox);

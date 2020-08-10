@@ -1,22 +1,15 @@
 import DateTimeHelper from './dateTimeHelper';
-import { ReportDateOptionValues, CompareDateOptionValues } from '../../constants/filterConst';
+import {  NumberDaysOfWeek, ReportDateOptionValues, CompareDateOptionValues } from '../../constants/filterConst';
 
 export default class FilterHelper {
-    static getCommonAPIParams = globalFilterData => {
-        const { selectedBaseCurrency, reportDate, compareDate } = globalFilterData;
-        const apiParams = {
-            baseCurrency: selectedBaseCurrency,
-            fromDate: DateTimeHelper.formatDateStructureToString(reportDate.fromDate),
-            toDate: DateTimeHelper.formatDateStructureToString(reportDate.toDate),
-            compareFromDate: DateTimeHelper.formatDateStructureToString(compareDate.fromDate),
-            compareToDate: DateTimeHelper.formatDateStructureToString(compareDate.toDate)
-        }
-        return apiParams;
-    }
 
-    static getPerformanceHighlightWidgetAPIParams = filterData => {
-        const commonParams = this.getCommonAPIParams(filterData);
-        return commonParams;
+    static isSupportViewMode = reportDate => {
+        const { fromDate, toDate } = reportDate;
+        const diffDays = DateTimeHelper.getDiffDaysOfDateStructure(fromDate, toDate);
+        if(diffDays >= NumberDaysOfWeek) {
+            return true;
+        }
+        return false;
     }
 
     static ReportDateGenerateRangeSelections = {
@@ -74,6 +67,6 @@ export default class FilterHelper {
         }
     }
 
-    static DefaultReportDate = { fromDate: DateTimeHelper.getYesterday(), toDate: DateTimeHelper.getYesterday() }
+    static DefaultReportDate = this.ReportDateGenerateRangeSelections[ReportDateOptionValues.yesterday]();
     static DefaultCompareDate = this.CompareDateGenerateRangeSelections[CompareDateOptionValues.previousPeriod](this.DefaultReportDate);
 }

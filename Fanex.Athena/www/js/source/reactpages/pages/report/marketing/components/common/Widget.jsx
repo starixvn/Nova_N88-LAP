@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Loader from '@jsroot/components/Loader';
-import LangHelper from '@jsroot/lib/langHelper'
+import LangHelper from '@jsroot/lib/langHelper';
 
 export const Widget = props => {
     const { title, isLoading, children } = props;
@@ -8,7 +8,7 @@ export const Widget = props => {
 
     const _renderTitle = () => {
         return (<div className="widget-title">
-            <i className={`${(isCollapsed ? "arrow-up" : "arrow-down")} ${"arrow"}`} onClick={() => setIsCollapsed(!isCollapsed)}></i>
+            <i className="icon-arrow" style={{ transform: isCollapsed ? 'rotate(-180deg)' : null }} onClick={() => setIsCollapsed(!isCollapsed)}></i>
             <span>{title}</span>
         </div>)
     }

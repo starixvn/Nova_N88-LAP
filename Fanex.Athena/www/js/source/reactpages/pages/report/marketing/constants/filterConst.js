@@ -1,5 +1,7 @@
 import LangHelper from '@jsroot/lib/langHelper';
 
+export const NumberDaysOfWeek = 7; 
+
 export const ReportDateOptionValues = {
     yesterday: 1,
     last7Days: 2,
@@ -11,14 +13,14 @@ export const CompareDateOptionValues = {
     samePeriodLastYear: 2
 }
 
-export const ViewByOptionKeys = {
+export const ViewModeOptionValues = {
     Daily: 1,
     Weekly: 2
 }
 
-export const ViewByOptions = [
-    { value: ViewByOptionKeys.Daily, label: LangHelper.getSingleResource('Daily') },
-    { value: ViewByOptionKeys.Weekly, label: LangHelper.getSingleResource('Weekly') }
+export const ViewModeOptions = [
+    { value: ViewModeOptionValues.Daily, label: LangHelper.getSingleResource('Daily') },
+    { value: ViewModeOptionValues.Weekly, label: LangHelper.getSingleResource('Weekly') }
 ]
 
 export const ReportDateSelectionOptions = [

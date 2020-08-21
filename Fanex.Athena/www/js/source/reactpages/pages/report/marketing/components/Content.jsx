@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import ReportTitle from '@jsroot/components/ReportTitle';
 import LangHelper from '@jsroot/lib/langHelper'
@@ -40,7 +40,7 @@ export const Content = props => {
             {_renderTitle()}
             <div className="widget-list" style={{ maxHeight: _maxHeightPixel }}>
                 <PerformanceHighlightWidget />
-                {!DateTimeHelper.isEqualDate(fromDate, toDate) && <UserActivitiesWidget />}
+                <UserActivitiesWidget />
                 <AvgRevenueWidget />
             </div>
         </div>

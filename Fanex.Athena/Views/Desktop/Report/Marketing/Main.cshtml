@@ -29,6 +29,11 @@
     };
 
     window._AppData = {
+        dateConstraint: {
+            limitedMonthRange: @Model.LimitMonthRange,
+            minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
+            maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
+        },
         baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
         productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
         defaultSelectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',

@@ -24,7 +24,9 @@
   },
   {
     "ReportKey": "MarketingReport",
-    "MaxDateString": "today",
+    "MaxDateString": "yesterday",
+    "MinDateString": "01/01/2020",
+    "LimitMonthRange": 2,
     "TimeZone": 8
   }
 ]

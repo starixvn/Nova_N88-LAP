@@ -37,7 +37,7 @@ export const PerformanceHighlightWidget = props => {
         const { paidUsers, growthRatePaidUsers } = performanceHighlightData;
         return (<HighlightBox
             title={'PU (APA)'}
-            description={LangHelper.getSingleResource('PaidUsers')}
+            description={LangHelper.getSingleResource('DepositUsers')}
             value={paidUsers}
             rate={growthRatePaidUsers}
         />)

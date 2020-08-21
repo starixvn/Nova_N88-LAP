@@ -9,5 +9,8 @@
         public string BaseCurrency { get; set; }
         public IEnumerable<TpProduct> TpProducts { get; set; }
         public DateTime Today { get; set; }
+        public DateTime MaxDate { get; set; }
+        public DateTime MinDate { get; set; }
+        public int LimitMonthRange { get; set; }
     }
 }

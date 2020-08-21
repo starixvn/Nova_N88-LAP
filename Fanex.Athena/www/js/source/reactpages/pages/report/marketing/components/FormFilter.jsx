@@ -16,10 +16,6 @@ export const FormFilter = props => {
         selectedBaseCurrency, reportDate, compareDate, viewMode
     } = props;
 
-    const _isSupportViewMode = React.useMemo(() => {
-        return FilterHelper.isSupportViewMode(reportDate);
-    }, [reportDate])
-
     const _renderBaseCurrencySelectList = () => {
         const baseCurrencyList = AppData.baseCurrencyList;
         return baseCurrencyList && baseCurrencyList.length && (
@@ -66,8 +62,7 @@ export const FormFilter = props => {
     }
 
     const _onSubmit = () => {
-        const _viewMode = _isSupportViewMode ? viewMode : ViewModeOptionValues.Daily;
-        const globalFilter = { reportDate, compareDate, viewMode: _viewMode, selectedBaseCurrency };
+        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency };
         setGlobalFilter(globalFilter);
     }
 
@@ -88,12 +83,12 @@ export const FormFilter = props => {
                 </div>
             </div>
             <div className="row">
-                {_isSupportViewMode && <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("ViewBy")}</label>
                         {_renderViewModeOptions()}
                     </div>
-                </div>}
+                </div>
                 <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-1">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("DisplayCurrency")}</label>

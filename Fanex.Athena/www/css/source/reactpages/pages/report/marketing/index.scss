@@ -1,6 +1,8 @@
 @import '../../../abstracts/variables';
 @import '../../../components/forms/radio-buttons';
 @import '../../../components/react-multiselect';
+@import '../../../components/date-range/styles';
+
 
 @mixin make-triangle-top-left() {
     width: 0;
@@ -155,6 +157,18 @@
             border-bottom: 1px solid #9e9e9e;
             margin-left: -2px;
             color: $colorLabelText;
+
+            #DateRange {
+                text-align: center;
+                border-bottom: none;
+              
+
+            }
+            .daterange-container {
+                .rdr-PredefinedRangesItem {
+                    display: none;
+                }
+            }
         }
 	}
 

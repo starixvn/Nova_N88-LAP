@@ -1,17 +1,7 @@
 import DateTimeHelper from './dateTimeHelper';
-import {  NumberDaysOfWeek, ReportDateOptionValues, CompareDateOptionValues } from '../../constants/filterConst';
+import { ReportDateOptionValues, CompareDateOptionValues } from '../../constants/filterConst';
 
 export default class FilterHelper {
-
-    static isSupportViewMode = reportDate => {
-        const { fromDate, toDate } = reportDate;
-        const diffDays = DateTimeHelper.getDiffDaysOfDateStructure(fromDate, toDate);
-        if(diffDays >= NumberDaysOfWeek) {
-            return true;
-        }
-        return false;
-    }
-
     static ReportDateGenerateRangeSelections = {
         [ReportDateOptionValues.yesterday]: () => {
             const yesterday = DateTimeHelper.getYesterday();
@@ -34,6 +24,14 @@ export default class FilterHelper {
             return {
                 fromDate: DateTimeHelper.convertToDateStructure(fromDate),
                 toDate: DateTimeHelper.convertToDateStructure(toDate)
+            }
+        },
+        [ReportDateOptionValues.specificRange]: () => {
+            const yesterday = DateTimeHelper.getYesterday();
+            return {
+                fromDate: yesterday,
+                toDate: yesterday,
+                isSpecificRange: true
             }
         }
     }

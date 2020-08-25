@@ -27,6 +27,7 @@ export const PerformanceHighlightWidget = props => {
     const _renderTotalUsersBox = () => {
         const { totalUsers, growthRateTotalUsers } = performanceHighlightData;
         return (<HighlightBox
+            enableCompare={false}
             title={LangHelper.getSingleResource('TotalUsers')}
             value={totalUsers}
             rate={growthRateTotalUsers}
@@ -36,6 +37,7 @@ export const PerformanceHighlightWidget = props => {
     const _renderPaidUsersBox = () => {
         const { paidUsers, growthRatePaidUsers } = performanceHighlightData;
         return (<HighlightBox
+            enableCompare={false}
             title={'PU (APA)'}
             description={LangHelper.getSingleResource('DepositUsers')}
             value={paidUsers}

@@ -3457,7 +3457,8 @@ const HighlightBox = props => {
     description,
     value,
     rate,
-    isNegativeMean
+    isNegativeMean,
+    enableCompare
   } = props;
 
   const _renderTitle = () => {
@@ -3491,7 +3492,7 @@ const HighlightBox = props => {
     return rate >= 0 ? 'border-top-green' : 'border-top-red';
   };
 
-  const _renderRate = () => {
+  const _renderCompareRate = () => {
     const roundedRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(rate, 0);
     const rateDisplay = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_3__["default"].displayRate(roundedRate);
 
@@ -3502,20 +3503,20 @@ const HighlightBox = props => {
     const arrowColor = _getArrowColor(_roundedRate);
 
     const arrow = roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "sticky-box-compare-title"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sticky-box-rate"
     }, roundedRate !== 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: `${arrow} ${arrowColor}`
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: `rate ${color}`
-    }, rateDisplay));
+    }, rateDisplay)));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box"
-  }, _renderTitle(), _renderDescription(), _renderValue(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "sticky-box-compare-title"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), _renderRate());
+  }, _renderTitle(), _renderDescription(), _renderValue(), enableCompare !== false && _renderCompareRate());
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(HighlightBox));
@@ -3987,6 +3988,7 @@ const PerformanceHighlightWidget = props => {
       growthRateTotalUsers
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      enableCompare: false,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalUsers'),
       value: totalUsers,
       rate: growthRateTotalUsers
@@ -3999,6 +4001,7 @@ const PerformanceHighlightWidget = props => {
       growthRatePaidUsers
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      enableCompare: false,
       title: 'PU (APA)',
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('DepositUsers'),
       value: paidUsers,

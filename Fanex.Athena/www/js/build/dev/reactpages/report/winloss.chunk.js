@@ -4246,7 +4246,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       endDate: dateRange.toDate,
       minDate: dateConstraint.minDate,
       maxDate: dateConstraint.maxDate,
-      toDate: dateRange.toDate,
+      today: dateRange.toDate,
       limitedMonthRange: dateConstraint.limitedMonthRange,
       onChange: this._onChangeDateRange
     });

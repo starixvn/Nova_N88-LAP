@@ -5,7 +5,8 @@ export const NumberDaysOfWeek = 7;
 export const ReportDateOptionValues = {
     yesterday: 1,
     last7Days: 2,
-    last30Days: 3
+    last30Days: 3,
+    specificRange: 4 
 }
 
 export const CompareDateOptionValues = {
@@ -35,6 +36,11 @@ export const ReportDateSelectionOptions = [
     {
         value: ReportDateOptionValues.last30Days,
         label: LangHelper.getSingleResource('Last30Days')
+    },
+    {
+        value: ReportDateOptionValues.specificRange,
+        label: LangHelper.getSingleResource('SpecificDateRange'),
+        isSpecificRange: true
     }
 ]
 

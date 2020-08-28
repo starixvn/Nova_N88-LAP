@@ -2041,6 +2041,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deposit Users.
+        /// </summary>
+        public static string DepositUsers {
+            get {
+                return ResourceManager.GetString("DepositUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -5245,15 +5254,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paid Users.
-        /// </summary>
-        public static string PaidUsers {
-            get {
-                return ResourceManager.GetString("PaidUsers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Parlay.
         /// </summary>
         public static string Parlay {
@@ -6352,6 +6352,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A specific date range.
+        /// </summary>
+        public static string SpecificDateRange {
+            get {
+                return ResourceManager.GetString("SpecificDateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sport.
         /// </summary>
         public static string Sport {
@@ -7297,7 +7306,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User&apos;s Activities.
+        ///   Looks up a localized string similar to User Activity.
         /// </summary>
         public static string UserActivities {
             get {

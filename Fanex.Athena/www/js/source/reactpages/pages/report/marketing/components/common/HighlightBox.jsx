@@ -4,7 +4,7 @@ import NumberFormat from '@jsroot/lib/numberFormat';
 import NumberHelper from '../../libs/helpers/numberHelper';
 
 const HighlightBox = props => {
-    const { title, description, value, rate, isNegativeMean } = props;
+    const { title, description, value, rate, isNegativeMean, enableCompare } = props;
 
     const _renderTitle = () => {
         return (<div className="sticky-box-title">
@@ -36,25 +36,28 @@ const HighlightBox = props => {
         return rate >= 0 ? 'border-top-green' : 'border-top-red';
     }
 
-    const _renderRate = () => {
+    const _renderCompareRate = () => {
         const roundedRate = NumberFormat.round(rate, 0);
         const rateDisplay = NumberHelper.displayRate(roundedRate);
         const _roundedRate = isNegativeMean ? -roundedRate : roundedRate;
         const color = _getColorRate(_roundedRate);
         const arrowColor = _getArrowColor(_roundedRate);
         const arrow = roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
-        return (<div className="sticky-box-rate">
+        return (
+            <>
+        <div className="sticky-box-compare-title">{LangHelper.getSingleResource('CompareDate')}</div>
+        <div className="sticky-box-rate">
             {roundedRate !== 0 && <div className={`${arrow} ${arrowColor}`}></div>}
             <div className={`rate ${color}`}>{rateDisplay}</div>
-        </div>)
+        </div>
+         </>)
     }
 
     return (<div className="sticky-box">
         {_renderTitle()}
         {_renderDescription()}
         {_renderValue()}
-        <div className="sticky-box-compare-title">{LangHelper.getSingleResource('CompareDate')}</div>
-        {_renderRate()}
+        {enableCompare !== false && _renderCompareRate()}
     </div>)
 }
 

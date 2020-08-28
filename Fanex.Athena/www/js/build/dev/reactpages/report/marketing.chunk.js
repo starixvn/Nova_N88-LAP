@@ -291,6 +291,140 @@ const Loader = ({
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/components/Overlay.jsx":
+/*!*********************************************************!*\
+  !*** ./www/js/source/reactpages/components/Overlay.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Overlay; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+const wrapperClasses = {
+  OVERLAY: "overlay",
+  OVERLAY_OPEN: "overlay-open"
+};
+class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "_unRegisterEvents", () => {
+      const {
+        closeOnOutsideClick
+      } = this.props;
+
+      if (closeOnOutsideClick) {
+        document.removeEventListener('click', this._handleClickOutSide);
+      }
+    });
+
+    _defineProperty(this, "_handleClickOutSide", event => {
+      const clickOutside = this.containerElement && !this.containerElement.contains(event.target);
+
+      if (clickOutside && this.state.isOpening) {
+        this._close();
+      }
+    });
+
+    this.containerElement = null;
+    this.refHandlers = {
+      container: ref => {
+        this.containerElement = ref;
+      }
+    };
+    this.state = {
+      isOpening: this.props.isOpening
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.isOpening !== prevProps.isOpening) {
+      const {
+        onOpen
+      } = this.props;
+      this.props.isOpening && onOpen && onOpen();
+      this.setState({
+        isOpening: this.props.isOpening
+      });
+      window.setTimeout(() => {
+        if (this.props.isOpening) {
+          this._registerEvents();
+        } else {
+          this._unRegisterEvents();
+        }
+      }, 0);
+    }
+  }
+
+  componentWillUnmount() {
+    this._unRegisterEvents();
+  }
+
+  _registerEvents() {
+    const {
+      closeOnOutsideClick
+    } = this.props;
+
+    if (closeOnOutsideClick) {
+      document.addEventListener('click', this._handleClickOutSide);
+    }
+  }
+
+  _close() {
+    const {
+      onClose
+    } = this.props;
+    this.setState({
+      isOpening: false
+    }, () => onClose && onClose());
+  }
+
+  render() {
+    const {
+      className,
+      children
+    } = this.props;
+    const mergedClassName = classnames__WEBPACK_IMPORTED_MODULE_2___default()(wrapperClasses.OVERLAY, {
+      [wrapperClasses.OVERLAY_OPEN]: this.state.isOpening
+    }, className);
+    const style = {
+      display: this.state.isOpening ? "block" : "none"
+    };
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: mergedClassName,
+      style: style,
+      ref: this.refHandlers.container
+    }, children);
+  }
+
+}
+
+_defineProperty(Overlay, "propTypes", {
+  closeOnOutsideClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  isOpening: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  onOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onClose: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+});
+
+_defineProperty(Overlay, "defaultProps", {
+  closeOnOutsideClick: true,
+  isOpening: false
+});
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/components/ReportTitle.jsx":
 /*!*************************************************************!*\
   !*** ./www/js/source/reactpages/components/ReportTitle.jsx ***!
@@ -487,6 +621,1804 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CollapsiblePanel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CollapsiblePanel */ "./www/js/source/reactpages/components/collapsible-panel/CollapsiblePanel.jsx");
 
 /* harmony default export */ __webpack_exports__["default"] = (_CollapsiblePanel__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/Calendar.js":
+/*!********************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/Calendar.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/parseInput.js */ "./www/js/source/reactpages/components/date-range/utils/parseInput.js");
+/* harmony import */ var _DayCell_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DayCell.js */ "./www/js/source/reactpages/components/date-range/DayCell.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles.js */ "./www/js/source/reactpages/components/date-range/styles.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/components/date-range/constants.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+const START_OF_MONTH = 0;
+const END_OF_MONTH = 11;
+const START_DAY_OF_MONTH = 1;
+const DEFAULT_YEAR_RANGE = 5;
+
+function checkRange(dayMoment, range) {
+  return dayMoment.isBetween(range['startDate'], range['endDate']) || dayMoment.isBetween(range['endDate'], range['startDate']);
+}
+
+function checkStartEdge(dayMoment, range) {
+  const {
+    startDate
+  } = range;
+  return dayMoment.startOf('day').isSame(startDate.startOf('day'));
+}
+
+function checkEndEdge(dayMoment, range) {
+  const {
+    endDate
+  } = range;
+  return dayMoment.endOf('day').isSame(endDate.endOf('day'));
+}
+
+function isOusideMinMax(dayMoment, minDate, maxDate, format) {
+  return minDate && dayMoment.isBefore(Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(minDate, format, 'startOf')) || maxDate && dayMoment.isAfter(Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(maxDate, format, 'endOf'));
+}
+
+class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props, context) {
+    super(props, context);
+    const {
+      format,
+      range,
+      theme,
+      offset,
+      firstDayOfWeek,
+      shownDate
+    } = props;
+    const date = Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(props.date, format, 'startOf');
+    let showDate = (shownDate || range && range['endDate'] || date).clone();
+    const state = {
+      date,
+      shownDate: showDate,
+      firstDayOfWeek: firstDayOfWeek || moment__WEBPACK_IMPORTED_MODULE_2___default.a.localeData().firstDayOfWeek()
+    };
+    this.state = state;
+    this.styles = Object(_styles_js__WEBPACK_IMPORTED_MODULE_5__["default"])(theme);
+  }
+
+  componentDidMount() {
+    const {
+      onInit
+    } = this.props;
+    onInit && onInit(this.state.date);
+  }
+
+  get limitedDate() {
+    const {
+      minDate,
+      maxDate
+    } = this.props;
+    const m = moment__WEBPACK_IMPORTED_MODULE_2___default()();
+    let startDate, endDate;
+
+    if (minDate) {
+      startDate = moment__WEBPACK_IMPORTED_MODULE_2___default.a.isMoment(minDate) ? minDate : moment__WEBPACK_IMPORTED_MODULE_2___default()(minDate, _constants__WEBPACK_IMPORTED_MODULE_6__["MomentFormat"].default);
+    } else {
+      startDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([m.year() - DEFAULT_YEAR_RANGE, START_OF_MONTH]);
+    }
+
+    if (maxDate) {
+      endDate = moment__WEBPACK_IMPORTED_MODULE_2___default.a.isMoment(maxDate) ? maxDate : moment__WEBPACK_IMPORTED_MODULE_2___default()(maxDate, _constants__WEBPACK_IMPORTED_MODULE_6__["MomentFormat"].default);
+    } else {
+      endDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([m.year(), END_OF_MONTH]).endOf("month");
+    }
+
+    return {
+      startDate,
+      endDate
+    };
+  }
+
+  get disablePrevButton() {
+    const range = this.limitedDate;
+    const startDate = range.startDate;
+    const currentDate = this.state.shownDate;
+    let prevMonth = this.state.shownDate.month() - 1;
+
+    if (prevMonth < startDate.month() && currentDate.year() <= startDate.year()) {
+      return true;
+    }
+
+    return false;
+  }
+
+  get disableNextButton() {
+    const range = this.limitedDate;
+    const endDate = range.endDate;
+    const currentDate = this.state.shownDate;
+    let nextMonth = this.state.shownDate.month() + 1;
+
+    if (nextMonth > endDate.month() && currentDate.year() >= endDate.year()) {
+      return true;
+    }
+
+    return false;
+  }
+
+  getShownDate() {
+    const {
+      link
+    } = this.props;
+    const shownDate = link || this.state.shownDate;
+    return shownDate;
+  }
+
+  handleSelect(newDate) {
+    const {
+      link,
+      onChange
+    } = this.props;
+    onChange && onChange(newDate);
+
+    if (!link) {
+      this.setState({
+        date: newDate
+      });
+    }
+  }
+
+  nextButtonClickHandler(event) {
+    event.preventDefault();
+
+    if (!this.disableNextButton) {
+      this.changeMonth(this.state.shownDate.month() + 1, event);
+    }
+  }
+
+  prevButtonClickHandler(event) {
+    event.preventDefault();
+
+    if (!this.disablePrevButton) {
+      this.changeMonth(this.state.shownDate.month() - 1, event);
+    }
+  }
+
+  changeMonth(direction, event) {
+    event.preventDefault();
+    let selectedMonth = Number(direction);
+    let year = this.state.shownDate.year();
+
+    if (selectedMonth < START_OF_MONTH) {
+      selectedMonth = END_OF_MONTH;
+      year -= 1;
+    }
+
+    if (selectedMonth > END_OF_MONTH) {
+      selectedMonth = START_OF_MONTH;
+      year += 1;
+    }
+
+    const {
+      link,
+      linkCB
+    } = this.props;
+    let newDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([year, selectedMonth, this.state.shownDate.date()]);
+
+    if (!newDate.isValid()) {
+      newDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([year, selectedMonth, START_DAY_OF_MONTH]);
+    }
+
+    if (link && linkCB) {
+      return linkCB(newDate);
+    }
+
+    this.setState({
+      shownDate: newDate
+    });
+  }
+
+  changeYear(event) {
+    event.preventDefault();
+    const selectedYear = Number(event.target.value);
+    let newDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([selectedYear, this.state.shownDate.month(), this.state.shownDate.date()]);
+
+    if (!newDate.isValid()) {
+      newDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([selectedYear, this.state.shownDate.month(), START_DAY_OF_MONTH]);
+    }
+
+    this.setState({
+      shownDate: newDate
+    });
+  }
+
+  renderMonthList(classes) {
+    const {
+      styles
+    } = this;
+    const {
+      onlyClasses,
+      locale
+    } = this.props;
+    const monthLabels = locale.months;
+    let monthOptions = [];
+
+    for (let i = 0; i < 12; i++) {
+      const isDisabled = this._isDisabledMonth(i);
+
+      monthOptions.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        disabled: isDisabled,
+        key: `month${i}`,
+        value: i
+      }, monthLabels[i]));
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      style: onlyClasses ? undefined : styles["MonthAndYearSelect"],
+      className: classes.monthAndYearSelect,
+      onChange: e => this.changeMonth(e.target.value, e),
+      value: this.state.shownDate.month()
+    }, monthOptions);
+  }
+
+  _isDisabledMonth(currentMonth) {
+    const range = this.limitedDate;
+    const currentYear = this.state.shownDate.year();
+    return currentMonth < range.startDate.month() && currentYear <= range.startDate.year() || currentMonth > range.endDate.month() && currentYear >= range.endDate.year();
+  }
+
+  renderYearList(classes) {
+    const {
+      styles
+    } = this;
+    const {
+      onlyClasses
+    } = this.props;
+    const range = this.limitedDate;
+    const yearOptions = [];
+
+    for (let i = range.startDate.year(); i <= range.endDate.year(); i++) {
+      yearOptions.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        key: `year${i}`,
+        value: i
+      }, i));
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      style: onlyClasses ? undefined : styles["MonthAndYearSelect"],
+      className: classes.monthAndYearSelect,
+      onChange: this.changeYear.bind(this),
+      value: this.state.shownDate.year()
+    }, yearOptions);
+  }
+
+  renderMonthAndYear(classes) {
+    const shownDate = this.getShownDate();
+    const year = shownDate.year();
+    const {
+      styles
+    } = this;
+    const {
+      minDate,
+      maxDate,
+      onlyClasses,
+      showMonthArrow
+    } = this.props;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: onlyClasses ? undefined : styles['MonthAndYear'],
+      className: classes.monthAndYearWrapper
+    }, showMonthArrow ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "button",
+      disabled: this.disablePrevButton,
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthButton'], {
+        float: 'left'
+      }),
+      className: classes.prevButton,
+      onClick: this.prevButtonClickHandler.bind(this)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthArrow'], {}, styles['MonthArrowPrev'])
+    })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: classes.month
+    }, this.renderMonthList(classes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: classes.monthAndYearDivider
+    }, "\xA0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: classes.year
+    }, this.renderYearList(classes))), showMonthArrow ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "button",
+      disabled: this.disableNextButton,
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthButton'], {
+        float: 'right'
+      }),
+      className: classes.nextButton,
+      onClick: this.nextButtonClickHandler.bind(this)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthArrow'], {}, styles['MonthArrowNext'])
+    })) : null);
+  }
+
+  renderWeekdays(classes) {
+    const dow = this.state.firstDayOfWeek;
+    const weekdays = [];
+    const {
+      styles
+    } = this;
+    const {
+      onlyClasses,
+      locale
+    } = this.props;
+    const weekDays = locale.weekdays;
+    const dayLength = 7 + dow;
+
+    for (let i = dow; i < dayLength; i++) {
+      const weekDayIndex = i % 7;
+      const day = weekDays[weekDayIndex];
+      weekdays.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        style: onlyClasses ? undefined : styles['Weekday'],
+        className: classes.weekDay,
+        key: i + day
+      }, day));
+    }
+
+    return weekdays;
+  }
+
+  renderDays(classes) {
+    // TODO: Split this logic into smaller chunks
+    const {
+      styles
+    } = this;
+    const {
+      range,
+      minDate,
+      maxDate,
+      format,
+      onlyClasses,
+      disableDaysBeforeToday,
+      specialDays
+    } = this.props;
+    const shownDate = this.getShownDate();
+    const {
+      date,
+      firstDayOfWeek
+    } = this.state;
+    const dateUnix = date.unix();
+    const monthNumber = shownDate.month();
+    const dayCount = shownDate.daysInMonth();
+    const startOfMonth = shownDate.clone().startOf('month').isoWeekday();
+    const lastMonth = shownDate.clone().month(monthNumber - 1);
+    const lastMonthNumber = lastMonth.month();
+    const lastMonthDayCount = lastMonth.daysInMonth();
+    const nextMonth = shownDate.clone().month(monthNumber + 1);
+    const nextMonthNumber = nextMonth.month();
+    const days = []; // Previous month's days
+
+    const diff = Math.abs(firstDayOfWeek - (startOfMonth + 7)) % 7;
+
+    for (let i = diff - 1; i >= 0; i--) {
+      const dayMoment = lastMonth.clone().date(lastMonthDayCount - i);
+      days.push({
+        dayMoment,
+        isPassive: true
+      });
+    } // Current month's days
+
+
+    for (let i = 1; i <= dayCount; i++) {
+      const dayMoment = shownDate.clone().date(i); // set days before today to isPassive
+
+      var _today = moment__WEBPACK_IMPORTED_MODULE_2___default()();
+
+      if (disableDaysBeforeToday && Number(dayMoment.diff(_today, "days")) <= -1) {
+        days.push({
+          dayMoment,
+          isPassive: true
+        });
+      } else {
+        days.push({
+          dayMoment
+        });
+      }
+    } // Next month's days
+
+
+    const remainingCells = 42 - days.length; // 42cells = 7days * 6rows
+
+    for (let i = 1; i <= remainingCells; i++) {
+      const dayMoment = nextMonth.clone().date(i);
+      days.push({
+        dayMoment,
+        isPassive: true
+      });
+    }
+
+    const today = moment__WEBPACK_IMPORTED_MODULE_2___default()().startOf('day');
+    return days.map((data, index) => {
+      const {
+        dayMoment,
+        isPassive
+      } = data;
+      const isSelected = !range && dayMoment.unix() === dateUnix;
+      const isInRange = range && checkRange(dayMoment, range);
+      const isStartEdge = range && checkStartEdge(dayMoment, range);
+      const isEndEdge = range && checkEndEdge(dayMoment, range);
+      const isEdge = isStartEdge || isEndEdge;
+      const isToday = today.isSame(dayMoment);
+      const isSunday = dayMoment.day() === 0;
+      const isSpecialDay = specialDays && specialDays.some(specialDay => {
+        return dayMoment.endOf('day').isSame(specialDay.date.endOf('day'));
+      });
+      const isOutsideMinMax = isOusideMinMax(dayMoment, minDate, maxDate, format);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DayCell_js__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({
+        onSelect: this.handleSelect.bind(this)
+      }, data, {
+        theme: styles,
+        isStartEdge: isStartEdge,
+        isEndEdge: isEndEdge,
+        isSelected: isSelected || isEdge,
+        isInRange: isInRange,
+        isSunday: isSunday,
+        isSpecialDay: isSpecialDay,
+        isToday: isToday,
+        key: index,
+        isPassive: isPassive || isOutsideMinMax,
+        onlyClasses: onlyClasses,
+        classNames: classes
+      }));
+    });
+  }
+
+  render() {
+    const {
+      styles
+    } = this;
+    const {
+      onlyClasses,
+      classNames
+    } = this.props;
+
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"], {}, classNames);
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: onlyClasses ? undefined : _objectSpread({}, styles['Calendar'], {}, this.props.style),
+      className: classes.calendar
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: classes.monthAndYear
+    }, this.renderMonthAndYear(classes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: classes.weekDays
+    }, this.renderWeekdays(classes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: classes.days
+    }, this.renderDays(classes)));
+  }
+
+}
+
+Calendar.defaultProps = {
+  format: _constants__WEBPACK_IMPORTED_MODULE_6__["MomentFormat"].default,
+  theme: {},
+  showMonthArrow: true,
+  disableDaysBeforeToday: false,
+  onlyClasses: false,
+  classNames: {},
+  specialDays: []
+};
+Calendar.propTypes = {
+  showMonthArrow: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  disableDaysBeforeToday: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  lang: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  sets: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  range: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    startDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+    endDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+  }),
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  date: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func]),
+  format: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  firstDayOfWeek: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onInit: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  link: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    startDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+    endDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+  }), prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool]),
+  linkCB: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  theme: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onlyClasses: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  specialDays: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  classNames: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  locale: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+};
+/* harmony default export */ __webpack_exports__["default"] = (Calendar);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/DatePicker.jsx":
+/*!***********************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/DatePicker.jsx ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DatePicker; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/parseInput.js */ "./www/js/source/reactpages/components/date-range/utils/parseInput.js");
+/* harmony import */ var _defaultOptions_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./defaultOptions.js */ "./www/js/source/reactpages/components/date-range/defaultOptions.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/components/date-range/constants.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles.js */ "./www/js/source/reactpages/components/date-range/styles.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
+/* harmony import */ var _Calendar_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Calendar.js */ "./www/js/source/reactpages/components/date-range/Calendar.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "show", () => {
+      this.setState({
+        show: true
+      });
+    });
+
+    const {
+      locale,
+      date,
+      format
+    } = props;
+    this.locale = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_4__["default"].locale, {}, locale);
+    const selectedDate = Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(date, format, 'startOf');
+    this.state = {
+      selectedDate,
+      show: false
+    };
+  }
+
+  get dateText() {
+    const {
+      selectedDate
+    } = this.state;
+
+    if (selectedDate) {
+      return `${selectedDate.format(this.props.format)}`;
+    }
+
+    return "";
+  }
+
+  handleSelect(date) {
+    const {
+      onChange
+    } = this.props;
+    onChange && onChange(date);
+    this.setState({
+      selectedDate: date,
+      show: false
+    });
+  }
+
+  render() {
+    const {
+      format,
+      firstDayOfWeek,
+      minDate,
+      maxDate,
+      classNames
+    } = this.props;
+
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"], {}, classNames);
+
+    const {
+      show
+    } = this.state;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "daterange-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "daterange-label",
+      onClick: this.show
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      readOnly: true,
+      className: "input-text datepicker",
+      type: "text",
+      autoComplete: "off",
+      value: this.dateText
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon icon-calendar"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      isOpening: show
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: classes.dateRange
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Calendar_js__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      shownDate: this.state.selectedDate,
+      format: format,
+      firstDayOfWeek: firstDayOfWeek,
+      minDate: minDate,
+      maxDate: maxDate,
+      classNames: classNames,
+      onChange: this.handleSelect.bind(this),
+      locale: this.locale
+    }))));
+  }
+
+}
+
+_defineProperty(DatePicker, "propTypes", {
+  format: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  firstDayOfWeek: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  classNames: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onInit: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  locale: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  date: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
+});
+
+_defineProperty(DatePicker, "defaultProps", {
+  format: _constants__WEBPACK_IMPORTED_MODULE_5__["MomentFormat"].default
+});
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/DateRange.js":
+/*!*********************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/DateRange.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/parseInput.js */ "./www/js/source/reactpages/components/date-range/utils/parseInput.js");
+/* harmony import */ var _Calendar_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Calendar.js */ "./www/js/source/reactpages/components/date-range/Calendar.js");
+/* harmony import */ var _PredefinedRanges_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./PredefinedRanges.js */ "./www/js/source/reactpages/components/date-range/PredefinedRanges.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles.js */ "./www/js/source/reactpages/components/date-range/styles.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/components/date-range/constants.js");
+/* harmony import */ var _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./defaultOptions.js */ "./www/js/source/reactpages/components/date-range/defaultOptions.js");
+/* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props, context) {
+    super(props, context);
+
+    _defineProperty(this, "show", () => {
+      this.calendarSelectionStep = 0;
+      this.setState({
+        show: true
+      });
+    });
+
+    _defineProperty(this, "handleApply", () => {
+      const {
+        onClickApplyButton,
+        onChange
+      } = this.props;
+      const range = this.state.range;
+      this.originalRange = Object.assign({}, range);
+      onClickApplyButton && onClickApplyButton(range, this.isValid);
+      onChange && onChange(range, this.isValid);
+      this.close();
+    });
+
+    _defineProperty(this, "handleCancel", () => {
+      this.setRange(this.originalRange, false);
+    });
+
+    const {
+      format,
+      linkedCalendars,
+      theme
+    } = props;
+    const startDate = Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(props.startDate, format, 'startOf');
+    const endDate = Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(props.endDate, format, 'endOf');
+    this.styles = Object(_styles_js__WEBPACK_IMPORTED_MODULE_6__["default"])(theme);
+    this.calendarSelectionStep = 0;
+    this.locale = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].locale, {}, props.locale);
+    this.ranges = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].ranges(props.today, props.minDate, props.maxDate, props.limitedMonthRange), {}, props.ranges);
+    this.isValid = true;
+    this.originalRange = {
+      startDate,
+      endDate
+    };
+    this.state = {
+      range: {
+        startDate,
+        endDate
+      },
+      link: linkedCalendars && endDate,
+      show: false
+    };
+  }
+
+  get dateRangeText() {
+    const range = this.state.range;
+
+    if (range.startDate && range.endDate) {
+      const {
+        format
+      } = this.props;
+      return `${range.startDate.format(format)} - ${range.endDate.format(format)}`;
+    }
+
+    return "";
+  }
+
+  close() {
+    this.setState({
+      show: false
+    });
+  }
+
+  componentDidMount() {
+    const {
+      onInit
+    } = this.props;
+    onInit && onInit(this.state.range);
+  }
+
+  orderRange(range) {
+    const {
+      startDate,
+      endDate
+    } = range;
+    const swap = startDate.isAfter(endDate);
+    if (!swap) return range;
+    return {
+      startDate: endDate,
+      endDate: startDate
+    };
+  }
+
+  setRange(dateRange, show) {
+    let range = this.orderRange(dateRange);
+    this.isValid = this.isValidMonthRange(range);
+
+    if (this.isValid) {
+      const newState = show === undefined ? {
+        range
+      } : {
+        range,
+        show
+      };
+      this.setState(newState);
+    } else {
+      const {
+        onChange
+      } = this.props;
+      onChange && onChange(range, false);
+    }
+  }
+
+  handlePredefinedRangesSelect(range) {
+    this.setRange(range, false);
+    this.originalRange = Object.assign({}, range);
+    const {
+      onChange
+    } = this.props;
+    onChange && onChange(range, true);
+  }
+
+  handleCalendarSelect(date) {
+    const {
+      startDate,
+      endDate
+    } = this.state.range;
+    const range = {
+      startDate: startDate,
+      endDate: endDate
+    };
+
+    switch (this.calendarSelectionStep) {
+      case 0:
+        range['startDate'] = date;
+        range['endDate'] = date;
+        this.calendarSelectionStep = 1;
+        break;
+
+      case 1:
+        range['endDate'] = date;
+        this.calendarSelectionStep = 0;
+        break;
+    }
+
+    this.setRange(range);
+  }
+
+  isValidMonthRange(date) {
+    const {
+      limitedMonthRange
+    } = this.props;
+
+    if (limitedMonthRange) {
+      const startDate = date.startDate;
+      const endDate = date.endDate;
+      const diffMonth = 12 * (endDate.year() - startDate.year()) + endDate.month() - startDate.month() + 1;
+      return diffMonth <= limitedMonthRange;
+    }
+
+    return true;
+  }
+
+  handleLinkChange(newDate) {
+    this.setState({
+      link: newDate
+    });
+  }
+
+  render() {
+    const {
+      showRange,
+      format,
+      linkedCalendars,
+      calendars,
+      firstDayOfWeek,
+      minDate,
+      maxDate,
+      classNames,
+      onlyClasses,
+      specialDays,
+      lang,
+      disableDaysBeforeToday,
+      showMonthArrow
+    } = this.props;
+    const {
+      range,
+      link
+    } = this.state;
+    const {
+      styles
+    } = this;
+
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"], {}, classNames);
+
+    const calendarsCount = Number(calendars) - 1;
+    const buttonHandlers = {
+      apply: this.handleApply,
+      cancel: this.handleCancel
+    };
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "daterange-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "daterange-label",
+      onClick: this.show
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      readOnly: true,
+      name: "DateRange",
+      id: "DateRange",
+      className: "input-text datepicker",
+      type: "text",
+      autoComplete: "off",
+      value: this.dateRangeText
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon icon-calendar"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      isOpening: this.state.show,
+      onClose: this.handleCancel
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: classes.dateRange,
+      ref: element => this.dateRangeContainer = element
+    }, showRange && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PredefinedRanges_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      format: format,
+      ranges: this.ranges,
+      range: range,
+      theme: styles,
+      onSelect: range => this.handlePredefinedRangesSelect(range),
+      onlyClasses: onlyClasses,
+      classNames: classes,
+      locale: this.locale,
+      buttonHandlers: buttonHandlers
+    }), (() => {
+      const _calendars = [];
+
+      for (var i = calendarsCount; i >= 0; i--) {
+        const shownDate = i == calendarsCount ? range.startDate : range.endDate;
+
+        _calendars.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Calendar_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          showMonthArrow: showMonthArrow,
+          shownDate: shownDate,
+          disableDaysBeforeToday: disableDaysBeforeToday,
+          lang: lang,
+          key: i,
+          link: linkedCalendars && link,
+          linkCB: this.handleLinkChange.bind(this),
+          range: range,
+          format: format,
+          firstDayOfWeek: firstDayOfWeek,
+          theme: styles,
+          minDate: minDate,
+          maxDate: maxDate,
+          onlyClasses: onlyClasses,
+          specialDays: specialDays,
+          classNames: classes,
+          onChange: this.handleCalendarSelect.bind(this),
+          locale: this.locale
+        }));
+      }
+
+      return _calendars;
+    })())));
+  }
+
+}
+
+DateRange.defaultProps = {
+  linkedCalendars: false,
+  theme: {},
+  format: _constants__WEBPACK_IMPORTED_MODULE_8__["MomentFormat"].default,
+  calendars: 2,
+  onlyClasses: true,
+  classNames: {},
+  specialDays: [],
+  twoStepChange: false,
+  showRange: true
+};
+DateRange.propTypes = {
+  format: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  firstDayOfWeek: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  calendars: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number]),
+  startDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  endDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  dateLimit: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  ranges: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  linkedCalendars: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  twoStepChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  theme: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onInit: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onlyClasses: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  specialDays: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  classNames: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onClickApplyButton: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  showRange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  limitedMonthRange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  today: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
+};
+/* harmony default export */ __webpack_exports__["default"] = (DateRange);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/DayCell.js":
+/*!*******************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/DayCell.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles.js */ "./www/js/source/reactpages/components/date-range/styles.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      hover: false,
+      active: false
+    };
+    this.styles = this.props.theme;
+  }
+
+  handleMouseEvent(event) {
+    event.preventDefault();
+    if (this.props.isPassive) return null;
+    const newState = {};
+
+    switch (event.type) {
+      case 'mouseenter':
+        newState['hover'] = true;
+        break;
+
+      case 'mouseup':
+      case 'mouseleave':
+        newState['hover'] = false;
+        newState['active'] = false;
+        break;
+
+      case 'mousedown':
+        newState['active'] = true;
+        break;
+    }
+
+    this.setState(newState);
+  }
+
+  handleSelect(event) {
+    event.preventDefault();
+    if (this.props.isPassive) return null;
+    this.props.onSelect(this.props.dayMoment);
+  }
+
+  getStateStyles() {
+    const {
+      hover,
+      active
+    } = this.state;
+    const {
+      isSelected,
+      isInRange,
+      isPassive,
+      isStartEdge,
+      isEndEdge,
+      dayMoment,
+      isToday,
+      isSunday,
+      isSpecialDay
+    } = this.props;
+    const {
+      styles
+    } = this;
+    const hoverStyle = hover ? styles['DayHover'] : {};
+    const activeStyle = active ? styles['DayActive'] : {};
+    const passiveStyle = isPassive ? styles['DayPassive'] : {};
+    const startEdgeStyle = isStartEdge ? styles['DayStartEdge'] : {};
+    const endEdgeStyle = isEndEdge ? styles['DayEndEdge'] : {};
+    const selectedStyle = isSelected ? styles['DaySelected'] : {};
+    const inRangeStyle = isInRange ? styles['DayInRange'] : {};
+    const todayStyle = isToday ? styles['DayToday'] : {};
+    const sundayStyle = isSunday ? styles['DaySunday'] : {};
+    const specialDayStyle = isSpecialDay ? styles['DaySpecialDay'] : {};
+    return _objectSpread({}, todayStyle, {}, sundayStyle, {}, specialDayStyle, {}, inRangeStyle, {}, hoverStyle, {}, passiveStyle, {}, activeStyle, {}, selectedStyle, {}, startEdgeStyle, {}, endEdgeStyle);
+  }
+
+  getClassNames(classes) {
+    const {
+      isSelected,
+      isInRange,
+      isPassive,
+      isStartEdge,
+      isEndEdge,
+      isToday,
+      isSunday,
+      isSpecialDay
+    } = this.props;
+    return classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+      [classes.day]: true,
+      [classes.dayActive]: isSelected,
+      [classes.dayPassive]: isPassive,
+      [classes.dayInRange]: isInRange,
+      [classes.dayStartEdge]: isStartEdge,
+      [classes.dayEndEdge]: isEndEdge,
+      [classes.dayToday]: isToday,
+      [classes.daySunday]: isSunday,
+      [classes.daySpecialDay]: isSpecialDay
+    });
+  }
+
+  render() {
+    const {
+      dayMoment,
+      onlyClasses,
+      classNames
+    } = this.props;
+    const {
+      styles
+    } = this;
+    const stateStyle = this.getStateStyles();
+    const classes = this.getClassNames(classNames);
+    const dayWrapperStyles = {
+      width: styles['Day'].width,
+      height: styles['Day'].height,
+      display: styles['Day'].display
+    };
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      style: onlyClasses ? undefined : dayWrapperStyles,
+      onClick: this.handleSelect.bind(this)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      onMouseEnter: this.handleMouseEvent.bind(this),
+      onMouseLeave: this.handleMouseEvent.bind(this),
+      onMouseDown: this.handleMouseEvent.bind(this),
+      onMouseUp: this.handleMouseEvent.bind(this),
+      className: classes,
+      style: onlyClasses ? undefined : _objectSpread({}, styles['Day'], {}, stateStyle)
+    }, dayMoment.date()));
+  }
+
+}
+
+DayCell.defaultProps = {
+  theme: {
+    'Day': {}
+  },
+  onlyClasses: false
+};
+DayCell.propTypes = {
+  dayMoment: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  onSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  isSelected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  isInRange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  isPassive: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  theme: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    Day: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired
+  }).isRequired,
+  onlyClasses: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  isSpecialDay: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  classNames: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+};
+/* harmony default export */ __webpack_exports__["default"] = (DayCell);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/PredefinedRanges.js":
+/*!****************************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/PredefinedRanges.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_parseInput_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/parseInput.js */ "./www/js/source/reactpages/components/date-range/utils/parseInput.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles.js */ "./www/js/source/reactpages/components/date-range/styles.js");
+/* harmony import */ var _defaultOptions_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./defaultOptions.js */ "./www/js/source/reactpages/components/date-range/defaultOptions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props, context) {
+    super(props, context);
+    this.styles = this.props.theme;
+    this.selectedItem = this._getSelectedRange();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.range !== prevProps.range) {
+      this.selectedItem = this._getSelectedRange();
+    }
+  }
+
+  _getSelectedRange() {
+    const {
+      ranges,
+      range
+    } = this.props;
+    return Object.keys(ranges).find(name => {
+      const currentRange = ranges[name];
+      return range.startDate.isSame(currentRange.startDate, "day") && range.endDate.isSame(currentRange.endDate, "day");
+    });
+  }
+
+  handleSelect(name, event) {
+    event.preventDefault();
+    this.selectedItem = name;
+    const range = this.props.ranges[name];
+    this.props.onSelect({
+      startDate: Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_4__["default"])(range['startDate'], null, 'startOf'),
+      endDate: Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_4__["default"])(range['endDate'], null, 'endOf')
+    });
+  }
+
+  clickButton(event, action) {
+    event.preventDefault();
+    this.props.buttonHandlers[action]();
+  }
+
+  renderRangeList(classes) {
+    const {
+      ranges,
+      range,
+      onlyClasses
+    } = this.props;
+    const {
+      styles
+    } = this;
+    let gotActiveRange = false;
+    return Object.keys(ranges).map(name => {
+      const active = this.selectedItem === name;
+      gotActiveRange = !gotActiveRange && active;
+
+      const style = _objectSpread({}, styles['PredefinedRangesItem'], {}, gotActiveRange ? styles['PredefinedRangesItemActive'] : {});
+
+      const predefinedRangeClass = classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+        [classes.predefinedRangesItem]: true,
+        [classes.predefinedRangesItemActive]: gotActiveRange
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        key: 'range-' + name,
+        className: predefinedRangeClass,
+        style: onlyClasses ? undefined : style,
+        onClick: e => this.handleSelect(name, e)
+      }, name);
+    });
+  }
+
+  renderRangeButtons(classes) {
+    const {
+      style,
+      onlyClasses,
+      locale
+    } = this.props;
+
+    const locales = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_6__["default"].locale, {}, locale);
+
+    const {
+      styles
+    } = this;
+    const action = {
+      apply: "apply",
+      cancel: "cancel"
+    };
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"].rangeButtonGroup
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: classes.applyButton,
+      style: onlyClasses ? undefined : _objectSpread({}, styles['RangeApplyButton'], {}, style),
+      type: "button",
+      onClick: e => this.clickButton(e, action.apply)
+    }, locales.applyLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: classes.cancelButton,
+      style: onlyClasses ? undefined : _objectSpread({}, styles['RangeCancelButton'], {}, style),
+      onClick: e => this.clickButton(e, action.cancel),
+      type: "button"
+    }, locales.cancelLabel));
+  }
+
+  render() {
+    const {
+      style,
+      onlyClasses,
+      classNames
+    } = this.props;
+    const {
+      styles
+    } = this;
+
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"], {}, classNames);
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: onlyClasses ? undefined : _objectSpread({}, styles['PredefinedRanges'], {}, style),
+      className: classes.predefinedRanges
+    }, this.renderRangeList(classes), this.renderRangeButtons(classes));
+  }
+
+}
+
+PredefinedRanges.defaultProps = {
+  onlyClasses: false,
+  classNames: {}
+};
+PredefinedRanges.propTypes = {
+  ranges: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  onlyClasses: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  classNames: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+};
+/* harmony default export */ __webpack_exports__["default"] = (PredefinedRanges);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/constants.js":
+/*!*********************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/constants.js ***!
+  \*********************************************************************/
+/*! exports provided: MomentFormat */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MomentFormat", function() { return MomentFormat; });
+const MomentFormat = {
+  default: "MM/DD/YYYY",
+  monthSelect: "MMM"
+};
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/defaultOptions.js":
+/*!**************************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/defaultOptions.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _utils_locale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/locale */ "./www/js/source/reactpages/components/date-range/utils/locale.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/components/date-range/constants.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+const addRange = (rangeObj, name, start, end) => {
+  rangeObj[_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource(name)] = {
+    startDate: start,
+    endDate: end
+  };
+};
+
+const addOneDay = (rangeObj, name, day, min, max) => {
+  if (day >= min && day <= max) {
+    addRange(rangeObj, name, day, day);
+  }
+};
+
+const addDistanceDays = (rangeObj, name, start, end, min, max) => {
+  if (!(max < start || end < min)) {
+    addRange(rangeObj, name, start < min ? min : start, end > max ? max : end);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  ranges: (todayDate, minDate, maxDate, limitMonths) => {
+    var today = !todayDate ? moment__WEBPACK_IMPORTED_MODULE_0___default()() : !moment__WEBPACK_IMPORTED_MODULE_0___default.a.isMoment(todayDate) ? moment__WEBPACK_IMPORTED_MODULE_0___default()(todayDate, _constants__WEBPACK_IMPORTED_MODULE_3__["MomentFormat"].default) : todayDate;
+    var max = !maxDate ? today : !moment__WEBPACK_IMPORTED_MODULE_0___default.a.isMoment(maxDate) ? moment__WEBPACK_IMPORTED_MODULE_0___default()(maxDate, _constants__WEBPACK_IMPORTED_MODULE_3__["MomentFormat"].default) : maxDate;
+    var min = !minDate ? today : !moment__WEBPACK_IMPORTED_MODULE_0___default.a.isMoment(minDate) ? moment__WEBPACK_IMPORTED_MODULE_0___default()(minDate, _constants__WEBPACK_IMPORTED_MODULE_3__["MomentFormat"].default) : minDate;
+    const range = {};
+
+    if (today < min) {
+      return range;
+    }
+
+    addOneDay(range, "Today", today, min, max);
+    const yesterday = today.clone().add(-1, 'days');
+    addOneDay(range, "Yesterday", yesterday, min, max);
+    const startCurrentWeek = today.clone().startOf('week');
+    const endCurrentWeek = today;
+    addDistanceDays(range, "Currentweek", startCurrentWeek, endCurrentWeek, min, max);
+    const startLastWeek = today.clone().subtract(1, 'week').startOf('week');
+    const endLastWeek = startLastWeek.clone().add(6, 'days');
+    addDistanceDays(range, "Lastweek", startLastWeek, endLastWeek, min, max);
+    const startCurrentmonth = today.clone().startOf('month');
+    const endCurrentmonth = today;
+    addDistanceDays(range, "Currentmonth", startCurrentmonth, endCurrentmonth, min, max);
+    const startLastmonth = today.clone().subtract(1, 'month').startOf('month');
+    const endLastmonth = startLastmonth.clone().endOf('month');
+    addDistanceDays(range, "Lastmonth", startLastmonth, endLastmonth, min, max);
+
+    if (limitMonths && limitMonths > 1) {
+      const startSincelastmonth = today.clone().subtract(1, 'month').startOf('month');
+      const endSincelastmonth = today;
+      addDistanceDays(range, "Sincelastmonth", startSincelastmonth, endSincelastmonth, min, max);
+    }
+
+    return range;
+  },
+  locale: _objectSpread({
+    applyLabel: _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource("OK"),
+    cancelLabel: _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource("Cancel")
+  }, _utils_locale__WEBPACK_IMPORTED_MODULE_2__["default"])
+});
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/index.js":
+/*!*****************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/index.js ***!
+  \*****************************************************************/
+/*! exports provided: DateRange, Calendar, DatePicker */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DateRange_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DateRange.js */ "./www/js/source/reactpages/components/date-range/DateRange.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DateRange", function() { return _DateRange_js__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _Calendar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Calendar.js */ "./www/js/source/reactpages/components/date-range/Calendar.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Calendar", function() { return _Calendar_js__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _DatePicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DatePicker */ "./www/js/source/reactpages/components/date-range/DatePicker.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DatePicker", function() { return _DatePicker__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/styles.js":
+/*!******************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/styles.js ***!
+  \******************************************************************/
+/*! exports provided: defaultClasses, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultClasses", function() { return defaultClasses; });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+const defaultClasses = {
+  show: 'rdr-Show',
+  hide: 'rdr-Hide',
+  calendar: 'rdr-Calendar',
+  dateRange: 'rdr-DateRange',
+  predefinedRanges: 'rdr-PredefinedRanges',
+  predefinedRangesItem: 'rdr-PredefinedRangesItem',
+  predefinedRangesItemActive: 'rdr-PredefinedRangesItemActive',
+  monthAndYear: 'rdr-MonthAndYear',
+  monthAndYearSelect: 'rdr-MonthAndYearSelect',
+  weekDays: 'rdr-WeekDays',
+  weekDay: 'rdr-WeekDay',
+  days: 'rdr-Days',
+  day: 'rdr-Day',
+  dayActive: 'is-selected',
+  dayPassive: 'is-passive',
+  dayInRange: 'is-inRange',
+  monthAndYearWrapper: 'rdr-MonthAndYear-innerWrapper',
+  prevButton: 'rdr-MonthAndYear-button prev',
+  nextButton: 'rdr-MonthAndYear-button next',
+  month: 'rdr-MonthAndYear-month',
+  monthAndYearDivider: 'rdr-MonthAndYear-divider',
+  year: 'rdr-MonthAndYear-year',
+  daySunday: 'rdr-Sunday',
+  daySpecialDay: 'rdr-SpecialDay',
+  rangeButtonGroup: 'range-button-group',
+  applyButton: 'rdr-Button rdr-ApplyButton',
+  cancelButton: 'rdr-Button rdr-CancelButton'
+};
+const defaultTheme = {
+  DateRange: {
+    display: 'none',
+    boxSizing: 'border-box',
+    background: '#ffffff',
+    borderRadius: '2px',
+    position: "absolute",
+    width: 735,
+    zIndex: 1,
+    top: 60
+  },
+  Calendar: {
+    width: 280,
+    padding: 10,
+    background: '#ffffff',
+    borderRadius: '2px',
+    display: 'inline-block',
+    boxSizing: 'border-box',
+    letterSpacing: 0,
+    color: '#000000'
+  },
+  Day: {
+    boxSizing: 'border-box',
+    display: 'inline-block',
+    letterSpacing: 'initial',
+    textAlign: 'center',
+    fontSize: 12,
+    cursor: 'pointer',
+    transition: 'transform .1s ease'
+  },
+  DayPassive: {
+    opacity: 0.4,
+    cursor: 'normal'
+  },
+  DayHover: {
+    background: 'rgba(78, 184, 94, 0.4)'
+  },
+  DayToday: {},
+  DaySunday: {},
+  DaySpecialDay: {},
+  DayActive: {
+    background: '#95a5a6',
+    color: '#ffffff',
+    transform: 'scale(0.9)'
+  },
+  DaySelected: {
+    background: '#4eb85e',
+    color: '#ffffff'
+  },
+  DayStartEdge: {},
+  DayEndEdge: {},
+  DayInRange: {
+    background: 'rgba(78, 184, 94, 0.2)',
+    color: '#95a5a6'
+  },
+  Weekday: {
+    boxSizing: 'border-box',
+    display: 'inline-block',
+    letterSpacing: 'initial',
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '600',
+    marginBottom: 1
+  },
+  MonthAndYear: {
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    fontSize: 12,
+    padding: '5px 0',
+    height: 40,
+    lineHeight: '18px'
+  },
+  MonthButton: {
+    display: 'block',
+    boxSizing: 'border-box',
+    height: 25,
+    width: 25,
+    padding: 0,
+    margin: '0 10px',
+    border: 'none',
+    boxShadow: 'none',
+    outline: 'none',
+    background: '#fff',
+    cursor: 'pointer'
+  },
+  MonthArrow: {
+    display: 'block',
+    width: 0,
+    height: 0,
+    padding: 0,
+    margin: 0,
+    border: '5px solid transparent',
+    textAlign: 'center'
+  },
+  MonthArrowPrev: {
+    borderRightWidth: '7px',
+    borderRightColor: '#34495e',
+    marginLeft: 3
+  },
+  MonthArrowNext: {
+    borderLeftWidth: '7px',
+    borderLeftColor: '#34495e',
+    marginLeft: 10
+  },
+  MonthAndYearSelect: {
+    height: 25,
+    width: 65
+  },
+  PredefinedRanges: {
+    width: 160,
+    display: 'inline-block',
+    verticalAlign: 'top',
+    marginLeft: 10,
+    marginTop: 10
+  },
+  PredefinedRangesItem: {
+    display: 'block',
+    fontSize: 12,
+    color: '#2c3e50',
+    padding: '10px 14px',
+    borderRadius: '4px',
+    textDecoration: 'none',
+    marginBottom: 3
+  },
+  PredefinedRangesItemActive: {
+    background: '#4c6375',
+    color: '#fff'
+  },
+  RangeButton: {
+    border: 'none',
+    borderRadius: '2px',
+    boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
+    height: 25,
+    lineHeight: '25px',
+    textAlign: 'center',
+    letterSpacing: '0.5px',
+    display: 'inline-block',
+    outline: 0,
+    verticalAlign: 'middle',
+    width: '48%',
+    color: '#fff'
+  },
+  RangeApplyButton: {
+    marginRight: 'calc(4%)',
+    backgroundColor: '#f05b1f'
+  },
+  RangeCancelButton: {
+    backgroundColor: '#757985'
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ((customTheme = {}) => {
+  let calendarWidth = defaultTheme.Calendar.width;
+  let calendarPadding = defaultTheme.Calendar.padding;
+  let cellMargin = defaultTheme.Day.margin || 0;
+
+  if (customTheme.Calendar && customTheme.Calendar.hasOwnProperty('width')) {
+    calendarWidth = customTheme.Calendar.width;
+  }
+
+  if (customTheme.Calendar && customTheme.Calendar.hasOwnProperty('padding')) {
+    calendarPadding = customTheme.Calendar.padding;
+  }
+
+  if (customTheme.Day && customTheme.Day.hasOwnProperty('margin')) {
+    cellMargin = customTheme.Day.margin;
+  }
+
+  const cellSize = (parseInt(calendarWidth, 10) - parseInt(calendarPadding, 10) * 2) / 7 - parseInt(cellMargin, 10) * 2;
+  return {
+    DateRange: _objectSpread({}, defaultTheme.DateRange, {}, customTheme.DateRange),
+    Calendar: _objectSpread({}, defaultTheme.Calendar, {}, customTheme.Calendar),
+    Day: _objectSpread({
+      width: cellSize,
+      height: cellSize,
+      lineHeight: cellSize + 'px'
+    }, defaultTheme.Day, {}, customTheme.Day),
+    DayPassive: _objectSpread({}, defaultTheme.DayPassive, {}, customTheme.DayPassive),
+    DayHover: _objectSpread({}, defaultTheme.DayHover, {}, customTheme.DayHover),
+    DayToday: _objectSpread({}, defaultTheme.DayToday, {}, customTheme.DayToday),
+    DaySunday: _objectSpread({}, defaultTheme.DaySunday, {}, customTheme.DaySunday),
+    DaySpecialDay: _objectSpread({}, defaultTheme.DaySpecialDay, {}, customTheme.DaySpecialDay),
+    DayActive: _objectSpread({}, defaultTheme.DayActive, {}, customTheme.DayActive),
+    DaySelected: _objectSpread({}, defaultTheme.DaySelected, {}, customTheme.DaySelected),
+    DayStartEdge: _objectSpread({}, defaultTheme.DayStartEdge, {}, customTheme.DayStartEdge),
+    DayEndEdge: _objectSpread({}, defaultTheme.DayEndEdge, {}, customTheme.DayEndEdge),
+    DayInRange: _objectSpread({}, defaultTheme.DayInRange, {}, customTheme.DayInRange),
+    Weekday: _objectSpread({
+      width: cellSize,
+      height: cellSize / 2,
+      lineHeight: cellSize / 2 + 'px'
+    }, defaultTheme.Weekday, {}, customTheme.Weekday),
+    MonthAndYear: _objectSpread({}, defaultTheme.MonthAndYear, {}, customTheme.MonthAndYear),
+    MonthAndYearSelect: _objectSpread({}, defaultTheme.MonthAndYearSelect, {}, customTheme.MonthAndYearSelect),
+    MonthButton: _objectSpread({}, defaultTheme.MonthButton, {}, customTheme.MonthButton),
+    MonthArrow: _objectSpread({}, defaultTheme.MonthArrow, {}, customTheme.MonthArrow),
+    MonthArrowPrev: _objectSpread({}, defaultTheme.MonthArrowPrev, {}, customTheme.MonthArrowPrev),
+    MonthArrowNext: _objectSpread({}, defaultTheme.MonthArrowNext, {}, customTheme.MonthArrowNext),
+    PredefinedRanges: _objectSpread({}, defaultTheme.PredefinedRanges, {}, customTheme.PredefinedRanges),
+    PredefinedRangesItem: _objectSpread({}, defaultTheme.PredefinedRangesItem, {}, customTheme.PredefinedRangesItem),
+    PredefinedRangesItemActive: _objectSpread({}, defaultTheme.PredefinedRangesItemActive, {}, customTheme.PredefinedRangesItemActive),
+    RangeApplyButton: _objectSpread({}, defaultTheme.RangeButton, {}, defaultTheme.RangeApplyButton, {}, customTheme.RangeApplyButton),
+    RangeCancelButton: _objectSpread({}, defaultTheme.RangeButton, {}, defaultTheme.RangeCancelButton, {}, customTheme.RangeCancelButton)
+  };
+});
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/utils/locale.js":
+/*!************************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/utils/locale.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  months: [_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Jan'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Feb'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Mar'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Apr'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('May'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Jun'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Jul'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Aug'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Sep'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Oct'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Nov'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Dec')],
+  weekdays: [_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Su'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Mo'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Tu'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('We'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Th'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Fr'), _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Sa')]
+});
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/components/date-range/utils/parseInput.js":
+/*!****************************************************************************!*\
+  !*** ./www/js/source/reactpages/components/date-range/utils/parseInput.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return parseInput; });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+
+function parseInput(input, format, timeOfDay) {
+  let output = null;
+
+  if (typeof input === 'undefined' || typeof input === 'null' || !input || input === '') {
+    output = moment__WEBPACK_IMPORTED_MODULE_0___default()()[timeOfDay]('day');
+  } else if (typeof input === 'string') {
+    output = moment__WEBPACK_IMPORTED_MODULE_0___default()(input, format)[timeOfDay]('day');
+  } else if (typeof input === 'function') {
+    output = parseInput(input(moment__WEBPACK_IMPORTED_MODULE_0___default()()[timeOfDay]('day')), format, timeOfDay);
+  } else if (input._isAMomentObject) {
+    output = input[timeOfDay]('day').clone();
+  }
+
+  return output;
+}
 
 /***/ }),
 
@@ -763,30 +2695,6 @@ function createReducer(initialState, handlers) {
     }
   };
 }
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/lib/htmlHelper.js":
-/*!****************************************************!*\
-  !*** ./www/js/source/reactpages/lib/htmlHelper.js ***!
-  \****************************************************/
-/*! exports provided: encode, decode */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "encode", function() { return encode; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decode", function() { return decode; });
-const encode = text => {
-  const p = document.createElement("p");
-  p.textContent = text;
-  return p.innerHTML;
-};
-const decode = html => {
-  const txt = document.createElement('textarea');
-  txt.innerHTML = html;
-  return txt.value;
-};
 
 /***/ }),
 
@@ -1277,7 +3185,7 @@ const Content = props => {
     style: {
       maxHeight: _maxHeightPixel
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_PerformanceHighlightWidget__WEBPACK_IMPORTED_MODULE_6__["default"], null), !_libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__["default"].isEqualDate(fromDate, toDate) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_UserActivitiesWidget__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_AvgRevenueWidget__WEBPACK_IMPORTED_MODULE_8__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_PerformanceHighlightWidget__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_UserActivitiesWidget__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_AvgRevenueWidget__WEBPACK_IMPORTED_MODULE_8__["default"], null)));
 };
 
 function mapStateToProps(state) {
@@ -1349,10 +3257,6 @@ const FormFilter = props => {
     viewMode
   } = props;
 
-  const _isSupportViewMode = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
-    return _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_10__["default"].isSupportViewMode(reportDate);
-  }, [reportDate]);
-
   const _renderBaseCurrencySelectList = () => {
     const baseCurrencyList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_7__["default"].baseCurrencyList;
     return baseCurrencyList && baseCurrencyList.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1399,12 +3303,10 @@ const FormFilter = props => {
   };
 
   const _onSubmit = () => {
-    const _viewMode = _isSupportViewMode ? viewMode : _constants_filterConst__WEBPACK_IMPORTED_MODULE_9__["ViewModeOptionValues"].Daily;
-
     const globalFilter = {
       reportDate,
       compareDate,
-      viewMode: _viewMode,
+      viewMode,
       selectedBaseCurrency
     };
     setGlobalFilter(globalFilter);
@@ -1430,7 +3332,7 @@ const FormFilter = props => {
     className: "label-text"
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource("CompareDate")), _renderCompareDateSelection()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
-  }, _isSupportViewMode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -1555,7 +3457,8 @@ const HighlightBox = props => {
     description,
     value,
     rate,
-    isNegativeMean
+    isNegativeMean,
+    enableCompare
   } = props;
 
   const _renderTitle = () => {
@@ -1589,7 +3492,7 @@ const HighlightBox = props => {
     return rate >= 0 ? 'border-top-green' : 'border-top-red';
   };
 
-  const _renderRate = () => {
+  const _renderCompareRate = () => {
     const roundedRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(rate, 0);
     const rateDisplay = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_3__["default"].displayRate(roundedRate);
 
@@ -1600,20 +3503,20 @@ const HighlightBox = props => {
     const arrowColor = _getArrowColor(_roundedRate);
 
     const arrow = roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "sticky-box-compare-title"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sticky-box-rate"
     }, roundedRate !== 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: `${arrow} ${arrowColor}`
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: `rate ${color}`
-    }, rateDisplay));
+    }, rateDisplay)));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box"
-  }, _renderTitle(), _renderDescription(), _renderValue(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "sticky-box-compare-title"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), _renderRate());
+  }, _renderTitle(), _renderDescription(), _renderValue(), enableCompare !== false && _renderCompareRate());
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(HighlightBox));
@@ -1669,7 +3572,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.es.js");
-/* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
+/* harmony import */ var _jsroot_components_date_range__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/components/date-range */ "./www/js/source/reactpages/components/date-range/index.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
+/* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
+
+
+
 
 
 
@@ -1683,20 +3592,31 @@ const TimePeriodSelect = props => {
   } = props;
   const {
     fromDate,
-    toDate
+    toDate,
+    isSpecificRange
   } = selectedRange;
 
   const _onChange = currentSelectOption => {
-    const range = selectOptionGenerateRange[currentSelectOption.value](selectedDependRange);
+    const {
+      value
+    } = currentSelectOption;
+    const range = selectOptionGenerateRange[value](selectedDependRange);
     onChange && onChange(range);
   };
 
   const _getCurrentSelectOption = () => {
-    const currentSelection = selectOptions.find(_ => {
-      const range = selectOptionGenerateRange[_.value](selectedDependRange);
+    let currentSelection = null;
 
-      return _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].isEqualDate(fromDate, range.fromDate) && _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].isEqualDate(toDate, range.toDate);
-    });
+    if (isSpecificRange) {
+      currentSelection = selectOptions.find(_ => _.isSpecificRange);
+    } else {
+      currentSelection = selectOptions.find(_ => {
+        const range = selectOptionGenerateRange[_.value](selectedDependRange);
+
+        return _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_5__["default"].isEqualDate(fromDate, range.fromDate) && _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_5__["default"].isEqualDate(toDate, range.toDate);
+      });
+    }
+
     return currentSelection || selectOptions[0];
   };
 
@@ -1711,13 +3631,48 @@ const TimePeriodSelect = props => {
     });
   };
 
+  const _onChangeDateRange = (range, isValid = true) => {
+    if (isValid) {
+      const {
+        startDate,
+        endDate
+      } = range;
+      const convertedRange = {
+        fromDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_5__["default"].convertToDateStructure(startDate._d),
+        toDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_5__["default"].convertToDateStructure(endDate._d),
+        isSpecificRange: true
+      };
+      onChange && onChange(convertedRange);
+    } else {
+      const message = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("DateRangeExceedMsg").replace("{0}", _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_4__["default"].dateConstraint.limitedMonthRange);
+      alert(message);
+    }
+  };
+
+  const _renderDateRangeSelect = () => {
+    const dateRange = {
+      fromDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_5__["default"].formatDateStructureToString(fromDate),
+      toDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_5__["default"].formatDateStructureToString(toDate)
+    };
+    const dateConstraint = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_4__["default"].dateConstraint;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_date_range__WEBPACK_IMPORTED_MODULE_2__["DateRange"], {
+      startDate: dateRange.fromDate,
+      endDate: dateRange.toDate,
+      minDate: dateConstraint.minDate,
+      maxDate: dateConstraint.maxDate,
+      toDate: dateRange.toDate,
+      limitedMonthRange: dateConstraint.limitedMonthRange,
+      onChange: _onChangeDateRange
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "time-period-select"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "time-period-select-time"
   }, _renderSelectOptions()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "time-period-display-time"
-  }, _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].formatDateRangeToString(fromDate, toDate)));
+  }, isSpecificRange ? _renderDateRangeSelect() : _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_5__["default"].formatDateRangeToString(fromDate, toDate)));
 };
 /* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(TimePeriodSelect));
 
@@ -1825,6 +3780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let countRender = 0;
 const AvgRevenueWidget = props => {
   const {
     globalFilter,
@@ -1839,6 +3795,8 @@ const AvgRevenueWidget = props => {
     setReportDate(globalFilter.reportDate);
 
     _reloadData(globalFilter.reportDate);
+
+    countRender++;
   }, [globalFilter]);
 
   const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AvgRevenue')} (${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Viewin').replace('{0}', globalFilter.selectedBaseCurrency)})`, [globalFilter.selectedBaseCurrency]);
@@ -1855,8 +3813,10 @@ const AvgRevenueWidget = props => {
   const _onChangeReportDate = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedRange => {
     setReportDate(selectedRange);
 
-    _reloadData(selectedRange);
-  }, []);
+    if (!selectedRange.isSpecificRange || reportDate.isSpecificRange) {
+      _reloadData(selectedRange);
+    }
+  }, [reportDate]);
 
   const _reloadData = reportDate => {
     setLoading(true);
@@ -1901,6 +3861,7 @@ const AvgRevenueWidget = props => {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("ReportDate")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      key: 'AvgRevenueWidget_ReportDate_' + countRender,
       selectOptions: _constants_filterConst__WEBPACK_IMPORTED_MODULE_12__["ReportDateSelectionOptions"],
       selectOptionGenerateRange: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_13__["default"].ReportDateGenerateRangeSelections,
       selectedRange: reportDate,
@@ -2027,6 +3988,7 @@ const PerformanceHighlightWidget = props => {
       growthRateTotalUsers
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      enableCompare: false,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalUsers'),
       value: totalUsers,
       rate: growthRateTotalUsers
@@ -2039,8 +4001,9 @@ const PerformanceHighlightWidget = props => {
       growthRatePaidUsers
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      enableCompare: false,
       title: 'PU (APA)',
-      description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('PaidUsers'),
+      description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('DepositUsers'),
       value: paidUsers,
       rate: growthRatePaidUsers
     });
@@ -2156,17 +4119,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/htmlHelper */ "./www/js/source/reactpages/lib/htmlHelper.js");
-/* harmony import */ var _jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/components/radio/RadioGroup */ "./www/js/source/reactpages/components/radio/RadioGroup.jsx");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
-/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
-/* harmony import */ var _common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/TimePeriodSelect */ "./www/js/source/reactpages/pages/report/marketing/components/common/TimePeriodSelect.jsx");
-/* harmony import */ var _common_BarChart__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../common/BarChart */ "./www/js/source/reactpages/pages/report/marketing/components/common/BarChart.jsx");
-/* harmony import */ var _common_LineChart__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../common/LineChart */ "./www/js/source/reactpages/pages/report/marketing/components/common/LineChart.jsx");
-/* harmony import */ var _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../constants/filterConst */ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js");
-/* harmony import */ var _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../libs/helpers/filterHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/filterHelper.js");
-/* harmony import */ var _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../constants/chartConst */ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js");
-/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/components/radio/RadioGroup */ "./www/js/source/reactpages/components/radio/RadioGroup.jsx");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/TimePeriodSelect */ "./www/js/source/reactpages/pages/report/marketing/components/common/TimePeriodSelect.jsx");
+/* harmony import */ var _common_BarChart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/BarChart */ "./www/js/source/reactpages/pages/report/marketing/components/common/BarChart.jsx");
+/* harmony import */ var _common_LineChart__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../common/LineChart */ "./www/js/source/reactpages/pages/report/marketing/components/common/LineChart.jsx");
+/* harmony import */ var _constants_filterConst__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../constants/filterConst */ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js");
+/* harmony import */ var _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../libs/helpers/filterHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/filterHelper.js");
+/* harmony import */ var _constants_chartConst__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../constants/chartConst */ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
 
 
 
@@ -2181,7 +4143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+let countRender = 0;
 const UserActivitiesWidget = props => {
   const {
     globalFilter,
@@ -2193,29 +4155,28 @@ const UserActivitiesWidget = props => {
   } = globalFilter;
   const [reportDate, setReportDate] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(globalFilter.reportDate);
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  const [chartMode, setChartMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Bar);
+  const [chartMode, setChartMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_chartConst__WEBPACK_IMPORTED_MODULE_12__["ChartMode"].Bar);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     setReportDate(globalFilter.reportDate);
 
     _reloadData(globalFilter.reportDate);
+
+    countRender++;
   }, [globalFilter]);
 
-  const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_4__["decode"])(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('UserActivities')), []);
-
-  const _reportDateSelectOptions = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
-    const isDailyMode = viewMode === _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__["ViewModeOptionValues"].Daily;
-    return _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__["ReportDateSelectionOptions"].filter(_ => _.value !== _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__["ReportDateOptionValues"].yesterday && (isDailyMode || _.value !== _constants_filterConst__WEBPACK_IMPORTED_MODULE_11__["ReportDateOptionValues"].last7Days));
-  }, [viewMode]);
+  const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('UserActivities'), []);
 
   const _onChangeReportDate = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedRange => {
     setReportDate(selectedRange);
 
-    _reloadData(selectedRange);
-  });
+    if (!selectedRange.isSpecificRange || reportDate.isSpecificRange) {
+      _reloadData(selectedRange);
+    }
+  }, [reportDate]);
 
   const _reloadData = reportDate => {
     setLoading(true);
-    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_14__["default"].getUserActivitiesAPIParams({
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_13__["default"].getUserActivitiesAPIParams({
       reportDate,
       viewMode
     });
@@ -2223,17 +4184,17 @@ const UserActivitiesWidget = props => {
   };
 
   const _renderChart = () => {
-    if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Bar) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_BarChart__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_12__["ChartMode"].Bar) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_BarChart__WEBPACK_IMPORTED_MODULE_8__["default"], {
         data: userActivitiesData,
-        dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["UserActivitiesChartDataMapping"]
+        dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_12__["UserActivitiesChartDataMapping"]
       });
     }
 
-    if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Line) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_LineChart__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_12__["ChartMode"].Line) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_LineChart__WEBPACK_IMPORTED_MODULE_9__["default"], {
         data: userActivitiesData,
-        dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["UserActivitiesChartDataMapping"]
+        dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_12__["UserActivitiesChartDataMapping"]
       });
     }
 
@@ -2249,9 +4210,10 @@ const UserActivitiesWidget = props => {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("ReportDate")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      selectOptions: _reportDateSelectOptions,
-      selectOptionGenerateRange: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_12__["default"].ReportDateGenerateRangeSelections,
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("ReportDate")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      key: 'UserActivitiesWidget_ReportDate_' + countRender,
+      selectOptions: _constants_filterConst__WEBPACK_IMPORTED_MODULE_10__["ReportDateSelectionOptions"],
+      selectOptionGenerateRange: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_11__["default"].ReportDateGenerateRangeSelections,
       selectedRange: reportDate,
       onChange: _onChangeReportDate
     }))));
@@ -2266,15 +4228,15 @@ const UserActivitiesWidget = props => {
   const _renderFooter = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "chart-footer"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
       name: 'UserActivities-ViewChartMode',
-      value: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Bar,
-      options: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartModeOptions"],
+      value: _constants_chartConst__WEBPACK_IMPORTED_MODULE_12__["ChartMode"].Bar,
+      options: _constants_chartConst__WEBPACK_IMPORTED_MODULE_12__["ChartModeOptions"],
       onChange: setChartMode
     }));
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_6__["default"], {
     title: _title,
     isLoading: isLoading
   }, userActivitiesData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2296,7 +4258,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   const {
     fetchUserActivitiesData
-  } = _actions__WEBPACK_IMPORTED_MODULE_6__["default"];
+  } = _actions__WEBPACK_IMPORTED_MODULE_5__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
     fetchUserActivitiesData
   }, dispatch);
@@ -2394,7 +4356,8 @@ const NumberDaysOfWeek = 7;
 const ReportDateOptionValues = {
   yesterday: 1,
   last7Days: 2,
-  last30Days: 3
+  last30Days: 3,
+  specificRange: 4
 };
 const CompareDateOptionValues = {
   previousPeriod: 1,
@@ -2420,6 +4383,10 @@ const ReportDateSelectionOptions = [{
 }, {
   value: ReportDateOptionValues.last30Days,
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Last30Days')
+}, {
+  value: ReportDateOptionValues.specificRange,
+  label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SpecificDateRange'),
+  isSpecificRange: true
 }];
 const CompareDateSelectionOptions = [{
   value: CompareDateOptionValues.previousPeriod,
@@ -2784,20 +4751,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class FilterHelper {}
 
-_defineProperty(FilterHelper, "isSupportViewMode", reportDate => {
-  const {
-    fromDate,
-    toDate
-  } = reportDate;
-  const diffDays = _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getDiffDaysOfDateStructure(fromDate, toDate);
-
-  if (diffDays >= _constants_filterConst__WEBPACK_IMPORTED_MODULE_1__["NumberDaysOfWeek"]) {
-    return true;
-  }
-
-  return false;
-});
-
 _defineProperty(FilterHelper, "ReportDateGenerateRangeSelections", {
   [_constants_filterConst__WEBPACK_IMPORTED_MODULE_1__["ReportDateOptionValues"].yesterday]: () => {
     const yesterday = _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getYesterday();
@@ -2820,6 +4773,14 @@ _defineProperty(FilterHelper, "ReportDateGenerateRangeSelections", {
     return {
       fromDate: _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].convertToDateStructure(fromDate),
       toDate: _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].convertToDateStructure(toDate)
+    };
+  },
+  [_constants_filterConst__WEBPACK_IMPORTED_MODULE_1__["ReportDateOptionValues"].specificRange]: () => {
+    const yesterday = _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getYesterday();
+    return {
+      fromDate: yesterday,
+      toDate: yesterday,
+      isSpecificRange: true
     };
   }
 });

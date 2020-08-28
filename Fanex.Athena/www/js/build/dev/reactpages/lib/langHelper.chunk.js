@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 7/31/2020 3:35:31 PM
+// Generated at: 8/21/2020 5:25:02 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -315,6 +315,7 @@ window._language_en_US = {
   DeleteCommissionGroup: "Delete Commission group",
   DeleteGroup: "Delete Group",
   Deposit: "Deposit",
+  DepositUsers: "Deposit Users",
   Description: "Description",
   DetailedBetlist: "Detailed Bet list",
   Details: "Details",
@@ -671,7 +672,6 @@ window._language_en_US = {
   OverUnder: "Over/Under",
   Page: "Page",
   PageSize: "Page Size",
-  PaidUsers: "Paid Users",
   Parlay: "Parlay",
   ParlayComm: "Parlay Comm",
   Password: "Password",
@@ -794,6 +794,7 @@ window._language_en_US = {
   SolutionForRestriction: "1. Login at Licensee Admin.&lt;br/&gt;2. Access the reports/ functions you want. &lt;br/&gt; 请洽你们的最高管理者替你设置币别权限",
   SpecialLevel: "Special Level",
   SpecificDate: "Specific Date",
+  SpecificDateRange: "A specific date range",
   Sport: "Sport",
   Sportsbook: "Sportsbook",
   Stake: "Stake",
@@ -899,7 +900,7 @@ window._language_en_US = {
   UpdateToLockedConfirmMsg: "Are you sure you want to change the status of this player to LOCKED?",
   UpdateUnSuccess: "Update unsucessfully!",
   User: "User",
-  UserActivities: "User&apos;s Activities",
+  UserActivities: "User Activity",
   UserGuide: "User Guide",
   UserHasNoPermissionError: "Account has no permission on this site",
   UserInformation: "User Information",

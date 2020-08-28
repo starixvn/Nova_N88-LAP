@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 7/31/2020 3:35:31 PM
+// Generated at: 8/21/2020 5:25:02 PM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -287,6 +287,7 @@ window._language_zh_CN = {
   DeleteCommissionGroup: "删除佣金群组",
   DeleteGroup: "删除组",
   Deposit: "存款",
+  DepositUsers: "Deposit Users",
   Description: "Description",
   DetailedBetlist: "投注明细历史",
   Details: "细节",
@@ -579,7 +580,6 @@ window._language_zh_CN = {
   Over: "上盘",
   OverUnder: "大小",
   Page: "页面",
-  PaidUsers: "Paid Users",
   Parlay: "混合过关",
   ParlayComm: "Parlay 佣金",
   Password: "密码",
@@ -674,6 +674,7 @@ window._language_zh_CN = {
   SingleCustomer: "单一会员",
   SpecialLevel: "特殊层级",
   SpecificDate: "特定日期",
+  SpecificDateRange: "A specific date range",
   Sport: "运动",
   Sportsbook: "体育博彩",
   Stake: "投注额",
@@ -764,7 +765,7 @@ window._language_zh_CN = {
   UpdateToClosedConfirmMsg: "确定要将此玩家更改为关闭吗?",
   UpdateToLockedConfirmMsg: "确定要将此玩家更改为锁定吗?",
   UpdateUnSuccess: "Update unsucessfully!",
-  UserActivities: "User&apos;s Activities",
+  UserActivities: "User Activity",
   UserHasNoPermissionError: "Account has no permission on this site",
   UserInformation: "用户信息",
   Username: "用户名",

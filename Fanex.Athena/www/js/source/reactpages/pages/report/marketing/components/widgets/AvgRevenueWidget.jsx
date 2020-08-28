@@ -15,6 +15,8 @@ import FilterHelper from '../../libs/helpers/filterHelper';
 import DataService from '../../libs/services/dataService';
 import { ChartMode, ChartModeOptions, AvgRevenueChartDataMapping } from '../../constants/chartConst';
 
+let countRender = 0;
+
 export const AvgRevenueWidget = props => {
     const { globalFilter, avgRevenueData, fetchAvgRevenueData } = props;
     const [reportDate, setReportDate] = useState(globalFilter.reportDate);
@@ -25,6 +27,7 @@ export const AvgRevenueWidget = props => {
     useEffect(() => {
         setReportDate(globalFilter.reportDate);
         _reloadData(globalFilter.reportDate);
+        countRender++;
     }, [globalFilter])
 
     const _title = React.useMemo(() => `${LangHelper.getSingleResource('AvgRevenue')} (${LangHelper.getSingleResource('Viewin').replace('{0}', globalFilter.selectedBaseCurrency)})`,
@@ -40,8 +43,10 @@ export const AvgRevenueWidget = props => {
 
     const _onChangeReportDate = React.useCallback(selectedRange => {
         setReportDate(selectedRange);
-        _reloadData(selectedRange);
-    }, [])
+        if (!selectedRange.isSpecificRange || reportDate.isSpecificRange) {
+            _reloadData(selectedRange);
+        }
+    }, [reportDate])
 
     const _reloadData = reportDate => {
         setLoading(true);
@@ -68,6 +73,7 @@ export const AvgRevenueWidget = props => {
                 <div className="form-group">
                     <label className="label-text">{LangHelper.getSingleResource("ReportDate")}</label>
                     <TimePeriodSelect
+                        key={'AvgRevenueWidget_ReportDate_' + countRender}
                         selectOptions={ReportDateSelectionOptions}
                         selectOptionGenerateRange={FilterHelper.ReportDateGenerateRangeSelections}
                         selectedRange={reportDate}

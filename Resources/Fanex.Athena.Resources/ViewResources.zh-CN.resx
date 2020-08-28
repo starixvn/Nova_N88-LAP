@@ -2365,10 +2365,6 @@
     <value>Newly Registered Users</value>
     <comment>137395</comment>
   </data>
-  <data name="PaidUsers" xml:space="preserve">
-    <value>Paid Users</value>
-    <comment>137395</comment>
-  </data>
   <data name="PreviousPeriod" xml:space="preserve">
     <value>Previous Period</value>
     <comment>137395</comment>
@@ -2410,7 +2406,15 @@
     <comment>137395</comment>
   </data>
   <data name="UserActivities" xml:space="preserve">
-    <value>User's Activities</value>
+    <value>User Activity</value>
     <comment>137395</comment>
+  </data>
+  <data name="DepositUsers" xml:space="preserve">
+    <value>Deposit Users</value>
+    <comment>#137395</comment>
+  </data>
+  <data name="SpecificDateRange" xml:space="preserve">
+    <value>A specific date range</value>
+    <comment>#137395</comment>
   </data>
 </root>

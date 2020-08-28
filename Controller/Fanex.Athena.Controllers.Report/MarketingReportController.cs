@@ -35,7 +35,10 @@
             {
                 BaseCurrency = DefaultBaseCurrency,
                 TpProducts = tpProducts,
-                Today = reportSetting.MaxDate
+                Today = reportSetting.MaxDate.AddDays(1),
+                MaxDate = reportSetting.MaxDate,
+                MinDate = reportSetting.MinDate,
+                LimitMonthRange = reportSetting.LimitMonthRange
             };
             return vm;
         }

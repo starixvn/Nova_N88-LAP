@@ -29,7 +29,7 @@ export class FormFilter extends PureComponent {
             <DateRange
                 startDate={dateRange.fromDate} endDate={dateRange.toDate}
                 minDate={dateConstraint.minDate} maxDate={dateConstraint.maxDate}
-                toDate={dateRange.toDate} limitedMonthRange={dateConstraint.limitedMonthRange}
+                today={dateRange.toDate} limitedMonthRange={dateConstraint.limitedMonthRange}
                 onChange={this._onChangeDateRange}
             />
         )

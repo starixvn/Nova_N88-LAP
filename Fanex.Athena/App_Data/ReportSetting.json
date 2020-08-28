@@ -17,7 +17,7 @@
   },
   {
     "ReportKey": "WinLossReport",
-    "MaxDateString": "yesterday",
+    "MaxDateString": "today",
     "LimitRecentMonths": 48,
     "LimitMonthRange": 3,
     "TimeZone": 8

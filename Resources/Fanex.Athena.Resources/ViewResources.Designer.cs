@@ -1069,6 +1069,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Campaign.
+        /// </summary>
+        public static string Campaign {
+            get {
+                return ResourceManager.GetString("Campaign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -1209,6 +1218,15 @@ namespace Fanex.Athena.Resources {
         public static string ChangePassword {
             get {
                 return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Change.
+        /// </summary>
+        public static string ChangePercent {
+            get {
+                return ResourceManager.GetString("ChangePercent", resourceCulture);
             }
         }
         
@@ -2730,6 +2748,15 @@ namespace Fanex.Athena.Resources {
         public static string First_Name {
             get {
                 return ResourceManager.GetString("First_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Deposit Amount.
+        /// </summary>
+        public static string FirstDepositAmount {
+            get {
+                return ResourceManager.GetString("FirstDepositAmount", resourceCulture);
             }
         }
         
@@ -5848,6 +5875,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registered Date.
+        /// </summary>
+        public static string RegisteredDate {
+            get {
+                return ResourceManager.GetString("RegisteredDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reject.
         /// </summary>
         public static string Reject {
@@ -6276,6 +6312,15 @@ namespace Fanex.Athena.Resources {
         public static string ShowOldValue {
             get {
                 return ResourceManager.GetString("ShowOldValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signup URL.
+        /// </summary>
+        public static string SignupUrl {
+            get {
+                return ResourceManager.GetString("SignupUrl", resourceCulture);
             }
         }
         

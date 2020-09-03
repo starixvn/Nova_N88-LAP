@@ -2967,4 +2967,23 @@
     <value>A specific date range</value>
     <comment>#137395</comment>
   </data>
+  <data name="Campaign" xml:space="preserve">
+    <value>Campaign</value>
+    <comment>137395</comment>
+  </data>
+  <data name="ChangePercent" xml:space="preserve">
+    <value>% Change</value>
+  </data>
+  <data name="FirstDepositAmount" xml:space="preserve">
+    <value>First Deposit Amount</value>
+    <comment>137395</comment>
+  </data>
+  <data name="RegisteredDate" xml:space="preserve">
+    <value>Registered Date</value>
+    <comment>137395</comment>
+  </data>
+  <data name="SignupUrl" xml:space="preserve">
+    <value>Signup URL</value>
+    <comment>137395</comment>
+  </data>
 </root>

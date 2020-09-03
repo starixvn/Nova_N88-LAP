@@ -6,6 +6,7 @@
     using Fanex.Athena.Model.Report.MetaModel.Marketing;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
 
@@ -15,6 +16,9 @@
         private const string PerformanceHighlightUrl = "Api/PerformanceHighlight/GetData";
         private const string UserActivitiesUrl = "Api/UserActivities/GetData";
         private const string AvgRevenueUrl = "Api/Revenue/GetAvgData";
+        private const string NewlyRegisterUsersSummaryUrl = "Api/NewlyRegisterUsers/GetSummaryData";
+        private const string NewlyRegisterUsersDetailsUrl = "Api/NewlyRegisterUsers/GetDetailsData";
+        private const string NewlyRegisterUsersExportUrl = "Api/NewlyRegisterUsers/ExportData";
 
         private readonly IReportApiClient _reportApiClient;
 
@@ -50,6 +54,33 @@
         {
             var data = await _reportApiClient.PostAsync<dynamic>(AvgRevenueUrl, metaModel, Language).ConfigureAwait(false);
             return data;
+        }
+
+        [HttpPost]
+        [ApiAutoBindMetaModel(BindLicenseeId = true)]
+        [ValidationApiRequest]
+        public async Task<dynamic> NewlyRegisterUsersSummary(NewlyRegisterUsersSummaryMetaModel metaModel)
+        {
+            var data = await _reportApiClient.PostAsync<dynamic>(NewlyRegisterUsersSummaryUrl, metaModel, Language).ConfigureAwait(false);
+            return data;
+        }
+
+        [HttpPost]
+        [ApiAutoBindMetaModel(BindLicenseeId = true)]
+        [ValidationApiRequest]
+        public async Task<dynamic> NewlyRegisterUsersDetails(NewlyRegisterUsersDetailsMetaModel metaModel)
+        {
+            var data = await _reportApiClient.PostAsync<dynamic>(NewlyRegisterUsersDetailsUrl, metaModel, Language).ConfigureAwait(false);
+            return data;
+        }
+
+        [HttpPost]
+        [ApiAutoBindMetaModel(BindLicenseeId = true)]
+        [ValidationApiRequest]
+        public async Task<HttpResponseMessage> NewlyRegisterUsersExport(NewlyRegisterUsersExportMetaModel metaModel)
+        {
+            var response = await _reportApiClient.PostAsync(NewlyRegisterUsersExportUrl, metaModel, Language).ConfigureAwait(false);
+            return ToStreamResponse(response.Item1, response.Item2);
         }
     }
 }

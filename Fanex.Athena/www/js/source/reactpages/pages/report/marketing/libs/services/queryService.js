@@ -1,5 +1,6 @@
 import DataService from '@jsroot/lib/DataService';
-import { Url, errorResponse, successResponse } from '../../constants/queryConst';
+import Site from '@jsroot/lib/site';
+import { Url, FileNameExport, errorResponse, successResponse } from '../../constants/queryConst';
 
 export default class QueryService {
 
@@ -16,6 +17,30 @@ export default class QueryService {
     static fetchAvgRevenueData = async params => {
         var data = await this.fetchData(() => DataService.postData(Url.avgRevenue, params));
         return data;
+    }
+
+    static fetchNewlyRegisterUsersSummaryData = async (params, before, after) => {
+        before && before();
+        var data = await this.fetchData(() => DataService.postData(Url.newlyRegisterUsersSummary, params));
+        after && after(data)
+        return data;
+    }
+
+    static fetchNewlyRegisterUsersDetailData = async (params, before, after) => {
+        before && before();
+        var data = await this.fetchData(() => DataService.postData(Url.newlyRegisterUsersDetail, params));
+        after && after(data)
+        return data;
+    }
+
+    static async exportNewlyRegisterUsersData(params) {
+        const response = await DataService.getFile(Url.newlyRegisterUsersExport, params)
+        const noContentStatusCode = 204;
+        if (response.status === noContentStatusCode) {
+            alert(LangHelper.getSingleResource("NoInfo"));
+        } else {
+            Site.downloadFile(response.data, FileNameExport.newlyRegisterUsers);
+        };
     }
 
     static fetchData = async apiCall => {

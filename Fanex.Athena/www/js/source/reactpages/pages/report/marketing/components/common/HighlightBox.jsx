@@ -4,7 +4,7 @@ import NumberFormat from '@jsroot/lib/numberFormat';
 import NumberHelper from '../../libs/helpers/numberHelper';
 
 const HighlightBox = props => {
-    const { title, description, value, rate, isNegativeMean, enableCompare } = props;
+    const { title, description, value, rate, isNegativeMean, enableCompare, onViewDetail } = props;
 
     const _renderTitle = () => {
         return (<div className="sticky-box-title">
@@ -25,13 +25,6 @@ const HighlightBox = props => {
         </div>)
     }
 
-    const _getColorRate = rate => {
-        if (rate === 0) {
-            return '';
-        }
-        return rate > 0 ? 'green-color' : 'red-color';
-    }
-
     const _getArrowColor = rate => {
         return rate >= 0 ? 'border-top-green' : 'border-top-red';
     }
@@ -40,7 +33,7 @@ const HighlightBox = props => {
         const roundedRate = NumberFormat.round(rate, 0);
         const rateDisplay = NumberHelper.displayRate(roundedRate);
         const _roundedRate = isNegativeMean ? -roundedRate : roundedRate;
-        const color = _getColorRate(_roundedRate);
+        const color = NumberHelper.getColorRate(_roundedRate);
         const arrowColor = _getArrowColor(_roundedRate);
         const arrow = roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
         return (
@@ -53,7 +46,7 @@ const HighlightBox = props => {
          </>)
     }
 
-    return (<div className="sticky-box">
+    return (<div className="sticky-box" style={{ cursor: onViewDetail ? 'pointer' : 'normal' }} onClick={() => onViewDetail && onViewDetail()}>
         {_renderTitle()}
         {_renderDescription()}
         {_renderValue()}

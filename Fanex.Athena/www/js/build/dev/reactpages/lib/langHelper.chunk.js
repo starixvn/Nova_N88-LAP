@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 8/21/2020 5:25:02 PM
+// Generated at: 9/4/2020 12:52:21 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -223,6 +223,7 @@ window._language_en_US = {
   CashOutWinLoss: "Cash Out Win Loss",
   CasinoTransfer: "Casino Transfer",
   ChangePassword: "Change Password",
+  ChangePercent: "% Change",
   ChangeStatus: "Change {0}&apos;s status",
   ChangeStatusOfThisCustomerMsg: "Are you sure you want to change status of this customer?",
   ChargeCommission: "Charge Commission",
@@ -392,6 +393,7 @@ window._language_en_US = {
   FileIsNotReady: "The file is not ready, please try again later.",
   Filter: "Filter",
   First_Name: "First_Name",
+  FirstDepositAmount: "First Deposit Amount",
   FirstGoal: "First Goal",
   FirstName: "First Name",
   Forecast: "Forecast",
@@ -738,6 +740,7 @@ window._language_en_US = {
   RefNo: "Ref No",
   Refresh: "Refresh",
   Refund: "Refund",
+  RegisteredDate: "Registered Date",
   Reject: "Reject",
   Remark: "Remark",
   RemoveFromGroup: "Remove from Group",
@@ -786,6 +789,7 @@ window._language_en_US = {
   Show: "Show",
   ShowAllLeagues: "Show All Leagues",
   ShowOldValue: "Show old value",
+  SignupUrl: "Signup URL",
   Sincelastmonth: "Since last month",
   SingleCustomer: "Single Customer",
   Site: "Site",

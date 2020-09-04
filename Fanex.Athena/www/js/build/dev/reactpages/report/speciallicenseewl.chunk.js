@@ -1230,12 +1230,12 @@ const bodyDecimalStyle = {
 const bodyCellStyle = {
   rowspan: bodyTextStyle,
   center: {
-    alignment: _objectSpread(_objectSpread({}, bodyTextStyle.alignment), {}, {
+    alignment: _objectSpread({}, bodyTextStyle.alignment, {
       horizontal: "center"
     })
   },
   left: {
-    alignment: _objectSpread(_objectSpread({}, bodyTextStyle.alignment), {}, {
+    alignment: _objectSpread({}, bodyTextStyle.alignment, {
       horizontal: "left"
     })
   },
@@ -1243,7 +1243,7 @@ const bodyCellStyle = {
     numFmt: "#,##0"
   },
   decimal: bodyDecimalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, bodyDecimalStyle), {}, {
+  negativeDecimal: _objectSpread({}, bodyDecimalStyle, {
     font: {
       color: {
         rgb: "FF0000"
@@ -1260,29 +1260,29 @@ const totalTextStyle = {
   }
 };
 
-const totalDecimalStyle = _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+const totalDecimalStyle = _objectSpread({}, totalTextStyle, {
   numFmt: "#,##0.00"
 });
 
 const totalCellStyle = {
   default: totalTextStyle,
-  rowspan: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  rowspan: _objectSpread({}, totalTextStyle, {
     alignment: {
       horizontal: "center",
       vertical: "center"
     }
   }),
-  center: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  center: _objectSpread({}, totalTextStyle, {
     alignment: {
       vertical: "center",
       horizontal: "center"
     }
   }),
-  number: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  number: _objectSpread({}, totalTextStyle, {
     numFmt: "#,##0"
   }),
   decimal: totalDecimalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, totalDecimalStyle), {}, {
+  negativeDecimal: _objectSpread({}, totalDecimalStyle, {
     font: {
       bold: true,
       color: {
@@ -1311,28 +1311,28 @@ const grandTotalTextStyle = {
   }
 };
 
-const decimalGrandTotalStyle = _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+const decimalGrandTotalStyle = _objectSpread({}, grandTotalTextStyle, {
   numFmt: "#,##0.00"
 });
 
 const grandTotalCellStyle = {
   default: grandTotalTextStyle,
-  rowspan: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  rowspan: _objectSpread({}, grandTotalTextStyle, {
     alignment: {
       horizontal: "center",
       vertical: "center"
     }
   }),
-  center: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  center: _objectSpread({}, grandTotalTextStyle, {
     alignment: {
       horizontal: "center"
     }
   }),
-  number: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  number: _objectSpread({}, grandTotalTextStyle, {
     numFmt: "#,##0"
   }),
   decimal: decimalGrandTotalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, decimalGrandTotalStyle), {}, {
+  negativeDecimal: _objectSpread({}, decimalGrandTotalStyle, {
     font: {
       bold: true,
       color: {
@@ -1340,7 +1340,7 @@ const grandTotalCellStyle = {
       }
     }
   }),
-  percent: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  percent: _objectSpread({}, grandTotalTextStyle, {
     numFmt: "#,##0.00%"
   })
 };

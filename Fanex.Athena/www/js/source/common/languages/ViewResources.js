@@ -1,4 +1,4 @@
-﻿// Generated at: 9/3/2020 1:30:15 PM
+﻿// Generated at: 9/4/2020 12:52:21 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -112,7 +112,6 @@ BuyBackAmount:"Buy Back Amount",
 ByBetType:"By Bet Type",
 ByCurrency:"By Currency",
 BySportsType:"By Sports Type",
-Campaign:"Campaign",
 Cancel:"Cancel",
 CannotUpdateBetLimitForProduct:"You cannot update member bet limit for product {0}.",
 CashOutAmount:"Cash Out Amount",

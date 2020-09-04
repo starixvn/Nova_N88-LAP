@@ -1,4 +1,4 @@
-﻿// Generated at: 9/3/2020 1:30:15 PM
+﻿// Generated at: 9/4/2020 12:52:21 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -97,7 +97,6 @@ BuyBackAmount:"回购金额",
 ByBetType:"根据投注类型",
 ByCurrency:"根据货币",
 BySportsType:"根据运动类型",
-Campaign:"Campaign",
 Cancel:"取消",
 CashOutAmount:"预先兑现金额",
 CashOutAmt:"兑现金额",

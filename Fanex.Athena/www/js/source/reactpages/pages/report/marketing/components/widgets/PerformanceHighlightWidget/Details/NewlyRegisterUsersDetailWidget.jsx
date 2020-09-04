@@ -72,7 +72,7 @@ const NewlyRegisterUsersDetailWidget = props => {
     const _renderHeader = () => {
         return (<HeaderRow style={StyleRow}>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.rowId].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.rowId].name}</HeaderCell>
-            <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.campaign].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.campaign].name}</HeaderCell>
+            <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.bonusCode].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.bonusCode].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.username].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.username].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.registeredDateDisplay].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.registeredDateDisplay].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.signupUrl].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.signupUrl].name}</HeaderCell>
@@ -85,12 +85,12 @@ const NewlyRegisterUsersDetailWidget = props => {
         const { dataList } = detailData;
         return dataList.map(item => <Row style={StyleRow}>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.rowId].attributes}>{item[DetailNRUGridColumns.rowId]} </Cell>
-            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.campaign].attributes} >{item[DetailNRUGridColumns.campaign]}</Cell>
+            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.bonusCode].attributes} >{item[DetailNRUGridColumns.bonusCode] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.username].attributes} >{item[DetailNRUGridColumns.username]}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.registeredDateDisplay].attributes}>{item[DetailNRUGridColumns.registeredDateDisplay]}</Cell>
-            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.signupUrl].attributes}>{item[DetailNRUGridColumns.signupUrl]}</Cell>
+            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.signupUrl].attributes}>{item[DetailNRUGridColumns.signupUrl] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.isDeposit].attributes} >{item[DetailNRUGridColumns.isDeposit] ? LangHelper.getSingleResource('Yes') : LangHelper.getSingleResource('No')}</Cell>
-            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[DetailNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
+            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.firstDepositAmount].attributes}>{item[DetailNRUGridColumns.isDeposit]  ? NumberFormat.format(item[DetailNRUGridColumns.firstDepositAmount], DigitsAmount) : '-'}</Cell>
         </Row>)
     }
 

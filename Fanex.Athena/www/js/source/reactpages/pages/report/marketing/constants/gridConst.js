@@ -15,14 +15,14 @@ export const TotalNRUGridConfig = {
 }
 
 export const CampaignNRUGridColumns = {
-    campaign: 'campaignName',
+    bonusCode: 'bonusCode',
     newlyRegisterUsers: 'newlyRegisterUsers',
     depositUsers: 'depositUsers',
     firstDepositAmount: 'firstDepositAmount'
 }
 
 export const CampaignNRUGridConfig = {
-    [CampaignNRUGridColumns.campaign]: { name: LangHelper.getSingleResource('Campaign'), attributes: { className: "left-align" } },
+    [CampaignNRUGridColumns.bonusCode]: { name: LangHelper.getSingleResource('Bonus'), attributes: { className: "left-align" } },
     [CampaignNRUGridColumns.newlyRegisterUsers]: { name: LangHelper.getSingleResource('NRU'), attributes: { className: "right-align" } },
     [CampaignNRUGridColumns.depositUsers]: { name: LangHelper.getSingleResource('Deposit'), attributes: { className: "right-align" } },
     [CampaignNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { className: "right-align" } }
@@ -44,7 +44,7 @@ export const SignupNRUGridConfig = {
 
 export const DetailNRUGridColumns = {
     rowId: 'rowId',
-    campaign: 'campaignName',
+    bonusCode: 'bonusCode',
     username: 'username',
     registeredDateDisplay: 'registeredDateDisplay',
     signupUrl: 'signupUrl',
@@ -54,7 +54,7 @@ export const DetailNRUGridColumns = {
 
 export const DetailNRUGridConfig = {
     [DetailNRUGridColumns.rowId]: { name: '#', attributes: { colWidth: 30, className: "center-align" } },
-    [DetailNRUGridColumns.campaign]: { name: LangHelper.getSingleResource('Campaign'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
+    [DetailNRUGridColumns.bonusCode]: { name: LangHelper.getSingleResource('Bonus'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
     [DetailNRUGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 2, colWidth: 80, className: "left-align" } },
     [DetailNRUGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 3, colWidth: 80, className: "center-align" } },
     [DetailNRUGridColumns.signupUrl]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { sortBy: 4, colWidth: 80, className: "left-align" } },

@@ -62,13 +62,13 @@ const NewlyRegisterUsersSummaryWidget = props => {
     const _renderCampaignData = () => {
         const { campaignData } = summaryData;
         const header = (<HeaderRow style={StyleRow}>
-            <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.campaign].name}</HeaderCell>
+            <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].name}</HeaderCell>
             <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.newlyRegisterUsers].name}</HeaderCell>
             <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.depositUsers].name}</HeaderCell>
             <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.firstDepositAmount].name}</HeaderCell>
         </HeaderRow>);
         const body = campaignData.map(item => <Row style={StyleRow}>
-            <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.campaign].attributes}>{item[CampaignNRUGridColumns.campaign]}</Cell>
+            <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].attributes}>{item[CampaignNRUGridColumns.bonusCode] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.newlyRegisterUsers].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.newlyRegisterUsers])}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.depositUsers].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.depositUsers])}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
@@ -98,7 +98,7 @@ const NewlyRegisterUsersSummaryWidget = props => {
             <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.firstDepositAmount].name}</HeaderCell>
         </HeaderRow>);
         const body = signupData.map(item => <Row style={StyleRow}>
-            <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.url].attributes}>{item[SignupNRUGridColumns.url]}</Cell>
+            <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.url].attributes}>{item[SignupNRUGridColumns.url] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.newlyRegisterUsers].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.newlyRegisterUsers])}</Cell>
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.depositUsers].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.depositUsers])}</Cell>
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>

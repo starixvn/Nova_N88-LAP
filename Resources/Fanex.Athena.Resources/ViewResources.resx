@@ -2967,10 +2967,6 @@
     <value>A specific date range</value>
     <comment>#137395</comment>
   </data>
-  <data name="Campaign" xml:space="preserve">
-    <value>Campaign</value>
-    <comment>137395</comment>
-  </data>
   <data name="ChangePercent" xml:space="preserve">
     <value>% Change</value>
   </data>

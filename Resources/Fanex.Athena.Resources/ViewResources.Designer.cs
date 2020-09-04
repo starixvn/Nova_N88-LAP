@@ -1069,15 +1069,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Campaign.
-        /// </summary>
-        public static string Campaign {
-            get {
-                return ResourceManager.GetString("Campaign", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {

@@ -8,6 +8,7 @@ import CollapsiblePanel from '@jsroot/components/collapsible-panel'
 import CheckBox from '@jsroot/components/CheckBox'
 import { DateRange } from '@jsroot/components/date-range'
 import LangHelper from '@jsroot/lib/langHelper'
+import CurrencyHelper from '@jsroot/lib/currencyHelper'
 import AppData from '@jsroot/lib/AppData'
 import ActionCreators from '../actions'
 import GroupFilter from './filter/GroupFilter';
@@ -20,7 +21,10 @@ import SelectOption from '../components/filter/SelectOption';
 export class FormFilter extends PureComponent {
     constructor(props) {
         super(props);
+        this.currencyList = CurrencyHelper.getTpCurrencyList(this.props.selectedBrand, AppData.brands);
     }
+
+    currencyList = [];
 
     _renderDateRange() {
         const { dateRange } = this.props;
@@ -46,8 +50,8 @@ export class FormFilter extends PureComponent {
     }
 
     _renderCurrencySelectList() {
-        const { selectedCurrency, setSelectedCurrency } = this.props;
-        const currencyList = AppData.currencyList;
+        const { selectedCurrency, setSelectedCurrency, selectedBrand } = this.props;
+        const currencyList = this.currencyList;
         const dataSource = CollectionHelper.createDataSourceFrom(currencyList, selectedCurrency);
         return currencyList && currencyList.length && (
             <MultipleSelect id="ddlCurrency"
@@ -125,6 +129,24 @@ export class FormFilter extends PureComponent {
         </>
     }
 
+    _renderBrandSelectList() {
+        return (
+            <MultipleSelect id="BrandList"
+                language={LangHelper.currentLanguage}
+                dataSource={AppData.brandOptions}
+                keyField={"key"}
+                valueField={"value"}
+                statusField={"status"}
+                onChange={(currentItem, selectedItemsKey) => {
+                    this.props.setSelectedBrand(selectedItemsKey);
+                    this.currencyList = CurrencyHelper.getTpCurrencyList(selectedItemsKey, AppData.brands);
+                    const selectedCurrency = this.currencyList.map(_ => _.key).join(',');
+                    this.props.setSelectedCurrency(selectedCurrency)
+                }}
+            />
+        )
+    }
+
     _handleSubmit = event => {
         event.preventDefault();
         const newRequestParam = QueryHelper.toAPIParams(this.props);
@@ -141,6 +163,12 @@ export class FormFilter extends PureComponent {
                             {this._renderDateFilter()}
                         </div>
                     </div>
+                    {AppData.brandOptions && AppData.brandOptions.length > 1 && <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
+                        <div className="form-group">
+                            <label className="label-text">{LangHelper.getSingleResource("Brand")}</label>
+                            {this._renderBrandSelectList()}
+                        </div>
+                    </div>}
                     <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Product")}</label>
@@ -205,11 +233,12 @@ export class FormFilter extends PureComponent {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { fetchReportData, setSelectedDateType, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
+    const { fetchReportData, setSelectedDateType, setSelectedBrand, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
         changeIsExcludeTest, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
         setSelectedDateType,
+        setSelectedBrand,
         setDateRange,
         setSelectedProduct,
         setUserNameFilterOption,
@@ -225,11 +254,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    const { selectedDateType, dateRange, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
+    const { selectedDateType, dateRange, selectedBrand, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
         isExcludeTest, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone } = state;
     return Object.assign({}, {
         selectedDateType,
         dateRange,
+        selectedBrand,
         userNameFilterOption,
         username,
         selectedProduct,

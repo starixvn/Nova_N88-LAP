@@ -6,7 +6,7 @@ import GroupHelper from '../helpers/groupHelper';
 
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
-         selectedProduct, selectedDateType, isExcludeTest, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption, selectedTimezone }) {
+         selectedProduct, selectedBrand, selectedDateType, isExcludeTest, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption, selectedTimezone }) {
         return {
             ...requestParam,
             ...{
@@ -15,6 +15,7 @@ export default class QueryHelper {
                 currencyIdList: selectedCurrency,
                 baseCurrency: selectedBaseCurrency,
                 productIds: selectedProduct,
+                brandIds: selectedBrand,
                 dateType: selectedDateType,
                 isIncludedTestData: !isExcludeTest, 
                 isNoDrawTicket: noDraw,

@@ -5,6 +5,7 @@ import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
 import { setUsername } from '@jsroot/actions/usernameAction';
 import { setSelectedProduct } from '@jsroot/actions/productAction';
 import { changeIsExcludeTest } from '@jsroot/actions/excludeTestAction';
+import { setSelectedBrand } from '@jsroot/actions/brandAction';
 
 const setNoDraw = isNoDraw => {
     return {
@@ -51,6 +52,7 @@ const setSelectedTimezone = timezone => {
 export default {
     setSelectedDateType,
     setDateRange,
+    setSelectedBrand,
     setSelectedProduct,
     setUserNameFilterOption,
     setUsername,

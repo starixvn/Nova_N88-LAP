@@ -7,6 +7,7 @@ import { selectedBaseCurrency } from '@jsroot/reducers/baseCurrencyReducer';
 import { username } from '@jsroot/reducers/usernameReducer';
 import { selectedProduct } from '@jsroot/reducers/productReducer';
 import { isExcludeTest } from '@jsroot/reducers/excludeTestReducer';
+import { selectedBrand } from '@jsroot/reducers/brandReducer';
 
 const selectedDateType = createReducer({}, {
     [SET_SELECTED_DATE_TYPE](state, action) {
@@ -48,6 +49,7 @@ export default {
     selectedDateType,
     dateRange,
     selectedProduct,
+    selectedBrand,
     userNameFilterOption,
     username,
     selectedCurrency,

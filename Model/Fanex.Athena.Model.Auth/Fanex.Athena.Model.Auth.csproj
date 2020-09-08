@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brand.cs" />
     <Compile Include="CurrencyUser.cs" />
     <Compile Include="DataDomain\BtcViewInfo.cs" />
     <Compile Include="Enum\AppMode.cs" />

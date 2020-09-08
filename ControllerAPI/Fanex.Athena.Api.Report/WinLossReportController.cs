@@ -26,8 +26,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandIdList = true)]
         public async Task<dynamic> GetData(WinLossMetaModel metaModel)
         {
             var data = await _reportApiClient.PostAsync<dynamic>(InternalReportUrl, metaModel, Language).ConfigureAwait(false);
@@ -35,8 +34,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandIdList = true)]
         public async Task<HttpResponseMessage> ExportData(ExportWinLossMetaModel metaModel)
         {
             var response = await _reportApiClient.PostAsync(InternalExportReportUrl, metaModel, Language).ConfigureAwait(false);

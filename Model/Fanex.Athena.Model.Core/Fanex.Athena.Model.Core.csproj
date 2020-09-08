@@ -54,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
@@ -112,6 +113,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\BrandSetting.cs" />
+    <Compile Include="Configuration\BrandCollection.cs" />
+    <Compile Include="Configuration\BrandElement.cs" />
     <Compile Include="Constants\SystemEnvironment.cs" />
     <Compile Include="DataDomain\BaseCurrencyType.cs" />
     <Compile Include="DataDomain\SubsidiaryViewType.cs" />
@@ -170,11 +174,13 @@
     <Compile Include="Helper\BettypeHelper.cs" />
     <Compile Include="Helper\MetaModelValidationHelper.cs" />
     <Compile Include="Helper\ProductHelper.cs" />
+    <Compile Include="MetaModel\BrandValidationOption.cs" />
     <Compile Include="MetaModel\Common\SPLogMetaModel.cs" />
     <Compile Include="MetaModel\CurrencyValidationOption.cs" />
     <Compile Include="MetaModel\IMetalModelCustomerIdentity.cs" />
     <Compile Include="MetaModel\IMetaModelAgent.cs" />
     <Compile Include="MetaModel\IMetaModelBalanceUpAndMoveBet.cs" />
+    <Compile Include="MetaModel\IMetaModelBrandIdList.cs" />
     <Compile Include="MetaModel\IMetaModelCurrency.cs" />
     <Compile Include="MetaModel\BaseMetaModel.cs" />
     <Compile Include="MetaModel\Common\LeagueMetaModel.cs" />

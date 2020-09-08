@@ -137,8 +137,10 @@
     <Compile Include="Common\LanguageServiceTest.cs" />
     <Compile Include="Exception\ServiceExceptionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\BrandServiceTest.cs" />
     <Compile Include="Users\SessionServiceTest.CreateNewSession.cs" />
     <Compile Include="Users\SessionServiceTest.cs" />
+    <Compile Include="Utility\BrandValidationTest.cs" />
     <Compile Include="Utility\ProductValidationTest.cs" />
     <Compile Include="Utility\CurrencyValidationTest.cs" />
     <Compile Include="Utility\ValidationServiceTest.cs" />

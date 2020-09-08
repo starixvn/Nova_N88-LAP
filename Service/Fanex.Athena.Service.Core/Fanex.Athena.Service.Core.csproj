@@ -98,6 +98,8 @@
     <Compile Include="Common\Interfaces\ITpService.cs" />
     <Compile Include="Common\TpService.cs" />
     <Compile Include="Helper\JsonSerializerHelper.cs" />
+    <Compile Include="Users\BrandService.cs" />
+    <Compile Include="Users\Interfaces\IBrandService.cs" />
     <Compile Include="Users\Interfaces\ISessionStorage.cs" />
     <Compile Include="Users\SessionStorage.cs" />
     <Compile Include="Common\LanguageService.cs" />
@@ -105,7 +107,9 @@
     <Compile Include="Users\Interfaces\ISessionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\SessionService.cs" />
+    <Compile Include="Utility\BrandValidation.cs" />
     <Compile Include="Utility\CurrencyValidation.cs" />
+    <Compile Include="Utility\Interfaces\IBrandValidation.cs" />
     <Compile Include="Utility\Interfaces\ICurrencyValidation.cs" />
     <Compile Include="Utility\Interfaces\IProductValidation.cs" />
     <Compile Include="Utility\Interfaces\IValidationService.cs" />

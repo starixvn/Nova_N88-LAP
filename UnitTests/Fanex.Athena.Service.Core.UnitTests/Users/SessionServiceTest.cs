@@ -29,6 +29,7 @@
         private ISessionStorage _sessionStorage;
         private ISessionService _sessionService;
         private IUserService _userService;
+        private IBrandService _brandService;
         private N88Settings _n88Settings;
 
         [OneTimeSetUp]
@@ -42,6 +43,7 @@
             _appSettings = Substitute.For<IAppSettings>();
             _licenseeDataAccess = Substitute.For<ILicenseeDataAccess>();
             _userService = Substitute.For<IUserService>();
+            _brandService = Substitute.For<IBrandService>();
             var licenseeList = new List<Licensee>
             {
                 new Licensee
@@ -59,6 +61,7 @@
                 _userService,
                 _appSettings,
                 _sessionStorage,
+                _brandService,
                 _n88Settings);
         }
 

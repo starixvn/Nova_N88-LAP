@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Fanex.Athena.Model.Report.MetaModel
 {
-    public class WinLossMetaModel : IMetaModelValidation, IMetaModelLicenseeId
+    public class WinLossMetaModel : IMetaModelValidation, IMetaModelBrandIdList
     {
         private const int DefaultPageSize = 500;
         private const int MaxPageSize = 2000;
@@ -17,13 +17,13 @@ namespace Fanex.Athena.Model.Report.MetaModel
             UserNameFilterId = 1;
         }
 
-        public int LicenseeId { get; set; }
         public byte DateType { get; set; }
         public byte GroupBy { get; set; }
         public int Timezone { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public string ProductIds { get; set; }
+        public string BrandIds { get; set; }
         public byte UserNameFilterId { get; set; }
         public string UserName { get; set; }
         public string CurrencyIdList { get; set; }
@@ -48,7 +48,7 @@ namespace Fanex.Athena.Model.Report.MetaModel
             }
         }
 
-        public bool IsValid => LicenseeId > 0 &&
+        public bool IsValid => !string.IsNullOrWhiteSpace(ProductIds) && !string.IsNullOrWhiteSpace(BrandIds) &&
             GroupBy >= 1 && GroupBy <= 5 &&
             DateType >= 1 && DateType <= 2 &&
             UserNameFilterId >= 1 && UserNameFilterId <= 3 &&

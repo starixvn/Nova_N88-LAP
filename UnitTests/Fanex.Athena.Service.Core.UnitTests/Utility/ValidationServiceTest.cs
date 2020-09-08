@@ -18,13 +18,15 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         private IMetaModelValidation _metaModelValidation;
         private ICurrencyValidation _currencyValidation;
         private IProductValidation _productValidation;
+        private IBrandValidation _brandValidation;
 
         [SetUp]
         public void Setup()
         {
             _productValidation = Substitute.For<IProductValidation>();
             _currencyValidation = Substitute.For<ICurrencyValidation>();
-            _validationService = new ValidationService(_currencyValidation, _productValidation);
+            _brandValidation = Substitute.For<IBrandValidation>();
+            _validationService = new ValidationService(_currencyValidation, _productValidation, _brandValidation);
             _metaModelValidation = Substitute.For<IMetaModelValidation>();
         }
 
@@ -117,6 +119,22 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
             _validationService.IsValid(model, option);
             //Assert
             _currencyValidation.Received(1).IsValidCurrency(currencyIdList);
+        }
+
+        [Test]
+        public void IsValid_Brand_CallBrandValidation()
+        {
+            //Arrange
+            var option = new BrandValidationOption { IsValidBrandIdList = true };
+            var model = new WinLossMetaModel { BrandIds = "12,12,23" };
+
+            _brandValidation.IsValidBrandIdList(model).Returns(true);
+
+            //Action
+            _validationService.IsValid(model, brandValidationOption: option);
+
+            //Assert
+            _brandValidation.Received(1).IsValidBrandIdList(model);
         }
     }
 }

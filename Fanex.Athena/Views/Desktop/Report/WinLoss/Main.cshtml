@@ -13,6 +13,18 @@
         value = c.Value,
         label = c.Value
     }).ToList();
+
+    var selectedCurrency = string.Join(",", Model.Brands.SelectMany(
+        x => x.TpCurrencyList.Select(y => y.Key))
+        .Distinct()
+        .ToArray()
+        );
+
+    var brands = Model.Brands.Select(x => new
+    {
+        id = x.Id,
+        tpCurrencies = x.TpCurrencyList.Select(y => new { key = y.Key, value = y.Value })
+    });
 }
 
 @section pagecss {
@@ -32,13 +44,15 @@
     drilldownInOriginalCurrency: false,
     isLoading: false,
     selectedBaseCurrency: '@Model.BaseCurrency',
-    selectedCurrency: '@string.Join(",", Model.TpCurrencies.Select(x => x.ID).ToArray())',
+    selectedCurrency: '@selectedCurrency',
     selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
+    selectedBrand: '@string.Join(",", Model.Brands.Select(x => x.Id).ToArray())',
     userNameFilterOption: 1,
     username: "",
     };
 
     window._AppData = {
+    brands: @Html.Raw(brands.ToJson()),
     dateConstraint: {
     limitedMonthRange: @Model.LimitMonthRange,
     minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
@@ -46,8 +60,8 @@
     },
 
     productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
+    brandOptions: @Html.Raw(Model.Brands.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
-    currencyList: @Html.Raw(Model.TpCurrencies.Select(x => new { key = x.ID, value = x.Name, status = true }).ToJson()),
     }
 
 }

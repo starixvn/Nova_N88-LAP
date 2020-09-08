@@ -1,18 +1,19 @@
 ﻿namespace Fanex.Athena.Service.Core.Users
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using DataAccess.Core.Common.Interfaces;
     using DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.Enum;
+    using Fanex.Athena.Model.Core.Configuration;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Models.ValueObject;
     using Fanex.N88.Core.Service.Interface;
     using Model.Core.DTO.Common;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
 
     public class SessionService : ISessionService
     {
@@ -23,6 +24,7 @@
         private readonly IUserService _userService;
         private readonly ISessionStorage _sessionStorage;
         private readonly IAppSettings _appSettings;
+        private readonly IBrandService _brandService;
         private readonly N88Settings _n88Settings;
 
         public SessionService(
@@ -31,6 +33,7 @@
             IUserService userService,
             IAppSettings appSettings,
             ISessionStorage sessionStorage,
+            IBrandService brandService,
             N88Settings n88Settings = null)
         {
             _licenseeDataAccess = licenseeDataAccess;
@@ -39,6 +42,7 @@
             _appSettings = appSettings;
             _userService = userService;
             _n88Settings = n88Settings ?? N88Settings.Settings;
+            _brandService = brandService;
         }
 
         #region Public Properties
@@ -76,7 +80,9 @@
             string userName,
             string language = "en-US")
         {
-            var functions = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
+            var napFunctions = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
+            var functions = GetUserFunction(napFunctions).ToList();
+            var brandList = _brandService.GetAllowedBrands(_appSettings.LicenseeId, functions, BrandSetting.Setting.Brands);
 
             var userSession = new UserAuthInfo
             {
@@ -84,8 +90,9 @@
                 OnUserId = onuserId,
                 UserName = userName,
                 Language = language,
-                FunctionList = GetUserFunction(functions).ToList(),
-                DefaultBaseCurrency = _appSettings.DefaultBaseCurrency
+                FunctionList = functions,
+                DefaultBaseCurrency = _appSettings.DefaultBaseCurrency,
+                BrandList = brandList
             };
 
             AssignMenuToUserSession(userSession);

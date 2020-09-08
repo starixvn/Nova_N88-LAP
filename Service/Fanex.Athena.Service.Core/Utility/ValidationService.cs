@@ -7,11 +7,13 @@ namespace Fanex.Athena.Service.Core.Utility
     {
         private readonly ICurrencyValidation _currencyValidation;
         private readonly IProductValidation _productValidation;
+        private readonly IBrandValidation _brandValidation;
 
-        public ValidationService(ICurrencyValidation currencyValidation, IProductValidation productValidation)
+        public ValidationService(ICurrencyValidation currencyValidation, IProductValidation productValidation, IBrandValidation brandValidation)
         {
             _currencyValidation = currencyValidation;
             _productValidation = productValidation;
+            _brandValidation = brandValidation;
         }
 
         private static bool IsValidMetalModel(IMetaModelValidation model)
@@ -19,8 +21,9 @@ namespace Fanex.Athena.Service.Core.Utility
             return model != null && model.IsValid;
         }
 
+
         public bool IsValid(object model, CurrencyValidationOption currencyValidationOption = null,
-            ProductValidationOption productValidationOption = null)
+            ProductValidationOption productValidationOption = null, BrandValidationOption brandValidationOption = null)
         {
             if (model == null)
             {
@@ -39,6 +42,10 @@ namespace Fanex.Athena.Service.Core.Utility
             if (productValidationOption != null && productValidationOption.IsValidProductCodeList)
             {
                 result &= IsValidProductCode(model as IMetaModelProductCodeList, productValidationOption);
+            }
+            if(brandValidationOption != null)
+            {
+                result &= !brandValidationOption.IsValidBrandIdList || _brandValidation.IsValidBrandIdList(model as IMetaModelBrandIdList);
             }
 
             return result;

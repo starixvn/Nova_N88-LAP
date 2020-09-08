@@ -36,6 +36,7 @@
                 BaseCurrency = DefaultBaseCurrency,
                 TpCurrencies = tpCurrencies,
                 TpProducts = tpProducts,
+                Brands = BrandList,
                 MaxDate = reportSetting.MaxDate,
                 MinDate = reportSetting.MinDate,
                 LimitMonthRange = reportSetting.LimitMonthRange

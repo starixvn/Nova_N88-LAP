@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
+    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Core.MetaModel.Product;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Model.Core.DTO.Common;
@@ -24,6 +25,8 @@
         protected string LicenseeName => SessionServiceInstance.LicenseeSession.LicenseeName;
 
         protected int LicenseeId => SessionServiceInstance.LicenseeSession.LicenseeId;
+
+        protected IEnumerable<Brand> BrandList => SessionServiceInstance.UserSession.BrandList;
 
         protected static IList<ProductOption> ToProductOptions(IEnumerable<Product> productList)
         {

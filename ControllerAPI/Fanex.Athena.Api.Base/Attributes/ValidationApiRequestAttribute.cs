@@ -1,15 +1,15 @@
 ﻿namespace Fanex.Athena.Api.Base.Attributes
 {
+    using Fanex.Athena.Api.StatelessBase.Attributes.Extensions;
+    using Fanex.Athena.Model.Core.MetaModel;
+    using Fanex.Athena.Resources;
+    using Fanex.Athena.Service.Core.Utility.Interfaces;
     using System;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Web.Http.Controllers;
     using System.Web.Http.Filters;
-    using Fanex.Athena.Api.StatelessBase.Attributes.Extensions;
-    using Fanex.Athena.Model.Core.MetaModel;
-    using Fanex.Athena.Resources;
-    using Fanex.Athena.Service.Core.Utility.Interfaces;
 
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public sealed class ValidationApiRequestAttribute : ActionFilterAttribute
@@ -26,6 +26,8 @@
 
         public string FunctionConfig { get; set; }
         public bool IsSingleWalletProduct { get; set; }
+
+        public bool IsValidBrandIdList { get; set; }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
@@ -54,6 +56,9 @@
                    IsValidProductCodeList = IsValidProductCodeList,
                    FunctionConfig = FunctionConfig,
                    IsSingleWallet = IsSingleWalletProduct
+               }, new BrandValidationOption
+               {
+                   IsValidBrandIdList = IsValidBrandIdList
                }))
             {
                 actionContext.Response = new HttpResponseMessage

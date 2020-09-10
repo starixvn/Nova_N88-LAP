@@ -40,7 +40,7 @@ const NewlyRegisterUsersSummaryWidget = props => {
         const displayRate = NumberHelper.displayRate(roundRate);
         const colorRate = NumberHelper.getColorRate(roundRate);
         const body = (<Row style={StyleRow}>
-            <Cell>{LangHelper.getSingleResource('NRU')}</Cell>
+            <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.total].attributes}>{LangHelper.getSingleResource('NRU')}</Cell>
             <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.newlyRegisterUsers].attributes}>{NumberFormat.format(item[TotalNRUGridColumns.newlyRegisterUsers])}</Cell>
             <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.compareNewlyRegisterUsers].attributes}>{NumberFormat.format(item[TotalNRUGridColumns.compareNewlyRegisterUsers])}</Cell>
             <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.changeRate].attributes} className={`${TotalNRUGridConfig[TotalNRUGridColumns.changeRate].attributes.className} ${colorRate}`}>{displayRate}</Cell>

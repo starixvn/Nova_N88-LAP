@@ -8,7 +8,7 @@ export const TotalNRUGridColumns = {
 }
 
 export const TotalNRUGridConfig = {
-    [TotalNRUGridColumns.total]: { name: LangHelper.getSingleResource('Total'), attributes: { className: "left-align" } },
+    [TotalNRUGridColumns.total]: { name: LangHelper.getSingleResource('Total'), attributes: { className: "left-align highlight-detail-cell" } },
     [TotalNRUGridColumns.newlyRegisterUsers]: { name: LangHelper.getSingleResource('ReportDate'), attributes: { className: "right-align" } },
     [TotalNRUGridColumns.compareNewlyRegisterUsers]: { name: LangHelper.getSingleResource('CompareDate'), attributes: { className: "right-align" } },
     [TotalNRUGridColumns.changeRate]: { name: LangHelper.getSingleResource('ChangePercent'), attributes: { className: "right-align" } }
@@ -22,7 +22,7 @@ export const CampaignNRUGridColumns = {
 }
 
 export const CampaignNRUGridConfig = {
-    [CampaignNRUGridColumns.bonusCode]: { name: LangHelper.getSingleResource('Bonus'), attributes: { className: "left-align" } },
+    [CampaignNRUGridColumns.bonusCode]: { name: LangHelper.getSingleResource('Bonus'), attributes: { className: "left-align highlight-detail-cell" } },
     [CampaignNRUGridColumns.newlyRegisterUsers]: { name: LangHelper.getSingleResource('NRU'), attributes: { className: "right-align" } },
     [CampaignNRUGridColumns.depositUsers]: { name: LangHelper.getSingleResource('Deposit'), attributes: { className: "right-align" } },
     [CampaignNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { className: "right-align" } }
@@ -36,7 +36,7 @@ export const SignupNRUGridColumns = {
 }
 
 export const SignupNRUGridConfig = {
-    [SignupNRUGridColumns.url]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { className: "left-align" } },
+    [SignupNRUGridColumns.url]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { className: "left-align highlight-detail-cell" } },
     [SignupNRUGridColumns.newlyRegisterUsers]: { name: LangHelper.getSingleResource('NRU'), attributes: { className: "right-align" } },
     [SignupNRUGridColumns.depositUsers]: { name: LangHelper.getSingleResource('Deposit'), attributes: { className: "right-align" } },
     [SignupNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { className: "right-align" } }

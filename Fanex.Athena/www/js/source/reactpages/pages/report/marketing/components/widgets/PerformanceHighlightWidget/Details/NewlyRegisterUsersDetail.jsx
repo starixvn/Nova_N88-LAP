@@ -16,7 +16,10 @@ const NewlyRegisterUsersDetail = props => {
     }
 
     const _renderCaption = () => {
-        return <div className="caption">
+        return <div className="highlight-detail-title">
+            <span>
+                {LangHelper.getSingleResource('NRU')}
+            </span>
             <span className="caret-block">
                 <span className="icon-excel-wrapper" onClick={handleExportExcel}>
                     <i className="icon-excel" title={LangHelper.getSingleResource('ExportToExcel')}></i>
@@ -28,8 +31,10 @@ const NewlyRegisterUsersDetail = props => {
     return (
         <div className="highlight-detail">
             {_renderCaption()}
-            <NewlyRegisterUsersSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} />
-            <NewlyRegisterUsersDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} />
+            <div className="widget-list">
+                <NewlyRegisterUsersSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} />
+                <NewlyRegisterUsersDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} />
+            </div>
         </div>
     )
 }

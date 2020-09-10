@@ -3,7 +3,7 @@ import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
 import Widget from '../../../common/Widget';
 import DataService from '../../../../libs/services/dataService';
-import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
+import { Table, Pager, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import QueryService from '../../../../libs/services/queryService';
 import { DetailNRUGridColumns, DetailNRUGridConfig, DefaultPagingOption, StyleRow , DigitsAmount} from '../../../../constants/gridConst';
 
@@ -13,7 +13,7 @@ const NewlyRegisterUsersDetailWidget = props => {
     const [detailData, setDetailData] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
 
-    const MAX_WIDTH = Math.min(document.body.clientWidth, 1350);
+    const MAX_WIDTH = Math.min(document.body.clientWidth, 1360);
 
     useEffect(() => {
         const apiParams = DataService.getNewlyRegisterUsersDetailAPIParams({ reportDate, baseCurrency, pagingOption, sortInfo });
@@ -96,20 +96,21 @@ const NewlyRegisterUsersDetailWidget = props => {
 
     return (
         <Widget title={LangHelper.getSingleResource('Details')} isLoading={isLoading}>
-            {detailData && <Table minWidth={650}
-                autoWidth={true}
-                maxWidth={MAX_WIDTH}
-                autoHeight={false}
-                bodyHeight={400}
-                header={_renderHeader()}
-                body={_renderBody()}
-                isPaging={true}
-                pageOption={pagingOption}
-                onPaging={_handlePaging}
-                onSort={_handleSort}
-                containerPadding={30}
-                shouldResetScrollPosition={isLoading}
-            />}
+            {detailData &&
+                <>
+                    <Pager pageOption={pagingOption} onPaging={_handlePaging} />
+                    <Table minWidth={650}
+                        autoWidth={true}
+                        maxWidth={MAX_WIDTH}
+                        autoHeight={false}
+                        bodyHeight={400}
+                        header={_renderHeader()}
+                        body={_renderBody()}
+                        onSort={_handleSort}
+                        containerPadding={30}
+                        shouldResetScrollPosition={isLoading}
+                    />
+                </>}
         </Widget>
     )
 }

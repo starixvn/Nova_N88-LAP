@@ -21,19 +21,28 @@
     }
 
     .table-container {
+        font-size: 13px;
         .header-content {
             .table {
                 thead {
                     tr {
                         th {
-                            background: #a2beba;
+                            background: #EEF8F6;
                             color: #222;
-                            font-weight: normal;
+                            font-weight: bold;
+                        }
+
+                        th:not(:first-child) {
+                            border-left-color: #d6d6d6;
                         }
                     }
                 }
             }
         }
+    }
+
+    .page-container {
+        background: #F5F5F5;
     }
 
     .report-title {
@@ -160,12 +169,29 @@
     }
 
     .highlight-detail {
-        .caption {
+        padding: 10px;
+        .highlight-detail-title {
             position: relative;
-            height: 30px;
+            padding: 5px 10px;
+            color: #002B24;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            background: #AECCC8;
+
             .caret-block {
                 bottom: 0px;
             }
+        }
+
+        .widget-title {
+            background: #EEF8F6;
+            padding: 8px 10px;
+        }
+
+        .highlight-detail-cell {
+            background: #EEF8F6;
+            font-weight: bold;
         }
     }
 
@@ -237,7 +263,6 @@
     .red-color {
         color: $red;
     }
-
     
     .icon-bar-chart {
         background: url("../../../images/bar-chart-icon.svg") no-repeat;

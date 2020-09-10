@@ -6,6 +6,11 @@
     using Fanex.Athena.UnitTest.Common.Helpers;
     using NSubstitute;
     using NUnit.Framework;
+    using System;
+    using System.IO;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Threading.Tasks;
 
     public class MarketingReportControllerTest : BaseApiControllerHelperTest
@@ -82,6 +87,72 @@
 
                 //Assert
                 Assert.AreEqual(expectedResult, actualResult);
+            }
+        }
+
+        [Test]
+        public async Task NewlyRegisterUsersSummary_WhenCall_ReturnCorrectData()
+        {
+            //Arrange
+            var metaModel = FakeHelper.Create<NewlyRegisterUsersSummaryMetaModel>();
+            var expectedResult = FakeHelper.Create<object>();
+            _reportApiClient.PostAsync<dynamic>("Api/NewlyRegisterUsers/GetSummaryData", metaModel, SessionLanguage).Returns(Task.FromResult<dynamic>(expectedResult));
+
+            using (var controller = CreateController())
+            {
+                //Act
+                var actualResult = await controller.NewlyRegisterUsersSummary(metaModel).ConfigureAwait(false);
+
+                //Assert
+                Assert.AreEqual(expectedResult, actualResult);
+            }
+        }
+
+        [Test]
+        public async Task NewlyRegisterUsersDetails_WhenCall_ReturnCorrectData()
+        {
+            //Arrange
+            var metaModel = FakeHelper.Create<NewlyRegisterUsersDetailsMetaModel>();
+            var expectedResult = FakeHelper.Create<object>();
+            _reportApiClient.PostAsync<dynamic>("Api/NewlyRegisterUsers/GetDetailsData", metaModel, SessionLanguage).Returns(Task.FromResult<dynamic>(expectedResult));
+
+            using (var controller = CreateController())
+            {
+                //Act
+                var actualResult = await controller.NewlyRegisterUsersDetails(metaModel).ConfigureAwait(false);
+
+                //Assert
+                Assert.AreEqual(expectedResult, actualResult);
+            }
+        }
+
+        [Test]
+        public async Task NewlyRegisterUsersExport_WhenCall_ReturnCorrectData()
+        {
+            //Arrange
+            var metaModel = FakeHelper.Create<NewlyRegisterUsersExportMetaModel>();
+            var fakeData = new Tuple<Stream, string>(new MemoryStream(new byte[] { 1, 2 }), "application/octet-stream");
+            _reportApiClient.PostAsync("Api/NewlyRegisterUsers/ExportData", metaModel, SessionLanguage).Returns(Task.FromResult(fakeData));
+
+            var expectedResult = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StreamContent(fakeData.Item1)
+            };
+            expectedResult.Content.Headers.ContentType = new MediaTypeHeaderValue(fakeData.Item2);
+
+            using (var controller = CreateController())
+            {
+                //Act
+
+                var actualResult = await controller.NewlyRegisterUsersExport(metaModel).ConfigureAwait(false);
+
+                //Assert
+                var actualStream = await actualResult.Content.ReadAsByteArrayAsync();
+                fakeData.Item1.Seek(0, SeekOrigin.Begin);
+                var expectedStream = await expectedResult.Content.ReadAsByteArrayAsync();
+
+                Assert.AreEqual(actualStream, expectedStream);
+                Assert.AreEqual(expectedResult.Content.Headers.ContentType, actualResult.Content.Headers.ContentType);
             }
         }
 

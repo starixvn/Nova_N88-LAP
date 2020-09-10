@@ -5,6 +5,7 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
+    using System.Linq;
     using System.Web.Mvc;
 
     [FunctionAuthorization(PermissionKeys.ReportWinLoss)]
@@ -30,11 +31,10 @@
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportWinLoss, LicenseeName);
             var tpProducts = _tpService.GetListTpProduct();
-            var tpCurrencies = _tpService.GetListTpCurrency(LicenseeId);
+
             var vm = new WinLossViewModel
             {
                 BaseCurrency = DefaultBaseCurrency,
-                TpCurrencies = tpCurrencies,
                 TpProducts = tpProducts,
                 Brands = BrandList,
                 MaxDate = reportSetting.MaxDate,

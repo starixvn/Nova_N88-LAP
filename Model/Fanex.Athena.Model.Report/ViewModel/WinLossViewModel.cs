@@ -10,7 +10,6 @@
     {
         public string BaseCurrency { get; set; }
         public IEnumerable<TpProduct> TpProducts { get; set; }
-        public IEnumerable<Currency> TpCurrencies { get; set; }
         public IEnumerable<Brand> Brands { get; set; }
         public int LimitMonthRange { get; set; }
         public DateTime MaxDate { get; set; }

@@ -25,9 +25,12 @@
         public bool IsValidProductCodeList { get; set; }
 
         public string FunctionConfig { get; set; }
+
         public bool IsSingleWalletProduct { get; set; }
 
         public bool IsValidBrandIdList { get; set; }
+
+        public bool IsValidBrandId { get; set; }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
@@ -58,6 +61,7 @@
                    IsSingleWallet = IsSingleWalletProduct
                }, new BrandValidationOption
                {
+                   IsValidBrandId = IsValidBrandId,
                    IsValidBrandIdList = IsValidBrandIdList
                }))
             {

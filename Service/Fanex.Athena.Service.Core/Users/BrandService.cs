@@ -25,16 +25,13 @@
                 if (brand.Id == licenseeId ||
                     functions.Any(function => string.Equals(function.FunctionKey, brand.FunctionKey, System.StringComparison.OrdinalIgnoreCase)))
                 {
-                    var tpCurrency = _tpService.GetListTpCurrency(brand.Id).ToList();
-                    if (brand.Id == 402)
-                        tpCurrency.RemoveAt(0);
-
+                    var tpCurrencies = _tpService.GetListTpCurrency(brand.Id).ToList();
                     brandList.Add(new Brand
                     {
                         Id = brand.Id,
                         Name = brand.Name,
                         FunctionKey = brand.FunctionKey,
-                        TpCurrencyList = tpCurrency.ToDictionary(_ => _.ID, _ => _.Name)
+                        TpCurrencyList = tpCurrencies.ToDictionary(_ => _.ID, _ => _.Name)
                     });
                 }
             }

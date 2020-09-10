@@ -4,6 +4,8 @@
 
     public interface IBrandValidation
     {
+        bool IsValidBrandId(IMetaModelBrandId model);
+
         bool IsValidBrandIdList(IMetaModelBrandIdList model);
     }
 }

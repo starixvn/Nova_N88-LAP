@@ -82,7 +82,7 @@
         {
             var napFunctions = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
             var functions = GetUserFunction(napFunctions).ToList();
-            var brandList = _brandService.GetAllowedBrands(_appSettings.LicenseeId, functions, BrandSetting.Setting.Brands);
+            var brandList = _brandService.GetAllowedBrands(_appSettings.LicenseeId, functions, BrandSetting.Setting?.Brands);
 
             var userSession = new UserAuthInfo
             {
@@ -92,6 +92,7 @@
                 Language = language,
                 FunctionList = functions,
                 DefaultBaseCurrency = _appSettings.DefaultBaseCurrency,
+                SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
                 BrandList = brandList
             };
 

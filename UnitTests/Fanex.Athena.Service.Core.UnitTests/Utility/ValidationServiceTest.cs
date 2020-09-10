@@ -122,7 +122,7 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         }
 
         [Test]
-        public void IsValid_Brand_CallBrandValidation()
+        public void IsValid_Brand_CallBrandIdListValidation()
         {
             //Arrange
             var option = new BrandValidationOption { IsValidBrandIdList = true };
@@ -135,6 +135,22 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
 
             //Assert
             _brandValidation.Received(1).IsValidBrandIdList(model);
+        }
+
+        [Test]
+        public void IsValid_Brand_CallBrandIdValidation()
+        {
+            //Arrange
+            var option = new BrandValidationOption { IsValidBrandId = true };
+            var model = new BaseMarketingMetaModel { BrandId = 1 };
+
+            _brandValidation.IsValidBrandId(model).Returns(true);
+
+            //Action
+            _validationService.IsValid(model, brandValidationOption: option);
+
+            //Assert
+            _brandValidation.Received(1).IsValidBrandId(model);
         }
     }
 }

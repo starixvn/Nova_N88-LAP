@@ -15,6 +15,17 @@
             _sessionService = sessionService;
         }
 
+        public bool IsValidBrandId(IMetaModelBrandId model)
+        {
+            if (model == null)
+            {
+                return false;
+            }
+
+            var brandList = _sessionService.UserSession.BrandList;
+            return brandList.Any(brand => brand.Id == model.BrandId);
+        }
+
         public bool IsValidBrandIdList(IMetaModelBrandIdList model)
         {
             if (model == null || string.IsNullOrWhiteSpace(model.BrandIds))

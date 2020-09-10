@@ -10,6 +10,7 @@
     using DataAccess.Core.Users.Interfaces;
     using Extension.Utility;
     using Fanex.Athena.Model.Auth;
+    using Fanex.Athena.Model.Core.Configuration;
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Service.Interface;

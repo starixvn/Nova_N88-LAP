@@ -71,7 +71,6 @@
             var expectedResult = new WinLossViewModel
             {
                 BaseCurrency = DefaultUserSession.DefaultBaseCurrency,
-                TpCurrencies = fakeTpCurrency,
                 TpProducts = fakeTpProducts,
                 MaxDate = fakeReportSetting.MaxDate,
                 MinDate = fakeReportSetting.MinDate,

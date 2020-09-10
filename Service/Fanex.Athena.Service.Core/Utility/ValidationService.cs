@@ -45,6 +45,7 @@ namespace Fanex.Athena.Service.Core.Utility
             }
             if(brandValidationOption != null)
             {
+                result &= !brandValidationOption.IsValidBrandId || _brandValidation.IsValidBrandId(model as IMetaModelBrandId);
                 result &= !brandValidationOption.IsValidBrandIdList || _brandValidation.IsValidBrandIdList(model as IMetaModelBrandIdList);
             }
 

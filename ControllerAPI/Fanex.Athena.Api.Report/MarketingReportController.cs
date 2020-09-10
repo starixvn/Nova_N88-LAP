@@ -30,8 +30,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<dynamic> PerformanceHighlight(PerformanceHighlightMetaModel metaModel)
         {
             var data = await _reportApiClient.PostAsync<dynamic>(PerformanceHighlightUrl, metaModel, Language).ConfigureAwait(false);
@@ -39,8 +38,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<dynamic> UserActivities(UserActivitiesMetaModel metaModel)
         {
             var data = await _reportApiClient.PostAsync<dynamic>(UserActivitiesUrl, metaModel, Language).ConfigureAwait(false);
@@ -48,8 +46,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<dynamic> AvgRevenue(AvgRevenueMetaModel metaModel)
         {
             var data = await _reportApiClient.PostAsync<dynamic>(AvgRevenueUrl, metaModel, Language).ConfigureAwait(false);

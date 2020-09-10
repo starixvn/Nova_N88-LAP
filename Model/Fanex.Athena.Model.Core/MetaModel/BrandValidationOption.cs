@@ -2,6 +2,8 @@
 {
     public class BrandValidationOption
     {
+        public bool IsValidBrandId { get; set; }
+
         public bool IsValidBrandIdList { get; set; }
     }
 }

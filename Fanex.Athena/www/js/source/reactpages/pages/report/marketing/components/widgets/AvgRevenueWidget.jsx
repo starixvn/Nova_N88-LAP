@@ -50,8 +50,8 @@ export const AvgRevenueWidget = props => {
 
     const _reloadData = reportDate => {
         setLoading(true);
-        const { selectedBaseCurrency } = globalFilter;
-        const apiParams = DataService.getAvgRevenueAPIParams({ reportDate, products: AppData.defaultSelectedProduct, selectedBaseCurrency });
+        const { selectedBrand, selectedBaseCurrency } = globalFilter;
+        const apiParams = DataService.getAvgRevenueAPIParams({ reportDate, products: AppData.defaultSelectedProduct, selectedBrand, selectedBaseCurrency });
         fetchAvgRevenueData(apiParams, _ => {
             setLoading(false);
         });

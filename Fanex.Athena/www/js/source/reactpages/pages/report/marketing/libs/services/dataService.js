@@ -2,8 +2,9 @@ import DateTimeHelper from '../helpers/dateTimeHelper';
 
 export default class DataService {
 
-    static getCommonAPIParams = ({ reportDate }) => {
+    static getCommonAPIParams = ({ selectedBrand, reportDate }) => {
         const params = {
+            brandId: selectedBrand,
             fromDate: DateTimeHelper.formatDateStructureToString(reportDate.fromDate),
             toDate: DateTimeHelper.formatDateStructureToString(reportDate.toDate),
         }
@@ -11,8 +12,8 @@ export default class DataService {
     }
 
     static getPerformanceHighlightAPIParams = filterData => {
-        const { reportDate, compareDate } = filterData;
-        const commonParams = this.getCommonAPIParams({ reportDate });
+        const { selectedBrand, reportDate, compareDate } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
         const params = {
             ...commonParams,
             ...{
@@ -58,8 +59,8 @@ export default class DataService {
     }
 
     static getUserActivitiesAPIParams = filterData => {
-        const { reportDate, viewMode } = filterData;
-        const commonParams = this.getCommonAPIParams({ reportDate });
+        const { selectedBrand, reportDate, viewMode } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
         const params = {
             ...commonParams,
             ...{ 
@@ -71,8 +72,8 @@ export default class DataService {
     }
 
     static getAvgRevenueAPIParams = filterData => {
-        const { reportDate, selectedBaseCurrency, products } = filterData;
-        const commonParams = this.getCommonAPIParams({ reportDate });
+        const { selectedBrand, reportDate, selectedBaseCurrency, products } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
         const params = {
             ...commonParams,
             ...{ 

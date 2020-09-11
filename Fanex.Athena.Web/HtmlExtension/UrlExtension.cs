@@ -1,8 +1,10 @@
 ﻿namespace Fanex.Athena.Web.HtmlExtension
 {
     using System.Configuration;
+    using System.IO;
     using System.Text.RegularExpressions;
     using System.Web;
+    using System.Web.Hosting;
     using System.Web.Mvc;
 
     public static class UrlExtension
@@ -14,8 +16,8 @@
             var appPath = string.IsNullOrEmpty(cdnDomain) ?
                  HttpContext.Current.Request.ApplicationPath : cdnDomain;
             var baseUrl = appPath != null && appPath.Length > 1 ? appPath : string.Empty;
-
-            return baseUrl + contentPath + "?" + ConfigurationManager.AppSettings["JsVersion"];
+            var version = GenerateContentVersion(contentPath);
+            return $"{baseUrl}{contentPath}?v={version}";
         }
 
         public static string ContentLinkByEnv(this UrlHelper helper, string contentPath)
@@ -30,6 +32,14 @@
             }
 
             return ContentLink(helper, path);
+        }
+
+        private static string GenerateContentVersion(string contentPath)
+        {
+            const string format = "MMddyyyy_HHmm";
+            var fullPathFile = HostingEnvironment.MapPath("~/" + contentPath);
+            var version = File.GetLastWriteTime(fullPathFile).ToString(format);
+            return version;
         }
     }
 }

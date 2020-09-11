@@ -46,7 +46,7 @@
     selectedBaseCurrency: '@Model.BaseCurrency',
     selectedCurrency: '@selectedCurrency',
     selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
-    selectedBrand: '@string.Join(",", Model.Brands.Select(x => x.Id).ToArray())',
+    selectedBrand: '@Model.OwnBrand.Id',
     userNameFilterOption: 1,
     username: "",
     };
@@ -60,7 +60,7 @@
     },
 
     productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
-    brandOptions: @Html.Raw(Model.Brands.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
+    brandOptions: @Html.Raw(Model.Brands.Select(x => new { key = x.Id, value = x.Name, status = Model.OwnBrand.Id == x.Id }).ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
     }
 

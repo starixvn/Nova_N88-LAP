@@ -71,7 +71,7 @@
             {
                 BaseCurrency = DefaultUserSession.DefaultBaseCurrency,
                 TpProducts = fakeTpProducts,
-                OwnBrand = DefaultUserSession.BrandList.FirstOrDefault(_ => _.Id == DefaultLicenseeSession.LicenseeId),
+                OwnBrand = DefaultUserSession.BrandList.First(_ => _.Id == DefaultLicenseeSession.LicenseeId),
                 Brands = DefaultUserSession.BrandList,
                 Today = fakeReportSetting.MaxDate.AddDays(1),
                 MaxDate = fakeReportSetting.MaxDate,

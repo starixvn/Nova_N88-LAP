@@ -36,7 +36,7 @@
             {
                 BaseCurrency = DefaultBaseCurrency,
                 TpProducts = tpProducts,
-                OwnBrand = BrandList.FirstOrDefault(_ => _.Id == LicenseeId),
+                OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
                 Brands = BrandList,
                 Today = reportSetting.MaxDate.AddDays(1),
                 MaxDate = reportSetting.MaxDate,

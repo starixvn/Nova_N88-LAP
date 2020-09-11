@@ -12,6 +12,7 @@
     using NSubstitute;
     using NUnit.Framework;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class WinLossReportControllerTest : CultureBaseControllerHelperTest
     {
@@ -62,16 +63,16 @@
             //Arrange
             var fakeTpProducts = FakeHelper.Create<IEnumerable<TpProduct>>();
             var fakeReportSetting = FakeHelper.Create<ReportSetting>();
-            var fakeTpCurrency = FakeHelper.Create<IEnumerable<Currency>>();
 
             _reportSettingService.GetSetting(Arg.Any<string>(), Arg.Any<string>()).Returns(fakeReportSetting);
             _tpService.GetListTpProduct().Returns(fakeTpProducts);
-            _tpService.GetListTpCurrency(DefaultLicenseeSession.LicenseeId).Returns(fakeTpCurrency);
 
             var expectedResult = new WinLossViewModel
             {
                 BaseCurrency = DefaultUserSession.DefaultBaseCurrency,
                 TpProducts = fakeTpProducts,
+                OwnBrand = DefaultUserSession.BrandList.First(_ => _.Id == DefaultLicenseeSession.LicenseeId),
+                Brands = DefaultUserSession.BrandList,
                 MaxDate = fakeReportSetting.MaxDate,
                 MinDate = fakeReportSetting.MinDate,
                 LimitMonthRange = fakeReportSetting.LimitMonthRange

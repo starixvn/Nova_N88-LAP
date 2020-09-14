@@ -8,7 +8,7 @@ import Widget from '../common/Widget';
 import TimePeriodSelect from '../common/TimePeriodSelect';
 import BarChart from '../common/BarChart';
 import LineChart from '../common/LineChart';
-import { ReportDateSelectionOptions, ReportDateOptionValues } from '../../constants/filterConst';
+import { ReportDateSelectionOptions } from '../../constants/filterConst';
 import FilterHelper from '../../libs/helpers/filterHelper';
 import { ChartMode, ChartModeOptions, UserActivitiesChartDataMapping } from '../../constants/chartConst';
 import DataService from '../../libs/services/dataService';

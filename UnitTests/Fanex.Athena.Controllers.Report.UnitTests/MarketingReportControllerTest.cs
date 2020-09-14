@@ -70,7 +70,10 @@
             {
                 BaseCurrency = DefaultUserSession.DefaultBaseCurrency,
                 TpProducts = fakeTpProducts,
-                Today = fakeReportSetting.MaxDate
+                Today = fakeReportSetting.MaxDate.AddDays(1),
+                MaxDate = fakeReportSetting.MaxDate,
+                MinDate = fakeReportSetting.MinDate,
+                LimitMonthRange = fakeReportSetting.LimitMonthRange
             };
 
             using (var controller = CreateController())

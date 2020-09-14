@@ -24,6 +24,39 @@ export default class DataService {
         return params;
     }
 
+    static getNewlyRegisterUsersSummaryAPIParams = filterData => {
+        const { baseCurrency, ...rest } = filterData;
+        const commonParams = this.getPerformanceHighlightAPIParams(rest);
+        const params = {
+            ...commonParams,
+            baseCurrency
+        }
+        return params;
+    }
+
+    static getNewlyRegisterUsersDetailAPIParams = filterData => {
+        const { reportDate, pagingOption, sortInfo, ...rest } = filterData;
+        const commonParams = this.getCommonAPIParams({ reportDate });
+        const params = {
+            ...commonParams,
+            ...sortInfo,
+            ...{ pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize },
+            ...rest
+        }
+        return params;
+    }
+
+    static getNewlyRegisterUsersExportAPIParams = filterData => {
+        const { baseCurrency, sortInfo, ...rest } = filterData;
+        const commonParams = this.getPerformanceHighlightAPIParams(rest);
+        const params = {
+            ...commonParams,
+            ...sortInfo,
+            baseCurrency
+        }
+        return params;
+    }
+
     static getUserActivitiesAPIParams = filterData => {
         const { reportDate, viewMode } = filterData;
         const commonParams = this.getCommonAPIParams({ reportDate });

@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
-import ActionCreators from '../../actions';
-import Widget from '../common/Widget';
-import HighlightBox from '../common/HighlightBox';
-import DateTimeHelper from '../../libs/helpers/dateTimeHelper';
-import DataService from '../../libs/services/dataService';
+import Popup from '@jsroot/components/popup';
+import ActionCreators from '../../../actions';
+import Widget from '../../common/Widget';
+import HighlightBox from '../../common/HighlightBox';
+import DateTimeHelper from '../../../libs/helpers/dateTimeHelper';
+import DataService from '../../../libs/services/dataService';
+import NewlyRegisterUsersDetail from './Details/NewlyRegisterUsersDetail';
 
 export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
     const [isLoading, setLoading] = useState(false);
+    const [selectedBox, setSelectedBox] = useState(null);
 
     useEffect(() => {
         if (!globalFilter) {
@@ -58,6 +61,7 @@ export const PerformanceHighlightWidget = props => {
     const _renderNewlyRegisteredUsersBox = () => {
         const { newlyRegisterUsers, growthRateNewlyRegisterUsers } = performanceHighlightData;
         return (<HighlightBox
+            onViewDetail={() => setSelectedBox(1)}
             title={LangHelper.getSingleResource('NRU')}
             description={LangHelper.getSingleResource('NewlyRegisteredUsers')}
             value={newlyRegisterUsers}
@@ -90,8 +94,19 @@ export const PerformanceHighlightWidget = props => {
         />)
     }
 
+    const _renderPopupTitle = () => {
+        const { selectedBaseCurrency, reportDate } = globalFilter;
+        const reportName = `${LangHelper.getSingleResource('NRU')} - ${LangHelper.getSingleResource('NewlyRegisteredUsers')}`;
+        const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
+        const reportDateRange = DateTimeHelper.formatDateRangeToString(reportDate.fromDate, reportDate.toDate);
+        return `${reportName}, ${reportDateRange}, ${displayCurrency}`;
+    }
+
     return (<Widget title={_title} isLoading={isLoading}>
         {performanceHighlightData && <div className="sticky-box-container">
+            {selectedBox && <Popup height={800} width={1400} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
+                <NewlyRegisterUsersDetail reportDate={globalFilter.reportDate} compareDate={globalFilter.compareDate} baseCurrency={globalFilter.selectedBaseCurrency} />
+            </Popup>}
             {_renderTotalUsersBox()}
             {_renderPaidUsersBox()}
             {_renderActiveUsersBox()}

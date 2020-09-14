@@ -45,7 +45,6 @@ export class FormFilter extends PureComponent {
         }
     }
 
-
     _renderCurrencySelectList() {
         const { selectedCurrency, setSelectedCurrency } = this.props;
         const currencyList = AppData.currencyList;

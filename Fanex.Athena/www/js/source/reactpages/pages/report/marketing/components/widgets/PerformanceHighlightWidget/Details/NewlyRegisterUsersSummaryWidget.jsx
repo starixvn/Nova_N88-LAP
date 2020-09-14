@@ -10,12 +10,12 @@ import NumberHelper from '../../../../libs/helpers/numberHelper';
 import { TotalNRUGridColumns, TotalNRUGridConfig, CampaignNRUGridColumns, CampaignNRUGridConfig, SignupNRUGridColumns, SignupNRUGridConfig, StyleRow, DigitsAmount } from '../../../../constants/gridConst';
 
 const NewlyRegisterUsersSummaryWidget = props => {
-    const { reportDate, compareDate, baseCurrency } = props;
+    const { reportDate, compareDate, baseCurrency, selectedBrand } = props;
     const [isLoading, setLoading] = useState(false);
     const [summaryData, setSummaryData] = useState(null);
 
     useEffect(() => {
-        const apiParams = DataService.getNewlyRegisterUsersSummaryAPIParams({ reportDate, compareDate, baseCurrency });
+        const apiParams = DataService.getNewlyRegisterUsersSummaryAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand });
         QueryService.fetchNewlyRegisterUsersSummaryData(apiParams,
             () => {
                 setLoading(true)

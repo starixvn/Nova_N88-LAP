@@ -36,8 +36,8 @@ export default class DataService {
     }
 
     static getNewlyRegisterUsersDetailAPIParams = filterData => {
-        const { reportDate, pagingOption, sortInfo, ...rest } = filterData;
-        const commonParams = this.getCommonAPIParams({ reportDate });
+        const { reportDate, selectedBrand, pagingOption, sortInfo, ...rest } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate  });
         const params = {
             ...commonParams,
             ...sortInfo,

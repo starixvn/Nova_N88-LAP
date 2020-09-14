@@ -54,8 +54,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<dynamic> NewlyRegisterUsersSummary(NewlyRegisterUsersSummaryMetaModel metaModel)
         {
             var data = await _reportApiClient.PostAsync<dynamic>(NewlyRegisterUsersSummaryUrl, metaModel, Language).ConfigureAwait(false);
@@ -63,8 +62,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<dynamic> NewlyRegisterUsersDetails(NewlyRegisterUsersDetailsMetaModel metaModel)
         {
             var data = await _reportApiClient.PostAsync<dynamic>(NewlyRegisterUsersDetailsUrl, metaModel, Language).ConfigureAwait(false);
@@ -72,8 +70,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModel(BindLicenseeId = true)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<HttpResponseMessage> NewlyRegisterUsersExport(NewlyRegisterUsersExportMetaModel metaModel)
         {
             var response = await _reportApiClient.PostAsync(NewlyRegisterUsersExportUrl, metaModel, Language).ConfigureAwait(false);

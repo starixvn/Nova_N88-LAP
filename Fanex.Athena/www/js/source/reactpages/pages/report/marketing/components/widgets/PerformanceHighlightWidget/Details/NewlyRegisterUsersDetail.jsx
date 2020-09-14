@@ -7,11 +7,11 @@ import NewlyRegisterUsersDetailWidget from './NewlyRegisterUsersDetailWidget';
 import { DefaultSortInfo } from '../../../../constants/gridConst';
 
 const NewlyRegisterUsersDetail = props => {
-    const { reportDate, compareDate, baseCurrency } = props;
+    const { reportDate, compareDate, baseCurrency, selectedBrand } = props;
     const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState(DefaultSortInfo);
 
     const handleExportExcel = () => {
-        const exportParams = DataService.getNewlyRegisterUsersExportAPIParams({ reportDate, compareDate, baseCurrency, sortInfo: sortInfoDetailWidget });
+        const exportParams = DataService.getNewlyRegisterUsersExportAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, sortInfo: sortInfoDetailWidget });
         QueryService.exportNewlyRegisterUsersData(exportParams);
     }
 
@@ -32,8 +32,8 @@ const NewlyRegisterUsersDetail = props => {
         <div className="highlight-detail">
             {_renderCaption()}
             <div className="widget-list">
-                <NewlyRegisterUsersSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} />
-                <NewlyRegisterUsersDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} />
+                <NewlyRegisterUsersSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
+                <NewlyRegisterUsersDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
             </div>
         </div>
     )

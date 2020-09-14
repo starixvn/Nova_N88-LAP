@@ -8,7 +8,7 @@ import QueryService from '../../../../libs/services/queryService';
 import { DetailNRUGridColumns, DetailNRUGridConfig, DefaultPagingOption, StyleRow , DigitsAmount} from '../../../../constants/gridConst';
 
 const NewlyRegisterUsersDetailWidget = props => {
-    const { reportDate, baseCurrency, sortInfo, onSort } = props;
+    const { reportDate, baseCurrency, selectedBrand, sortInfo, onSort } = props;
     const [isLoading, setLoading] = useState(false);
     const [detailData, setDetailData] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
@@ -16,7 +16,7 @@ const NewlyRegisterUsersDetailWidget = props => {
     const MAX_WIDTH = Math.min(document.body.clientWidth, 1360);
 
     useEffect(() => {
-        const apiParams = DataService.getNewlyRegisterUsersDetailAPIParams({ reportDate, baseCurrency, pagingOption, sortInfo });
+        const apiParams = DataService.getNewlyRegisterUsersDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(null, null, data.totalRows);
             setPagingOption(newPagingOption);
@@ -41,7 +41,7 @@ const NewlyRegisterUsersDetailWidget = props => {
             sortbyId: sortBy,
             isSortAsc: sortType === 'asc'
         }
-        const apiParams = DataService.getNewlyRegisterUsersDetailAPIParams({ reportDate, baseCurrency, pagingOption, sortInfo });
+        const apiParams = DataService.getNewlyRegisterUsersDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(null, null, data.totalRows)
             setPagingOption(newPagingOption);
@@ -50,7 +50,7 @@ const NewlyRegisterUsersDetailWidget = props => {
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
-        const apiParams = DataService.getNewlyRegisterUsersDetailAPIParams({ reportDate, baseCurrency, pagingOption: { PageIndex: pageIndex, PageSize: pageSize }, sortInfo });
+        const apiParams = DataService.getNewlyRegisterUsersDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption: { PageIndex: pageIndex, PageSize: pageSize }, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows)
             setPagingOption(newPagingOption);

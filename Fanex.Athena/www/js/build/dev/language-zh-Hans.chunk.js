@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 8/21/2020 5:25:02 PM
+﻿// Generated at: 9/15/2020 9:48:13 AM
 window._language_zh_Hans = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -303,7 +303,7 @@ EventDate:"赛事日期",
 ExcludeTestData:"排除测试数据",
 ExportToExcel:"导出至Excel",
 ExternalId:"用户名",
-ExternalIdOrSystemId:"或系统帐号(支援前坠搜寻)",
+ExternalIdOrSystemId:"或系统帐号(支援前缀搜寻)",
 Fail:"失败",
 Feb:"二月",
 February:"二月",

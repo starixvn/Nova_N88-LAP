@@ -14,12 +14,6 @@
         label = c.Value
     }).ToList();
 
-    var selectedCurrency = string.Join(",", Model.Brands.SelectMany(
-        x => x.TpCurrencyList.Select(y => y.Key))
-        .Distinct()
-        .ToArray()
-        );
-
     var brands = Model.Brands.Select(x => new
     {
         id = x.Id,
@@ -44,17 +38,17 @@
     drilldownInOriginalCurrency: false,
     isLoading: false,
     selectedBaseCurrency: '@Model.BaseCurrency',
-    selectedCurrency: '@selectedCurrency',
+    selectedCurrency: '@string.Join(",", Model.OwnBrand.TpCurrencyList.Select(x => x.Key))',
     selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
     selectedBrand: '@Model.OwnBrand.Id',
     userNameFilterOption: 1,
     username: "",
     };
 
-    window._AppData = {
-    brands: @Html.Raw(brands.ToJson()),
+        window._AppData = {
+            brands: @Html.Raw(brands.ToJson()),
     dateConstraint: {
-    limitedMonthRange: @Model.LimitMonthRange,
+                limitedMonthRange: @Model.LimitMonthRange,
     minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
     maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
     },
@@ -64,6 +58,6 @@
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
     }
 
-}
+    }
 <div id="app-container">
 </div>

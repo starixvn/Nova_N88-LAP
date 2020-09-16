@@ -46,7 +46,9 @@ const HighlightBox = props => {
          </>)
     }
 
-    return (<div className="sticky-box" style={{ cursor: onViewDetail ? 'pointer' : 'normal' }} onClick={() => onViewDetail && onViewDetail()}>
+    return (<div className="sticky-box" title={onViewDetail && LangHelper.getSingleResource('TooltipViewDetails')}
+        style={{ cursor: onViewDetail ? 'pointer' : 'normal' }}
+        onClick={() => onViewDetail && onViewDetail()}>
         {_renderTitle()}
         {_renderDescription()}
         {_renderValue()}

@@ -2983,4 +2983,7 @@
     <value>Signup URL</value>
     <comment>137395</comment>
   </data>
+  <data name="TooltipViewDetails" xml:space="preserve">
+    <value>Click to view more details</value>
+  </data>
 </root>

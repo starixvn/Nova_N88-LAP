@@ -2298,9 +2298,6 @@
     <value># Unique Players</value>
     <comment>#133254</comment>
   </data>
-  <data name="ProductSXG" xml:space="preserve">
-    <value>性感百家</value>
-  </data>
   <data name="IncludeTestData" xml:space="preserve">
     <value>Include Test Data</value>
     <comment>133254</comment>
@@ -2431,5 +2428,9 @@
   <data name="SignupUrl" xml:space="preserve">
     <value>Signup URL</value>
     <comment>137395</comment>
+  </data>
+  <data name="ProductSXG" xml:space="preserve">
+    <value>AE 真人</value>
+    <comment>#141118</comment>
   </data>
 </root>

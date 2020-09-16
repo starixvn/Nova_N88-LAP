@@ -4,11 +4,13 @@ export const Url = {
     avgRevenue: 'Api/MarketingReport/AvgRevenue',
     newlyRegisterUsersSummary: 'Api/MarketingReport/NewlyRegisterUsersSummary',
     newlyRegisterUsersDetail: 'Api/MarketingReport/NewlyRegisterUsersDetails',
-    newlyRegisterUsersExport: 'Api/MarketingReport/NewlyRegisterUsersExport'
+    newlyRegisterUsersExport: 'Api/MarketingReport/NewlyRegisterUsersExport',
+    performanceHighlightExport: 'Api/MarketingReport/PerformanceHighlightExport'
 }
 
 export const FileNameExport = {
-    newlyRegisterUsers: 'NewlyRegisterUsers.xls'
+    newlyRegisterUsers: 'MarketingReport_NewlyRegisterUsers.xls',
+    performanceHighlight: 'MarketingReport_BusinessPerformanceHighlight.xls'
 }
 
 export const errorResponse = {

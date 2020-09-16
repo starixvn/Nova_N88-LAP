@@ -3,13 +3,18 @@ import Loader from '@jsroot/components/Loader';
 import LangHelper from '@jsroot/lib/langHelper';
 
 export const Widget = props => {
-    const { title, isLoading, children } = props;
+    const { title, isLoading, handleExportExcel, children } = props;
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     const _renderTitle = () => {
         return (<div className="widget-title">
             <i className="icon-arrow" style={{ transform: isCollapsed ? 'rotate(-180deg)' : null }} onClick={() => setIsCollapsed(!isCollapsed)}></i>
             <span>{title}</span>
+            {handleExportExcel && <span className="caret-block">
+                <span className="icon-excel-wrapper" onClick={handleExportExcel}>
+                    <i className="icon-excel" title={LangHelper.getSingleResource('ExportToExcel')}></i>
+                </span>
+            </span>}
         </div>)
     }
 

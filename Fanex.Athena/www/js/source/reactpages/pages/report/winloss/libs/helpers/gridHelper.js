@@ -24,7 +24,7 @@ export default class GridHelper {
     }
 
     static renderBody(dataList, objectColumns) {
-        return dataList.map(rowData => <GridRow key={`row-${rowData[columnKeys.group]}-${rowData.parent || ''}`} rowData={rowData} objectColumns={objectColumns} />);
+        return dataList.map(rowData => <GridRow key={`row-${rowData.key}-${rowData.parent || ''}`} rowData={rowData} objectColumns={objectColumns} />);
     }
     
     static renderFooter(totalData, objectColumns) {

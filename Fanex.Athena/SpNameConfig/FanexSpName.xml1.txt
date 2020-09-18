@@ -7,6 +7,7 @@
 // Fanex.Athena\SpNameConfig\FanexSpName.PROBWING.xml
 // Fanex.Athena\SpNameConfig\FanexSpName.PRO.xml
 // Fanex.Athena\SpNameConfig\FanexSpName.SIT.xml
+// Fanex.Athena\SpNameConfig\FanexSpName.UATGOAL123.xml
 // Fanex.Athena\SpNameConfig\FanexSpName.UAT.xml
 // Fanex.Athena\SpNameConfig\FanexSpName.LOCAL.xml
 // Fanex.Athena\SpNameConfig\FanexSpName.xml

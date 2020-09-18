@@ -19,6 +19,10 @@
         },
 		new SiteInfo
         {
+            SiteEnvironment = SiteEnvironment.UATGOAL123
+        },
+		new SiteInfo
+        {
             SiteEnvironment = SiteEnvironment.SIT
         },
         new SiteInfo
@@ -45,6 +49,7 @@
 		DEV,
         LOCAL,
         UAT,
+		UATGOAL123,
 		SIT,
         PRO,
 		PROBWING,

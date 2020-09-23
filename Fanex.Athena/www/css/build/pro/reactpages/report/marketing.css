@@ -773,6 +773,7 @@
   .marketing-report .widget .widget-title {
     background: #a2beba;
     padding: 10px 15px;
+    position: relative;
     color: #2c2c2c;
     font-size: 12px;
     font-weight: bold;
@@ -791,6 +792,8 @@
     text-align: center; }
   .marketing-report .widget .loading-process {
     position: absolute !important; }
+  .marketing-report .widget .caret-block {
+    bottom: 5px; }
 
 .marketing-report .sticky-box-container {
   display: flex;

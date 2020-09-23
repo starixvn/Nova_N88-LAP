@@ -3870,6 +3870,7 @@ const Widget = props => {
   const {
     title,
     isLoading,
+    handleExportExcel,
     children
   } = props;
   const [isCollapsed, setIsCollapsed] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
@@ -3883,7 +3884,15 @@ const Widget = props => {
         transform: isCollapsed ? 'rotate(-180deg)' : null
       },
       onClick: () => setIsCollapsed(!isCollapsed)
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, title));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, title), handleExportExcel && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "caret-block"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "icon-excel-wrapper",
+      onClick: handleExportExcel
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon-excel",
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('ExportToExcel')
+    }))));
   };
 
   const _renderNoData = () => {
@@ -4514,7 +4523,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../common/HighlightBox */ "./www/js/source/reactpages/pages/report/marketing/components/common/HighlightBox.jsx");
 /* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
 /* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
-/* harmony import */ var _Details_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Details/NewlyRegisterUsersDetail */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersDetail.jsx");
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _Details_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Details/NewlyRegisterUsersDetail */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersDetail.jsx");
+
 
 
 
@@ -4649,9 +4660,24 @@ const PerformanceHighlightWidget = props => {
     return `${reportName}, ${reportDateRange}, ${displayCurrency}`;
   };
 
+  const _handleExportExcel = () => {
+    const {
+      selectedBrand,
+      reportDate,
+      selectedBaseCurrency
+    } = globalFilter;
+    const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_10__["default"].getPerformanceHighlightExportAPIParams({
+      selectedBrand,
+      reportDate,
+      selectedBaseCurrency
+    });
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_11__["default"].exportPerformanceHighlightData(exportParams);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_7__["default"], {
     title: _title,
-    isLoading: isLoading
+    isLoading: isLoading,
+    handleExportExcel: _handleExportExcel
   }, performanceHighlightData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box-container"
   }, selectedBox && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_popup__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -4660,7 +4686,7 @@ const PerformanceHighlightWidget = props => {
     isShow: true,
     title: _renderPopupTitle(),
     onClose: () => setSelectedBox(null)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Details_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Details_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_12__["default"], {
     reportDate: globalFilter.reportDate,
     compareDate: globalFilter.compareDate,
     baseCurrency: globalFilter.selectedBaseCurrency,
@@ -5224,10 +5250,12 @@ const Url = {
   avgRevenue: 'Api/MarketingReport/AvgRevenue',
   newlyRegisterUsersSummary: 'Api/MarketingReport/NewlyRegisterUsersSummary',
   newlyRegisterUsersDetail: 'Api/MarketingReport/NewlyRegisterUsersDetails',
-  newlyRegisterUsersExport: 'Api/MarketingReport/NewlyRegisterUsersExport'
+  newlyRegisterUsersExport: 'Api/MarketingReport/NewlyRegisterUsersExport',
+  performanceHighlightExport: 'Api/MarketingReport/PerformanceHighlightExport'
 };
 const FileNameExport = {
-  newlyRegisterUsers: 'NewlyRegisterUsers.xls'
+  newlyRegisterUsers: 'MarketingReport_NewlyRegisterUsers.xls',
+  performanceHighlight: 'MarketingReport_BusinessPerformanceHighlight.xls'
 };
 const errorResponse = {
   data: null,
@@ -5714,6 +5742,24 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", filterData => {
   return params;
 });
 
+_defineProperty(DataService, "getPerformanceHighlightExportAPIParams", filterData => {
+  const {
+    selectedBrand,
+    reportDate,
+    selectedBaseCurrency
+  } = filterData;
+  const commonParams = DataService.getCommonAPIParams({
+    selectedBrand,
+    reportDate
+  });
+
+  const params = _objectSpread({}, commonParams, {
+    baseCurrency: selectedBaseCurrency
+  });
+
+  return params;
+});
+
 _defineProperty(DataService, "getNewlyRegisterUsersSummaryAPIParams", filterData => {
   const {
     baseCurrency
@@ -5847,6 +5893,19 @@ class QueryService {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].newlyRegisterUsers);
+    }
+
+    ;
+  }
+
+  static async exportPerformanceHighlightData(params) {
+    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlightExport, params);
+    const noContentStatusCode = 204;
+
+    if (response.status === noContentStatusCode) {
+      alert(LangHelper.getSingleResource("NoInfo"));
+    } else {
+      _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].performanceHighlight);
     }
 
     ;

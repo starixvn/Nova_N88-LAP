@@ -5,6 +5,7 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
+    using System.Linq;
     using System.Web.Mvc;
 
     [FunctionAuthorization(PermissionKeys.ReportMarketing)]
@@ -35,6 +36,8 @@
             {
                 BaseCurrency = DefaultBaseCurrency,
                 TpProducts = tpProducts,
+                OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
+                Brands = BrandList,
                 Today = reportSetting.MaxDate.AddDays(1),
                 MaxDate = reportSetting.MaxDate,
                 MinDate = reportSetting.MinDate,

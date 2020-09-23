@@ -105,7 +105,8 @@ export const PerformanceHighlightWidget = props => {
     return (<Widget title={_title} isLoading={isLoading}>
         {performanceHighlightData && <div className="sticky-box-container">
             {selectedBox && <Popup height={800} width={1400} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
-                <NewlyRegisterUsersDetail reportDate={globalFilter.reportDate} compareDate={globalFilter.compareDate} baseCurrency={globalFilter.selectedBaseCurrency} />
+                <NewlyRegisterUsersDetail reportDate={globalFilter.reportDate} compareDate={globalFilter.compareDate} 
+                    baseCurrency={globalFilter.selectedBaseCurrency} selectedBrand={globalFilter.selectedBrand} />
             </Popup>}
             {_renderTotalUsersBox()}
             {_renderPaidUsersBox()}

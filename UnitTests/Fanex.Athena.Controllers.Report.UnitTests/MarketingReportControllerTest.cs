@@ -11,6 +11,7 @@
     using NSubstitute;
     using NUnit.Framework;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class MarketingReportControllerTest : CultureBaseControllerHelperTest
     {
@@ -70,6 +71,8 @@
             {
                 BaseCurrency = DefaultUserSession.DefaultBaseCurrency,
                 TpProducts = fakeTpProducts,
+                OwnBrand = DefaultUserSession.BrandList.First(_ => _.Id == DefaultLicenseeSession.LicenseeId),
+                Brands = DefaultUserSession.BrandList,
                 Today = fakeReportSetting.MaxDate.AddDays(1),
                 MaxDate = fakeReportSetting.MaxDate,
                 MinDate = fakeReportSetting.MinDate,

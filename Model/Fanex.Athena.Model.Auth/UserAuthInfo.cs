@@ -54,5 +54,8 @@
         public string DefaultBaseCurrency { get; set; } = string.Empty;
 
         public IList<MenuItem> MenuItemList { get; set; }
+
+        public bool SupportMultiBrand { get; set; }
+        public IEnumerable<Brand> BrandList { get; set; }
     }
 }

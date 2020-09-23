@@ -7,18 +7,20 @@ import { columnKeys } from '../../constants/gridContants';
 
 export const GroupCell = props => {
     const { rowData, setGridData, gridData, ...rest } = props;
-    const name = rowData[columnKeys.group];
+    const key = rowData.key;
 
     const _isAllowedDrillDown = rowData.drillDownData && rowData.drillDownData.length > 0;
     const _isDrillDown = rowData.isDrillDown || false; 
 
     const _handleDrillDown = () => {
+        
         const dataList = gridData.dataList;
-        const rowIndex = dataList.findIndex(_ => _[columnKeys.group] === name);
+        const rowIndex = dataList.findIndex(_ => _.key === key);
         if (rowIndex === -1) {
             return;
         }
 
+        
         const newDataList = [...dataList];
         if (_isDrillDown) {
             newDataList.splice(rowIndex + 1, rowData.drillDownData.length)
@@ -39,8 +41,8 @@ export const GroupCell = props => {
         setGridData(newGridData);
     }
 
-    return (<Cell key={'group-cell-' + name} {...rest}>
-        {name}
+    return (<Cell key={`group-cell-${key}`} {...rest}>
+        {rowData[columnKeys.group]}
         {_isAllowedDrillDown && <i className={`icon-arrow right ${_isDrillDown ? 'arrow-down' : 'arrow-right'}`} onClick={_handleDrillDown}></i>}
     </Cell>)
 }

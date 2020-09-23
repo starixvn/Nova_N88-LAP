@@ -4,6 +4,9 @@ export const SET_GRID_DATA = "SET_GRID_DATA"
 /* Product */
 export const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
 
+/* Brand */
+export const SET_SELECTED_BRAND = "SET_SELECTED_BRAND";
+
 /* Base Currency */
 export const SET_SELECTED_BASECURRENCY = "SET_SELECTED_BASECURRENCY";
 export const SET_BASECURRENCY_LIST = "SET_BASECURRENCY_LIST";

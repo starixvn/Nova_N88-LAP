@@ -25,7 +25,8 @@
 
 @section globaljscode{
     window.initialState = {
-    selectedBaseCurrency: '@Model.BaseCurrency'
+        selectedBaseCurrency: '@Model.BaseCurrency',
+        selectedBrand: @Model.OwnBrand.Id
     };
 
     window._AppData = {
@@ -35,6 +36,7 @@
             maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
         },
         baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+        brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
         productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
         defaultSelectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
         today: '@Model.Today.ToString("MM/dd/yyyy")'

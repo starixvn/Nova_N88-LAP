@@ -6739,6 +6739,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to view more details.
+        /// </summary>
+        public static string TooltipViewDetails {
+            get {
+                return ResourceManager.GetString("TooltipViewDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
         public static string Total {

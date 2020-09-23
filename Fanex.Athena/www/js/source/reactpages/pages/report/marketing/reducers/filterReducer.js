@@ -1,6 +1,7 @@
 import { SET_VIEW_MODE, SET_REPORT_DATE, SET_COMPARE_DATE, SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER } from '../actions/types';
 import createReducer from '@jsroot/lib/createReducer.js';
 import { selectedBaseCurrency } from '@jsroot/reducers/baseCurrencyReducer';
+import { selectedBrand } from '@jsroot/reducers/brandReducer';
 
 const viewMode = createReducer({}, {
    [SET_VIEW_MODE](state, action){
@@ -33,6 +34,7 @@ const isCollapsedFormFilter =  createReducer(null, {
 })
 
 export default {
+   selectedBrand,
    selectedBaseCurrency,
    viewMode,
    reportDate,

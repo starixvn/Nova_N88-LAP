@@ -19,6 +19,8 @@
     using Fanex.Athena.Extension;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Extension.Utility.Internal;
+    using Fanex.Athena.Service.Core.Common;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.PlayerManagement;
@@ -175,6 +177,10 @@
              .OnRelease(x => x.Dispose());
             builder.RegisterType<SessionStorage>().As<ISessionStorage>().SingleInstance();
             builder.RegisterType<SessionService>().As<ISessionService>().SingleInstance();
+
+            builder.RegisterType<TpService>().As<ITpService>().SingleInstance();
+            builder.RegisterType<BrandService>().As<IBrandService>().SingleInstance();
+
             builder.Register<ReportApiClient>(x => new ReportApiClient(
                  x.ResolveNamed<HttpClient>("ReportAPIClient")
                 )).As<IReportApiClient>().SingleInstance();

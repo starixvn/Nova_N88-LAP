@@ -28,7 +28,11 @@
             OnUserId = 999,
             FunctionList = new List<Function>(),
             DefaultBaseCurrency = "EUR",
-            CurrencyAgentList = new Dictionary<int, int[]>()
+            CurrencyAgentList = new Dictionary<int, int[]>(),
+            BrandList = new List<Brand>
+            {
+                new Brand { Id = 402, Name = "N88" }
+            }
         };
 
         protected static readonly LicenseeAuthInfo DefaultLicenseeSession = new LicenseeAuthInfo

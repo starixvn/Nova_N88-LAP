@@ -12,8 +12,8 @@ import FilterHelper from '../libs/helpers/filterHelper';
 import TimePeriodSelect from './common/TimePeriodSelect';
 
 export const FormFilter = props => {
-    const { setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter, setCollapseFormFilter,
-        selectedBaseCurrency, reportDate, compareDate, viewMode
+    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter, setCollapseFormFilter,
+        selectedBrand, selectedBaseCurrency, reportDate, compareDate, viewMode
     } = props;
 
     const _renderBaseCurrencySelectList = () => {
@@ -23,6 +23,15 @@ export const FormFilter = props => {
                 value={selectedBaseCurrency}
                 options={baseCurrencyList}
                 onChange={(item) => setSelectedBaseCurrency(item.value)} />
+        );
+    }
+
+    const _renderBrandSelectList = () => {
+        return (
+            <Select instanceId="brandList"
+                value={selectedBrand}
+                options={AppData.brandOptions}
+                onChange={(item) => setSelectedBrand(item.value)} />
         );
     }
 
@@ -38,9 +47,9 @@ export const FormFilter = props => {
     const _onChangeReportDateSelection = React.useCallback(selectedRange => {
         setReportDate(selectedRange);
         setCompareDate(FilterHelper.CompareDateGenerateRangeSelections[CompareDateOptionValues.previousPeriod](selectedRange)); //reset to default selection
-    })
+    }, [])
 
-    const _onChangeCompareDateSelection = React.useCallback(selectedRange => setCompareDate(selectedRange))
+    const _onChangeCompareDateSelection = React.useCallback(selectedRange => setCompareDate(selectedRange), [])
 
     const _renderReportDateSelection = () => {
         return (<TimePeriodSelect
@@ -62,13 +71,19 @@ export const FormFilter = props => {
     }
 
     const _onSubmit = () => {
-        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency };
+        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency, selectedBrand };
         setGlobalFilter(globalFilter);
     }
 
     return (<React.Fragment>
         <CollapsiblePanel className="page-filter" onCollapse={() => setCollapseFormFilter(true)} onExpand={() => setCollapseFormFilter(false)}>
             <div className="row">
+                {AppData.brandOptions && AppData.brandOptions.length > 1 && <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-1">
+                    <div className="form-group">
+                        <label className="label-text">{LangHelper.getSingleResource("Brand")}</label>
+                        {_renderBrandSelectList()}
+                    </div>
+                </div>}
                 <div className="col-12 col-md-6 col-sm-6 col-lg-5 col-xl-3">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("ReportDate")}</label>
@@ -109,8 +124,9 @@ export const FormFilter = props => {
 }
 
 function mapStateToProps(state) {
-    const { selectedBaseCurrency, viewMode, reportDate, compareDate } = state;
+    const { selectedBrand, selectedBaseCurrency, viewMode, reportDate, compareDate } = state;
     return Object.assign({}, {
+        selectedBrand,
         selectedBaseCurrency,
         viewMode,
         reportDate,
@@ -119,8 +135,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter, setCollapseFormFilter } = ActionCreators;
+    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter, setCollapseFormFilter } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
+        setSelectedBrand,
         setSelectedBaseCurrency,
         setViewMode,
         setReportDate,

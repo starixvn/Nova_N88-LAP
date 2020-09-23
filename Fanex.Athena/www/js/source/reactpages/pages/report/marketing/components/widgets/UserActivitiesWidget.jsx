@@ -17,7 +17,7 @@ let countRender = 0;
 
 export const UserActivitiesWidget = props => {
     const { globalFilter, userActivitiesData, fetchUserActivitiesData } = props;
-    const { viewMode } = globalFilter;
+    const { selectedBrand, viewMode } = globalFilter;
     const [reportDate, setReportDate] = useState(globalFilter.reportDate);
     const [isLoading, setLoading] = useState(false);
     const [chartMode, setChartMode] = useState(ChartMode.Bar);
@@ -39,7 +39,7 @@ export const UserActivitiesWidget = props => {
 
     const _reloadData = reportDate => {
         setLoading(true);
-        const apiParams = DataService.getUserActivitiesAPIParams({ reportDate, viewMode });
+        const apiParams = DataService.getUserActivitiesAPIParams({ selectedBrand, reportDate, viewMode });
         fetchUserActivitiesData(apiParams, () => setLoading(false));
     }
 

@@ -2429,6 +2429,9 @@
     <value>Signup URL</value>
     <comment>137395</comment>
   </data>
+  <data name="TooltipViewDetails" xml:space="preserve">
+    <value>Click to view more details</value>
+  </data>
   <data name="ProductSXG" xml:space="preserve">
     <value>AE 真人</value>
     <comment>#141118</comment>

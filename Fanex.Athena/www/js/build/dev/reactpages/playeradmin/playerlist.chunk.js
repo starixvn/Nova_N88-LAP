@@ -337,7 +337,7 @@ const searchPlayer = param => dispatch => {
     dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setPlayerList"])(playerList));
     dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setIsFetchingData"])(false));
 
-    const pagingOption = _objectSpread(_objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"]), {}, {
+    const pagingOption = _objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"], {
       PageIndex: param.pageIndex,
       PageSize: param.pageSize,
       TotalItem: totalItem
@@ -363,7 +363,7 @@ const getSinglePlayer = param => dispatch => {
       dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setPlayerList"])([result]));
       dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setIsFetchingData"])(false));
 
-      const pagingOption = _objectSpread(_objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"]), {}, {
+      const pagingOption = _objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"], {
         TotalItem: 1
       });
 
@@ -805,7 +805,7 @@ function mapStateToProps(state) {
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AppContainer)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AppContainer)));
 
 /***/ }),
 
@@ -856,7 +856,7 @@ const Content = props => {
       searchPlayer
     } = props;
 
-    const newParam = _objectSpread(_objectSpread({}, param), {}, {
+    const newParam = _objectSpread({}, param, {
       pageIndex,
       pageSize
     });
@@ -1144,7 +1144,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     this.allCurrencyString = props.currencyList.map(c => c.Id).join(',');
     this.allSpecialLevel = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["specialLevelListWithColor"]).map(item => item).join(',');
     this.userGuide = this._renderUserGuide();
-    this.userNameRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+    this.userNameRef = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     this.state = {
       isValidUserName: false,
       isValidsystemId: false,
@@ -1221,7 +1221,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     const actualSpecialLevel = specialLevel.trim();
     const isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
 
-    const param = _objectSpread(_objectSpread({}, restParam), {}, {
+    const param = _objectSpread({}, restParam, {
       userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(userName),
       systemId: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(systemId),
       searchOption: isAdvancedSearch + 1,
@@ -1625,7 +1625,7 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
       const selectedKeyList = selectedItemsKey.split(',');
       const newColumnList = displayedColumnList.map(item => {
         const isShow = selectedKeyList.indexOf(item.key) !== -1;
-        return item.show === isShow ? item : _objectSpread(_objectSpread({}, item), {}, {
+        return item.show === isShow ? item : _objectSpread({}, item, {
           show: isShow
         });
       });
@@ -3151,7 +3151,7 @@ const UserNameCell = props => {
     event.preventDefault();
 
     if (contextMenu.isOpen) {
-      setContextMenu(_objectSpread(_objectSpread({}, contextMenu), {}, {
+      setContextMenu(_objectSpread({}, contextMenu, {
         isOpen: false
       }));
     }
@@ -3247,7 +3247,7 @@ const siteSetting = {
   isAllowedBA: false
 };
 
-const defaultState = _objectSpread(_objectSpread({}, window.initialState), {}, {
+const defaultState = _objectSpread({}, window.initialState, {
   displayedColumnList,
   hasBaPermission,
   siteSetting,
@@ -4217,7 +4217,7 @@ class GridInteractionService {
     }
 
     if (itemIndex !== -1) {
-      const newPlayerItem = _objectSpread(_objectSpread({}, playerList[itemIndex]), {}, {
+      const newPlayerItem = _objectSpread({}, playerList[itemIndex], {
         [fieldName]: value
       });
 
@@ -4230,7 +4230,7 @@ class GridInteractionService {
   static updatePlayerWithBaStatus(playerList, ibcCustId, isBa, oddsGroup) {
     const itemIndex = playerList.findIndex(x => x.IbcCustId === ibcCustId);
 
-    const newPlayerItem = _objectSpread(_objectSpread({}, playerList[itemIndex]), {}, {
+    const newPlayerItem = _objectSpread({}, playerList[itemIndex], {
       BaStatus: isBa,
       OddsGroup: oddsGroup
     });
@@ -5110,7 +5110,7 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
   }
 
   _buildCommonAjaxConfig(configOption, apiActionUrl, params) {
-    const commonConfig = _objectSpread(_objectSpread({}, configOption), {}, {
+    const commonConfig = _objectSpread({}, configOption, {
       url: apiActionUrl
     });
 
@@ -5126,7 +5126,7 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
     } : {
       data: qs__WEBPACK_IMPORTED_MODULE_4___default.a.stringify(params)
     };
-    return _objectSpread(_objectSpread({}, config), paramConfig);
+    return _objectSpread({}, config, {}, paramConfig);
   }
 
   _fetchDataWithToken(sysType, action, params, configOption) {
@@ -5138,7 +5138,7 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
 
       const headerConfig = _objectSpread({}, configOption.headers);
 
-      const configWithXToken = _objectSpread(_objectSpread({}, commonAjaxConfig), {}, {
+      const configWithXToken = _objectSpread({}, commonAjaxConfig, {
         headers: _objectSpread({}, headerConfig)
       });
 
@@ -5147,7 +5147,7 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
   }
 
   fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
-    const config = _objectSpread(_objectSpread({}, defaultAjaxConfig), configOption);
+    const config = _objectSpread({}, defaultAjaxConfig, {}, configOption);
 
     if (sysType === _constants_configInfo__WEBPACK_IMPORTED_MODULE_1__["systemType"].newAdmin) {
       const relativeUrl = this._baseUrl + action;
@@ -5197,7 +5197,7 @@ const toggleLoader = show => {
 /*!***************************************************!*\
   !*** ./www/js/source/reactpages/actions/types.js ***!
   \***************************************************/
-/*! exports provided: FETCH_DATA, SET_GRID_DATA, SET_SELECTED_PRODUCT, SET_SELECTED_BASECURRENCY, SET_BASECURRENCY_LIST, SET_SELECTED_CURRENCY, TOGGLE_LOADER, CHANGE_IS_EXCLUDE_TEST, USER_GUIDE_CONTENT, SET_DATE_RANGE, GET_DATE_CONSTRAINT, CHANGE_IS_CONVERT_ALL, SET_SELECTED_STATUS, SET_SELECTED_PLATFORM, SET_SELECTED_LIVESTATUS, SET_USERNAME, SET_REQUEST_PARAM, SET_REPORT_TITLE, SET_PAGING_OPTION, SET_SORT_OPTION */
+/*! exports provided: FETCH_DATA, SET_GRID_DATA, SET_SELECTED_PRODUCT, SET_SELECTED_BRAND, SET_SELECTED_BASECURRENCY, SET_BASECURRENCY_LIST, SET_SELECTED_CURRENCY, TOGGLE_LOADER, CHANGE_IS_EXCLUDE_TEST, USER_GUIDE_CONTENT, SET_DATE_RANGE, GET_DATE_CONSTRAINT, CHANGE_IS_CONVERT_ALL, SET_SELECTED_STATUS, SET_SELECTED_PLATFORM, SET_SELECTED_LIVESTATUS, SET_USERNAME, SET_REQUEST_PARAM, SET_REPORT_TITLE, SET_PAGING_OPTION, SET_SORT_OPTION */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5205,6 +5205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_DATA", function() { return FETCH_DATA; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_GRID_DATA", function() { return SET_GRID_DATA; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_PRODUCT", function() { return SET_SELECTED_PRODUCT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BRAND", function() { return SET_SELECTED_BRAND; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BASECURRENCY", function() { return SET_SELECTED_BASECURRENCY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_BASECURRENCY_LIST", function() { return SET_BASECURRENCY_LIST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_CURRENCY", function() { return SET_SELECTED_CURRENCY; });
@@ -5227,6 +5228,9 @@ const SET_GRID_DATA = "SET_GRID_DATA";
 /* Product */
 
 const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
+/* Brand */
+
+const SET_SELECTED_BRAND = "SET_SELECTED_BRAND";
 /* Base Currency */
 
 const SET_SELECTED_BASECURRENCY = "SET_SELECTED_BASECURRENCY";
@@ -5284,7 +5288,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const CheckBox = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
+const CheckBox = react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "checkbox-group",
     ref: ref
@@ -5378,7 +5382,7 @@ const defaultProps = {
 };
 DropdownLabel.propTypes = propTypes;
 DropdownLabel.defaultProps = defaultProps;
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DropdownLabel));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DropdownLabel));
 ;
 
 /***/ }),
@@ -6595,12 +6599,12 @@ const bodyDecimalStyle = {
 const bodyCellStyle = {
   rowspan: bodyTextStyle,
   center: {
-    alignment: _objectSpread(_objectSpread({}, bodyTextStyle.alignment), {}, {
+    alignment: _objectSpread({}, bodyTextStyle.alignment, {
       horizontal: "center"
     })
   },
   left: {
-    alignment: _objectSpread(_objectSpread({}, bodyTextStyle.alignment), {}, {
+    alignment: _objectSpread({}, bodyTextStyle.alignment, {
       horizontal: "left"
     })
   },
@@ -6608,7 +6612,7 @@ const bodyCellStyle = {
     numFmt: "#,##0"
   },
   decimal: bodyDecimalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, bodyDecimalStyle), {}, {
+  negativeDecimal: _objectSpread({}, bodyDecimalStyle, {
     font: {
       color: {
         rgb: "FF0000"
@@ -6625,29 +6629,29 @@ const totalTextStyle = {
   }
 };
 
-const totalDecimalStyle = _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+const totalDecimalStyle = _objectSpread({}, totalTextStyle, {
   numFmt: "#,##0.00"
 });
 
 const totalCellStyle = {
   default: totalTextStyle,
-  rowspan: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  rowspan: _objectSpread({}, totalTextStyle, {
     alignment: {
       horizontal: "center",
       vertical: "center"
     }
   }),
-  center: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  center: _objectSpread({}, totalTextStyle, {
     alignment: {
       vertical: "center",
       horizontal: "center"
     }
   }),
-  number: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  number: _objectSpread({}, totalTextStyle, {
     numFmt: "#,##0"
   }),
   decimal: totalDecimalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, totalDecimalStyle), {}, {
+  negativeDecimal: _objectSpread({}, totalDecimalStyle, {
     font: {
       bold: true,
       color: {
@@ -6676,28 +6680,28 @@ const grandTotalTextStyle = {
   }
 };
 
-const decimalGrandTotalStyle = _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+const decimalGrandTotalStyle = _objectSpread({}, grandTotalTextStyle, {
   numFmt: "#,##0.00"
 });
 
 const grandTotalCellStyle = {
   default: grandTotalTextStyle,
-  rowspan: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  rowspan: _objectSpread({}, grandTotalTextStyle, {
     alignment: {
       horizontal: "center",
       vertical: "center"
     }
   }),
-  center: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  center: _objectSpread({}, grandTotalTextStyle, {
     alignment: {
       horizontal: "center"
     }
   }),
-  number: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  number: _objectSpread({}, grandTotalTextStyle, {
     numFmt: "#,##0"
   }),
   decimal: decimalGrandTotalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, decimalGrandTotalStyle), {}, {
+  negativeDecimal: _objectSpread({}, decimalGrandTotalStyle, {
     font: {
       bold: true,
       color: {
@@ -6705,7 +6709,7 @@ const grandTotalCellStyle = {
       }
     }
   }),
-  percent: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  percent: _objectSpread({}, grandTotalTextStyle, {
     numFmt: "#,##0.00%"
   })
 };
@@ -6894,7 +6898,7 @@ const updateObjectInArray = (array, indexItem, updatedItem) => {
       return item;
     }
 
-    return _objectSpread(_objectSpread({}, item), updatedItem);
+    return _objectSpread({}, item, {}, updatedItem);
   });
 };
 
@@ -7265,7 +7269,7 @@ const defaultOkButton = {
 };
 const generateDefaultConfirmOption = (content, onClose, submitProps, cancelProps, icon = predefinedIcons.warning, customOption = {}) => {
   return _objectSpread({
-    buttons: [_objectSpread(_objectSpread({}, defaultSubmitButton), submitProps), _objectSpread(_objectSpread({}, defaultCancelButton), cancelProps)],
+    buttons: [_objectSpread({}, defaultSubmitButton, {}, submitProps), _objectSpread({}, defaultCancelButton, {}, cancelProps)],
     icon,
     isShow: true,
     children: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {

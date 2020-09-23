@@ -104,8 +104,8 @@ export const PerformanceHighlightWidget = props => {
     }
 
     const _handleExportExcel = () => {
-        const { reportDate, selectedBaseCurrency } = globalFilter;
-        const exportParams = DataService.getPerformanceHighlightExportAPIParams({ reportDate, selectedBaseCurrency });
+        const { selectedBrand, reportDate, selectedBaseCurrency } = globalFilter;
+        const exportParams = DataService.getPerformanceHighlightExportAPIParams({ selectedBrand, reportDate, selectedBaseCurrency });
         QueryService.exportPerformanceHighlightData(exportParams);
     }
 

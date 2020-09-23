@@ -26,8 +26,8 @@ export default class DataService {
     }
 
     static getPerformanceHighlightExportAPIParams = filterData => {
-        const { reportDate, selectedBaseCurrency } = filterData;
-        const commonParams = this.getCommonAPIParams({ reportDate });
+        const { selectedBrand, reportDate, selectedBaseCurrency } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
         const params = {
             ...commonParams,
             baseCurrency: selectedBaseCurrency

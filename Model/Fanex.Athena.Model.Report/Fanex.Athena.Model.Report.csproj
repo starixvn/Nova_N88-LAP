@@ -142,6 +142,7 @@
     <Compile Include="MetaModel\Marketing\NewlyRegisterUsersDetailsMetaModel.cs" />
     <Compile Include="MetaModel\Marketing\NewlyRegisterUsersExportMetaModel.cs" />
     <Compile Include="MetaModel\Marketing\NewlyRegisterUsersSummaryMetaModel.cs" />
+    <Compile Include="MetaModel\Marketing\PerformanceHighlightExportMetaModel.cs" />
     <Compile Include="MetaModel\Marketing\PerformanceHighlightMetaModel.cs" />
     <Compile Include="MetaModel\Marketing\UserActivitiesMetaModel.cs" />
     <Compile Include="MetaModel\PromotionPrizeMetaModel.cs" />

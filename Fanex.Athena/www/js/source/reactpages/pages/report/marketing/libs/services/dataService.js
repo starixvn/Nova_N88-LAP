@@ -25,6 +25,17 @@ export default class DataService {
         return params;
     }
 
+    static getPerformanceHighlightExportAPIParams = filterData => {
+        const { selectedBrand, reportDate, selectedBaseCurrency } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
+        const params = {
+            ...commonParams,
+            baseCurrency: selectedBaseCurrency
+        }
+
+        return params;
+    }
+
     static getNewlyRegisterUsersSummaryAPIParams = filterData => {
         const { baseCurrency, ...rest } = filterData;
         const commonParams = this.getPerformanceHighlightAPIParams(rest);

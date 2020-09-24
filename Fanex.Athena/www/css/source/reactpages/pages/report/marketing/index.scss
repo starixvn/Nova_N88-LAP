@@ -75,6 +75,7 @@
         .widget-title {
             background: #a2beba;
             padding: 10px 15px;
+            position: relative;
             color: $black;
             font-size: 12px;
             font-weight: bold;
@@ -101,6 +102,10 @@
 
         .loading-process {
             position: absolute !important;
+        }
+
+        .caret-block {
+            bottom: 5px;
         }
     }
 

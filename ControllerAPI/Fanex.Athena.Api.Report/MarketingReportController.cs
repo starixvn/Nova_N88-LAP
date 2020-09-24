@@ -14,6 +14,7 @@
     public class MarketingReportController : BaseApiController
     {
         private const string PerformanceHighlightUrl = "Api/PerformanceHighlight/GetData";
+        private const string PerformanceHighlightExportUrl = "Api/PerformanceHighlight/ExportData";
         private const string UserActivitiesUrl = "Api/UserActivities/GetData";
         private const string AvgRevenueUrl = "Api/Revenue/GetAvgData";
         private const string NewlyRegisterUsersSummaryUrl = "Api/NewlyRegisterUsers/GetSummaryData";
@@ -35,6 +36,14 @@
         {
             var data = await _reportApiClient.PostAsync<dynamic>(PerformanceHighlightUrl, metaModel, Language).ConfigureAwait(false);
             return data;
+        }
+
+        [HttpPost]
+        [ValidationApiRequest(IsValidBrandId = true)]
+        public async Task<HttpResponseMessage> PerformanceHighlightExport(PerformanceHighlightExportMetaModel metaModel)
+        {
+            var response = await _reportApiClient.PostAsync(PerformanceHighlightExportUrl, metaModel, Language).ConfigureAwait(false);
+            return ToStreamResponse(response.Item1, response.Item2);
         }
 
         [HttpPost]

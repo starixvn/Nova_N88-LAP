@@ -9,6 +9,7 @@ import Widget from '../../common/Widget';
 import HighlightBox from '../../common/HighlightBox';
 import DateTimeHelper from '../../../libs/helpers/dateTimeHelper';
 import DataService from '../../../libs/services/dataService';
+import QueryService from '../../../libs/services/queryService';
 import NewlyRegisterUsersDetail from './Details/NewlyRegisterUsersDetail';
 
 export const PerformanceHighlightWidget = props => {
@@ -102,7 +103,13 @@ export const PerformanceHighlightWidget = props => {
         return `${reportName}, ${reportDateRange}, ${displayCurrency}`;
     }
 
-    return (<Widget title={_title} isLoading={isLoading}>
+    const _handleExportExcel = () => {
+        const { selectedBrand, reportDate, selectedBaseCurrency } = globalFilter;
+        const exportParams = DataService.getPerformanceHighlightExportAPIParams({ selectedBrand, reportDate, selectedBaseCurrency });
+        QueryService.exportPerformanceHighlightData(exportParams);
+    }
+
+    return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel}>
         {performanceHighlightData && <div className="sticky-box-container">
             {selectedBox && <Popup height={800} width={1400} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
                 <NewlyRegisterUsersDetail reportDate={globalFilter.reportDate} compareDate={globalFilter.compareDate} 

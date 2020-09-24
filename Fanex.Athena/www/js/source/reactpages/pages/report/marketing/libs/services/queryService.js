@@ -43,6 +43,16 @@ export default class QueryService {
         };
     }
 
+    static async exportPerformanceHighlightData(params) {
+        const response = await DataService.getFile(Url.performanceHighlightExport, params)
+        const noContentStatusCode = 204;
+        if (response.status === noContentStatusCode) {
+            alert(LangHelper.getSingleResource("NoInfo"));
+        } else {
+            Site.downloadFile(response.data, FileNameExport.performanceHighlight);
+        };
+    }
+
     static fetchData = async apiCall => {
         try {
             const response = await apiCall();

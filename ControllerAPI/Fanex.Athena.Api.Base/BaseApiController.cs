@@ -15,7 +15,6 @@
     using System.Web.Http;
 
     [CheckUMFilter]
-    [XFrameOptionApi]
     public class BaseApiController : ApiController
     {
         private readonly ILanguageService _langService;

@@ -56,6 +56,9 @@
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.2\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -146,11 +149,12 @@
     <Compile Include="Attributes\ApiBetListAuthorizationAttribute.cs" />
     <Compile Include="Attributes\ApiFunctionAuthorizationAttribute.cs" />
     <Compile Include="Attributes\ApiAutoBindMetaModelAttribute.cs" />
+    <Compile Include="Attributes\ApiValidateAntiForgeryAttribute.cs" />
     <Compile Include="Attributes\CustomApiAuthorizeAttribute.cs" />
     <Compile Include="Attributes\ValidationApiRequestAttribute.cs" />
-    <Compile Include="Attributes\XFrameOptionApiAttribute .cs" />
     <Compile Include="BaseApiController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProxyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DataAccess\Fanex.Athena.DataAccess.Core\Fanex.Athena.DataAccess.Core.csproj">

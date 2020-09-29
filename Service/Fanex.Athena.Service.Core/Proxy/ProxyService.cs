@@ -1,0 +1,93 @@
+﻿namespace Fanex.Athena.Service.Core.Proxy
+{
+    using Fanex.Athena.Service.StatelessCore.CustomException;
+    using System;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web;
+
+    public class ProxyService : IProxyService
+    {
+        private readonly IProxyOptions _options;
+        private readonly HttpClient _client;
+
+        public ProxyService(IProxyOptions options)
+        {
+            _options = options ?? throw new ArgumentNullException(nameof(options));
+            _client = new HttpClient(_options.MessageHandler ?? new HttpClientHandler { AllowAutoRedirect = false, UseCookies = false });
+        }
+
+        public async Task<HttpResponseMessage> HandleRequest(string apiKey, string apiUrl, HttpRequest originalRequest)
+        {
+            var apiUri = _options.BuildRequestUri(apiKey, apiUrl, originalRequest.QueryString.ToString());
+            using (var requestMessage = CreateHttpRequest(originalRequest, apiUri))
+            {
+                if (_options.PrepareRequest != null)
+                {
+                    await _options.PrepareRequest(originalRequest, requestMessage);
+                }
+
+                var cancelToken = new CancellationTokenSource(_options.Timeout);
+                try
+                {
+                    var responseMessage = await SendHttpRequest(requestMessage, cancelToken.Token).ConfigureAwait(false);
+                    return responseMessage;
+                }
+                catch (Exception ex)
+                {
+                    throw new ProxyException(ex.Message, apiKey, apiUrl, apiUri.ToString(), ex);
+                }
+                finally
+                {
+                    cancelToken.Dispose();
+                }
+            }
+        }
+
+        public async Task<HttpResponseMessage> HandleRequest(string apiKey, string apiUrl)
+        {
+            var result = await HandleRequest(apiKey, apiUrl, HttpContext.Current.Request);
+            return result;
+        }
+
+        private HttpRequestMessage CreateHttpRequest(HttpRequest originalRequest, Uri uri)
+        {
+            var requestMessage = new HttpRequestMessage();
+            var requestMethod = originalRequest.HttpMethod;
+            if (requestMethod != HttpMethod.Get.Method &&
+                 requestMethod != HttpMethod.Head.Method &&
+                 requestMethod != HttpMethod.Delete.Method &&
+                 requestMethod != HttpMethod.Trace.Method)
+            {
+                var streamContent = new StreamContent(originalRequest.InputStream);
+                requestMessage.Content = streamContent;
+            }
+
+            foreach (var headerKey in originalRequest.Headers.AllKeys)
+            {
+                var headerValue = originalRequest.Headers.GetValues(headerKey);
+                if (!requestMessage.Headers.TryAddWithoutValidation(headerKey, headerValue) && requestMessage.Content != null)
+                {
+                    requestMessage.Content?.Headers.TryAddWithoutValidation(headerKey, headerValue);
+                }
+            }
+
+            requestMessage.Headers.Host = uri.Authority;
+            requestMessage.RequestUri = uri;
+            requestMessage.Method = new HttpMethod(originalRequest.HttpMethod);
+
+            return requestMessage;
+        }
+
+        private Task<HttpResponseMessage> SendHttpRequest(HttpRequestMessage requestMessage, CancellationToken cancellationToken)
+        {
+            if (requestMessage == null)
+            {
+                throw new ArgumentNullException(nameof(requestMessage));
+            }
+
+            return _client.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+        }
+    }
+}

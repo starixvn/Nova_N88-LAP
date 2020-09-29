@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.Service.PlayerManagement
 {
-    using System;
-    using System.Globalization;
     using Autofac.Features.AttributeFilters;
     using Fanex.Athena.Extension.Utility.Interfaces;
     using Fanex.Athena.Model.Core.DataDomain;
@@ -10,6 +8,8 @@
     using Fanex.Athena.Model.PlayerManagement.MetaModel;
     using Fanex.Athena.Service.PlayerManagement.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using System;
+    using System.Globalization;
 
     public class PlayerBaStatusService : IPlayerBaStatusService
     {

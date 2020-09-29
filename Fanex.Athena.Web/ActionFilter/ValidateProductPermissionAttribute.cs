@@ -70,7 +70,7 @@
 
         private bool ValidateRequest(ActionExecutingContext filterContext)
         {
-            var licenseeSession = SessionStorage.LicenseeAuthInfo;
+            var licenseeSession = SessionStorage.Licensee;
 
             if (licenseeSession is null)
             {

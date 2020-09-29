@@ -10,6 +10,7 @@ using Fanex.Athena.Service.StatelessCore;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
 using Fanex.N88.Core.Configuration;
 using Fanex.N88.Core.Service.Interface;
+using Fanex.NVC.Authentication.Infrastructure;
 using NSubstitute;
 
 using NUnit.Framework;
@@ -46,111 +47,15 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
         }
 
         [Test]
-        public void IsAllowedEditCommission_ApplicationModeIsParasiticAndPortalFunctionListContainCorrectKey_ReturnTrue()
+        public void IsAllowedSpecialBA_FunctionListContainCorrectKey_ReturnTrue()
         {
             // Arrange
-            var functionList = new OneAuthPermission[] {
-                new OneAuthPermission {FunctionKey="CommissionGroupList55" } };
-            var userSession = new UserAuthInfo { PortalFunctionList = functionList, ApplicationMode = AppMode.Parasitic };
-
-            // Action
-            var result = _authorizationService.IsAllowedEditCommission(userSession);
-
-            // Assert
-            Assert.That(result, Is.True);
-        }
-
-        [Test]
-        public void IsAllowedEditCommission_ApplicationModeIsParasiticAndPortalFunctionListNotContainCorrectKey_ReturnFalse()
-        {
-            // Arrange
-            var functionList = new OneAuthPermission[] {
-                new OneAuthPermission {FunctionKey=PermissionKeys.BetHistory } };
-            var userSession = new UserAuthInfo { PortalFunctionList = functionList, ApplicationMode = AppMode.Parasitic };
-
-            // Action
-            var result = _authorizationService.IsAllowedEditCommission(userSession);
-
-            // Assert
-            Assert.That(result, Is.False);
-        }
-
-        [Test]
-        public void IsAllowedEditCommission_ApplicationModeIsNotParasiticAndFunctionIdListContainCorrectKey_ReturnTrue()
-        {
-            // Arrange
-            var functionList = new List<Function> {
-                new Function {
-                    FunctionKey = PermissionKeys.CustomerInfoCommissionGroupList
-                }
-            };
-            var userSession = new UserAuthInfo { FunctionList = functionList, ApplicationMode = AppMode.Self };
-
-            // Action
-            var result = _authorizationService.IsAllowedEditCommission(userSession);
-
-            // Assert
-            Assert.That(result, Is.True);
-        }
-
-        [Test]
-        public void IsAllowedEditCommission_ApplicationModeIsNotParasiticAndFunctionListNotContainCorrectKey_ReturnFalse()
-        {
-            // Arrange
-            var functionList = new List<Function> {
-                new Function {
-                    FunctionKey = PermissionKeys.BetHistory
-                }
-            }; var userSession = new UserAuthInfo { FunctionList = functionList, ApplicationMode = AppMode.Self };
-
-            // Action
-            var result = _authorizationService.IsAllowedEditCommission(userSession);
-
-            // Assert
-            Assert.That(result, Is.False);
-        }
-
-        [Test]
-        public void IsAllowedSpecialBA_ApplicationModeIsParasiticAndPortalFunctionListContainCorrectKey_ReturnTrue()
-        {
-            // Arrange
-            var functionList = new OneAuthPermission[] {
-                new OneAuthPermission {FunctionKey= PermissionKeys.CustomerInfoSpecialBA } };
-            var userSession = new UserAuthInfo { PortalFunctionList = functionList, ApplicationMode = AppMode.Parasitic };
-
-            // Action
-            var result = _authorizationService.IsAllowedSpecialBA(userSession);
-
-            // Assert
-            Assert.That(result, Is.True);
-        }
-
-        [Test]
-        public void IsAllowedSpecialBA_ApplicationModeIsParasiticAndPortalFunctionListNotContainCorrectKey_ReturnFalse()
-        {
-            // Arrange
-            var functionList = new OneAuthPermission[] {
-                new OneAuthPermission {FunctionKey= PermissionKeys.BetHistory } };
-
-            var userSession = new UserAuthInfo { PortalFunctionList = functionList, ApplicationMode = AppMode.Parasitic };
-
-            // Action
-            var result = _authorizationService.IsAllowedSpecialBA(userSession);
-
-            // Assert
-            Assert.That(result, Is.False);
-        }
-
-        [Test]
-        public void IsAllowedSpecialBA_ApplicationModeIsNotParasiticAndFunctionListContainCorrectKey_ReturnTrue()
-        {
-            // Arrange
-            var functionList = new List<Function> {
-                new Function {
+            var functionList = new List<NVCFunctionAuthInfo> {
+                new NVCFunctionAuthInfo {
                     FunctionKey = PermissionKeys.CustomerInfoSpecialBA
                 }
             };
-            var userSession = new UserAuthInfo { FunctionList = functionList, ApplicationMode = AppMode.Self };
+            var userSession = new NVCUserAuthInfo { FunctionList = functionList };
 
             // Action
             var result = _authorizationService.IsAllowedSpecialBA(userSession);
@@ -160,15 +65,15 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
         }
 
         [Test]
-        public void IsAllowedSpecialBA_ApplicationModeIsNotParasiticAndFunctionIdListNotContainCorrectKey_ReturnFalse()
+        public void IsAllowedSpecialBA_FunctionIdListNotContainCorrectKey_ReturnFalse()
         {
             // Arrange
-            var functionList = new List<Function> {
-                new Function {
+            var functionList = new List<NVCFunctionAuthInfo> {
+                new NVCFunctionAuthInfo {
                     FunctionKey = PermissionKeys.CustomerInfoCommissionGroupList
                 }
             };
-            var userSession = new UserAuthInfo { FunctionList = functionList, ApplicationMode = AppMode.Self };
+            var userSession = new NVCUserAuthInfo { FunctionList = functionList };
 
             // Action
             var result = _authorizationService.IsAllowedSpecialBA(userSession);

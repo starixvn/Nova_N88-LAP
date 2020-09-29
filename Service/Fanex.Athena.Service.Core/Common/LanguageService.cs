@@ -34,21 +34,5 @@
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(languageCode);
         }
-
-        public bool ChangeLanguage(string languageCode)
-        {
-            if (!string.IsNullOrEmpty(languageCode))
-            {
-                var updated = _sessionService.UpdateLanguage(languageCode);
-                if (updated)
-                {
-                    this.SetPageCulture(languageCode);
-                    CookiesHelper.SetCookies(_cookieName, languageCode);
-                    return true;
-                }
-            }
-
-            return false;
-        }
     }
 }

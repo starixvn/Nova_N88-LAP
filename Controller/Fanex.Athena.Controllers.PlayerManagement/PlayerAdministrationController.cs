@@ -10,6 +10,7 @@
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
+    using Fanex.NVC.Authentication.Infrastructure;
     using Newtonsoft.Json;
 
     [FunctionAuthorization(PermissionKeys.PlayerAdmin)]
@@ -48,7 +49,7 @@
             var isAllowedStatement = userSession.FunctionList.
                 Where(x => x.FunctionKey == PermissionKeys.PlayerAdminPlayerStatement).FirstOrDefault();
 
-            var allowedBA = new Function();
+            var allowedBA = new NVCFunctionAuthInfo();
             if (isAllowedBA)
             {
                 allowedBA = userSession.FunctionList.

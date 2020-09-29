@@ -1,29 +1,19 @@
 ﻿namespace Fanex.Athena.Api.Base.Attributes.UnitTests
 {
+    using Attributes;
+    using Autofac;
+    using Extension.Utility;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Service.Core.Users.Interfaces;
+    using Service.StatelessCore.Interfaces;
     using System;
-    using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Web.Http.Controllers;
-
-    using Attributes;
-
-    using Autofac;
-
-    using Extension.Utility;
-
-    using Fanex.Athena.Model.Auth;
-    using Fanex.Athena.Model.Auth.Enum;
-
-    using NSubstitute;
-
-    using NUnit.Framework;
-
-    using Service.Core.Users.Interfaces;
-    using Service.StatelessCore.Interfaces;
-
     using UnitTest.Common.Helpers;
 
     public class ApiFunctionAuthorizationAttributeTest
@@ -128,8 +118,8 @@
             // Arrange
             var permissionKeys = new[] { "abc", "def" };
             var attribute = new ApiFunctionAuthorizationAttribute(permissionKeys);
-            _sessionService.UserSession.Returns(new UserAuthInfo());
-            _sessionService.LicenseeSession.Returns(new LicenseeAuthInfo());
+            _sessionService.UserSession.Returns(new NVCUserAuthInfo());
+            _sessionService.LicenseeSession.Returns(new NVCLicenseeAuthInfo());
             var actionContext = CreateActionContext();
             var continuation = Substitute.For<Func<Task<HttpResponseMessage>>>();
 
@@ -138,38 +128,6 @@
 
             // Assert
             _authorizationService.Received(1).HasPermissions(Arg.Any<int>(), permissionKeys);
-        }
-
-        [Test]
-        public void ExecuteAuthorizationFilterAsync_AppModeParasiticHasPermission_InvokeContinuationFunc()
-        {
-            // Arrange
-            var attribute = new ApiFunctionAuthorizationAttribute();
-            var actionContext = CreateActionContext();
-            _sessionService.UserSession.Returns(new UserAuthInfo { ApplicationMode = AppMode.Parasitic });
-            _authorizationService.HasPermissions(Arg.Any<int>(), Arg.Any<string[]>()).Returns(true);
-
-            // Action
-            var result = attribute.ExecuteAuthorizationFilterAsync(actionContext, new CancellationToken(), null);
-
-            // Assert
-            Assert.That(result.Result.StatusCode, Is.EqualTo(HttpStatusCode.Forbidden));
-        }
-
-        [Test]
-        public void ExecuteAuthorizationFilterAsync_AppModeSelfHasPermission_InvokeContinuationFunc()
-        {
-            // Arrange
-            var attribute = new ApiFunctionAuthorizationAttribute();
-            var actionContext = CreateActionContext();
-            _sessionService.UserSession.Returns(new UserAuthInfo { ApplicationMode = AppMode.Self });
-            _authorizationService.HasPermissions(Arg.Any<int>(), Arg.Any<string[]>()).Returns(true);
-
-            // Action
-            var result = attribute.ExecuteAuthorizationFilterAsync(actionContext, new CancellationToken(), null);
-
-            // Assert
-            Assert.That(result.Result.StatusCode, Is.EqualTo(HttpStatusCode.Forbidden));
         }
 
         private HttpActionContext CreateActionContext(bool isAjax = false)

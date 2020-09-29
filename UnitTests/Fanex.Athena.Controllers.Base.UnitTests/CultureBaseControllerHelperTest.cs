@@ -1,32 +1,26 @@
 ﻿namespace Fanex.Athena.Controllers.Base.UnitTests
 {
-    using System.Collections.Generic;
-    using System.Web.Mvc;
-
     using Extension.Utility;
-
-    using Fanex.Athena.Model.Auth;
-
+    using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
-
     using NUnit.Framework;
-
     using Service.Core.Common.Interfaces;
     using Service.Core.Users.Interfaces;
-
+    using System.Collections.Generic;
+    using System.Web.Mvc;
     using UnitTest.Common.Helpers;
 
     [TestFixture]
     public abstract class CultureBaseControllerHelperTest
     {
-        protected static readonly UserAuthInfo DefaultUserSession = new UserAuthInfo
+        protected static readonly NVCUserAuthInfo DefaultUserSession = new NVCUserAuthInfo
         {
             CurrencyList = new Dictionary<int, string> { { 1, "UUS" } },
             UserId = 1,
             Language = "lan",
             UserName = "alex.vn",
             OnUserId = 999,
-            FunctionList = new List<Function>(),
+            FunctionList = new List<NVCFunctionAuthInfo>(),
             DefaultBaseCurrency = "EUR",
             CurrencyAgentList = new Dictionary<int, int[]>(),
             BrandList = new List<Brand>
@@ -35,7 +29,7 @@
             }
         };
 
-        protected static readonly LicenseeAuthInfo DefaultLicenseeSession = new LicenseeAuthInfo
+        protected static readonly NVCLicenseeAuthInfo DefaultLicenseeSession = new NVCLicenseeAuthInfo
         {
             LicenseeId = 402,
             LicenseeName = "N88"
@@ -79,19 +73,18 @@
             StubLicenseeSessionData(DefaultLicenseeSession);
         }
 
-        protected void StubUserSessionData(UserAuthInfo fakeUserSession)
+        protected void StubUserSessionData(NVCUserAuthInfo fakeUserSession)
         {
             SessionService.UserSession.Returns(fakeUserSession);
         }
 
-        protected void StubLicenseeSessionData(LicenseeAuthInfo fakeLicenseeSession)
+        protected void StubLicenseeSessionData(NVCLicenseeAuthInfo fakeLicenseeSession)
         {
             SessionService.LicenseeSession.Returns(fakeLicenseeSession);
-            if(fakeLicenseeSession != null)
+            if (fakeLicenseeSession != null)
             {
                 AppSettings.LicenseeId.Returns(fakeLicenseeSession.LicenseeId);
             }
-
         }
 
         protected void StubGetValueAppSettings(string valueName, string fakeValue)

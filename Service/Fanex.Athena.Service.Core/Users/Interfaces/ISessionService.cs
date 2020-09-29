@@ -1,26 +1,25 @@
 ﻿namespace Fanex.Athena.Service.Core.Users.Interfaces
 {
+    using Fanex.N88.Core.Models;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using System;
     using System.Collections.Generic;
-    using Fanex.Athena.Model.Auth;
 
+    [CLSCompliant(false)]
     public interface ISessionService
     {
         string CaptchaCode { get; set; }
 
-        LicenseeAuthInfo LicenseeSession { get; }
+        NVCLicenseeAuthInfo LicenseeSession { get; }
 
-        UserAuthInfo UserSession { get; }
+        NVCUserAuthInfo UserSession { get; }
 
-        void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession);
+        IEnumerable<MenuItem> MenuSession { get; }
 
         void CreateNewSession(
             int userId,
             int onuserId,
             string userName,
             string language = "en-US");
-
-        bool UpdateLanguage(string languageCode);
-
-        void AssignCurrenciesToUserSession(UserAuthInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null);
     }
 }

@@ -14,13 +14,8 @@
     @System.Web.Optimization.Scripts.Render("~/bundles/jqGridLayoutScripts")
     @RenderSection("pagejs", required: false)
 }
-@{
-    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var userSession = sessionService.UserSession;
-    var isAppModeSelf = userSession == null ? true : userSession.ApplicationMode == AppMode.Self;
-}
 <div class="container_26">
-    <div class="grid_26 @(isAppModeSelf ? string.Empty: "hide")">
+    <div class="grid_26">
         <div class="content-title">
             @RenderSection("ContentTitle", required: false)
         </div>

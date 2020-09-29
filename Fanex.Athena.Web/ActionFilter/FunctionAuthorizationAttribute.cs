@@ -37,8 +37,8 @@
         {
             var context = filterContext.HttpContext;
 
-            var licenseeSession = SessionStorage.LicenseeAuthInfo;
-            var userSession = SessionStorage.UserAuthInfo;
+            var licenseeSession = SessionStorage.Licensee;
+            var userSession = SessionStorage.User;
             var authorized = userSession != null && licenseeSession != null;
             if (authorized)
             {

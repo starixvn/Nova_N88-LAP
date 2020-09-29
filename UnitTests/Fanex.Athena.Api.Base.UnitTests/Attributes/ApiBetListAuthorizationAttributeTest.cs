@@ -13,7 +13,7 @@
 
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+    using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
 
     using NUnit.Framework;
@@ -39,7 +39,7 @@
         {
             _licenseeSettingService = Substitute.For<ILicenseeSettingService>();
             _sessionService = Substitute.For<ISessionService>();
-            _sessionService.LicenseeSession.Returns(new LicenseeAuthInfo
+            _sessionService.LicenseeSession.Returns(new NVCLicenseeAuthInfo
             {
                 LicenseeName = LicenseeName
             });

@@ -8,8 +8,6 @@
 
         public int OnUserId { get; set; }
 
-        public bool IsInternalLogin { get; set; }
-
         public bool HasRecheckIn { get; set; }
 
         public IDictionary<string, string> SupportedLanguageList { get; set; }

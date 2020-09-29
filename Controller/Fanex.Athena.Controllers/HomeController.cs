@@ -1,21 +1,19 @@
 ﻿namespace Fanex.Athena.Controllers
 {
-    using System.Web.Mvc;
     using Fanex.Athena.Model.Auth.Enum;
     using ONEbook.UM.Filters;
+    using System.Web.Mvc;
     using Web.ActionFilter;
 
     [CheckUMFilter]
     public class HomeController : CultureBaseController
     {
-        [AuthorizeRestriction(AppMode.Self)]
         public ActionResult Index()
         {
             AssignViewBagData();
             return ReAuthorize("~/Views/Desktop/Home/Index.cshtml");
         }
 
-        [AuthorizeRestriction(AppMode.Self)]
         public ActionResult IndexIpad()
         {
             AssignViewBagData();
@@ -44,7 +42,7 @@
             var userSession = SessionServiceInstance.UserSession;
             ViewBag.DefaultReportUrl = returnPath == null ? userSession.DefaultReportUrl : returnPath.ToString();
             ViewBag.OnUserId = userSession.OnUserId;
-            ViewBag.IsInternal = userSession.IsInternal ? "1" : "0";
+            ViewBag.IsInternal = "0";
             ViewBag.HasRecheckIn = AppSettingInstance.LocalTest ? "0" : "1";
             ViewBag.LicenseeName = siteNameList[AppSettingInstance.LicenseeId];
         }

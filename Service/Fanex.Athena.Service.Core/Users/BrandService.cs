@@ -1,9 +1,9 @@
 ﻿namespace Fanex.Athena.Service.Core.Users
 {
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Core.Configuration;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.NVC.Authentication.Infrastructure;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -16,7 +16,7 @@
             _tpService = tpService;
         }
 
-        public IEnumerable<Brand> GetAllowedBrands(int licenseeId, IEnumerable<Function> functions, BrandCollection brands)
+        public IEnumerable<Brand> GetAllowedBrands(int licenseeId, IEnumerable<NVCFunctionAuthInfo> functions, BrandCollection brands)
         {
             var brandList = new List<Brand>();
 

@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Athena.Api.PlayerManagement
 {
-    using System;
-    using System.Linq;
-    using System.Web.Http;
     using Fanex.Athena.Api.Base;
     using Fanex.Athena.Api.Base.Attributes;
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
@@ -12,6 +9,9 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.PlayerManagement.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
+    using System;
+    using System.Linq;
+    using System.Web.Http;
 
     [ApiFunctionAuthorization(PermissionKeys.PlayerAdmin)]
     public class PlayerListController : BaseApiController
@@ -30,7 +30,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModelAttribute(BindUserId = true, BindLicenseeName = true)]
+        [ApiAutoBindMetaModel(BindUserId = true, BindLicenseeName = true, BindAgent = true)]
         public PlayerListResultViewModel Search(PlayerSearchingMetaModel searchParam)
         {
             var currencySelected = searchParam.CurrencyIdList;

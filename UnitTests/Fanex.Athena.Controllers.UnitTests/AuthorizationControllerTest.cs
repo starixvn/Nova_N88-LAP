@@ -295,7 +295,6 @@
                 const string NewHashPassword = "56E8A2D78170E87C928E480797CC73";
                 var user = new User() { Username = "abc", Password = "8058E861808058FDD87DD98889A08D" };
 
-                SessionService.UserSession.IsInternal = false;
                 _userService.Get(Arg.Any<int>()).Returns(user);
 
                 // Action

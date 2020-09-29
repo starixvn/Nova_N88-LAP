@@ -1,15 +1,19 @@
-﻿using Fanex.Athena.Model.Auth;
-
-namespace Fanex.Athena.Service.Core.Users.Interfaces
+﻿namespace Fanex.Athena.Service.Core.Users.Interfaces
 {
+    using Fanex.N88.Core.Models;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using System;
+    using System.Collections.Generic;
+
+    [CLSCompliant(false)]
     public interface ISessionStorage
     {
         string CaptchaCode { get; set; }
 
-        LicenseeAuthInfo LicenseeAuthInfo { get; }
+        NVCLicenseeAuthInfo Licensee { get; set; }
 
-        UserAuthInfo UserAuthInfo { get; }
+        NVCUserAuthInfo User { get; set; }
 
-        void AssignSessions(UserAuthInfo userAuthInfo, LicenseeAuthInfo licenseeAuthInfo);
+        IEnumerable<MenuItem> Menu { get; set; }
     }
 }

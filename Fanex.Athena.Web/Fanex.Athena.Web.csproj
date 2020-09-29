@@ -53,6 +53,9 @@
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.2\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -129,7 +132,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilter\AuthorizeRestrictionAttribute.cs" />
     <Compile Include="ActionFilter\AutoBindMetaModelAttribute.cs" />
     <Compile Include="ActionFilter\ValidateProductPermissionAttribute.cs" />
     <Compile Include="ActionFilter\ValidatePermissionOnDataAttribute.cs" />
@@ -140,7 +142,6 @@
     <Compile Include="ActionFilter\CustomAuthorizeAttribute.cs" />
     <Compile Include="ActionFilter\HandleAntiForgeryErrorAttribute.cs" />
     <Compile Include="ActionFilter\ValidationWebRequestAttribute.cs" />
-    <Compile Include="ActionFilter\XFrameOptionAttribute.cs" />
     <Compile Include="HtmlExtension\DateTimeExtensions.cs" />
     <Compile Include="HtmlExtension\HtmlHelperExtensions.cs" />
     <Compile Include="HtmlExtension\UrlExtension.cs" />

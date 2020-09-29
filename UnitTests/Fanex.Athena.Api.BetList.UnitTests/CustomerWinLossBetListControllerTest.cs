@@ -1,16 +1,12 @@
 ﻿namespace Fanex.Athena.Api.BetList.UnitTests
 {
+    using Fanex.NVC.Authentication.Infrastructure;
+    using Model.BetList.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-
-    using Fanex.Athena.Model.Auth;
-
-    using Model.BetList.MetaModel;
-
-    using NSubstitute;
-
-    using NUnit.Framework;
 
     public class CustomerWinLossBetListControllerTest : ApiBetListBaseControllerHelperTest
     {
@@ -37,7 +33,7 @@
                 {
                     CurrencyId = currencyId
                 };
-                StubUserSessionData(new UserAuthInfo
+                StubUserSessionData(new NVCUserAuthInfo
                 {
                     Language = SessionLanguage,
                     CurrencyList = new Dictionary<int, string> { { currencyId, "Test" } },

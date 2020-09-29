@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using Base.UnitTests;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
     using NUnit.Framework;
     using Report.Result.ResultPopup;
@@ -21,7 +22,7 @@
             const string ExpectedResult = "aaaaaaaaaaaa";
             const string Url = "/CardClubResultPopup/Index";
             const string Language = "vi-VN";
-            StubUserSessionData(new Model.Auth.UserAuthInfo
+            StubUserSessionData(new NVCUserAuthInfo
             {
                 Language = Language
             });

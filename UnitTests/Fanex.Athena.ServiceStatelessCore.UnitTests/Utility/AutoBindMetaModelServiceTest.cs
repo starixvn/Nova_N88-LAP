@@ -18,40 +18,6 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests.Utility
     public class AutoBindMetaModelServiceTest
     {
         [Test]
-        public void MapAgentXml_CallWithActionArgumentParam_AgentListXmlIsAssignedCorrectly()
-        {
-            // Arrange
-            var metaModel = Substitute.For<IMetaModelCurrencyIdList, IMetaModelAgent>();
-            metaModel.CurrencyIdList.Returns("1,2");
-
-            var actionArgument = CreateActionArgument(metaModel);
-            var currencyAgentList = new List<OneAuthCurrency> { new OneAuthCurrency { AgentId = new int[] { 11, 22 }, CurrencyId = 1 } };
-            actionArgument.Add("currencyAgentList", currencyAgentList);
-
-            // Action
-            AutoBindMetaModelService.MapAgentXml(actionArgument);
-            var agentXml = (metaModel as IMetaModelAgent)?.AgentListXml;
-
-            // Assert
-            Assert.That(agentXml, Is.Not.Null);
-        }
-
-        [Test]
-        public void MapAgentXml_MetaModelInterfaceIsNotImplemented_AgentListXmlIsNull()
-        {
-            // Arrange
-            string agentListXml = null;
-            var metaModel = new { AgentListXml = agentListXml };
-            var actionArgument = CreateActionArgument(metaModel);
-
-            // Action
-            AutoBindMetaModelService.MapAgentXml(actionArgument);
-
-            // Assert
-            Assert.That(metaModel.AgentListXml, Is.Null);
-        }
-
-        [Test]
         public void MapAgentXml_CallWithCurrencyAgentList_AgentListXmlAssignedCorrectly()
         {
             // Arrange

@@ -84,7 +84,7 @@
         [HttpPost]
         [CustomValidateAntiForgery]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult SignIn(LoginMetalModel model)
+        public ActionResult SignIn(LoginMetaModel model)
         {
             if (string.IsNullOrEmpty(model.UserName))
             {

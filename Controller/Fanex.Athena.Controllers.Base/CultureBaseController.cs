@@ -13,7 +13,6 @@
     using Service.Core.Users.Interfaces;
 
     [CustomAuthorize]
-    [XFrameOption]
     public class CultureBaseController : Controller
     {
         protected const string DefaultLanguage = "en-US";

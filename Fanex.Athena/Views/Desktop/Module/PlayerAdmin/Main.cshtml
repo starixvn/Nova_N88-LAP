@@ -26,8 +26,6 @@
 
     window._pConfig = {
     hostUrl: '@Url.Content("~/")',
-    applyApiTokenUrl: '@Url.Action("ApplyApiToken", "Verify")',
-    applyLinkTokenUrl: '@Url.Action("ApplyToken", "Verify")',
     tabList: @Html.Raw(Model.PlayerTabItems),
     hasBaPermission:  @Html.Raw((new { isallowed = (bool)Model.IsAllowedBA.Key, policy = Model.IsAllowedBA.Value }).ToJson()),
     hasOddsGroupPermission: @Html.Raw((new { isallowed = (bool)Model.IsAllowedOddGroup.Key, policy = Model.IsAllowedOddGroup.Value }).ToJson()),

@@ -3,22 +3,21 @@
     using DataAccess.Core.Common.Interfaces;
     using DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility;
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.Configuration;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Models;
     using Fanex.N88.Core.Models.ValueObject;
     using Fanex.N88.Core.Service.Interface;
-    using Model.Core.DTO.Common;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
 
+    [CLSCompliant(false)]
     public class SessionService : ISessionService
     {
-        private const string UserSessionKey = "UserSessionKey";
-
         private readonly ILicenseeDataAccess _licenseeDataAccess;
         private readonly ICurrencyDataAccess _currencyDataAccess;
         private readonly IUserService _userService;
@@ -45,33 +44,16 @@
             _brandService = brandService;
         }
 
-        #region Public Properties
+        public NVCLicenseeAuthInfo LicenseeSession => _sessionStorage.Licensee;
 
-        public LicenseeAuthInfo LicenseeSession
-        {
-            get
-            {
-                return _sessionStorage.LicenseeAuthInfo;
-            }
-        }
+        public NVCUserAuthInfo UserSession => _sessionStorage.User;
 
-        public UserAuthInfo UserSession
-        {
-            get
-            {
-                return _sessionStorage.UserAuthInfo;
-            }
-        }
+        public IEnumerable<MenuItem> MenuSession => _sessionStorage.Menu;
 
         public string CaptchaCode
         {
             get { return _sessionStorage.CaptchaCode; }
             set { _sessionStorage.CaptchaCode = value; }
-        }
-
-        public void AssignSessions(UserAuthInfo userSession, LicenseeAuthInfo licenseeSession)
-        {
-            _sessionStorage.AssignSessions(userSession, licenseeSession);
         }
 
         public void CreateNewSession(
@@ -80,57 +62,14 @@
             string userName,
             string language = "en-US")
         {
-            var napFunctions = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
-            var functions = GetUserFunction(napFunctions).ToList();
-            var brandList = _brandService.GetAllowedBrands(_appSettings.LicenseeId, functions, BrandSetting.Setting?.Brands);
-
-            var userSession = new UserAuthInfo
-            {
-                UserId = userId,
-                OnUserId = onuserId,
-                UserName = userName,
-                Language = language,
-                FunctionList = functions,
-                DefaultBaseCurrency = _appSettings.DefaultBaseCurrency,
-                SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
-                BrandList = brandList
-            };
-
-            AssignMenuToUserSession(userSession);
-            AssignCurrenciesToUserSession(userSession);
-
-            var licensee = _licenseeDataAccess.GetLicenseeSettingById(_appSettings.LicenseeId);
-            AssignSessions(userSession, GenerateLicenseeInfo(licensee));
+            AssignUserSession(userId, onuserId, userName, language);
+            AssignLicenseeSession();
+            AssignMenuSession(userId);
         }
 
-        public bool UpdateLanguage(string languageCode)
+        private (IDictionary<int, string>, IDictionary<int, int[]>) GetCurrencies()
         {
-            var userSession = UserSession;
-
-            if (userSession != null && !string.IsNullOrEmpty(languageCode))
-            {
-                userSession.Language = languageCode;
-                HttpContext.Current.Session[UserSessionKey] = userSession;
-                return true;
-            }
-
-            return false;
-        }
-
-        private static LicenseeAuthInfo GenerateLicenseeInfo(Licensee selectedLicensee)
-        {
-            return new LicenseeAuthInfo
-            {
-                LicenseeId = selectedLicensee.Id,
-                LicenseeName = selectedLicensee.Name,
-                IsAllowedCustomerComm = selectedLicensee.IsAllowedCustomerComm,
-                IsEnableBA = selectedLicensee.IsEnableBA
-            };
-        }
-
-        public void AssignCurrenciesToUserSession(UserAuthInfo userSession, IEnumerable<CurrencyUser> currencyUserList = null)
-        {
-            var currencyUsers = currencyUserList ?? _currencyDataAccess.GetCurrenciesByLicensee(_appSettings.LicenseeId);
+            var currencyUsers = _currencyDataAccess.GetCurrenciesByLicensee(_appSettings.LicenseeId);
 
             var currencyList = currencyUsers
                 .Where(x => x.IsActive)
@@ -142,28 +81,66 @@
                 .Select(x => new { x.CurrencyId, x.AgentIdList })
                 .ToDictionary(x => x.CurrencyId, x => x.AgentIdList.ToArray());
 
-            userSession.CurrencyList = currencyList;
-            userSession.CurrencyAgentList = currencyAgentList;
+            return (currencyList, currencyAgentList);
         }
 
-        private void AssignMenuToUserSession(UserAuthInfo userSessionInfo)
+        private void AssignMenuSession(int userId)
         {
-            var menuItems = _userService.GetMenuItem(userSessionInfo.UserId, _n88Settings.SiteId,
-                _n88Settings.Environment, true)
-                .OrderBy(x => x.DisplayOrder).ToList();
+            var menuItems = _userService.GetMenuItem(userId, _n88Settings.SiteId, _n88Settings.Environment, true)
+                .OrderBy(x => x.DisplayOrder)
+                .ToList();
 
-            userSessionInfo.MenuItemList = menuItems;
+            _sessionStorage.Menu = menuItems;
         }
 
-        private IEnumerable<Function> GetUserFunction(List<FunctionPolicy> functionPolicies)
+        private void AssignUserSession(int userId, int onuserId, string userName, string language)
         {
-            var functions = new List<Function>();
+            var (currencyList, currencyAgentList) = GetCurrencies();
 
-            functionPolicies.ForEach(function =>
+            var napFunctions = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
+            var functions = GetUserFunction(napFunctions).ToList();
+            var brandList = _brandService.GetAllowedBrands(_appSettings.LicenseeId, functions, BrandSetting.Setting?.Brands);
+
+            var userAuthInfo = new NVCUserAuthInfo
+            {
+                UserId = userId,
+                OnUserId = onuserId,
+                UserName = userName,
+                Language = language,
+                FunctionList = functions,
+                CurrencyList = currencyList,
+                CurrencyAgentList = currencyAgentList,
+                DefaultBaseCurrency = _appSettings.DefaultBaseCurrency,
+                SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
+                BrandList = brandList
+            };
+
+            _sessionStorage.User = userAuthInfo;
+        }
+
+        private void AssignLicenseeSession()
+        {
+            var licensee = _licenseeDataAccess.GetLicenseeSettingById(_appSettings.LicenseeId);
+            var NVCLicenseeAuthInfo = new NVCLicenseeAuthInfo
+            {
+                LicenseeId = licensee.Id,
+                LicenseeName = licensee.Name,
+                IsAllowedCustomerComm = licensee.IsAllowedCustomerComm,
+                IsEnableBA = licensee.IsEnableBA
+            };
+
+            _sessionStorage.Licensee = NVCLicenseeAuthInfo;
+        }
+
+        private static IEnumerable<NVCFunctionAuthInfo> GetUserFunction(List<FunctionPolicy> napFunctions)
+        {
+            var functions = new List<NVCFunctionAuthInfo>();
+
+            napFunctions.ForEach(function =>
             {
                 if (function.Policy != (int)Policy.None)
                 {
-                    functions.Add(new Function
+                    functions.Add(new NVCFunctionAuthInfo
                     {
                         FunctionId = function.Function.Id,
                         FunctionKey = function.Function.Key,
@@ -176,6 +153,4 @@
             return functions;
         }
     }
-
-    #endregion Public Properties
 }

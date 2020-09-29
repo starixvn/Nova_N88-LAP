@@ -1,5 +1,27 @@
 ﻿namespace Fanex.Athena
 {
+    using Autofac;
+    using Autofac.Core;
+    using Autofac.Integration.Mvc;
+    using Autofac.Integration.WebApi;
+    using Fanex.Athena.Api.PlayerManagement.Extensions;
+    using Fanex.Athena.Extension;
+    using Fanex.Athena.Extension.Utility;
+    using Fanex.Athena.Extension.Utility.Internal;
+    using Fanex.Athena.Service.Core.Proxy;
+	using Fanex.Athena.Service.Core.Common;
+    using Fanex.Athena.Service.Core.Users;
+    using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Service.PlayerManagement;
+    using Fanex.Athena.Service.PlayerManagement.Interfaces;
+    using Fanex.Athena.Service.StatelessCore;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Logging;
+    using Fanex.N88.Core.Service.Impl;
+    using Fanex.N88.Core.Service.Interface;
+    using Fanex.N88.Core.Web.Session;
+    using ONEbook.UM.Services;
+    using ONEbook.UM.Services.Impl;
     using System;
     using System.Collections.Generic;
     using System.Configuration;
@@ -8,32 +30,8 @@
     using System.Reflection;
     using System.Web.Compilation;
     using System.Web.Http;
-    using System.Web.Http.ExceptionHandling;
     using System.Web.Mvc;
-    using Autofac;
-    using Autofac.Core;
-    using Autofac.Integration.Mvc;
-    using Autofac.Integration.WebApi;
-    using Fanex.Athena.Api.PlayerManagement.Extensions;
-    using Fanex.Athena.Api.StatelessBase.Logger;
-    using Fanex.Athena.Extension;
-    using Fanex.Athena.Extension.Utility;
-    using Fanex.Athena.Extension.Utility.Internal;
-    using Fanex.Athena.Service.Core.Common;
     using Fanex.Athena.Service.Core.Common.Interfaces;
-    using Fanex.Athena.Service.Core.Users;
-    using Fanex.Athena.Service.Core.Users.Interfaces;
-    using Fanex.Athena.Service.PlayerManagement;
-    using Fanex.Athena.Service.PlayerManagement.Interfaces;
-    using Fanex.Athena.Service.StatelessCore;
-    using Fanex.Athena.Service.StatelessCore.Extensions;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Logging;
-    using Fanex.N88.Core.Service.Impl;
-    using Fanex.N88.Core.Service.Interface;
-    using Fanex.N88.Core.Web.Session;
-    using ONEbook.UM.Services;
-    using ONEbook.UM.Services.Impl;
 
     public static class DIConfig
     {
@@ -47,7 +45,6 @@
             var apiControllerAssemblies = GetApiControllerAssemblies(assemblies);
 
             builder.RegisterAssemblyTypes(serviceAssemblies).AsImplementedInterfaces();
-            builder.RegisterOnebookSecurity();
 
             builder.RegisterFilterProvider();
             builder.RegisterWebApiFilterProvider(config);
@@ -68,7 +65,6 @@
             builder.RegisterType<SiteService>().As<ISiteService>();
             builder.RegisterType<SecurityService>().As<ISecurityService>();
             builder.RegisterType<CurrentSession>().As<ICurrentSession>();
-            builder.RegisterType<ApiExceptionLogger>().As<IExceptionLogger>();
 
             var container = builder.Build();
 
@@ -84,11 +80,6 @@
 
         private static void RegisterHttpClient(ContainerBuilder builder)
         {
-            var reportAPIheader = new Dictionary<string, string>
-            { { "AUTH_TOKEN", ConfigurationManager.AppSettings["ReportAPITokenValue"] } };
-
-            builder.WithHttpClient("ReportAPIClient", ConfigurationManager.AppSettings["ReportAPIHostUrl"], reportAPIheader);
-
             var betListAPIheader = new Dictionary<string, string>
             { { "BETLIST_TOKEN_KEY", ConfigurationManager.AppSettings["BetListApiTokenValue"] } };
 
@@ -181,10 +172,6 @@
             builder.RegisterType<TpService>().As<ITpService>().SingleInstance();
             builder.RegisterType<BrandService>().As<IBrandService>().SingleInstance();
 
-            builder.Register<ReportApiClient>(x => new ReportApiClient(
-                 x.ResolveNamed<HttpClient>("ReportAPIClient")
-                )).As<IReportApiClient>().SingleInstance();
-
             builder.Register<BetListApiClient>(x => new BetListApiClient(
                  x.ResolveNamed<HttpClient>("BETLISTAPICLIENT")
                 )).As<IBetListApiClient>().SingleInstance();
@@ -192,6 +179,10 @@
             builder.Register<LGAPIClient>(x => new LGAPIClient(
                  x.ResolveNamed<HttpClient>("LGAPICLIENT")
                 )).As<ILGAPIClient>().SingleInstance();
+
+            builder.Register(x => new ProxyService(
+                new ProxyOptions(ConfigurationManager.AppSettings["Proxy_InternalAuthKey"], Convert.ToInt16(ConfigurationManager.AppSettings["Proxy_Timeout"])))
+                ).As<IProxyService>().SingleInstance();
         }
     }
 }

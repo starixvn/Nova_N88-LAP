@@ -35,7 +35,7 @@ namespace Fanex.Athena.Web.ActionFilter
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var userSession = _sessionStorage.UserAuthInfo;
+            var userSession = _sessionStorage.User;
 
             var actionArgument = filterContext.ActionParameters;
             if (BindAgent)
@@ -49,7 +49,7 @@ namespace Fanex.Athena.Web.ActionFilter
             }
             if (BindSiteName)
             {
-                var licensee = _sessionStorage.LicenseeAuthInfo;
+                var licensee = _sessionStorage.Licensee;
                 AutoBindMetaModelService.MapSiteName(actionArgument, licensee.LicenseeName);
             }
             if (BindLanguage)
@@ -82,7 +82,7 @@ namespace Fanex.Athena.Web.ActionFilter
 
             if (item.Value is IMetaModelFunctionContract metaModel)
             {
-                var licenseeSession = _sessionStorage.LicenseeAuthInfo;
+                var licenseeSession = _sessionStorage.Licensee;
                 var productAccess = ProductService.GetSingleWalletProductAccess(
                     licenseeSession.LicenseeId,
                     "en-US",

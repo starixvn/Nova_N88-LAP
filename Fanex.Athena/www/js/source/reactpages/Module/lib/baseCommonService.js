@@ -9,10 +9,6 @@ class BaseCommonService {
         throw new Error("Method 'getTabList()' must be implemented.");
     }
 
-    getLink(sysType, action) {
-        throw new Error("Method 'getLink()' must be implemented.");
-    }
-
     fetchData(sType, action, params, configOption = {}) {
         throw new Error("Method 'fetchData()' must be implemented.");
     }

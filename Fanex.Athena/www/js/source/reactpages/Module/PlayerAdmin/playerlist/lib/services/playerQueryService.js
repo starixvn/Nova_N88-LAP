@@ -24,7 +24,7 @@ export default class PlayerQueryService {
     }
 
     getLink(systemType, action) {
-        return this.commonService.getLink(systemType, action);
+        return action;
     }
 
     exportExcel(playerList, param, displayedColumn, fileName = 'PlayerList') {

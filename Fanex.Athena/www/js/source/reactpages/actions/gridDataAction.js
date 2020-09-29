@@ -3,27 +3,36 @@ import DataService from '@jsroot/lib/DataService.js'
 import Site from '@jsroot/lib/site';
 import { toggleLoader } from '@jsroot/actions/loaderAction'
 
-export function getGridData(url, params) {
-    return (dispatch) => {
-        DataService.postData(url, params)
-            .then(response => {
-                response.data.timestamp = new Date().getTime();
-                dispatch(setGridData(response.data));
-            })
-            .catch(error => {
-                switch (error.response.status) {
-                    case 403:
-                        window.location.href = Site.resolveClientUrl('Utility/AccessDenied');
-                        break;
+export function getGridData(url, params, apiKey) {
+    return async (dispatch) => {
+        let apiCaller = null;
+        if(apiKey) {
+            apiCaller = DataService.postProxyData(apiKey, url, params);
+        } else {
+            apiCaller = DataService.postData(url, params);
+        }
 
-                    default:
-                        alert("Sorry, an error occurred while processing your request.");
-                        break;
-                }
-
-                dispatch(toggleLoader(false));
-            });
+        try {
+            var response = await apiCaller;
+            response.data.timestamp = new Date().getTime();
+            dispatch(setGridData(response.data));
+        } catch(error) {
+            handleError(error);
+            dispatch(toggleLoader(false));
+        }
     };
+}
+
+const handleError = (error) => {
+    switch (error.response.status) {
+        case 403:
+            window.location.href = Site.resolveClientUrl('Utility/AccessDenied');
+            break;
+
+        default:
+            alert("Sorry, an error occurred while processing your request.");
+            break;
+    }
 }
 
 export function setGridData(data) {

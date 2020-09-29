@@ -28,7 +28,7 @@ define(
             //level 0,1,2
             urlData: 'api/LicenseeWinLossReport/Index',
             urlExcelData: 'api/LicenseeWinLossReport/Index',
-            urlPromotionPrizeExcelData: 'PromotionPrizeReport/ExportExcel',
+            urlPromotionPrizeExcelData: 'Api/PromotionPrize/Export',
             gridOption:
             {
                 datatype: 'local',

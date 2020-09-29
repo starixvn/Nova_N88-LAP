@@ -1,11 +1,11 @@
 export const Url = {
-    performanceHighlight: 'Api/MarketingReport/PerformanceHighlight',
-    userActivities: 'Api/MarketingReport/UserActivities',
-    avgRevenue: 'Api/MarketingReport/AvgRevenue',
-    newlyRegisterUsersSummary: 'Api/MarketingReport/NewlyRegisterUsersSummary',
-    newlyRegisterUsersDetail: 'Api/MarketingReport/NewlyRegisterUsersDetails',
-    newlyRegisterUsersExport: 'Api/MarketingReport/NewlyRegisterUsersExport',
-    performanceHighlightExport: 'Api/MarketingReport/PerformanceHighlightExport'
+    performanceHighlight: 'Api/Marketing/PerformanceHighlight/GetData',
+    performanceHighlightExport: 'Api/Marketing/PerformanceHighlight/ExportData',
+    userActivities: 'Api/Marketing/UserActivities/GetData',
+    avgRevenue: 'Api/Marketing/Revenue/GetAvgData',
+    newlyRegisterUsersSummary: 'Api/Marketing/NewlyRegisterUsers/GetSummaryData',
+    newlyRegisterUsersDetail: 'Api/Marketing/NewlyRegisterUsers/GetDetailsData',
+    newlyRegisterUsersExport: 'Api/Marketing/NewlyRegisterUsers/ExportData'
 }
 
 export const FileNameExport = {

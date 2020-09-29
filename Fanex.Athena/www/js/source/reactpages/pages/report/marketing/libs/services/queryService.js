@@ -5,36 +5,36 @@ import { Url, FileNameExport, errorResponse, successResponse } from '../../const
 export default class QueryService {
 
     static fetchPerformanceHighlightData = async params => {
-        var data = await this.fetchData(() => DataService.postData(Url.performanceHighlight, params));
+        var data = await this.fetchData(() => DataService.postReportData(Url.performanceHighlight, params));
         return data;
     }
 
     static fetchUserActivitiesData = async params => {
-        var data = await this.fetchData(() => DataService.postData(Url.userActivities, params));
+        var data = await this.fetchData(() => DataService.postReportData(Url.userActivities, params));
         return data;
     }
 
     static fetchAvgRevenueData = async params => {
-        var data = await this.fetchData(() => DataService.postData(Url.avgRevenue, params));
+        var data = await this.fetchData(() => DataService.postReportData(Url.avgRevenue, params));
         return data;
     }
 
     static fetchNewlyRegisterUsersSummaryData = async (params, before, after) => {
         before && before();
-        var data = await this.fetchData(() => DataService.postData(Url.newlyRegisterUsersSummary, params));
+        var data = await this.fetchData(() => DataService.postReportData(Url.newlyRegisterUsersSummary, params));
         after && after(data)
         return data;
     }
 
     static fetchNewlyRegisterUsersDetailData = async (params, before, after) => {
         before && before();
-        var data = await this.fetchData(() => DataService.postData(Url.newlyRegisterUsersDetail, params));
+        var data = await this.fetchData(() => DataService.postReportData(Url.newlyRegisterUsersDetail, params));
         after && after(data)
         return data;
     }
 
     static async exportNewlyRegisterUsersData(params) {
-        const response = await DataService.getFile(Url.newlyRegisterUsersExport, params)
+        const response = await DataService.getReportFile(Url.newlyRegisterUsersExport, params)
         const noContentStatusCode = 204;
         if (response.status === noContentStatusCode) {
             alert(LangHelper.getSingleResource("NoInfo"));
@@ -44,7 +44,7 @@ export default class QueryService {
     }
 
     static async exportPerformanceHighlightData(params) {
-        const response = await DataService.getFile(Url.performanceHighlightExport, params)
+        const response = await DataService.getReportFile(Url.performanceHighlightExport, params)
         const noContentStatusCode = 204;
         if (response.status === noContentStatusCode) {
             alert(LangHelper.getSingleResource("NoInfo"));

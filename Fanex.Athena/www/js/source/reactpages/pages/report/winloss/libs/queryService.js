@@ -5,7 +5,7 @@ import { Url, FileNameExport, errorResponse, successResponse } from '../constant
 export default class QueryService {
     static async getReportData(params) {
         try {
-            const response = await DataService.postData(Url.reportByGroup, params);
+            const response = await DataService.postReportData(Url.reportByGroup, params);
             if (response.status === 200) {
                 return {
                     ...successResponse,
@@ -24,7 +24,7 @@ export default class QueryService {
     }
 
     static async exportReportData(params) {
-        const response = await DataService.getFile(Url.exportReportByGroup, params)
+        const response = await DataService.getReportFile(Url.exportReportByGroup, params)
         const noContentStatusCode = 204;
         if (response.status === noContentStatusCode) {
             alert(LangHelper.getSingleResource("NoInfo"));

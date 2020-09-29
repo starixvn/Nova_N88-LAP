@@ -9,6 +9,27 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
         let _pageLanguage = null;
         let _isFakeLicensee = null;
 
+        const apiKeys = {
+            report: 'reportApi',
+            betlist: 'betlistApi'
+        }
+    
+        function buildProxyUrl(apiKey, apiUrl) {
+            const encodeUrl = apiUrl.replace(new RegExp('/', 'g'), '_');
+            const proxyUrl = `api/proxy/post/${apiKey}/${encodeUrl}`;
+            return proxyUrl;
+        }
+
+        function buildReportProxyUrl(apiUrl) {
+            const reportProxyUrl = buildProxyUrl(apiKeys.report, apiUrl);
+            return reportProxyUrl;
+        }
+
+        function buildBetListProxyUrl(apiKey, apiUrl) {
+            const betlistProxyUrl = buildProxyUrl(apiKeys.betlist, apiUrl);
+            return betlistProxyUrl;  
+        }
+    
         function setProductCodeListParam(url, productCodeList) {
             return QueryString.setParam(url, 'ProductCodeList', productCodeList);
         }
@@ -468,6 +489,8 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
             setProductCodeListParam: setProductCodeListParam,
             reload: reload,
             resolveClientUrl: resolveClientUrl,
+            buildReportProxyUrl: buildReportProxyUrl,
+            buildBetListProxyUrl: buildBetListProxyUrl,
             getHistoryDate: getHistoryDate,
             isBaseCurrency: isBaseCurrency,
             addUserGuide: addUserGuide,

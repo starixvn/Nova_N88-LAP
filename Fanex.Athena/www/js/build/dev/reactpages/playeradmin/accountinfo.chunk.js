@@ -1509,10 +1509,6 @@ class BaseCommonService {
     throw new Error("Method 'getTabList()' must be implemented.");
   }
 
-  getLink(sysType, action) {
-    throw new Error("Method 'getLink()' must be implemented.");
-  }
-
   fetchData(sType, action, params, configOption = {}) {
     throw new Error("Method 'fetchData()' must be implemented.");
   }
@@ -1548,15 +1544,12 @@ class FactoryCommonService {
     }
 
     const {
-      applyApiTokenUrl,
-      applyLinkTokenUrl,
-      tabList
+      tabList,
+      hostUrl
     } = pageConfig;
     const initialConfig = {
       tabList,
-      baseUrl: pageConfig.hostUrl,
-      applyApiTokenUrl,
-      applyLinkTokenUrl
+      baseUrl: hostUrl
     };
     return new _lapCommonService__WEBPACK_IMPORTED_MODULE_0__["default"](initialConfig);
   }
@@ -1609,26 +1602,14 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
     super();
     const {
       baseUrl,
-      applyLinkTokenUrl,
-      applyApiTokenUrl,
       tabList
     } = initialConfig;
-    this._applyLinkTokenUrl = applyLinkTokenUrl;
-    this._applyApiTokenUrl = applyApiTokenUrl;
     this._baseUrl = baseUrl;
     this._tabList = tabList || [];
   }
 
   getTabList() {
     return [...this._tabList];
-  }
-
-  _buildApplyTokenQueryString(sysType, action) {
-    return `ActionLink=${encodeURIComponent(action)}&Type=${sysType}`;
-  }
-
-  getLink(sysType, action) {
-    return sysType === _constants_configInfo__WEBPACK_IMPORTED_MODULE_1__["systemType"].newAdmin ? this._baseUrl + action : `${this._applyLinkTokenUrl}?${this._buildApplyTokenQueryString(sysType, action)}`;
   }
 
   _buildCommonAjaxConfig(configOption, apiActionUrl, params) {
@@ -1651,35 +1632,14 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
     return _objectSpread({}, config, {}, paramConfig);
   }
 
-  _fetchDataWithToken(sysType, action, params, configOption) {
-    const apiToken = `${this._applyApiTokenUrl}?${this._buildApplyTokenQueryString(sysType, action)}`;
-    return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(apiToken).then(response => {
-      const apiActionUrl = `${action}`;
-
-      const commonAjaxConfig = this._buildCommonAjaxConfig(configOption, apiActionUrl, params);
-
-      const headerConfig = _objectSpread({}, configOption.headers);
-
-      const configWithXToken = _objectSpread({}, commonAjaxConfig, {
-        headers: _objectSpread({}, headerConfig)
-      });
-
-      return axios__WEBPACK_IMPORTED_MODULE_3___default()(configWithXToken);
-    });
-  }
-
   fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
     const config = _objectSpread({}, defaultAjaxConfig, {}, configOption);
 
-    if (sysType === _constants_configInfo__WEBPACK_IMPORTED_MODULE_1__["systemType"].newAdmin) {
-      const relativeUrl = this._baseUrl + action;
+    const relativeUrl = this._baseUrl + action;
 
-      const ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
+    const ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
 
-      return axios__WEBPACK_IMPORTED_MODULE_3___default()(ajaxConfig);
-    } else {
-      return this._fetchDataWithToken(sysType, action, params, config);
-    }
+    return axios__WEBPACK_IMPORTED_MODULE_3___default()(ajaxConfig);
   }
 
   fetchMultiple(promiseList, callback) {

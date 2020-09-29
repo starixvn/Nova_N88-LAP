@@ -39,9 +39,9 @@
             var realApiHost = BuildApiHost(apiKey);
             var realApiPath = BuildApiPath(apiUrl);
 
-            var realUri = new UriBuilder(realApiHost)
+            var uri = new Uri($"{realApiHost}/{realApiPath}");
+            var realUri = new UriBuilder(uri)
             {
-                Path = realApiPath,
                 Query = query
             };
 
@@ -51,12 +51,15 @@
         private string BuildApiHost(string apiKey)
         {
             var settingKey = ProxyApiHostMapper.ContainsKey(apiKey) ? ProxyApiHostMapper[apiKey] : throw new Exception($"{apiKey} is invalid");
-            return ConfigurationManager.AppSettings[settingKey] ?? throw new Exception($"{settingKey} doesn't exist");
+            var apiHost = ConfigurationManager.AppSettings[settingKey] ?? throw new Exception($"{settingKey} doesn't exist");
+            apiHost = apiHost.TrimEnd('/');
+            return apiHost;
         }
 
         private string BuildApiPath(string apiUrl)
         {
             var realPath = apiUrl.Replace('_', '/');
+            realPath = realPath.TrimStart('/');
             return realPath;
         }
 

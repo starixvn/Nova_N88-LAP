@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 9/15/2020 1:05:27 PM
+﻿// Generated at: 9/16/2020 11:13:27 AM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -712,6 +712,7 @@ TipSharing:"打赏分成",
 To:"至",
 Todate:"至日期",
 Today:"今日",
+TooltipViewDetails:"Click to view more details",
 Total:"总和",
 TotalActiveCustomer:"总活跃会员人数",
 TotalAway:"客队总计",

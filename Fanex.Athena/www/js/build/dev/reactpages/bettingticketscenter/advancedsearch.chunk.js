@@ -2847,26 +2847,39 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function getGridData(url, params) {
-  return dispatch => {
-    _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_1__["default"].postData(url, params).then(response => {
+function getGridData(url, params, apiKey) {
+  return async dispatch => {
+    let apiCaller = null;
+
+    if (apiKey) {
+      apiCaller = _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_1__["default"].postProxyData(apiKey, url, params);
+    } else {
+      apiCaller = _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_1__["default"].postData(url, params);
+    }
+
+    try {
+      var response = await apiCaller;
       response.data.timestamp = new Date().getTime();
       dispatch(setGridData(response.data));
-    }).catch(error => {
-      switch (error.response.status) {
-        case 403:
-          window.location.href = _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].resolveClientUrl('Utility/AccessDenied');
-          break;
-
-        default:
-          alert("Sorry, an error occurred while processing your request.");
-          break;
-      }
-
+    } catch (error) {
+      handleError(error);
       dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_3__["toggleLoader"])(false));
-    });
+    }
   };
 }
+
+const handleError = error => {
+  switch (error.response.status) {
+    case 403:
+      window.location.href = _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].resolveClientUrl('Utility/AccessDenied');
+      break;
+
+    default:
+      alert("Sorry, an error occurred while processing your request.");
+      break;
+  }
+};
+
 function setGridData(data) {
   return {
     type: _jsroot_actions_types_js__WEBPACK_IMPORTED_MODULE_0__["SET_GRID_DATA"],
@@ -7209,9 +7222,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 class DataService {
+  static buildProxyUrl(apiKey, apiUrl) {
+    const encodeUrl = apiUrl.replace(new RegExp('/', 'g'), '_');
+    const proxyUrl = `api/proxy/post/${apiKey}/${encodeUrl}`;
+    return proxyUrl;
+  }
+
   static getData(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
       params: params
@@ -7237,7 +7258,38 @@ class DataService {
     });
   }
 
+  static postProxyData(apiKey, apiUrl, params) {
+    const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
+    return this.postData(proxyUrl, params);
+  }
+
+  static postReportData(url, params) {
+    return this.postProxyData(this.apiKeys.report, url, params);
+  }
+
+  static postBetListData(url, params) {
+    return this.postProxyData(this.apiKeys.betlist, url, params);
+  }
+
+  static getProxyFile(apiKey, apiUrl, params) {
+    const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
+    return this.getFile(proxyUrl, params);
+  }
+
+  static getReportFile(url, params) {
+    return this.getProxyFile(this.apiKeys.report, url, params);
+  }
+
+  static getBetListFile(url, params) {
+    return this.getProxyFile(this.apiKeys.betlist, url, params);
+  }
+
 }
+
+_defineProperty(DataService, "apiKeys", {
+  report: 'reportApi',
+  betlist: 'betlistApi'
+});
 
 /***/ }),
 

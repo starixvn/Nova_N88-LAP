@@ -2792,9 +2792,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 class DataService {
+  static buildProxyUrl(apiKey, apiUrl) {
+    const encodeUrl = apiUrl.replace(new RegExp('/', 'g'), '_');
+    const proxyUrl = `api/proxy/post/${apiKey}/${encodeUrl}`;
+    return proxyUrl;
+  }
+
   static getData(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
       params: params
@@ -2820,7 +2828,38 @@ class DataService {
     });
   }
 
+  static postProxyData(apiKey, apiUrl, params) {
+    const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
+    return this.postData(proxyUrl, params);
+  }
+
+  static postReportData(url, params) {
+    return this.postProxyData(this.apiKeys.report, url, params);
+  }
+
+  static postBetListData(url, params) {
+    return this.postProxyData(this.apiKeys.betlist, url, params);
+  }
+
+  static getProxyFile(apiKey, apiUrl, params) {
+    const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
+    return this.getFile(proxyUrl, params);
+  }
+
+  static getReportFile(url, params) {
+    return this.getProxyFile(this.apiKeys.report, url, params);
+  }
+
+  static getBetListFile(url, params) {
+    return this.getProxyFile(this.apiKeys.betlist, url, params);
+  }
+
 }
+
+_defineProperty(DataService, "apiKeys", {
+  report: 'reportApi',
+  betlist: 'betlistApi'
+});
 
 /***/ }),
 
@@ -5245,13 +5284,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errorResponse", function() { return errorResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "successResponse", function() { return successResponse; });
 const Url = {
-  performanceHighlight: 'Api/MarketingReport/PerformanceHighlight',
-  userActivities: 'Api/MarketingReport/UserActivities',
-  avgRevenue: 'Api/MarketingReport/AvgRevenue',
-  newlyRegisterUsersSummary: 'Api/MarketingReport/NewlyRegisterUsersSummary',
-  newlyRegisterUsersDetail: 'Api/MarketingReport/NewlyRegisterUsersDetails',
-  newlyRegisterUsersExport: 'Api/MarketingReport/NewlyRegisterUsersExport',
-  performanceHighlightExport: 'Api/MarketingReport/PerformanceHighlightExport'
+  performanceHighlight: 'Api/Marketing/PerformanceHighlight/GetData',
+  performanceHighlightExport: 'Api/Marketing/PerformanceHighlight/ExportData',
+  userActivities: 'Api/Marketing/UserActivities/GetData',
+  avgRevenue: 'Api/Marketing/Revenue/GetAvgData',
+  newlyRegisterUsersSummary: 'Api/Marketing/NewlyRegisterUsers/GetSummaryData',
+  newlyRegisterUsersDetail: 'Api/Marketing/NewlyRegisterUsers/GetDetailsData',
+  newlyRegisterUsersExport: 'Api/Marketing/NewlyRegisterUsers/ExportData'
 };
 const FileNameExport = {
   newlyRegisterUsers: 'MarketingReport_NewlyRegisterUsers.xls',
@@ -5886,7 +5925,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class QueryService {
   static async exportNewlyRegisterUsersData(params) {
-    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersExport, params);
+    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersExport, params);
     const noContentStatusCode = 204;
 
     if (response.status === noContentStatusCode) {
@@ -5899,7 +5938,7 @@ class QueryService {
   }
 
   static async exportPerformanceHighlightData(params) {
-    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlightExport, params);
+    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlightExport, params);
     const noContentStatusCode = 204;
 
     if (response.status === noContentStatusCode) {
@@ -5914,30 +5953,30 @@ class QueryService {
 }
 
 _defineProperty(QueryService, "fetchPerformanceHighlightData", async params => {
-  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlight, params));
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlight, params));
   return data;
 });
 
 _defineProperty(QueryService, "fetchUserActivitiesData", async params => {
-  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].userActivities, params));
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].userActivities, params));
   return data;
 });
 
 _defineProperty(QueryService, "fetchAvgRevenueData", async params => {
-  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].avgRevenue, params));
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].avgRevenue, params));
   return data;
 });
 
 _defineProperty(QueryService, "fetchNewlyRegisterUsersSummaryData", async (params, before, after) => {
   before && before();
-  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersSummary, params));
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersSummary, params));
   after && after(data);
   return data;
 });
 
 _defineProperty(QueryService, "fetchNewlyRegisterUsersDetailData", async (params, before, after) => {
   before && before();
-  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersDetail, params));
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersDetail, params));
   after && after(data);
   return data;
 });

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 9/15/2020 1:05:27 PM
+﻿// Generated at: 9/16/2020 11:13:27 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -837,6 +837,7 @@ Todate:"To date",
 Today:"Today",
 TokenIsInValid:"Token is invalid",
 TokenWasExpired:"Token was expired",
+TooltipViewDetails:"Click to view more details",
 Total:"Total",
 TotalActiveCustomer:"Total active customers",
 TotalAway:"Total Away",

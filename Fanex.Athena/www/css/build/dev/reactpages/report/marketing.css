@@ -858,8 +858,11 @@
   .marketing-report .highlight-detail .widget-title {
     background: #EEF8F6;
     padding: 8px 10px; }
-  .marketing-report .highlight-detail .highlight-detail-cell {
+  .marketing-report .highlight-detail .highlight-cell {
     background: #EEF8F6;
+    font-weight: bold; }
+  .marketing-report .highlight-detail .total-cell {
+    background: #fcf4df;
     font-weight: bold; }
 
 .marketing-report .triangle-top-left {

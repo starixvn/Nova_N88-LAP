@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
-import Widget from '../../../common/Widget';
-import DataService from '../../../../libs/services/dataService';
+import Widget from '../../../../common/Widget';
+import DataService from '../../../../../libs/services/dataService';
 import { Table, Pager, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
-import QueryService from '../../../../libs/services/queryService';
-import { DetailNRUGridColumns, DetailNRUGridConfig, DefaultPagingOption, StyleRow , DigitsAmount} from '../../../../constants/gridConst';
+import QueryService from '../../../../../libs/services/queryService';
+import { DetailNRUGridColumns, DetailNRUGridConfig, DefaultPagingOption, StyleRow , DigitsAmount} from '../../../../../constants/gridConst';
 
-const NewlyRegisterUsersDetailWidget = props => {
-    const { reportDate, baseCurrency, selectedBrand, sortInfo, onSort } = props;
+const NewlyRegisterUsersDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sortInfo, onSort }) => {
     const [isLoading, setLoading] = useState(false);
     const [detailData, setDetailData] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);

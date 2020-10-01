@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LangHelper from '@jsroot/lib/langHelper';
@@ -10,7 +10,9 @@ import HighlightBox from '../../common/HighlightBox';
 import DateTimeHelper from '../../../libs/helpers/dateTimeHelper';
 import DataService from '../../../libs/services/dataService';
 import QueryService from '../../../libs/services/queryService';
-import NewlyRegisterUsersDetail from './Details/NewlyRegisterUsersDetail';
+import NewlyRegisterUsersDetail from './Details/NRU/NewlyRegisterUsersDetail';
+import WithdrawalAmountDetail from './Details/WithdrawalAmount/WithdrawalAmountDetail';
+import BonusClaimedDetail from './Details/BonusClaimed/BonusClaimedDetail';
 
 export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
@@ -62,11 +64,40 @@ export const PerformanceHighlightWidget = props => {
     const _renderNewlyRegisteredUsersBox = () => {
         const { newlyRegisterUsers, growthRateNewlyRegisterUsers } = performanceHighlightData;
         return (<HighlightBox
-            onViewDetail={() => setSelectedBox(1)}
+            onViewDetail={() => setSelectedBox(NewlyRegisterUsersDetail.key)}
             title={LangHelper.getSingleResource('NRU')}
             description={LangHelper.getSingleResource('NewlyRegisteredUsers')}
             value={newlyRegisterUsers}
             rate={growthRateNewlyRegisterUsers}
+        />)
+    }
+
+    const _renderDepositAmountBox = () => {
+        const { depositAmount, growthRateDepositAmount } = performanceHighlightData;
+        return (<HighlightBox
+            title={LangHelper.getSingleResource('DepositAmount')}
+            value={depositAmount}
+            rate={growthRateDepositAmount}
+        />)
+    }
+
+    const _renderWithdrawalAmountBox = () => {
+        const { withdrawalAmount, growthRateWithdrawalAmount } = performanceHighlightData;
+        return (<HighlightBox
+            onViewDetail={() => setSelectedBox(WithdrawalAmountDetail.key)}
+            title={LangHelper.getSingleResource('WithdrawalAmount')}
+            value={withdrawalAmount}
+            rate={growthRateWithdrawalAmount}
+        />)
+    }
+
+    const _renderBonusClaimedBox = () => {
+        const { bonusUsers, growthRateBonusUsers } = performanceHighlightData;
+        return (<HighlightBox
+            onViewDetail={() => setSelectedBox(BonusClaimedDetail.key)}
+            title={LangHelper.getSingleResource('BonusClaimed')}
+            value={bonusUsers}
+            rate={growthRateBonusUsers}
         />)
     }
 
@@ -97,10 +128,35 @@ export const PerformanceHighlightWidget = props => {
 
     const _renderPopupTitle = () => {
         const { selectedBaseCurrency, reportDate } = globalFilter;
-        const reportName = `${LangHelper.getSingleResource('NRU')} - ${LangHelper.getSingleResource('NewlyRegisteredUsers')}`;
+        const reportName = LangHelper.getSingleResource(selectedBox);
         const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
         const reportDateRange = DateTimeHelper.formatDateRangeToString(reportDate.fromDate, reportDate.toDate);
         return `${reportName}, ${reportDateRange}, ${displayCurrency}`;
+    }
+
+    const _renderContentPopupDetail = () => {
+        const params = {
+            baseCurrency: globalFilter.selectedBaseCurrency,
+            reportDate: globalFilter.reportDate,
+            compareDate: globalFilter.compareDate,
+            selectedBrand: globalFilter.selectedBrand
+        }
+        if (selectedBox === NewlyRegisterUsersDetail.key) {
+            return <NewlyRegisterUsersDetail {...params} />
+        }
+        if (selectedBox === WithdrawalAmountDetail.key) {
+            return <WithdrawalAmountDetail {...params} />
+        }
+        if (selectedBox === BonusClaimedDetail.key) {
+            return <BonusClaimedDetail {...params} />
+        }
+        return null;
+    }
+
+    const _renderPopupDetail = () => {
+        return selectedBox && (<Popup height={800} width={1400} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
+            {_renderContentPopupDetail()}
+        </Popup>)
     }
 
     const _handleExportExcel = () => {
@@ -111,14 +167,14 @@ export const PerformanceHighlightWidget = props => {
 
     return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel}>
         {performanceHighlightData && <div className="sticky-box-container">
-            {selectedBox && <Popup height={800} width={1400} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
-                <NewlyRegisterUsersDetail reportDate={globalFilter.reportDate} compareDate={globalFilter.compareDate} 
-                    baseCurrency={globalFilter.selectedBaseCurrency} selectedBrand={globalFilter.selectedBrand} />
-            </Popup>}
+            {_renderPopupDetail()}
             {_renderTotalUsersBox()}
             {_renderPaidUsersBox()}
             {_renderActiveUsersBox()}
             {_renderNewlyRegisteredUsersBox()}
+            {_renderDepositAmountBox()}
+            {_renderWithdrawalAmountBox()}
+            {_renderBonusClaimedBox()}
             {_renderChurnRateBox()}
             {_renderRetentionRateBox()}
         </div>}

@@ -194,8 +194,13 @@
             padding: 8px 10px;
         }
 
-        .highlight-detail-cell {
+        .highlight-cell {
             background: #EEF8F6;
+            font-weight: bold;
+        }
+
+        .total-cell {
+            background: #fcf4df;
             font-weight: bold;
         }
     }

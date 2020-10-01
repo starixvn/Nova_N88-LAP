@@ -1309,9 +1309,6 @@
     <Content Include="www\js\source\reactpages\pages\report\marketing\components\Content.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\components\FormFilter.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\components\widgets\AvgRevenueWidget.jsx" />
-    <Content Include="www\js\source\reactpages\pages\report\marketing\components\widgets\PerformanceHighlightWidget\Details\NewlyRegisterUsersDetail.jsx" />
-    <Content Include="www\js\source\reactpages\pages\report\marketing\components\widgets\PerformanceHighlightWidget\Details\NewlyRegisterUsersDetailWidget.jsx" />
-    <Content Include="www\js\source\reactpages\pages\report\marketing\components\widgets\PerformanceHighlightWidget\Details\NewlyRegisterUsersSummaryWidget.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\components\widgets\PerformanceHighlightWidget\index.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\components\widgets\PerformanceHighlightWidget\PerformanceHighlightWidget.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\components\widgets\UserActivitiesWidget.jsx" />

@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
-import Widget from '../../../common/Widget';
-import DataService from '../../../../libs/services/dataService';
+import Widget from '../../../../common/Widget';
+import DataService from '../../../../../libs/services/dataService';
 
 import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
-import QueryService from '../../../../libs/services/queryService';
-import NumberHelper from '../../../../libs/helpers/numberHelper';
-import { TotalNRUGridColumns, TotalNRUGridConfig, CampaignNRUGridColumns, CampaignNRUGridConfig, SignupNRUGridColumns, SignupNRUGridConfig, StyleRow, DigitsAmount } from '../../../../constants/gridConst';
+import QueryService from '../../../../../libs/services/queryService';
+import NumberHelper from '../../../../../libs/helpers/numberHelper';
+import { TotalNRUGridColumns, TotalNRUGridConfig, CampaignNRUGridColumns, CampaignNRUGridConfig, SignupNRUGridColumns, SignupNRUGridConfig, StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
 
-const NewlyRegisterUsersSummaryWidget = props => {
-    const { reportDate, compareDate, baseCurrency, selectedBrand } = props;
+const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand }) => {
     const [isLoading, setLoading] = useState(false);
     const [summaryData, setSummaryData] = useState(null);
 

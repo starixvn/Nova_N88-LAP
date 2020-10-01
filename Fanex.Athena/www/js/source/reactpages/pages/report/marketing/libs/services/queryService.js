@@ -19,6 +19,8 @@ export default class QueryService {
         return data;
     }
 
+    /* detail popup*/
+
     static fetchNewlyRegisterUsersSummaryData = async (params, before, after) => {
         before && before();
         var data = await this.fetchData(() => DataService.postReportData(Url.newlyRegisterUsersSummary, params));
@@ -42,6 +44,56 @@ export default class QueryService {
             Site.downloadFile(response.data, FileNameExport.newlyRegisterUsers);
         };
     }
+
+    static fetchWithdrawalAmountSummaryData = async (params, before, after) => {
+        before && before();
+        var data = await this.fetchData(() => DataService.postReportData(Url.withdrawalAmountSummary, params));
+        after && after(data)
+        return data;
+    }
+
+    static fetchWithdrawalAmountDetailData = async (params, before, after) => {
+        before && before();
+        var data = await this.fetchData(() => DataService.postReportData(Url.withdrawalAmountDetail, params));
+        after && after(data)
+        return data;
+    }
+
+    static async exportWithdrawalAmountData(params) {
+        const response = await DataService.getReportFile(Url.withdrawalAmountExport, params)
+        const noContentStatusCode = 204;
+        if (response.status === noContentStatusCode) {
+            alert(LangHelper.getSingleResource("NoInfo"));
+        } else {
+            Site.downloadFile(response.data, FileNameExport.withdrawalAmount);
+        };
+    }
+
+    static fetchBonusClaimedSummaryData = async (params, before, after) => {
+        before && before();
+        var data = await this.fetchData(() => DataService.postReportData(Url.bonusClaimedSummary, params));
+        after && after(data)
+        return data;
+    }
+
+    static fetchBonusClaimedDetailData = async (params, before, after) => {
+        before && before();
+        var data = await this.fetchData(() => DataService.postReportData(Url.bonusClaimedDetail, params));
+        after && after(data)
+        return data;
+    }
+
+    static async exportBonusClaimedData(params) {
+        const response = await DataService.getReportFile(Url.bonusClaimedExport, params)
+        const noContentStatusCode = 204;
+        if (response.status === noContentStatusCode) {
+            alert(LangHelper.getSingleResource("NoInfo"));
+        } else {
+            Site.downloadFile(response.data, FileNameExport.bonusClaimed);
+        };
+    }
+
+    /* end detail popup*/
 
     static async exportPerformanceHighlightData(params) {
         const response = await DataService.getReportFile(Url.performanceHighlightExport, params)

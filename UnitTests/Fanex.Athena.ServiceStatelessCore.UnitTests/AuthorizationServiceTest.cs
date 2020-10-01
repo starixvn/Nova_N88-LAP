@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Fanex.Athena.DataAccess.Core.Users.Interfaces;
+﻿using Fanex.Athena.DataAccess.Core.Users.Interfaces;
 using Fanex.Athena.Extension.Utility.Interfaces;
-using Fanex.Athena.Model.Auth;
 using Fanex.Athena.Model.Auth.DataDomain;
 using Fanex.Athena.Model.Auth.Enum;
 using Fanex.Athena.Service.StatelessCore;
@@ -12,8 +8,10 @@ using Fanex.N88.Core.Configuration;
 using Fanex.N88.Core.Service.Interface;
 using Fanex.NVC.Authentication.Infrastructure;
 using NSubstitute;
-
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Athena.ServiceStatelessCore.UnitTests
 {

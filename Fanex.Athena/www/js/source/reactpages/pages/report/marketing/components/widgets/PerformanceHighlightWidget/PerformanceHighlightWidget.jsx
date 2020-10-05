@@ -31,23 +31,42 @@ export const PerformanceHighlightWidget = props => {
     const _title = React.useMemo(() => LangHelper.getSingleResource('BusinessPerformanceHighlights'), []);
 
     const _renderTotalUsersBox = () => {
-        const { totalUsers, growthRateTotalUsers } = performanceHighlightData;
+        const { totalUsers } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={false}
             title={LangHelper.getSingleResource('TotalUsers')}
+            description={LangHelper.getSingleResource('AsOfNow')}
             value={totalUsers}
-            rate={growthRateTotalUsers}
         />)
     }
 
-    const _renderPaidUsersBox = () => {
-        const { paidUsers, growthRatePaidUsers } = performanceHighlightData;
+    const _renderTotalDepositUsersBox = () => {
+        const { totalDepositUsers } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={false}
-            title={'PU (APA)'}
+            title={LangHelper.getSingleResource('TotalDepositUsers')}
+            description={LangHelper.getSingleResource('AsOfNow')}
+            value={totalDepositUsers}
+        />)
+    }
+
+    const _renderTotalActiveUsersBox = () => {
+        const { totalActiveUsers } = performanceHighlightData;
+        return (<HighlightBox
+            enableCompare={false}
+            title={LangHelper.getSingleResource('TotalActiveUsers')}
+            description={LangHelper.getSingleResource('AsOfNow')}
+            value={totalActiveUsers}
+        />)
+    }
+
+    const _renderDepositUsersBox = () => {
+        const { depositUsers, growthRateDepositUsers } = performanceHighlightData;
+        return (<HighlightBox
+            title={LangHelper.getSingleResource('PU (APA)')}
             description={LangHelper.getSingleResource('DepositUsers')}
-            value={paidUsers}
-            rate={growthRatePaidUsers}
+            value={depositUsers}
+            rate={growthRateDepositUsers}
         />)
     }
 
@@ -169,7 +188,9 @@ export const PerformanceHighlightWidget = props => {
         {performanceHighlightData && <div className="sticky-box-container">
             {_renderPopupDetail()}
             {_renderTotalUsersBox()}
-            {_renderPaidUsersBox()}
+            {_renderTotalDepositUsersBox()}
+            {_renderTotalActiveUsersBox()}
+            {_renderDepositUsersBox()}
             {_renderActiveUsersBox()}
             {_renderNewlyRegisteredUsersBox()}
             {_renderDepositAmountBox()}

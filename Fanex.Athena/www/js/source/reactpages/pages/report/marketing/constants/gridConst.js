@@ -74,7 +74,7 @@ export const DetaiWithdrawalAmountGridConfig = {
     [DetailWithdrawalAmountGridColumns.rowId]: { name: '#', attributes: { colWidth: 30, className: "center-align" } },
     [DetailWithdrawalAmountGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
     [DetailWithdrawalAmountGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 2, colWidth: 80, className: "center-align" } },
-    [DetailWithdrawalAmountGridColumns.numberOfWithdrawals]: { name: LangHelper.getSingleResource('NumberOfWithdrawals'), attributes: { sortBy: 3, colWidth: 80, className: "center-align" } },
+    [DetailWithdrawalAmountGridColumns.numberOfWithdrawals]: { name: LangHelper.getSingleResource('NumberOfWithdrawals'), attributes: { sortBy: 3, colWidth: 80, className: "right-align" } },
     [DetailWithdrawalAmountGridColumns.withdrawalAmount]: { name: LangHelper.getSingleResource('TotalWithdrawalAmount'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } }
 }
 
@@ -100,9 +100,9 @@ export const DetaiBonusClaimedGridConfig = {
 
 export const DefaultPagingOption = {
     PageIndex: 1,
-    PageSize: 500,
+    PageSize: 100,
     TotalItem: 0,
-    PageList: [500, 1000, 1500, 2000]
+    PageList: [100, 200, 500, 1000]
 }
 
 export const DefaultSortInfo = {

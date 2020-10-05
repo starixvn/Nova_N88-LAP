@@ -124,8 +124,8 @@ export class FormFilter extends PureComponent {
                     value={selectedDateType}
                     onChange={value => setSelectedDateType(value)}
                     options={DateFilterTypeOptions} />}
-                {this._renderDateRange()}
             </label>
+            {this._renderDateRange()}
         </>
     }
 

@@ -91,11 +91,11 @@ export const DetailBonusClaimedGridColumns = {
 export const DetaiBonusClaimedGridConfig = {
     [DetailBonusClaimedGridColumns.rowId]: { name: '#', attributes: { colWidth: 30, className: "center-align" } },
     [DetailBonusClaimedGridColumns.bonusCode]: { name: LangHelper.getSingleResource('Bonus'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
-    [DetailBonusClaimedGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
-    [DetailBonusClaimedGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 2, colWidth: 80, className: "center-align" } },
-    [DetailBonusClaimedGridColumns.depositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 3, colWidth: 80, className: "right-align" } },
-    [DetailBonusClaimedGridColumns.withdrawalAmount]: { name: LangHelper.getSingleResource('TotalWithdrawalAmount'), attributes: { sortBy: 3, colWidth: 80, className: "right-align" } },
-    [DetailBonusClaimedGridColumns.bonusAmount]: { name: LangHelper.getSingleResource('TotalBonusAmountClaimed'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } }
+    [DetailBonusClaimedGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 2, colWidth: 80, className: "left-align" } },
+    [DetailBonusClaimedGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 3, colWidth: 80, className: "center-align" } },
+    [DetailBonusClaimedGridColumns.depositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } },
+    [DetailBonusClaimedGridColumns.withdrawalAmount]: { name: LangHelper.getSingleResource('TotalWithdrawalAmount'), attributes: { sortBy: 5, colWidth: 80, className: "right-align" } },
+    [DetailBonusClaimedGridColumns.bonusAmount]: { name: LangHelper.getSingleResource('TotalBonusAmountClaimed'), attributes: { sortBy: 6, colWidth: 80, className: "right-align" } }
 }
 
 export const DefaultPagingOption = {

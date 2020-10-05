@@ -25,7 +25,7 @@
 
             var apiProxyRoute = routes.MapHttpRoute(
                    name: "apiProxyRoute",
-                   routeTemplate: "api/proxy/{action}/{apiKey}/{apiUrl}",
+                   routeTemplate: "api/proxy/{apiKey}/{apiUrl}",
                    new { Controller = "Proxy" });
             apiProxyRoute.RouteHandler = new ReadonlySessionRouteHandler();
 

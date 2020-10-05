@@ -16,7 +16,7 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
     
         function buildProxyUrl(apiKey, apiUrl) {
             const encodeUrl = apiUrl.replace(new RegExp('/', 'g'), '_');
-            const proxyUrl = `api/proxy/post/${apiKey}/${encodeUrl}`;
+            const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
             return proxyUrl;
         }
 
@@ -25,7 +25,7 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
             return reportProxyUrl;
         }
 
-        function buildBetListProxyUrl(apiKey, apiUrl) {
+        function buildBetListProxyUrl(apiUrl) {
             const betlistProxyUrl = buildProxyUrl(apiKeys.betlist, apiUrl);
             return betlistProxyUrl;  
         }

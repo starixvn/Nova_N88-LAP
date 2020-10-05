@@ -9,7 +9,7 @@ export default class DataService {
 
     static buildProxyUrl(apiKey, apiUrl) {
         const encodeUrl = apiUrl.replace(new RegExp('/', 'g'), '_');
-        const proxyUrl = `api/proxy/post/${apiKey}/${encodeUrl}`;
+        const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
         return proxyUrl;
     }
 

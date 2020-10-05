@@ -32,7 +32,6 @@ var cssPaths = {
     customerlist: ["./www/css/source/pages/customer/customerlist.scss"],
     customeroutstanding: ["./www/css/source/pages/betlist/customeroutstanding.scss"],
     betsetting: ["./www/css/source/pages/customer/betsetting.scss"],
-    customerwinloss: ["./www/css/source/pages/report/customerwinloss.scss"],
     manageuser: ["./www/css/source/pages/user/index.scss"],
     edituser: ["./www/css/source/pages/user/edit.scss"],
     assignpermission: ["./www/css/source/pages/user/assign-permission.scss"],
@@ -63,8 +62,7 @@ var scriptPaths = {
 
     result: "./www/js/source/pages/report/result/main-result.js",
     cashoutwinloss: "./www/js/source/pages/report/cashoutwinloss/main.js",
-    customeroutstanding: "./www/js/source/pages/betlist/customer/main.js",
-    customerwinloss: "./www/js/source/pages/report/customerwinloss/main.js"
+    customeroutstanding: "./www/js/source/pages/betlist/customer/main.js"
 };
 
 module.exports = {

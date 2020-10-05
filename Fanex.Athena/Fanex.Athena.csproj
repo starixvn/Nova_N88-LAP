@@ -737,7 +737,6 @@
     <Content Include="www\css\build\pro\pages\log\logexecsp.chunk.js" />
     <Content Include="www\css\build\pro\pages\log\logexecsp.css" />
     <Content Include="www\css\build\pro\pages\reports\cashoutwinloss.chunk.js" />
-    <Content Include="www\css\build\pro\pages\reports\customerwinloss.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\licenseewinloss.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\reportjqgridlayout.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\result.chunk.js" />
@@ -1509,8 +1508,6 @@
     <Content Include="www\css\build\dev\pages\login\login.css" />
     <Content Include="www\css\build\dev\pages\reports\cashoutwinloss.chunk.js" />
     <Content Include="www\css\build\dev\pages\reports\cashoutwinloss.css" />
-    <Content Include="www\css\build\dev\pages\reports\customerwinloss.chunk.js" />
-    <Content Include="www\css\build\dev\pages\reports\customerwinloss.css" />
     <Content Include="www\css\build\dev\pages\reports\licenseewinloss.chunk.js" />
     <Content Include="www\css\build\dev\pages\reports\licenseewinloss.css" />
     <Content Include="www\css\build\dev\pages\reports\reportjqgridlayout.chunk.js" />
@@ -1536,7 +1533,6 @@
     <Content Include="www\css\build\pro\pages\customer\commgroupdetail.css" />
     <Content Include="www\css\build\pro\pages\customer\customerlist.css" />
     <Content Include="www\css\build\pro\pages\customer\customerlog.css" />
-    <Content Include="www\css\build\pro\pages\reports\customerwinloss.css" />
     <Content Include="www\css\build\pro\um.css" />
     <Content Include="www\css\source\components\jquery.colorpicker\colorPicker.css" />
     <Content Include="www\css\source\pages\customer\commgrouplist.scss" />
@@ -1557,12 +1553,6 @@
     <Content Include="www\css\build\dev\um.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.css.map" />
-    <Content Include="Views\Desktop\Report\CustomerWinloss\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\CustomerWinloss\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\CustomerWinloss\HistoryFilter.cshtml" />
-    <Content Include="Views\Desktop\Report\CustomerWinloss\Main.cshtml" />
-    <Content Include="www\css\build\dev\pages\reports\customerwinloss.chunk.js.map" />
-    <Content Include="www\css\build\dev\pages\reports\customerwinloss.css.map" />
     <Content Include=".babelrc" />
     <Content Include="Fanex.Athena.ruleset" />
     <None Include="www\css\source\pages\customer\customerlist.scss" />
@@ -1574,7 +1564,6 @@
     <Content Include="www\css\build\dev\pages\customer\commgroupdetail.css.map" />
     <Content Include="www\css\source\pages\report\activecustomersummary.scss" />
     <Content Include="www\css\source\pages\report\thirdpartywinloss.scss" />
-    <Content Include="www\css\source\pages\report\customerwinloss.scss" />
     <Content Include="Views\Desktop\BetList\BonusDetail\Main.cshtml" />
     <None Include="www\css\source\pages\utility\um.scss" />
     <Content Include="www\css\build\images\bg-login.jpg" />
@@ -1647,7 +1636,6 @@
     <Content Include="www\js\build\dev\pages\betlist\customeroutstanding.chunk.js" />
     <Content Include="www\js\build\dev\pages\home\home.chunk.js" />
     <Content Include="www\js\build\dev\pages\reports\cashoutwinloss.chunk.js" />
-    <Content Include="www\js\build\dev\pages\reports\customerwinloss.chunk.js" />
     <Content Include="www\js\build\dev\pages\reports\licenseewinloss.chunk.js" />
     <Content Include="www\js\build\dev\pages\reports\result.chunk.js" />
     <Content Include="www\js\build\dev\pages\signin\signin.chunk.js" />
@@ -1660,7 +1648,6 @@
     <Content Include="www\js\build\pro\pages\betlist\customeroutstanding.chunk.js" />
     <Content Include="www\js\build\pro\pages\home\home.chunk.js" />
     <Content Include="www\js\build\pro\pages\reports\cashoutwinloss.chunk.js" />
-    <Content Include="www\js\build\pro\pages\reports\customerwinloss.chunk.js" />
     <Content Include="www\js\build\pro\pages\reports\licenseewinloss.chunk.js" />
     <Content Include="www\js\build\pro\pages\reports\result.chunk.js" />
     <Content Include="www\js\build\pro\pages\signin\signin.chunk.js" />
@@ -1734,9 +1721,6 @@
     <Content Include="www\js\source\pages\report\cashoutwinloss\cashoutwinloss.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\cashoutwinloss.option.js" />
     <Content Include="www\js\source\pages\report\cashoutwinloss\main.js" />
-    <Content Include="www\js\source\pages\report\customerwinloss\customerwinloss.js" />
-    <Content Include="www\js\source\pages\report\customerwinloss\customerwinloss.option.js" />
-    <Content Include="www\js\source\pages\report\customerwinloss\main.js" />
     <Content Include="www\js\source\pages\report\thirdpartywinloss\common\thirdpartywinloss.js" />
     <Content Include="www\js\source\pages\report\thirdpartywinloss\common\thirdpartywinloss.option.js" />
     <Content Include="www\js\source\lib\jquery.cookie.js" />
@@ -1804,8 +1788,6 @@
     <Content Include="www\js\tests\pages\customer\customerlog\loginlog\loginlog.option-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\cashoutwinloss\cashoutwinloss.option-spec.js" />
-    <Content Include="www\js\tests\pages\report\customerwinloss\customerwinloss-spec.js" />
-    <Content Include="www\js\tests\pages\report\customerwinloss\customerwinloss.option-spec.js" />
     <Content Include="www\js\tests\pages\report\licenseewinloss\licenseewinloss.goback-spec.js" />
     <Content Include="www\js\tests\pages\report\licenseewinloss\licenseewinloss-spec.js" />
     <Content Include="www\js\tests\pages\report\licenseewinloss\licenseewinloss.option-spec.js" />
@@ -2129,7 +2111,6 @@
     <Content Include="www\js\build\dev\pages\betlist\customeroutstanding.chunk.js.map" />
     <Content Include="www\webpackconfig\build\webpack.react.pro.conf.js" />
     <Content Include="www\css\source\scss\fonts\roboto\_style.scss" />
-    <Content Include="www\js\build\dev\pages\reports\customerwinloss.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\lib\langHelper.chunk.js.map" />
     <Content Include="www\css\source\reactpages\components\date-range\styles.scss" />
     <Content Include="www\js\source\reactpages\components\Loader.jsx" />

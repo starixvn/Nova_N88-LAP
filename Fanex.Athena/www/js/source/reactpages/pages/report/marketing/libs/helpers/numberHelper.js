@@ -1,6 +1,8 @@
+import NumberFormat from '@jsroot/lib/numberFormat';
+
 export default class NumberHelper {
     static displayRate(rate) {
-        return `${rate > 0 ? '+' : ''}${rate}%`;
+        return `${rate > 0 ? '+' : ''}${NumberFormat.format(rate)}%`;
     }
 
     static getColorRate = rate => {

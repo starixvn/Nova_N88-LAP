@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.Controllers
 {
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using Extension.Utility;
     using Fanex.Athena.Controllers.Base;
     using Fanex.Athena.Service.Core.Common.Interfaces;
@@ -11,6 +9,8 @@
     using Fanex.N88.Core.Context;
     using Fanex.N88.Core.Web.Context;
     using Service.Core.Users.Interfaces;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
 
     [CustomAuthorize]
     public class CultureBaseController : Controller
@@ -20,10 +20,7 @@
         public ISessionService SessionServiceInstance { get; set; }
         public IAppSettings AppSettingInstance { get; set; }
         public ILicenseeSettingService LicenseeSettingServiceInstance { get; set; }
-
-        public N88Settings n88Settings;
-
-        private readonly ICurrentContext currentContext = new CurrentContext();
+        public N88Settings N88Settings { get; set; }
 
         protected readonly IDictionary<int, string> siteNameList = new Dictionary<int, string>
         {
@@ -31,6 +28,8 @@
             { 436, "Goal123" },
             { 437, "Bwing" }
         };
+
+        public ICurrentContext CurrentContext { get; } = new CurrentContext();
 
         public bool IsFakeLicensee(string licenseeName)
         {
@@ -42,7 +41,7 @@
             base.Initialize(requestContext);
             var currentLanguage = LangService.GetCurrentLanguage();
             LangService.SetPageCulture(currentLanguage);
-            n88Settings = N88Settings.Settings;
+            N88Settings = N88Settings.Settings;
         }
 
         protected JsonResult JsonNet(object data)
@@ -56,14 +55,6 @@
         protected static JsonNetResult JsonString(string jsonData)
         {
             return new JsonNetResult(jsonData);
-        }
-
-        public ICurrentContext CurrentContext
-        {
-            get
-            {
-                return currentContext;
-            }
         }
     }
 }

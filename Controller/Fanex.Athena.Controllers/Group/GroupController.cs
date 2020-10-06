@@ -72,7 +72,7 @@
                 {
                     GroupName = criteria.GroupName,
                     IsLicenseeGroup = true,
-                    SiteId = n88Settings.SiteId
+                    SiteId = N88Settings.SiteId
                 };
 
                 GroupData group = _groupService.Get(getCriteria);

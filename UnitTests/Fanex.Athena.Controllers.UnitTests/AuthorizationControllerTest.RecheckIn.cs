@@ -18,7 +18,7 @@
             using (var controller = CreateController())
             {
                 // Arrange
-                controller.n88Settings.EnableReCheckIn = true;
+                controller.N88Settings.EnableReCheckIn = true;
                 _maintenanceService.IsUnderMaintenance().Returns(true);
                 _maintenanceService.GetUnderMaintenanceTime().Returns(new UnderMaintenanceTime
                 {
@@ -42,7 +42,7 @@
             using (var controller = CreateController())
             {
                 // Arrange
-                controller.n88Settings.EnableReCheckIn = true;
+                controller.N88Settings.EnableReCheckIn = true;
                 _maintenanceService.IsUnderMaintenance().Returns(false);
 
                 controller.ControllerContext.HttpContext.Request.IsAuthenticated.Returns(false);
@@ -62,7 +62,7 @@
             using (var controller = CreateController())
             {
                 // Arrange
-                controller.n88Settings.EnableReCheckIn = true;
+                controller.N88Settings.EnableReCheckIn = true;
                 _maintenanceService.IsUnderMaintenance().Returns(false);
                 _siteService.IsActivated(Arg.Any<int>()).Returns(true);
 

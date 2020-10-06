@@ -40,8 +40,8 @@ const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, sele
         const colorRate = NumberHelper.getColorRate(roundRate);
         const body = (<Row style={StyleRow}>
             <Cell className='left-align highlight-cell' >{LangHelper.getSingleResource('BonusClaimed')}</Cell>
-            <Cell className='right-align'>{NumberFormat.format(item.bonusUsers, DigitsAmount)}</Cell>
-            <Cell className='right-align'>{NumberFormat.format(item.compareBonusUsers, DigitsAmount)}</Cell>
+            <Cell className='right-align'>{NumberFormat.format(item.bonusClaimeds, 0)}</Cell>
+            <Cell className='right-align'>{NumberFormat.format(item.compareBonusClaimeds, 0)}</Cell>
             <Cell className={`right-align ${colorRate}`}>{displayRate}</Cell>
         </Row>);
 
@@ -74,7 +74,7 @@ const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, sele
 
         const totalRow = (<Row>
             <Cell className='left-align total-cell'>{LangHelper.getSingleResource('Total')}</Cell>
-            <Cell className='right-align total-cell'>{NumberFormat.format(totalDetailData.totalBonusUsers, 0)}</Cell>
+            <Cell className='right-align total-cell'>{NumberFormat.format(totalDetailData.totalBonusClaimeds, 0)}</Cell>
             <Cell className='right-align total-cell'>{NumberFormat.format(totalDetailData.totalBonusAmount, 2)}</Cell>
         </Row>)
 

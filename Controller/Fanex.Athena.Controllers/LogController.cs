@@ -41,7 +41,7 @@
                 Name = name ?? string.Empty,
                 From = from ?? DateTime.Now.Date,
                 To = to ?? DateTime.Now.Date,
-                SiteId = n88Settings.SiteId,
+                SiteId = N88Settings.SiteId,
                 TotalRows = 0
             };
             ViewBag.Criteria = criteria;
@@ -71,7 +71,7 @@
                 From = from ?? DateTime.Now.Date,
                 To = to ?? DateTime.Now.AddDays(1).Date,
                 FilterType = filterBy,
-                SiteId = n88Settings.SiteId,
+                SiteId = N88Settings.SiteId,
                 TotalRows = 0
             };
 
@@ -337,7 +337,7 @@
                 // Get function list
                 int siteId = Convert.ToInt32(elementNew.Attribute("SiteId").Value);
 
-                ViewBag.FunctionList = functionService.GetBySiteInHierarchy(siteId, n88Settings.Environment, true);
+                ViewBag.FunctionList = functionService.GetBySiteInHierarchy(siteId, N88Settings.Environment, true);
 
                 // Old data
 

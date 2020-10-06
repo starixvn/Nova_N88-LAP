@@ -111,12 +111,12 @@ export const PerformanceHighlightWidget = props => {
     }
 
     const _renderBonusClaimedBox = () => {
-        const { bonusUsers, growthRateBonusUsers } = performanceHighlightData;
+        const { bonusClaimeds, growthRateBonusClaimeds } = performanceHighlightData;
         return (<HighlightBox
             onViewDetail={() => setSelectedBox(BonusClaimedDetail.key)}
             title={LangHelper.getSingleResource('BonusClaimed')}
-            value={bonusUsers}
-            rate={growthRateBonusUsers}
+            value={bonusClaimeds}
+            rate={growthRateBonusClaimeds}
         />)
     }
 
@@ -147,10 +147,9 @@ export const PerformanceHighlightWidget = props => {
 
     const _renderPopupTitle = () => {
         const { selectedBaseCurrency, reportDate } = globalFilter;
-        const reportName = LangHelper.getSingleResource(selectedBox);
         const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
         const reportDateRange = DateTimeHelper.formatDateRangeToString(reportDate.fromDate, reportDate.toDate);
-        return `${reportName}, ${reportDateRange}, ${displayCurrency}`;
+        return `${LangHelper.getSingleResource('Marketing')}, ${reportDateRange}, ${displayCurrency}`;
     }
 
     const _renderContentPopupDetail = () => {

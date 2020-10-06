@@ -1,4 +1,4 @@
-﻿// Generated at: 10/5/2020 10:48:29 AM
+﻿// Generated at: 10/8/2020 5:31:07 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -447,7 +447,7 @@ NoneCurrency:"None currency",
 NoneLevel:"None level",
 NoneLive:"非滚球(不含混合)",
 NonEntered:"成绩还没输入场数",
-NoOfBonusClaimed:"No Of BonusClaimed",
+NoOfBonusClaimed:"No. Of Bonus Claimed",
 NoOfCustmer:"会员数",
 NoProductFound:"No product found",
 Normal:"正常",

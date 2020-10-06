@@ -322,7 +322,7 @@
                 LangService = LangService,
                 SessionServiceInstance = SessionService,
                 AppSettingInstance = AppSettings,
-                n88Settings = new N88Settings()
+                N88Settings = new N88Settings()
             };
         }
     }

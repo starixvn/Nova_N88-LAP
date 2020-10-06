@@ -4876,7 +4876,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Of BonusClaimed.
+        ///   Looks up a localized string similar to No. Of Bonus Claimed.
         /// </summary>
         public static string NoOfBonusClaimed {
             get {

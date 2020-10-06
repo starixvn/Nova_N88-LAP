@@ -1,4 +1,4 @@
-﻿// Generated at: 10/5/2020 10:48:29 AM
+﻿// Generated at: 10/8/2020 5:31:07 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -535,7 +535,7 @@ NoneCurrency:"None currency",
 NoneLevel:"None level",
 NoneLive:"Non-Live",
 NonEntered:"Non-Entered",
-NoOfBonusClaimed:"No Of BonusClaimed",
+NoOfBonusClaimed:"No. Of Bonus Claimed",
 NoOfCustmer:"No. of Customer",
 NoProductFound:"No product found",
 Normal:"Normal",

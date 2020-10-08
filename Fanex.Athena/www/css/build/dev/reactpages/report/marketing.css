@@ -748,6 +748,8 @@
     font-weight: bold; }
   .marketing-report .table-container .header-content .table thead tr th:not(:first-child) {
     border-left-color: #d6d6d6; }
+  .marketing-report .table-container .header-content .table thead tr th:first-child {
+    border-left: none; }
 
 .marketing-report .page-container {
   background: #F5F5F5; }
@@ -797,13 +799,14 @@
 
 .marketing-report .sticky-box-container {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  margin-top: -15px; }
   .marketing-report .sticky-box-container .sticky-box {
     margin-right: 15px;
-    margin-top: 5px; }
+    margin-top: 15px; }
 
 .marketing-report .sticky-box {
-  width: 200px;
+  width: 210px;
   height: 140px;
   padding: 10px 10px;
   background: #EEF8F6;
@@ -822,7 +825,7 @@
 .marketing-report .sticky-box-content {
   text-align: center;
   font-weight: bold;
-  font-size: 32px; }
+  font-size: 30px; }
 
 .marketing-report .sticky-box-compare-title {
   float: left;

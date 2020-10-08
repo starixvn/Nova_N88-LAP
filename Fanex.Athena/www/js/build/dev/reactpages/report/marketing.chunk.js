@@ -2799,7 +2799,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class DataService {
   static buildProxyUrl(apiKey, apiUrl) {
     const encodeUrl = apiUrl.replace(new RegExp('/', 'g'), '_');
-    const proxyUrl = `api/proxy/post/${apiKey}/${encodeUrl}`;
+    const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
     return proxyUrl;
   }
 
@@ -4153,10 +4153,10 @@ function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersDetail.jsx":
-/*!********************************************************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersDetail.jsx ***!
-  \********************************************************************************************************************************************/
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedDetail.jsx":
+/*!***************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedDetail.jsx ***!
+  \***************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4165,11 +4165,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
-/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
-/* harmony import */ var _NewlyRegisterUsersSummaryWidget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NewlyRegisterUsersSummaryWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersSummaryWidget.jsx");
-/* harmony import */ var _NewlyRegisterUsersDetailWidget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./NewlyRegisterUsersDetailWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersDetailWidget.jsx");
-/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _BonusClaimedSummaryWidget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BonusClaimedSummaryWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedSummaryWidget.jsx");
+/* harmony import */ var _BonusClaimedDetailWidget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BonusClaimedDetailWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedDetailWidget.jsx");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
 
 
 
@@ -4178,13 +4178,391 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const NewlyRegisterUsersDetail = props => {
-  const {
-    reportDate,
-    compareDate,
-    baseCurrency,
-    selectedBrand
-  } = props;
+const _BonusClaimedDetail = ({
+  reportDate,
+  compareDate,
+  baseCurrency,
+  selectedBrand
+}) => {
+  const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
+
+  const handleExportExcel = () => {
+    const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__["default"].getBonusClaimedExportAPIParams({
+      reportDate,
+      compareDate,
+      baseCurrency,
+      selectedBrand,
+      sortInfo: sortInfoDetailWidget
+    });
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__["default"].exportBonusClaimedData(exportParams);
+  };
+
+  const _renderCaption = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "highlight-detail-title"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BonusClaimed')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "caret-block"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "icon-excel-wrapper",
+      onClick: handleExportExcel
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon-excel",
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ExportToExcel')
+    }))));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "highlight-detail"
+  }, _renderCaption(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "widget-list"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BonusClaimedSummaryWidget__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    reportDate: reportDate,
+    compareDate: compareDate,
+    baseCurrency: baseCurrency,
+    selectedBrand: selectedBrand
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BonusClaimedDetailWidget__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    onSort: setSortInfoDetailWidget,
+    sortInfo: sortInfoDetailWidget,
+    reportDate: reportDate,
+    baseCurrency: baseCurrency,
+    selectedBrand: selectedBrand
+  })));
+};
+
+const BonusClaimedDetail = react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(_BonusClaimedDetail);
+BonusClaimedDetail.key = 'BonusClaimed';
+/* harmony default export */ __webpack_exports__["default"] = (BonusClaimedDetail);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedDetailWidget.jsx":
+/*!*********************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedDetailWidget.jsx ***!
+  \*********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+const BonusClaimedDetailWidget = ({
+  reportDate,
+  baseCurrency,
+  selectedBrand,
+  sortInfo,
+  onSort
+}) => {
+  const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [detailData, setDetailData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  const [pagingOption, setPagingOption] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DefaultPagingOption"]);
+  const MAX_WIDTH = Math.min(document.body.clientWidth, 1360);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getBonusClaimedDetailAPIParams({
+      reportDate,
+      baseCurrency,
+      selectedBrand,
+      pagingOption,
+      sortInfo
+    });
+
+    _fetchData(apiParams, null, data => {
+      const newPagingOption = getNewPagingOption(null, null, data.totalRows);
+      setPagingOption(newPagingOption);
+    });
+  }, [reportDate]);
+
+  const _fetchData = (params, before, after) => {
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchBonusClaimedDetailData(params, () => {
+      before && before();
+      setLoading(true);
+    }, response => {
+      response.isSuccess && after && after(response.data);
+      setDetailData(response.data);
+      setLoading(false);
+    });
+  };
+
+  const _handleSort = (sortBy, sortType) => {
+    const sortInfo = {
+      sortbyId: sortBy,
+      isSortAsc: sortType === 'asc'
+    };
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getBonusClaimedDetailAPIParams({
+      reportDate,
+      baseCurrency,
+      selectedBrand,
+      pagingOption,
+      sortInfo
+    });
+
+    _fetchData(apiParams, null, data => {
+      const newPagingOption = getNewPagingOption(null, null, data.totalRows);
+      setPagingOption(newPagingOption);
+    });
+
+    onSort && onSort(sortInfo);
+  };
+
+  const _handlePaging = (pageIndex, pageSize) => {
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getBonusClaimedDetailAPIParams({
+      reportDate,
+      baseCurrency,
+      selectedBrand,
+      pagingOption: {
+        PageIndex: pageIndex,
+        PageSize: pageSize
+      },
+      sortInfo
+    });
+
+    _fetchData(apiParams, null, data => {
+      const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows);
+      setPagingOption(newPagingOption);
+    });
+  };
+
+  const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
+    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
+      PageIndex: pageIndex || pagingOption.PageIndex,
+      PageSize: pageSize || pagingOption.PageSize,
+      TotalItem: totalRows
+    });
+  };
+
+  const _renderHeader = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].rowId].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].rowId].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusCode].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].username].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].username].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].registeredDateDisplay].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].registeredDateDisplay].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusAmount].name));
+  };
+
+  const _renderBody = () => {
+    const {
+      dataList
+    } = detailData;
+    return dataList.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].rowId].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].rowId], " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusCode] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].username].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].username]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].registeredDateDisplay].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].registeredDateDisplay]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount] === 0 ? '-' : _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount] === 0 ? '-' : _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"]))));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Details'),
+    isLoading: isLoading
+  }, detailData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Pager"], {
+    pageOption: pagingOption,
+    onPaging: _handlePaging
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
+    minWidth: 650,
+    autoWidth: true,
+    maxWidth: MAX_WIDTH,
+    autoHeight: false,
+    bodyHeight: 400,
+    header: _renderHeader(),
+    body: _renderBody(),
+    onSort: _handleSort,
+    containerPadding: 30,
+    shouldResetScrollPosition: isLoading
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetailWidget));
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedSummaryWidget.jsx":
+/*!**********************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedSummaryWidget.jsx ***!
+  \**********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../libs/helpers/numberHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/numberHelper.js");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+
+
+
+
+
+
+
+
+
+
+const BonusClaimedSummaryWidget = ({
+  reportDate,
+  compareDate,
+  baseCurrency,
+  selectedBrand
+}) => {
+  const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [summaryData, setSummaryData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getBonusClaimedSummaryAPIParams({
+      reportDate,
+      compareDate,
+      baseCurrency,
+      selectedBrand
+    });
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchBonusClaimedSummaryData(apiParams, () => {
+      setLoading(true);
+    }, response => {
+      setSummaryData(response.data);
+      setLoading(false);
+    });
+  }, [reportDate, compareDate]);
+
+  const _renderTotalData = () => {
+    const {
+      totalData
+    } = summaryData;
+    const header = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Total')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ReportDate')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ChangePercent')));
+    const item = totalData[0];
+    const roundRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(item.changeRate, 0);
+    const displayRate = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__["default"].displayRate(roundRate);
+    const colorRate = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getColorRate(roundRate);
+    const body = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "left-align highlight-cell"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BonusClaimed')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align"
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item.bonusClaimeds, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align"
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item.compareBonusClaimeds, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: `right-align ${colorRate}`
+    }, displayRate));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "summary-table"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
+      minWidth: 500,
+      maxWidth: 1350,
+      autoWidth: true,
+      autoHeight: true,
+      header: header,
+      body: body,
+      isPaging: true,
+      containerPadding: 30
+    }));
+  };
+
+  const _renderCampaignData = () => {
+    const {
+      detailData,
+      totalDetailData
+    } = summaryData;
+    const header = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Bonus')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NoOfBonusClaimed')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalBonusAmountClaimed')));
+    const body = detailData.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "left-align highlight-cell"
+    }, item.bonusCode || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align"
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item.numberOfBonusClaimed, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align"
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item.bonusAmount, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"]))));
+    const totalRow = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "left-align total-cell"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Total')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align total-cell"
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(totalDetailData.totalBonusClaimeds, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align total-cell"
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(totalDetailData.totalBonusAmount, 2)));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "summary-table"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
+      minWidth: 500,
+      maxWidth: 1350,
+      autoWidth: true,
+      bodyHeight: 300,
+      autoHeight: true,
+      header: header,
+      body: [...body, totalRow],
+      isPaging: true,
+      containerPadding: 30
+    }));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Summary'),
+    isLoading: isLoading
+  }, summaryData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-container"
+  }, _renderTotalData(), _renderCampaignData()));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedSummaryWidget));
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersDetail.jsx":
+/*!************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersDetail.jsx ***!
+  \************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _NewlyRegisterUsersSummaryWidget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NewlyRegisterUsersSummaryWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersSummaryWidget.jsx");
+/* harmony import */ var _NewlyRegisterUsersDetailWidget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./NewlyRegisterUsersDetailWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersDetailWidget.jsx");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+
+
+
+
+
+
+
+
+const _NewlyRegisterUsersDetail = ({
+  reportDate,
+  compareDate,
+  baseCurrency,
+  selectedBrand
+}) => {
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
 
   const handleExportExcel = () => {
@@ -4201,7 +4579,7 @@ const NewlyRegisterUsersDetail = props => {
   const _renderCaption = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "highlight-detail-title"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NRU')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NewlyRegisteredUsers')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "caret-block"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "icon-excel-wrapper",
@@ -4230,14 +4608,16 @@ const NewlyRegisterUsersDetail = props => {
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetail));
+const NewlyRegisterUsersDetail = react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(_NewlyRegisterUsersDetail);
+NewlyRegisterUsersDetail.key = 'NewlyRegisteredUsers';
+/* harmony default export */ __webpack_exports__["default"] = (NewlyRegisterUsersDetail);
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersDetailWidget.jsx":
-/*!**************************************************************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersDetailWidget.jsx ***!
-  \**************************************************************************************************************************************************/
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersDetailWidget.jsx":
+/*!******************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersDetailWidget.jsx ***!
+  \******************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4247,12 +4627,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
-/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
-/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
-/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -4268,14 +4648,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-const NewlyRegisterUsersDetailWidget = props => {
-  const {
-    reportDate,
-    baseCurrency,
-    selectedBrand,
-    sortInfo,
-    onSort
-  } = props;
+const NewlyRegisterUsersDetailWidget = ({
+  reportDate,
+  baseCurrency,
+  selectedBrand,
+  sortInfo,
+  onSort
+}) => {
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [detailData, setDetailData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
   const [pagingOption, setPagingOption] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DefaultPagingOption"]);
@@ -4392,10 +4771,10 @@ const NewlyRegisterUsersDetailWidget = props => {
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersSummaryWidget.jsx":
-/*!***************************************************************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersSummaryWidget.jsx ***!
-  \***************************************************************************************************************************************************/
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersSummaryWidget.jsx":
+/*!*******************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersSummaryWidget.jsx ***!
+  \*******************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4405,13 +4784,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
-/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
-/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
-/* harmony import */ var _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../libs/helpers/numberHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/numberHelper.js");
-/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../libs/helpers/numberHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/numberHelper.js");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
@@ -4424,13 +4803,12 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
-const NewlyRegisterUsersSummaryWidget = props => {
-  const {
-    reportDate,
-    compareDate,
-    baseCurrency,
-    selectedBrand
-  } = props;
+const NewlyRegisterUsersSummaryWidget = ({
+  reportDate,
+  compareDate,
+  baseCurrency,
+  selectedBrand
+}) => {
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [summaryData, setSummaryData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
@@ -4540,6 +4918,369 @@ const NewlyRegisterUsersSummaryWidget = props => {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountDetail.jsx":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountDetail.jsx ***!
+  \***********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _WithdrawalAmountSummaryWidget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./WithdrawalAmountSummaryWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountSummaryWidget.jsx");
+/* harmony import */ var _WithdrawalAmountDetailWidget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./WithdrawalAmountDetailWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountDetailWidget.jsx");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+
+
+
+
+
+
+
+
+const _WithdrawalAmountDetail = ({
+  reportDate,
+  compareDate,
+  baseCurrency,
+  selectedBrand
+}) => {
+  const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
+
+  const handleExportExcel = () => {
+    const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__["default"].getWithdrawalAmountExportAPIParams({
+      reportDate,
+      compareDate,
+      baseCurrency,
+      selectedBrand,
+      sortInfo: sortInfoDetailWidget
+    });
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__["default"].exportWithdrawalAmountData(exportParams);
+  };
+
+  const _renderCaption = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "highlight-detail-title"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('WithdrawalAmount')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "caret-block"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "icon-excel-wrapper",
+      onClick: handleExportExcel
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon-excel",
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ExportToExcel')
+    }))));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "highlight-detail"
+  }, _renderCaption(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "widget-list"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WithdrawalAmountSummaryWidget__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    reportDate: reportDate,
+    compareDate: compareDate,
+    baseCurrency: baseCurrency,
+    selectedBrand: selectedBrand
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WithdrawalAmountDetailWidget__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    onSort: setSortInfoDetailWidget,
+    sortInfo: sortInfoDetailWidget,
+    reportDate: reportDate,
+    baseCurrency: baseCurrency,
+    selectedBrand: selectedBrand
+  })));
+};
+
+const WithdrawalAmountDetail = react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(_WithdrawalAmountDetail);
+WithdrawalAmountDetail.key = 'WithdrawalAmount';
+/* harmony default export */ __webpack_exports__["default"] = (WithdrawalAmountDetail);
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountDetailWidget.jsx":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountDetailWidget.jsx ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+const WithdrawalAmountDetailWidget = ({
+  reportDate,
+  baseCurrency,
+  selectedBrand,
+  sortInfo,
+  onSort
+}) => {
+  const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [detailData, setDetailData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  const [pagingOption, setPagingOption] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DefaultPagingOption"]);
+  const MAX_WIDTH = Math.min(document.body.clientWidth, 1360);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getWithdrawalAmountDetailAPIParams({
+      reportDate,
+      baseCurrency,
+      selectedBrand,
+      pagingOption,
+      sortInfo
+    });
+
+    _fetchData(apiParams, null, data => {
+      const newPagingOption = getNewPagingOption(null, null, data.totalRows);
+      setPagingOption(newPagingOption);
+    });
+  }, [reportDate]);
+
+  const _fetchData = (params, before, after) => {
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchWithdrawalAmountDetailData(params, () => {
+      before && before();
+      setLoading(true);
+    }, response => {
+      response.isSuccess && after && after(response.data);
+      setDetailData(response.data);
+      setLoading(false);
+    });
+  };
+
+  const _handleSort = (sortBy, sortType) => {
+    const sortInfo = {
+      sortbyId: sortBy,
+      isSortAsc: sortType === 'asc'
+    };
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getWithdrawalAmountDetailAPIParams({
+      reportDate,
+      baseCurrency,
+      selectedBrand,
+      pagingOption,
+      sortInfo
+    });
+
+    _fetchData(apiParams, null, data => {
+      const newPagingOption = getNewPagingOption(null, null, data.totalRows);
+      setPagingOption(newPagingOption);
+    });
+
+    onSort && onSort(sortInfo);
+  };
+
+  const _handlePaging = (pageIndex, pageSize) => {
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getWithdrawalAmountDetailAPIParams({
+      reportDate,
+      baseCurrency,
+      selectedBrand,
+      pagingOption: {
+        PageIndex: pageIndex,
+        PageSize: pageSize
+      },
+      sortInfo
+    });
+
+    _fetchData(apiParams, null, data => {
+      const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows);
+      setPagingOption(newPagingOption);
+    });
+  };
+
+  const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
+    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
+      PageIndex: pageIndex || pagingOption.PageIndex,
+      PageSize: pageSize || pagingOption.PageSize,
+      TotalItem: totalRows
+    });
+  };
+
+  const _renderHeader = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].rowId].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].rowId].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].username].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].username].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].registeredDateDisplay].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].registeredDateDisplay].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].numberOfWithdrawals].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].numberOfWithdrawals].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].withdrawalAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].withdrawalAmount].name));
+  };
+
+  const _renderBody = () => {
+    const {
+      dataList
+    } = detailData;
+    return dataList.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].rowId].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].rowId], " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].username].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].username]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].registeredDateDisplay].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].registeredDateDisplay]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].numberOfWithdrawals].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].numberOfWithdrawals], 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].withdrawalAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].withdrawalAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"]))));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Details'),
+    isLoading: isLoading
+  }, detailData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Pager"], {
+    pageOption: pagingOption,
+    onPaging: _handlePaging
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
+    minWidth: 650,
+    autoWidth: true,
+    maxWidth: MAX_WIDTH,
+    autoHeight: false,
+    bodyHeight: 400,
+    header: _renderHeader(),
+    body: _renderBody(),
+    onSort: _handleSort,
+    containerPadding: 30,
+    shouldResetScrollPosition: isLoading
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetailWidget));
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountSummaryWidget.jsx":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountSummaryWidget.jsx ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../libs/helpers/numberHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/numberHelper.js");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+
+
+
+
+
+
+
+
+
+
+const WithdrawalAmountSummaryWidget = ({
+  reportDate,
+  compareDate,
+  baseCurrency,
+  selectedBrand
+}) => {
+  const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [summaryData, setSummaryData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getWithdrawalAmountSummaryAPIParams({
+      reportDate,
+      compareDate,
+      baseCurrency,
+      selectedBrand
+    });
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchWithdrawalAmountSummaryData(apiParams, () => {
+      setLoading(true);
+    }, response => {
+      setSummaryData(response.data);
+      setLoading(false);
+    });
+  }, [reportDate, compareDate]);
+
+  const _header = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ReportDate')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ChangePercent')));
+  }, []);
+
+  const _renderTotalAmountRow = () => {
+    const roundRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(summaryData.withdrawalAmountChangeRate, 0);
+    const displayRate = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__["default"].displayRate(roundRate);
+    const colorRate = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getColorRate(roundRate);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "left-align highlight-cell"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalWithdrawalAmount')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align"
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(summaryData.withdrawalAmount, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align"
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(summaryData.compareWithdrawalAmount, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: `right-align ${colorRate}`
+    }, displayRate));
+  };
+
+  const _renderTotalUsersRow = () => {
+    const roundRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(summaryData.withdrawalUsersChangeRate, 0);
+    const displayRate = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__["default"].displayRate(roundRate);
+    const colorRate = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getColorRate(roundRate);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+      style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"]
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "left-align highlight-cell"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalWithdrawalUsers')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align"
+    }, summaryData.withdrawalUsers === 0 ? '-' : _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(summaryData.withdrawalUsers, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: "right-align"
+    }, summaryData.compareWithdrawalUsers === 0 ? '-' : _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(summaryData.compareWithdrawalUsers, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+      className: `right-align ${colorRate}`
+    }, displayRate));
+  };
+
+  const _renderTotalData = () => {
+    const totalAmountRow = _renderTotalAmountRow();
+
+    const totalUsersRow = _renderTotalUsersRow();
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "summary-table"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
+      minWidth: 500,
+      maxWidth: 1350,
+      autoWidth: true,
+      autoHeight: true,
+      header: _header,
+      body: [totalAmountRow, totalUsersRow],
+      isPaging: true,
+      containerPadding: 30
+    }));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Summary'),
+    isLoading: isLoading
+  }, summaryData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-container"
+  }, _renderTotalData()));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountSummaryWidget));
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/PerformanceHighlightWidget.jsx":
 /*!**************************************************************************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/PerformanceHighlightWidget.jsx ***!
@@ -4563,7 +5304,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
 /* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
-/* harmony import */ var _Details_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Details/NewlyRegisterUsersDetail */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NewlyRegisterUsersDetail.jsx");
+/* harmony import */ var _Details_NRU_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Details/NRU/NewlyRegisterUsersDetail */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersDetail.jsx");
+/* harmony import */ var _Details_WithdrawalAmount_WithdrawalAmountDetail__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Details/WithdrawalAmount/WithdrawalAmountDetail */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/WithdrawalAmount/WithdrawalAmountDetail.jsx");
+/* harmony import */ var _Details_BonusClaimed_BonusClaimedDetail__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Details/BonusClaimed/BonusClaimedDetail */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedDetail.jsx");
+
+
 
 
 
@@ -4599,28 +5344,50 @@ const PerformanceHighlightWidget = props => {
 
   const _renderTotalUsersBox = () => {
     const {
-      totalUsers,
-      growthRateTotalUsers
+      totalUsers
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
       enableCompare: false,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalUsers'),
-      value: totalUsers,
-      rate: growthRateTotalUsers
+      description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AsOfNow'),
+      value: totalUsers
     });
   };
 
-  const _renderPaidUsersBox = () => {
+  const _renderTotalDepositUsersBox = () => {
     const {
-      paidUsers,
-      growthRatePaidUsers
+      totalDepositUsers
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
       enableCompare: false,
-      title: 'PU (APA)',
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalDepositUsers'),
+      description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AsOfNow'),
+      value: totalDepositUsers
+    });
+  };
+
+  const _renderTotalActiveUsersBox = () => {
+    const {
+      totalActiveUsers
+    } = performanceHighlightData;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      enableCompare: false,
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalActiveUsers'),
+      description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AsOfNow'),
+      value: totalActiveUsers
+    });
+  };
+
+  const _renderDepositUsersBox = () => {
+    const {
+      depositUsers,
+      growthRateDepositUsers
+    } = performanceHighlightData;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('PU (APA)'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('DepositUsers'),
-      value: paidUsers,
-      rate: growthRatePaidUsers
+      value: depositUsers,
+      rate: growthRateDepositUsers
     });
   };
 
@@ -4643,11 +5410,49 @@ const PerformanceHighlightWidget = props => {
       growthRateNewlyRegisterUsers
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      onViewDetail: () => setSelectedBox(1),
+      onViewDetail: () => setSelectedBox(_Details_NRU_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_12__["default"].key),
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NRU'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NewlyRegisteredUsers'),
       value: newlyRegisterUsers,
       rate: growthRateNewlyRegisterUsers
+    });
+  };
+
+  const _renderDepositAmountBox = () => {
+    const {
+      depositAmount,
+      growthRateDepositAmount
+    } = performanceHighlightData;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('DepositAmount'),
+      value: depositAmount,
+      rate: growthRateDepositAmount
+    });
+  };
+
+  const _renderWithdrawalAmountBox = () => {
+    const {
+      withdrawalAmount,
+      growthRateWithdrawalAmount
+    } = performanceHighlightData;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      onViewDetail: () => setSelectedBox(_Details_WithdrawalAmount_WithdrawalAmountDetail__WEBPACK_IMPORTED_MODULE_13__["default"].key),
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('WithdrawalAmount'),
+      value: withdrawalAmount,
+      rate: growthRateWithdrawalAmount
+    });
+  };
+
+  const _renderBonusClaimedBox = () => {
+    const {
+      bonusClaimeds,
+      growthRateBonusClaimeds
+    } = performanceHighlightData;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      onViewDetail: () => setSelectedBox(_Details_BonusClaimed_BonusClaimedDetail__WEBPACK_IMPORTED_MODULE_14__["default"].key),
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('BonusClaimed'),
+      value: bonusClaimeds,
+      rate: growthRateBonusClaimeds
     });
   };
 
@@ -4693,10 +5498,42 @@ const PerformanceHighlightWidget = props => {
       selectedBaseCurrency,
       reportDate
     } = globalFilter;
-    const reportName = `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NRU')} - ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NewlyRegisteredUsers')}`;
     const displayCurrency = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
     const reportDateRange = _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__["default"].formatDateRangeToString(reportDate.fromDate, reportDate.toDate);
-    return `${reportName}, ${reportDateRange}, ${displayCurrency}`;
+    return `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Marketing')}, ${reportDateRange}, ${displayCurrency}`;
+  };
+
+  const _renderContentPopupDetail = () => {
+    const params = {
+      baseCurrency: globalFilter.selectedBaseCurrency,
+      reportDate: globalFilter.reportDate,
+      compareDate: globalFilter.compareDate,
+      selectedBrand: globalFilter.selectedBrand
+    };
+
+    if (selectedBox === _Details_NRU_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_12__["default"].key) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Details_NRU_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_12__["default"], params);
+    }
+
+    if (selectedBox === _Details_WithdrawalAmount_WithdrawalAmountDetail__WEBPACK_IMPORTED_MODULE_13__["default"].key) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Details_WithdrawalAmount_WithdrawalAmountDetail__WEBPACK_IMPORTED_MODULE_13__["default"], params);
+    }
+
+    if (selectedBox === _Details_BonusClaimed_BonusClaimedDetail__WEBPACK_IMPORTED_MODULE_14__["default"].key) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Details_BonusClaimed_BonusClaimedDetail__WEBPACK_IMPORTED_MODULE_14__["default"], params);
+    }
+
+    return null;
+  };
+
+  const _renderPopupDetail = () => {
+    return selectedBox && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_popup__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      height: 800,
+      width: 1400,
+      isShow: true,
+      title: _renderPopupTitle(),
+      onClose: () => setSelectedBox(null)
+    }, _renderContentPopupDetail());
   };
 
   const _handleExportExcel = () => {
@@ -4719,18 +5556,7 @@ const PerformanceHighlightWidget = props => {
     handleExportExcel: _handleExportExcel
   }, performanceHighlightData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box-container"
-  }, selectedBox && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_popup__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    height: 800,
-    width: 1400,
-    isShow: true,
-    title: _renderPopupTitle(),
-    onClose: () => setSelectedBox(null)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Details_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    reportDate: globalFilter.reportDate,
-    compareDate: globalFilter.compareDate,
-    baseCurrency: globalFilter.selectedBaseCurrency,
-    selectedBrand: globalFilter.selectedBrand
-  })), _renderTotalUsersBox(), _renderPaidUsersBox(), _renderActiveUsersBox(), _renderNewlyRegisteredUsersBox(), _renderChurnRateBox(), _renderRetentionRateBox()));
+  }, _renderPopupDetail(), _renderTotalUsersBox(), _renderTotalDepositUsersBox(), _renderTotalActiveUsersBox(), _renderDepositUsersBox(), _renderActiveUsersBox(), _renderNewlyRegisteredUsersBox(), _renderDepositAmountBox(), _renderWithdrawalAmountBox(), _renderBonusClaimedBox(), _renderChurnRateBox(), _renderRetentionRateBox()));
 };
 
 function mapStateToProps(state) {
@@ -5072,7 +5898,7 @@ const CompareDateSelectionOptions = [{
 /*!********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js ***!
   \********************************************************************************/
-/*! exports provided: TotalNRUGridColumns, TotalNRUGridConfig, CampaignNRUGridColumns, CampaignNRUGridConfig, SignupNRUGridColumns, SignupNRUGridConfig, DetailNRUGridColumns, DetailNRUGridConfig, DefaultPagingOption, DefaultSortInfo, DigitsAmount, StyleRow */
+/*! exports provided: TotalNRUGridColumns, TotalNRUGridConfig, CampaignNRUGridColumns, CampaignNRUGridConfig, SignupNRUGridColumns, SignupNRUGridConfig, DetailNRUGridColumns, DetailNRUGridConfig, DetailWithdrawalAmountGridColumns, DetaiWithdrawalAmountGridConfig, DetailBonusClaimedGridColumns, DetaiBonusClaimedGridConfig, DefaultPagingOption, DefaultSortInfo, DigitsAmount, StyleRow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5085,6 +5911,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupNRUGridConfig", function() { return SignupNRUGridConfig; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetailNRUGridColumns", function() { return DetailNRUGridColumns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetailNRUGridConfig", function() { return DetailNRUGridConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetailWithdrawalAmountGridColumns", function() { return DetailWithdrawalAmountGridColumns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetaiWithdrawalAmountGridConfig", function() { return DetaiWithdrawalAmountGridConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetailBonusClaimedGridColumns", function() { return DetailBonusClaimedGridColumns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetaiBonusClaimedGridConfig", function() { return DetaiBonusClaimedGridConfig; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultPagingOption", function() { return DefaultPagingOption; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultSortInfo", function() { return DefaultSortInfo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DigitsAmount", function() { return DigitsAmount; });
@@ -5101,7 +5931,7 @@ const TotalNRUGridConfig = {
   [TotalNRUGridColumns.total]: {
     name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Total'),
     attributes: {
-      className: "left-align highlight-detail-cell"
+      className: "left-align highlight-cell"
     }
   },
   [TotalNRUGridColumns.newlyRegisterUsers]: {
@@ -5133,7 +5963,7 @@ const CampaignNRUGridConfig = {
   [CampaignNRUGridColumns.bonusCode]: {
     name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Bonus'),
     attributes: {
-      className: "left-align highlight-detail-cell"
+      className: "left-align highlight-cell"
     }
   },
   [CampaignNRUGridColumns.newlyRegisterUsers]: {
@@ -5165,7 +5995,7 @@ const SignupNRUGridConfig = {
   [SignupNRUGridColumns.url]: {
     name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SignupUrl'),
     attributes: {
-      className: "left-align highlight-detail-cell"
+      className: "left-align highlight-cell"
     }
   },
   [SignupNRUGridColumns.newlyRegisterUsers]: {
@@ -5253,11 +6083,125 @@ const DetailNRUGridConfig = {
     }
   }
 };
+const DetailWithdrawalAmountGridColumns = {
+  rowId: 'rowId',
+  username: 'username',
+  registeredDateDisplay: 'registeredDateDisplay',
+  numberOfWithdrawals: 'numberOfWithdrawals',
+  withdrawalAmount: 'withdrawalAmount'
+};
+const DetaiWithdrawalAmountGridConfig = {
+  [DetailWithdrawalAmountGridColumns.rowId]: {
+    name: '#',
+    attributes: {
+      colWidth: 30,
+      className: "center-align"
+    }
+  },
+  [DetailWithdrawalAmountGridColumns.username]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Username'),
+    attributes: {
+      sortBy: 1,
+      colWidth: 80,
+      className: "left-align"
+    }
+  },
+  [DetailWithdrawalAmountGridColumns.registeredDateDisplay]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('RegisteredDate'),
+    attributes: {
+      sortBy: 2,
+      colWidth: 80,
+      className: "center-align"
+    }
+  },
+  [DetailWithdrawalAmountGridColumns.numberOfWithdrawals]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('NumberOfWithdrawals'),
+    attributes: {
+      sortBy: 3,
+      colWidth: 80,
+      className: "right-align"
+    }
+  },
+  [DetailWithdrawalAmountGridColumns.withdrawalAmount]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('TotalWithdrawalAmount'),
+    attributes: {
+      sortBy: 4,
+      colWidth: 80,
+      className: "right-align"
+    }
+  }
+};
+const DetailBonusClaimedGridColumns = {
+  rowId: 'rowId',
+  bonusCode: 'bonusCode',
+  username: 'username',
+  registeredDateDisplay: 'registeredDateDisplay',
+  depositAmount: 'depositAmount',
+  withdrawalAmount: 'withdrawalAmount',
+  bonusAmount: 'bonusAmount'
+};
+const DetaiBonusClaimedGridConfig = {
+  [DetailBonusClaimedGridColumns.rowId]: {
+    name: '#',
+    attributes: {
+      colWidth: 30,
+      className: "center-align"
+    }
+  },
+  [DetailBonusClaimedGridColumns.bonusCode]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Bonus'),
+    attributes: {
+      sortBy: 1,
+      colWidth: 80,
+      className: "left-align"
+    }
+  },
+  [DetailBonusClaimedGridColumns.username]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Username'),
+    attributes: {
+      sortBy: 2,
+      colWidth: 80,
+      className: "left-align"
+    }
+  },
+  [DetailBonusClaimedGridColumns.registeredDateDisplay]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('RegisteredDate'),
+    attributes: {
+      sortBy: 3,
+      colWidth: 80,
+      className: "center-align"
+    }
+  },
+  [DetailBonusClaimedGridColumns.depositAmount]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('TotalDepositAmount'),
+    attributes: {
+      sortBy: 4,
+      colWidth: 80,
+      className: "right-align"
+    }
+  },
+  [DetailBonusClaimedGridColumns.withdrawalAmount]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('TotalWithdrawalAmount'),
+    attributes: {
+      sortBy: 5,
+      colWidth: 80,
+      className: "right-align"
+    }
+  },
+  [DetailBonusClaimedGridColumns.bonusAmount]: {
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('TotalBonusAmountClaimed'),
+    attributes: {
+      sortBy: 6,
+      colWidth: 80,
+      className: "right-align"
+    }
+  }
+};
 const DefaultPagingOption = {
   PageIndex: 1,
-  PageSize: 500,
+  PageSize: 100,
   TotalItem: 0,
-  PageList: [500, 1000, 1500, 2000]
+  PageList: [100, 200, 500, 1000]
 };
 const DefaultSortInfo = {
   sortbyId: 1,
@@ -5290,10 +6234,18 @@ const Url = {
   avgRevenue: 'Api/Marketing/Revenue/GetAvgData',
   newlyRegisterUsersSummary: 'Api/Marketing/NewlyRegisterUsers/GetSummaryData',
   newlyRegisterUsersDetail: 'Api/Marketing/NewlyRegisterUsers/GetDetailsData',
-  newlyRegisterUsersExport: 'Api/Marketing/NewlyRegisterUsers/ExportData'
+  newlyRegisterUsersExport: 'Api/Marketing/NewlyRegisterUsers/ExportData',
+  withdrawalAmountSummary: 'Api/Marketing/Withdrawal/GetSummaryData',
+  withdrawalAmountDetail: 'Api/Marketing/Withdrawal/GetDetailsData',
+  withdrawalAmountExport: 'Api/Marketing/Withdrawal/ExportData',
+  bonusClaimedSummary: 'Api/Marketing/BonusClaimed/GetSummaryData',
+  bonusClaimedDetail: 'Api/Marketing/BonusClaimed/GetDetailsData',
+  bonusClaimedExport: 'Api/Marketing/BonusClaimed/ExportData'
 };
 const FileNameExport = {
   newlyRegisterUsers: 'MarketingReport_NewlyRegisterUsers.xls',
+  withdrawalAmount: 'MarketingReport_WithdrawalAmount.xls',
+  bonusClaimed: 'MarketingReport_BonusClaimed.xls',
   performanceHighlight: 'MarketingReport_BusinessPerformanceHighlight.xls'
 };
 const errorResponse = {
@@ -5707,11 +6659,13 @@ _defineProperty(FilterHelper, "DefaultCompareDate", FilterHelper.CompareDateGene
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NumberHelper; });
+/* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 class NumberHelper {
   static displayRate(rate) {
-    return `${rate > 0 ? '+' : ''}${rate}%`;
+    return `${rate > 0 ? '+' : ''}${_jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].format(rate)}%`;
   }
 
 }
@@ -5765,6 +6719,7 @@ _defineProperty(DataService, "getCommonAPIParams", ({
 _defineProperty(DataService, "getPerformanceHighlightAPIParams", filterData => {
   const {
     selectedBrand,
+    selectedBaseCurrency,
     reportDate,
     compareDate
   } = filterData;
@@ -5775,7 +6730,61 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", filterData => {
 
   const params = _objectSpread({}, commonParams, {}, {
     compareFromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
-    compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate)
+    compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate),
+    baseCurrency: selectedBaseCurrency
+  });
+
+  return params;
+});
+
+_defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", filterData => {
+  const {
+    baseCurrency
+  } = filterData,
+        rest = _objectWithoutProperties(filterData, ["baseCurrency"]);
+
+  const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
+
+  const params = _objectSpread({}, commonParams, {
+    baseCurrency
+  });
+
+  return params;
+});
+
+_defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", filterData => {
+  const {
+    reportDate,
+    selectedBrand,
+    pagingOption,
+    sortInfo
+  } = filterData,
+        rest = _objectWithoutProperties(filterData, ["reportDate", "selectedBrand", "pagingOption", "sortInfo"]);
+
+  const commonParams = DataService.getCommonAPIParams({
+    selectedBrand,
+    reportDate
+  });
+
+  const params = _objectSpread({}, commonParams, {}, sortInfo, {}, {
+    pageIndex: pagingOption.PageIndex,
+    pageSize: pagingOption.PageSize
+  }, {}, rest);
+
+  return params;
+});
+
+_defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", filterData => {
+  const {
+    baseCurrency,
+    sortInfo
+  } = filterData,
+        rest = _objectWithoutProperties(filterData, ["baseCurrency", "sortInfo"]);
+
+  const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
+
+  const params = _objectSpread({}, commonParams, {}, sortInfo, {
+    baseCurrency
   });
 
   return params;
@@ -5800,55 +6809,47 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", filterDat
 });
 
 _defineProperty(DataService, "getNewlyRegisterUsersSummaryAPIParams", filterData => {
-  const {
-    baseCurrency
-  } = filterData,
-        rest = _objectWithoutProperties(filterData, ["baseCurrency"]);
-
-  const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
-
-  const params = _objectSpread({}, commonParams, {
-    baseCurrency
-  });
-
+  const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
 
 _defineProperty(DataService, "getNewlyRegisterUsersDetailAPIParams", filterData => {
-  const {
-    reportDate,
-    selectedBrand,
-    pagingOption,
-    sortInfo
-  } = filterData,
-        rest = _objectWithoutProperties(filterData, ["reportDate", "selectedBrand", "pagingOption", "sortInfo"]);
-
-  const commonParams = DataService.getCommonAPIParams({
-    selectedBrand,
-    reportDate
-  });
-
-  const params = _objectSpread({}, commonParams, {}, sortInfo, {}, {
-    pageIndex: pagingOption.PageIndex,
-    pageSize: pagingOption.PageSize
-  }, {}, rest);
-
+  const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
 
 _defineProperty(DataService, "getNewlyRegisterUsersExportAPIParams", filterData => {
-  const {
-    baseCurrency,
-    sortInfo
-  } = filterData,
-        rest = _objectWithoutProperties(filterData, ["baseCurrency", "sortInfo"]);
+  const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
+  return params;
+});
 
-  const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
+_defineProperty(DataService, "getWithdrawalAmountSummaryAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
+  return params;
+});
 
-  const params = _objectSpread({}, commonParams, {}, sortInfo, {
-    baseCurrency
-  });
+_defineProperty(DataService, "getWithdrawalAmountDetailAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
+  return params;
+});
 
+_defineProperty(DataService, "getWithdrawalAmountExportAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
+  return params;
+});
+
+_defineProperty(DataService, "getBonusClaimedSummaryAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
+  return params;
+});
+
+_defineProperty(DataService, "getBonusClaimedDetailAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
+  return params;
+});
+
+_defineProperty(DataService, "getBonusClaimedExportAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
 
@@ -5924,6 +6925,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class QueryService {
+  /* detail popup*/
   static async exportNewlyRegisterUsersData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersExport, params);
     const noContentStatusCode = 204;
@@ -5936,6 +6938,34 @@ class QueryService {
 
     ;
   }
+
+  static async exportWithdrawalAmountData(params) {
+    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountExport, params);
+    const noContentStatusCode = 204;
+
+    if (response.status === noContentStatusCode) {
+      alert(LangHelper.getSingleResource("NoInfo"));
+    } else {
+      _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].withdrawalAmount);
+    }
+
+    ;
+  }
+
+  static async exportBonusClaimedData(params) {
+    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedExport, params);
+    const noContentStatusCode = 204;
+
+    if (response.status === noContentStatusCode) {
+      alert(LangHelper.getSingleResource("NoInfo"));
+    } else {
+      _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].bonusClaimed);
+    }
+
+    ;
+  }
+  /* end detail popup*/
+
 
   static async exportPerformanceHighlightData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlightExport, params);
@@ -5977,6 +7007,34 @@ _defineProperty(QueryService, "fetchNewlyRegisterUsersSummaryData", async (param
 _defineProperty(QueryService, "fetchNewlyRegisterUsersDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersDetail, params));
+  after && after(data);
+  return data;
+});
+
+_defineProperty(QueryService, "fetchWithdrawalAmountSummaryData", async (params, before, after) => {
+  before && before();
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountSummary, params));
+  after && after(data);
+  return data;
+});
+
+_defineProperty(QueryService, "fetchWithdrawalAmountDetailData", async (params, before, after) => {
+  before && before();
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountDetail, params));
+  after && after(data);
+  return data;
+});
+
+_defineProperty(QueryService, "fetchBonusClaimedSummaryData", async (params, before, after) => {
+  before && before();
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedSummary, params));
+  after && after(data);
+  return data;
+});
+
+_defineProperty(QueryService, "fetchBonusClaimedDetailData", async (params, before, after) => {
+  before && before();
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedDetail, params));
   after && after(data);
   return data;
 });

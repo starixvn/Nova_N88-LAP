@@ -1,34 +1,30 @@
 ﻿namespace Fanex.Athena.Service.Core.Users
 {
+    using Fanex.N88.Core.Models;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using Interfaces;
+    using System;
+    using System.Collections.Generic;
     using System.Web;
 
-    using Fanex.Athena.Model.Auth;
-
-    using Interfaces;
-
+    [CLSCompliant(false)]
     public class SessionStorage : ISessionStorage
     {
-        private const string LicenseeSessionKey = "LicenseeSessionKey";
-
-        private const string UserSessionKey = "UserSessionKey";
+        private const string LicenseeSessionKey = "LicenseeAuthInfo";
+        private const string UserSessionKey = "UserAuthInfo";
+        private const string MenuSessionKey = "MenuAuthInfo";
         private const string CaptchaCodeKey = "CaptchaCodeKey";
 
-        public LicenseeAuthInfo LicenseeAuthInfo
+        public NVCLicenseeAuthInfo Licensee
         {
-            get
-            {
-                var temp = HttpContext.Current.Session[LicenseeSessionKey];
-                return temp as LicenseeAuthInfo;
-            }
+            get { return HttpContext.Current.Session[LicenseeSessionKey] as NVCLicenseeAuthInfo; }
+            set { HttpContext.Current.Session[LicenseeSessionKey] = value; }
         }
 
-        public UserAuthInfo UserAuthInfo
+        public NVCUserAuthInfo User
         {
-            get
-            {
-                var temp = HttpContext.Current.Session[UserSessionKey];
-                return temp as UserAuthInfo;
-            }
+            get { return HttpContext.Current.Session[UserSessionKey] as NVCUserAuthInfo; }
+            set { HttpContext.Current.Session[UserSessionKey] = value; }
         }
 
         public string CaptchaCode
@@ -37,10 +33,10 @@
             set { HttpContext.Current.Session[CaptchaCodeKey] = value; }
         }
 
-        public void AssignSessions(UserAuthInfo userAuthInfo, LicenseeAuthInfo licenseeAuthInfo)
+        public IEnumerable<MenuItem> Menu
         {
-            HttpContext.Current.Session[UserSessionKey] = userAuthInfo;
-            HttpContext.Current.Session[LicenseeSessionKey] = licenseeAuthInfo;
+            get { return HttpContext.Current.Session[MenuSessionKey] as IEnumerable<MenuItem>; }
+            set { HttpContext.Current.Session[MenuSessionKey] = value; }
         }
     }
 }

@@ -1,18 +1,12 @@
 ﻿namespace Fanex.Athena.Controllers.Report.UnitTests.Result.ResultReport
 {
-    using System.Threading.Tasks;
-
     using Base.UnitTests;
-
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+    using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
-
     using NUnit.Framework;
-
     using Report.Result.ResultPopup;
-
+    using System.Threading.Tasks;
     using UnitTest.Common.Extensions;
 
     [TestFixture]
@@ -27,7 +21,7 @@
             const string ExpectedResult = "aaaaaaaaaaaa";
             const string Url = "/SGResultPopup/Index";
             const string Language = "vi-VN";
-            StubUserSessionData(new UserAuthInfo
+            StubUserSessionData(new NVCUserAuthInfo
             {
                 Language = Language
             });

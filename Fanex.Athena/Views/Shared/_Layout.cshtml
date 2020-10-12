@@ -1,7 +1,6 @@
 ﻿@using System.Linq;
 @using System.Web.Optimization;
 @using Fanex.Athena.Service.Core.Users.Interfaces;
-@using Fanex.Athena.Model.Auth.Enum;
 @using Fanex.Athena.Service.StatelessCore.Interfaces;
 
 @{
@@ -14,7 +13,6 @@
     var userCurrencies = userSession == null || userSession.CurrencyList == null ?
         new Dictionary<string, string>() :
         userSession.CurrencyList.ToDictionary(x => x.Key.ToString(), x => x.Value);
-    var isParasiticMode = userSession != null && userSession.ApplicationMode == AppMode.Parasitic;
     var isFakeLicensee = licenseeSettingService.IsFakeLicensee(licSession.LicenseeName);
 }
 <!DOCTYPE html>
@@ -60,10 +58,6 @@
             };
         });
     </script>
-    @if (isParasiticMode)
-    {
-        Html.RenderPartial("~/Views/Shared/_SessionScript.cshtml");
-    }
     @if (appSettings.Environment.Equals("PRO", StringComparison.OrdinalIgnoreCase))
     {
         <!-- Global site tag (gtag.js) - Google Analytics -->

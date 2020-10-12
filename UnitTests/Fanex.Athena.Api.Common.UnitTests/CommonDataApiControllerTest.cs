@@ -1,19 +1,19 @@
 ﻿namespace Fanex.Athena.Api.Common.UnitTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Fanex.Athena.Api.Base;
     using Fanex.Athena.DataAccess.Core.Common.Interfaces;
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Athena.Model.Core.MetaModel.Common;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
     using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using UnitTest.Common.Helpers;
 
     public class CommonDataApiControllerTest
@@ -31,8 +31,8 @@
         [OneTimeSetUp]
         public void FixtureSetUp()
         {
-            _sessionService.LicenseeSession.Returns(new LicenseeAuthInfo { LicenseeId = FakeHelper.Create<int>() });
-            _sessionService.UserSession.Returns(new UserAuthInfo
+            _sessionService.LicenseeSession.Returns(new NVCLicenseeAuthInfo { LicenseeId = FakeHelper.Create<int>() });
+            _sessionService.UserSession.Returns(new NVCUserAuthInfo
             {
                 UserId = FakeHelper.Create<int>(),
                 Language = FakeHelper.Create<string>(),

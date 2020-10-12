@@ -1,17 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-
-using Fanex.Athena.Model.Auth;
-using Fanex.Athena.Model.Auth.Enum;
+﻿using Fanex.Athena.Model.Auth;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
 using Fanex.Athena.UnitTest.Common.Helpers;
 using Fanex.Athena.UnitTest.Common.NUnitExtensions;
 using Fanex.Athena.Web.ActionFilter;
-
+using Fanex.NVC.Authentication.Infrastructure;
 using NSubstitute;
-
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Fanex.Athena.Web.UnitTests.ActionFilter
 {
@@ -38,13 +35,12 @@ namespace Fanex.Athena.Web.UnitTests.ActionFilter
             _attribute.AuthorizationServiceInstance = _authorizationService;
         }
 
-        [TestCase(AppMode.Parasitic)]
-        [TestCase(AppMode.Self)]
-        public void OnActionExecuting_IsAuthorized_FilterContextResultNull(AppMode appMode)
+        [Test]
+        public void OnActionExecuting_IsAuthorized_FilterContextResultNull()
         {
             // Arrange
-            _sessionStorage.LicenseeAuthInfo.Returns(new LicenseeAuthInfo());
-            _sessionStorage.UserAuthInfo.Returns(new UserAuthInfo { ApplicationMode = appMode });
+            _sessionStorage.Licensee.Returns(new NVCLicenseeAuthInfo());
+            _sessionStorage.User.Returns(new NVCUserAuthInfo());
             _authorizationService.HasPermissions(Arg.Any<int>(), Arg.Any<string[]>()).Returns(true);
             _authorizationService.HasPermissions(Arg.Any<int>(), Arg.Any<string[]>()).Returns(true);
 

@@ -36,7 +36,6 @@ function generateConfig(environment) {
             [`${jsPath}/pages/reports/result`]: [pathConfig.scriptPaths.result],
             [`${jsPath}/pages/reports/cashoutwinloss`]: [pathConfig.scriptPaths.cashoutwinloss],
             [`${jsPath}/pages/betlist/customeroutstanding`]: [pathConfig.scriptPaths.customeroutstanding],
-            [`${jsPath}/pages/reports/customerwinloss`]: [pathConfig.scriptPaths.customerwinloss],
 
             [`${cssPath}/pages/reports/reportjqgridlayout`]: pathConfig.cssPaths.reportjqgridlayout,
             [`${cssPath}/main`]: pathConfig.cssPaths.main,
@@ -63,7 +62,6 @@ function generateConfig(environment) {
             [`${cssPath}/pages/customer/customerlist`]: pathConfig.cssPaths.customerlist,
             [`${cssPath}/pages/betlist/customeroutstanding`]: pathConfig.cssPaths.customeroutstanding,
             [`${cssPath}/pages/customer/betsetting`]: pathConfig.cssPaths.betsetting,
-            [`${cssPath}/pages/reports/customerwinloss`]: pathConfig.cssPaths.customerwinloss,
 
             [`${cssPath}/pages/user/manageuser`]: pathConfig.cssPaths.manageuser,
             [`${cssPath}/pages/user/edituser`]: pathConfig.cssPaths.edituser,

@@ -59,7 +59,7 @@
                 SessionService.CaptchaCode.Returns("OriginalCaptcha");
 
                 // Action
-                var result = controller.SignIn(new LoginMetalModel
+                var result = controller.SignIn(new LoginMetaModel
                 {
                     UserName = "anything",
                     PassWord = "anything",
@@ -86,7 +86,7 @@
                 SessionService.CaptchaCode.Returns("OriginalCaptcha");
 
                 // Action
-                var result = controller.SignIn(new LoginMetalModel
+                var result = controller.SignIn(new LoginMetaModel
                 {
                     UserName = string.Empty
                 }) as ViewResult;
@@ -110,7 +110,7 @@
                 SessionService.CaptchaCode.Returns("OriginalCaptcha");
 
                 // Action
-                var result = controller.SignIn(new LoginMetalModel
+                var result = controller.SignIn(new LoginMetaModel
                 {
                     UserName = "User name",
                     PassWord = string.Empty

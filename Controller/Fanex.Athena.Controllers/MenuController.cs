@@ -7,7 +7,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Views/Desktop/Menu/Index.cshtml", SessionServiceInstance.UserSession.MenuItemList);
+            return View("~/Views/Desktop/Menu/Index.cshtml", SessionServiceInstance.MenuSession);
         }
     }
 }

@@ -1,23 +1,16 @@
 ﻿namespace Fanex.Athena.Api.BetList.UnitTests
 {
+    using Fanex.NVC.Authentication.Infrastructure;
+    using Model.BetList.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
 
-    using Fanex.Athena.Model.Auth;
-
-    using Model.BetList.MetaModel;
-
-    using NSubstitute;
-
-    using NUnit.Framework;
-
     public class OutStandingCompletedBetListControllerTest : ApiBetListBaseControllerHelperTest
     {
         private const string UspKey = "Lrf_BetList_CustomerList_Mem";
-
-        private const string BetListCustomerOutstandingName = "BetList_CustomerOutstanding";
-
         private const string ApiPath = "/BetList/GetBetListPaging";
 
         [SetUp]
@@ -38,7 +31,7 @@
                 // Arrange
                 var metaModel = new BetListMetaModel { CurrencyId = currencyId, ProductCodeList = "Product1,Product2" };
 
-                StubUserSessionData(new UserAuthInfo
+                StubUserSessionData(new NVCUserAuthInfo
                 {
                     Language = SessionLanguage,
                     CurrencyList = new Dictionary<int, string> { { currencyId, "Currency" } },

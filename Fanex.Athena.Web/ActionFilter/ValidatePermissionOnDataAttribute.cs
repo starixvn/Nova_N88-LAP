@@ -38,7 +38,7 @@
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;
-            var userSession = SessionStorage.UserAuthInfo;
+            var userSession = SessionStorage.User;
             var authorized = userSession != null;
             if (authorized)
             {

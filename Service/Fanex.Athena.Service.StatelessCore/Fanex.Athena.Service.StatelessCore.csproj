@@ -48,6 +48,9 @@
     <Reference Include="Fanex.N88.Core.Client, Version=1.2.1.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.0-alpha-3\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.2\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="LAP.ONEBook.Security, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\LAP.ONEBook.Security.1.0.8\lib\net461\LAP.ONEBook.Security.dll</HintPath>
     </Reference>
@@ -114,12 +117,12 @@
     <Compile Include="Abstraction\BaseApiClient.cs" />
     <Compile Include="AuthorizationService.cs" />
     <Compile Include="BetTypeService.cs" />
+    <Compile Include="Exception\ProxyException.cs" />
     <Compile Include="Interfaces\IBaseApiClient.cs" />
     <Compile Include="Interfaces\IMoveBetService.cs" />
     <Compile Include="Interfaces\IStatelessValidationService.cs" />
     <Compile Include="MoveBetService.cs" />
     <Compile Include="Utility\AutoBindMetaModelService.cs" />
-    <Compile Include="Extensions\OneBookSecurityDependencyExtension.cs" />
     <Compile Include="BusinessLogService.cs" />
     <Compile Include="Interfaces\IBusinessLogBuilderExtension.cs" />
     <Compile Include="Interfaces\IBusinessLogBuilderFactory.cs" />
@@ -132,17 +135,13 @@
     <Compile Include="Interfaces\IAuthorizationService.cs" />
     <Compile Include="Interfaces\IBetListApiClient.cs" />
     <Compile Include="Interfaces\ILGAPIClient.cs" />
-    <Compile Include="Interfaces\IReportApiClient.cs" />
     <Compile Include="LGAPIClient.cs" />
     <Compile Include="Interfaces\IBetTypeService.cs" />
     <Compile Include="Interfaces\IMatchService.cs" />
-    <Compile Include="Interfaces\IOneBookSecurityWrapper.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="MatchService.cs" />
-    <Compile Include="OneBookSecurityWrapper.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportApiClient.cs" />
     <Compile Include="Utility\AuthParameterHelper.cs" />
     <Compile Include="BetListApiClient.cs" />
     <Compile Include="Utility\KeanOceanBusinessHelper.cs" />

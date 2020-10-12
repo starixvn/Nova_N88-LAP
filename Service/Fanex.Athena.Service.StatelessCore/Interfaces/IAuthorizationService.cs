@@ -1,9 +1,7 @@
-﻿
-namespace Fanex.Athena.Service.StatelessCore.Interfaces
+﻿namespace Fanex.Athena.Service.StatelessCore.Interfaces
 {
+    using Fanex.NVC.Authentication.Infrastructure;
     using System.Collections.Generic;
-
-    using Fanex.Athena.Model.Auth;
 
     public interface IAuthorizationService
     {
@@ -13,11 +11,9 @@ namespace Fanex.Athena.Service.StatelessCore.Interfaces
 
         bool HasPermissionOnData(IDictionary<int, int[]> currencyAgents, int custId, long transId);
 
-        bool HasPermissionOnData(IEnumerable<OneAuthCurrency> currencyAgents, int custId, long transId);
+        bool IsAllowedEditCommission(NVCUserAuthInfo userAuthInfo);
 
-        bool IsAllowedEditCommission(UserAuthInfo userAuthInfo);
-
-        bool IsAllowedSpecialBA(UserAuthInfo userAuthInfo);
+        bool IsAllowedSpecialBA(NVCUserAuthInfo userAuthInfo);
 
         bool CheckCustomerBelongsTo(IDictionary<int, int[]> currencyAgents, int custId, int currencyId = 0);
 

@@ -4,6 +4,7 @@
     using Base.UnitTests;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
     using NUnit.Framework;
 
@@ -37,7 +38,7 @@
             using (var controller = CreateController())
             {
                 // Arrange
-                StubUserSessionData(new UserAuthInfo
+                StubUserSessionData(new NVCUserAuthInfo
                 {
                     UserId = 0
                 });
@@ -84,7 +85,7 @@
             using (var controller = CreateController())
             {
                 // Arrange
-                StubUserSessionData(new UserAuthInfo
+                StubUserSessionData(new NVCUserAuthInfo
                 {
                     UserId = 1,
                     UserName = string.Empty
@@ -136,31 +137,6 @@
             }
         }
 
-        [TestCase(true, "1")]
-        [TestCase(false, "0")]
-        public void Index_AssignViewBagData_AssignCorrectIsInternalData(bool isInternal, string expectedValue)
-        {
-            using (var controller = CreateController())
-            {
-                // Arrange
-                controller.ControllerContext.HttpContext.Response.IsRequestBeingRedirected.Returns(true);
-
-                AppSettings.LocalTest.Returns(true);
-
-                StubUserSessionData(new UserAuthInfo
-                {
-                    UserId = 0,
-                    IsInternal = isInternal
-                });
-
-                // Action
-                var result = controller.Index() as ViewResult;
-
-                // Assert
-                Assert.That(result.ViewBag.IsInternal, Is.EqualTo(expectedValue));
-            }
-        }
-
         [TestCase(true, "0")]
         [TestCase(false, "1")]
         public void Index_AssignViewBagData_AssignCorrectHasRecheckInData(bool localTest, string expectedValue)
@@ -186,7 +162,7 @@
             using (var controller = CreateController())
             {
                 // Arrange
-                StubUserSessionData(new UserAuthInfo
+                StubUserSessionData(new NVCUserAuthInfo
                 {
                     UserId = 0
                 });

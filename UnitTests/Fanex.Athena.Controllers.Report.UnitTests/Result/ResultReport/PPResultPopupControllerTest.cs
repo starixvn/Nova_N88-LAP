@@ -6,7 +6,7 @@
 
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+    using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
 
     using NUnit.Framework;
@@ -27,7 +27,7 @@
             const string ExpectedResult = "aaaaaaaaaaaa";
             const string Url = "/PPResultPopup/Index";
             const string Language = "vi-VN";
-            StubUserSessionData(new UserAuthInfo
+            StubUserSessionData(new NVCUserAuthInfo
             {
                 Language = Language
             });

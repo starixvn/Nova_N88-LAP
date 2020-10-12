@@ -17,24 +17,6 @@ namespace Fanex.Athena.UnitTest.Common.Helpers
 
         public const string DefaultClientIp = "127.0.0.1";
 
-        public static HttpActionContext CreateMockActionContext(IEnumerable<OneAuthCurrency> authCurrencyList = null)
-        {
-            return new HttpActionContext
-            {
-                ControllerContext = new HttpControllerContext(),
-                ActionArguments =
-                {
-                    { "licenseeid", DefaultLicenseeId },
-                    { "userid", DefaultUserId },
-                    { "username", DefaultUserName },
-                    { "sitename", DefaultSiteName },
-                    { "currencyIDList", DefaultCurrencyIdList },
-                    { "language", DefaultLanguage },
-                    { "currencyAgentList", authCurrencyList ?? CreateAuthCurrencyList() }
-                }
-            };
-        }
-
         public static HttpContextBase CreateHttpContext()
         {
             var httpRequest = Substitute.For<HttpRequestBase>();
@@ -44,19 +26,6 @@ namespace Fanex.Athena.UnitTest.Common.Helpers
             httpContext.Request.Returns(httpRequest);
 
             return httpContext;
-        }
-
-        public static IEnumerable<OneAuthCurrency> CreateAuthCurrencyList()
-        {
-            return new OneAuthCurrency[]
-            {
-                new OneAuthCurrency
-                {
-                    CurrencyId = 1,
-                    Currency = "USD",
-                    AgentId = new int [] { 1,2 }
-                }
-            };
         }
 
         public static string CreateDefaultAgentListXml()

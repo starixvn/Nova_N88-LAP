@@ -1,9 +1,8 @@
 ﻿namespace Fanex.Athena.Service.Core.UnitTests.Utility
 {
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Core.MetaModel;
     using Fanex.Athena.Service.Core.Users.Interfaces;
-    using Fanex.Athena.Service.Core.Utility;
+    using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
     using NUnit.Framework;
     using System.Collections.Generic;
@@ -12,13 +11,13 @@
     public class BrandValidationTest
     {
         private ISessionService _sessionService;
-        private BrandValidation _brandValidation;
+        private Core.Utility.BrandValidation _brandValidation;
 
         [SetUp]
         public void Setup()
         {
             _sessionService = Substitute.For<ISessionService>();
-            _brandValidation = new BrandValidation(_sessionService);
+            _brandValidation = new Core.Utility.BrandValidation(_sessionService);
         }
 
         [TearDown]
@@ -50,7 +49,7 @@
         public void IsValidBrandId_WhenCall_ReturnResultCorrectly(int brandId, bool expectedResult)
         {
             //Arrange
-            var fakeUser = new UserAuthInfo
+            var fakeUser = new NVCUserAuthInfo
             {
                 BrandList = new List<Brand>
                 {
@@ -71,8 +70,6 @@
             //Assert
             Assert.AreEqual(expectedResult, actualResult);
         }
-
-
 
         [TestCase("", false)]
         [TestCase("  ", false)]
@@ -98,7 +95,7 @@
         public void IsValidBrandIdList_WhenCall_ReturnResultCorrectly(string brandIds, bool expectedResult)
         {
             //Arrange
-            var fakeUser = new UserAuthInfo
+            var fakeUser = new NVCUserAuthInfo
             {
                 BrandList = new List<Brand>
                 {

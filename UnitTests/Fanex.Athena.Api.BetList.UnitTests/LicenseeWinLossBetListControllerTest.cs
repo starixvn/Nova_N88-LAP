@@ -1,20 +1,16 @@
 ﻿namespace Fanex.Athena.Api.BetList.UnitTests
 {
+    using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using Model.BetList.MetaModel;
+    using Model.Core.DTO.Configuration;
+    using NSubstitute;
+    using NUnit.Framework;
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-
-    using Fanex.Athena.Model.Auth;
-    using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-
-    using Model.BetList.MetaModel;
-    using Model.Core.DTO.Configuration;
-
-    using NSubstitute;
-
-    using NUnit.Framework;
 
     public class LicenseeWinLossBetListControllerTest : ApiBetListBaseControllerHelperTest
     {
@@ -48,7 +44,7 @@
                 // Arrange
                 var metaModel = new BetListMetaModel { FromDate = new DateTime(2018, 1, 1) };
 
-                StubUserSessionData(new UserAuthInfo
+                StubUserSessionData(new NVCUserAuthInfo
                 {
                     CurrencyList = new Dictionary<int, string>(),
                     CurrencyAgentList = new Dictionary<int, int[]>()
@@ -78,7 +74,7 @@
                 // Arrange
                 var metaModel = new BetListMetaModel { CurrencyId = currencyId };
 
-                StubUserSessionData(new UserAuthInfo
+                StubUserSessionData(new NVCUserAuthInfo
                 {
                     Language = SessionLanguage,
                     CurrencyList = new Dictionary<int, string> { { currencyId, "Currency" } },

@@ -47,6 +47,9 @@
     <Reference Include="Fanex.N88.Core.Client, Version=1.2.1.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.0-alpha-3\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.2\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Flurl, Version=2.8.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Flurl.2.8.2\lib\net40\Flurl.dll</HintPath>
     </Reference>
@@ -74,6 +77,9 @@
       <HintPath>..\..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -97,7 +103,10 @@
   <ItemGroup>
     <Compile Include="Common\Interfaces\ITpService.cs" />
     <Compile Include="Common\TpService.cs" />
-    <Compile Include="Helper\JsonSerializerHelper.cs" />
+    <Compile Include="Proxy\Interfaces\IProxyOptions.cs" />
+    <Compile Include="Proxy\Interfaces\IProxyService.cs" />
+    <Compile Include="Proxy\ProxyOptions.cs" />
+    <Compile Include="Proxy\ProxyService.cs" />
     <Compile Include="Users\BrandService.cs" />
     <Compile Include="Users\Interfaces\IBrandService.cs" />
     <Compile Include="Users\Interfaces\ISessionStorage.cs" />

@@ -1,5 +1,5 @@
 ﻿@using Fanex.Athena.Service.Core.Users.Interfaces;
-@using Fanex.Athena.Model.Auth.Enum;
+@using System.Linq;
 @{
     Layout = null;
 
@@ -9,7 +9,6 @@
     var userCurrencies = userSession == null || userSession.CurrencyList == null ?
         new Dictionary<string, string>() :
         userSession.CurrencyList.ToDictionary(x => x.Key.ToString(), x => x.Value);
-    var isParasiticMode = userSession != null && userSession.ApplicationMode == AppMode.Parasitic;
     var langCode = System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag;
     var rootUrl = Url.Content("~");
 }
@@ -47,10 +46,6 @@
     }
 
     @RenderSection("pagejs", required: false)
-    @if (isParasiticMode)
-    {
-        Html.RenderPartial("~/Views/Desktop/Shared/_SessionScript.cshtml");
-    }
     @if (appSettings.Environment.Equals("PRO", StringComparison.OrdinalIgnoreCase))
     {
         <!-- Global site tag (gtag.js) - Google Analytics -->

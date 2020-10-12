@@ -37,9 +37,6 @@
         public void SetUp()
         {
             _sessionStorage = Substitute.For<ISessionStorage>();
-            _sessionStorage.AssignSessions(
-                Arg.Do<UserAuthInfo>(x => _sessionStorage.UserAuthInfo.Returns(x)),
-                Arg.Do<LicenseeAuthInfo>(x => _sessionStorage.LicenseeAuthInfo.Returns(x)));
 
             _appSettings = Substitute.For<IAppSettings>();
             _licenseeDataAccess = Substitute.For<ILicenseeDataAccess>();
@@ -72,47 +69,6 @@
             _licenseeDataAccess = null;
             _currencyDataAccess = null;
             _sessionService = null;
-        }
-
-        [Test]
-        public void UpdateLanguage_UserSessionAndLanguageCodeNotNull_UserSessionLanguageIsCorrect()
-        {
-            // Arrange
-            const string LanguageCode = "vi-VN";
-            CreateDefaultNewSession();
-
-            // Action
-            _sessionService.UpdateLanguage(LanguageCode);
-
-            // Assert
-            Assert.That(_sessionService.UserSession.Language, Is.EqualTo(LanguageCode));
-        }
-
-        [Test]
-        public void UpdateLanguage_UserSessionAndLanguageCodeNotNull_ReturnTrue()
-        {
-            // Arrange
-            const string LanguageCode = "vi-VN";
-            CreateDefaultNewSession();
-
-            // Action
-            var result = _sessionService.UpdateLanguage(LanguageCode);
-
-            // Assert
-            Assert.That(result, Is.True);
-        }
-
-        [Test]
-        public void UpdateLanguage_LanguageCodeIsEmpty_ReturnFalse()
-        {
-            // Arrange
-            CreateDefaultNewSession();
-
-            // Action
-            var result = _sessionService.UpdateLanguage(string.Empty);
-
-            // Assert
-            Assert.That(result, Is.False);
         }
 
         [Test]

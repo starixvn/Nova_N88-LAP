@@ -4,7 +4,7 @@ using Fanex.Athena.Model.Auth;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.UnitTest.Common.Helpers;
 using Fanex.Athena.Web.ActionFilter;
-
+using Fanex.NVC.Authentication.Infrastructure;
 using NSubstitute;
 
 using NUnit.Framework;
@@ -36,7 +36,7 @@ namespace Fanex.Athena.Web.UnitTests.ActionFilter
             _attribute.OnAuthorization(filterContext);
 
             // Assert
-            var temp = _sessionStorage.DidNotReceive().UserAuthInfo;
+            var temp = _sessionStorage.DidNotReceive().User;
         }
 
         [Test]
@@ -62,8 +62,8 @@ namespace Fanex.Athena.Web.UnitTests.ActionFilter
         {
             // Arrange
             var filterContext = CreateFilterContext(false);
-            _sessionStorage.LicenseeAuthInfo.Returns(new LicenseeAuthInfo());
-            _sessionStorage.UserAuthInfo.Returns(new UserAuthInfo());
+            _sessionStorage.Licensee.Returns(new NVCLicenseeAuthInfo());
+            _sessionStorage.User.Returns(new NVCUserAuthInfo());
 
             // Action
             _attribute.OnAuthorization(filterContext);

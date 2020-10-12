@@ -35,6 +35,10 @@
                         th:not(:first-child) {
                             border-left-color: #d6d6d6;
                         }
+
+                        th:first-child {
+                            border-left: none;
+                        }
                     }
                 }
             }
@@ -112,15 +116,16 @@
     .sticky-box-container {
         display: flex;
         flex-wrap: wrap;
+        margin-top: -15px;
 
         .sticky-box {
             margin-right: 15px;
-            margin-top: 5px;
+            margin-top: 15px;
         }
     }
 
     .sticky-box {
-        width: 200px;
+        width: 210px;
         height: 140px;
         padding: 10px 10px;
         background: #EEF8F6;
@@ -142,7 +147,7 @@
     .sticky-box-content {
         text-align: center;
         font-weight: bold;
-        font-size: 32px;
+        font-size: 30px;
     }
 
     .sticky-box-compare-title {
@@ -194,8 +199,13 @@
             padding: 8px 10px;
         }
 
-        .highlight-detail-cell {
+        .highlight-cell {
             background: #EEF8F6;
+            font-weight: bold;
+        }
+
+        .total-cell {
+            background: #fcf4df;
             font-weight: bold;
         }
     }

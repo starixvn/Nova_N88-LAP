@@ -21,7 +21,6 @@ namespace Fanex.Athena.Service.Core.Utility
             return model != null && model.IsValid;
         }
 
-
         public bool IsValid(object model, CurrencyValidationOption currencyValidationOption = null,
             ProductValidationOption productValidationOption = null, BrandValidationOption brandValidationOption = null)
         {
@@ -43,7 +42,7 @@ namespace Fanex.Athena.Service.Core.Utility
             {
                 result &= IsValidProductCode(model as IMetaModelProductCodeList, productValidationOption);
             }
-            if(brandValidationOption != null)
+            if (brandValidationOption != null)
             {
                 result &= !brandValidationOption.IsValidBrandId || _brandValidation.IsValidBrandId(model as IMetaModelBrandId);
                 result &= !brandValidationOption.IsValidBrandIdList || _brandValidation.IsValidBrandIdList(model as IMetaModelBrandIdList);

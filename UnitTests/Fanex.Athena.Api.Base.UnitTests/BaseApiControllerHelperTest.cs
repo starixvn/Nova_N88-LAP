@@ -6,7 +6,7 @@
 
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+    using Fanex.NVC.Authentication.Infrastructure;
     using Model.Core.DTO.Common;
 
     using NSubstitute;
@@ -45,7 +45,7 @@
         public virtual void FixtureSetUp()
         {
             SessionService = Substitute.For<ISessionService>();
-            SessionService.UserSession.Returns(new UserAuthInfo
+            SessionService.UserSession.Returns(new NVCUserAuthInfo
             {
                 Language = SessionLanguage,
                 CurrencyList = new Dictionary<int, string>(),
@@ -71,7 +71,7 @@
 
         protected void MockSessionData()
         {
-            var userSession = new UserAuthInfo
+            var userSession = new NVCUserAuthInfo
             {
                 UserId = SessionUserId,
                 UserName = SessionUserName,
@@ -80,7 +80,7 @@
                 CurrencyAgentList = new Dictionary<int, int[]>()
             };
 
-            var licenseeSession = new LicenseeAuthInfo
+            var licenseeSession = new NVCLicenseeAuthInfo
             {
                 LicenseeId = SessionLicenseeId,
                 LicenseeName = SessionLicenseeName
@@ -114,12 +114,12 @@
             ProductService.GetProductAccess(Arg.Any<int>(), Arg.Any<string>(), functionConfigKey: Arg.Any<string>()).Returns(new ProductAccess(productList));
         }
 
-        protected void StubUserSessionData(UserAuthInfo userSession)
+        protected void StubUserSessionData(NVCUserAuthInfo userSession)
         {
             SessionService.UserSession.Returns(userSession);
         }
 
-        protected void StubLicenseeSessionData(LicenseeAuthInfo licenseeSession)
+        protected void StubLicenseeSessionData(NVCLicenseeAuthInfo licenseeSession)
         {
             SessionService.LicenseeSession.Returns(licenseeSession);
         }

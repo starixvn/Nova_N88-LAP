@@ -1,16 +1,16 @@
 ﻿namespace Fanex.Athena.Service.StatelessCore
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility.Interfaces;
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Service.Interface;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class AuthorizationService : IAuthorizationService
     {
@@ -69,33 +69,13 @@
             return isHasPermission;
         }
 
-        public bool IsAllowedEditCommission(UserAuthInfo userAuthInfo)
+        public bool IsAllowedEditCommission(NVCUserAuthInfo userAuthInfo)
         {
-            if (userAuthInfo.ApplicationMode == AppMode.Parasitic)
-            {
-                if (userAuthInfo.IsSuperAdmin)
-                {
-                    return true;
-                }
-                return userAuthInfo.PortalFunctionList != null && userAuthInfo.PortalFunctionList.Any(i => i.FunctionKey
-                      == PermissionKeys.CustomerInfoCommissionGroupList ||
-                      (i.SubFunctionKeys != null && i.SubFunctionKeys.Contains(PermissionKeys.CustomerInfoCommissionGroupList)));
-            }
             return userAuthInfo.FunctionList != null && userAuthInfo.FunctionList.Any(x => x.FunctionKey == PermissionKeys.CustomerInfoCommissionGroupList);
         }
 
-        public bool IsAllowedSpecialBA(UserAuthInfo userAuthInfo)
+        public bool IsAllowedSpecialBA(NVCUserAuthInfo userAuthInfo)
         {
-            if (userAuthInfo.ApplicationMode == AppMode.Parasitic)
-            {
-                if (userAuthInfo.IsSuperAdmin)
-                {
-                    return true;
-                }
-                return userAuthInfo.PortalFunctionList != null && (userAuthInfo.PortalFunctionList.Any(i => i.FunctionKey
-                     == PermissionKeys.CustomerInfoSpecialBA
-                     || (i.SubFunctionKeys != null && i.SubFunctionKeys.Contains(PermissionKeys.CustomerInfoSpecialBA))));
-            }
             return userAuthInfo.FunctionList != null && userAuthInfo.FunctionList.Any(x => x.FunctionKey == PermissionKeys.CustomerInfoSpecialBA);
         }
 
@@ -116,18 +96,6 @@
             var item = _authorizationDataAccess.IsCustomerBelonging(custId, 0);
 
             return currencyAgents.Any(i => i.Key == item.Item1 && i.Value.Contains(item.Item2) && (currencyId == 0 || item.Item1 == currencyId));
-        }
-
-        public bool HasPermissionOnData(IEnumerable<OneAuthCurrency> currencyAgents, int custId, long transId)
-        {
-            if (custId == 0 && transId == 0)
-            {
-                return true;
-            }
-
-            var item = _authorizationDataAccess.IsCustomerBelonging(custId, transId);
-
-            return currencyAgents.Any(i => i.CurrencyId == item.Item1 && i.AgentId.Contains(item.Item2));
         }
 
         public bool CheckProductBelongsTo(string licenseeName, int productId, int[] limitedProductIds = null)

@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Athena.Model.Report.ViewModel
 {
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.NVC.Authentication.Infrastructure;
     using System;
     using System.Collections.Generic;
 

@@ -17,7 +17,6 @@
 
     [CLSCompliant(false)]
     [CheckUMFilter]
-    [XFrameOptionApi]
     [FunctionAuthorization(PermissionKeys.BetHistory)]
     public class CommonDataApiController : ApiController
     {

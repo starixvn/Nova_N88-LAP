@@ -126,8 +126,9 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         {
             //Arrange
             var option = new BrandValidationOption { IsValidBrandIdList = true };
-            var model = new WinLossMetaModel { BrandIds = "12,12,23" };
+            var model = Substitute.For<IMetaModelBrandIdList>();
 
+            model.BrandIds.Returns("302,123");
             _brandValidation.IsValidBrandIdList(model).Returns(true);
 
             //Action
@@ -142,8 +143,9 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         {
             //Arrange
             var option = new BrandValidationOption { IsValidBrandId = true };
-            var model = new BaseMarketingMetaModel { BrandId = 1 };
+            var model = Substitute.For<IMetaModelBrandId>();
 
+            model.BrandId.Returns(123);
             _brandValidation.IsValidBrandId(model).Returns(true);
 
             //Action

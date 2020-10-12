@@ -272,7 +272,7 @@
         private void SetUpGetAllowedProductsFromCache(string xmlContent)
         {
             _cache.Get<IEnumerable<XElement>>(FunctionAllowedProductsKey).Returns(XDocument.Parse(xmlContent)
-                .Descendants(nameof(Function)));
+                .Descendants("Function"));
             _cache.When(x => x.Set(Arg.Any<string>(), Arg.Any<IEnumerable<XElement>>())).DoNotCallBase();
         }
 

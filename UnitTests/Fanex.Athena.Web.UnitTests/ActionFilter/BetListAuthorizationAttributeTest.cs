@@ -7,7 +7,7 @@ using Fanex.Athena.Service.StatelessCore.Interfaces;
 using Fanex.Athena.UnitTest.Common.Helpers;
 using Fanex.Athena.UnitTest.Common.NUnitExtensions;
 using Fanex.Athena.Web.ActionFilter;
-
+using Fanex.NVC.Authentication.Infrastructure;
 using NSubstitute;
 
 using NUnit.Framework;
@@ -34,7 +34,7 @@ namespace Fanex.Athena.Web.UnitTests.ActionFilter
             _filterContext = CreateFilterContext();
             _licenseeSettingService = Substitute.For<ILicenseeSettingService>();
             _sessionService = Substitute.For<ISessionService>();
-            _sessionService.LicenseeSession.Returns(new LicenseeAuthInfo
+            _sessionService.LicenseeSession.Returns(new NVCLicenseeAuthInfo
             {
                 LicenseeName = LicenseeName
             });

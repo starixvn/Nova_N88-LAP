@@ -1,8 +1,9 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Core.MetaModel.Product;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.NVC.Authentication.Infrastructure;
+
     using Model.Core.DTO.Common;
     using ONEbook.UM.Filters;
     using System.Collections.Generic;

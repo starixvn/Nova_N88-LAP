@@ -12,16 +12,50 @@ export default class DataService {
     }
 
     static getPerformanceHighlightAPIParams = filterData => {
-        const { selectedBrand, reportDate, compareDate } = filterData;
+        const { selectedBrand, selectedBaseCurrency, reportDate, compareDate } = filterData;
         const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
         const params = {
             ...commonParams,
             ...{
                 compareFromDate: DateTimeHelper.formatDateStructureToString(compareDate.fromDate),
-                compareToDate: DateTimeHelper.formatDateStructureToString(compareDate.toDate)
+                compareToDate: DateTimeHelper.formatDateStructureToString(compareDate.toDate),
+                baseCurrency: selectedBaseCurrency
             }
         }
 
+        return params;
+    }
+
+    static getPerformanceHighlightPopupSummaryAPIParams =  filterData => {
+        const { baseCurrency, ...rest } = filterData;
+        const commonParams = this.getPerformanceHighlightAPIParams(rest);
+        const params = {
+            ...commonParams,
+            baseCurrency
+        }
+        return params;
+    }
+
+    static getPerformanceHighlightPopupDetailAPIParams =  filterData => {
+        const { reportDate, selectedBrand, pagingOption, sortInfo, ...rest } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate  });
+        const params = {
+            ...commonParams,
+            ...sortInfo,
+            ...{ pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize },
+            ...rest
+        }
+        return params;
+    }
+
+    static getPerformanceHighlightPopupExportAPIParams =  filterData => {
+        const { baseCurrency, sortInfo, ...rest } = filterData;
+        const commonParams = this.getPerformanceHighlightAPIParams(rest);
+        const params = {
+            ...commonParams,
+            ...sortInfo,
+            baseCurrency
+        }
         return params;
     }
 
@@ -36,38 +70,54 @@ export default class DataService {
         return params;
     }
 
+    /* detail popup*/
+
     static getNewlyRegisterUsersSummaryAPIParams = filterData => {
-        const { baseCurrency, ...rest } = filterData;
-        const commonParams = this.getPerformanceHighlightAPIParams(rest);
-        const params = {
-            ...commonParams,
-            baseCurrency
-        }
+        const params = this.getPerformanceHighlightPopupSummaryAPIParams(filterData);
         return params;
     }
 
     static getNewlyRegisterUsersDetailAPIParams = filterData => {
-        const { reportDate, selectedBrand, pagingOption, sortInfo, ...rest } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate  });
-        const params = {
-            ...commonParams,
-            ...sortInfo,
-            ...{ pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize },
-            ...rest
-        }
+        const params = this.getPerformanceHighlightPopupDetailAPIParams(filterData);
         return params;
     }
 
     static getNewlyRegisterUsersExportAPIParams = filterData => {
-        const { baseCurrency, sortInfo, ...rest } = filterData;
-        const commonParams = this.getPerformanceHighlightAPIParams(rest);
-        const params = {
-            ...commonParams,
-            ...sortInfo,
-            baseCurrency
-        }
+        const params = this.getPerformanceHighlightPopupExportAPIParams(filterData);
         return params;
     }
+
+    static getWithdrawalAmountSummaryAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupSummaryAPIParams(filterData);
+        return params;
+    }
+
+    static getWithdrawalAmountDetailAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupDetailAPIParams(filterData);
+        return params;
+    }
+
+    static getWithdrawalAmountExportAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupExportAPIParams(filterData);
+        return params;
+    }
+
+    static getBonusClaimedSummaryAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupSummaryAPIParams(filterData);
+        return params;
+    }
+
+    static getBonusClaimedDetailAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupDetailAPIParams(filterData);
+        return params;
+    }
+
+    static getBonusClaimedExportAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupExportAPIParams(filterData);
+        return params;
+    }
+
+    /* end detail popup */
 
     static getUserActivitiesAPIParams = filterData => {
         const { selectedBrand, reportDate, viewMode } = filterData;

@@ -1,6 +1,4 @@
-﻿using Fanex.Athena.Model.Auth;
-using Fanex.Athena.Model.Core.DataDomain;
-using System;
+﻿using Fanex.Athena.Model.Core.DataDomain;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,41 +71,6 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
             }
 
             return result;
-        }
-
-        public static string GenerateAgentListXml(IEnumerable<OneAuthCurrency> authCurrencyList, string currencyIdList)
-        {
-            if (authCurrencyList == null || !authCurrencyList.Any())
-            {
-                return string.Empty;
-            }
-
-            var actualCurrencyAgentList = GetSelectedCurrencyAgentList(authCurrencyList, currencyIdList);
-
-            var builder = new StringBuilder("<ROOT>");
-            foreach (var currencyItem in actualCurrencyAgentList)
-            {
-                var xmlItemList = currencyItem.AgentId.Select(x => $"<Agent AgentId=\"{x}\" Currency=\"{currencyItem.CurrencyId}\"/>");
-                builder.Append(string.Join("", xmlItemList));
-            }
-
-            builder.Append("</ROOT>");
-
-            return builder.ToString();
-        }
-
-        private static IEnumerable<OneAuthCurrency> GetSelectedCurrencyAgentList(IEnumerable<OneAuthCurrency> authCurrencyList, string currencyIdList)
-        {
-            if (string.IsNullOrEmpty(currencyIdList))
-            {
-                return authCurrencyList;
-            }
-
-            var selectedCurrencyIdList = currencyIdList.Trim()
-                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => Convert.ToInt32(x));
-
-            return authCurrencyList.Where(x => selectedCurrencyIdList.Contains(x.CurrencyId));
         }
     }
 }

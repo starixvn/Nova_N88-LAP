@@ -19,7 +19,7 @@ namespace Fanex.Athena.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ViewResources {
@@ -547,6 +547,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to As of now.
+        /// </summary>
+        public static string AsOfNow {
+            get {
+                return ResourceManager.GetString("AsOfNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assign Permission.
         /// </summary>
         public static string AssignPermission {
@@ -957,6 +966,15 @@ namespace Fanex.Athena.Resources {
         public static string Bonus {
             get {
                 return ResourceManager.GetString("Bonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus Claimed.
+        /// </summary>
+        public static string BonusClaimed {
+            get {
+                return ResourceManager.GetString("BonusClaimed", resourceCulture);
             }
         }
         
@@ -2046,6 +2064,15 @@ namespace Fanex.Athena.Resources {
         public static string Deposit {
             get {
                 return ResourceManager.GetString("Deposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit Amount.
+        /// </summary>
+        public static string DepositAmount {
+            get {
+                return ResourceManager.GetString("DepositAmount", resourceCulture);
             }
         }
         
@@ -4849,6 +4876,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No. Of Bonus Claimed.
+        /// </summary>
+        public static string NoOfBonusClaimed {
+            get {
+                return ResourceManager.GetString("NoOfBonusClaimed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No. of Customer.
         /// </summary>
         public static string NoOfCustmer {
@@ -4953,6 +4989,15 @@ namespace Fanex.Athena.Resources {
         public static string NumberGameNo {
             get {
                 return ResourceManager.GetString("NumberGameNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Of Withdrawals.
+        /// </summary>
+        public static string NumberOfWithdrawals {
+            get {
+                return ResourceManager.GetString("NumberOfWithdrawals", resourceCulture);
             }
         }
         
@@ -6766,6 +6811,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Active Users.
+        /// </summary>
+        public static string TotalActiveUsers {
+            get {
+                return ResourceManager.GetString("TotalActiveUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Away.
         /// </summary>
         public static string TotalAway {
@@ -6780,6 +6834,33 @@ namespace Fanex.Athena.Resources {
         public static string TotalBets {
             get {
                 return ResourceManager.GetString("TotalBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Bonus Amount Claimed.
+        /// </summary>
+        public static string TotalBonusAmountClaimed {
+            get {
+                return ResourceManager.GetString("TotalBonusAmountClaimed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Deposit Amount.
+        /// </summary>
+        public static string TotalDepositAmount {
+            get {
+                return ResourceManager.GetString("TotalDepositAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Deposit Users.
+        /// </summary>
+        public static string TotalDepositUsers {
+            get {
+                return ResourceManager.GetString("TotalDepositUsers", resourceCulture);
             }
         }
         
@@ -6843,6 +6924,24 @@ namespace Fanex.Athena.Resources {
         public static string TotalUsers {
             get {
                 return ResourceManager.GetString("TotalUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Withdrawal Amount.
+        /// </summary>
+        public static string TotalWithdrawalAmount {
+            get {
+                return ResourceManager.GetString("TotalWithdrawalAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Withdrawal Users.
+        /// </summary>
+        public static string TotalWithdrawalUsers {
+            get {
+                return ResourceManager.GetString("TotalWithdrawalUsers", resourceCulture);
             }
         }
         
@@ -7842,6 +7941,15 @@ namespace Fanex.Athena.Resources {
         public static string Withdrawal {
             get {
                 return ResourceManager.GetString("Withdrawal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Withdrawal Amount.
+        /// </summary>
+        public static string WithdrawalAmount {
+            get {
+                return ResourceManager.GetString("WithdrawalAmount", resourceCulture);
             }
         }
         

@@ -13,31 +13,20 @@ const defaultAjaxConfig = {
     },
     withCredentials: false,
     responseType: 'json',
-    cancelToken: new axios.CancelToken(function(cancel) {})
+    cancelToken: new axios.CancelToken(function (cancel) { })
 }
 
 class LapCommonService extends BaseCommonService {
     constructor(initialConfig) {
         super();
 
-        const { baseUrl, applyLinkTokenUrl, applyApiTokenUrl, tabList } = initialConfig;
-        this._applyLinkTokenUrl = applyLinkTokenUrl;
-        this._applyApiTokenUrl = applyApiTokenUrl;
+        const { baseUrl, tabList } = initialConfig;
         this._baseUrl = baseUrl;
         this._tabList = tabList || [];
     }
 
     getTabList() {
         return [...this._tabList];
-    }
-
-    _buildApplyTokenQueryString(sysType, action) {
-        return `ActionLink=${encodeURIComponent(action)}&Type=${sysType}`;
-    }
-
-    getLink(sysType, action) {
-        return sysType === systemType.newAdmin ? this._baseUrl + action :
-            `${this._applyLinkTokenUrl}?${this._buildApplyTokenQueryString(sysType, action)}`;
     }
 
     _buildCommonAjaxConfig(configOption, apiActionUrl, params) {
@@ -61,36 +50,14 @@ class LapCommonService extends BaseCommonService {
         }
     }
 
-    _fetchDataWithToken(sysType, action, params, configOption) {
-        const apiToken = `${this._applyApiTokenUrl}?${this._buildApplyTokenQueryString(sysType, action)}`;
-
-        return axios.get(apiToken)
-            .then(response => {
-                const apiActionUrl = `${action}`;
-
-                const commonAjaxConfig = this._buildCommonAjaxConfig(configOption, apiActionUrl, params);
-                const headerConfig = {
-                    ...configOption.headers
-                }
-
-                const configWithXToken = {...commonAjaxConfig, headers: {...headerConfig } };
-
-                return axios(configWithXToken);
-            });
-    }
-
     fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
-        const config = {...defaultAjaxConfig, ...configOption };
+        const config = { ...defaultAjaxConfig, ...configOption };
 
-        if (sysType === systemType.newAdmin) {
-            const relativeUrl = this._baseUrl + action;
-            
-            const ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
+        const relativeUrl = this._baseUrl + action;
 
-            return axios(ajaxConfig);
-        } else {
-            return this._fetchDataWithToken(sysType, action, params, config);
-        }
+        const ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
+
+        return axios(ajaxConfig);
     }
 
     fetchMultiple(promiseList, callback) {

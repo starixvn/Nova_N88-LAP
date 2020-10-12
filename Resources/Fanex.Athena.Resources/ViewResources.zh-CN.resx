@@ -2436,4 +2436,52 @@
     <value>AE 真人</value>
     <comment>#141118</comment>
   </data>
+  <data name="AsOfNow" xml:space="preserve">
+    <value>As of now</value>
+    <comment>141575</comment>
+  </data>
+  <data name="BonusClaimed" xml:space="preserve">
+    <value>Bonus Claimed</value>
+    <comment>141575</comment>
+  </data>
+  <data name="DepositAmount" xml:space="preserve">
+    <value>Deposit Amount</value>
+    <comment>141575</comment>
+  </data>
+  <data name="NoOfBonusClaimed" xml:space="preserve">
+    <value>No. Of Bonus Claimed</value>
+    <comment>141575</comment>
+  </data>
+  <data name="NumberOfWithdrawals" xml:space="preserve">
+    <value>Number Of Withdrawals</value>
+    <comment>141575</comment>
+  </data>
+  <data name="TotalActiveUsers" xml:space="preserve">
+    <value>Total Active Users</value>
+    <comment>141575</comment>
+  </data>
+  <data name="TotalBonusAmountClaimed" xml:space="preserve">
+    <value>Total Bonus Amount Claimed</value>
+    <comment>141575</comment>
+  </data>
+  <data name="TotalDepositAmount" xml:space="preserve">
+    <value>Total Deposit Amount</value>
+    <comment>141575</comment>
+  </data>
+  <data name="TotalDepositUsers" xml:space="preserve">
+    <value>Total Deposit Users</value>
+    <comment>141575</comment>
+  </data>
+  <data name="TotalWithdrawalAmount" xml:space="preserve">
+    <value>Total Withdrawal Amount</value>
+    <comment>141575</comment>
+  </data>
+  <data name="TotalWithdrawalUsers" xml:space="preserve">
+    <value>Total Withdrawal Users</value>
+    <comment>141575</comment>
+  </data>
+  <data name="WithdrawalAmount" xml:space="preserve">
+    <value>Withdrawal Amount</value>
+    <comment>141575</comment>
+  </data>
 </root>

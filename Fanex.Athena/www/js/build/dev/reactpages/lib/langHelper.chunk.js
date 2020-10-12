@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 9/16/2020 11:13:27 AM
+// Generated at: 10/8/2020 5:31:07 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -149,6 +149,7 @@ window._language_en_US = {
   ARPPUPaidUsers: "ARPPU - Paid Users",
   ARPUAllUsers: "ARPU - All Users",
   Asia: "Asia",
+  AsOfNow: "As of now",
   AssignPermission: "Assign Permission",
   AUActiveUsers: "AU - Active Users",
   Aug: "Aug",
@@ -195,6 +196,7 @@ window._language_en_US = {
   BetType: "Bet type",
   BONTeamToScore: "Both/One/Neither Team To Score",
   Bonus: "Bonus",
+  BonusClaimed: "Bonus Claimed",
   BoughtAmount: "Bought Amount",
   BoughtDetails: "Bought Details",
   BoughtStake: "Bought Stake",
@@ -316,6 +318,7 @@ window._language_en_US = {
   DeleteCommissionGroup: "Delete Commission group",
   DeleteGroup: "Delete Group",
   Deposit: "Deposit",
+  DepositAmount: "Deposit Amount",
   DepositUsers: "Deposit Users",
   Description: "Description",
   DetailedBetlist: "Detailed Bet list",
@@ -627,6 +630,7 @@ window._language_en_US = {
   NoneLevel: "None level",
   NoneLive: "Non-Live",
   NonEntered: "Non-Entered",
+  NoOfBonusClaimed: "No. Of Bonus Claimed",
   NoOfCustmer: "No. of Customer",
   NoProductFound: "No product found",
   Normal: "Normal",
@@ -639,6 +643,7 @@ window._language_en_US = {
   November: "November",
   NRUNewlyRegisterdUsers: "NRU - Newly Registered Users",
   NumberGameNo: "Number Game No",
+  NumberOfWithdrawals: "Number Of Withdrawals",
   OANDANote: "Please note that all conversions to base currency (EURO,USD) are for reference only.",
   Oct: "Oct",
   October: "October",
@@ -840,8 +845,12 @@ window._language_en_US = {
   TooltipViewDetails: "Click to view more details",
   Total: "Total",
   TotalActiveCustomer: "Total active customers",
+  TotalActiveUsers: "Total Active Users",
   TotalAway: "Total Away",
   TotalBets: "Total Bets",
+  TotalBonusAmountClaimed: "Total Bonus Amount Claimed",
+  TotalDepositAmount: "Total Deposit Amount",
+  TotalDepositUsers: "Total Deposit Users",
   TotalGoal: "Total Goal",
   TotalHome: "Total Home",
   Totalin: "Total in",
@@ -849,6 +858,8 @@ window._language_en_US = {
   TotalTransaction: "Total Transaction",
   TotalTurnover: "Total Turnover",
   TotalUsers: "Total Users",
+  TotalWithdrawalAmount: "Total Withdrawal Amount",
+  TotalWithdrawalUsers: "Total Withdrawal Users",
   ToViewHistoryRptMsg: "Please click to view history report",
   ToWinToNil: "To Win To Nil",
   TransactionDetail: "Transaction Detail",
@@ -960,6 +971,7 @@ window._language_en_US = {
   WinLossByProductTitle: "Win Loss By Products, {0} --&gt; {1}, {2}",
   WinLossByTimeZone: "Win Loss By Time Zone",
   Withdrawal: "Withdrawal",
+  WithdrawalAmount: "Withdrawal Amount",
   WL: "WL",
   Won: "Won",
   WrongUserNamePassword: "Incorrect Password",

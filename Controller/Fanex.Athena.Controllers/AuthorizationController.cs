@@ -84,7 +84,7 @@
         [HttpPost]
         [CustomValidateAntiForgery]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult SignIn(LoginMetalModel model)
+        public ActionResult SignIn(LoginMetaModel model)
         {
             if (string.IsNullOrEmpty(model.UserName))
             {
@@ -101,7 +101,7 @@
             }
             else
             {
-                var user = _userService.Get(model.UserName.Trim(), n88Settings.SiteId);
+                var user = _userService.Get(model.UserName.Trim(), N88Settings.SiteId);
                 if (user != null)
                 {
                     var crypPassword = GetHash(user.Password + model.LogInToken);
@@ -183,7 +183,7 @@
             var ssoLoginParam = new SSOLoginParameter
             {
                 UserId = userId,
-                SiteId = n88Settings.SiteId,
+                SiteId = N88Settings.SiteId,
                 Domain = CurrentContext.DomainName,
                 CheckOnUserId = onuserId,
                 IP = CurrentContext.IP,
@@ -240,7 +240,7 @@
             var loginParam = new LoginParameter
             {
                 UserId = user.Id,
-                SiteId = n88Settings.SiteId,
+                SiteId = N88Settings.SiteId,
                 Domain = CurrentContext.DomainName,
                 Ip = CurrentContext.IP,
                 BrowserName = CurrentContext.BrowserName,
@@ -257,7 +257,7 @@
 
         private bool IsExistNapSite(User user)
         {
-            return (_userService.GetSiteLevel(user.Id, N88Settings.Settings.Environment)).Any(s => s.Site.Id == n88Settings.SiteId && s.IsActive);
+            return (_userService.GetSiteLevel(user.Id, N88Settings.Settings.Environment)).Any(s => s.Site.Id == N88Settings.SiteId && s.IsActive);
         }
 
         private bool IsExistNapGroup(User user)
@@ -289,9 +289,9 @@
             var errorCode = ErrorType.Success;
             var errorMsg = string.Empty;
 
-            if (n88Settings.EnableReCheckIn)
+            if (N88Settings.EnableReCheckIn)
             {
-                if (!_siteService.IsActivated(n88Settings.SiteId))
+                if (!_siteService.IsActivated(N88Settings.SiteId))
                 {
                     errorCode = ErrorType.AccessDenied;
                     errorMsg = ViewResources.InvalidRequestOrNotAuthorizedMsg;
@@ -316,7 +316,7 @@
                         errorCode = ErrorType.SessionOverride;
                         errorMsg = ViewResources.SessionLoggedMsg;
                     }
-                    else if (_securityService.ReCheckIn(userSession.OnUserId, n88Settings.SiteId) > 0)
+                    else if (_securityService.ReCheckIn(userSession.OnUserId, N88Settings.SiteId) > 0)
                     {
                         errorCode = ErrorType.KickedOut;
                         errorMsg = ViewResources.SessionLoggedMsg;
@@ -396,7 +396,7 @@
             if (string.Equals(hashOldPassword, user.Password, StringComparison.CurrentCultureIgnoreCase))
             {
                 string hashNewPassword = Cryptography.CfsEnCode(newPassword);
-                var result = _securityService.UpdatePassword(n88Settings.SiteId, SessionServiceInstance.UserSession.UserId, hashNewPassword);
+                var result = _securityService.UpdatePassword(N88Settings.SiteId, SessionServiceInstance.UserSession.UserId, hashNewPassword);
                 if (result)
                 {
                     return Json(new

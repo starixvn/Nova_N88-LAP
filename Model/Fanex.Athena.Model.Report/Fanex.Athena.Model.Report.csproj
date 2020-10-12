@@ -54,6 +54,9 @@
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.2\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
     </Reference>
@@ -137,15 +140,6 @@
     <Compile Include="DTO\LicenseeWinLoss.cs" />
     <Compile Include="MetaModel\BaseDrilldownReportMetaModel.cs" />
     <Compile Include="MetaModel\BaseReportMetaModel.cs" />
-    <Compile Include="MetaModel\Marketing\AvgRevenueMetaModel.cs" />
-    <Compile Include="MetaModel\Marketing\BaseMarketingMetaModel.cs" />
-    <Compile Include="MetaModel\Marketing\NewlyRegisterUsersDetailsMetaModel.cs" />
-    <Compile Include="MetaModel\Marketing\NewlyRegisterUsersExportMetaModel.cs" />
-    <Compile Include="MetaModel\Marketing\NewlyRegisterUsersSummaryMetaModel.cs" />
-    <Compile Include="MetaModel\Marketing\PerformanceHighlightExportMetaModel.cs" />
-    <Compile Include="MetaModel\Marketing\PerformanceHighlightMetaModel.cs" />
-    <Compile Include="MetaModel\Marketing\UserActivitiesMetaModel.cs" />
-    <Compile Include="MetaModel\PromotionPrizeMetaModel.cs" />
     <Compile Include="MetaModel\Result\GetSportResultMetaModel.cs" />
     <Compile Include="MetaModel\Result\ResultMetaModel.cs" />
     <Compile Include="MetaModel\SpecialLicenseeWinLossMetaModel.cs" />
@@ -153,8 +147,6 @@
     <Compile Include="MetaModel\ResultPopupMetalModel.cs" />
     <Compile Include="MetaModel\CustomerWinlossMetaModel.cs" />
     <Compile Include="MetaModel\LicenseeWinLossMetaModel.cs" />
-    <Compile Include="MetaModel\ExportWinLossMetaModel.cs" />
-    <Compile Include="MetaModel\WinLossMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CashOutWinLossViewModel.cs" />
     <Compile Include="ViewModel\CustomerWinlossViewModel.cs" />
@@ -171,7 +163,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Fanex.Athena.Model.Report.ruleset" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fanex.Athena.Extension\Fanex.Athena.Extension.csproj">

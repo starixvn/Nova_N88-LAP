@@ -138,8 +138,8 @@
                         IsExcludedTestData: filterData.IsExcludedTestData,
                         AgentId: filterData.AgentId
                     };
-
-                    _me.exportExcel(LicenseeWinLossOption.urlPromotionPrizeExcelData, data, EXCEL_PP_FILENAME);
+                    const url = Site.buildReportProxyUrl(LicenseeWinLossOption.urlPromotionPrizeExcelData);
+                    _me.exportExcel(url, data, EXCEL_PP_FILENAME);
                 });
 
                 $('#level-link-container').on('click', '.level-link', function () {

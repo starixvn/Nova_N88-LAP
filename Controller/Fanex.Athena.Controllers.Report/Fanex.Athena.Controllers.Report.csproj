@@ -54,6 +54,9 @@
     <Reference Include="Fanex.N88.Core.Client, Version=1.2.1.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.0-alpha-3\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.2\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
       <Private>True</Private>
@@ -128,7 +131,6 @@
     <Compile Include="LicenseeWinLossReportController.cs" />
     <Compile Include="MarketingReportController.cs" />
     <Compile Include="NoteController.cs" />
-    <Compile Include="PromotionPrizeReportController.cs" />
     <Compile Include="Result\ResultPopup\SabaClubResultPopupController.cs" />
     <Compile Include="Result\ResultPopup\CardClubResultPopupController.cs" />
     <Compile Include="Result\ResultPopup\SGResultPopupController.cs" />
@@ -136,7 +138,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportAPI\ReportAPIController.cs" />
     <Compile Include="ReportBaseController.cs" />
-    <Compile Include="CustomerWinLossReportController.cs" />
     <Compile Include="Result\ResultKenoReportController.cs" />
     <Compile Include="Result\ResultPopup\VirtualGamesResultPopupController.cs" />
     <Compile Include="Result\ResultReportController.cs" />

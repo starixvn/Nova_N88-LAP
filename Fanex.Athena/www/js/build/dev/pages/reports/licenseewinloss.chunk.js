@@ -7929,8 +7929,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                         IsExcludedTestData: filterData.IsExcludedTestData,
                         AgentId: filterData.AgentId
                     };
-
-                    _me.exportExcel(LicenseeWinLossOption.urlPromotionPrizeExcelData, data, EXCEL_PP_FILENAME);
+                    const url = Site.buildReportProxyUrl(LicenseeWinLossOption.urlPromotionPrizeExcelData);
+                    _me.exportExcel(url, data, EXCEL_PP_FILENAME);
                 });
 
                 $('#level-link-container').on('click', '.level-link', function () {
@@ -8367,7 +8367,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/// <referenc
             //level 0,1,2
             urlData: 'api/LicenseeWinLossReport/Index',
             urlExcelData: 'api/LicenseeWinLossReport/Index',
-            urlPromotionPrizeExcelData: 'PromotionPrizeReport/ExportExcel',
+            urlPromotionPrizeExcelData: 'Api/PromotionPrize/Export',
             gridOption:
             {
                 datatype: 'local',

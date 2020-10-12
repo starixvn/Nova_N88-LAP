@@ -6,8 +6,6 @@ namespace Fanex.Athena.Model.PlayerManagement.MetaModel
 {
     public class PlayerUpdatingBaseMetaModel : IMetalModelCustomerIdentity, IMetaModelIp, IMetaModelUserId, IMetaModelLanguage, IMetaModelSiteName
     {
-        public IEnumerable<OneAuthCurrency> CurrencyPermission { get; set; }
-
         public int UserId { get; set; }
 
         public int CustId { get; set; }

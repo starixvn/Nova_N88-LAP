@@ -1,6 +1,5 @@
 ﻿using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
 using Fanex.Athena.Extension.Utility;
-using Fanex.Athena.Model.Auth;
 using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.MetaModel;
 using System;
@@ -11,29 +10,6 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
 {
     public static class AutoBindMetaModelService
     {
-        public static void MapAgentXml(IDictionary<string, object> actionArguments)
-        {
-            if (actionArguments.ContainsKey("currencyAgentList")
-               && actionArguments["currencyAgentList"] is IEnumerable<OneAuthCurrency> currencyWithAgent)
-            {
-                var item = actionArguments.FirstOrDefault(x => x.Value is IMetaModelAgent);
-                if (item.Value != null)
-                {
-                    var currencyIdList = string.Empty;
-                    if (item.Value is IMetaModelCurrencyIdList itemWithCurrency)
-                    {
-                        currencyIdList = itemWithCurrency.CurrencyIdList;
-                    }
-
-                    if (item.Value is IMetaModelAgent itemWithAgent)
-                    {
-                        itemWithAgent.AgentListXml = AuthParameterHelper.GenerateAgentListXml(currencyWithAgent, currencyIdList);
-                        actionArguments[item.Key] = itemWithAgent;
-                    }
-                }
-            }
-        }
-
         public static void MapAgentXml(IDictionary<string, object> actionArguments, IDictionary<int, int[]> currencyAgentList)
         {
             var item = actionArguments.Where(x => x.Value is IMetaModelAgent)
@@ -133,16 +109,6 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
                     model.SiteName = siteName;
                     actionArguments[item.Key] = model;
                 }
-            }
-        }
-
-        public static void MapLicenseeId(IDictionary<string, object> actionArguments, int licenseeId)
-        {
-            var item = actionArguments.FirstOrDefault(x => x.Value is IMetaModelLicenseeId);
-
-            if (item.Value is IMetaModelLicenseeId value)
-            {
-                value.LicenseeId = licenseeId;
             }
         }
 

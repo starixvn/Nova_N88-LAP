@@ -5,7 +5,7 @@ using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.Core.Utility;
 using Fanex.Athena.Service.Core.Utility.Interfaces;
-
+using Fanex.NVC.Authentication.Infrastructure;
 using NSubstitute;
 
 using NUnit.Framework;
@@ -25,11 +25,11 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
             _sessionService = Substitute.For<ISessionService>();
             _appSettings = Substitute.For<IAppSettings>();
 
-            _sessionService.UserSession.Returns(new UserAuthInfo
+            _sessionService.UserSession.Returns(new NVCUserAuthInfo
             {
                 CurrencyList = new Dictionary<int, string> { { 1, "USD" }, { 2, "EUR" }, { 4, "IDR" } }
             });
-            _sessionService.LicenseeSession.Returns(new LicenseeAuthInfo { LicenseeId = 1 });
+            _sessionService.LicenseeSession.Returns(new NVCLicenseeAuthInfo { LicenseeId = 1 });
             _currencyValidation = new CurrencyValidation(_sessionService, _appSettings);
         }
 
@@ -64,7 +64,7 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         bool expected)
         {
             //Arrange
-            _sessionService.LicenseeSession.Returns(new LicenseeAuthInfo { LicenseeId = licenseeId });
+            _sessionService.LicenseeSession.Returns(new NVCLicenseeAuthInfo { LicenseeId = licenseeId });
 
             //Action
 

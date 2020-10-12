@@ -18,8 +18,6 @@ namespace Fanex.Athena.Api.Base.Attributes
 
         public bool BindLicenseeName { get; set; }
 
-        public bool BindLicenseeId { get; set; }
-
         public bool BindLanguage { get; set; }
 
         public bool BindIp { get; set; }
@@ -30,8 +28,8 @@ namespace Fanex.Athena.Api.Base.Attributes
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            var userSession = _sessionStorage.UserAuthInfo;
-            var licenseeSession = _sessionStorage.LicenseeAuthInfo;
+            var userSession = _sessionStorage.User;
+            var licenseeSession = _sessionStorage.Licensee;
             var actionArgument = actionContext.ActionArguments;
 
             if (BindAgent)
@@ -47,11 +45,6 @@ namespace Fanex.Athena.Api.Base.Attributes
             if (BindLicenseeName)
             {
                 AutoBindMetaModelService.MapSiteName(actionArgument, licenseeSession.LicenseeName);
-            }
-
-            if (BindLicenseeId)
-            {
-                AutoBindMetaModelService.MapLicenseeId(actionArgument, licenseeSession.LicenseeId);
             }
 
             if (BindLanguage)

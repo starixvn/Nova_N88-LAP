@@ -1,11 +1,11 @@
 ﻿namespace Fanex.Athena.Service.Core.UnitTests.Users
 {
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Core.Configuration;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users;
     using Fanex.Athena.UnitTest.Common.NUnitExtensions;
+    using Fanex.NVC.Authentication.Infrastructure;
     using Newtonsoft.Json;
     using NSubstitute;
     using NUnit.Framework;
@@ -38,7 +38,7 @@
         {
             //Arrange
             var licenseeId = FakeHelper.Create<int>();
-            var functions = new List<Function>();
+            var functions = new List<NVCFunctionAuthInfo>();
             var expectedResult = new Brand
             {
                 Id = licenseeId,
@@ -93,9 +93,9 @@
                 TpCurrencyList = new Dictionary<int, string> { { 3, "AUD" } }
             };
 
-            var functions = new List<Function>
+            var functions = new List<NVCFunctionAuthInfo>
             {
-                new Function { FunctionKey = fakeN8GBrand.FunctionKey }
+                new NVCFunctionAuthInfo { FunctionKey = fakeN8GBrand.FunctionKey }
             };
 
             _tpService.GetListTpCurrency(fakeN88Brand.Id).Returns(fakeN88Brand.TpCurrencyList.Select(_ => new Currency { ID = _.Key, Name = _.Value }));

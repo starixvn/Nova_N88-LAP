@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 10/6/2020 10:49:13 AM
+﻿// Generated at: 10/8/2020 5:31:07 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -630,7 +630,7 @@ NoneCurrency:"None currency",
 NoneLevel:"None level",
 NoneLive:"Non-Live",
 NonEntered:"Non-Entered",
-NoOfBonusClaimed:"No Of Bonus Claimed",
+NoOfBonusClaimed:"No. Of Bonus Claimed",
 NoOfCustmer:"No. of Customer",
 NoProductFound:"No product found",
 Normal:"Normal",

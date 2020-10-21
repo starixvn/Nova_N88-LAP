@@ -3,15 +3,22 @@ import { ReportDateOptionValues, CompareDateOptionValues } from '../../constants
 
 export default class FilterHelper {
     static ReportDateGenerateRangeSelections = {
+        [ReportDateOptionValues.today]: () => {
+            const today = DateTimeHelper.getTodayDateStructure();
+            return {
+                fromDate: today,
+                toDate: today
+            }
+        },
         [ReportDateOptionValues.yesterday]: () => {
-            const yesterday = DateTimeHelper.getYesterday();
+            const yesterday = DateTimeHelper.getYesterdayDateStructure();
             return {
                 fromDate: yesterday,
                 toDate: yesterday
             }
         },
         [ReportDateOptionValues.last7Days]: () => {
-            const toDate = DateTimeHelper.addDays(DateTimeHelper.getToday(), -1);
+            const toDate = DateTimeHelper.getToday();
             const fromDate = DateTimeHelper.addDays(toDate, -6);
             return {
                 fromDate: DateTimeHelper.convertToDateStructure(fromDate),
@@ -19,7 +26,7 @@ export default class FilterHelper {
             }
         },
         [ReportDateOptionValues.last30Days]: () => {
-            const toDate = DateTimeHelper.addDays(DateTimeHelper.getToday(), -1);
+            const toDate = DateTimeHelper.getToday();
             const fromDate = DateTimeHelper.addDays(toDate, -29);
             return {
                 fromDate: DateTimeHelper.convertToDateStructure(fromDate),
@@ -27,10 +34,10 @@ export default class FilterHelper {
             }
         },
         [ReportDateOptionValues.specificRange]: () => {
-            const yesterday = DateTimeHelper.getYesterday();
+            const today = DateTimeHelper.getTodayDateStructure();
             return {
-                fromDate: yesterday,
-                toDate: yesterday,
+                fromDate: today,
+                toDate: today,
                 isSpecificRange: true
             }
         }
@@ -65,6 +72,6 @@ export default class FilterHelper {
         }
     }
 
-    static DefaultReportDate = this.ReportDateGenerateRangeSelections[ReportDateOptionValues.yesterday]();
+    static DefaultReportDate = this.ReportDateGenerateRangeSelections[ReportDateOptionValues.today]();
     static DefaultCompareDate = this.CompareDateGenerateRangeSelections[CompareDateOptionValues.previousPeriod](this.DefaultReportDate);
 }

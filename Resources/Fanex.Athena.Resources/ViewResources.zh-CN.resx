@@ -2484,4 +2484,7 @@
     <value>Withdrawal Amount</value>
     <comment>141575</comment>
   </data>
+  <data name="ExtraPayout" xml:space="preserve">
+    <value>额外派彩</value>
+  </data>
 </root>

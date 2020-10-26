@@ -1,4 +1,4 @@
-﻿// Generated at: 10/8/2020 5:31:07 PM
+﻿// Generated at: 10/26/2020 2:05:48 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -239,6 +239,7 @@ ExcludeTestData:"排除测试数据",
 ExportToExcel:"导出至Excel",
 ExternalId:"用户名",
 ExternalIdOrSystemId:"或系统帐号(支援前缀搜寻)",
+ExtraPayout:"额外派彩",
 Fail:"失败",
 Feb:"二月",
 February:"二月",
@@ -516,7 +517,7 @@ PreviousPeriod:"Previous Period",
 PreviousSearchResult:"前次搜寻结果",
 ProblemDisplayBetSetting:"无法显示投注设定群组的细节",
 Product:"产品",
-ProductCC:"嘻嘻俱乐部",
+ProductCC:"乐卡迪亚",
 ProductCO:"即时兑现",
 ProductCS:"娱乐城",
 ProductKN:"快乐彩",

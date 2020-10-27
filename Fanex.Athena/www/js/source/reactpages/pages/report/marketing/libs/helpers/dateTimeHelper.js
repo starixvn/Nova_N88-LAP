@@ -70,9 +70,15 @@ export default class DateTimeHelper {
         return date1.year === date2.year && date1.month === date2.month && date1.day === date2.day;
     }
     
-    static getYesterday = () => {
+    static getYesterdayDateStructure = () => {
         const yesterday = this.addDays(this.getToday(), -1);
         const yesterdayObject = this.convertToDateStructure(yesterday);
         return yesterdayObject;
+    }
+
+    static getTodayDateStructure = () => {
+        const today = this.getToday();
+        const todayObject = this.convertToDateStructure(today);
+        return todayObject;
     }
 }

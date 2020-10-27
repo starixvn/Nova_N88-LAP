@@ -3,10 +3,11 @@ import LangHelper from '@jsroot/lib/langHelper';
 export const NumberDaysOfWeek = 7; 
 
 export const ReportDateOptionValues = {
-    yesterday: 1,
-    last7Days: 2,
-    last30Days: 3,
-    specificRange: 4 
+    today: 1,
+    yesterday: 2,
+    last7Days: 3,
+    last30Days: 4,
+    specificRange: 5 
 }
 
 export const CompareDateOptionValues = {
@@ -25,6 +26,10 @@ export const ViewModeOptions = [
 ]
 
 export const ReportDateSelectionOptions = [
+    {
+        value: ReportDateOptionValues.today,
+        label: LangHelper.getSingleResource('Today')
+    },
     {
         value: ReportDateOptionValues.yesterday,
         label: LangHelper.getSingleResource('Yesterday')

@@ -73,7 +73,7 @@
                 TpProducts = fakeTpProducts,
                 OwnBrand = DefaultUserSession.BrandList.First(_ => _.Id == DefaultLicenseeSession.LicenseeId),
                 Brands = DefaultUserSession.BrandList,
-                Today = fakeReportSetting.MaxDate.AddDays(1),
+                Today = fakeReportSetting.MaxDate,
                 MaxDate = fakeReportSetting.MaxDate,
                 MinDate = fakeReportSetting.MinDate,
                 LimitMonthRange = fakeReportSetting.LimitMonthRange

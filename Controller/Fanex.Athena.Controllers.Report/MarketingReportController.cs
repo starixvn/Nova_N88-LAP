@@ -38,7 +38,7 @@
                 TpProducts = tpProducts,
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
                 Brands = BrandList,
-                Today = reportSetting.MaxDate.AddDays(1),
+                Today = reportSetting.MaxDate,
                 MaxDate = reportSetting.MaxDate,
                 MinDate = reportSetting.MinDate,
                 LimitMonthRange = reportSetting.LimitMonthRange

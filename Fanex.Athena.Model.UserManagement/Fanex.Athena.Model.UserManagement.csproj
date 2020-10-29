@@ -42,21 +42,10 @@
     <Reference Include="Fanex.Data.Repository, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Data.Repository.4.2.0\lib\net461\Fanex.Data.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Criteria\AssignFunctionGroupCriteria.cs" />

@@ -46,7 +46,8 @@ var scriptPaths = {
     statement: "./www/js/source/reactpages/Module/PlayerAdmin/statement/components/index.jsx",
 
     winlossreport: "./www/js/source/reactpages/pages/report/winloss/index.js",
-    marketingreport: "./www/js/source/reactpages/pages/report/marketing/index.js"
+    marketingreport: "./www/js/source/reactpages/pages/report/marketing/index.js",
+    marketingreport_performancehighlightdetail: "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/index.js"
 };
 module.exports = {
     projectRoot: projectRoot,

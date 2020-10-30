@@ -12,14 +12,14 @@ const NewlyRegisterUsersDetailWidget = ({ reportDate, baseCurrency, selectedBran
     const [detailData, setDetailData] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
 
-    const MAX_WIDTH = Math.min(document.body.clientWidth, 1360);
-
     useEffect(() => {
         const apiParams = DataService.getNewlyRegisterUsersDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
-        _fetchData(apiParams, null, data => {
-            const newPagingOption = getNewPagingOption(null, null, data.totalRows);
-            setPagingOption(newPagingOption);
-        });
+        setTimeout(() => {
+            _fetchData(apiParams, null, data => {
+                const newPagingOption = getNewPagingOption(null, null, data.totalRows);
+                setPagingOption(newPagingOption);
+            })
+        }, 100)
     }, [reportDate]);
 
     const _fetchData = (params, before, after) => {
@@ -98,15 +98,16 @@ const NewlyRegisterUsersDetailWidget = ({ reportDate, baseCurrency, selectedBran
             {detailData &&
                 <>
                     <Pager pageOption={pagingOption} onPaging={_handlePaging} />
-                    <Table minWidth={650}
+                    <Table
+                        minWidth={650}
                         autoWidth={true}
-                        maxWidth={MAX_WIDTH}
+                        maxWidth={window.innerWidth}
                         autoHeight={false}
                         bodyHeight={400}
                         header={_renderHeader()}
                         body={_renderBody()}
                         onSort={_handleSort}
-                        containerPadding={30}
+                        containerPadding={55}
                         shouldResetScrollPosition={isLoading}
                     />
                 </>}

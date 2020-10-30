@@ -6,18 +6,18 @@ import BonusClaimedSummaryWidget from './BonusClaimedSummaryWidget';
 import BonusClaimedDetailWidget from './BonusClaimedDetailWidget';
 import { DefaultSortInfo } from '../../../../../constants/gridConst';
 
-const _BonusClaimedDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand }) => {
+const BonusClaimedDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
     const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState(DefaultSortInfo);
 
     const handleExportExcel = () => {
-        const exportParams = DataService.getBonusClaimedExportAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, sortInfo: sortInfoDetailWidget });
+        const exportParams = DataService.getBonusClaimedExportAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare, sortInfo: sortInfoDetailWidget });
         QueryService.exportBonusClaimedData(exportParams);
     }
 
     const _renderCaption = () => {
         return <div className="highlight-detail-title">
             <span>
-                {LangHelper.getSingleResource('BonusClaimed')}
+                {LangHelper.getSingleResource('BonusAmountClaimed')}
             </span>
             <span className="caret-block">
                 <span className="icon-excel-wrapper" onClick={handleExportExcel}>
@@ -31,14 +31,11 @@ const _BonusClaimedDetail = ({ reportDate, compareDate, baseCurrency, selectedBr
         <div className="highlight-detail">
             {_renderCaption()}
             <div className="widget-list">
-                <BonusClaimedSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
+                <BonusClaimedSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} allowedCompare={allowedCompare} />
                 <BonusClaimedDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
             </div>
         </div>
     )
 }
 
-const BonusClaimedDetail =  React.memo(_BonusClaimedDetail);
-BonusClaimedDetail.key = 'BonusClaimed';
-
-export default BonusClaimedDetail;
+export default React.memo(BonusClaimedDetail);

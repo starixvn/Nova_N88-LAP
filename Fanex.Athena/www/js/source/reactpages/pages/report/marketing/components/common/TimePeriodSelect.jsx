@@ -6,7 +6,7 @@ import AppData from '@jsroot/lib/AppData';
 import DateTimeHelper from '../../libs/helpers/dateTimeHelper';
 
 export const TimePeriodSelect = props => {
-    const { selectedRange, selectedDependRange, selectOptions, selectOptionGenerateRange, onChange } = props;
+    const { selectedRange, selectedDependRange, selectOptions, selectOptionGenerateRange, disabled, onChange } = props;
     const { fromDate, toDate, isSpecificRange } = selectedRange;
 
     const _onChange = currentSelectOption => {
@@ -70,7 +70,7 @@ export const TimePeriodSelect = props => {
     }
 
     return (
-        <div className="time-period-select">
+        <div className={`time-period-select ${disabled ? 'disabled' : ''}`}>
             <div className="time-period-select-time" >
                 {_renderSelectOptions()}
             </div>

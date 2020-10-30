@@ -9,7 +9,9 @@ import QueryService from '../../../../../libs/services/queryService';
 import NumberHelper from '../../../../../libs/helpers/numberHelper';
 import { TotalNRUGridColumns, TotalNRUGridConfig, CampaignNRUGridColumns, CampaignNRUGridConfig, SignupNRUGridColumns, SignupNRUGridConfig, StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
 
-const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand }) => {
+const maxWidth = Math.min(document.body.clientWidth - 40, 1890);
+
+const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
     const [isLoading, setLoading] = useState(false);
     const [summaryData, setSummaryData] = useState(null);
 
@@ -30,8 +32,8 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
         const header = (<HeaderRow style={StyleRow}>
             <HeaderCell>{TotalNRUGridConfig[TotalNRUGridColumns.total].name}</HeaderCell>
             <HeaderCell>{TotalNRUGridConfig[TotalNRUGridColumns.newlyRegisterUsers].name}</HeaderCell>
-            <HeaderCell>{TotalNRUGridConfig[TotalNRUGridColumns.compareNewlyRegisterUsers].name}</HeaderCell>
-            <HeaderCell>{TotalNRUGridConfig[TotalNRUGridColumns.changeRate].name}</HeaderCell>
+            {allowedCompare && <HeaderCell>{TotalNRUGridConfig[TotalNRUGridColumns.compareNewlyRegisterUsers].name}</HeaderCell>}
+            {allowedCompare && <HeaderCell>{TotalNRUGridConfig[TotalNRUGridColumns.changeRate].name}</HeaderCell>}
         </HeaderRow>);
 
         const item = totalData[0];
@@ -41,19 +43,19 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
         const body = (<Row style={StyleRow}>
             <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.total].attributes}>{LangHelper.getSingleResource('NRU')}</Cell>
             <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.newlyRegisterUsers].attributes}>{NumberFormat.format(item[TotalNRUGridColumns.newlyRegisterUsers])}</Cell>
-            <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.compareNewlyRegisterUsers].attributes}>{NumberFormat.format(item[TotalNRUGridColumns.compareNewlyRegisterUsers])}</Cell>
-            <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.changeRate].attributes} className={`${TotalNRUGridConfig[TotalNRUGridColumns.changeRate].attributes.className} ${colorRate}`}>{displayRate}</Cell>
+            {allowedCompare && <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.compareNewlyRegisterUsers].attributes}>{NumberFormat.format(item[TotalNRUGridColumns.compareNewlyRegisterUsers])}</Cell>}
+            {allowedCompare && <Cell {...TotalNRUGridConfig[TotalNRUGridColumns.changeRate].attributes} className={`${TotalNRUGridConfig[TotalNRUGridColumns.changeRate].attributes.className} ${colorRate}`}>{displayRate}</Cell>}
         </Row>)
+        
         return (<div className="summary-table">
             <Table
                 minWidth={500}
-                maxWidth={1350}
+                maxWidth={window.innerWidth}
                 autoWidth={true}
                 autoHeight={true}
                 header={header}
                 body={body}
-                isPaging={true}
-                containerPadding={30}
+                containerPadding={70}
             />
         </div>)
     };
@@ -76,14 +78,12 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
         return (<div className="summary-table">
             <Table
                 minWidth={500}
-                maxWidth={1350}
+                maxWidth={window.innerWidth}
                 autoWidth={true}
-                bodyHeight={300}
                 autoHeight={true}
                 header={header}
                 body={body}
-                isPaging={true}
-                containerPadding={30}
+                containerPadding={70}
             />
         </div>)
     };
@@ -102,18 +102,16 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.depositUsers].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.depositUsers])}</Cell>
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
         </Row>)
-
+        
         return (<div className="summary-table">
             <Table
                 minWidth={500}
-                maxWidth={1350}
+                maxWidth={window.innerWidth}
                 autoWidth={true}
-                bodyHeight={300}
                 autoHeight={true}
                 header={header}
                 body={body}
-                isPaging={true}
-                containerPadding={30}
+                containerPadding={70}
             />
         </div>)
     };

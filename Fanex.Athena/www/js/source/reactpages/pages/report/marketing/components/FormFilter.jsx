@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import Select from 'react-select'
 import CollapsiblePanel from '@jsroot/components/collapsible-panel'
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
+import CheckBox from '@jsroot/components/CheckBox'
 import LangHelper from '@jsroot/lib/langHelper'
 import AppData from '@jsroot/lib/AppData'
 import ActionCreators from '../actions'
@@ -12,8 +13,8 @@ import FilterHelper from '../libs/helpers/filterHelper';
 import TimePeriodSelect from './common/TimePeriodSelect';
 
 export const FormFilter = props => {
-    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter, setCollapseFormFilter,
-        selectedBrand, selectedBaseCurrency, reportDate, compareDate, viewMode
+    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setAllowedCompare, setGlobalFilter, setCollapseFormFilter,
+        selectedBrand, selectedBaseCurrency, reportDate, compareDate, allowedCompare, viewMode
     } = props;
 
     const _renderBaseCurrencySelectList = () => {
@@ -66,12 +67,13 @@ export const FormFilter = props => {
             selectOptionGenerateRange={FilterHelper.CompareDateGenerateRangeSelections}
             selectedRange={compareDate}
             selectedDependRange={reportDate}
+            disabled={!allowedCompare}
             onChange={_onChangeCompareDateSelection}
         />)
     }
 
     const _onSubmit = () => {
-        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency, selectedBrand };
+        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency, selectedBrand, allowedCompare };
         setGlobalFilter(globalFilter);
     }
 
@@ -92,7 +94,10 @@ export const FormFilter = props => {
                 </div>
                 <div className="col-12 col-md-6 col-sm-6 col-lg-5 col-xl-3">
                     <div className="form-group">
-                        <label className="label-text">{LangHelper.getSingleResource("CompareDate")}</label>
+                            <CheckBox id="CompareDate"
+                                checked={allowedCompare}
+                                onChange={checked => setAllowedCompare(checked)}
+                                label={LangHelper.getSingleResource("CompareDate")} />
                         {_renderCompareDateSelection()}
                     </div>
                 </div>
@@ -124,24 +129,26 @@ export const FormFilter = props => {
 }
 
 function mapStateToProps(state) {
-    const { selectedBrand, selectedBaseCurrency, viewMode, reportDate, compareDate } = state;
+    const { selectedBrand, selectedBaseCurrency, viewMode, reportDate, compareDate, allowedCompare } = state;
     return Object.assign({}, {
         selectedBrand,
         selectedBaseCurrency,
         viewMode,
         reportDate,
-        compareDate
+        compareDate,
+        allowedCompare
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setGlobalFilter, setCollapseFormFilter } = ActionCreators;
+    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setAllowedCompare, setGlobalFilter, setCollapseFormFilter } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         setSelectedBrand,
         setSelectedBaseCurrency,
         setViewMode,
         setReportDate,
         setCompareDate,
+        setAllowedCompare,
         setGlobalFilter,
         setCollapseFormFilter
     }), dispatch);

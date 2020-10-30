@@ -6,11 +6,11 @@ import WithdrawalAmountSummaryWidget from './WithdrawalAmountSummaryWidget';
 import WithdrawalAmountDetailWidget from './WithdrawalAmountDetailWidget';
 import { DefaultSortInfo } from '../../../../../constants/gridConst';
 
-const _WithdrawalAmountDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand }) => {
+const WithdrawalAmountDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
     const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState(DefaultSortInfo);
 
     const handleExportExcel = () => {
-        const exportParams = DataService.getWithdrawalAmountExportAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, sortInfo: sortInfoDetailWidget });
+        const exportParams = DataService.getWithdrawalAmountExportAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare, sortInfo: sortInfoDetailWidget });
         QueryService.exportWithdrawalAmountData(exportParams);
     }
 
@@ -31,7 +31,7 @@ const _WithdrawalAmountDetail = ({ reportDate, compareDate, baseCurrency, select
         <div className="highlight-detail">
             {_renderCaption()}
             <div className="widget-list">
-                <WithdrawalAmountSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
+                <WithdrawalAmountSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} allowedCompare={allowedCompare} />
                 <WithdrawalAmountDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
             </div>
         </div>
@@ -39,8 +39,4 @@ const _WithdrawalAmountDetail = ({ reportDate, compareDate, baseCurrency, select
 }
 
 
-
-const WithdrawalAmountDetail = React.memo(_WithdrawalAmountDetail);
-WithdrawalAmountDetail.key = 'WithdrawalAmount';
-
-export default WithdrawalAmountDetail;
+export default React.memo(WithdrawalAmountDetail);;

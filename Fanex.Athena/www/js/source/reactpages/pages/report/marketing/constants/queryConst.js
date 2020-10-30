@@ -15,13 +15,15 @@ export const Url = {
 
     bonusClaimedSummary: 'Api/Marketing/BonusClaimed/GetSummaryData',
     bonusClaimedDetail: 'Api/Marketing/BonusClaimed/GetDetailsData',
-    bonusClaimedExport: 'Api/Marketing/BonusClaimed/ExportData'
+    bonusClaimedExport: 'Api/Marketing/BonusClaimed/ExportData',
+
+    performanceHighlightDetailFrame: 'MarketingReport/PerformanceHighlightDetail'
 }
 
 export const FileNameExport = {
     newlyRegisterUsers: 'MarketingReport_NewlyRegisterUsers.xls',
     withdrawalAmount: 'MarketingReport_WithdrawalAmount.xls',
-    bonusClaimed: 'MarketingReport_BonusClaimed.xls',
+    bonusClaimed: 'MarketingReport_BonusAmountClaimed.xls',
     performanceHighlight: 'MarketingReport_BusinessPerformanceHighlight.xls'
 }
 

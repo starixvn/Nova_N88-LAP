@@ -44,6 +44,13 @@
             }
         }
     }
+    
+    .checkbox-group {
+        margin-top: 0px;
+        label {
+            margin-left: 5px;
+        }
+    }
 
     .page-container {
         background: #F5F5F5;
@@ -235,8 +242,6 @@
             #DateRange {
                 text-align: center;
                 border-bottom: none;
-              
-
             }
             .daterange-container {
                 .rdr-PredefinedRangesItem {
@@ -244,8 +249,12 @@
                 }
             }
         }
-	}
-
+    }
+    
+    .disabled {
+        pointer-events: none;
+        opacity: 0.8;
+    }
 
     .icon-arrow {
         transition: 0.3s transform ease;

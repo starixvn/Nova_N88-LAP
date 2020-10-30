@@ -58,7 +58,7 @@ export const DetailNRUGridConfig = {
     [DetailNRUGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 2, colWidth: 80, className: "left-align" } },
     [DetailNRUGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 3, colWidth: 80, className: "center-align" } },
     [DetailNRUGridColumns.signupUrl]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { sortBy: 4, colWidth: 80, className: "left-align" } },
-    [DetailNRUGridColumns.isDeposit]: { name: LangHelper.getSingleResource('Deposit'), attributes: { sortBy: 5, colWidth: 80, className: "center-align" } },
+    [DetailNRUGridColumns.isDeposit]: { name: LangHelper.getSingleResource('Deposit'), attributes: { sortBy: 5, colWidth: 50, className: "center-align" } },
     [DetailNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { sortBy: 6, colWidth: 80, className: "right-align" } }
 }
 

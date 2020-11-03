@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 10/8/2020 5:31:07 PM
+// Generated at: 10/26/2020 2:05:48 PM
 window._language_zh_Hans = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -304,6 +304,7 @@ window._language_zh_Hans = {
   ExportToExcel: "导出至Excel",
   ExternalId: "用户名",
   ExternalIdOrSystemId: "或系统帐号(支援前缀搜寻)",
+  ExtraPayout: "额外派彩",
   Fail: "失败",
   Feb: "二月",
   February: "二月",
@@ -538,7 +539,7 @@ window._language_zh_Hans = {
   PreGame: "游戏开始前",
   Prev: "上个月",
   Product: "产品",
-  ProductCC: "嘻嘻俱乐部",
+  ProductCC: "乐卡迪亚",
   ProductCO: "即时兑现",
   ProductCS: "娱乐城",
   ProductKN: "快乐彩",

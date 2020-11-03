@@ -914,7 +914,7 @@ table tbody tr.row-group-level1 td {
     padding: 6px;
     border-radius: 0; }
     .daterangepicker th.prev:before {
-      content: "\E903";
+      content: "\E908";
       font-size: 1.2rem; }
   .daterangepicker th.next {
     font-family: 'icomoon' !important;
@@ -922,7 +922,7 @@ table tbody tr.row-group-level1 td {
     padding: 6px;
     border-radius: 0; }
     .daterangepicker th.next:before {
-      content: "\E903";
+      content: "\E908";
       font-size: 1.2rem; }
   .daterangepicker td {
     padding: 6px;

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 10/8/2020 5:31:07 PM
+// Generated at: 10/26/2020 2:05:48 PM
 window._language_zh_TW = {
   AA: "客客",
   AbnormalBet: "非正規註單",
@@ -303,6 +303,7 @@ window._language_zh_TW = {
   ExportToExcel: "導出至Excel",
   ExternalId: "外部ID",
   ExternalIdOrSystemId: "外部識別或系統識別",
+  ExtraPayout: "額外派彩",
   Fail: "失敗",
   Feb: "二月",
   February: "二月",
@@ -537,7 +538,7 @@ window._language_zh_TW = {
   PreGame: "遊戲開始前",
   Prev: "上個",
   Product: "產品",
-  ProductCC: "嘻嘻俱樂部",
+  ProductCC: "樂卡迪亞",
   ProductCO: "即時兌現",
   ProductCS: "娛樂城",
   ProductKN: "快樂彩",

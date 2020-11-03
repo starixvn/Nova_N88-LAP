@@ -2075,4 +2075,7 @@
     <value>AE 真人</value>
     <comment>#141118</comment>
   </data>
+  <data name="ExtraPayout" xml:space="preserve">
+    <value>额外派彩</value>
+  </data>
 </root>

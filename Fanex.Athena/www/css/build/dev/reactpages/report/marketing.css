@@ -751,6 +751,11 @@
   .marketing-report .table-container .header-content .table thead tr th:first-child {
     border-left: none; }
 
+.marketing-report .checkbox-group {
+  margin-top: 0px; }
+  .marketing-report .checkbox-group label {
+    margin-left: 5px; }
+
 .marketing-report .page-container {
   background: #F5F5F5; }
 
@@ -897,6 +902,10 @@
       border-bottom: none; }
     .marketing-report .time-period-select .time-period-display-time .daterange-container .rdr-PredefinedRangesItem {
       display: none; }
+
+.marketing-report .disabled {
+  pointer-events: none;
+  opacity: 0.8; }
 
 .marketing-report .icon-arrow {
   transition: 0.3s transform ease; }

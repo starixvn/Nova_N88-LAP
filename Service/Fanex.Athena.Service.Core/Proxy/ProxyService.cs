@@ -74,7 +74,7 @@
                     return new HttpResponseMessage
                     {
                         StatusCode = HttpStatusCode.InternalServerError,
-                        Content = new StringContent(ex.Message)
+                        Content = new StringContent($"{ex.Message} - {ex.InnerException?.Message} - api: {apiUri}")
                     };
                 }
                 finally

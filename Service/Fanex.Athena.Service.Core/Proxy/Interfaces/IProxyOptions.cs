@@ -13,6 +13,8 @@
 
         Uri BuildRequestUri(string apiKey, string apiUrl, string query);
 
+        string GetHealthCheckUrl(string apiKey);
+
         TimeSpan Timeout { get; set; }
     }
 }

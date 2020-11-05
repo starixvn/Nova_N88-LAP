@@ -18,6 +18,12 @@
             { "BetListApi", "Proxy_BetListApiHost" }
         };
 
+        private static readonly IDictionary<string, string> ProxyHealthCheckMapper = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "ReportApi", "Proxy_ReportApiHealthCheck" }  ,
+            { "BetListApi", "Proxy_BetListApiHealthCheck" }
+        };
+
         public ProxyOptions(string internalAuthKey, int requestTimeout)
         {
             PrepareRequest = (originalRequest, message) =>
@@ -46,6 +52,12 @@
             };
 
             return realUri.Uri;
+        }
+
+        public string GetHealthCheckUrl(string apiKey)
+        {
+            var settingKey = ProxyHealthCheckMapper.ContainsKey(apiKey) ? ProxyHealthCheckMapper[apiKey] : throw new Exception($"{apiKey} is invalid");
+            return ConfigurationManager.AppSettings[settingKey] ?? throw new Exception($"{settingKey} doesn't exist");
         }
 
         private string BuildApiHost(string apiKey)

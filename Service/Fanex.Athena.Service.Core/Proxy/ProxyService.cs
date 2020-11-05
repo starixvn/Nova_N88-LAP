@@ -2,6 +2,7 @@
 {
     using Fanex.Athena.Service.StatelessCore.CustomException;
     using System;
+    using System.Net;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
@@ -28,14 +29,17 @@
                     await _options.PrepareRequest(originalRequest, requestMessage);
                 }
 
+                var responseMessage = null as HttpResponseMessage;
                 var cancelToken = new CancellationTokenSource(_options.Timeout);
+
                 try
                 {
-                    var responseMessage = await SendHttpRequest(requestMessage, cancelToken.Token).ConfigureAwait(false);
+                    responseMessage = await SendHttpRequest(requestMessage, cancelToken.Token).ConfigureAwait(false);
                     return responseMessage;
                 }
                 catch (Exception ex)
                 {
+                    responseMessage?.Dispose();
                     throw new ProxyException(ex.Message, apiKey, apiUrl, apiUri.ToString(), ex);
                 }
                 finally
@@ -49,6 +53,35 @@
         {
             var result = await HandleRequest(apiKey, apiUrl, HttpContext.Current.Request);
             return result;
+        }
+
+        public async Task<HttpResponseMessage> HealthCheck(string apiKey)
+        {
+            var healthCheckUrl = _options.GetHealthCheckUrl(apiKey);
+            var apiUri = _options.BuildRequestUri(apiKey, healthCheckUrl, string.Empty);
+
+            using (var requestMessage = new HttpRequestMessage(HttpMethod.Get, apiUri))
+            {
+                var cancelToken = new CancellationTokenSource(_options.Timeout);
+                try
+                {
+                    var responseMessage = await SendHttpRequest(requestMessage, cancelToken.Token).ConfigureAwait(false);
+                    responseMessage.EnsureSuccessStatusCode();
+                    return responseMessage;
+                }
+                catch (Exception ex)
+                {
+                    return new HttpResponseMessage
+                    {
+                        StatusCode = HttpStatusCode.InternalServerError,
+                        Content = new StringContent(ex.Message)
+                    };
+                }
+                finally
+                {
+                    cancelToken.Dispose();
+                }
+            }
         }
 
         private HttpRequestMessage CreateHttpRequest(HttpRequest originalRequest, Uri uri)

@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="SonarQube - Sparta / LRF Sonar way" ToolsVersion="14.0">
-  <Include Path="..\..\..\sonarqube\lrfcsharp.ruleset" Action="Default" />
-  <Include Path="..\sonarqube\lrfcsharp.ruleset" Action="Default" />
+<RuleSet Name="SonarQube - Legion / N88 LAP Nexcel CSharp" ToolsVersion="15.0">
+  <Include Path="..\.sonarlint\n88_lapcsharp.ruleset" Action="Default" />
 </RuleSet>

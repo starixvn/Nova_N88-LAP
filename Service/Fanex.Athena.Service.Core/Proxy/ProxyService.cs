@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using System.Web;
 
-    public class ProxyService : IProxyService
+    public class ProxyService : IProxyService, IDisposable
     {
         private readonly IProxyOptions _options;
         private readonly HttpClient _client;
@@ -84,7 +84,7 @@
             }
         }
 
-        private HttpRequestMessage CreateHttpRequest(HttpRequest originalRequest, Uri uri)
+        private static HttpRequestMessage CreateHttpRequest(HttpRequest originalRequest, Uri uri)
         {
             var requestMessage = new HttpRequestMessage();
             var requestMethod = originalRequest.HttpMethod;
@@ -121,6 +121,22 @@
             }
 
             return _client.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+        }
+
+        ~ProxyService()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            _client?.Dispose();
         }
     }
 }

@@ -17,6 +17,14 @@
             _proxyService = proxyService;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> Health(string apiKey)
+        {
+            var result = await _proxyService.HealthCheck(apiKey);
+            return result;
+        }
+
         [HttpPost]
         [ApiValidateAntiForgery]
         public async Task<HttpResponseMessage> Post([FromUri]string apiKey, [FromUri]string apiUrl)

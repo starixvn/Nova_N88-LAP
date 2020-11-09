@@ -2,12 +2,13 @@
 {
     using Fanex.Athena.Service.StatelessCore.CustomException;
     using System;
+    using System.Net;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Web;
 
-    public class ProxyService : IProxyService
+    public class ProxyService : IProxyService, IDisposable
     {
         private readonly IProxyOptions _options;
         private readonly HttpClient _client;
@@ -28,14 +29,17 @@
                     await _options.PrepareRequest(originalRequest, requestMessage);
                 }
 
+                var responseMessage = null as HttpResponseMessage;
                 var cancelToken = new CancellationTokenSource(_options.Timeout);
+
                 try
                 {
-                    var responseMessage = await SendHttpRequest(requestMessage, cancelToken.Token).ConfigureAwait(false);
+                    responseMessage = await SendHttpRequest(requestMessage, cancelToken.Token).ConfigureAwait(false);
                     return responseMessage;
                 }
                 catch (Exception ex)
                 {
+                    responseMessage?.Dispose();
                     throw new ProxyException(ex.Message, apiKey, apiUrl, apiUri.ToString(), ex);
                 }
                 finally
@@ -51,7 +55,36 @@
             return result;
         }
 
-        private HttpRequestMessage CreateHttpRequest(HttpRequest originalRequest, Uri uri)
+        public async Task<HttpResponseMessage> HealthCheck(string apiKey)
+        {
+            var healthCheckUrl = _options.GetHealthCheckUrl(apiKey);
+            var apiUri = _options.BuildRequestUri(apiKey, healthCheckUrl, string.Empty);
+
+            using (var requestMessage = new HttpRequestMessage(HttpMethod.Get, apiUri))
+            {
+                var cancelToken = new CancellationTokenSource(_options.Timeout);
+                try
+                {
+                    var responseMessage = await SendHttpRequest(requestMessage, cancelToken.Token).ConfigureAwait(false);
+                    responseMessage.EnsureSuccessStatusCode();
+                    return responseMessage;
+                }
+                catch (Exception ex)
+                {
+                    return new HttpResponseMessage
+                    {
+                        StatusCode = HttpStatusCode.InternalServerError,
+                        Content = new StringContent($"{ex.Message} - {ex.InnerException?.Message} - api: {apiUri}")
+                    };
+                }
+                finally
+                {
+                    cancelToken.Dispose();
+                }
+            }
+        }
+
+        private static HttpRequestMessage CreateHttpRequest(HttpRequest originalRequest, Uri uri)
         {
             var requestMessage = new HttpRequestMessage();
             var requestMethod = originalRequest.HttpMethod;
@@ -88,6 +121,22 @@
             }
 
             return _client.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+        }
+
+        ~ProxyService()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            _client?.Dispose();
         }
     }
 }

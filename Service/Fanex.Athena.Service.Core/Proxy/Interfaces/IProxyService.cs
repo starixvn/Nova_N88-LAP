@@ -9,5 +9,7 @@
         Task<HttpResponseMessage> HandleRequest(string apiKey, string apiUrl, HttpRequest originalRequest);
 
         Task<HttpResponseMessage> HandleRequest(string apiKey, string apiUrl);
+
+        Task<HttpResponseMessage> HealthCheck(string apiKey);
     }
 }

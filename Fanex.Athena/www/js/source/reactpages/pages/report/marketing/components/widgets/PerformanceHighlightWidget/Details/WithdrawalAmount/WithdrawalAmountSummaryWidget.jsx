@@ -9,7 +9,7 @@ import QueryService from '../../../../../libs/services/queryService';
 import NumberHelper from '../../../../../libs/helpers/numberHelper';
 import { StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
 
-const WithdrawalAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand }) => {
+const WithdrawalAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
     const [isLoading, setLoading] = useState(false);
     const [summaryData, setSummaryData] = useState(null);
 
@@ -29,8 +29,8 @@ const WithdrawalAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, 
         return (<HeaderRow style={StyleRow}>
             <HeaderCell>{}</HeaderCell>
             <HeaderCell>{LangHelper.getSingleResource('ReportDate')}</HeaderCell>
-            <HeaderCell>{LangHelper.getSingleResource('CompareDate')}</HeaderCell>
-            <HeaderCell>{LangHelper.getSingleResource('ChangePercent')}</HeaderCell>
+            {allowedCompare && <HeaderCell>{LangHelper.getSingleResource('CompareDate')}</HeaderCell>}
+            {allowedCompare && <HeaderCell>{LangHelper.getSingleResource('ChangePercent')}</HeaderCell>}
         </HeaderRow>);
     }, []);
 
@@ -42,8 +42,8 @@ const WithdrawalAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, 
         return (<Row style={StyleRow}>
             <Cell className='left-align highlight-cell' >{LangHelper.getSingleResource('TotalWithdrawalAmount')}</Cell>
             <Cell className='right-align'>{NumberFormat.format(summaryData.withdrawalAmount, DigitsAmount)}</Cell>
-            <Cell className='right-align'>{NumberFormat.format(summaryData.compareWithdrawalAmount, DigitsAmount)}</Cell>
-            <Cell className={`right-align ${colorRate}`}>{displayRate}</Cell>
+            {allowedCompare && <Cell className='right-align'>{NumberFormat.format(summaryData.compareWithdrawalAmount, DigitsAmount)}</Cell>}
+            {allowedCompare && <Cell className={`right-align ${colorRate}`}>{displayRate}</Cell>}
         </Row>)
     }
 
@@ -55,8 +55,8 @@ const WithdrawalAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, 
         return (<Row style={StyleRow}>
             <Cell className='left-align highlight-cell'>{LangHelper.getSingleResource('TotalWithdrawalUsers')}</Cell>
             <Cell className='right-align'>{summaryData.withdrawalUsers === 0 ? '-' : NumberFormat.format(summaryData.withdrawalUsers, 0)}</Cell>
-            <Cell className='right-align'>{summaryData.compareWithdrawalUsers === 0 ? '-' : NumberFormat.format(summaryData.compareWithdrawalUsers, 0)}</Cell>
-            <Cell className={`right-align ${colorRate}`}>{displayRate}</Cell>
+            {allowedCompare &&<Cell className='right-align'>{summaryData.compareWithdrawalUsers === 0 ? '-' : NumberFormat.format(summaryData.compareWithdrawalUsers, 0)}</Cell>}
+            {allowedCompare && <Cell className={`right-align ${colorRate}`}>{displayRate}</Cell>}
         </Row>)
     }
 
@@ -66,13 +66,12 @@ const WithdrawalAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, 
         return (<div className="summary-table">
             <Table
                 minWidth={500}
-                maxWidth={1350}
+                maxWidth={document.body.clientWidth}
                 autoWidth={true}
                 autoHeight={true}
                 header={_header}
                 body={[totalAmountRow, totalUsersRow]}
-                isPaging={true}
-                containerPadding={30}
+                containerPadding={70}
             />
         </div>)
     };

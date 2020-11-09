@@ -2990,10 +2990,6 @@
     <value>As of now</value>
     <comment>141575</comment>
   </data>
-  <data name="BonusClaimed" xml:space="preserve">
-    <value>Bonus Claimed</value>
-    <comment>141575</comment>
-  </data>
   <data name="DepositAmount" xml:space="preserve">
     <value>Deposit Amount</value>
     <comment>141575</comment>
@@ -3033,6 +3029,10 @@
   <data name="WithdrawalAmount" xml:space="preserve">
     <value>Withdrawal Amount</value>
     <comment>141575</comment>
+  </data>
+  <data name="BonusAmountClaimed" xml:space="preserve">
+    <value>Bonus Amount Claimed</value>
+    <comment>143879</comment>
   </data>
   <data name="ExtraPayout" xml:space="preserve">
     <value>Extra Payout</value>

@@ -10,14 +10,17 @@ import HighlightBox from '../../common/HighlightBox';
 import DateTimeHelper from '../../../libs/helpers/dateTimeHelper';
 import DataService from '../../../libs/services/dataService';
 import QueryService from '../../../libs/services/queryService';
-import NewlyRegisterUsersDetail from './Details/NRU/NewlyRegisterUsersDetail';
-import WithdrawalAmountDetail from './Details/WithdrawalAmount/WithdrawalAmountDetail';
-import BonusClaimedDetail from './Details/BonusClaimed/BonusClaimedDetail';
+import Site from '@jsroot/lib/site';
+import { Url } from '../../../constants/queryConst';
+import { PerformanceHighlightDetailBoxKeys } from '../../../constants/chartConst';
+import QueryString from '@jsroot/lib/QueryString';
 
 export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
+    const { allowedCompare } = globalFilter;        
     const [isLoading, setLoading] = useState(false);
     const [selectedBox, setSelectedBox] = useState(null);
+
 
     useEffect(() => {
         if (!globalFilter) {
@@ -63,6 +66,7 @@ export const PerformanceHighlightWidget = props => {
     const _renderDepositUsersBox = () => {
         const { depositUsers, growthRateDepositUsers } = performanceHighlightData;
         return (<HighlightBox
+            enableCompare={allowedCompare}
             title={LangHelper.getSingleResource('PU (APA)')}
             description={LangHelper.getSingleResource('DepositUsers')}
             value={depositUsers}
@@ -73,6 +77,7 @@ export const PerformanceHighlightWidget = props => {
     const _renderActiveUsersBox = () => {
         const { activeUsers, growthRateActiveUsers } = performanceHighlightData;
         return (<HighlightBox
+            enableCompare={allowedCompare}
             title={LangHelper.getSingleResource('AU')}
             description={LangHelper.getSingleResource('ActiveUsers')}
             value={activeUsers}
@@ -83,7 +88,8 @@ export const PerformanceHighlightWidget = props => {
     const _renderNewlyRegisteredUsersBox = () => {
         const { newlyRegisterUsers, growthRateNewlyRegisterUsers } = performanceHighlightData;
         return (<HighlightBox
-            onViewDetail={() => setSelectedBox(NewlyRegisterUsersDetail.key)}
+            enableCompare={allowedCompare}
+            onViewDetail={() => setSelectedBox(PerformanceHighlightDetailBoxKeys.NewlyRegisteredUsers)}
             title={LangHelper.getSingleResource('NRU')}
             description={LangHelper.getSingleResource('NewlyRegisteredUsers')}
             value={newlyRegisterUsers}
@@ -94,6 +100,7 @@ export const PerformanceHighlightWidget = props => {
     const _renderDepositAmountBox = () => {
         const { depositAmount, growthRateDepositAmount } = performanceHighlightData;
         return (<HighlightBox
+            enableCompare={allowedCompare}
             title={LangHelper.getSingleResource('DepositAmount')}
             value={depositAmount}
             rate={growthRateDepositAmount}
@@ -103,7 +110,8 @@ export const PerformanceHighlightWidget = props => {
     const _renderWithdrawalAmountBox = () => {
         const { withdrawalAmount, growthRateWithdrawalAmount } = performanceHighlightData;
         return (<HighlightBox
-            onViewDetail={() => setSelectedBox(WithdrawalAmountDetail.key)}
+            enableCompare={allowedCompare}
+            onViewDetail={() => setSelectedBox(PerformanceHighlightDetailBoxKeys.WithdrawalAmount)}
             title={LangHelper.getSingleResource('WithdrawalAmount')}
             value={withdrawalAmount}
             rate={growthRateWithdrawalAmount}
@@ -111,12 +119,13 @@ export const PerformanceHighlightWidget = props => {
     }
 
     const _renderBonusClaimedBox = () => {
-        const { bonusClaimeds, growthRateBonusClaimeds } = performanceHighlightData;
+        const { bonusAmountClaimeds, growthRateBonusAmountClaimeds } = performanceHighlightData;
         return (<HighlightBox
-            onViewDetail={() => setSelectedBox(BonusClaimedDetail.key)}
-            title={LangHelper.getSingleResource('BonusClaimed')}
-            value={bonusClaimeds}
-            rate={growthRateBonusClaimeds}
+            enableCompare={allowedCompare}
+            onViewDetail={() => setSelectedBox(PerformanceHighlightDetailBoxKeys.BonusClaimed)}
+            title={LangHelper.getSingleResource('BonusAmountClaimed')}
+            value={bonusAmountClaimeds}
+            rate={growthRateBonusAmountClaimeds}
         />)
     }
 
@@ -125,6 +134,7 @@ export const PerformanceHighlightWidget = props => {
         const { churnRate, differentChurnRate } = performanceHighlightData;
         const isSingleDate = DateTimeHelper.isEqualDate(fromDate, toDate);
         return !isSingleDate && (<HighlightBox
+            enableCompare={allowedCompare}
             title={LangHelper.getSingleResource('CR')}
             description={LangHelper.getSingleResource('ChurnRate')}
             value={`${NumberFormat.round(churnRate, 0)}%`}
@@ -138,6 +148,7 @@ export const PerformanceHighlightWidget = props => {
         const { retentionRate, differentRetentionRate } = performanceHighlightData;
         const isSingleDate = DateTimeHelper.isEqualDate(fromDate, toDate);
         return !isSingleDate && (<HighlightBox
+            enableCompare={allowedCompare}
             title={LangHelper.getSingleResource('RR')}
             description={LangHelper.getSingleResource('RetentionRate')}
             value={`${NumberFormat.round(retentionRate, 0)}%`}
@@ -152,28 +163,29 @@ export const PerformanceHighlightWidget = props => {
         return `${LangHelper.getSingleResource('Marketing')}, ${reportDateRange}, ${displayCurrency}`;
     }
 
-    const _renderContentPopupDetail = () => {
-        const params = {
-            baseCurrency: globalFilter.selectedBaseCurrency,
-            reportDate: globalFilter.reportDate,
-            compareDate: globalFilter.compareDate,
-            selectedBrand: globalFilter.selectedBrand
-        }
-        if (selectedBox === NewlyRegisterUsersDetail.key) {
-            return <NewlyRegisterUsersDetail {...params} />
-        }
-        if (selectedBox === WithdrawalAmountDetail.key) {
-            return <WithdrawalAmountDetail {...params} />
-        }
-        if (selectedBox === BonusClaimedDetail.key) {
-            return <BonusClaimedDetail {...params} />
-        }
-        return null;
+    const _buildPopupUrl = params => {
+        const url = Object.keys(params).reduce((result, currentKey) => {
+            return QueryString.setParam(result, currentKey, params[currentKey]);
+        }, Site.resolveClientUrl(Url.performanceHighlightDetailFrame))
+        return url;
     }
 
     const _renderPopupDetail = () => {
-        return selectedBox && (<Popup height={800} width={1400} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
-            {_renderContentPopupDetail()}
+        if(!selectedBox) {
+            return null;
+        }
+        const params = {
+            selectedBox: selectedBox,
+            baseCurrency: globalFilter.selectedBaseCurrency,
+            selectedBrand: globalFilter.selectedBrand,
+            allowedCompare: globalFilter.allowedCompare,
+            compareFromDate: DateTimeHelper.formatDateStructureToString(globalFilter.compareDate.fromDate),
+            compareToDate: DateTimeHelper.formatDateStructureToString(globalFilter.compareDate.toDate),
+            fromDate: DateTimeHelper.formatDateStructureToString(globalFilter.reportDate.fromDate),
+            toDate: DateTimeHelper.formatDateStructureToString(globalFilter.reportDate.toDate),
+        }
+        const urlContent =_buildPopupUrl(params);
+        return (<Popup iframeUrl={urlContent} height={700} width={1250} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
         </Popup>)
     }
 

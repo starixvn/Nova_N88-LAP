@@ -13,6 +13,12 @@
 
         Uri BuildRequestUri(string apiKey, string apiUrl, string query);
 
+#pragma warning disable S3995 // URI return values should not be strings
+
+        string GetHealthCheckUrl(string apiKey);
+
+#pragma warning restore S3995 // URI return values should not be strings
+
         TimeSpan Timeout { get; set; }
     }
 }

@@ -55,8 +55,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Fanex.Athena.ruleset</CodeAnalysisRuleSet>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -68,8 +67,7 @@
     <WarningLevel>4</WarningLevel>
     <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Fanex.Athena.ruleset</CodeAnalysisRuleSet>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -877,6 +875,8 @@
     <Content Include="Views\Desktop\Report\Marketing\Main.cshtml" />
     <Content Include="SiteConfig\Web.AppSettings.UATGOAL123.config" />
     <Content Include="SiteConfig\Web.ConnectionStrings.UATGOAL123.config" />
+    <Content Include="Views\Desktop\Report\Marketing\PerformanceHighlightDetail.cshtml" />
+    <Content Include="Fanex.Athena.ruleset" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -915,6 +915,7 @@
     <Content Include="www\js\build\dev\reactpages\playeradmin\statement.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js.map" />
+    <Content Include="www\js\build\dev\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\speciallicenseewl.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing.chunk.js" />
@@ -940,6 +941,7 @@
     <Content Include="www\js\build\pro\reactpages\playeradmin\runningbetlist.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\playeradmin\single-customer.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\playeradmin\statement.chunk.js" />
+    <Content Include="www\js\build\pro\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\marketing.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\winloss.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\notification\notification.chunk.js" />
@@ -1554,7 +1556,6 @@
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\betlist\customeroutstanding.css.map" />
     <Content Include=".babelrc" />
-    <Content Include="Fanex.Athena.ruleset" />
     <None Include="www\css\source\pages\customer\customerlist.scss" />
     <Content Include="www\css\source\pages\customer\customerlog.scss" />
     <Content Include="www\css\source\components\tab\_tab.scss" />
@@ -2177,6 +2178,7 @@
     <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownMenu.test.js.snap" />
     <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownToggle.test.js.snap" />
     <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js.map" />
+    <Content Include="www\js\build\dev\reactpages\report\marketing-performancehighlightdetail.chunk.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

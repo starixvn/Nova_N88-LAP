@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+}
+
+@model Fanex.Athena.Model.Report.MetaModel.MarketingPerformanceHighlightDetailMetaModel
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/report/marketing.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/report/marketing-performancehighlightdetail.chunk.js")"></script>
+}
+
+@section globaljscode{
+    window.params = {
+    selectedBox: '@Model.SelectedBox',
+    baseCurrency: '@Model.BaseCurrency',
+    selectedBrand: @Model.SelectedBrand,
+    compareFromDate: '@Model.CompareFromDate',
+    compareToDate: '@Model.CompareToDate',
+    fromDate: '@Model.FromDate',
+    toDate: '@Model.ToDate',
+    allowedCompare: @Model.AllowedCompare.ToString().ToLowerInvariant()
+    };
+
+}
+<div id="app-container" class="marketing-report">
+</div>

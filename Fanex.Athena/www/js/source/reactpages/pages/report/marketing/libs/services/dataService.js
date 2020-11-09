@@ -49,12 +49,13 @@ export default class DataService {
     }
 
     static getPerformanceHighlightPopupExportAPIParams =  filterData => {
-        const { baseCurrency, sortInfo, ...rest } = filterData;
+        const { baseCurrency, sortInfo, allowedCompare, ...rest } = filterData;
         const commonParams = this.getPerformanceHighlightAPIParams(rest);
         const params = {
             ...commonParams,
             ...sortInfo,
-            baseCurrency
+            baseCurrency,
+            allowedCompare
         }
         return params;
     }

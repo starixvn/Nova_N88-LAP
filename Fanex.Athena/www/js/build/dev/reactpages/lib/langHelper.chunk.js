@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 10/26/2020 2:05:48 PM
+// Generated at: 10/28/2020 5:20:01 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -196,7 +196,7 @@ window._language_en_US = {
   BetType: "Bet type",
   BONTeamToScore: "Both/One/Neither Team To Score",
   Bonus: "Bonus",
-  BonusClaimed: "Bonus Claimed",
+  BonusAmountClaimed: "Bonus Amount Claimed",
   BoughtAmount: "Bought Amount",
   BoughtDetails: "Bought Details",
   BoughtStake: "Bought Stake",

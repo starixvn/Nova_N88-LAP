@@ -1,4 +1,4 @@
-import { SET_VIEW_MODE, SET_REPORT_DATE, SET_COMPARE_DATE, SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER } from './types';
+import { SET_VIEW_MODE, SET_REPORT_DATE, SET_COMPARE_DATE, SET_ALLOWED_COMPARE, SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER } from './types';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
 import { setSelectedBrand } from '@jsroot/actions/brandAction';
 
@@ -23,6 +23,13 @@ const setCompareDate = compareDate => {
     }
 }
 
+const setAllowedCompare = hasCompare => {
+    return {
+        type: SET_ALLOWED_COMPARE,
+        data: hasCompare
+    }
+}
+
 const setGlobalFilter = filterData => {
     return {
         type: SET_GLOBAL_FILTER,
@@ -43,6 +50,7 @@ export default {
     setViewMode,
     setReportDate,
     setCompareDate,
+    setAllowedCompare,
     setGlobalFilter,
     setCollapseFormFilter
 }

@@ -18,6 +18,12 @@
             { "BetListApi", "Proxy_BetListApiHost" }
         };
 
+        private static readonly IDictionary<string, string> ProxyHealthCheckMapper = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "ReportApi", "Proxy_ReportApiHealthCheck" }  ,
+            { "BetListApi", "Proxy_BetListApiHealthCheck" }
+        };
+
         public ProxyOptions(string internalAuthKey, int requestTimeout)
         {
             PrepareRequest = (originalRequest, message) =>
@@ -48,7 +54,16 @@
             return realUri.Uri;
         }
 
-        private string BuildApiHost(string apiKey)
+#pragma warning disable S3995 // URI return values should not be strings
+
+        public string GetHealthCheckUrl(string apiKey)
+#pragma warning restore S3995 // URI return values should not be strings
+        {
+            var settingKey = ProxyHealthCheckMapper.ContainsKey(apiKey) ? ProxyHealthCheckMapper[apiKey] : throw new Exception($"{apiKey} is invalid");
+            return ConfigurationManager.AppSettings[settingKey] ?? throw new Exception($"{settingKey} doesn't exist");
+        }
+
+        private static string BuildApiHost(string apiKey)
         {
             var settingKey = ProxyApiHostMapper.ContainsKey(apiKey) ? ProxyApiHostMapper[apiKey] : throw new Exception($"{apiKey} is invalid");
             var apiHost = ConfigurationManager.AppSettings[settingKey] ?? throw new Exception($"{settingKey} doesn't exist");
@@ -56,7 +71,7 @@
             return apiHost;
         }
 
-        private string BuildApiPath(string apiUrl)
+        private static string BuildApiPath(string apiUrl)
         {
             var realPath = apiUrl.Replace('_', '/');
             realPath = realPath.TrimStart('/');

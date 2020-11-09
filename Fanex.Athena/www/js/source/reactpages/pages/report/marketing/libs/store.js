@@ -7,6 +7,7 @@ const defaultState = {
    ...window.initialState, 
    ...{
       isCollapsedFormFilter: false,
+      allowedCompare: false,
       viewMode: ViewModeOptionValues.Daily,
       reportDate: FilterHelper.DefaultReportDate,
       compareDate: FilterHelper.DefaultCompareDate

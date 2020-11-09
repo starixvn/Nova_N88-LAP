@@ -4921,6 +4921,7 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
       event.preventDefault();
       const {
         requestParam,
+        toggleLoader,
         pagingOption,
         sortOption
       } = this.props;
@@ -4929,12 +4930,14 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
         return;
       }
 
+      toggleLoader(true);
+
       const params = _objectSpread({}, requestParam, {}, sortOption, {}, {
         pageIndex: pagingOption.PageIndex,
         pageSize: pagingOption.PageSize
       });
 
-      _libs_queryService__WEBPACK_IMPORTED_MODULE_7__["default"].exportReportData(params);
+      _libs_queryService__WEBPACK_IMPORTED_MODULE_7__["default"].exportReportData(params, () => toggleLoader(false));
     });
   }
 
@@ -4993,10 +4996,12 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
 
 function mapDispatchToProps(dispatch) {
   const {
-    setDisplayedColumns
+    setDisplayedColumns,
+    toggleLoader
   } = _actions__WEBPACK_IMPORTED_MODULE_6__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(Object.assign({}, {
-    setDisplayedColumns
+    setDisplayedColumns,
+    toggleLoader
   }), dispatch);
 }
 
@@ -5895,7 +5900,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return QueryService; });
 /* harmony import */ var _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/DataService */ "./www/js/source/reactpages/lib/DataService.js");
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
-/* harmony import */ var _constants_queryConsts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants/queryConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/queryConsts.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/queryConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/queryConsts.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5905,13 +5911,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 class QueryService {
   static async getReportData(params) {
     try {
-      const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_2__["Url"].reportByGroup, params);
+      const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["Url"].reportByGroup, params);
 
       if (response.status === 200) {
-        return _objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_2__["successResponse"], {}, {
+        return _objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["successResponse"], {}, {
           data: response.data
         });
       }
@@ -5919,24 +5926,31 @@ class QueryService {
       console.log(e);
     }
 
-    return _objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_2__["errorResponse"], {}, {
+    return _objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["errorResponse"], {}, {
       data: {
         gridData: {}
       }
     });
   }
 
-  static async exportReportData(params) {
-    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_2__["Url"].exportReportByGroup, params);
-    const noContentStatusCode = 204;
+  static async exportReportData(params, after) {
+    try {
+      const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["Url"].exportReportByGroup, params);
+      const noContentStatusCode = 204;
 
-    if (response.status === noContentStatusCode) {
-      alert(LangHelper.getSingleResource("NoInfo"));
-    } else {
-      _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].reportByGroup);
+      if (response.status === noContentStatusCode) {
+        alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("NoInfo"));
+      } else {
+        _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["FileNameExport"].reportByGroup);
+      }
+
+      ;
+    } catch (e) {
+      alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("ErrorProcessingMsg"));
+      console.log(e);
+    } finally {
+      after && after();
     }
-
-    ;
   }
 
 }

@@ -15,14 +15,16 @@
 
     public class LogController : CultureBaseController
     {
+        private const string strValue = "Value";
+        private const string isActive = "IsActive";
+        private const string xmlCloseRoot = "<ROOT/>";
+        private const string groupName = "GroupName";
         private readonly IUserLogService userLogService;
-        private readonly IUserService userService;
         private readonly IFunctionService functionService;
 
-        public LogController(IUserLogService userLogService, IUserService userService, IFunctionService functionService)
+        public LogController(IUserLogService userLogService, IFunctionService functionService)
         {
             this.userLogService = userLogService;
-            this.userService = userService;
             this.functionService = functionService;
         }
 
@@ -128,7 +130,7 @@
                     new LogData
                     {
                         FieldName = ViewResources.Group_Name,
-                        NewValue = elementNew.Attribute("GroupName").Value
+                        NewValue = elementNew.Attribute(groupName).Value
                     }
                 };
 
@@ -141,7 +143,7 @@
         public PartialViewResult N88UpdateSite(LogExecSp log)
         {
             XElement newElement = XElement.Parse(log.Data);
-            XElement oldElement = XElement.Parse(log.OldData ?? "<ROOT/>");
+            XElement oldElement = XElement.Parse(log.OldData ?? xmlCloseRoot);
 
             if (oldElement.Attribute("UserId") != null)
             {
@@ -153,7 +155,7 @@
                         Name = Convert.ToString(oldElement.Attribute("SiteName").Value)
                     },
                     Level = Convert.ToInt32(oldElement.Attribute("Level").Value),
-                    IsActive = oldElement.Attribute("IsActive").Value == "1",
+                    IsActive = oldElement.Attribute(isActive).Value == "1",
                     IsNeverExpired = oldElement.Attribute("IsNeverExpired").Value == "1"
                 };
 
@@ -174,7 +176,7 @@
                         Name = Convert.ToString(newElement.Attribute("SiteName").Value)
                     },
                     Level = Convert.ToInt32(newElement.Attribute("Level").Value),
-                    IsActive = newElement.Attribute("IsActive").Value == "1",
+                    IsActive = newElement.Attribute(isActive).Value == "1",
                     IsNeverExpired = newElement.Attribute("IsNeverExpired").Value == "1"
                 };
 
@@ -199,7 +201,7 @@
                     new LogData
                     {
                         FieldName = ViewResources.Group_Name,
-                        NewValue = element.Attribute("GroupName").Value
+                        NewValue = element.Attribute(groupName).Value
                     },
 
                     new LogData
@@ -211,7 +213,7 @@
                     new LogData
                     {
                         FieldName = ViewResources.Active,
-                        NewValue = element.Attribute("IsActive").Value == "1" ? "true" : "false"
+                        NewValue = element.Attribute(isActive).Value == "1" ? "true" : "false"
                     }
                 };
 
@@ -224,7 +226,7 @@
         public PartialViewResult N88GroupUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
-            XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
+            XElement elementOld = XElement.Parse(log.OldData ?? xmlCloseRoot);
 
             if (log.ActionId == (int)LogAction.N88_Group_Update)
             {
@@ -233,8 +235,8 @@
                     new LogData
                     {
                         FieldName = ViewResources.Group_Name,
-                        OldValue = elementOld.Attribute("GroupName").Value,
-                        NewValue = elementNew.Attribute("GroupName").Value
+                        OldValue = elementOld.Attribute(groupName).Value,
+                        NewValue = elementNew.Attribute(groupName).Value
                     },
 
                     new LogData
@@ -247,8 +249,8 @@
                     new LogData
                     {
                         FieldName = ViewResources.Active,
-                        OldValue = elementOld.Attribute("IsActive").Value == "1" ? "true" : "false",
-                        NewValue = elementNew.Attribute("IsActive").Value == "1" ? "true" : "false"
+                        OldValue = elementOld.Attribute(isActive).Value == "1" ? "true" : "false",
+                        NewValue = elementNew.Attribute(isActive).Value == "1" ? "true" : "false"
                     }
                 };
 
@@ -261,7 +263,7 @@
         public PartialViewResult N88GroupUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
-            XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
+            XElement elementOld = XElement.Parse(log.OldData ?? xmlCloseRoot);
 
             if (log.ActionId == (int)LogAction.N88_Group_UpdateStatus)
             {
@@ -270,8 +272,8 @@
                     new LogData
                     {
                         FieldName = ViewResources.Status,
-                        OldValue = elementOld.Attribute("IsActive").Value == "1" ? "Active" : "Unactive",
-                        NewValue = elementNew.Attribute("IsActive").Value == "1" ? "Active" : "Unactive"
+                        OldValue = elementOld.Attribute(isActive).Value == "1" ? "Active" : "Unactive",
+                        NewValue = elementNew.Attribute(isActive).Value == "1" ? "Active" : "Unactive"
                     }
                 };
 
@@ -283,8 +285,8 @@
 
         public PartialViewResult N88UserUpdate(LogExecSp log)
         {
-            XElement elementNew = XElement.Parse(log.Data ?? "<ROOT/>");
-            XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
+            XElement elementNew = XElement.Parse(log.Data ?? xmlCloseRoot);
+            XElement elementOld = XElement.Parse(log.OldData ?? xmlCloseRoot);
 
             if (log.ActionId == (int)LogAction.N88_User_Update)
             {
@@ -293,8 +295,8 @@
                     new LogData
                     {
                         FieldName = ViewResources.Group_Name,
-                        OldValue = elementOld.Attribute("GroupName").Value,
-                        NewValue = elementNew.Attribute("GroupName").Value
+                        OldValue = elementOld.Attribute(groupName).Value,
+                        NewValue = elementNew.Attribute(groupName).Value
                     },
 
                     new LogData
@@ -328,7 +330,7 @@
         public PartialViewResult N88AssignPermission(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
-            XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
+            XElement elementOld = XElement.Parse(log.OldData ?? xmlCloseRoot);
 
             // N88_Group_AssignFunction || N88_User_AssignFunction
             if (log.ActionId == (int)LogAction.N88_Group_AssignFunction
@@ -341,9 +343,9 @@
 
                 // Old data
 
-                if (elementOld.Attribute("Value") != null)
+                if (elementOld.Attribute(strValue) != null)
                 {
-                    var strFunctionPolicy = elementOld.Attribute("Value").Value.DecodeXMLValue();
+                    var strFunctionPolicy = elementOld.Attribute(strValue).Value.DecodeXMLValue();
 
                     if (!string.IsNullOrWhiteSpace(strFunctionPolicy))
                     {
@@ -352,9 +354,9 @@
                 }
 
                 // New data
-                if (elementNew.Attribute("Value") != null)
+                if (elementNew.Attribute(strValue) != null)
                 {
-                    var strFunctionPolicy = elementNew.Attribute("Value").Value.DecodeXMLValue();
+                    var strFunctionPolicy = elementNew.Attribute(strValue).Value.DecodeXMLValue();
 
                     if (!string.IsNullOrWhiteSpace(strFunctionPolicy))
                     {

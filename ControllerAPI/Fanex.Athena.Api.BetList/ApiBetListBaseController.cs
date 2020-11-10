@@ -51,7 +51,7 @@
             CheckDataPermission(metaModel.CustId, metaModel.TransId);
 
             var userSession = SessionService.UserSession;
-            UpdateMetaModel(metaModel, uspKey, 1, int.MaxValue - 1);   
+            metaModel = UpdateMetaModel(metaModel, uspKey, 1, int.MaxValue - 1);
 
             return await BridgeClientService.PostAsync(apiPath ?? "/BetList/GetBetList", metaModel, userSession.Language).ConfigureAwait(false);
         }
@@ -67,7 +67,7 @@
             var userSession = SessionService.UserSession;
         
             metaModel.IsServerPaging = true;
-            UpdateMetaModel(metaModel, uspKey, pageIndex, pageSize);
+            metaModel = UpdateMetaModel(metaModel, uspKey, pageIndex, pageSize);
 
             return await BridgeClientService.PostAsync(apiPath ?? "/BetList/GetBetListPaging", metaModel, userSession.Language).ConfigureAwait(false);
         }

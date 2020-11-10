@@ -108,7 +108,7 @@ namespace Fanex.Athena.Model.UserManagement.Model
             Inactive = 2
         }
 
-        public static List<string> IgnoredNapFunctions = new List<string>
+        public static readonly List<string> IgnoredNapFunctions = new List<string>
         {
             "SystemConfiguration", "ManageFunction", "ManageMenu",
             "Administration", "ManageUser", "AssignSiteToUser", "AssignFunctionToUser",

@@ -34,7 +34,7 @@
                 return this._commonRepository.FetchData<GroupData>(criteria).OrderBy(g => g.GroupName);
             }
 
-            return null;
+            return Enumerable.Empty<GroupData>();
         }
 
         public CommandResult ExecuteNonQuery(INonQueryCommand criteria)

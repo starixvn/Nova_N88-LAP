@@ -66,7 +66,6 @@
         private ActionResult MapToView()
         {
             var userSession = SessionServiceInstance.UserSession;
-            var licenseeSession = SessionServiceInstance.LicenseeSession;
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
                 SessionServiceInstance.LicenseeSession.LicenseeName);
             var selectedDate = GetSelectedDate(reportSetting);

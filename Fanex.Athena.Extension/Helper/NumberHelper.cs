@@ -4,6 +4,7 @@
 
     public static class NumberHelper
     {
+        private const int NUMBER_OF_PERCENT = 100;
         private static readonly CultureInfo DefaultCulture = new CultureInfo("en-US");
 
         public static string ToStringExt(this decimal value, byte digit = 2)
@@ -30,7 +31,7 @@
 
         public static decimal ToPercentage(this decimal value)
         {
-            return value * 100;
+            return value * NUMBER_OF_PERCENT;
         }
     }
 }

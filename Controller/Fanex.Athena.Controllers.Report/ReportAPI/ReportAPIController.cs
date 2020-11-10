@@ -2,7 +2,7 @@
 {
     using Fanex.Athena.Service.StatelessCore.Interfaces;
 
-    public partial class ReportAPIController : NonCultureBaseController
+    public class ReportAPIController : NonCultureBaseController
     {
         private readonly IBetTypeService _betTypeService;
         private readonly ILicenseeSettingService _licenseeSettingService;
@@ -13,11 +13,6 @@
         {
             _betTypeService = betTypeService;
             _licenseeSettingService = licenseeSettingService;
-        }
-
-        private bool IsFakeLicensee(string siteName)
-        {
-            return _licenseeSettingService.IsFakeLicensee(siteName);
         }
     }
 }

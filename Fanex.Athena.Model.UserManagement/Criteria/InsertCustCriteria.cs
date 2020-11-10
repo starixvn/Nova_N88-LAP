@@ -1,24 +1,23 @@
 ﻿using Fanex.Athena.Model.UserManagement.Model;
 using Fanex.Athena.Resources;
 using Fanex.Data;
-using Fanex.Data.Repository;
-using System;
 using System.ComponentModel.DataAnnotations;
+using Fanex.Athena.Model.UserManagement.Enum;
 
 namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     public class InsertCustCriteria : LogExecSpCriteria
-    {   
+    {
         public int UserId { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 0,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN_DEFAULT,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string FirstName { get; set; }
 
         [Display(Name = "LastName", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 0,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN_DEFAULT,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string LastName { get; set; }
@@ -31,7 +30,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 
         [Required]
         [Display(Name = "Username", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 2,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN2,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         [RegularExpression(@"^[\w\s]{1,}$",
@@ -44,7 +43,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 
         [Required]
         [Display(Name = "Password", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 2,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN2,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         [DataType(DataType.Password)]

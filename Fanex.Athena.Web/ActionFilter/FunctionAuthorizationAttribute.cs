@@ -42,14 +42,8 @@
             var authorized = userSession != null && licenseeSession != null;
             if (authorized)
             {
-                if (_policy == Policy.Host)
-                {
-                    authorized = AuthorizationServiceInstance.HasHostPermissions(userSession.UserId, _permissionKeys);
-                }
-                else
-                {
-                    authorized = AuthorizationServiceInstance.HasPermissions(userSession.UserId, _permissionKeys);
-                }
+                authorized = _policy == Policy.Host ? AuthorizationServiceInstance.HasHostPermissions(userSession.UserId, _permissionKeys)
+                                                    : AuthorizationServiceInstance.HasPermissions(userSession.UserId, _permissionKeys);
             }
 
             if (!authorized)

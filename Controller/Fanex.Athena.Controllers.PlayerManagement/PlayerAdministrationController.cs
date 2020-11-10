@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Athena.Controllers.PlayerManagement
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.Constants;
@@ -12,17 +8,17 @@
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.NVC.Authentication.Infrastructure;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
     [FunctionAuthorization(PermissionKeys.PlayerAdmin)]
     public class PlayerAdministrationController : CultureBaseController
     {
-        private readonly ILicenseeSettingService _licenseeSettingService;
-
         private readonly IAuthorizationService _authService;
 
-        public PlayerAdministrationController(ILicenseeSettingService licenseeSettingService, IAuthorizationService authService)
+        public PlayerAdministrationController(IAuthorizationService authService)
         {
-            _licenseeSettingService = licenseeSettingService;
             _authService = authService;
         }
 
@@ -41,19 +37,19 @@
             var licenseeSession = SessionServiceInstance.LicenseeSession;
 
             var allowedOddGroup = userSession.FunctionList.
-                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateOddsGroup).FirstOrDefault();
+                First(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateOddsGroup);
             var allowedSpecialLevel = userSession.FunctionList.
-                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateSpecialLevel).FirstOrDefault();
+                First(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateSpecialLevel);
             var isAllowedBA = licenseeSession.IsEnableBA &&
                 _authService.CheckProductBelongsTo(licenseeSession.LicenseeName, ProductTypes.BA);
             var isAllowedStatement = userSession.FunctionList.
-                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminPlayerStatement).FirstOrDefault();
+                First(x => x.FunctionKey == PermissionKeys.PlayerAdminPlayerStatement);
 
             var allowedBA = new NVCFunctionAuthInfo();
             if (isAllowedBA)
             {
                 allowedBA = userSession.FunctionList.
-                Where(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateBaStatus).FirstOrDefault();
+                First(x => x.FunctionKey == PermissionKeys.PlayerAdminUpdateBaStatus);
             }
 
             playerAdmin.CurrencyList = userSession.CurrencyList;

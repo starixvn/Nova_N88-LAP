@@ -18,6 +18,8 @@
     [FunctionAuthorization(PermissionKeys.ManageGroup)]
     public class GroupController : CultureBaseController
     {
+        private const byte policyRead = 1;
+        private const byte policyHost = 2;
         private readonly IGroupService _groupService;
         private readonly IUserService _userService;
         private readonly IFunctionService _functionService;
@@ -40,7 +42,7 @@
             ViewBag.HasAssignFunctionRight = HasPermission(PermissionKeys.ManageGroup, (int)Policy.Host);
             ViewBag.HasManageUserRight = HasPermission(PermissionKeys.ManageUser, (int)Policy.Read);
 
-            var groups = _groupService.GetAllWithNumOfUser(groupName, N88Settings.Settings.Environment, isLicenseeGroup: true, siteId: N88Settings.Settings.SiteId);
+            var groups = _groupService.GetAllWithNumOfUser(groupName, N88Settings.Settings.Environment, siteId: N88Settings.Settings.SiteId);
 
             var searchViewModal = new GetAllGroupModal
             {
@@ -327,8 +329,8 @@
             List<FunctionPolicy> listGroupFuncPolicy = _functionService.GetByGroupAndSite(groupId, N88Settings.Settings.SiteId, AppSettingInstance.Environment).ToList();
 
             var criteria = new AssignFunctionGroupCriteria();
-            criteria.FuncHost = listGroupFuncPolicy.Where(p => p.Policy == 2 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();
-            criteria.FuncRead = listGroupFuncPolicy.Where(p => p.Policy == 1 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();
+            criteria.FuncHost = listGroupFuncPolicy.Where(p => p.Policy == policyHost && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();
+            criteria.FuncRead = listGroupFuncPolicy.Where(p => p.Policy == policyRead && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();
             criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
             criteria.ModifiedDate = DateTime.Now;
             criteria.GroupId = groupId;

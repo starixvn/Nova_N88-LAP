@@ -111,7 +111,7 @@
                                 xmlElementValue.Add(xmlElementChildTemp);
                             }
 
-                            xmlElementData.SetAttributeValue("Value", this.EncodeXMLValue(xmlElementValue.ToString()));
+                            xmlElementData.SetAttributeValue("Value", EncodeXMLValue(xmlElementValue.ToString()));
                         }
 
                         logExec.Data = xmlElementData.ToString();
@@ -152,7 +152,7 @@
                                 xmlElementValue.Add(xmlElementChildTemp);
                             }
 
-                            xmlElementData.SetAttributeValue("Value", this.EncodeXMLValue(xmlElementValue.ToString()));
+                            xmlElementData.SetAttributeValue("Value", EncodeXMLValue(xmlElementValue.ToString()));
                         }
 
                         logExec.OldData = xmlElementData.ToString();
@@ -165,7 +165,7 @@
             return null;
         }
 
-        private string EncodeXMLValue(string value)
+        private static string EncodeXMLValue(string value)
         {
             if (!string.IsNullOrEmpty(value))
             {
@@ -181,7 +181,7 @@
             return value;
         }
 
-        private IEnumerable<LogExecSp> FilterLogExecSp(IEnumerable<LogExecSp> data)
+        private static IEnumerable<LogExecSp> FilterLogExecSp(IEnumerable<LogExecSp> data)
         {
             return data
                 .Select(l =>

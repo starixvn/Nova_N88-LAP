@@ -3,13 +3,14 @@
     using System.ComponentModel.DataAnnotations;
     using Fanex.Athena.Resources;
     using Fanex.Data.Repository;
+    using Fanex.Athena.Model.UserManagement.Enum;
 
     public class GetAllWithNumOfUserGroupCriteria : CriteriaBase
     {
         public bool? IsActive { get; set; }
 
         [Display(Name = "Group_Name", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 0,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN_DEFAULT,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string GroupName { get; set; }

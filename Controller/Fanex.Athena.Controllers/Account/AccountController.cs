@@ -268,7 +268,7 @@
             return View("~/Views/Account/ResetPassword.cshtml", criteria);
         }
 
-        private string GenerateToken()
+        private static string GenerateToken()
         {
             return Guid.NewGuid().ToString("N");
         }

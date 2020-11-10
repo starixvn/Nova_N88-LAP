@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Resources;
+    using Fanex.Athena.Model.UserManagement.Enum;
 
     public class UpdateGroupCriteria : LogExecSpCriteria
     {
@@ -11,7 +12,7 @@
 
         [Required]
         [Display(Name = "Name", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 2,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN2,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         [RegularExpression(@"^[\w\s]{1,}$",
@@ -23,7 +24,7 @@
         public string GroupName { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(ViewResources))]
-        [StringLength(200, MinimumLength = 0,
+        [StringLength((int)StringLength.MAX200, MinimumLength = (int)StringLength.MIN_DEFAULT,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string Description { get; set; }

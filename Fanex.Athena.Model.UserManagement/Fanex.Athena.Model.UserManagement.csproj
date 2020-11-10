@@ -75,6 +75,7 @@
     <Compile Include="Criteria\UpdateGroupCriteria.cs" />
     <Compile Include="Criteria\UpdateSiteToUserCriteria.cs" />
     <Compile Include="Criteria\UpdateStatusGroupCriteria.cs" />
+    <Compile Include="Enum\Contant.cs" />
     <Compile Include="Enum\LogAction.cs" />
     <Compile Include="Model\AccFunction.cs" />
     <Compile Include="Model\CommandResult.cs" />

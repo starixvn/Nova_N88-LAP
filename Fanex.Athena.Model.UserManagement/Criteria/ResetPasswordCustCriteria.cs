@@ -1,11 +1,12 @@
 ﻿using Fanex.Athena.Resources;
 using Fanex.Data;
 using System.ComponentModel.DataAnnotations;
+using Fanex.Athena.Model.UserManagement.Enum;
 
 namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     public class ResetPasswordCustCriteria : LogExecSpCriteria
-    {      
+    {
         public int UserId { get; set; }
 
         [SpParam(Ignored = true)]
@@ -13,14 +14,14 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 
         [Required]
         [Display(Name = "NewPassword", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 2,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN2,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string UserPwd { get; set; }
 
         [Required]
         [Display(Name = "ConfirmPassword", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 2,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN2,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         [Compare("UserPwd",

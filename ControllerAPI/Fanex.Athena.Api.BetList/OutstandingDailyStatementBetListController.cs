@@ -34,7 +34,7 @@
         {
             var userSession = SessionService.UserSession;
 
-            UpdateMetaModel(metaModel);
+            metaModel = UpdateMetaModel(metaModel);
 
             if (_authorizationService.HasPermissionOnData(userSession.CurrencyAgentList, metaModel.CustId, metaModel.TransId))
             {

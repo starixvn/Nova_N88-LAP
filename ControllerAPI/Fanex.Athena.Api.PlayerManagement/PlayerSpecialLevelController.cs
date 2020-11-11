@@ -12,24 +12,20 @@
     using Fanex.Athena.Model.PlayerManagement.MetaModel;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.PlayerManagement.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Logging;
 
     [ApiFunctionAuthorization(Policy.Host, PermissionKeys.PlayerAdminUpdateSpecialLevel)]
     public class PlayerSpecialLevelController : BaseApiController
     {
         private readonly IPlayerSpecialLevelService _playerSpecialLevelService;
-        private readonly ILicenseeSettingService _licenseeSettingService;
         private readonly ILogger _logger;
 
         public PlayerSpecialLevelController(
             ILanguageService languageService,
             IPlayerSpecialLevelService playerSpecialLevelService,
-            ILicenseeSettingService licenseeSettingService,
             ILogger logger) : base(languageService)
         {
             _playerSpecialLevelService = playerSpecialLevelService;
-            _licenseeSettingService = licenseeSettingService;
             _logger = logger;
         }
 

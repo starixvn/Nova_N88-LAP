@@ -2,7 +2,6 @@
 {
     using Fanex.Athena.Api.Base;
     using Fanex.Athena.Api.Base.Attributes;
-    using Fanex.Athena.DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.MetaModel;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
@@ -18,15 +17,11 @@
     {
         private readonly IPlayerListService _playerListService;
 
-        private readonly ILicenseeDataAccess _licenseeDataAccess;
-
         public PlayerListController(
             ILanguageService languageService,
-            ILicenseeDataAccess licenseeDataAccess,
             IPlayerListService playerListService) : base(languageService)
         {
             _playerListService = playerListService;
-            _licenseeDataAccess = licenseeDataAccess;
         }
 
         [HttpPost]

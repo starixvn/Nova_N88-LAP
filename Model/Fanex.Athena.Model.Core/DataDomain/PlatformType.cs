@@ -37,7 +37,7 @@
 
         public const int BetfromOthers = 88;
 
-        private static readonly IDictionary<int, string> MapPlatformKeys = new Dictionary<int, string>
+        private static readonly IReadOnlyDictionary<int, string> MapPlatformKeys = new Dictionary<int, string>
         {
             { All, nameof(All) },
             { Asia, nameof(Asia) },
@@ -57,6 +57,25 @@
             { ESportsApp, nameof(ESportsApp) }
         };
 
+        private static readonly IReadOnlyDictionary<string, string> MapPlatformNames = new Dictionary<string, string>
+        {
+            { "z", ViewResources.China },
+            { "g", ViewResources.Asia },
+            { "y", ViewResources.Euro },
+            { "m", ViewResources.Wap },
+            { "l", ViewResources.Mobile },
+            { "r", ViewResources.Tablet },
+            { "x", ViewResources.NewAsia },
+            { "o", ViewResources.MobileApp },
+            { "c", ViewResources.MobileLiteVersion },
+            { "t", ViewResources.DeepLink },
+            { "v", ViewResources.BetfromOthers },
+            { "0", ViewResources.NativeApp },
+            { "1", ViewResources.ESportsDesktop },
+            { "2", ViewResources.ESportsMobile },
+            { "3", ViewResources.ESportsApp },
+        };
+
         public static string GetPlatformKey(int type)
         {
             return MapPlatformKeys.ContainsKey(type) ? MapPlatformKeys[type] : "All";
@@ -69,30 +88,7 @@
 
         public static string GetPlatformName(string code)
         {
-            switch (code)
-            {
-                case "a":
-                case "z": return ViewResources.China;
-                case "d":
-                case "g": return ViewResources.Asia;
-                case "e":
-                case "u":
-                case "y": return ViewResources.Euro;
-                case "m": return ViewResources.Wap;
-                case "s":
-                case "l": return ViewResources.Mobile;
-                case "r": return ViewResources.Tablet;
-                case "x": return ViewResources.NewAsia;
-                case "o": return ViewResources.MobileApp;
-                case "c": return ViewResources.MobileLiteVersion;
-                case "t": return ViewResources.DeepLink;
-                case "v": return ViewResources.BetfromOthers;
-                case "0": return ViewResources.NativeApp;
-                case "1": return ViewResources.ESportsDesktop;
-                case "2": return ViewResources.ESportsMobile;
-                case "3": return ViewResources.ESportsApp;
-                default: return ViewResources.Others;
-            }
+            return MapPlatformNames.ContainsKey(code) ? MapPlatformNames[code] : ViewResources.Others;
         }
 
         public static bool IsValidPlatform(int type)

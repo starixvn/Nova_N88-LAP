@@ -3,7 +3,8 @@
     using System.Web.Mvc;
 
     using Fanex.Athena.Model.Auth.MetaModel;
-
+    using Fanex.N88.Core.Models;
+    using Fanex.N88.Core.Service.Interface;
     using NSubstitute;
 
     using NUnit.Framework;
@@ -120,6 +121,32 @@
                 Assert.Multiple(() =>
                 {
                     Assert.That(result.ViewBag.errCode, Is.EqualTo(103));
+                    Assert.That(result.ViewName, Is.EqualTo("~/Views/Desktop/Authorization/SignIn.cshtml"));
+                });
+            }
+        }
+
+        [Test]
+        public void SignIn_WhenPost_Authentication_UserIsNotExist_ReturnSignInViewWithError()
+        {
+            using (var controller = CreateController())
+            {
+                // Arrange
+                StubGetValueAppSettings("AllowAutomationCaptchaCode", "1");
+                SessionService.CaptchaCode.Returns("OriginalCaptcha");
+                StubUserSessionData(null);
+
+                // Action
+                var result = controller.SignIn(new LoginMetaModel
+                {
+                    UserName = "User name",
+                    PassWord = "password"
+                }) as ViewResult;
+
+                // Assert
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.ViewBag.errCode, Is.EqualTo(102));
                     Assert.That(result.ViewName, Is.EqualTo("~/Views/Desktop/Authorization/SignIn.cshtml"));
                 });
             }

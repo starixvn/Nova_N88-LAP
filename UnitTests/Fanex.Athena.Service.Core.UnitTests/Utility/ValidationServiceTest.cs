@@ -122,6 +122,24 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         }
 
         [Test]
+        public void IsValid_Product_ReturnExpectedResult()
+        {
+            //Arrange
+            const string productCodeList = "1,2";
+            var option = new ProductValidationOption { IsValidProductCodeList = true };
+            var model = Substitute.For<IMetaModelProductCodeList>();
+            model.ProductCodeList = productCodeList;
+            _currencyValidation.IsValidCurrency(Arg.Any<string>()).Returns(true);
+            _productValidation.IsValid(model, option).Returns(true);
+
+            //Action
+            _validationService.IsValid(model, productValidationOption: option);
+
+            //Assert
+            _productValidation.Received(1).IsValid(model, option);
+        }
+
+        [Test]
         public void IsValid_Brand_CallBrandIdListValidation()
         {
             //Arrange

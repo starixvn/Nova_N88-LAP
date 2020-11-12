@@ -4,7 +4,9 @@
 
     public static class JsonHelper
     {
+#pragma warning disable S4225 // Extension methods should not extend "object"
         public static string ToJson(this object value)
+#pragma warning restore S4225 // Extension methods should not extend "object"
         {
             var serializer = new JavaScriptSerializer();
 

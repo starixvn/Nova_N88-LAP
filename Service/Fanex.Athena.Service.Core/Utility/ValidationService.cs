@@ -30,6 +30,16 @@ namespace Fanex.Athena.Service.Core.Utility
             }
 
             var result = IsValidMetalModel(model as IMetaModelValidation);
+            result &= CurencyValid(model, currencyValidationOption);
+            result &= ProductValid(model, productValidationOption);
+            result &= BrandValid(model, brandValidationOption);
+
+            return result;
+        }
+
+        private bool CurencyValid(object model, CurrencyValidationOption currencyValidationOption = null)
+        {
+            var result = true;
             if (currencyValidationOption != null && currencyValidationOption.IsValidCurrency)
             {
                 result &= IsValidCurrency(model as IMetaModelCurrency, currencyValidationOption.IsIncludeKeanOcean);
@@ -38,10 +48,24 @@ namespace Fanex.Athena.Service.Core.Utility
             {
                 result &= IsValidCurrency(model as IMetaModelCurrencyIdList);
             }
+
+            return result;
+        }
+
+        private bool ProductValid(object model, ProductValidationOption productValidationOption = null)
+        {
+            var result = true;
             if (productValidationOption != null && productValidationOption.IsValidProductCodeList)
             {
                 result &= IsValidProductCode(model as IMetaModelProductCodeList, productValidationOption);
             }
+
+            return result;
+        }
+
+        private bool BrandValid(object model, BrandValidationOption brandValidationOption = null)
+        {
+            var result = true;
             if (brandValidationOption != null)
             {
                 result &= !brandValidationOption.IsValidBrandId || _brandValidation.IsValidBrandId(model as IMetaModelBrandId);
@@ -50,6 +74,7 @@ namespace Fanex.Athena.Service.Core.Utility
 
             return result;
         }
+
 
         private bool IsValidProductCode(IMetaModelProductCodeList model, ProductValidationOption option)
         {

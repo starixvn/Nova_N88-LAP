@@ -330,6 +330,10 @@
                         errorMsg = ViewResources.SessionLoggedMsg;
                         _formAuthenticationService.SignOut();
                     }
+                    else
+                    {
+                        return Json(RecheckInResult(errorCode, errorMsg), JsonRequestBehavior.AllowGet);
+                    }
                 }
             }
 

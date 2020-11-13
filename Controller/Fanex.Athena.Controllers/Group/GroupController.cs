@@ -294,9 +294,10 @@
             }
 
             UpdateCriteria(criteria);
-            CommandResult result = _groupService.ExecuteNonQuery(criteria);
 
-            if (result != null && result.IsSuccessful)
+            bool result = GroupServiceExecuteQuery(criteria);
+
+            if (result)
             {
                 ViewBag.Success = true;
 
@@ -310,6 +311,17 @@
             ViewBag.UserLevel = _userService.GetUserSiteLevel(SessionServiceInstance.UserSession.UserId, N88Settings.Settings.SiteId);
 
             return View(criteria);
+        }
+
+        private bool GroupServiceExecuteQuery(AssignFunctionGroupCriteria criteria)
+        {
+            CommandResult result = _groupService.ExecuteNonQuery(criteria);
+            if (result != null && result.IsSuccessful)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         #endregion Activation

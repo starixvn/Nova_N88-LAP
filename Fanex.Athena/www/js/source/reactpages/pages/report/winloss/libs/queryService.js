@@ -1,5 +1,6 @@
 import DataService from '@jsroot/lib/DataService';
 import Site from '@jsroot/lib/site';
+import LangHelper from '@jsroot/lib/langHelper';
 import { Url, FileNameExport, errorResponse, successResponse } from '../constants/queryConsts';
 
 export default class QueryService {
@@ -23,13 +24,22 @@ export default class QueryService {
         };
     }
 
-    static async exportReportData(params) {
-        const response = await DataService.getReportFile(Url.exportReportByGroup, params)
-        const noContentStatusCode = 204;
-        if (response.status === noContentStatusCode) {
-            alert(LangHelper.getSingleResource("NoInfo"));
-        } else {
-            Site.downloadFile(response.data, FileNameExport.reportByGroup);
-        };
+    static async exportReportData(params, after) {
+        try {
+            const response = await DataService.getReportFile(Url.exportReportByGroup, params)
+            const noContentStatusCode = 204;
+            if (response.status === noContentStatusCode) {
+                alert(LangHelper.getSingleResource("NoInfo"));
+            } else {
+                Site.downloadFile(response.data, FileNameExport.reportByGroup);
+            };
+        }
+        catch(e) {
+            alert(LangHelper.getSingleResource("ErrorProcessingMsg"));
+            console.log(e)
+        }
+        finally {
+            after && after();
+        }
     }
 }

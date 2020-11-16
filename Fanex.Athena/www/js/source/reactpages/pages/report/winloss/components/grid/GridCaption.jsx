@@ -24,11 +24,11 @@ export class GridCaption extends React.Component {
 
     handleExportExcel = event => {
         event.preventDefault();
-        const { requestParam, pagingOption, sortOption } = this.props;
+        const { requestParam, toggleLoader, pagingOption, sortOption } = this.props;
         if (!requestParam) {
             return;
         }
-
+        toggleLoader(true)
         const params = {
             ...requestParam,
             ...sortOption,
@@ -37,8 +37,7 @@ export class GridCaption extends React.Component {
                 pageSize: pagingOption.PageSize,
             }
         }
-
-        QueryService.exportReportData(params);
+        QueryService.exportReportData(params, () => toggleLoader(false));
     }
 
     _buildDisplayedColumnList() {
@@ -84,8 +83,8 @@ export class GridCaption extends React.Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setDisplayedColumns } = ActionCreators;
-    return bindActionCreators(Object.assign({}, { setDisplayedColumns }), dispatch);
+    const { setDisplayedColumns, toggleLoader } = ActionCreators;
+    return bindActionCreators(Object.assign({}, { setDisplayedColumns, toggleLoader }), dispatch);
 }
 
 function mapStateToProps(state) {

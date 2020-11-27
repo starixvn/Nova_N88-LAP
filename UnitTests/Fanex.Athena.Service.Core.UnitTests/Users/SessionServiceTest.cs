@@ -257,7 +257,9 @@
             const int UserId = 1;
             const int OnUserId = 2;
             const string UserName = "user1";
-            _sessionService.CreateNewSession(UserId, OnUserId, UserName);
+            const string UserDefaultBaseCurrencyCode = "USd";
+            const bool IsLicenseeUser = true;
+            _sessionService.CreateNewSession(UserId, OnUserId, UserName, UserDefaultBaseCurrencyCode, IsLicenseeUser);
         }
     }
 }

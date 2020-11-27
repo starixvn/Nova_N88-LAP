@@ -111,7 +111,7 @@ export const FormFilter = props => {
                 </div>
                 <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-1">
                     <div className="form-group">
-                        <label className="label-text">{LangHelper.getSingleResource("DisplayCurrency")}</label>
+                        <label className="label-text">{LangHelper.getSingleResource("BaseCurrency")}</label>
                         {_renderBaseCurrencySelectList()}
                     </div>
                 </div>

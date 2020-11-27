@@ -45,6 +45,7 @@
             ViewBag.IsInternal = "0";
             ViewBag.HasRecheckIn = AppSettingInstance.LocalTest ? "0" : "1";
             ViewBag.LicenseeName = siteNameList[AppSettingInstance.LicenseeId];
+            ViewBag.IsLicenseeUser = userSession.IsLicenseeUser ? "1" : "0";
         }
     }
 }

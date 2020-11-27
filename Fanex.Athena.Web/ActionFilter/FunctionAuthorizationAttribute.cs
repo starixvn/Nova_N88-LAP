@@ -1,6 +1,8 @@
 ﻿namespace Fanex.Athena.Web.ActionFilter
 {
     using System;
+    using System.Diagnostics.Contracts;
+    using System.Linq;
     using System.Net;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -35,6 +37,11 @@
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            if (SkipAuthorization(filterContext))
+            {
+                return;
+            }
+
             var context = filterContext.HttpContext;
 
             var licenseeSession = SessionStorage.Licensee;
@@ -72,6 +79,14 @@
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        private static bool SkipAuthorization(ActionExecutingContext filterContext)
+        {
+            Contract.Assert(filterContext != null);
+
+            return filterContext.ActionDescriptor.GetCustomAttributes(typeof(AllowAnonymousAttribute), true).Any()
+                   || filterContext.ActionDescriptor.ControllerDescriptor.GetCustomAttributes(typeof(AllowAnonymousAttribute), true).Any();
         }
     }
 }

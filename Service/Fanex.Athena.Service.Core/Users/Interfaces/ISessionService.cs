@@ -20,6 +20,8 @@
             int userId,
             int onuserId,
             string userName,
+            string userDefaultBaseCurrencyCode,
+            bool isLicenseeUser,
             string language = "en-US");
     }
 }

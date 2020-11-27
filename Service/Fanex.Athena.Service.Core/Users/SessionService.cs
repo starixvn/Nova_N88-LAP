@@ -60,9 +60,11 @@
             int userId,
             int onuserId,
             string userName,
+            string userDefaultBaseCurrencyCode,
+            bool isLicenseeUser,
             string language = "en-US")
         {
-            AssignUserSession(userId, onuserId, userName, language);
+            AssignUserSession(userId, onuserId, userName, userDefaultBaseCurrencyCode, isLicenseeUser, language);
             AssignLicenseeSession();
             AssignMenuSession(userId);
         }
@@ -93,7 +95,7 @@
             _sessionStorage.Menu = menuItems;
         }
 
-        private void AssignUserSession(int userId, int onuserId, string userName, string language)
+        private void AssignUserSession(int userId, int onuserId, string userName, string userDefaultBaseCurrencyCode, bool isLicenseeUser, string language)
         {
             var (currencyList, currencyAgentList) = GetCurrencies();
 
@@ -106,11 +108,12 @@
                 UserId = userId,
                 OnUserId = onuserId,
                 UserName = userName,
+                IsLicenseeUser = isLicenseeUser,
                 Language = language,
                 FunctionList = functions,
                 CurrencyList = currencyList,
                 CurrencyAgentList = currencyAgentList,
-                DefaultBaseCurrency = _appSettings.DefaultBaseCurrency,
+                DefaultBaseCurrency = string.IsNullOrEmpty(userDefaultBaseCurrencyCode) ? _appSettings.DefaultBaseCurrency : userDefaultBaseCurrencyCode,
                 SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
                 BrandList = brandList
             };

@@ -20,6 +20,10 @@
             </a>
 
             <ul id="profile" class="dropdown-content profile-items">
+                <li id ="edit-userinfo">
+                    <i class="icon icon-account-circle"></i>
+                    <a href="@Url.Content("~/Account/EditUserInfo")" target="main">@ViewResources.UserInfo</a>
+                </li>
                 <li>
                     <i class="icon icon-account"></i>
                     <a href="@Url.Content("~/Authorization/ChangePassword")" target="main">@ViewResources.ChangePassword</a>

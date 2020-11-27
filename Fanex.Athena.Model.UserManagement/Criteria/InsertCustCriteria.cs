@@ -52,6 +52,9 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         [Display(Name = "Group", ResourceType = typeof(ViewResources))]
         public int GroupId { get; set; }
 
+        [Display(Name = "DefaultBaseCurency", ResourceType = typeof(ViewResources))]
+        public int DefaultBaseCurrencyId { get; set; }
+
         public int SiteId { get; set; }
 
         public bool IsLicenseeUser { get; set; }
@@ -61,7 +64,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 
         [SpParam(Ignored = true)]
         public int RerturnGroupId { get; set; }
-        
+
         public override string GetSettingKey()
         {
             return "N88_User_Insert";

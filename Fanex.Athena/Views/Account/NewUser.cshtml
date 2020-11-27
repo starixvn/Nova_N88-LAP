@@ -53,6 +53,10 @@
             @Html.DropDownListFor(c => c.GroupId, (List<SelectListItem>)ViewBag.GroupSelectList, new { @class = "input-text" })
         </div>
         <div class="form-group">
+            @Html.LabelFor(c => c.DefaultBaseCurrencyId, new { @class = "label-text required" })
+            @Html.DropDownListFor(c => c.DefaultBaseCurrencyId, (List<SelectListItem>)ViewBag.DefaultBaseCurencyList, new { @class = "input-text" })
+        </div>
+        <div class="form-group">
             @if (!success)
             {
                 <input type="submit" class="btn btn-submit" value="@ViewResources.Save" />

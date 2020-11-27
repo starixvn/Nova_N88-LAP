@@ -30,6 +30,15 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         [Display(Name = "Group", ResourceType = typeof(ViewResources))]
         public int GroupId { get; set; }
 
+        [Display(Name = "DefaultBaseCurency", ResourceType = typeof(ViewResources))]
+        public int DefaultBaseCurrencyId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string DefaultBaseCurrencyName { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool IsLicenseeUser { get; set; }
+
         [SpParam(Ignored = true)]
         public string Username { get; set; }
 
@@ -41,12 +50,12 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 
         [SpParam(Ignored = true)]
         public int ReturnGroupId { get; set; }
-        
+
         public override string GetSettingKey()
         {
             return "N88_User_Update";
         }
-       
+
         public override bool IsValid()
         {
             return true;

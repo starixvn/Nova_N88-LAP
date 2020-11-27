@@ -21,6 +21,9 @@ namespace Fanex.Athena.Model.UserManagement.Model
         public short GroupId { get; set; }
         public string GroupName { get; set; }
         public int CreatorId { get; set; }
+        public short DefaultBaseCurrencyId { get; set; }
+        public string DefaultBaseCurrencyCode { get; set; }
+        public bool IsLicenseeUser { get; set; }
         public string CreatorUsername { get; set; }
         public int ModifierId { get; set; }
         public string ModifierUsername { get; set; }

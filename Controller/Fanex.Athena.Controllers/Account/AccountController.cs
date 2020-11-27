@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Web.Hosting;
     using System.Web.Mvc;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
@@ -13,12 +15,14 @@
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
     using MvcPaging;
+    using Newtonsoft.Json;
 
     [FunctionAuthorization(PermissionKeys.ManageUser)]
     public class AccountController : CultureBaseController
     {
         private readonly IUserService userService;
         private readonly IFunctionService functionService;
+        private const int _MYRCurency = 2;
 
         public AccountController(IUserService userService, IFunctionService functionService)
         {
@@ -90,7 +94,9 @@
         public ActionResult NewUser()
         {
             ViewBag.GroupSelectList = GetGroups();
+            ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
             var criteria = new InsertCustCriteria();
+            criteria.DefaultBaseCurrencyId = _MYRCurency;
             ViewBag.Success = false;
             return View("~/Views/Account/NewUser.cshtml", criteria);
         }
@@ -100,6 +106,7 @@
         public ActionResult NewUser(InsertCustCriteria criteria)
         {
             ViewBag.GroupSelectList = GetGroups();
+            ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
 
             if (ModelState.IsValid)
             {
@@ -150,12 +157,13 @@
             var criteria = new UpdateCustCriteria();
 
             var user = userService.GetById(id);
-            criteria.UserId = user.Id;
-            criteria.FirstName = user.FirstName;
-            criteria.LastName = user.LastName;
-            criteria.Email = user.Email;
-            criteria.Username = user.Username;
-            criteria.GroupId = user.Group != null ? user.Group.Id : 0;
+            UpdateUserInfoToCriteria(criteria, user);
+
+            if (user.IsLicenseeUser)
+            {
+                criteria.DefaultBaseCurrencyId = user.DefaultBaseCurrencyId != 0 ? user.DefaultBaseCurrencyId : _MYRCurency;
+                ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();                
+            }
 
             ViewBag.GroupSelectList = GetGroups();
 
@@ -168,13 +176,14 @@
         {
             ViewBag.GroupSelectList = GetGroups();
 
+            if (criteria.IsLicenseeUser)
+            {
+                ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
+            }
+
             if (ModelState.IsValid)
             {
-                criteria.FirstName = criteria.FirstName ?? string.Empty;
-                criteria.LastName = criteria.LastName ?? string.Empty;
-                criteria.Email = criteria.Email ?? string.Empty;
-
-                UpdateCriteria(criteria);
+                UpdateUserInfoCriteria(criteria);
                 CommandResult result = userService.Update(criteria);
 
                 if (result != null && result.IsSuccessful)
@@ -184,6 +193,51 @@
             }
 
             return View("~/Views/Account/EditUser.cshtml", criteria);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult EditUserInfo()
+        {
+            var criteria = new UpdateCustCriteria();
+
+            var user = userService.GetById(SessionServiceInstance.UserSession.UserId);
+            UpdateUserInfoToCriteria(criteria, user);
+
+            if (user.IsLicenseeUser)
+            {
+                criteria.DefaultBaseCurrencyId = user.DefaultBaseCurrencyId != 0 ? user.DefaultBaseCurrencyId : _MYRCurency;
+                ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
+            }
+
+            return View("~/Views/Account/EditUserInfo.cshtml", criteria);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult EditUserInfo(UpdateCustCriteria criteria)
+        {
+            if (criteria.IsLicenseeUser)
+            {
+                ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
+            }
+
+            if (ModelState.IsValid)
+            {
+                UpdateUserInfoCriteria(criteria);
+                CommandResult result = userService.Update(criteria);
+
+                if (result != null && result.IsSuccessful)
+                {
+                    if (!string.IsNullOrEmpty(criteria.DefaultBaseCurrencyName))
+                    {
+                        SessionServiceInstance.UserSession.DefaultBaseCurrency = criteria.DefaultBaseCurrencyName;
+                    }
+                    ViewBag.Success = true;
+                }
+            }
+
+            return View("~/Views/Account/EditUserInfo.cshtml", criteria);
         }
 
         [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
@@ -268,6 +322,26 @@
             return View("~/Views/Account/ResetPassword.cshtml", criteria);
         }
 
+        private static void UpdateUserInfoToCriteria(UpdateCustCriteria criteria, User user)
+        {
+            criteria.UserId = user.Id;
+            criteria.FirstName = user.FirstName;
+            criteria.LastName = user.LastName;
+            criteria.Email = user.Email;
+            criteria.Username = user.Username;
+            criteria.IsLicenseeUser = user.IsLicenseeUser;
+            criteria.GroupId = user.Group != null ? user.Group.Id : 0;
+        }
+
+        private void UpdateUserInfoCriteria(UpdateCustCriteria criteria)
+        {
+            criteria.FirstName = criteria.FirstName ?? string.Empty;
+            criteria.LastName = criteria.LastName ?? string.Empty;
+            criteria.Email = criteria.Email ?? string.Empty;
+
+            UpdateCriteria(criteria);
+        }
+
         private static string GenerateToken()
         {
             return Guid.NewGuid().ToString("N");
@@ -282,6 +356,28 @@
             };
 
             return userService.GetSettingGroups(groupCriteria);
+        }
+
+        private static IEnumerable<SelectListItem> GetDefaultBaseCurencyList()
+        {
+            IEnumerable<SelectListItem> result = null;
+            var jsonContent = GetGetDefaultBaseCurencyContent();
+
+            if (!string.IsNullOrEmpty(jsonContent))
+            {
+                result = JsonConvert.DeserializeObject<IEnumerable<SelectListItem>>(jsonContent);
+            }
+
+            return result ?? new List<SelectListItem>();
+        }
+
+        private static string GetGetDefaultBaseCurencyContent()
+        {
+            const string FilePath = "~/App_Data/UserDefaultBaseCurencySetting.json";
+            using (var reader = new StreamReader(HostingEnvironment.MapPath(FilePath)))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
         private void UpdateCriteria(LogExecSpCriteria criteria)

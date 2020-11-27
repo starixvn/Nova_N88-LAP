@@ -57,7 +57,7 @@ export class GridCaption extends React.Component {
         return (<span key="searchResult">{`
         ${LangHelper.getSingleResource('WinLossAnalysis')},
          ${fromDate} - ${toDate},
-          ${LangHelper.getSingleResource('DisplayCurrency')}: ${baseCurrency}`}
+          ${LangHelper.getSingleResource('Viewin').replace('{0}', baseCurrency)}`}
         </span>);
     }
 

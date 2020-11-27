@@ -123,14 +123,8 @@
             {
                 var authorizationService = scope.Resolve<IAuthorizationService>();
 
-                if (_policy == Policy.Host)
-                {
-                    authorized = authorizationService.HasHostPermissions(userSession.UserId, _permissionKeys);
-                }
-                else
-                {
-                    authorized = authorizationService.HasPermissions(userSession.UserId, _permissionKeys);
-                }
+                authorized = _policy == Policy.Host ? authorizationService.HasHostPermissions(userSession.UserId, _permissionKeys)
+                                                    : authorizationService.HasPermissions(userSession.UserId, _permissionKeys);
             }
 
             return authorized;

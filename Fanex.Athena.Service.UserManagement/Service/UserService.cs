@@ -11,6 +11,7 @@
 
     public class UserService : IUserService
     {
+        private const string ERROR_MSG = "Error";
         private readonly IUserRepository userRepository;
 
         public UserService(IUserRepository userRepository)
@@ -35,7 +36,7 @@
                 return this.userRepository.ExecuteNonQueryAsync(criteria);
             }
 
-            return new CommandResult { Error = 1, Message = "Error" };
+            return new CommandResult { Error = 1, Message = ERROR_MSG };
         }
 
         public CommandResult UpdateSite(UpdateSiteToUserCriteria criteria)
@@ -45,7 +46,7 @@
                 return this.userRepository.ExecuteNonQueryAsync(criteria);
             }
 
-            return new CommandResult { Error = 1, Message = "Error" };
+            return new CommandResult { Error = 1, Message = ERROR_MSG };
         }
 
         public CommandResult Update(UpdateCustCriteria criteria)
@@ -55,7 +56,7 @@
                 return this.userRepository.ExecuteNonQueryAsync(criteria);
             }
 
-            return new CommandResult { Error = 1, Message = "Error" };
+            return new CommandResult { Error = 1, Message = ERROR_MSG };
         }
 
         public CommandResult AssignFunction(AssignFunctionUserCriteria criteria)
@@ -65,7 +66,7 @@
                 return this.userRepository.ExecuteNonQueryAsync(criteria);
             }
 
-            return new CommandResult { Error = 1, Message = "Error" };
+            return new CommandResult { Error = 1, Message = ERROR_MSG };
         }
 
         public CommandResult UpdatePassword(ResetPasswordCustCriteria criteria)
@@ -75,7 +76,7 @@
                 return this.userRepository.ExecuteNonQueryAsync(criteria);
             }
 
-            return new CommandResult { Error = 1, Message = "Error" };
+            return new CommandResult { Error = 1, Message = ERROR_MSG };
         }
 
         public CommandResult AssignSite(AssignSiteUserCriteria criteria)
@@ -85,7 +86,7 @@
                 return this.userRepository.ExecuteNonQueryAsync(criteria);
             }
 
-            return new CommandResult { Error = 1, Message = "Error" };
+            return new CommandResult { Error = 1, Message = ERROR_MSG };
         }
 
         public bool CheckUsernameExist(string username, bool isLicenseeSite, int siteId)

@@ -188,7 +188,7 @@ export class FormFilter extends PureComponent {
                     </div>
                     <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                         <div className="form-group">
-                            <label className="label-text">{LangHelper.getSingleResource("DisplayCurrency")}</label>
+                            <label className="label-text">{LangHelper.getSingleResource("BaseCurrency")}</label>
                             {this._renderBaseCurrencySelectList()}
                         </div>
                     </div>

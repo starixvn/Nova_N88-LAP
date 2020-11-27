@@ -44,6 +44,9 @@ var NAP = (function ($) {
         redirect: function (url, msec) {
             setTimeout('NAP.navigateTo("' + url + '")', msec);
         },
+        reload: function (url, msec) {
+            top.location.reload();
+        },
         navigateTo: function (url) {
             window.location.replace(NAP.resolveClientUrl(url));
         },
@@ -53,21 +56,34 @@ var NAP = (function ($) {
         htmlDecode: function (value) {
             return $('<div/>').html(value).text();
         },
-        showSuccessMsg: function (msg, url, msec) {
+        showSuccessMsg: function (msg, url, msec, reload) {
+            if (typeof (reload) === 'undefined') reload = false;
+
             var msgWrp = $('.validation-summary-valid');
 
             msgWrp.addClass('success').find('li:first').html(NAP.htmlDecode(msg)).show();
 
-            NAP.showSuccessMsgCountDown(url, msec / 1000);
+            NAP.showSuccessMsgCountDown(url, msec / 1000, reload);
         },
-        showSuccessMsgCountDown: function (url, msec) {
+        showSuccessMsgCountDown: function (url, msec, reload) {
+            if (typeof (reload) === 'undefined') reload = false;
             if (msec-- > 0) {
-                setTimeout('NAP.showSuccessMsgCountDown("' + url + '", ' + msec + ')', 1000);
+                if (reload === true) {
+                    setTimeout('NAP.showSuccessMsgCountDown("' + url + '", ' + msec + ', ' + reload + ')', 1000);
+                }
+                else {
+                    setTimeout('NAP.showSuccessMsgCountDown("' + url + '", ' + msec + ')', 1000);
+                }     
                 $('.validation-summary-valid .msec').html(msec);
             } else {
-                window.location.replace(NAP.resolveClientUrl(url));
+                if (reload === true) {
+                    top.location.reload();
+                }
+                else {
+                    window.location.replace(NAP.resolveClientUrl(url));
+                }     
             }
-        }
+        },
     };
 }(jQuery));
 

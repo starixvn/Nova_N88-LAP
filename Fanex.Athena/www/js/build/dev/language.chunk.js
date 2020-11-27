@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 10/26/2020 2:05:48 PM
+﻿// Generated at: 11/16/2020 2:51:17 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -196,7 +196,7 @@ BetTradeNotOfferCurrency:"BetTrade is not offered for this currency.",
 BetType:"Bet type",
 BONTeamToScore:"Both/One/Neither Team To Score",
 Bonus:"Bonus",
-BonusClaimed:"Bonus Claimed",
+BonusAmountClaimed:"Bonus Amount Claimed",
 BoughtAmount:"Bought Amount",
 BoughtDetails:"Bought Details",
 BoughtStake:"Bought Stake",
@@ -920,6 +920,7 @@ User:"User",
 UserActivities:"User Activity",
 UserGuide:"User Guide",
 UserHasNoPermissionError:"Account has no permission on this site",
+UserInfo:"User Info",
 UserInformation:"User Information",
 Username:"Username",
 UsernameNotExisted:"Username is not existed",

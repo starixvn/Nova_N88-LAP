@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Extension.Utility;
-    using Fanex.Athena.DataAccess.Core;
     using Fanex.Athena.DataAccess.Core.Common.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Common.Extensions;
@@ -14,12 +12,9 @@
     {
         private readonly ICacheRefAdapter _cacheRefAdapter;
 
-        private readonly IAppSettings _appSettings;
-
-        public MatchDataAccess(ICacheRefAdapter cacheRefAdapter, IAppSettings appSettings)
+        public MatchDataAccess(ICacheRefAdapter cacheRefAdapter)
         {
             _cacheRefAdapter = cacheRefAdapter;
-            _appSettings = appSettings;
         }
 
         public async Task<IList<Match>> GetMatchesByLeague(int leagueId, DateTime fromDate, DateTime toDate, int sportId = 0)

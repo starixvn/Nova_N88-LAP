@@ -80,7 +80,7 @@
             });
         }
 
-        private IEnumerable<T> FetchData<T>(ICriteria criteria)
+        private static IEnumerable<T> FetchData<T>(ICriteria criteria)
         {
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {

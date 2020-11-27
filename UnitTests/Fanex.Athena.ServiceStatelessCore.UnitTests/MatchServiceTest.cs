@@ -6,8 +6,6 @@
 
     using DataAccess.Core.Common.Interfaces;
 
-    using Extension.Utility.Interfaces;
-
     using Fanex.Athena.Service.StatelessCore;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
 
@@ -22,23 +20,19 @@
     [TestFixture]
     public class MatchServiceTest
     {
-        private const string Language = "en-Us";
-
         private static readonly IList<Match> ExpectedResultDataList = new List<Match>
             {
                 new Match { MatchId = 1 }
             };
 
-        private ICustomMemoryCacheService _cache;
         private IMatchDataAccess _matchDataAccess;
         private IMatchService _matchService;
 
         [SetUp]
         public void SetUp()
         {
-            _cache = Substitute.For<ICustomMemoryCacheService>();
             _matchDataAccess = Substitute.For<IMatchDataAccess>();
-            _matchService = new MatchService(_matchDataAccess, _cache);
+            _matchService = new MatchService(_matchDataAccess);
         }
 
         [TearDown]

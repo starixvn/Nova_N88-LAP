@@ -13,6 +13,24 @@
     public partial class AuthorizationControllerTest
     {
         [Test]
+        public void RecheckIn_SiteServiceIsActivedFalse_ReturnSessionOverrideResult()
+        {
+            using (var controller = CreateController())
+            {
+                // Arrange
+                controller.N88Settings.EnableReCheckIn = true;
+                _siteService.IsActivated(Arg.Any<int>()).Returns(false);
+
+                // Action
+                var result = controller.RecheckIn() as JsonResult;
+                var data = result.Data as dynamic;
+
+                // Assert
+                Assert.That(data.ErrCode, Is.EqualTo((int)ErrorType.AccessDenied));
+            }
+        }
+
+        [Test]
         public void RecheckIn_IsUMTime_ReturnUMResult()
         {
             using (var controller = CreateController())
@@ -75,6 +93,52 @@
 
                 // Assert
                 Assert.That(data.ErrCode, Is.EqualTo((int)ErrorType.SessionOverride));
+            }
+        }
+
+        [Test]
+        public void RecheckIn_OnIdSameSessionOnId_ReCheckInFalse_ReturnSessionOverrideResult()
+        {
+            using (var controller = CreateController())
+            {
+                // Arrange
+                controller.N88Settings.EnableReCheckIn = true;
+                _maintenanceService.IsUnderMaintenance().Returns(false);
+                _siteService.IsActivated(Arg.Any<int>()).Returns(true);
+                _sercurityService.ReCheckIn(Arg.Any<int>(), Arg.Any<int>()).Returns(1);
+
+                controller.ControllerContext.HttpContext.Request.IsAuthenticated.Returns(true);
+                controller.ControllerContext.HttpContext.Request["onid"].Returns("999");
+
+                // Action
+                var result = controller.RecheckIn() as JsonResult;
+                var data = result.Data as dynamic;
+
+                // Assert
+                Assert.That(data.ErrCode, Is.EqualTo((int)ErrorType.KickedOut));
+            }
+        }
+
+        [Test]
+        public void RecheckIn_OnIdSameSessionOnId_ReCheckInTrue_ReturnSuccessResult()
+        {
+            using (var controller = CreateController())
+            {
+                // Arrange
+                controller.N88Settings.EnableReCheckIn = true;
+                _maintenanceService.IsUnderMaintenance().Returns(false);
+                _siteService.IsActivated(Arg.Any<int>()).Returns(true);
+                _sercurityService.ReCheckIn(Arg.Any<int>(), Arg.Any<int>()).Returns(0);
+
+                controller.ControllerContext.HttpContext.Request.IsAuthenticated.Returns(true);
+                controller.ControllerContext.HttpContext.Request["onid"].Returns("999");
+
+                // Action
+                var result = controller.RecheckIn() as JsonResult;
+                var data = result.Data as dynamic;
+
+                // Assert
+                Assert.That(data.ErrCode, Is.EqualTo((int)ErrorType.Success));
             }
         }
 

@@ -2388,6 +2388,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();
             }
+
+            if ($('#IsLicenseeUser').val() === '0') {
+                $('#edit-userinfo').remove();
+            }
         }
 
         // init clock
@@ -2414,6 +2418,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 document.title = $currentMenuItem.text();
 
                 $('#page-title').text($currentMenuItem.text());
+            });
+
+            $('#edit-userinfo').click(function () {
+                $("#page-title").text($("#edit-userinfo a").text());
             });
 
             $(window).on('blur', function () {

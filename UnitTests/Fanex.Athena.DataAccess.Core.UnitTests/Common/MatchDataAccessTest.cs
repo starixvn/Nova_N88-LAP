@@ -5,8 +5,6 @@
 
     using Core.Common;
 
-    using Extension.Utility;
-
     using Model.Core.DTO.Common;
 
     using NSubstitute;
@@ -19,12 +17,10 @@
 
     public class MatchDataAccessTest : BaseDataAccessHelperTest<MatchDataAccess>
     {
-        private IAppSettings _appSettings;
 
         protected override void SetUpDataAccess()
         {
-            _appSettings = Substitute.For<IAppSettings>();
-            DataAccess = Substitute.ForPartsOf<MatchDataAccess>(Substitute.For<ICacheRefAdapter>(), _appSettings);
+            DataAccess = Substitute.ForPartsOf<MatchDataAccess>(Substitute.For<ICacheRefAdapter>());
         }
 
         [Test]

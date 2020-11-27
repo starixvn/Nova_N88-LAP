@@ -308,6 +308,54 @@
             }
         }
 
+        [Test]
+        public void ChangePassword_WhenPost_UpdatePasswordSuccess_CallServiceCorrectly()
+        {
+            using (var controller = CreateController())
+            {
+                // Arrange
+                const string OldPassword = "oldpassword";
+                const string NewPassword = "1234aa";
+                var user = new User() { Username = "abc", Password = "8058E861808058FDD87DD98889A08D" };
+
+                _userService.Get(Arg.Any<int>()).Returns(user);
+                _sercurityService.UpdatePassword(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>()).Returns(true);
+
+                // Action
+                var result = controller.ChangePassword(OldPassword, NewPassword) as JsonResult;
+                var data = result.Data as dynamic;
+
+                // Assert
+                Assert.That(data.errCode, Is.EqualTo((int)ErrorType.Success));
+            }
+        }
+
+        [Test]
+        public void ChangePassword_WhenPost_UpdatePasswordFailed_CallServiceCorrectly()
+        {
+            using (var controller = CreateController())
+            {
+                // Arrange
+                const string OldPassword = "oldpassword";
+                const string NewPassword = "1234aa";
+                var user = new User() { Username = "abc", Password = "8058E861808058FDD87DD98889A08D" };
+
+                _userService.Get(Arg.Any<int>()).Returns(user);
+                _sercurityService.UpdatePassword(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>()).Returns(false);
+
+                // Action
+                var result = controller.ChangePassword(OldPassword, NewPassword) as JsonResult;
+                var data = result.Data as dynamic;
+
+                // Assert
+                Assert.Multiple(() =>
+                {
+                    Assert.That(data.errCode, Is.EqualTo(ErrorType.Unknown));
+                    Assert.That(data.errMsg, Is.EqualTo(ViewResources.PasswordNoteMsg));
+                });
+            }
+        }
+
         private AuthorizationController CreateController()
         {
             return new AuthorizationController(

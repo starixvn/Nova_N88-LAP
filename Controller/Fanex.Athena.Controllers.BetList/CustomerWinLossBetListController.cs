@@ -6,7 +6,7 @@
     using Model.BetList.MetaModel;
     using Web.ActionFilter;
 
-    [FunctionAuthorization(PermissionKeys.ReportCustomerWinLoss)]
+    [FunctionAuthorization(PermissionKeys.ReportCashOutWinLoss)]
     public class CustomerWinLossBetListController : BetListBaseController
     {
         private static readonly int[] HiddenColumns = new[] { ExternalIdColumn, SystemIdColumn };

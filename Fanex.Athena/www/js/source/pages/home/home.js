@@ -19,6 +19,10 @@ define([
             if ($('#HasRecheckIn').val() === '1') {
                 Recheckin.init();
             }
+
+            if ($('#IsLicenseeUser').val() === '0') {
+                $('#edit-userinfo').remove();
+            }
         }
 
         // init clock
@@ -45,6 +49,10 @@ define([
                 document.title = $currentMenuItem.text();
 
                 $('#page-title').text($currentMenuItem.text());
+            });
+
+            $('#edit-userinfo').click(function () {
+                $("#page-title").text($("#edit-userinfo a").text());
             });
 
             $(window).on('blur', function () {

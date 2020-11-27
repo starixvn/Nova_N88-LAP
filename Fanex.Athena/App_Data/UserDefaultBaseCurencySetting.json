@@ -1,0 +1,27 @@
+﻿[
+  {
+    "Text": "EUR",
+    "Value": "6",
+    "Selected": "false"
+  },
+  {
+    "Text": "USD",
+    "Value": "3",
+    "Selected": "false"
+  },
+  {
+    "Text": "GBP",
+    "Value": "12",
+    "Selected": "false"
+  },
+  {
+    "Text": "MYR",
+    "Value": "2",
+    "Selected": "true"
+  },
+  {
+    "Text": "CNY",
+    "Value": "13",
+    "Selected": "false"
+  }
+]

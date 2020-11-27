@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Athena.Model.UserManagement.Model
 {
+    [AttributeUsage(AttributeTargets.All)]
     public class StartNameValidationAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)

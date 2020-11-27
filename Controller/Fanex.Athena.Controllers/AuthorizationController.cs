@@ -101,47 +101,55 @@
             }
             else
             {
-                var user = _userService.Get(model.UserName.Trim(), N88Settings.SiteId);
-                if (user != null)
+                if (AuthenticationUser(model))
                 {
-                    var crypPassword = GetHash(user.Password + model.LogInToken);
-
-                    if (model.PassWord == crypPassword)
-                    {
-                        if (!IsExistNapSite(user) || !IsExistNapGroup(user))
-                        {
-                            SetErrorForView(UserNotExistError, ViewResources.UserNotExist);
-                        }
-                        else
-                        {
-                            var onUserId = LoginCheckIn(user);
-
-                            if (HasAnyPermission(user.Id))
-                            {
-                                CreateSession(user, onUserId);
-
-                                return RedirectToAction("Index", "Home");
-                            }
-                            else
-                            {
-                                SetErrorForView(UserHasNoPermissionError, ViewResources.UserHasNoPermissionError);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        SetErrorForView(InvalidPasswordError, ViewResources.WrongUserNamePassword);
-                    }
-                }
-                else
-                {
-                    SetErrorForView(InvalidUserNameError, ViewResources.UsernameNotExisted);
+                    return RedirectToAction("Index", "Home");
                 }
             }
 
             AssignLoginInfoToViewBag();
 
             return View("~/Views/Desktop/Authorization/SignIn.cshtml");
+        }
+
+        private bool AuthenticationUser(LoginMetaModel model)
+        {
+            var user = _userService.Get(model.UserName.Trim(), N88Settings.SiteId);
+            if (user == null)
+            {
+                SetErrorForView(InvalidUserNameError, ViewResources.UsernameNotExisted);
+                return false;
+            }
+            var crypPassword = GetHash(user.Password + model.LogInToken);
+
+            if (model.PassWord != crypPassword)
+            {
+                SetErrorForView(InvalidPasswordError, ViewResources.WrongUserNamePassword);
+                return false;
+            }
+
+            if (!IsExistNapSite(user) || !IsExistNapGroup(user))
+            {
+                SetErrorForView(UserNotExistError, ViewResources.UserNotExist);
+                return false;
+            }
+            else
+            {
+                var onUserId = LoginCheckIn(user);
+
+                if (HasAnyPermission(user.Id))
+                {
+                    CreateSession(user, onUserId);
+
+                    return true;
+                }
+                else
+                {
+                    SetErrorForView(UserHasNoPermissionError, ViewResources.UserHasNoPermissionError);
+                }
+            }
+
+            return false;
         }
 
         [Route("userlogin/sso")]
@@ -322,6 +330,10 @@
                         errorMsg = ViewResources.SessionLoggedMsg;
                         _formAuthenticationService.SignOut();
                     }
+                    else
+                    {
+                        return Json(RecheckInResult(errorCode, errorMsg), JsonRequestBehavior.AllowGet);
+                    }
                 }
             }
 
@@ -463,7 +475,7 @@
 
         private void CreateSession(User user, int onUserId)
         {
-            SessionServiceInstance.CreateNewSession(user.Id, onUserId, user.Username);
+            SessionServiceInstance.CreateNewSession(user.Id, onUserId, user.Username, user.DefaultBaseCurrencyCode, user.IsLicenseeUser);
 
             _formAuthenticationService.SetAuthCookie(user.Username, false);
         }

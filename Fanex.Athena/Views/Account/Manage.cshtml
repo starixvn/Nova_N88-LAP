@@ -71,6 +71,8 @@
                 <th>@ViewResources.Username</th>
                 <th>@ViewResources.FirstName</th>
                 <th>@ViewResources.Group</th>
+                <th style="width: 150px">
+                @ViewResources.DefaultBaseCurency</th>
                 <th>
                     @ViewResources.Level
                 </th>
@@ -107,6 +109,9 @@
                 </td>
                 <td>
                     @(item.User.Group != null ? item.User.Group.Name : string.Empty)
+                </td>
+                <td class="text-center">
+                    @item.User.DefaultBaseCurrencyCode
                 </td>
                 <td class="text-center">
                     @if (!ReferenceEquals(item.Site, null))

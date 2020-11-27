@@ -12,7 +12,7 @@
     using Service.Core.Common.Interfaces;
     using Service.StatelessCore.Interfaces;
 
-    [ApiFunctionAuthorization(PermissionKeys.ReportCustomerWinLoss)]
+    [ApiFunctionAuthorization(PermissionKeys.ReportCashOutWinLoss)]
     public class CustomerWinLossBetListController : ApiBetListBaseController
     {
         public CustomerWinLossBetListController(

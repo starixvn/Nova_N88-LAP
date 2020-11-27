@@ -1,16 +1,15 @@
 ﻿using Fanex.Athena.Resources;
 using Fanex.Data;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.Model.UserManagement.Criteria
 {
     public class AssignFunctionUserCriteria : LogExecSpCriteria
     {
+        private const byte PERMISSION_READ = 1;
+        private const byte PERMISSION_HOST = 2;
         private const string AssignPermissionTpl = "<FunctionPolicy SiteId='{0}' FunctionId='{1}' Policy='{2}'></FunctionPolicy>";
 
         public int UserId { get; set; }
@@ -25,7 +24,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
                 {
                     foreach (var funcId in this.FuncRead)
                     {
-                        value.AppendFormat(AssignPermissionTpl, this.SiteId, funcId, 1); // 1 -> read
+                        value.AppendFormat(AssignPermissionTpl, this.SiteId, funcId, PERMISSION_READ); // 1 -> read
                     }
                 }
 
@@ -33,7 +32,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
                 {
                     foreach (var funcId in this.FuncHost)
                     {
-                        value.AppendFormat(AssignPermissionTpl, this.SiteId, funcId, 2); // 2 -> host
+                        value.AppendFormat(AssignPermissionTpl, this.SiteId, funcId, PERMISSION_HOST); // 2 -> host
                     }
                 }
 

@@ -1,6 +1,7 @@
 ﻿using Fanex.Athena.Resources;
 using Fanex.Data;
 using System.ComponentModel.DataAnnotations;
+using Fanex.Athena.Model.UserManagement.Enum;
 
 namespace Fanex.Athena.Model.UserManagement.Criteria
 {
@@ -9,13 +10,13 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         public int UserId { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 0,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN_DEFAULT,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string FirstName { get; set; }
 
         [Display(Name = "LastName", ResourceType = typeof(ViewResources))]
-        [StringLength(50, MinimumLength = 0,
+        [StringLength((int)StringLength.MAX50, MinimumLength = (int)StringLength.MIN_DEFAULT,
             ErrorMessageResourceName = "InputLengthValidationMsg",
             ErrorMessageResourceType = typeof(ViewResources))]
         public string LastName { get; set; }
@@ -29,6 +30,15 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         [Display(Name = "Group", ResourceType = typeof(ViewResources))]
         public int GroupId { get; set; }
 
+        [Display(Name = "DefaultBaseCurency", ResourceType = typeof(ViewResources))]
+        public int DefaultBaseCurrencyId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string DefaultBaseCurrencyName { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool IsLicenseeUser { get; set; }
+
         [SpParam(Ignored = true)]
         public string Username { get; set; }
 
@@ -40,12 +50,12 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 
         [SpParam(Ignored = true)]
         public int ReturnGroupId { get; set; }
-        
+
         public override string GetSettingKey()
         {
             return "N88_User_Update";
         }
-       
+
         public override bool IsValid()
         {
             return true;

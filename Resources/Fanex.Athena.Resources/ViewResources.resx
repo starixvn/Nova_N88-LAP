@@ -3037,4 +3037,11 @@
   <data name="ExtraPayout" xml:space="preserve">
     <value>Extra Payout</value>
   </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>User Info</value>
+  </data>
+  <data name="DefaultBaseCurency" xml:space="preserve">
+    <value>Default Base Curency</value>
+    <comment>145346</comment>
+  </data>
 </root>

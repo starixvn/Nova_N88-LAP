@@ -493,7 +493,7 @@ const Widget = props => {
     isLoading: isLoading
   }), children || _renderNoData()));
 };
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
 
 /***/ }),
 
@@ -576,7 +576,7 @@ const BonusClaimedDetail = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetail));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetail));
 
 /***/ }),
 
@@ -691,7 +691,7 @@ const BonusClaimedDetailWidget = ({
   };
 
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
-    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
+    return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize,
       TotalItem: totalRows
@@ -733,7 +733,7 @@ const BonusClaimedDetailWidget = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetailWidget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetailWidget));
 
 /***/ }),
 
@@ -872,7 +872,7 @@ const BonusClaimedSummaryWidget = ({
   }, _renderTotalData(), _renderCampaignData()));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedSummaryWidget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedSummaryWidget));
 
 /***/ }),
 
@@ -955,7 +955,7 @@ const NewlyRegisterUsersDetail = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetail));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetail));
 
 /***/ }),
 
@@ -1070,7 +1070,7 @@ const NewlyRegisterUsersDetailWidget = ({
   };
 
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
-    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
+    return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize,
       TotalItem: totalRows
@@ -1112,7 +1112,7 @@ const NewlyRegisterUsersDetailWidget = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetailWidget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetailWidget));
 
 /***/ }),
 
@@ -1256,7 +1256,7 @@ const NewlyRegisterUsersSummaryWidget = ({
   }, _renderTotalData(), _renderCampaignData(), _renderSignupData()));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersSummaryWidget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersSummaryWidget));
 
 /***/ }),
 
@@ -1339,7 +1339,7 @@ const WithdrawalAmountDetail = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetail));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetail));
 ;
 
 /***/ }),
@@ -1455,7 +1455,7 @@ const WithdrawalAmountDetailWidget = ({
   };
 
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
-    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
+    return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize,
       TotalItem: totalRows
@@ -1497,7 +1497,7 @@ const WithdrawalAmountDetailWidget = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetailWidget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetailWidget));
 
 /***/ }),
 
@@ -1621,7 +1621,7 @@ const WithdrawalAmountSummaryWidget = ({
   }, _renderTotalData()));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountSummaryWidget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountSummaryWidget));
 
 /***/ }),
 
@@ -2328,7 +2328,7 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", filterData => {
     reportDate
   });
 
-  const params = _objectSpread({}, commonParams, {}, {
+  const params = _objectSpread(_objectSpread({}, commonParams), {
     compareFromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
     compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate),
     baseCurrency: selectedBaseCurrency
@@ -2345,7 +2345,7 @@ _defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", fil
 
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
 
-  const params = _objectSpread({}, commonParams, {
+  const params = _objectSpread(_objectSpread({}, commonParams), {}, {
     baseCurrency
   });
 
@@ -2366,10 +2366,10 @@ _defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", filt
     reportDate
   });
 
-  const params = _objectSpread({}, commonParams, {}, sortInfo, {}, {
+  const params = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, commonParams), sortInfo), {
     pageIndex: pagingOption.PageIndex,
     pageSize: pagingOption.PageSize
-  }, {}, rest);
+  }), rest);
 
   return params;
 });
@@ -2384,7 +2384,7 @@ _defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", filt
 
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
 
-  const params = _objectSpread({}, commonParams, {}, sortInfo, {
+  const params = _objectSpread(_objectSpread(_objectSpread({}, commonParams), sortInfo), {}, {
     baseCurrency,
     allowedCompare
   });
@@ -2403,7 +2403,7 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", filterDat
     reportDate
   });
 
-  const params = _objectSpread({}, commonParams, {
+  const params = _objectSpread(_objectSpread({}, commonParams), {}, {
     baseCurrency: selectedBaseCurrency
   });
 
@@ -2466,7 +2466,7 @@ _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
     reportDate
   });
 
-  const params = _objectSpread({}, commonParams, {}, {
+  const params = _objectSpread(_objectSpread({}, commonParams), {
     viewMode
   });
 
@@ -2485,7 +2485,7 @@ _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
     reportDate
   });
 
-  const params = _objectSpread({}, commonParams, {}, {
+  const params = _objectSpread(_objectSpread({}, commonParams), {
     productIds: products,
     baseCurrency: selectedBaseCurrency
   });
@@ -2495,7 +2495,7 @@ _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
 
 _defineProperty(DataService, "filterDataWithSelectedProducts", (avgRevenueData, products) => {
   const selectedProducts = products.split(',');
-  const dicSelectedProducts = selectedProducts.reduce((prevValue, currentValue) => _objectSpread({}, prevValue, {
+  const dicSelectedProducts = selectedProducts.reduce((prevValue, currentValue) => _objectSpread(_objectSpread({}, prevValue), {}, {
     [currentValue]: true
   }), {});
   const newData = avgRevenueData.filter(_ => dicSelectedProducts[_.productId]);
@@ -2646,7 +2646,7 @@ _defineProperty(QueryService, "fetchData", async apiCall => {
     const response = await apiCall();
 
     if (response.status === 200) {
-      return _objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["successResponse"], {}, {
+      return _objectSpread(_objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["successResponse"]), {
         data: response.data
       });
     }

@@ -129,6 +129,55 @@ input[type="checkbox"].checkbox {
 .container-fluid {
   padding: 15px; }
 
+.form-horizontal-noboder {
+  width: 500px;
+  padding: 10px 30px; }
+  .form-horizontal-noboder .label-text {
+    font-size: 12px; }
+    .form-horizontal-noboder .label-text.required:after {
+      content: "*";
+      margin-left: 4px;
+      color: #ff0000; }
+  .form-horizontal-noboder .input-text {
+    font-size: 12px;
+    margin: 0px;
+    height: 22px;
+    line-height: 22px; }
+    .form-horizontal-noboder .input-text.input-validation-error {
+      border-bottom-color: #ff4545; }
+    .form-horizontal-noboder .input-text.disabled {
+      background-color: #dfdfdf; }
+  .form-horizontal-noboder select:focus {
+    outline: none; }
+  .form-horizontal-noboder .checkbox-group {
+    margin-top: 5px; }
+    .form-horizontal-noboder .checkbox-group label {
+      font-size: 12px;
+      color: #333; }
+  .form-horizontal-noboder .validation-summary-valid.success {
+    padding: 0 .8rem;
+    background-color: #aaffaa;
+    border: 1px solid #00aa00; }
+    .form-horizontal-noboder .validation-summary-valid.success ul {
+      margin-left: 2rem;
+      margin-bottom: 0;
+      list-style-type: disc; }
+      .form-horizontal-noboder .validation-summary-valid.success ul li {
+        margin: 4px 0;
+        list-style-type: disc; }
+  .form-horizontal-noboder .validation-summary-errors {
+    padding: 0 .8rem;
+    background-color: #fccccc;
+    color: #ff0909;
+    border: 1px solid #f5a7a7; }
+    .form-horizontal-noboder .validation-summary-errors ul {
+      margin-left: 2rem;
+      margin-bottom: 0;
+      list-style-type: disc; }
+      .form-horizontal-noboder .validation-summary-errors ul li {
+        margin: 4px 0;
+        list-style-type: disc; }
+
 .form-horizontal {
   width: 500px;
   background: #fff;

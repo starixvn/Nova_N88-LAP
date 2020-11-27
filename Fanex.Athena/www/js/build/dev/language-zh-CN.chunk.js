@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 10/26/2020 2:05:48 PM
+﻿// Generated at: 11/16/2020 2:51:17 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -182,7 +182,7 @@ BettingTicketCenter_RefnoTabNote2:"{0}: 请提供用户名以便查询{1}之后�
 BetType:"投注类别",
 BONTeamToScore:"双方/一方/两者皆不得分",
 Bonus:"红利",
-BonusClaimed:"Bonus Claimed",
+BonusAmountClaimed:"Bonus Amount Claimed",
 BoughtAmount:"买入金额",
 BoughtDetails:"买入详情",
 BoughtStake:"买入本金",

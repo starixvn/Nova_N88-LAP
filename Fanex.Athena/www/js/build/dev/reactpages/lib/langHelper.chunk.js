@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 10/28/2020 5:20:01 PM
+// Generated at: 11/16/2020 2:51:17 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -920,6 +920,7 @@ window._language_en_US = {
   UserActivities: "User Activity",
   UserGuide: "User Guide",
   UserHasNoPermissionError: "Account has no permission on this site",
+  UserInfo: "User Info",
   UserInformation: "User Information",
   Username: "Username",
   UsernameNotExisted: "Username is not existed",

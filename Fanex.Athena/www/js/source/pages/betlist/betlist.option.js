@@ -61,7 +61,7 @@
     {
         name: 'Stake',
         index: 'Stake',
-        width: 85,
+        width: 120,
         align: 'right',
         sortable: true,
         resizable: false

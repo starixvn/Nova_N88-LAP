@@ -4498,7 +4498,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
     {
         name: 'Stake',
         index: 'Stake',
-        width: 85,
+        width: 120,
         align: 'right',
         sortable: true,
         resizable: false

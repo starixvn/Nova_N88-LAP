@@ -19,6 +19,7 @@ const GridRow = props => {
             {rowData[columnKeys.sabaSystemId]}
         </Cell>}
         {objectColumns[columnKeys.turnover].show && <DecimalCell value={rowData[columnKeys.turnover]} className={dataColumns[columnKeys.turnover].className + highLight} />}
+        {objectColumns[columnKeys.netTurnover].show && <DecimalCell value={rowData[columnKeys.netTurnover]} className={dataColumns[columnKeys.netTurnover].className + highLight} />}
         {objectColumns[columnKeys.ggr].show && <DecimalCell value={rowData[columnKeys.ggr]} className={dataColumns[columnKeys.ggr].className + highLight} />}
         {objectColumns[columnKeys.betCount].show && <DecimalCell value={rowData[columnKeys.betCount]} className={dataColumns[columnKeys.betCount].className + highLight} digits={0} />}
         {objectColumns[columnKeys.avgBetAmount].show && <DecimalCell value={rowData[columnKeys.avgBetAmount]} className={dataColumns[columnKeys.avgBetAmount].className + highLight} />}

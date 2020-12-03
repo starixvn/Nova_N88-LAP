@@ -54,7 +54,7 @@
         }
 
         [TestCase(1, "USD", null, "USD", true, "Test", "Test")]
-        [TestCase(1, "USD", "eur", "EUR", false, null, "LicenseeWinLossBetList")]
+        [TestCase(1, "USD", "eur", "EUR", false, null, "SabaProductsWinLossBetList")]
         public async Task Index_ExportExcel_PassCorrectParam(
             int currencyId,
             string currency,

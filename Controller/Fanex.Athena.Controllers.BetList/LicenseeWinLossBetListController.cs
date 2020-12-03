@@ -35,7 +35,7 @@
                 CustomerCommVisible = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
             };
             metaModel.HiddenColumns = HiddenColumns;
-            var fileName = string.IsNullOrWhiteSpace(metaModel.ExcelFileName) ? "LicenseeWinLossBetList" : metaModel.ExcelFileName;
+            var fileName = string.IsNullOrWhiteSpace(metaModel.ExcelFileName) ? "SabaProductsWinLossBetList" : metaModel.ExcelFileName;
 
             return await ProcessExportExcel(metaModel, fileName).ConfigureAwait(false);
         }

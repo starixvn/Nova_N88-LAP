@@ -14,6 +14,7 @@ export default class GridHelper {
                 {(objectColumn = objectColumns[columnKeys.sabaId]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.sabaId]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.sabaSystemId]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.sabaSystemId]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.turnover]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.turnover]}>{objectColumn.name}</HeaderCell>}
+                {(objectColumn = objectColumns[columnKeys.netTurnover]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.netTurnover]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.ggr]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.ggr]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.betCount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.betCount]}>{objectColumn.name}</HeaderCell>}
                 {(objectColumn = objectColumns[columnKeys.avgBetAmount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.avgBetAmount]}>{objectColumn.name}</HeaderCell>}
@@ -39,6 +40,7 @@ export default class GridHelper {
             {(objectColumn = objectColumns[columnKeys.sabaSystemId]) && !objectColumn.isTotalColumn && objectColumn.show  && <Cell className={dataColumns[columnKeys.sabaSystemId].className}  >
             </Cell>}
             {objectColumns[columnKeys.turnover].show && <DecimalCell value={totalData[columnKeys.turnover]} className={dataColumns[columnKeys.turnover].className} />}
+            {objectColumns[columnKeys.netTurnover].show && <DecimalCell value={totalData[columnKeys.netTurnover]} className={dataColumns[columnKeys.netTurnover].className} />}
             {objectColumns[columnKeys.ggr].show && <DecimalCell value={totalData[columnKeys.ggr]} className={dataColumns[columnKeys.ggr].className} />}
             {objectColumns[columnKeys.betCount].show && <DecimalCell value={totalData[columnKeys.betCount]} className={dataColumns[columnKeys.betCount].className} digits={0} />}
             {objectColumns[columnKeys.avgBetAmount].show && <DecimalCell value={totalData[columnKeys.avgBetAmount]} className={dataColumns[columnKeys.avgBetAmount].className} />}

@@ -11,6 +11,7 @@
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Service.UserManagement.Service.Interfaces;
+    using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Common;
     using Fanex.N88.Core.Configuration;
@@ -22,12 +23,14 @@
     {
         private readonly IUserService userService;
         private readonly IFunctionService functionService;
+        private readonly IFileManagerService fileManager;
         private const int _MYRCurency = 2;
 
-        public AccountController(IUserService userService, IFunctionService functionService)
+        public AccountController(IUserService userService, IFunctionService functionService, IFileManagerService fileManager)
         {
             this.userService = userService;
             this.functionService = functionService;
+            this.fileManager = fileManager;
         }
 
         public ActionResult Manage(
@@ -358,7 +361,7 @@
             return userService.GetSettingGroups(groupCriteria);
         }
 
-        private static IEnumerable<SelectListItem> GetDefaultBaseCurencyList()
+        private IEnumerable<SelectListItem> GetDefaultBaseCurencyList()
         {
             IEnumerable<SelectListItem> result = null;
             var jsonContent = GetGetDefaultBaseCurencyContent();
@@ -371,10 +374,10 @@
             return result ?? new List<SelectListItem>();
         }
 
-        private static string GetGetDefaultBaseCurencyContent()
+        private string GetGetDefaultBaseCurencyContent()
         {
             const string FilePath = "~/App_Data/UserDefaultBaseCurencySetting.json";
-            using (var reader = new StreamReader(HostingEnvironment.MapPath(FilePath)))
+            using (StreamReader reader = fileManager.StreamReader(HostingEnvironment.MapPath(FilePath)))
             {
                 return reader.ReadToEnd();
             }

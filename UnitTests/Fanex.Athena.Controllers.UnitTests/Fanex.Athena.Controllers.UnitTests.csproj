@@ -147,6 +147,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AccountControllerTest.cs" />
     <Compile Include="GroupControllerTest.cs" />
     <Compile Include="HeaderControllerTest.cs" />
     <Compile Include="HomeControllerTest.cs" />

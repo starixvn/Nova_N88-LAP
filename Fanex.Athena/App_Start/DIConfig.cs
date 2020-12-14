@@ -171,6 +171,7 @@
 
             builder.RegisterType<TpService>().As<ITpService>().SingleInstance();
             builder.RegisterType<BrandService>().As<IBrandService>().SingleInstance();
+            builder.RegisterType<FileManagerService>().As<IFileManagerService>().SingleInstance();
 
             builder.Register<BetListApiClient>(x => new BetListApiClient(
                  x.ResolveNamed<HttpClient>("BETLISTAPICLIENT")

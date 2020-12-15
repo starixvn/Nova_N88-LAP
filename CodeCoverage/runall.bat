@@ -21,4 +21,6 @@ Fanex.Athena.Extension.UnitTests ^
 Fanex.Athena.Service.Core.UnitTests ^
 Fanex.Athena.ServiceStatelessCore.UnitTests ^
 
+Fanex.Athena.VendorAdapter.UnitTests ^
+
 Fanex.Athena.Web.UnitTests

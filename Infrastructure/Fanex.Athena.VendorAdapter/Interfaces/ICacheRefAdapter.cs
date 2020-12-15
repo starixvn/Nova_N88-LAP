@@ -1,11 +1,7 @@
-﻿using Fanex.RemotingRef;
-
-namespace Fanex.Athena.VendorAdapter.Interfaces
+﻿namespace Fanex.Athena.VendorAdapter.Interfaces
 {
     public interface ICacheRefAdapter
     {
-        IRemotingRefService RemotingRefService { get; }
-
         string GetBettype(object bettypeId);
 
         string GetBettype(int betType, bool liveIndicator);

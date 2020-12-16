@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Data;
     using Extension.Utility;
+    using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Common.Extensions;
     using Interfaces;
@@ -16,10 +17,13 @@
 
         private readonly IAppSettings _appSettings;
 
-        public LeagueDataAccess(ICacheRefAdapter cacheRefAdapter, IAppSettings appSettings)
+        private readonly IBalanceUpDataAccess _balanceUpDataAccess;
+
+        public LeagueDataAccess(ICacheRefAdapter cacheRefAdapter, IAppSettings appSettings, IBalanceUpDataAccess balanceUpDataAccess)
         {
             _cacheRefAdapter = cacheRefAdapter;
             _appSettings = appSettings;
+            _balanceUpDataAccess = balanceUpDataAccess;
         }
 
         public async Task<IEnumerable<League>> GetLeaguesBySport(LeagueMetaModel metaModel)
@@ -30,6 +34,7 @@
                 db.SetParameterValue("Fromdate", metaModel.FromDate);
                 db.SetParameterValue("Todate", metaModel.ToDate);
                 db.SetParameterValue("AgentList", metaModel.AgentListXml);
+                db.SetParameterValue("MoveBetsDay", _balanceUpDataAccess.GetBalanceUp().MoveBetsDay);
                 db.SetParameterValue("IsIncludeTestLeague", !_appSettings.IsProduction);
                 return await ReadLeagues(db).ConfigureAwait(false);
             }

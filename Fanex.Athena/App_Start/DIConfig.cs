@@ -32,6 +32,8 @@
     using System.Web.Http;
     using System.Web.Mvc;
     using Fanex.Athena.Service.Core.Common.Interfaces;
+    using Fanex.Athena.Api.StatelessBase.Logger;
+    using System.Web.Http.ExceptionHandling;
 
     public static class DIConfig
     {
@@ -65,6 +67,8 @@
             builder.RegisterType<SiteService>().As<ISiteService>();
             builder.RegisterType<SecurityService>().As<ISecurityService>();
             builder.RegisterType<CurrentSession>().As<ICurrentSession>();
+
+            builder.RegisterType<ApiExceptionLogger>().As<IExceptionLogger>();
 
             var container = builder.Build();
 

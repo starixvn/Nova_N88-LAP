@@ -11,6 +11,7 @@
     using Fanex.Athena.Service.StatelessCore.Interfaces;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
+    [CLSCompliant(false)]
     public sealed class FunctionAuthorizationAttribute : ActionFilterAttribute
     {
         private readonly string[] _permissionKeys;

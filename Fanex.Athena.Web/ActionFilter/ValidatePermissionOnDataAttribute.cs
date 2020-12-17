@@ -10,6 +10,7 @@
     using Fanex.Athena.Service.StatelessCore.Interfaces;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
+    [CLSCompliant(false)]
     public sealed class ValidatePermissionOnDataAttribute : ActionFilterAttribute
     {
         private string _custIDFieldName { get; }

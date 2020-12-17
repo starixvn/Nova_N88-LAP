@@ -10,6 +10,7 @@ using Fanex.RemotingRef;
 
 namespace Fanex.Athena.VendorAdapter
 {
+    [CLSCompliant(false)]
     public class CacheRefAdapter : ICacheRefAdapter
     {
         private readonly IRemotingRefService _remotingRefService;

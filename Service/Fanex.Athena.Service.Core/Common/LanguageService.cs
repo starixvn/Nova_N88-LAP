@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Service.Core.Common
 {
+    using System;
     using System.Globalization;
     using System.Threading;
 
@@ -7,6 +8,7 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
 
+    [CLSCompliant(false)]
     public class LanguageService : ILanguageService
     {
         private readonly string _cookieName = "risk_forcast_system";

@@ -9,6 +9,7 @@ using Fanex.Athena.Service.Core.Utility.Interfaces;
 
 namespace Fanex.Athena.Service.Core.Utility
 {
+    [CLSCompliant(false)]
     public class CurrencyValidation : ICurrencyValidation
     {
         private readonly ISessionService _sessionService;

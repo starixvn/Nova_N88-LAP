@@ -6,9 +6,11 @@
 
 namespace Fanex.Athena.Model.Core.ViewModel
 {
+    using System;
     using System.Collections.Generic;
     using Fanex.N88.Core.Models;
 
+    [CLSCompliant(false)]
     public class MenuViewModel
     {
         public MenuViewModel()

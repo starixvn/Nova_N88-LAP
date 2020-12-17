@@ -1,8 +1,10 @@
 ﻿namespace Fanex.Athena.Service.StatelessCore.Interfaces
 {
     using Fanex.NVC.Authentication.Infrastructure;
+    using System;
     using System.Collections.Generic;
 
+    [CLSCompliant(false)]
     public interface IAuthorizationService
     {
         bool HasPermissions(int userId, params string[] permissionKeys);

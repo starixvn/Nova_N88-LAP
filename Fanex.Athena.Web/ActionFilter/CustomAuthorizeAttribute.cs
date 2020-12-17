@@ -8,6 +8,7 @@
     using System.Web.Routing;
 
     [AttributeUsage(AttributeTargets.All)]
+    [CLSCompliant(false)]
     public sealed class CustomAuthorizeAttribute : AuthorizeAttribute
     {
         private readonly ISessionStorage _sessionStorage;

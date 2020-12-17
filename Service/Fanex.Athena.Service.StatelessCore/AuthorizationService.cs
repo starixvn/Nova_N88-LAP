@@ -12,6 +12,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    [CLSCompliant(false)]
     public class AuthorizationService : IAuthorizationService
     {
         private const int OneHourInSecond = 3600;

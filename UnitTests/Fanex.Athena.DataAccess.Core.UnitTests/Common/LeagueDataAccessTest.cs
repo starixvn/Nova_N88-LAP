@@ -7,7 +7,8 @@
     using Core.Common;
 
     using Extension.Utility;
-
+    using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
+    using Fanex.Athena.Model.Core.DTO.Configuration;
     using Model.Core.MetaModel.Common;
 
     using NSubstitute;
@@ -20,15 +21,20 @@
 
     public class LeagueDataAccessTest : BaseDataAccessHelperTest<LeagueDataAccess>
     {
+        private static readonly DateTime MoveBetsDay = new DateTime(2016, 8, 10);
+
         private ICacheRefAdapter _cacheRef;
 
         private IAppSettings _appSettings;
+
+        private IBalanceUpDataAccess _balanceUpDataAccess;
 
         protected override void SetUpDataAccess()
         {
             _cacheRef = Substitute.For<ICacheRefAdapter>();
             _appSettings = Substitute.For<IAppSettings>();
-            DataAccess = Substitute.ForPartsOf<LeagueDataAccess>(_cacheRef, _appSettings);
+            _balanceUpDataAccess = Substitute.For<IBalanceUpDataAccess>();
+            DataAccess = Substitute.ForPartsOf<LeagueDataAccess>(_cacheRef, _appSettings, _balanceUpDataAccess);
         }
 
         [TestCase(false)]
@@ -36,6 +42,10 @@
         public async Task GetLeaguesBySport_WhenCall_ParametersPassedCorrectly(bool isProduction)
         {
             // Arrange
+            _balanceUpDataAccess.GetBalanceUp().Returns(new BalanceUp
+            {
+                MoveBetsDay = MoveBetsDay
+            });
             DataAccess.GetObjectDb(Arg.Is("Lrf_SelLeagueBySport")).Returns(ObjectDb);
             _appSettings.IsProduction.Returns(isProduction);
             var metaModel = new LeagueMetaModel
@@ -57,6 +67,7 @@
                 ObjectDb.Received(1).SetParameterValue("Todate", metaModel.ToDate);
                 ObjectDb.Received(1).SetParameterValue("AgentList", metaModel.AgentListXml);
                 ObjectDb.Received(1).SetParameterValue("IsIncludeTestLeague", !isProduction);
+                ObjectDb.Received(1).SetParameterValue("MoveBetsDay", MoveBetsDay);
             });
         }
 
@@ -66,6 +77,10 @@
             // Arrange
             const int LeagueId = 1234;
             const string LeagueName = "League 1234 xxx";
+            _balanceUpDataAccess.GetBalanceUp().Returns(new BalanceUp
+            {
+                MoveBetsDay = MoveBetsDay
+            });
             DataAccess.GetObjectDb(Arg.Is("Lrf_SelLeagueBySport")).Returns(ObjectDb);
             Reader.Read().Returns(true, false);
             MapReaderData(new

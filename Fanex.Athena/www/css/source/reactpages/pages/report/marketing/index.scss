@@ -209,8 +209,14 @@
         .highlight-cell {
             background: #EEF8F6;
             font-weight: bold;
+            .icon-arrow {
+                margin-right: 5px;
+                float: left;
+                cursor: pointer;
+                transform: rotate(-90deg);
+            }
         }
-
+        
         .total-cell {
             background: #fcf4df;
             font-weight: bold;

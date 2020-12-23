@@ -30,6 +30,7 @@ export const CampaignNRUGridConfig = {
 
 export const SignupNRUGridColumns = {
     url: 'signupUrl',
+    source: 'signupSource',
     newlyRegisterUsers: 'newlyRegisterUsers',
     depositUsers: 'depositUsers',
     firstDepositAmount: 'firstDepositAmount'
@@ -96,6 +97,27 @@ export const DetaiBonusClaimedGridConfig = {
     [DetailBonusClaimedGridColumns.depositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } },
     [DetailBonusClaimedGridColumns.withdrawalAmount]: { name: LangHelper.getSingleResource('TotalWithdrawalAmount'), attributes: { sortBy: 5, colWidth: 80, className: "right-align" } },
     [DetailBonusClaimedGridColumns.bonusAmount]: { name: LangHelper.getSingleResource('TotalBonusAmountClaimed'), attributes: { sortBy: 6, colWidth: 80, className: "right-align" } }
+}
+
+
+export const DetailDepositAmountGridColumns = {
+    rowId: 'rowId',
+    username: 'username',
+    registeredDateDisplay: 'registeredDateDisplay',
+    signupUrl: 'signupUrl',
+    firstDepositAmount: 'firstDepositAmount',
+    numberOfDeposits: 'noOfDeposits',
+    depositAmount: 'depositAmount'
+}
+
+export const DetailDepositAmountGridConfig = {
+    [DetailDepositAmountGridColumns.rowId]: { name: '#', attributes: { colWidth: 30, className: "center-align" } },
+    [DetailDepositAmountGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
+    [DetailDepositAmountGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 2, colWidth: 80, className: "center-align" } },
+    [DetailDepositAmountGridColumns.signupUrl]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { sortBy: 3, className: "left-align" } },
+    [DetailDepositAmountGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } },
+    [DetailDepositAmountGridColumns.numberOfDeposits]: { name: LangHelper.getSingleResource('NumberOfDeposits'), attributes: { sortBy: 5, colWidth: 80, className: "right-align" } },
+    [DetailDepositAmountGridColumns.depositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 6, colWidth: 80, className: "right-align" } }
 }
 
 export const DefaultPagingOption = {

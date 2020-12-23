@@ -118,6 +118,21 @@ export default class DataService {
         return params;
     }
 
+    static getDepositAmountSummaryAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupSummaryAPIParams(filterData);
+        return params;
+    }
+
+    static getDepositAmountDetailAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupDetailAPIParams(filterData);
+        return params;
+    }
+
+    static getDepositAmountExportAPIParams = filterData => {
+        const params = this.getPerformanceHighlightPopupExportAPIParams(filterData);
+        return params;
+    }
+
     /* end detail popup */
 
     static getUserActivitiesAPIParams = filterData => {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Fanex.Athena.Model.Report.MetaModel
+﻿namespace Fanex.Athena.Model.Report.MetaModel
 {
     public class MarketingPerformanceHighlightDetailMetaModel
     {

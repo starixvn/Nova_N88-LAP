@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import NewlyRegisterUsersDetail from './NRU/NewlyRegisterUsersDetail';
 import WithdrawalAmountDetail from './WithdrawalAmount/WithdrawalAmountDetail';
 import BonusClaimedDetail from './BonusClaimed/BonusClaimedDetail';
+import DepositAmountDetail from './DepositAmount/DepositAmountDetail';
 import DateTimeHelper from '../../../../libs/helpers/dateTimeHelper';
 import { PerformanceHighlightDetailBoxKeys } from '../../../../constants/chartConst';
 
@@ -33,6 +34,9 @@ const DetailPopup =({ selectedBox, ...rest}) => {
         }
         if (selectedBox === PerformanceHighlightDetailBoxKeys.BonusClaimed) {
             return <BonusClaimedDetail {...rest} />
+        }
+        if(selectedBox === PerformanceHighlightDetailBoxKeys.DepositAmount) {
+            return <DepositAmountDetail {...rest} />
         }
         return null;
     }

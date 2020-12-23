@@ -3,13 +3,11 @@ import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
 import Widget from '../../../../common/Widget';
 import DataService from '../../../../../libs/services/dataService';
-
 import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
+import GroupCell from '../../../../common/GroupCell';
 import QueryService from '../../../../../libs/services/queryService';
 import NumberHelper from '../../../../../libs/helpers/numberHelper';
 import { TotalNRUGridColumns, TotalNRUGridConfig, CampaignNRUGridColumns, CampaignNRUGridConfig, SignupNRUGridColumns, SignupNRUGridConfig, StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
-
-const maxWidth = Math.min(document.body.clientWidth - 40, 1890);
 
 const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
     const [isLoading, setLoading] = useState(false);
@@ -88,29 +86,51 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
         </div>)
     };
 
+    const _onDrillDownSignupData = newSignupData => {
+        const newSummaryData = {...summaryData };
+        newSummaryData.signupData = newSignupData;
+        setSummaryData(newSummaryData);
+    }
+
     const _renderSignupData = () => {
-        const { signupData } = summaryData;
+        const { signupData, totalSignupData } = summaryData;
         const header = (<HeaderRow style={StyleRow}>
             <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.url].name}</HeaderCell>
             <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.newlyRegisterUsers].name}</HeaderCell>
             <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.depositUsers].name}</HeaderCell>
             <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.firstDepositAmount].name}</HeaderCell>
         </HeaderRow>);
-        const body = signupData.map(item => <Row style={StyleRow}>
-            <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.url].attributes}>{item[SignupNRUGridColumns.url] || LangHelper.getSingleResource('None')}</Cell>
+
+        const body = signupData.map(item => <Row key={`${item[SignupNRUGridColumns.source]}-${item[SignupNRUGridColumns.url]}`} style={StyleRow}>
+            <GroupCell displayText={item[SignupNRUGridColumns.url] || LangHelper.getSingleResource('None')}
+                rowData={item}
+                dataList={signupData}
+                fieldKey={SignupNRUGridColumns.url}
+                allowedDrillDown={!item.noGrouping && item.childs && item.childs.length > 0}
+                isChild={!item.noGrouping && (!item.childs || !item.childs.length)}
+                onDrillDown={_onDrillDownSignupData}
+                {...SignupNRUGridConfig[SignupNRUGridColumns.url].attributes} />
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.newlyRegisterUsers].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.newlyRegisterUsers])}</Cell>
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.depositUsers].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.depositUsers])}</Cell>
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
         </Row>)
-        
+
+        const totalRow = (<Row>
+            <Cell className='left-align total-cell'>{LangHelper.getSingleResource('Total')}</Cell>
+            <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalNewlyRegisterUsers, 0)}</Cell>
+            <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalDepositUsers, 0)}</Cell>
+            <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalFirstDepositAmount, 2)}</Cell>
+        </Row>)
+
         return (<div className="summary-table">
             <Table
                 minWidth={500}
                 maxWidth={window.innerWidth}
                 autoWidth={true}
-                autoHeight={true}
+                autoHeight={false}
+                bodyHeight={400}
                 header={header}
-                body={body}
+                body={[...body, totalRow]}
                 containerPadding={70}
             />
         </div>)

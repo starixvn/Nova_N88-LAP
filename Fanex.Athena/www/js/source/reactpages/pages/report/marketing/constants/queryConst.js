@@ -17,6 +17,10 @@ export const Url = {
     bonusClaimedDetail: 'Api/Marketing/BonusClaimed/GetDetailsData',
     bonusClaimedExport: 'Api/Marketing/BonusClaimed/ExportData',
 
+    depositAmountSummary: 'Api/Marketing/DepositAmount/GetSummaryData',
+    depositAmountDetail: 'Api/Marketing/DepositAmount/GetDetailsData',
+    depositAmountExport: 'Api/Marketing/DepositAmount/ExportData',
+
     performanceHighlightDetailFrame: 'MarketingReport/PerformanceHighlightDetail'
 }
 
@@ -24,6 +28,7 @@ export const FileNameExport = {
     newlyRegisterUsers: 'MarketingReport_NewlyRegisterUsers.xls',
     withdrawalAmount: 'MarketingReport_WithdrawalAmount.xls',
     bonusClaimed: 'MarketingReport_BonusAmountClaimed.xls',
+    depositAmount: 'MarketingReport_DepositAmount.xls',
     performanceHighlight: 'MarketingReport_BusinessPerformanceHighlight.xls'
 }
 

@@ -84,7 +84,7 @@ const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand,
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.rowId].attributes}>{item[DetailWithdrawalAmountGridColumns.rowId]} </Cell>
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.username].attributes} >{item[DetailWithdrawalAmountGridColumns.username]}</Cell>
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.registeredDateDisplay].attributes}>{item[DetailWithdrawalAmountGridColumns.registeredDateDisplay]}</Cell>
-            <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.numberOfWithdrawals].attributes} >{NumberFormat.format(item[DetailWithdrawalAmountGridColumns.numberOfWithdrawals], 0)}</Cell>
+            <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.numberOfWithdrawals].attributes}>{NumberFormat.format(item[DetailWithdrawalAmountGridColumns.numberOfWithdrawals], 0)}</Cell>
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.withdrawalAmount].attributes}>{NumberFormat.format(item[DetailWithdrawalAmountGridColumns.withdrawalAmount], DigitsAmount)}</Cell>
         </Row>)
     }

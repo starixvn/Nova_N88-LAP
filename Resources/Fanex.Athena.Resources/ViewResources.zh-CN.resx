@@ -2491,4 +2491,7 @@
     <value>Number of Deposits</value>
     <comment>146760</comment>
   </data>
-</root>
+  <data name="ActiveNRU" xml:space="preserve">
+    <value>Active NRU</value>
+    <comment>147542</comment>
+  </data></root>

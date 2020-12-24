@@ -1,4 +1,4 @@
-﻿// Generated at: 12/22/2020 2:04:31 PM
+﻿// Generated at: 12/29/2020 9:40:43 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -9,6 +9,7 @@ Action:"Action",
 Active:"Active",
 ActiveCustomers:"Active Customers",
 ActiveGroupConfirm:"Are you sure you want to {0} {1} ?",
+ActiveNRU:"Active NRU",
 ActiveUsers:"Active Users",
 ActualStake:"Actual Stake",
 AD:"AD",
@@ -511,7 +512,7 @@ MultiCustomers:"Multi-Customers",
 NA:"N/A",
 Name:"Name",
 NativeApp:"Native App",
-NetTurnover:"Net Turnover",
+NetTurnover:"Valid Turnover",
 NeverExpired:"Never Expired",
 NewAsia:"New Asia",
 NewGroup:"New Group",

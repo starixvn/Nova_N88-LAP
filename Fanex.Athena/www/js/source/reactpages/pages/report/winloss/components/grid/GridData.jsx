@@ -14,7 +14,7 @@ export const GridData = props => {
 
     const MAX_WIDTH = Math.min(document.body.clientWidth, MAX_WIDTH_PAGE);
 
-    const { gridData, displayedColumns, pagingOption, requestParam, isLoading, setGridData, setSortOption, fetchReportData } = props;
+    const { gridData, displayedColumns, pagingOption, requestParam, isLoading, setGridData, setSortOption, setDisplayedColumns, fetchReportData } = props;
     const { dataList, totalData } = gridData;
 
     if (!dataList) {
@@ -44,15 +44,14 @@ export const GridData = props => {
         fetchReportData(params, QueryHelper.callBackToUpdateGridOption(pageIndex, pageSize));
     })
 
-    const objectColumns = useMemo(() => GridHelper.toObjectColumns(displayedColumns), [displayedColumns]);
-    const header = useMemo(() => GridHelper.renderHeader(objectColumns), [objectColumns]);
-    const body = useMemo(() => GridHelper.renderBody(dataList, objectColumns), [dataList, objectColumns]);
-    const footer = useMemo(() => GridHelper.renderFooter(totalData, objectColumns), [totalData, objectColumns]);
+    const header = useMemo(() => GridHelper.renderHeader(displayedColumns, displayedColumns => setDisplayedColumns(displayedColumns)), [displayedColumns]);
+    const body = useMemo(() => GridHelper.renderBody(dataList, displayedColumns), [dataList, displayedColumns]);
+    const footer = useMemo(() => GridHelper.renderFooter(totalData, displayedColumns), [totalData, displayedColumns]);
 
     return (
        !isLoading && <React.Fragment>
-            <Table minWidth={650}
-                autoWidth={true}
+            <Table minWidth={500}
+                autoWidth={false}
                 maxWidth={MAX_WIDTH}
                 autoHeight={true}
                 header={header}
@@ -70,8 +69,8 @@ export const GridData = props => {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSortOption, setGridData, fetchReportData } = ActionCreators;
-    return bindActionCreators({ setSortOption, setGridData, fetchReportData }, dispatch);
+    const { setSortOption, setGridData, setDisplayedColumns, fetchReportData } = ActionCreators;
+    return bindActionCreators({ setSortOption, setGridData, setDisplayedColumns, fetchReportData }, dispatch);
 }
 
 function mapStateToProps(state) {

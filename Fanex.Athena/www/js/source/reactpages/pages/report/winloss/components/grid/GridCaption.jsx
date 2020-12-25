@@ -35,9 +35,16 @@ export class GridCaption extends React.Component {
             ...{
                 pageIndex: pagingOption.PageIndex,
                 pageSize: pagingOption.PageSize,
+                orderCols: this._getOrderCols()
             }
         }
         QueryService.exportReportData(params, () => toggleLoader(false));
+    }
+
+    _getOrderCols = () => {
+        return this.props.displayedColumns
+            .filter(_ => _.show)
+            .map(_ => _.key);
     }
 
     _buildDisplayedColumnList() {

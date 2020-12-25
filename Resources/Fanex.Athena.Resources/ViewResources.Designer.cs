@@ -4921,6 +4921,24 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No. Deposit.
+        /// </summary>
+        public static string NoOfDeposit {
+            get {
+                return ResourceManager.GetString("NoOfDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. Withdrawal.
+        /// </summary>
+        public static string NoOfWithdrawal {
+            get {
+                return ResourceManager.GetString("NoOfWithdrawal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No product found.
         /// </summary>
         public static string NoProductFound {
@@ -4953,6 +4971,15 @@ namespace Fanex.Athena.Resources {
         public static string Note {
             get {
                 return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone.
+        /// </summary>
+        public static string NoteReportDepositAndWithdrawal {
+            get {
+                return ResourceManager.GetString("NoteReportDepositAndWithdrawal", resourceCulture);
             }
         }
         

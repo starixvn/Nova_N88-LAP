@@ -869,6 +869,11 @@
   .marketing-report .highlight-detail .highlight-cell {
     background: #EEF8F6;
     font-weight: bold; }
+    .marketing-report .highlight-detail .highlight-cell .icon-arrow {
+      margin-right: 5px;
+      float: left;
+      cursor: pointer;
+      transform: rotate(-90deg); }
   .marketing-report .highlight-detail .total-cell {
     background: #fcf4df;
     font-weight: bold; }

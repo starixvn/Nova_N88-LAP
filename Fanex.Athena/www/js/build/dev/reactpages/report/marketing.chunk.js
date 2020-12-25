@@ -4485,6 +4485,7 @@ const PerformanceHighlightWidget = props => {
     } = performanceHighlightData;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
       enableCompare: allowedCompare,
+      onViewDetail: () => setSelectedBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_14__["PerformanceHighlightDetailBoxKeys"].DepositAmount),
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('DepositAmount'),
       value: depositAmount,
       rate: growthRateDepositAmount
@@ -4898,7 +4899,8 @@ const AvgRevenueChartDataMapping = {
 const PerformanceHighlightDetailBoxKeys = {
   BonusClaimed: 'BonusClaimed',
   NewlyRegisteredUsers: 'NewlyRegisteredUsers',
-  WithdrawalAmount: 'WithdrawalAmount'
+  WithdrawalAmount: 'WithdrawalAmount',
+  DepositAmount: 'DepositAmount'
 };
 
 /***/ }),
@@ -4998,12 +5000,16 @@ const Url = {
   bonusClaimedSummary: 'Api/Marketing/BonusClaimed/GetSummaryData',
   bonusClaimedDetail: 'Api/Marketing/BonusClaimed/GetDetailsData',
   bonusClaimedExport: 'Api/Marketing/BonusClaimed/ExportData',
+  depositAmountSummary: 'Api/Marketing/DepositAmount/GetSummaryData',
+  depositAmountDetail: 'Api/Marketing/DepositAmount/GetDetailsData',
+  depositAmountExport: 'Api/Marketing/DepositAmount/ExportData',
   performanceHighlightDetailFrame: 'MarketingReport/PerformanceHighlightDetail'
 };
 const FileNameExport = {
   newlyRegisterUsers: 'MarketingReport_NewlyRegisterUsers.xls',
   withdrawalAmount: 'MarketingReport_WithdrawalAmount.xls',
   bonusClaimed: 'MarketingReport_BonusAmountClaimed.xls',
+  depositAmount: 'MarketingReport_DepositAmount.xls',
   performanceHighlight: 'MarketingReport_BusinessPerformanceHighlight.xls'
 };
 const errorResponse = {
@@ -5626,6 +5632,21 @@ _defineProperty(DataService, "getBonusClaimedExportAPIParams", filterData => {
   return params;
 });
 
+_defineProperty(DataService, "getDepositAmountSummaryAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
+  return params;
+});
+
+_defineProperty(DataService, "getDepositAmountDetailAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
+  return params;
+});
+
+_defineProperty(DataService, "getDepositAmountExportAPIParams", filterData => {
+  const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
+  return params;
+});
+
 _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
   const {
     selectedBrand,
@@ -5737,6 +5758,19 @@ class QueryService {
 
     ;
   }
+
+  static async exportDepositAmountData(params) {
+    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountExport, params);
+    const noContentStatusCode = 204;
+
+    if (response.status === noContentStatusCode) {
+      alert(LangHelper.getSingleResource("NoInfo"));
+    } else {
+      _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].depositAmount);
+    }
+
+    ;
+  }
   /* end detail popup*/
 
 
@@ -5808,6 +5842,20 @@ _defineProperty(QueryService, "fetchBonusClaimedSummaryData", async (params, bef
 _defineProperty(QueryService, "fetchBonusClaimedDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedDetail, params));
+  after && after(data);
+  return data;
+});
+
+_defineProperty(QueryService, "fetchDepositAmountSummaryData", async (params, before, after) => {
+  before && before();
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountSummary, params));
+  after && after(data);
+  return data;
+});
+
+_defineProperty(QueryService, "fetchDepositAmountDetailData", async (params, before, after) => {
+  before && before();
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountDetail, params));
   after && after(data);
   return data;
 });

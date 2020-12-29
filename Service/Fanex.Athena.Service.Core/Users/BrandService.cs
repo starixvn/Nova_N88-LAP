@@ -4,9 +4,11 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.NVC.Authentication.Infrastructure;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
+    [CLSCompliant(false)]
     public class BrandService : IBrandService
     {
         private readonly ITpService _tpService;

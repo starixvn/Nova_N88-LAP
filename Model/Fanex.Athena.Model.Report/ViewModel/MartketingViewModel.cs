@@ -5,6 +5,7 @@
     using System;
     using System.Collections.Generic;
 
+    [CLSCompliant(false)]
     public class MarketingViewModel
     {
         public string BaseCurrency { get; set; }

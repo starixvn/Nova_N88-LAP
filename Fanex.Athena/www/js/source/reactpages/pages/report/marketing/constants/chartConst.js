@@ -53,5 +53,6 @@ export const AvgRevenueChartDataMapping = {
 export const PerformanceHighlightDetailBoxKeys = {
     BonusClaimed: 'BonusClaimed',
     NewlyRegisteredUsers: 'NewlyRegisteredUsers',
-    WithdrawalAmount: 'WithdrawalAmount'
+    WithdrawalAmount: 'WithdrawalAmount',
+    DepositAmount: 'DepositAmount'
 }

@@ -1,4 +1,4 @@
-﻿// Generated at: 11/16/2020 2:51:17 PM
+﻿// Generated at: 12/22/2020 2:04:31 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -461,6 +461,7 @@ Nov:"十一月",
 November:"十一月",
 NRUNewlyRegisterdUsers:"NRU - Newly Registered Users",
 NumberGameNo:"百练赛编号",
+NumberOfDeposits:"Number of Deposits",
 NumberOfWithdrawals:"Number Of Withdrawals",
 OANDANote:"请注意所有的换算的基础货币 (欧元, 美金) 仅供参考。",
 Oct:"十月",

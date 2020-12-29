@@ -139,6 +139,7 @@
   <ItemGroup>
     <Compile Include="Exception\ServiceExceptionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\ProxyServiceTest.cs" />
     <Compile Include="Users\BrandServiceTest.cs" />
     <Compile Include="Users\SessionServiceTest.CreateNewSession.cs" />
     <Compile Include="Users\SessionServiceTest.cs" />

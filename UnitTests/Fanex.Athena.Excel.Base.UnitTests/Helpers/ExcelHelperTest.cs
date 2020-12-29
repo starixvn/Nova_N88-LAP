@@ -2,12 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Data;
+    using System.IO;
     using System.Linq;
 
     using Base.Helpers;
 
     using Model.Core.MetaModel.Product;
-
+    using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
 
     using NSubstitute;
@@ -19,6 +20,23 @@
     [TestFixture]
     public class ExcelHelperTest
     {
+        [Test]
+        public void ExportEmptyFile_ReturnEmptyFile()
+        {
+            // Arrange
+            var templateWorkbook = new HSSFWorkbook();
+            templateWorkbook.CreateSheet();
+            var ms = new MemoryStream();
+            templateWorkbook.Write(ms);
+            var expectedResult = ms.ToArray();
+
+            // Action
+            var result = ExcelHelper.ExportEmptyFile();
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
         [Test]
         public void AssignRowContent_WhenCall_SetCellValueMethodIsCalled()
         {

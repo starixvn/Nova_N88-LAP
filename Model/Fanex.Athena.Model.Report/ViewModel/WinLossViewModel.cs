@@ -5,6 +5,7 @@
     using System;
     using System.Collections.Generic;
 
+    [CLSCompliant(false)]
     public class WinLossViewModel
     {
         public string BaseCurrency { get; set; }

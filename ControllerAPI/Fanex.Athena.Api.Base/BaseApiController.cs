@@ -15,6 +15,7 @@
     using System.Web.Http;
 
     [CheckUMFilter]
+    [CLSCompliant(false)]
     public class BaseApiController : ApiController
     {
         private readonly ILanguageService _langService;

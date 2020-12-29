@@ -2487,4 +2487,8 @@
   <data name="ExtraPayout" xml:space="preserve">
     <value>额外派彩</value>
   </data>
+  <data name="NumberOfDeposits" xml:space="preserve">
+    <value>Number of Deposits</value>
+    <comment>146760</comment>
+  </data>
 </root>

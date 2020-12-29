@@ -101,6 +101,7 @@ export const PerformanceHighlightWidget = props => {
         const { depositAmount, growthRateDepositAmount } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={allowedCompare}
+            onViewDetail={() => setSelectedBox(PerformanceHighlightDetailBoxKeys.DepositAmount)}
             title={LangHelper.getSingleResource('DepositAmount')}
             value={depositAmount}
             rate={growthRateDepositAmount}

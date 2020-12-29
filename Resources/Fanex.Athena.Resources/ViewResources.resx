@@ -3044,4 +3044,8 @@
     <value>Default Base Curency</value>
     <comment>145346</comment>
   </data>
+  <data name="NumberOfDeposits" xml:space="preserve">
+    <value>Number of Deposits</value>
+    <comment>146760</comment>
+  </data>
 </root>

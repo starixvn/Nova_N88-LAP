@@ -12,8 +12,6 @@ const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sor
     const [detailData, setDetailData] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
 
-    const MAX_WIDTH = Math.min(document.body.clientWidth, 1360);
-
     useEffect(() => {
         const apiParams = DataService.getBonusClaimedDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
@@ -87,8 +85,8 @@ const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sor
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.bonusCode].attributes} >{item[DetailBonusClaimedGridColumns.bonusCode] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.username].attributes} >{item[DetailBonusClaimedGridColumns.username]}</Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.registeredDateDisplay].attributes}>{item[DetailBonusClaimedGridColumns.registeredDateDisplay]}</Cell>
-            <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.depositAmount].attributes}>{item[DetailBonusClaimedGridColumns.depositAmount] === 0 ? '-' : NumberFormat.format(item[DetailBonusClaimedGridColumns.depositAmount], DigitsAmount)}</Cell>
-            <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.withdrawalAmount].attributes} >{item[DetailBonusClaimedGridColumns.withdrawalAmount] === 0 ? '-' : NumberFormat.format(item[DetailBonusClaimedGridColumns.withdrawalAmount], DigitsAmount)}</Cell>
+            <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.depositAmount].attributes}>{NumberFormat.format(item[DetailBonusClaimedGridColumns.depositAmount], DigitsAmount)}</Cell>
+            <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.withdrawalAmount].attributes} >{NumberFormat.format(item[DetailBonusClaimedGridColumns.withdrawalAmount], DigitsAmount)}</Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.bonusAmount].attributes}>{NumberFormat.format(item[DetailBonusClaimedGridColumns.bonusAmount], DigitsAmount)}</Cell>
         </Row>)
     }
@@ -106,7 +104,7 @@ const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sor
                         header={_renderHeader()}
                         body={_renderBody()}
                         onSort={_handleSort}
-                        containerPadding={55}
+                        containerPadding={70}
                         shouldResetScrollPosition={isLoading}
                     />
                 </>}

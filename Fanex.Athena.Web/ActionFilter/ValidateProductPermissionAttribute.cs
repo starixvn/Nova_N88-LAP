@@ -10,6 +10,7 @@
     using Fanex.Athena.Service.StatelessCore.Interfaces;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
+    [CLSCompliant(false)]
     public sealed class ValidateProductPermissionAttribute : ActionFilterAttribute
     {
         private readonly bool _isCheckDirectly;

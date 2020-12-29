@@ -8,6 +8,7 @@ using Fanex.Athena.Service.StatelessCore.Interfaces;
 
 namespace Fanex.Athena.Service.Core.Utility
 {
+    [CLSCompliant(false)]
     public class ProductValidation : IProductValidation
     {
         private readonly IProductService _productService;

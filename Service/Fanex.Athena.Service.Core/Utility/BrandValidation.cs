@@ -6,6 +6,7 @@
     using System;
     using System.Linq;
 
+    [CLSCompliant(false)]
     public class BrandValidation : IBrandValidation
     {
         private readonly ISessionService _sessionService;

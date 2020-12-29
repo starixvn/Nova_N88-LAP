@@ -89,7 +89,7 @@ const NewlyRegisterUsersDetailWidget = ({ reportDate, baseCurrency, selectedBran
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.registeredDateDisplay].attributes}>{item[DetailNRUGridColumns.registeredDateDisplay]}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.signupUrl].attributes}>{item[DetailNRUGridColumns.signupUrl] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.isDeposit].attributes} >{item[DetailNRUGridColumns.isDeposit] ? LangHelper.getSingleResource('Yes') : LangHelper.getSingleResource('No')}</Cell>
-            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.firstDepositAmount].attributes}>{item[DetailNRUGridColumns.isDeposit]  ? NumberFormat.format(item[DetailNRUGridColumns.firstDepositAmount], DigitsAmount) : '-'}</Cell>
+            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[DetailNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
         </Row>)
     }
 

@@ -8,6 +8,7 @@
     using System.Web.Http;
 
     [AttributeUsage(AttributeTargets.All)]
+    [CLSCompliant(false)]
     public sealed class CustomApiAuthorizeAttribute : AuthorizeAttribute
     {
         private readonly ISessionStorage _sessionStorage;

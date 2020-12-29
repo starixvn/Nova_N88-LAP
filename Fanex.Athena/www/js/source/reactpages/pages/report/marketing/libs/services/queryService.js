@@ -93,6 +93,30 @@ export default class QueryService {
         };
     }
 
+    static fetchDepositAmountSummaryData = async (params, before, after) => {
+        before && before();
+        var data = await this.fetchData(() => DataService.postReportData(Url.depositAmountSummary, params));
+        after && after(data)
+        return data;
+    }
+
+    static fetchDepositAmountDetailData = async (params, before, after) => {
+        before && before();
+        var data = await this.fetchData(() => DataService.postReportData(Url.depositAmountDetail, params));
+        after && after(data)
+        return data;
+    }
+
+    static async exportDepositAmountData(params) {
+        const response = await DataService.getReportFile(Url.depositAmountExport, params)
+        const noContentStatusCode = 204;
+        if (response.status === noContentStatusCode) {
+            alert(LangHelper.getSingleResource("NoInfo"));
+        } else {
+            Site.downloadFile(response.data, FileNameExport.depositAmount);
+        };
+    }
+
     /* end detail popup*/
 
     static async exportPerformanceHighlightData(params) {

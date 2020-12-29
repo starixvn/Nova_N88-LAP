@@ -5011,6 +5011,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of Deposits.
+        /// </summary>
+        public static string NumberOfDeposits {
+            get {
+                return ResourceManager.GetString("NumberOfDeposits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number Of Withdrawals.
         /// </summary>
         public static string NumberOfWithdrawals {

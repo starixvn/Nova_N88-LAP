@@ -1,4 +1,4 @@
-﻿// Generated at: 11/16/2020 2:51:17 PM
+﻿// Generated at: 12/22/2020 2:04:31 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -216,6 +216,7 @@ Dec:"Dec",
 December:"December",
 DecimalOdds:"decimal odds",
 DeepLink:"Deep Link",
+DefaultBaseCurency:"Default Base Curency",
 DefaultGroup:"Default Group",
 DefaultGroupMsg:"This is the default group. Do you want to proceed?",
 DelayedPayout:"Delayed Payout",
@@ -549,6 +550,7 @@ Nov:"Nov",
 November:"November",
 NRUNewlyRegisterdUsers:"NRU - Newly Registered Users",
 NumberGameNo:"Number Game No",
+NumberOfDeposits:"Number of Deposits",
 NumberOfWithdrawals:"Number Of Withdrawals",
 OANDANote:"Please note that all conversions to base currency (EURO,USD) are for reference only.",
 Oct:"Oct",

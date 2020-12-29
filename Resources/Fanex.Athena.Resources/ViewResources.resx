@@ -656,7 +656,7 @@
     <value>Monthly</value>
   </data>
   <data name="NetTurnover" xml:space="preserve">
-    <value>Net Turnover</value>
+    <value>Valid Turnover</value>
   </data>
   <data name="NewGroup" xml:space="preserve">
     <value>New Group</value>
@@ -3047,5 +3047,9 @@
   <data name="NumberOfDeposits" xml:space="preserve">
     <value>Number of Deposits</value>
     <comment>146760</comment>
+  </data>
+  <data name="ActiveNRU" xml:space="preserve">
+    <value>Active NRU</value>
+    <comment>147542</comment>
   </data>
 </root>

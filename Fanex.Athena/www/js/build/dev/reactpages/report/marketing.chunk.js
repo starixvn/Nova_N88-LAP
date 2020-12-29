@@ -4478,6 +4478,19 @@ const PerformanceHighlightWidget = props => {
     });
   };
 
+  const _renderNewlyActiveRegisteredUsersBox = () => {
+    const {
+      newlyActiveRegisterUsers,
+      growthRateNewlyActiveRegisterUsers
+    } = performanceHighlightData;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      enableCompare: allowedCompare,
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('ActiveNRU'),
+      value: newlyActiveRegisterUsers,
+      rate: growthRateNewlyActiveRegisterUsers
+    });
+  };
+
   const _renderDepositAmountBox = () => {
     const {
       depositAmount,
@@ -4624,7 +4637,7 @@ const PerformanceHighlightWidget = props => {
     handleExportExcel: _handleExportExcel
   }, performanceHighlightData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box-container"
-  }, _renderPopupDetail(), _renderTotalUsersBox(), _renderTotalDepositUsersBox(), _renderTotalActiveUsersBox(), _renderDepositUsersBox(), _renderActiveUsersBox(), _renderNewlyRegisteredUsersBox(), _renderDepositAmountBox(), _renderWithdrawalAmountBox(), _renderBonusClaimedBox(), _renderChurnRateBox(), _renderRetentionRateBox()));
+  }, _renderPopupDetail(), _renderTotalUsersBox(), _renderTotalDepositUsersBox(), _renderTotalActiveUsersBox(), _renderDepositUsersBox(), _renderActiveUsersBox(), _renderNewlyRegisteredUsersBox(), _renderNewlyActiveRegisteredUsersBox(), _renderDepositAmountBox(), _renderWithdrawalAmountBox(), _renderBonusClaimedBox(), _renderChurnRateBox(), _renderRetentionRateBox()));
 };
 
 function mapStateToProps(state) {

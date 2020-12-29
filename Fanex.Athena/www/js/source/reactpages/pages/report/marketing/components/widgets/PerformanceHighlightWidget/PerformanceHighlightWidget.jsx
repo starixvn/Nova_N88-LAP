@@ -97,6 +97,16 @@ export const PerformanceHighlightWidget = props => {
         />)
     }
 
+    const _renderNewlyActiveRegisteredUsersBox = () => {
+        const { newlyActiveRegisterUsers, growthRateNewlyActiveRegisterUsers } = performanceHighlightData;
+        return (<HighlightBox
+            enableCompare={allowedCompare}
+            title={LangHelper.getSingleResource('ActiveNRU')}
+            value={newlyActiveRegisterUsers}
+            rate={growthRateNewlyActiveRegisterUsers}
+        />)
+    }
+
     const _renderDepositAmountBox = () => {
         const { depositAmount, growthRateDepositAmount } = performanceHighlightData;
         return (<HighlightBox
@@ -205,6 +215,7 @@ export const PerformanceHighlightWidget = props => {
             {_renderDepositUsersBox()}
             {_renderActiveUsersBox()}
             {_renderNewlyRegisteredUsersBox()}
+            {_renderNewlyActiveRegisteredUsersBox()}
             {_renderDepositAmountBox()}
             {_renderWithdrawalAmountBox()}
             {_renderBonusClaimedBox()}

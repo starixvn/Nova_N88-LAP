@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 12/22/2020 2:04:31 PM
+// Generated at: 12/29/2020 9:40:43 AM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -103,6 +103,7 @@ window._language_zh_CN = {
   Action: "动作",
   Active: "活跃",
   ActiveGroupConfirm: "Are you sure you want to {0} {1} ? (CN)",
+  ActiveNRU: "Active NRU",
   ActiveUsers: "Active Users",
   AD: "客和",
   Adjustment: "调整",

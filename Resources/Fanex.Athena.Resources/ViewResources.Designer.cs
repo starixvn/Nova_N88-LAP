@@ -142,6 +142,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active NRU.
+        /// </summary>
+        public static string ActiveNRU {
+            get {
+                return ResourceManager.GetString("ActiveNRU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active Users.
         /// </summary>
         public static string ActiveUsers {
@@ -4660,7 +4669,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Net Turnover.
+        ///   Looks up a localized string similar to Valid Turnover.
         /// </summary>
         public static string NetTurnover {
             get {

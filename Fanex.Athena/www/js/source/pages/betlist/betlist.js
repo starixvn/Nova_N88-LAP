@@ -19,6 +19,7 @@
         const SPORT_VRG = 245;
         const SPORT_SXG = 243;
         const SPORT_SBC = 200;
+        const SPORT_HAPPY5LINKEDGAMES = 168;
         const BETLIST_META_MODEL = '#BetListMetaModel';
 
         let _sortColumnName, _sortOrder;
@@ -474,6 +475,17 @@
                     }
                 });
             },
+            viewHappy5LinkedGamesResult: function (custId, transId3rd, platform, title) {
+                const url = Site.resolveClientUrl('Happy5LinkedGamesResultPopup/Index');
+                Site.blockUI();
+
+                $.get(url + '?custId=' + custId + '&transId3rd=' + transId3rd + '&platform=' + platform, function (result) {
+                    if (result !== '') {
+                        showResultPopUp(result, { width: 800, height: 380, title: title });
+                        Site.unBlockUI();
+                    }
+                });
+            },
             viewResult: function (matchid, raceNo, bettype, sporttype, refno,
                 username, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs) {
                 const title = Site.getSingleResource('Result');
@@ -508,6 +520,9 @@
                 }
                 else if (sporttype === SPORT_GLOBALGAMING) {
                     _me.viewGlobalGamingResult(custid, extension2, title);
+                }
+                else if (sporttype === SPORT_HAPPY5LINKEDGAMES) {
+                    _me.viewHappy5LinkedGamesResult(extension1, refno, defaultPlatform, title);
                 }
                 else {
                     const numberBettype = Number(bettype);

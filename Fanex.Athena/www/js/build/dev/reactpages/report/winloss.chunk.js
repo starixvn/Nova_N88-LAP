@@ -4711,7 +4711,16 @@ const GroupFilter = props => {
     }
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('Note'), ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-9 note"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportGrossRevenue'))));
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportGrossRevenue'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-1",
+    style: {
+      flex: "0 0 4%"
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-9 note"
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportDepositAndWithdrawal'))));
 };
 
 function mapDispatchToProps(dispatch) {
@@ -4934,10 +4943,15 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
 
       const params = _objectSpread({}, requestParam, {}, sortOption, {}, {
         pageIndex: pagingOption.PageIndex,
-        pageSize: pagingOption.PageSize
+        pageSize: pagingOption.PageSize,
+        orderCols: this._getOrderCols()
       });
 
       _libs_queryService__WEBPACK_IMPORTED_MODULE_7__["default"].exportReportData(params, () => toggleLoader(false));
+    });
+
+    _defineProperty(this, "_getOrderCols", () => {
+      return this.props.displayedColumns.filter(_ => _.show).map(_ => _.key);
     });
   }
 
@@ -5076,6 +5090,7 @@ const GridData = props => {
     isLoading,
     setGridData,
     setSortOption,
+    setDisplayedColumns,
     fetchReportData
   } = props;
   const {
@@ -5115,13 +5130,12 @@ const GridData = props => {
     fetchReportData(params, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_7__["default"].callBackToUpdateGridOption(pageIndex, pageSize));
   });
 
-  const objectColumns = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].toObjectColumns(displayedColumns), [displayedColumns]);
-  const header = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderHeader(objectColumns), [objectColumns]);
-  const body = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderBody(dataList, objectColumns), [dataList, objectColumns]);
-  const footer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderFooter(totalData, objectColumns), [totalData, objectColumns]);
+  const header = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderHeader(displayedColumns, displayedColumns => setDisplayedColumns(displayedColumns)), [displayedColumns]);
+  const body = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderBody(dataList, displayedColumns), [dataList, displayedColumns]);
+  const footer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderFooter(totalData, displayedColumns), [totalData, displayedColumns]);
   return !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Table"], {
-    minWidth: 650,
-    autoWidth: true,
+    minWidth: 500,
+    autoWidth: false,
     maxWidth: MAX_WIDTH,
     autoHeight: true,
     header: header,
@@ -5140,11 +5154,13 @@ function mapDispatchToProps(dispatch) {
   const {
     setSortOption,
     setGridData,
+    setDisplayedColumns,
     fetchReportData
   } = _actions__WEBPACK_IMPORTED_MODULE_4__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
     setSortOption,
     setGridData,
+    setDisplayedColumns,
     fetchReportData
   }, dispatch);
 }
@@ -5184,10 +5200,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
-/* harmony import */ var _components_grid_GroupCell__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/grid/GroupCell */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GroupCell.jsx");
-/* harmony import */ var _components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/grid/DecimalCell */ "./www/js/source/reactpages/pages/report/winloss/components/grid/DecimalCell.jsx");
-
-
 
 
 
@@ -5195,43 +5207,12 @@ __webpack_require__.r(__webpack_exports__);
 const GridRow = props => {
   const {
     rowData,
-    objectColumns
+    displayedColumns
   } = props;
   const hasParent = rowData.parent ? true : false;
   const highLight = hasParent ? ' high-light' : '';
   const groupChildClassName = hasParent ? ' right-align' : '';
-  let objectColumn;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], null, objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].group].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_GroupCell__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    rowData: rowData,
-    className: highLight + groupChildClassName
-  }), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaId]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaId].className + highLight
-  }, rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaId]), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaSystemId]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaSystemId].className + highLight
-  }, rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].sabaSystemId]), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].turnover].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    value: rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].turnover],
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].turnover].className + highLight
-  }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].netTurnover].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    value: rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].netTurnover],
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].netTurnover].className + highLight
-  }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].ggr].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    value: rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].ggr],
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].ggr].className + highLight
-  }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].betCount].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    value: rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].betCount],
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].betCount].className + highLight,
-    digits: 0
-  }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].avgBetAmount].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    value: rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].avgBetAmount],
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].avgBetAmount].className + highLight
-  }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].uniquePlayers].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    value: rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].uniquePlayers],
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].uniquePlayers].className + highLight,
-    digits: 0
-  }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].margin].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    value: rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].margin],
-    className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["columnKeys"].margin].className + highLight
-  }, '%'));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], null, [..._constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultDisplayedColumns"], ...displayedColumns].map(col => col.show && _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["componentCells"][col.key] && _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["componentCells"][col.key](rowData, highLight, groupChildClassName)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridRow));
@@ -5419,7 +5400,7 @@ const TimezoneOptions = [{
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js ***!
   \*********************************************************************************/
-/*! exports provided: columnKeys, displayedColumns, defaultDisplayedColumns, dataColumns, defaultPagingOption, defaultSortOption */
+/*! exports provided: columnKeys, displayedColumns, defaultDisplayedColumns, dataColumns, componentCells, defaultPagingOption, defaultSortOption */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5428,10 +5409,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "displayedColumns", function() { return displayedColumns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultDisplayedColumns", function() { return defaultDisplayedColumns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dataColumns", function() { return dataColumns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "componentCells", function() { return componentCells; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultPagingOption", function() { return defaultPagingOption; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultSortOption", function() { return defaultSortOption; });
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _filterConsts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _filterConsts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_grid_GroupCell__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/grid/GroupCell */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GroupCell.jsx");
+/* harmony import */ var _components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/grid/DecimalCell */ "./www/js/source/reactpages/pages/report/winloss/components/grid/DecimalCell.jsx");
+
+
+
+
 
 
 const columnKeys = {
@@ -5444,54 +5436,88 @@ const columnKeys = {
   betCount: 'betCount',
   avgBetAmount: 'avgBetAmount',
   uniquePlayers: 'uniquePlayers',
-  margin: 'margin'
+  margin: 'margin',
+  noOfDeposit: 'numberOfDeposit',
+  totalDepositAmount: 'depositAmount',
+  noOfWithdrawal: 'numberOfWithdrawal',
+  totalWithdrawalAmount: 'withdrawalAmount'
 };
 const displayedColumns = [{
   key: columnKeys.sabaId,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SabaId'),
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SabaId'),
   show: true,
-  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_1__["GroupByOptionIds"].player],
-  isTotalColumn: true
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  hasTotal: false
 }, {
   key: columnKeys.sabaSystemId,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SabaSystemId'),
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SabaSystemId'),
   show: true,
-  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_1__["GroupByOptionIds"].player],
-  isTotalColumn: true
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  hasTotal: false
 }, {
   key: columnKeys.turnover,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Turnover'),
-  show: true
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Turnover'),
+  show: true,
+  hasTotal: true
 }, {
   key: columnKeys.netTurnover,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('NetTurnover'),
-  show: true
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NetTurnover'),
+  show: true,
+  hasTotal: true
 }, {
   key: columnKeys.ggr,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('GGR'),
-  show: true
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('GGR'),
+  show: true,
+  hasTotal: true
 }, {
   key: columnKeys.betCount,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('BetCount'),
-  show: true
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BetCount'),
+  show: true,
+  hasTotal: true
 }, {
   key: columnKeys.avgBetAmount,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('AvgBetAmount'),
-  show: true
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('AvgBetAmount'),
+  show: true,
+  hasTotal: true
 }, {
   key: columnKeys.uniquePlayers,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('UniquePlayers'),
-  show: true
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('UniquePlayers'),
+  show: true,
+  hasTotal: true
 }, {
   key: columnKeys.margin,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Margin'),
-  show: true
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Margin'),
+  show: true,
+  hasTotal: true
+}, {
+  key: columnKeys.noOfDeposit,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NoOfDeposit'),
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  show: true,
+  hasTotal: true
+}, {
+  key: columnKeys.totalDepositAmount,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalDepositAmount'),
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  show: true,
+  hasTotal: true
+}, {
+  key: columnKeys.noOfWithdrawal,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NoOfWithdrawal'),
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  show: true,
+  hasTotal: true
+}, {
+  key: columnKeys.totalWithdrawalAmount,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalWithdrawalAmount'),
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  show: true,
+  hasTotal: true
 }];
 const defaultDisplayedColumns = [{
   key: columnKeys.group,
-  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Group'),
-  show: true,
-  isTotalColumn: true
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Group'),
+  show: true
 }];
 const dataColumns = {
   [columnKeys.group]: {
@@ -5500,48 +5526,174 @@ const dataColumns = {
     className: "left-align"
   },
   [columnKeys.sabaId]: {
-    colWidth: 80,
-    className: "left-align"
+    colWidth: 70,
+    className: "left-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.sabaId)
   },
   [columnKeys.sabaSystemId]: {
-    colWidth: 80,
-    className: "left-align"
+    colWidth: 70,
+    className: "left-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.sabaSystemId)
   },
   [columnKeys.turnover]: {
     sortBy: columnKeys.turnover,
     colWidth: 70,
-    className: "right-align"
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.turnover)
   },
   [columnKeys.netTurnover]: {
     sortBy: columnKeys.netTurnover,
     colWidth: 70,
-    className: "right-align"
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.netTurnover)
   },
   [columnKeys.ggr]: {
     sortBy: columnKeys.ggr,
-    colWidth: 70,
-    className: "right-align"
+    colWidth: 60,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.ggr)
   },
   [columnKeys.betCount]: {
     sortBy: columnKeys.betCount,
     colWidth: 50,
-    className: "right-align"
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.betCount)
   },
   [columnKeys.avgBetAmount]: {
     sortBy: columnKeys.avgBetAmount,
     colWidth: 70,
-    className: "right-align"
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.avgBetAmount)
   },
   [columnKeys.uniquePlayers]: {
     sortBy: columnKeys.uniquePlayers,
-    colWidth: 50,
-    className: "right-align"
+    colWidth: 60,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.uniquePlayers)
   },
   [columnKeys.margin]: {
     sortBy: columnKeys.margin,
     colWidth: 50,
-    className: "right-align"
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.margin)
+  },
+  [columnKeys.noOfDeposit]: {
+    sortBy: columnKeys.noOfDeposit,
+    colWidth: 50,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.noOfDeposit)
+  },
+  [columnKeys.totalDepositAmount]: {
+    sortBy: columnKeys.totalDepositAmount,
+    colWidth: 70,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.totalDepositAmount)
+  },
+  [columnKeys.noOfWithdrawal]: {
+    sortBy: columnKeys.noOfWithdrawal,
+    colWidth: 60,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.noOfWithdrawal)
+  },
+  [columnKeys.totalWithdrawalAmount]: {
+    sortBy: columnKeys.totalWithdrawalAmount,
+    colWidth: 70,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.totalWithdrawalAmount)
   }
+};
+
+const onDragStart = (event, columnKey) => {
+  const headerX = event.clientX - event.currentTarget.getBoundingClientRect().x;
+  event.dataTransfer.setData("headerX", headerX);
+  event.dataTransfer.setData("headerKey", columnKey);
+};
+
+const componentCells = {
+  [columnKeys.group]: (rowData, highLight, groupChildClassName) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_GroupCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    rowData: rowData,
+    className: highLight + groupChildClassName
+  }),
+  [columnKeys.sabaId]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+    className: dataColumns[columnKeys.sabaId].className + highLight
+  }, rowData[columnKeys.sabaId]),
+  [columnKeys.sabaSystemId]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+    className: dataColumns[columnKeys.sabaSystemId].className + highLight
+  }, rowData[columnKeys.sabaSystemId]),
+  [columnKeys.turnover]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.turnover],
+    className: dataColumns[columnKeys.turnover].className + highLight
+  }),
+  [columnKeys.netTurnover]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.netTurnover],
+    className: dataColumns[columnKeys.netTurnover].className + highLight
+  }),
+  [columnKeys.ggr]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.ggr],
+    className: dataColumns[columnKeys.ggr].className + highLight
+  }),
+  [columnKeys.betCount]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.betCount],
+    className: dataColumns[columnKeys.betCount].className + highLight,
+    digits: 0
+  }),
+  [columnKeys.avgBetAmount]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.avgBetAmount],
+    className: dataColumns[columnKeys.avgBetAmount].className + highLight
+  }),
+  [columnKeys.uniquePlayers]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.uniquePlayers],
+    className: dataColumns[columnKeys.uniquePlayers].className + highLight,
+    digits: 0
+  }),
+  [columnKeys.margin]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.margin],
+    className: dataColumns[columnKeys.margin].className + highLight
+  }, '%'),
+  [columnKeys.noOfDeposit]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.noOfDeposit],
+    className: dataColumns[columnKeys.noOfDeposit].className + highLight,
+    digits: 0
+  }),
+  [columnKeys.totalDepositAmount]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.totalDepositAmount],
+    className: dataColumns[columnKeys.totalDepositAmount].className + highLight
+  }),
+  [columnKeys.noOfWithdrawal]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.noOfWithdrawal],
+    className: dataColumns[columnKeys.noOfWithdrawal].className + highLight,
+    digits: 0
+  }),
+  [columnKeys.totalWithdrawalAmount]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.totalWithdrawalAmount],
+    className: dataColumns[columnKeys.totalWithdrawalAmount].className + highLight
+  })
 };
 const defaultPagingOption = {
   PageIndex: 1,
@@ -5693,14 +5845,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
-/* harmony import */ var _components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/grid/DecimalCell */ "./www/js/source/reactpages/pages/report/winloss/components/grid/DecimalCell.jsx");
-/* harmony import */ var _components_grid_GridRow__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/grid/GridRow */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GridRow.jsx");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var _components_grid_GridRow__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/grid/GridRow */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GridRow.jsx");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
 
@@ -5708,67 +5854,65 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class GridHelper {
-  static renderHeader(objectColumns) {
-    let objectColumn;
+  static renderHeader(displayedColumns, onDrop) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
       style: {
         height: '32px'
       }
-    }, (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].group]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].group], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaId]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaId], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaSystemId]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaSystemId], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].netTurnover]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].netTurnover], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers], objectColumn.name), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].margin]) && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].margin], objectColumn.name));
+    }, [..._constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["defaultDisplayedColumns"], ...displayedColumns].map(col => col.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], _extends({
+      key: `header-cell-${col.key}`
+    }, _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][col.key], {
+      onDrop: event => {
+        event.preventDefault();
+        const headerKey = event.dataTransfer.getData("headerKey");
+        const headerX = parseInt(event.dataTransfer.getData("headerX"));
+        const headerDestIndex = displayedColumns.findIndex(_ => _.key === col.key);
+        const headerSourceIndex = displayedColumns.findIndex(_ => _.key === headerKey);
+        const newDisplayedColumns = [...displayedColumns];
+        const targetX = event.target.getBoundingClientRect().x;
+        const dragElementX = event.clientX - headerX;
+
+        if (headerSourceIndex === headerDestIndex) {
+          return;
+        } else if (headerSourceIndex < headerDestIndex) {
+          this._orderColumnsLeftToRight(newDisplayedColumns, headerSourceIndex, headerDestIndex, dragElementX, targetX);
+        } else {
+          this._orderColumnsRightToLeft(newDisplayedColumns, headerSourceIndex, headerDestIndex, dragElementX, targetX);
+        }
+
+        onDrop && onDrop(newDisplayedColumns);
+      }
+    }), col.name)));
   }
 
-  static renderBody(dataList, objectColumns) {
-    return dataList.map(rowData => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_GridRow__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  static renderBody(dataList, displayedColumns) {
+    return dataList.map(rowData => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_GridRow__WEBPACK_IMPORTED_MODULE_4__["default"], {
       key: `row-${rowData.key}`,
       rowData: rowData,
-      objectColumns: objectColumns
+      displayedColumns: displayedColumns
     }));
   }
 
-  static renderFooter(totalData, objectColumns) {
-    const totalColumns = this.getTotalColumns(objectColumns);
-    let objectColumn;
+  static renderFooter(totalData, displayedColumns) {
+    const cells = displayedColumns.map(col => {
+      if (!col.show) {
+        return null;
+      }
+
+      if (col.hasTotal) {
+        return _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["componentCells"][col.key](totalData, '', '');
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], null);
+      }
+    });
     const row = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], {
       className: "fixed-table-grant-total",
       key: "totalRow"
-    }, objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].group].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+    }, [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
       key: "total",
-      className: "center-align",
-      colSpan: totalColumns.length
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("Total")), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaId]) && !objectColumn.isTotalColumn && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaId].className
-    }), (objectColumn = objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaSystemId]) && !objectColumn.isTotalColumn && objectColumn.show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].sabaSystemId].className
-    }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      value: totalData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover],
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover].className
-    }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].netTurnover].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      value: totalData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].netTurnover],
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].netTurnover].className
-    }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      value: totalData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr],
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].ggr].className
-    }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      value: totalData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount],
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].betCount].className,
-      digits: 0
-    }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      value: totalData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount],
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].avgBetAmount].className
-    }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      value: totalData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers],
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].uniquePlayers].className,
-      digits: 0
-    }), objectColumns[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].margin].show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      value: totalData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].margin],
-      className: _constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["dataColumns"][_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["columnKeys"].turnover].className
-    }, '%'));
+      className: "center-align"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("Total")), ...cells]);
     return [row];
-  }
-
-  static getTotalColumns(objectColumns) {
-    const totalColumns = Object.values(objectColumns).filter(_ => _.show && _.isTotalColumn);
-    return totalColumns;
   }
 
   static resetGridDataList(dataList) {
@@ -5779,11 +5923,32 @@ class GridHelper {
     });
   }
 
-  static toObjectColumns(displayedColumns) {
-    displayedColumns = [...displayedColumns, ..._constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["defaultDisplayedColumns"]];
-    return displayedColumns.reduce((accumulator, currentValue) => _objectSpread({}, accumulator, {}, {
-      [currentValue.key]: currentValue
-    }), {});
+  static _orderColumnsLeftToRight(columns, sourceIndex, destIndex, dragElementX, targetX) {
+    if (dragElementX >= targetX) {
+      destIndex++;
+    }
+
+    const tempSource = columns[sourceIndex];
+
+    for (let colIndex = sourceIndex; colIndex < destIndex - 1; colIndex++) {
+      columns[colIndex] = columns[colIndex + 1];
+    }
+
+    columns[destIndex - 1] = tempSource;
+  }
+
+  static _orderColumnsRightToLeft(columns, sourceIndex, destIndex, dragElementX, targetX) {
+    if (dragElementX <= targetX) {
+      destIndex--;
+    }
+
+    const tempSource = columns[sourceIndex];
+
+    for (let colIndex = sourceIndex; colIndex > destIndex + 1; colIndex--) {
+      columns[colIndex] = columns[colIndex - 1];
+    }
+
+    columns[destIndex + 1] = tempSource;
   }
 
 }

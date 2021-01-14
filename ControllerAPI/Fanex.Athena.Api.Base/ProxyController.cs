@@ -3,6 +3,7 @@
     using Fanex.Athena.Api.Base.Attributes;
     using Fanex.Athena.Service.Core.Proxy;
     using ONEbook.UM.Filters;
+    using System;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
@@ -25,9 +26,10 @@
             return result;
         }
 
-        [HttpPost]
+        [CLSCompliant(false)]
+        [AcceptVerbs("Get", "Post")]
         [ApiValidateAntiForgery]
-        public async Task<HttpResponseMessage> Post([FromUri]string apiKey, [FromUri]string apiUrl)
+        public async Task<HttpResponseMessage> Forward([FromUri]string apiKey, [FromUri]string apiUrl)
         {
             var result = await _proxyService.HandleRequest(apiKey, apiUrl);
             return result;

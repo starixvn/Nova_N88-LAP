@@ -17,7 +17,8 @@ var cssPaths = {
     statement: "./www/css/source/reactpages/pages/playeradmin/statement.scss",
 
     winlossreport: "./www/css/source/reactpages/pages/report/winloss/index.scss",
-    marketingreport: "./www/css/source/reactpages/pages/report/marketing/index.scss"
+    marketingreport: "./www/css/source/reactpages/pages/report/marketing/index.scss",
+    bonusinforeport: "./www/css/source/reactpages/pages/report/bonusinfo/index.scss"
 };
 
 var scriptPaths = {
@@ -47,7 +48,8 @@ var scriptPaths = {
 
     winlossreport: "./www/js/source/reactpages/pages/report/winloss/index.js",
     marketingreport: "./www/js/source/reactpages/pages/report/marketing/index.js",
-    marketingreport_performancehighlightdetail: "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/index.js"
+    marketingreport_performancehighlightdetail: "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/index.js",
+    bonusinforeport: "./www/js/source/reactpages/pages/report/bonusinfo/index.js"
 };
 module.exports = {
     projectRoot: projectRoot,

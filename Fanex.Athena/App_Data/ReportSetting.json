@@ -28,5 +28,12 @@
     "MinDateString": "01/01/2020",
     "LimitMonthRange": 2,
     "TimeZone": 8
+  },
+  {
+    "ReportKey": "BonusInfoReport",
+    "MaxDateString": "today",
+    "MinDateString": "01/01/2020",
+    "LimitMonthRange": 3,
+    "TimeZone": 8
   }
 ]

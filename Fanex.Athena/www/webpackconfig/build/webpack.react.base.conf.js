@@ -36,6 +36,7 @@ function generateConfig(environment) {
             [`${jsPath}/report/speciallicenseewl`]: pathConfig.scriptPaths.speciallicenseewl,
             [`${jsPath}/report/winloss`]: pathConfig.scriptPaths.winlossreport,
             [`${jsPath}/report/marketing`]: pathConfig.scriptPaths.marketingreport,
+            [`${jsPath}/report/bonusinfo`]: pathConfig.scriptPaths.bonusinforeport,
             [`${jsPath}/report/marketing-performancehighlightdetail`]: pathConfig.scriptPaths.marketingreport_performancehighlightdetail,
 
             /*css*/
@@ -53,6 +54,7 @@ function generateConfig(environment) {
 
             [`${cssPath}/report/winloss`]: pathConfig.cssPaths.winlossreport,
             [`${cssPath}/report/marketing`]: pathConfig.cssPaths.marketingreport,
+            [`${cssPath}/report/bonusinfo`]: pathConfig.cssPaths.bonusinforeport,
         },
         output: {
             path: pathConfig.projectRoot,

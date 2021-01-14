@@ -82,6 +82,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="BonusInfoReportControllerTest.cs" />
     <Compile Include="MarketingReportControllerTest.cs" />
     <Compile Include="WinLossReportControllerTest.cs" />
     <Compile Include="Result\ResultKenoReportControllerTest.cs" />

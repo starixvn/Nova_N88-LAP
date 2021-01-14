@@ -696,6 +696,8 @@
     <Content Include="www\css\build\dev\reactpages\playeradmin\running-betlist.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\running-betlist.css" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\statement.css" />
+    <Content Include="www\css\build\dev\reactpages\report\bonusinfo.chunk.js" />
+    <Content Include="www\css\build\dev\reactpages\report\bonusinfo.css" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.css" />
     <Content Include="www\css\build\dev\reactpages\report\marketing.css" />
@@ -773,6 +775,7 @@
     <Content Include="www\css\build\pro\reactpages\playeradmin\playerwinloss.css" />
     <Content Include="www\css\build\pro\reactpages\playeradmin\running-betlist.css" />
     <Content Include="www\css\build\pro\reactpages\playeradmin\statement.css" />
+    <Content Include="www\css\build\pro\reactpages\report\bonusinfo.css" />
     <Content Include="www\css\build\pro\reactpages\report\marketing.css" />
     <Content Include="www\css\build\pro\reactpages\report\winloss.css" />
     <Content Include="www\css\build\pro\reactpages\speciallicenseewl\index.chunk.js" />
@@ -881,6 +884,9 @@
     <Content Include="Fanex.Athena.ruleset" />
     <Content Include="App_Data\UserDefaultBaseCurencySetting.json" />
     <Content Include="Views\Account\UserInfo.cshtml" />
+    <Content Include="Views\Desktop\Report\BonusInfo\Main.cshtml" />
+    <Content Include="www\css\build\dev\reactpages\report\bonusinfo.chunk.js.map" />
+    <Content Include="www\css\build\dev\reactpages\report\bonusinfo.css.map" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -919,6 +925,7 @@
     <Content Include="www\js\build\dev\reactpages\playeradmin\statement.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js.map" />
+    <Content Include="www\js\build\dev\reactpages\report\bonusinfo.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\speciallicenseewl.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js" />
@@ -945,6 +952,7 @@
     <Content Include="www\js\build\pro\reactpages\playeradmin\runningbetlist.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\playeradmin\single-customer.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\playeradmin\statement.chunk.js" />
+    <Content Include="www\js\build\pro\reactpages\report\bonusinfo.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\marketing.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\winloss.chunk.js" />
@@ -1301,6 +1309,24 @@
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\singlecustomer\reducers\index.js" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\running\actions\index.js" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\running\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\actions\dataAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\actions\filterAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\actions\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\actions\types.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\components\AppContainer.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\components\common\Widget.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\components\Content.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\components\FormFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\components\widgets\BonusInfoDetailWidget.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\components\widgets\BonusInfoSummaryWidget.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\constants\gridConst.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\constants\queryConst.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\libs\services\queryService.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\libs\store.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\reducers\dataReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\reducers\filterReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\bonusinfo\reducers\index.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\actions\dataAction.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\actions\filterAction.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\actions\index.js" />
@@ -2183,6 +2209,10 @@
     <Content Include="www\js\source\reactpages\components\dropdown\__tests__\__snapshots__\DropdownToggle.test.js.snap" />
     <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\report\marketing-performancehighlightdetail.chunk.js.map" />
+    <Content Include="www\js\build\dev\reactpages\report\bonusinfo.chunk.js.map" />
+    <Content Include="www\css\source\reactpages\pages\report\bonusinfo\index.scss" />
+    <Content Include="www\css\source\reactpages\pages\report\marketing\index.scss" />
+    <Content Include="www\css\source\reactpages\pages\report\winloss\index.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

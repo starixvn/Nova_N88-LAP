@@ -3473,7 +3473,7 @@ const FormFilter = props => {
 
   const _renderBonusStatusSelectList = () => {
     const bonusStatusOptions = dropdownOptionsData.bonusStatusList;
-    return bonusStatusOptions && bonusStatusOptions.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    return bonusStatusOptions && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
       id: "bonusStatus",
       language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].currentLanguage,
       dataSource: bonusStatusOptions,
@@ -3481,12 +3481,12 @@ const FormFilter = props => {
       valueField: "value",
       statusField: "status",
       onChange: (currentItem, selectedItemsKey) => setSelectedBonusStatus(selectedItemsKey)
-    }) : null;
+    });
   };
 
   const _renderBonusTypeSelectList = () => {
     const bonusTypeOptions = dropdownOptionsData.bonusTypeList;
-    return bonusTypeOptions && bonusTypeOptions.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    return bonusTypeOptions && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
       id: "bonusType",
       language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].currentLanguage,
       dataSource: bonusTypeOptions,
@@ -3494,12 +3494,12 @@ const FormFilter = props => {
       valueField: "value",
       statusField: "status",
       onChange: (currentItem, selectedItemsKey) => setSelectedBonusType(selectedItemsKey)
-    }) : null;
+    });
   };
 
   const _renderClaimStatusSelectList = () => {
     const claimStatusOptions = dropdownOptionsData.claimStatusList;
-    return claimStatusOptions && claimStatusOptions.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    return claimStatusOptions && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
       id: "claimStatus",
       language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].currentLanguage,
       dataSource: claimStatusOptions,
@@ -3507,7 +3507,7 @@ const FormFilter = props => {
       valueField: "value",
       statusField: "status",
       onChange: (currentItem, selectedItemsKey) => setSelectedClaimStatus(selectedItemsKey)
-    }) : null;
+    });
   };
 
   const _onSubmit = () => {

@@ -1,4 +1,4 @@
-﻿// Generated at: 12/29/2020 9:40:43 AM
+﻿// Generated at: 1/7/2021 3:23:17 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -451,10 +451,13 @@ NoneLive:"非滚球(不含混合)",
 NonEntered:"成绩还没输入场数",
 NoOfBonusClaimed:"No. Of Bonus Claimed",
 NoOfCustmer:"会员数",
+NoOfDeposit:"No. Deposit",
+NoOfWithdrawal:"No. Withdrawal",
 NoProductFound:"No product found",
 Normal:"正常",
 NotAllowBA:"此Licensee不允许投注总计",
 Note:"注意",
+NoteReportDepositAndWithdrawal:"Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
 NoteReportGrossRevenue:"This report is reported gross revenue, have not yet deducted cost, fee, ect...",
 Notification:"通知",
 NotificationDateRangeLimitNote:"最多可以检索六个月前的资料",

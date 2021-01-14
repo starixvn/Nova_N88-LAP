@@ -3052,4 +3052,16 @@
     <value>Active NRU</value>
     <comment>147542</comment>
   </data>
+  <data name="NoOfDeposit" xml:space="preserve">
+    <value>No. Deposit</value>
+    <comment>147542</comment>
+  </data>
+  <data name="NoOfWithdrawal" xml:space="preserve">
+    <value>No. Withdrawal</value>
+    <comment>147542</comment>
+  </data>
+  <data name="NoteReportDepositAndWithdrawal" xml:space="preserve">
+    <value>Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone</value>
+    <comment>147542</comment>
+  </data>
 </root>

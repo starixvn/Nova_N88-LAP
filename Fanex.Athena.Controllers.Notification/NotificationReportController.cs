@@ -16,9 +16,9 @@
     using System.Web.Mvc;
     using System.Web.SessionState;
 
-    [FunctionAuthorization(PermissionKeys.Resettlement)]
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
+    [FunctionAuthorization(PermissionKeys.Resettlement)]
     public class NotificationReportController : CultureBaseController
     {
         private readonly INotificationService _notificationService;

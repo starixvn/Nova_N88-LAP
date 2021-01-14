@@ -1,62 +1,68 @@
 import React from 'react';
 import { HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import LangHelper from '@jsroot/lib/langHelper';
-import { dataColumns, columnKeys, defaultDisplayedColumns } from '../../constants/gridContants';
-import DecimalCell from '../../components/grid/DecimalCell';
+import { dataColumns, defaultDisplayedColumns, componentCells } from '../../constants/gridContants';
 import GridRow from '../../components/grid/GridRow';
 
 export default class GridHelper {
-    static renderHeader(objectColumns) {
-        let objectColumn;
+    static renderHeader(displayedColumns, onDrop) {
         return (
             <HeaderRow style={{ height: '32px' }}>
-                {(objectColumn = objectColumns[columnKeys.group]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.group]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.sabaId]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.sabaId]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.sabaSystemId]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.sabaSystemId]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.turnover]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.turnover]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.netTurnover]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.netTurnover]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.ggr]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.ggr]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.betCount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.betCount]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.avgBetAmount]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.avgBetAmount]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.uniquePlayers]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.uniquePlayers]}>{objectColumn.name}</HeaderCell>}
-                {(objectColumn = objectColumns[columnKeys.margin]) && objectColumn.show && <HeaderCell {...dataColumns[columnKeys.margin]}>{objectColumn.name}</HeaderCell>}
+                {[...defaultDisplayedColumns, ...displayedColumns].map(col =>
+                    col.show && (<HeaderCell key={`header-cell-${col.key}`} {...dataColumns[col.key]}
+                        onDrop={event => {
+                            event.preventDefault();
+
+                            const headerKey = event.dataTransfer.getData("headerKey");
+                            const headerX = parseInt(event.dataTransfer.getData("headerX"));
+                            const headerDestIndex = displayedColumns.findIndex(_ => _.key === col.key);
+                            const headerSourceIndex = displayedColumns.findIndex(_ => _.key === headerKey);
+
+                            const newDisplayedColumns = [...displayedColumns];
+                            const targetX = event.target.getBoundingClientRect().x;
+                            const dragElementX = event.clientX - headerX;
+
+                            if(headerSourceIndex === headerDestIndex) {
+                                return;
+                            }
+                            else if(headerSourceIndex < headerDestIndex) {
+                                this._orderColumnsLeftToRight(newDisplayedColumns, headerSourceIndex, headerDestIndex, dragElementX, targetX);
+                            }
+                            else {
+                                this._orderColumnsRightToLeft(newDisplayedColumns, headerSourceIndex, headerDestIndex, dragElementX, targetX);
+                            }
+
+                            onDrop && onDrop(newDisplayedColumns);
+                        }}
+                    >{col.name}
+                    </HeaderCell>))}
             </HeaderRow>
         )
     }
 
-    static renderBody(dataList, objectColumns) {
-        return dataList.map(rowData => <GridRow key={`row-${rowData.key}`} rowData={rowData} objectColumns={objectColumns} />);
+    static renderBody(dataList, displayedColumns) {
+        return dataList.map(rowData => <GridRow key={`row-${rowData.key}`} rowData={rowData} displayedColumns={displayedColumns} />);
     }
-    
-    static renderFooter(totalData, objectColumns) {
-        const totalColumns = this.getTotalColumns(objectColumns);
-        let objectColumn;
-        const row = (<Row className="fixed-table-grant-total" key="totalRow">
-            {objectColumns[columnKeys.group].show && <Cell key="total" className="center-align" colSpan={totalColumns.length} >
-                {LangHelper.getSingleResource("Total")}
-            </Cell>}
-            {(objectColumn = objectColumns[columnKeys.sabaId]) && !objectColumn.isTotalColumn && objectColumn.show && <Cell className={dataColumns[columnKeys.sabaId].className}  >
-            </Cell>}
-            {(objectColumn = objectColumns[columnKeys.sabaSystemId]) && !objectColumn.isTotalColumn && objectColumn.show  && <Cell className={dataColumns[columnKeys.sabaSystemId].className}  >
-            </Cell>}
-            {objectColumns[columnKeys.turnover].show && <DecimalCell value={totalData[columnKeys.turnover]} className={dataColumns[columnKeys.turnover].className} />}
-            {objectColumns[columnKeys.netTurnover].show && <DecimalCell value={totalData[columnKeys.netTurnover]} className={dataColumns[columnKeys.netTurnover].className} />}
-            {objectColumns[columnKeys.ggr].show && <DecimalCell value={totalData[columnKeys.ggr]} className={dataColumns[columnKeys.ggr].className} />}
-            {objectColumns[columnKeys.betCount].show && <DecimalCell value={totalData[columnKeys.betCount]} className={dataColumns[columnKeys.betCount].className} digits={0} />}
-            {objectColumns[columnKeys.avgBetAmount].show && <DecimalCell value={totalData[columnKeys.avgBetAmount]} className={dataColumns[columnKeys.avgBetAmount].className} />}
-            {objectColumns[columnKeys.uniquePlayers].show && <DecimalCell value={totalData[columnKeys.uniquePlayers]} className={dataColumns[columnKeys.uniquePlayers].className} digits={0} />}
-            {objectColumns[columnKeys.margin].show && <DecimalCell value={totalData[columnKeys.margin]} className={dataColumns[columnKeys.turnover].className} >
-                {'%'}
-            </DecimalCell>
+
+    static renderFooter(totalData, displayedColumns) {
+        const cells = displayedColumns.map(col => {
+            if (!col.show) {
+                return null;
             }
+
+            if (col.hasTotal) {
+                return componentCells[col.key](totalData, '', '')
+            } else {
+                return <Cell />
+            }
+        })
+        const row = (<Row className="fixed-table-grant-total" key="totalRow">
+            {[<Cell key="total" className="center-align" >
+                {LangHelper.getSingleResource("Total")}
+            </Cell>, ...cells]}
         </Row>)
 
         return [row];
-    }
-
-    static getTotalColumns(objectColumns) {
-        const totalColumns = Object.values(objectColumns).filter(_ => _.show && _.isTotalColumn);
-        return totalColumns;
     }
 
     static resetGridDataList(dataList) {
@@ -66,15 +72,26 @@ export default class GridHelper {
             return noParent;
         });
     }
+    
+    static _orderColumnsLeftToRight(columns, sourceIndex, destIndex, dragElementX, targetX) {
+        if(dragElementX >= targetX) {
+            destIndex++
+        }
+        const tempSource = columns[sourceIndex]; 
+        for(let colIndex = sourceIndex; colIndex < destIndex - 1; colIndex++) {
+            columns[colIndex] = columns[colIndex + 1];
+        } 
+        columns[destIndex - 1] = tempSource
+    }
 
-    static toObjectColumns(displayedColumns) {
-        displayedColumns = [...displayedColumns, ...defaultDisplayedColumns];
-        return displayedColumns.reduce((accumulator, currentValue) => (
-            {
-                ...accumulator,
-                ...{ [currentValue.key]: currentValue }
-            }),
-            {}
-        )
+    static _orderColumnsRightToLeft(columns, sourceIndex, destIndex, dragElementX, targetX) {
+        if(dragElementX <= targetX) {
+            destIndex--
+        }
+        const tempSource = columns[sourceIndex]; 
+        for(let colIndex = sourceIndex; colIndex > destIndex + 1; colIndex--) {
+            columns[colIndex] = columns[colIndex - 1];
+        } 
+        columns[destIndex + 1] = tempSource;
     }
 }

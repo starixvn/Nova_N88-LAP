@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 12/29/2020 9:40:43 AM
+// Generated at: 1/7/2021 3:23:17 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -635,10 +635,13 @@ window._language_en_US = {
   NonEntered: "Non-Entered",
   NoOfBonusClaimed: "No. Of Bonus Claimed",
   NoOfCustmer: "No. of Customer",
+  NoOfDeposit: "No. Deposit",
+  NoOfWithdrawal: "No. Withdrawal",
   NoProductFound: "No product found",
   Normal: "Normal",
   NotAllowBA: "This licensee is not allowed BA",
   Note: "Note",
+  NoteReportDepositAndWithdrawal: "Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
   NoteReportGrossRevenue: "This report is reported gross revenue, have not yet deducted cost, fee, ect...",
   Notification: "Notification",
   NotificationDateRangeLimitNote: "Data is available within 6 months",

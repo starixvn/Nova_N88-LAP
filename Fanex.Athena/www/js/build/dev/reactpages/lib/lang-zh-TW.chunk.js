@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 1/14/2021 10:06:35 AM
+// Generated at: 1/15/2021 5:12:10 PM
 window._language_zh_TW = {
   AA: "客客",
   AbnormalBet: "非正規註單",
@@ -186,6 +186,7 @@ window._language_zh_TW = {
   ByCurrency: "根據貨幣",
   BySportsType: "根據運動類型",
   Cancel: "取消",
+  Canceled: "Canceled",
   CashOutAmount: "即時兌現金額",
   CashOutAmt: "兌現金額",
   CashOutCommission: "即時兌現佣金",

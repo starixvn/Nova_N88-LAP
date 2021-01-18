@@ -3291,8 +3291,7 @@ __webpack_require__.r(__webpack_exports__);
 const Content = props => {
   const {
     globalFilter,
-    detailFilter,
-    isCollapsedFormFilter
+    detailFilter
   } = props;
 
   if (!globalFilter) {
@@ -3304,13 +3303,6 @@ const Content = props => {
     fromDate,
     toDate
   } = globalFilter;
-
-  const _maxHeightPixel = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
-    const {
-      innerHeight
-    } = window;
-    return innerHeight - (isCollapsedFormFilter ? 100 : 220) + 'px';
-  }, [isCollapsedFormFilter]);
 
   const _renderTitle = () => {
     const reportName = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('BonusInfo');
@@ -3333,23 +3325,18 @@ const Content = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bonusinfo-content"
   }, _renderTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "widget-list",
-    style: {
-      maxHeight: _maxHeightPixel
-    }
+    className: "widget-list"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_BonusInfoSummaryWidget__WEBPACK_IMPORTED_MODULE_6__["default"], null), detailFilter && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_BonusInfoDetailWidget__WEBPACK_IMPORTED_MODULE_7__["default"], null)));
 };
 
 function mapStateToProps(state) {
   const {
     globalFilter,
-    detailFilter,
-    isCollapsedFormFilter
+    detailFilter
   } = state;
   return Object.assign({}, {
     globalFilter,
-    detailFilter,
-    isCollapsedFormFilter
+    detailFilter
   });
 }
 
@@ -3675,6 +3662,7 @@ const Widget = props => {
     title,
     isLoading,
     handleExportExcel,
+    hasData,
     children
   } = props;
   const [isCollapsed, setIsCollapsed] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
@@ -3708,13 +3696,13 @@ const Widget = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "widget"
   }, _renderTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: children ? "widget-content" : "widget-no-content",
+    className: hasData ? "widget-content" : "widget-no-content",
     style: {
       display: isCollapsed ? 'none' : 'block'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_Loader__WEBPACK_IMPORTED_MODULE_1__["default"], {
     isLoading: isLoading
-  }), children || _renderNoData()));
+  }), hasData && children || _renderNoData()));
 };
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
 
@@ -3839,7 +3827,7 @@ const BonusInfoDetailWidget = props => {
     const data = [...bonusInfoDetailData.dataList];
     return data.map((item, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Row"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"],
-      key: index
+      key: item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].userName] + item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].bonusCode] + item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].claimDate]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].userName].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].userName]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].bonusCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].bonusCode]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].claimDate].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].claimDate]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].bonusAmountClaimed].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].bonusAmountClaimed], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].totalDeposit].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].totalDeposit], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].totalWithdrawal].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].totalWithdrawal], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].status].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].status]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].completion].attributes, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "progress"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3849,9 +3837,9 @@ const BonusInfoDetailWidget = props => {
       "aria-valuemin": 0,
       "aria-valuemax": 100,
       style: {
-        width: `${item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].completion]}%`
+        width: `${item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].completion] * 100}%`
       }
-    }, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].completion], "%")))));
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoDetailGridColumns"].completion] * 100, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"]), "%")))));
   };
 
   const _bonusOnChange = item => {
@@ -3876,10 +3864,12 @@ const BonusInfoDetailWidget = props => {
     });
   };
 
+  const hasData = bonusInfoDetailData && bonusInfoDetailData.dataList.length > 0;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_5__["default"], {
     title: _title,
     isLoading: isLoading,
-    handleExportExcel: _handleExportExcel
+    handleExportExcel: _handleExportExcel,
+    hasData: hasData
   }, bonusCodeList && bonusCodeList.length > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row bonus-filter"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3888,7 +3878,7 @@ const BonusInfoDetailWidget = props => {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "label-text"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("Bonus")), _renderBonusSelectList()))), bonusInfoDetailData && bonusInfoDetailData.dataList.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("Bonus")), _renderBonusSelectList()))), hasData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
@@ -3903,7 +3893,7 @@ const BonusInfoDetailWidget = props => {
     header: _renderHeader(),
     body: _renderBody(),
     onSort: _handleSort,
-    containerPadding: 55,
+    containerPadding: 60,
     shouldResetScrollPosition: isLoading
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Pager"], {
     pageOption: pagingOption,
@@ -3982,12 +3972,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-let countRender = 0;
 const BonusInfoSummaryWidget = props => {
   const {
     globalFilter,
     bonusInfoSummaryData,
-    dropdownOptionsData,
     fetchBonusInfoSummaryData,
     setDetailFilter,
     setBonusCodeList,
@@ -4002,10 +3990,8 @@ const BonusInfoSummaryWidget = props => {
       return;
     }
 
-    countRender++;
-
     _fetchData(null, null);
-  }, [globalFilter, summaryGridHeight]);
+  }, [globalFilter]);
 
   const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Summary'), []);
 
@@ -4093,7 +4079,7 @@ const BonusInfoSummaryWidget = props => {
     const data = [...bonusInfoSummaryData.dataList];
     return data.map((item, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Row"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"],
-      key: index
+      key: item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusName] + item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusCode] + item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusType]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusName].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusName]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusCode].attributes, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#",
       onClick: e => _bonusCodeClick(e, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusCode])
@@ -4114,14 +4100,16 @@ const BonusInfoSummaryWidget = props => {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimants].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__["default"].format(totalData[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimants], 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimedAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__["default"].format(totalData[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimedAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalDeposit].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__["default"].format(totalData[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalDeposit], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalWithdrawal].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__["default"].format(totalData[_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalWithdrawal], _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["DigitsAmount"])));
   };
 
+  const hasData = bonusInfoSummaryData && bonusInfoSummaryData.dataList.length > 0;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_5__["default"], {
     title: _title,
     isLoading: isLoading,
-    handleExportExcel: _handleExportExcel
-  }, bonusInfoSummaryData && bonusInfoSummaryData.dataList.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    handleExportExcel: _handleExportExcel,
+    hasData: hasData
+  }, hasData > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Table"], {
-    key: 'BonusInfo_Summary' + countRender,
+    key: 'BonusInfo_Summary' + summaryGridHeight,
     minWidth: 650,
     autoWidth: true,
     autoHeight: false,
@@ -4130,7 +4118,7 @@ const BonusInfoSummaryWidget = props => {
     body: _renderBody(),
     footer: _renderFooter(),
     onSort: _handleSort,
-    containerPadding: 55,
+    containerPadding: 65,
     shouldResetScrollPosition: isLoading
   })));
 };
@@ -4139,13 +4127,11 @@ function mapStateToProps(state) {
   const {
     globalFilter,
     bonusInfoSummaryData,
-    dropdownOptionsData,
     summaryGridHeight
   } = state;
   return Object.assign({}, {
     globalFilter,
     bonusInfoSummaryData,
-    dropdownOptionsData,
     summaryGridHeight
   });
 }
@@ -4323,7 +4309,7 @@ const BonusInfoSummaryGridConfig = {
     }
   },
   [BonusInfoSummaryGridColumns.claimStatus2]: {
-    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Cancel'),
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Canceled'),
     attributes: {
       sortBy: 'canceled',
       colWidth: 50,
@@ -4396,7 +4382,7 @@ const BonusInfoDetailGridConfig = {
     }
   },
   [BonusInfoDetailGridColumns.status]: {
-    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Status'),
+    name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('ClaimStatus'),
     attributes: {
       sortBy: 6,
       colWidth: 80,
@@ -4419,8 +4405,8 @@ const DefaultPagingOption = {
   PageList: [100, 200, 500, 1000]
 };
 const DefaultDetailSortInfo = {
-  sortbyId: 1,
-  isSortAsc: true
+  sortbyId: 7,
+  isSortAsc: false
 };
 const DefaultSummarySortInfo = {
   sortBy: 'BonusCode',

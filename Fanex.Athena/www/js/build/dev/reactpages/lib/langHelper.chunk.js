@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 1/14/2021 10:06:35 AM
+// Generated at: 1/15/2021 5:12:10 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -218,6 +218,7 @@ window._language_en_US = {
   ByCurrency: "By Currency",
   BySportsType: "By Sports Type",
   Cancel: "Cancel",
+  Canceled: "Canceled",
   CannotUpdateBetLimitForProduct: "You cannot update member bet limit for product {0}.",
   CashOutAmount: "Cash Out Amount",
   CashOutAmt: "Cash-out Amt",

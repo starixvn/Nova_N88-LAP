@@ -1,4 +1,4 @@
-﻿// Generated at: 1/14/2021 10:06:35 AM
+﻿// Generated at: 1/15/2021 5:12:10 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -108,6 +108,7 @@ ByBetType:"根据投注类型",
 ByCurrency:"根据货币",
 BySportsType:"根据运动类型",
 Cancel:"取消",
+Canceled:"Canceled",
 CashOutAmount:"预先兑现金额",
 CashOutAmt:"兑现金额",
 CashOutCommission:"即时兑现佣金",

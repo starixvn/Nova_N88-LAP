@@ -2128,4 +2128,7 @@
   <data name="OtherPlatform" xml:space="preserve">
     <value>Other Platform</value>
   </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
 </root>

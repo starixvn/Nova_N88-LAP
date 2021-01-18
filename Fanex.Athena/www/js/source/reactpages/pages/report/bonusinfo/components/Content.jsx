@@ -8,18 +8,13 @@ import BonusInfoSummaryWidget from './widgets/BonusInfoSummaryWidget';
 import BonusInfoDetailWidget from './widgets/BonusInfoDetailWidget';
 
 export const Content = props => {
-    const { globalFilter, detailFilter, isCollapsedFormFilter } = props;
+    const { globalFilter, detailFilter } = props;
 
     if (!globalFilter) {
         return null;
     }
 
     const { selectedBaseCurrency, fromDate, toDate} = globalFilter;
-
-    const _maxHeightPixel = React.useMemo(() => {
-        const { innerHeight } = window;
-         return (innerHeight - (isCollapsedFormFilter ? 100 : 220)) + 'px';
-    }, [isCollapsedFormFilter]);
 
     const _renderTitle = () => {
         const reportName = LangHelper.getSingleResource('BonusInfo');
@@ -34,7 +29,7 @@ export const Content = props => {
     return (
         <div className="bonusinfo-content">
             {_renderTitle()}
-            <div className="widget-list" style={{ maxHeight: _maxHeightPixel }}>
+            <div className="widget-list">
                 <BonusInfoSummaryWidget />
                 {detailFilter && <BonusInfoDetailWidget />}
             </div>
@@ -43,8 +38,8 @@ export const Content = props => {
 }
 
 function mapStateToProps(state) {
-    const { globalFilter, detailFilter, isCollapsedFormFilter } = state;
-    return Object.assign({}, { globalFilter, detailFilter, isCollapsedFormFilter });
+    const { globalFilter, detailFilter } = state;
+    return Object.assign({}, { globalFilter, detailFilter });
 }
 
 function mapDispatchToProps(dispatch) {

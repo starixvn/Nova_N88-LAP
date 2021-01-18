@@ -3,7 +3,7 @@ import Loader from '@jsroot/components/Loader';
 import LangHelper from '@jsroot/lib/langHelper';
 
 export const Widget = props => {
-    const { title, isLoading, handleExportExcel, children } = props;
+    const { title, isLoading, handleExportExcel, hasData, children } = props;
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     const _renderTitle = () => {
@@ -26,9 +26,9 @@ export const Widget = props => {
 
     return (<div className="widget">
         {_renderTitle()}
-        {<div className={children ? "widget-content" : "widget-no-content"} style={{ display: isCollapsed ? 'none' : 'block' }}>
+        {<div className={hasData ? "widget-content" : "widget-no-content"} style={{ display: isCollapsed ? 'none' : 'block' }}>
             <Loader isLoading={isLoading} />
-            {children || _renderNoData()}
+            {hasData && children || _renderNoData()}
         </div>}
     </div>)
 }

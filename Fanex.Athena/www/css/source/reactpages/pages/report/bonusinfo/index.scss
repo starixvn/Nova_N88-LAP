@@ -6,7 +6,18 @@
 @import "../../../components/react-grid";
 @import "../../../components/paging";
 
+html{
+    height: 100%;
+}
+
+#app-container, #container, .bonusinfo-content, body, .wrapper  {
+    height: auto;
+}
+
 .bonusinfo-report {
+
+    padding-bottom: 15px;
+    
     .summary-container {
         .summary-table:not(:last-child) {
             margin-bottom: 10px;
@@ -50,7 +61,7 @@
 
     .widget-list {
         border-top: none;
-        overflow: auto;
+        height: 100%;
 
         &::-webkit-scrollbar {
             width: 5px;
@@ -65,10 +76,6 @@
             background: grey;
             border-radius: 5px;
         }
-    }
-
-    .widget:first-child {
-        margin-bottom: 15px;
     }
 
     .widget {

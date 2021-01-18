@@ -1168,6 +1168,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Canceled.
+        /// </summary>
+        public static string Canceled {
+            get {
+                return ResourceManager.GetString("Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You cannot update member bet limit for product {0}..
         /// </summary>
         public static string CannotUpdateBetLimitForProduct {
@@ -1407,6 +1416,15 @@ namespace Fanex.Athena.Resources {
         public static string ClaimStatus {
             get {
                 return ResourceManager.GetString("ClaimStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Platform.
+        /// </summary>
+        public static string ClaimStatusOptionOtherPlatform {
+            get {
+                return ResourceManager.GetString("ClaimStatusOptionOtherPlatform", resourceCulture);
             }
         }
         
@@ -6681,6 +6699,15 @@ namespace Fanex.Athena.Resources {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Canceled.
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

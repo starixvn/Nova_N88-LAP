@@ -11,10 +11,8 @@ import { DefaultSummarySortInfo } from '../../constants/gridConst';
 import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import NumberFormat from '@jsroot/lib/numberFormat';
 
-let countRender = 0;
-
 export const BonusInfoSummaryWidget = props => {
-    const { globalFilter, bonusInfoSummaryData, dropdownOptionsData, fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList, setSelectedBonusCode, summaryGridHeight, setSummaryGridHeight} = props;   
+    const { globalFilter, bonusInfoSummaryData, fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList, setSelectedBonusCode, summaryGridHeight, setSummaryGridHeight} = props;   
     const [isLoading, setLoading] = useState(false);
     const [sortInfo, onSort] = useState(DefaultSummarySortInfo);   
 
@@ -22,10 +20,9 @@ export const BonusInfoSummaryWidget = props => {
         if (!globalFilter) {
             return;
         }
-        
-        countRender++;
+
         _fetchData(null, null);        
-    }, [globalFilter, summaryGridHeight]);
+    }, [globalFilter]);
 
     const _title = React.useMemo(() => LangHelper.getSingleResource('Summary'), []);
 
@@ -108,7 +105,7 @@ export const BonusInfoSummaryWidget = props => {
 
     const _renderBody = () => {
         const data =  [...bonusInfoSummaryData.dataList];
-        return data.map((item, index) => <Row style={StyleRow} key={index}>           
+        return data.map((item, index) => <Row style={StyleRow} key={item[BonusInfoSummaryGridColumns.bonusName] + item[BonusInfoSummaryGridColumns.bonusCode] + item[BonusInfoSummaryGridColumns.bonusType]}>           
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusName].attributes} >{item[BonusInfoSummaryGridColumns.bonusName]}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusCode].attributes}>
                 <a href="#" onClick={(e)=> _bonusCodeClick(e, item[BonusInfoSummaryGridColumns.bonusCode])}>
@@ -151,10 +148,12 @@ export const BonusInfoSummaryWidget = props => {
         </Row>)
     }
 
-    return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel}>
-        {bonusInfoSummaryData && bonusInfoSummaryData.dataList.length > 0 && <div className="sticky-box-container">                    
+    const hasData = bonusInfoSummaryData && bonusInfoSummaryData.dataList.length > 0
+
+    return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel} hasData={hasData}>
+        {hasData > 0 && <div className="sticky-box-container">                    
                     <Table
-                        key={'BonusInfo_Summary' + countRender}
+                        key={'BonusInfo_Summary' + summaryGridHeight}
                         minWidth={650}
                         autoWidth={true}
                         autoHeight={false}
@@ -163,7 +162,7 @@ export const BonusInfoSummaryWidget = props => {
                         body={_renderBody()}
                         footer={_renderFooter()}
                         onSort={_handleSort}
-                        containerPadding={55}
+                        containerPadding={65}
                         shouldResetScrollPosition={isLoading}
                     />
         </div>}
@@ -171,8 +170,8 @@ export const BonusInfoSummaryWidget = props => {
 }
 
 function mapStateToProps(state) {
-    const { globalFilter, bonusInfoSummaryData, dropdownOptionsData, summaryGridHeight} = state;
-    return Object.assign({}, { globalFilter, bonusInfoSummaryData, dropdownOptionsData, summaryGridHeight });
+    const { globalFilter, bonusInfoSummaryData, summaryGridHeight} = state;
+    return Object.assign({}, { globalFilter, bonusInfoSummaryData, summaryGridHeight });
 }
 
 function mapDispatchToProps(dispatch) {

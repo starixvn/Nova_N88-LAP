@@ -91,7 +91,7 @@ export const BonusInfoDetailWidget = props => {
 
     const _renderBody = () => {
         const data =  [...bonusInfoDetailData.dataList];
-        return data.map((item, index) => <Row style={StyleRow} key={index}>
+        return data.map((item, index) => <Row style={StyleRow} key={item[BonusInfoDetailGridColumns.userName] + item[BonusInfoDetailGridColumns.bonusCode] + item[BonusInfoDetailGridColumns.claimDate]}>
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.userName].attributes}>{item[BonusInfoDetailGridColumns.userName]}</Cell>          
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusCode].attributes} >{item[BonusInfoDetailGridColumns.bonusCode]}</Cell>
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.claimDate].attributes} >{item[BonusInfoDetailGridColumns.claimDate]}</Cell>            
@@ -106,8 +106,8 @@ export const BonusInfoDetailWidget = props => {
                     aria-valuenow={item[BonusInfoDetailGridColumns.completion]}
                     aria-valuemin={0}
                     aria-valuemax={100}
-                    style={{width: `${item[BonusInfoDetailGridColumns.completion]}%`}}>
-                    {item[BonusInfoDetailGridColumns.completion]}%
+                    style={{width: `${item[BonusInfoDetailGridColumns.completion]*100}%`}}>
+                    {NumberFormat.format(item[BonusInfoDetailGridColumns.completion]*100, DigitsAmount)}%
                 </div>
             </div>      
             </Cell>
@@ -136,7 +136,9 @@ export const BonusInfoDetailWidget = props => {
         );
     }
 
-    return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel}>
+    const hasData = bonusInfoDetailData && bonusInfoDetailData.dataList.length  > 0
+
+    return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel} hasData={hasData}>
         {bonusCodeList && bonusCodeList.length > 1 && <div className="row bonus-filter">
         <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
                 <div className="form-group">
@@ -145,7 +147,7 @@ export const BonusInfoDetailWidget = props => {
                 </div>
             </div>
         </div>}    
-        {bonusInfoDetailData && bonusInfoDetailData.dataList.length > 0 &&
+        {hasData &&
         <>         
         <div className="sticky-box-container" >         
             <div style={{maxWidth: document.body.clientWidth*0.85}}>
@@ -157,7 +159,7 @@ export const BonusInfoDetailWidget = props => {
                     header={_renderHeader()}
                     body={_renderBody()}
                     onSort={_handleSort}
-                    containerPadding={55}
+                    containerPadding={60}
                     shouldResetScrollPosition={isLoading}
                 />
                 <Pager pageOption={pagingOption} onPaging={_handlePaging} />

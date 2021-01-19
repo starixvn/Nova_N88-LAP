@@ -67,7 +67,7 @@
             {
                 actionContext.Response = new HttpResponseMessage
                 {
-                    StatusCode = HttpStatusCode.Forbidden,
+                    StatusCode = HttpStatusCode.BadRequest,
                     Content = new StringContent(ViewResources.InvalidRequestMsg)
                 };
             }

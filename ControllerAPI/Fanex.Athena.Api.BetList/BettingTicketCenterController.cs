@@ -26,12 +26,13 @@
 
         [HttpPost]
         [ApiFunctionAuthorization(PermissionKeys.BetHistorySingleCustomer)]
-        [ValidationApiRequest]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<dynamic> GetBySingleCustomer(SingleCustomersBetListMetaModel metaModel)
         {
             var userSession = SessionService.UserSession;
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList);
+            var agentList = AuthParameterHelper.GetAgentList(BrandList, new[] { metaModel.BrandId });
+            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList);
 
             return await _betListApiClient.PostAsync(
                 "/BettingTicketCenter/GetBySingleCustomer",
@@ -56,13 +57,14 @@
 
         [HttpPost]
         [ApiFunctionAuthorization(PermissionKeys.BetHistoryRunning)]
-        [ValidationApiRequest(IsValidCurrencyList = true)]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<dynamic> GetByRunning(BaseBettingTicketMetaModel metaModel)
         {
             var userSession = SessionService.UserSession;
             var currencyList = metaModel.CurrencyIdList?.Split(',').Select(x => int.Parse(x)).ToArray();
 
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, currencyList);
+            var agentList = AuthParameterHelper.GetAgentList(BrandList, new[] { metaModel.BrandId });
+            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, currencyList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
 
             return await _betListApiClient.PostAsync(

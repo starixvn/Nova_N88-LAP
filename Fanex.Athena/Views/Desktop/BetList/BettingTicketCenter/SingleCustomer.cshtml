@@ -15,6 +15,7 @@
         value = c.Value,
         label = c.Value
     }).ToList();
+    var allowSelectBrand = Model.Brands.Count() > 1;
 }
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/betlist/index.css")" rel="stylesheet" type="text/css" />
@@ -34,14 +35,17 @@
     selectedStatus: '@(selectedStatus)',
     selectedLiveStatus: '@(selectedLiveStatus)',
     selectedPlatform: 0,
+    selectedBrand: @Model.OwnBrand.Id,
     isConvertAll: true
     };
     window._AppData = {
+    allowSelectBrand: @allowSelectBrand.ToString().ToLowerInvariant(),
     liveStatusList: @Html.Raw(Model.LiveStatusList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
     platformList: @Html.Raw(Model.PlatformList.Select(x => new { value = x.Key, label = x.Value }).ToJson()),
     statusList: @Html.Raw(Model.StatusList.Select(x => new { Id = x.ID, Value = x.Name, Status = x.Checked }).ToJson()),
     isAllowedCustomerComm: @Model.IsAllowedCustomerComm.ToJson(),
     productOptions: @Html.Raw(productOptions.ToJson()),
+    brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
     dateConstraint: { minDate: '1/1/2017', maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 6 },
     tabList: @Html.Raw(Model.TabList.ToJson())

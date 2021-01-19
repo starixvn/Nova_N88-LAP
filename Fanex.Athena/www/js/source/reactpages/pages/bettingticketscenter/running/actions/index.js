@@ -9,9 +9,11 @@ import * as reportTitleAction from '@jsroot/actions/reportTitleAction'
 import * as statusAction from '@jsroot/actions/statusAction'
 import * as convertAllAction from '@jsroot/actions/convertAllAction'
 import * as userGuideAction from '@jsroot/actions/userGuideAction'
+import * as brandAction from '@jsroot/actions/brandAction'
 
 export const ActionCreators = Object.assign({},
     gridDataAction,
+    brandAction,
     usernameAction,
     productAction,
     currencyAction,

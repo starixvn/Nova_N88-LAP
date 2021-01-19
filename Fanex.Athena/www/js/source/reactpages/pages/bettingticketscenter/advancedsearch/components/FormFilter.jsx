@@ -11,7 +11,7 @@ import AutoComplete from '@jsroot/components/auto-complete'
 import CheckBox from '@jsroot/components/CheckBox'
 import CollapsiblePanel from '@jsroot/components/collapsible-panel'
 import UserGuide from '@jsroot/components/UserGuide'
-
+import CurrencyHelper from '@jsroot/lib/currencyHelper'
 import { ActionCreators } from '../actions/index.js'
 import LangHelper from '@jsroot/lib/langHelper'
 import Site from '@jsroot/lib/site'
@@ -28,12 +28,12 @@ const ToastMsg = () => (
         <div>{LangHelper.getSingleResource("BTCExportExcelMsg2")}</div>
     </div>
 )
-
 export class FormFilter extends Component {
     constructor(props) {
         super(props);
         this.baseCurrencyList = AppData.baseCurrencyList;
         this.defaultBaseCurrency = props.selectedBaseCurrency;
+        this.currencyList = CurrencyHelper.getAgentCurrencyList(this.props.selectedBrand, AppData.brands);
     }
 
     componentDidMount() {
@@ -92,6 +92,7 @@ export class FormFilter extends Component {
             PageIndex: 1,
             FromDate: Site.convertDateToString(fromDate),
             ToDate: Site.convertDateToString(toDate),
+            BrandId: this.props.selectedBrand,
             ProductCodeList: this.props.selectedProduct,
             Username: this.props.username,
             CurrencyIdList: this.props.selectedCurrency,
@@ -273,21 +274,20 @@ export class FormFilter extends Component {
     }
 
     _renderCurrencySelectList() {
-        const currencyList = AppData.currencyList;
+        const currencyList = this.currencyList;
 
         return currencyList && currencyList.length && (
             <MultipleSelect id="ddlCurrency"
                 language={LangHelper.currentLanguage}
                 dataSource={currencyList}
-                keyField={"Id"}
-                valueField={"Value"}
-                statusField={"Status"}
+                keyField={"key"}
+                valueField={"value"}
+                statusField={"status"}
                 onChange={(currentItem, selectedItemsKey) => this._onChangeCurrency(selectedItemsKey)} />);
     }
 
     _onChangeCurrency = (currencyIdList) => {
         let baseCurrency = "";
-
         if (!currencyIdList || currencyIdList.indexOf(',') > 0) { // none or multi currencies
             this.baseCurrencyList = AppData.baseCurrencyList;
             baseCurrency = this.baseCurrencyList.find(x => x.label === this.props.selectedBaseCurrency) ?
@@ -295,7 +295,7 @@ export class FormFilter extends Component {
                 this.defaultBaseCurrency;
         }
         else {
-            const currencyName = AppData.currencyList.find(x => x.Id == currencyIdList).Value;
+            const currencyName = this.currencyList.find(x => x.key == currencyIdList).value;
 
             if (!this.baseCurrencyList.find(x => x.label === currencyName)) {
                 baseCurrency = '';
@@ -348,6 +348,22 @@ export class FormFilter extends Component {
                 onChange={(currentItem, selectedItemsKey) => this.props.setSelectedLiveStatus(selectedItemsKey)} />);
     }
 
+    _renderBrandSelectList() {
+        return (
+            <Select instanceId="brandList"
+                value={this.props.selectedBrand}
+                options={AppData.brandOptions}
+                onChange={item => {
+                    this.props.setSelectedBrand(item.value);
+                    this.currencyList = CurrencyHelper.getAgentCurrencyList(item.value, AppData.brands);
+                    const selectedCurrency = this.currencyList.map(_ => _.key).join(',');
+                    this.props.setSelectedCurrency(selectedCurrency);
+                    this.props.setSelectedBaseCurrency(this.defaultBaseCurrency);
+                }}
+            />
+        );
+    }
+
     render() {
         const excelButton = <div>
             <i className="icon-excel right" onClick={this.exportExcel} title={LangHelper.getSingleResource("ExportToExcel")}></i>
@@ -362,6 +378,13 @@ export class FormFilter extends Component {
                         pauseOnFocusLoss={false}
                         style={{ width: "500px" }}
                         transition={Flip} />
+                    {AppData.allowSelectBrand &&
+                        <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
+                            <div className="form-group">
+                                <label className="label-text">{LangHelper.getSingleResource("Brand")}</label>
+                                {this._renderBrandSelectList()}
+                            </div>
+                        </div>}
                     <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Date")}</label>
@@ -376,14 +399,14 @@ export class FormFilter extends Component {
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div className={`col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${AppData.allowSelectBrand ? 1 : 2}`}>
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Sport")}</label>
                             {this._renderSportSelectList()}
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div className={`col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${AppData.allowSelectBrand ? 1 : 2}`}>
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("BetType")}</label>
                             {this._renderBettypeSelectList()}
@@ -482,11 +505,11 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(ActionCreators, dispatch);
 }
 function mapStateToProps(state) {
-    const { requestParam, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedLeague, leagueList, selectedMatch, matchList,
+    const { requestParam, selectedBrand, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedLeague, leagueList, selectedMatch, matchList,
         selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedLiveStatus, username, isConvertAll, userGuideContent } = state;
 
     return Object.assign({}, {
-        requestParam, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedLeague, leagueList, selectedMatch, matchList,
+        requestParam, selectedBrand, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedLeague, leagueList, selectedMatch, matchList,
         selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedLiveStatus, username, isConvertAll, userGuideContent
     });
 };

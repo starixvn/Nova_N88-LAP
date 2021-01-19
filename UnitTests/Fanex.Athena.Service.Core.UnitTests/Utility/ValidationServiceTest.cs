@@ -1,13 +1,14 @@
 ﻿using Fanex.Athena.Model.BetList.MetaModel;
 using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.MetaModel;
-using Fanex.Athena.Model.Report.MetaModel;
+using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.Core.Utility;
 using Fanex.Athena.Service.Core.Utility.Interfaces;
-
+using Fanex.NVC.Authentication.Infrastructure;
 using NSubstitute;
 
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Fanex.Athena.Service.Core.UnitTests.Utility
 {
@@ -19,6 +20,7 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         private ICurrencyValidation _currencyValidation;
         private IProductValidation _productValidation;
         private IBrandValidation _brandValidation;
+        private ISessionService _sessionService;
 
         [SetUp]
         public void Setup()
@@ -26,7 +28,9 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
             _productValidation = Substitute.For<IProductValidation>();
             _currencyValidation = Substitute.For<ICurrencyValidation>();
             _brandValidation = Substitute.For<IBrandValidation>();
-            _validationService = new ValidationService(_currencyValidation, _productValidation, _brandValidation);
+            _sessionService = Substitute.For<ISessionService>();
+
+            _validationService = new ValidationService(_currencyValidation, _productValidation, _brandValidation, _sessionService);
             _metaModelValidation = Substitute.For<IMetaModelValidation>();
         }
 
@@ -144,16 +148,18 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         {
             //Arrange
             var option = new BrandValidationOption { IsValidBrandIdList = true };
-            var model = Substitute.For<IMetaModelBrandIdList>();
+            var model = Substitute.For<IBrandIdListMetaModel>();
+            var brandList = new List<Brand>();
+            _sessionService.UserSession.Returns(new NVCUserAuthInfo { BrandList = brandList });
 
             model.BrandIds.Returns("302,123");
-            _brandValidation.IsValidBrandIdList(model).Returns(true);
+            _brandValidation.IsValidBrandIdList(model, brandList).Returns(true);
 
             //Action
             _validationService.IsValid(model, brandValidationOption: option);
 
             //Assert
-            _brandValidation.Received(1).IsValidBrandIdList(model);
+            _brandValidation.Received(1).IsValidBrandIdList(model, brandList);
         }
 
         [Test]
@@ -161,16 +167,19 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         {
             //Arrange
             var option = new BrandValidationOption { IsValidBrandId = true };
-            var model = Substitute.For<IMetaModelBrandId>();
+            var brandList = new List<Brand>();
+            _sessionService.UserSession.Returns(new NVCUserAuthInfo { BrandList = brandList });
+
+            var model = Substitute.For<IBrandIdMetaModel>();
 
             model.BrandId.Returns(123);
-            _brandValidation.IsValidBrandId(model).Returns(true);
+            _brandValidation.IsValidBrandId(model, brandList).Returns(true);
 
             //Action
             _validationService.IsValid(model, brandValidationOption: option);
 
             //Assert
-            _brandValidation.Received(1).IsValidBrandId(model);
+            _brandValidation.Received(1).IsValidBrandId(model, brandList);
         }
     }
 }

@@ -68,13 +68,14 @@
             var tabList = GetEnableTabList();
             var viewModel = new BettingTicketCenterViewModel
             {
-                CurrencyList = GetCurrencyList(),
                 LiveStatusList = GetLiveStatusList(),
                 StatusList = GetStatusList(),
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterAdvancedSearch),
                 MinDate = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay,
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
+                OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
+                Brands = BrandList,
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml", viewModel);
@@ -92,6 +93,8 @@
                 ProductOptionList = GetProductOptionList(),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
+                OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
+                Brands = BrandList,
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/SingleCustomer.cshtml", viewModel);
@@ -121,10 +124,11 @@
             var viewModel = new BettingTicketCenterViewModel
             {
                 StatusList = GetRunningStatusList(),
-                CurrencyList = GetCurrencyList(),
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterRunning),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
+                OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
+                Brands = BrandList,
                 TabList = tabList
             };
 
@@ -233,11 +237,6 @@
                 { LiveStatusTypes.Live, ViewResources.Live },
                 { LiveStatusTypes.Mix, ViewResources.MixLiveAndNoneLive }
             };
-        }
-
-        private IDictionary<int, string> GetCurrencyList()
-        {
-            return SessionServiceInstance.UserSession.CurrencyList;
         }
 
         private IEnumerable<ProductOption> GetProductOptionList(string functionConfigKey = FunctionNames.BettingTicketCenter)

@@ -1,11 +1,11 @@
 ﻿namespace Fanex.Athena.Model.BetList.MetaModel
 {
-    using System;
-
     using Fanex.Athena.Model.Core.Helper;
     using Fanex.Athena.Model.Core.MetaModel;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using System;
 
-    public class BaseBettingTicketMetaModel : IMetaModelValidation , IMetaModelCurrencyIdList
+    public class BaseBettingTicketMetaModel : IMetaModelValidation, IMetaModelCurrencyIdList, IBrandIdMetaModel
     {
         private const int DefaultPageSize = 50;
 
@@ -71,6 +71,7 @@
 
         public virtual bool IsValid => FromDate <= ToDate
             && !string.IsNullOrWhiteSpace(ProductCodeList)
+            && BrandId > 0
             && MetaModelValidationHelper.ValidateBaseCurrency(BaseCurrency);
 
         public bool HasPlayerCom { get; set; }
@@ -78,5 +79,7 @@
         public bool IsConvertAll { get; set; }
 
         public string BaseCurrencyName { get; set; }
+
+        public int BrandId { get; set; }
     }
 }

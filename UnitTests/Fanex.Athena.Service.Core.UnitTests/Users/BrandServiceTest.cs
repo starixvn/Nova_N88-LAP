@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Service.Core.UnitTests.Users
 {
+    using Fanex.Athena.DataAccess.Core.Common.Interfaces;
     using Fanex.Athena.Model.Core.Configuration;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Service.Core.Common.Interfaces;
@@ -17,13 +18,16 @@
     public class BrandServiceTest
     {
         private ITpService _tpService;
+        private ICurrencyDataAccess _currencyDataAccess;
+
         private BrandService _targetService;
 
         [SetUp]
         public void Setup()
         {
             _tpService = Substitute.For<ITpService>();
-            _targetService = new BrandService(_tpService);
+            _currencyDataAccess = Substitute.For<ICurrencyDataAccess>();
+            _targetService = new BrandService(_tpService, _currencyDataAccess);
         }
 
         [TearDown]

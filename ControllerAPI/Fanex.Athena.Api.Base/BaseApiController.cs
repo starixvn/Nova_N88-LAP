@@ -3,11 +3,13 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.NVC.Authentication.Infrastructure;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
     using NPOI.SS.UserModel;
     using ONEbook.UM.Filters;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Net;
     using System.Net.Http;
@@ -26,6 +28,7 @@
         }
 
         protected string Language => SessionService.UserSession.Language;
+        protected IEnumerable<Brand> BrandList => SessionService.UserSession.BrandList;
 
         public IProductService ProductService { get; set; }
         public ISessionService SessionService { get; set; }

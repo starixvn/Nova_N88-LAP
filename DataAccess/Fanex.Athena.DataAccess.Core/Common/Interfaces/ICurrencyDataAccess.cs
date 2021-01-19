@@ -5,6 +5,6 @@
 
     public interface ICurrencyDataAccess
     {
-        IList<CurrencyUser> GetCurrenciesByLicensee(int licenseeId);
+        IList<CurrencyUser> GetCurrenciesByBrand(int brandId);
     }
 }

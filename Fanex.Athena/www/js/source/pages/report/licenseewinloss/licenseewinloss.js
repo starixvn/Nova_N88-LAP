@@ -49,8 +49,58 @@
                     title: Site.getSingleResource('SabaProductsWinLoss')
                 });
                 MultiSelect.initProductList();
+                MultiSelect.initBrandList(_me.onChangeBrand);
                 DatePicker.initDateRangePicker();
                 DateHelper.setConstraintMonthRange(VALID_MONTH_RANGE, LicenseeWinLossOption.urlExcelData);
+            },
+
+            onChangeBrand: function(selectedBrands) {
+                let $currencyList = $('#CurrencyId');
+                let options = $currencyList.find('option')
+                
+                for (let index = 0; index < options.length; index++) {
+                    const $option = $(options[index]);
+                    if(index >= LicenseeWinLossOption.numberOfDefaultCurrency) {
+                        $option.remove();
+                    } else {
+                        $option.attr('selected', false);
+                    }
+                }
+
+                const selectedBrandIds = selectedBrands.map(function(item) { return parseInt(item)});
+                const newCurrencyList = DataHelper.getCurrencyListByBrands(LicenseeWinLossOption.brands, selectedBrandIds);
+                newCurrencyList.forEach(function(currency) {
+                    $currencyList.append('<option value="' + currency.key + '">' + currency.value  + '</option>')
+                })
+
+                $('#CurrencyId').val(LicenseeWinLossOption.defaultBaseCurrencyId);
+                $('#CurrencyId').selectList();
+                Site.currencyConstraint(true)
+            },
+            
+            getCurrencyList(brands, brandIds) {
+                const existKeys = {};
+                const currencyList = brandIds.reduce((result, brandId) => {
+                    const currencyListByBrand = _me.getCurrencyListByBrandId(brandId, brands, existKeys, 'currencies');
+                    return result.concat(currencyListByBrand);
+                }, []);
+
+                return currencyList;
+            },
+
+            getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty) {
+                var brandInfo = brands.find(function(_) { return _.id === parseInt(brandId)});
+                if (brandInfo) {
+                    return brandInfo[currencyProperty].reduce(function(result, currentValue) {
+                        if (!existKeys[currentValue.key]) {
+                            existKeys[currentValue.key] = true;
+                            result.push({ key: currentValue.key, value: currentValue.value });
+                            return result;
+                        }
+                        return result;
+                    }, [])
+                }
+                return [];
             },
 
             registerGlobalFunction: function () {
@@ -91,6 +141,10 @@
             initSetting: function () {
                 LicenseeWinLossOption.hasCustomerComm = Site.asBool($('#IsAllowedCustomerCommission').val());
                 LicenseeWinLossOption.licenseeId = parseInt($('#drillDownLicenseeId').val(), 10);
+                LicenseeWinLossOption.allowSelectBrand = Site.asBool($('#allowSelectBrand').val());
+                LicenseeWinLossOption.defaultBaseCurrencyId = parseInt($('#DefaultBaseCurrencyId').val());
+                LicenseeWinLossOption.numberOfDefaultCurrency = parseInt($('#numberOfDefaultCurrency').val())
+                LicenseeWinLossOption.brands = $.parseJSON($('#Brands').val());
             },
 
             initEvent: function () {
@@ -227,7 +281,7 @@
                         _me.setReportTitle($('#CurrencyId').val(), $('#FromDate').val(), $('#ToDate').val(), $('#BaseCurrency').val());
                     }
 
-                    Report.renderBreadCrumb(levelNumber, LicenseeWinLossOption.licenseeId);
+                    Report.renderBreadCrumb(levelNumber, LicenseeWinLossOption.allowSelectBrand);
                     _me.bindData(levelNumber, reportBy, response);
 
                     const pprizeCount = response.PromotionPrize;
@@ -259,6 +313,7 @@
                     success: function (response) {
                         _submitData = {
                             ProductOptions: response.ProductOptions,
+                            BrandOptions: response.BrandOptions,
                             DrawFilter: data.DrawFilter,
                             CurrencyId: data.CurrencyId,
                             ReportBy: Number(data.ReportBy),
@@ -300,6 +355,7 @@
                 const param =
                 {
                     ProductOptions: $.parseJSON(_submitData.ProductOptions),
+                    BrandOptions: $.parseJSON(_submitData.BrandOptions),
                     DrawFilter: _submitData.DrawFilter,
                     IsExcludedTestData: _submitData.IsExcludedTestData,
                     CurrencyId: _submitData.CurrencyId,

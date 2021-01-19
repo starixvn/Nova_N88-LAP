@@ -8,6 +8,7 @@
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Context;
     using Fanex.N88.Core.Web.Context;
+    using Fanex.NVC.Authentication.Infrastructure;
     using Service.Core.Users.Interfaces;
     using System.Collections.Generic;
     using System.Web.Mvc;
@@ -21,6 +22,14 @@
         public IAppSettings AppSettingInstance { get; set; }
         public ILicenseeSettingService LicenseeSettingServiceInstance { get; set; }
         public N88Settings N88Settings { get; set; }
+
+        protected string DefaultBaseCurrency => SessionServiceInstance.UserSession.DefaultBaseCurrency;
+
+        protected string LicenseeName => SessionServiceInstance.LicenseeSession.LicenseeName;
+
+        protected int LicenseeId => SessionServiceInstance.LicenseeSession.LicenseeId;
+
+        protected IEnumerable<Brand> BrandList => SessionServiceInstance.UserSession.BrandList;
 
         protected readonly IDictionary<int, string> siteNameList = new Dictionary<int, string>
         {

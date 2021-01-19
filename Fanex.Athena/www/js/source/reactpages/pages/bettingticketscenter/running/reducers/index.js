@@ -11,9 +11,11 @@ import * as statusReducer from '@jsroot/reducers/statusReducer'
 import * as convertAllReducer from '@jsroot/reducers/convertAllReducer'
 import * as userGuideReducer from '@jsroot/reducers/userGuideReducer'
 import * as commonReducer from '../../common/components/reducer'
+import * as brandReducer from '@jsroot/reducers/brandReducer';
 
 export default combineReducers(Object.assign(
     gridDataReducer,
+    brandReducer,
     usernameReducer,
     productReducer,
     currencyReducer,

@@ -1,12 +1,39 @@
 ﻿using Fanex.Athena.Model.Core.DataDomain;
+using Fanex.NVC.Authentication.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Fanex.Athena.Service.StatelessCore.Utility
 {
+    [CLSCompliant(false)]
     public static class AuthParameterHelper
     {
+        public static IDictionary<int, int[]> GetAgentList(IEnumerable<Brand> brands, int[] brandIds)
+        {
+            var combinedAgentList = new Dictionary<int, int[]>();
+            foreach (var brandId in brandIds)
+            {
+                var brand = brands.FirstOrDefault(_ => _.Id == brandId);
+                if (brand != null)
+                {
+                    CombineAgentList(combinedAgentList, brand.CurrencyAgentList);
+                }
+            }
+
+            return combinedAgentList;
+        }
+
+        public static IDictionary<int, int[]> GetAgentList(IEnumerable<Brand> brands, string brandIdsString)
+        {
+            var brandIds = brandIdsString
+                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => int.Parse(x)).ToArray();
+
+            return GetAgentList(brands, brandIds);
+        }
+
         public static string GenerateAgentListXml(IDictionary<int, int[]> currencyAgentList,
             int currencyId = 0, bool isExcludeTestData = false)
         {
@@ -71,6 +98,15 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
             }
 
             return result;
+        }
+
+        private static void CombineAgentList(IDictionary<int, int[]> targetAgentList, IDictionary<int, int[]> sourceAgentList)
+        {
+            foreach (var currencyAgent in sourceAgentList)
+            {
+                targetAgentList[currencyAgent.Key] = targetAgentList.ContainsKey(currencyAgent.Key) ?
+                    targetAgentList[currencyAgent.Key].Union(currencyAgent.Value).ToArray() : currencyAgent.Value;
+            }
         }
     }
 }

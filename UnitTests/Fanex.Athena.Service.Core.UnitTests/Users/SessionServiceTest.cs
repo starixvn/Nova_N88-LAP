@@ -26,7 +26,6 @@
 
         private IAppSettings _appSettings;
         private ILicenseeDataAccess _licenseeDataAccess;
-        private ICurrencyDataAccess _currencyDataAccess;
         private ISessionStorage _sessionStorage;
         private ISessionService _sessionService;
         private IUserService _userService;
@@ -51,11 +50,9 @@
                 }
             };
             _licenseeDataAccess.GetLicenseeSettingById(Arg.Any<int>()).Returns(licenseeList[0]);
-            _currencyDataAccess = Substitute.For<ICurrencyDataAccess>();
             _n88Settings = new N88Settings();
             _sessionService = new SessionService(
                 _licenseeDataAccess,
-                _currencyDataAccess,
                 _userService,
                 _appSettings,
                 _sessionStorage,
@@ -67,7 +64,6 @@
         public void TearDown()
         {
             _licenseeDataAccess = null;
-            _currencyDataAccess = null;
             _sessionService = null;
         }
 
@@ -94,7 +90,6 @@
                     AgentIdList = new[] { 3, 4, 5 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByLicensee(Arg.Any<int>()).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 
@@ -120,7 +115,6 @@
                     AgentIdList = new[] { 1, 2 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByLicensee(Arg.Any<int>()).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 
@@ -154,7 +148,6 @@
                     AgentIdList = new[] { 3 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByLicensee(Arg.Any<int>()).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"3\" Currency=\"2\"/></ROOT>";
 
@@ -188,7 +181,6 @@
                     AgentIdList = new[] { 3 }
                 }
             };
-            _currencyDataAccess.GetCurrenciesByLicensee(Arg.Any<int>()).Returns(currencyUserList);
             CreateDefaultNewSession();
             var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
 

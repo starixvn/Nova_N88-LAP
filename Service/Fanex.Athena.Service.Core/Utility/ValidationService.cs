@@ -1,5 +1,7 @@
 ﻿using Fanex.Athena.Model.Core.MetaModel;
+using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.Core.Utility.Interfaces;
+using Fanex.NVC.Authentication.Infrastructure;
 
 namespace Fanex.Athena.Service.Core.Utility
 {
@@ -8,12 +10,14 @@ namespace Fanex.Athena.Service.Core.Utility
         private readonly ICurrencyValidation _currencyValidation;
         private readonly IProductValidation _productValidation;
         private readonly IBrandValidation _brandValidation;
+        private readonly ISessionService _sessionService;
 
-        public ValidationService(ICurrencyValidation currencyValidation, IProductValidation productValidation, IBrandValidation brandValidation)
+        public ValidationService(ICurrencyValidation currencyValidation, IProductValidation productValidation, IBrandValidation brandValidation, ISessionService sessionService)
         {
             _currencyValidation = currencyValidation;
             _productValidation = productValidation;
             _brandValidation = brandValidation;
+            _sessionService = sessionService;
         }
 
         private static bool IsValidMetalModel(IMetaModelValidation model)
@@ -68,8 +72,8 @@ namespace Fanex.Athena.Service.Core.Utility
             var result = true;
             if (brandValidationOption != null)
             {
-                result &= !brandValidationOption.IsValidBrandId || _brandValidation.IsValidBrandId(model as IMetaModelBrandId);
-                result &= !brandValidationOption.IsValidBrandIdList || _brandValidation.IsValidBrandIdList(model as IMetaModelBrandIdList);
+                result &= !brandValidationOption.IsValidBrandId || _brandValidation.IsValidBrandId(model as IBrandIdMetaModel, _sessionService.UserSession.BrandList);
+                result &= !brandValidationOption.IsValidBrandIdList || _brandValidation.IsValidBrandIdList(model as IBrandIdListMetaModel, _sessionService.UserSession.BrandList);
             }
 
             return result;

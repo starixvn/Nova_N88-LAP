@@ -1,14 +1,13 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LicenseeWinLossMetaModel.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-using Fanex.Athena.Model.Core.MetaModel;
+﻿using Fanex.Athena.Model.Core.DTO.Common;
+using Fanex.NVC.Authentication.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Athena.Model.Report.MetaModel
 {
-    public class LicenseeWinLossMetaModel : BaseDrilldownReportMetaModel
+    [CLSCompliant(false)]
+    public class LicenseeWinLossMetaModel : BaseDrilldownReportMetaModel, IBrandIdListMetaModel
     {
         public byte ReportBy { get; set; }
 
@@ -21,5 +20,17 @@ namespace Fanex.Athena.Model.Report.MetaModel
         public string SortOrder { get; set; }
 
         public string DefaultBaseCurrency { get; set; }
+
+        public IEnumerable<CheckedItem> BrandOptions { get; set; }
+
+        public string BrandIds
+        {
+            get
+            {
+                return string.Join(",", BrandOptions.Where(_ => _.Checked).Select(_ => _.ID));
+            }
+
+            set { /* nothing */ }
+        }
     }
 }

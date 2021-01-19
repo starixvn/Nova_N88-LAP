@@ -1,11 +1,13 @@
 ﻿namespace Fanex.Athena.Model.BetList.ViewModel
 {
-    using System;
-    using System.Collections.Generic;
     using Core.DTO.Common;
     using Core.MetaModel.Product;
+    using Fanex.NVC.Authentication.Infrastructure;
+    using System;
+    using System.Collections.Generic;
 
     [Serializable]
+    [CLSCompliant(false)]
     public class BettingTicketCenterViewModel
     {
         public BettingTicketCenterViewModel()
@@ -37,5 +39,8 @@
         public IDictionary<int, string> LiveStatusList { get; set; }
 
         public IEnumerable<string> TabList { get; set; }
+
+        public Brand OwnBrand { get; set; }
+        public IEnumerable<Brand> Brands { get; set; }
     }
 }

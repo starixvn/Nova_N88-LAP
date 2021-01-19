@@ -2526,6 +2526,9 @@
     <value>Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone</value>
     <comment>147542</comment>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
   <data name="BonusCode" xml:space="preserve">
     <value>Bonus Code</value>
   </data>

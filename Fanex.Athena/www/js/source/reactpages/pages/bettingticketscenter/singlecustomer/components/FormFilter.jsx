@@ -56,6 +56,7 @@ export class FormFilter extends Component {
             PageIndex: 1,
             FromDate: Site.convertDateToString(fromDate),
             ToDate: Site.convertDateToString(toDate),
+            BrandId: this.props.selectedBrand,
             ProductCodeList: this.props.selectedProduct,
             Username: this.props.username,
             BaseCurrency: this.props.isConvertAll ? this.props.selectedBaseCurrency : '',
@@ -191,6 +192,15 @@ export class FormFilter extends Component {
                 onChange={(currentItem, selectedItemsKey) => this.props.setSelectedLiveStatus(selectedItemsKey)} />);
     }
 
+    _renderBrandSelectList () {
+        return (
+            <Select instanceId="brandList"
+                value={this.props.selectedBrand}
+                options={AppData.brandOptions}
+                onChange={(item) => this.props.setSelectedBrand(item.value)} />
+        );
+    }
+
     render() {
         const excelButton = <div>
             <i className="icon-excel right" onClick={this.exportExcel} title={LangHelper.getSingleResource("ExportToExcel")}></i>
@@ -200,7 +210,14 @@ export class FormFilter extends Component {
         return (
             <CollapsiblePanel className="page-filter" stickyFooter={excelButton}>
                 <div className="row">
-
+                    {AppData.allowSelectBrand &&
+                        <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                            <div className="form-group">
+                                <label className="label-text">{LangHelper.getSingleResource("Brand")}</label>
+                                {this._renderBrandSelectList()}
+                            </div>
+                        </div>
+                    }
                     <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Date")}</label>
@@ -280,8 +297,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(ActionCreators, dispatch);
 }
 function mapStateToProps(state) {
-    const { requestParam, dateRange, selectedProduct, selectedBaseCurrency, username, selectedStatus, selectedPlatform, selectedLiveStatus, isConvertAll, userGuideContent } = state;
-    return Object.assign({}, { requestParam, dateRange, selectedProduct, selectedBaseCurrency, username, selectedStatus, selectedPlatform, selectedLiveStatus, isConvertAll, userGuideContent });
+    const { requestParam, dateRange, selectedBrand, selectedProduct, selectedBaseCurrency, username, selectedStatus, selectedPlatform, selectedLiveStatus, isConvertAll, userGuideContent } = state;
+    return Object.assign({}, { requestParam, dateRange, selectedBrand, selectedProduct, selectedBaseCurrency, username, selectedStatus, selectedPlatform, selectedLiveStatus, isConvertAll, userGuideContent });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);

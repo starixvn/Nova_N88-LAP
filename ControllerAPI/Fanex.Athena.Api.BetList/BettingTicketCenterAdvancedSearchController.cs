@@ -31,7 +31,7 @@
         }
 
         [HttpPost]
-        [ValidationApiRequest(IsValidCurrencyList = true)]
+        [ValidationApiRequest(IsValidBrandId = true)]
         public async Task<dynamic> GetData(AdvancedSearchBetListMetaModel metaModel)
         {
             if (metaModel.IsExport &&
@@ -48,7 +48,8 @@
             var userSession = SessionService.UserSession;
             var currencyList = metaModel.CurrencyIdList?.Split(',').Select(x => int.Parse(x)).ToArray();
 
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, currencyList);
+            var agentList = AuthParameterHelper.GetAgentList(BrandList, new[] { metaModel.BrandId });
+            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, currencyList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
             var timeOutInSecond = int.Parse(_appSettings.GetValue("BetListApiOutInSecond"));
             return await _betListApiClient.PostAsync(

@@ -47,7 +47,7 @@ export const BonusInfoDetailWidget = props => {
             {
                 const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows);
                 setPagingOption(newPagingOption);
-            }            
+            }
         })
     }
 

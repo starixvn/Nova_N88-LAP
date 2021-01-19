@@ -3060,12 +3060,14 @@ class Store {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./www/js/source/reactpages/pages/report/bonusinfo/actions/types.js");
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../libs/services/queryService */ "./www/js/source/reactpages/pages/report/bonusinfo/libs/services/queryService.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+
 
 
 
 const fetchBonusInfoSummaryData = (params, callBack) => async dispatch => {
   const response = await _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__["default"].fetchBonusInfoSummaryData(params);
-  response.isSuccess && dispatch(setBonusInfoSummaryData(response.data.sortedData));
+  response.isSuccess && dispatch(setBonusInfoSummaryData(response.data.sortedData)) || alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("ErrorProcessingMsg"));
   callBack && callBack(response.data, response.isSuccess);
 };
 
@@ -3078,7 +3080,7 @@ const setBonusInfoSummaryData = data => {
 
 const fetchBonusInfoDetailData = (params, callBack) => async dispatch => {
   const response = await _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__["default"].fetchBonusInfoDetailData(params);
-  response.isSuccess && dispatch(setBonusInfoDetailData(response.data));
+  response.isSuccess && dispatch(setBonusInfoDetailData(response.data)) || alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("ErrorProcessingMsg"));
   callBack && callBack(response.data, response.isSuccess);
 };
 

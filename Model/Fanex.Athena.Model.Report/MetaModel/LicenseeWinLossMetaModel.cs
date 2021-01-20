@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace Fanex.Athena.Model.Report.MetaModel
 {
-    [CLSCompliant(false)]
     public class LicenseeWinLossMetaModel : BaseDrilldownReportMetaModel, IBrandIdListMetaModel
     {
         public byte ReportBy { get; set; }

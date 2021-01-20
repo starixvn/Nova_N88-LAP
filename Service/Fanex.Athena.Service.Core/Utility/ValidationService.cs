@@ -2,9 +2,11 @@
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.Core.Utility.Interfaces;
 using Fanex.NVC.Authentication.Infrastructure;
+using System;
 
 namespace Fanex.Athena.Service.Core.Utility
 {
+    [CLSCompliant(false)]
     public class ValidationService : IValidationService
     {
         private readonly ICurrencyValidation _currencyValidation;
@@ -78,7 +80,6 @@ namespace Fanex.Athena.Service.Core.Utility
 
             return result;
         }
-
 
         private bool IsValidProductCode(IMetaModelProductCodeList model, ProductValidationOption option)
         {

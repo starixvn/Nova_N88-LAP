@@ -8,7 +8,6 @@
     using System;
     using System.Collections.Generic;
 
-    [CLSCompliant(false)]
     public class LicenseeWinLossViewModel : BaseViewModel
     {
         public IList<LicenseeWinLoss> MainResult { get; set; }
@@ -19,6 +18,7 @@
 
         public ReportSetting ReportSetting { get; set; }
 
+        [CLSCompliant(false)]
         public IEnumerable<Brand> Brands { get; set; }
     }
 }

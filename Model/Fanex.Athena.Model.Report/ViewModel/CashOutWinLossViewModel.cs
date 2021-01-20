@@ -1,15 +1,11 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CashOutWinLossViewModel.cs" company="Microsoft">
-// Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Model.Report.ViewModel
+﻿namespace Fanex.Athena.Model.Report.ViewModel
 {
-    using System.Collections.Generic;
     using Fanex.Athena.Model.Report.DTO;
     using Fanex.Athena.Model.Report.MetaModel;
+    using Fanex.NVC.Authentication.Infrastructure;
     using Model.Core.ViewModel;
+    using System;
+    using System.Collections.Generic;
 
     public class CashOutWinLossViewModel : BaseViewModel
     {
@@ -22,5 +18,8 @@ namespace Fanex.Athena.Model.Report.ViewModel
         public IEnumerable<CashOutWinLoss> TotalData { get; set; }
 
         public ThirdPartyWinLossMetaModel Param { get; set; }
+
+        [CLSCompliant(false)]
+        public IEnumerable<Brand> Brands { get; set; }
     }
 }

@@ -150,7 +150,7 @@
                     : viewinKey.replace('{0}', baseCurrencyName.toUpperCase());
         },
 
-        renderBreadCrumb: function (level, allowShowLevel1) {
+        renderBreadCrumb: function (level, allowShowLevel1 = true) {
             const $container = $('#level-link-container');
             const levelNumber = Number(level);
             if (levelNumber === 0) {

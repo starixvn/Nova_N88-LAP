@@ -3,6 +3,7 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.NVC.Authentication.Infrastructure;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
@@ -11,6 +12,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -29,6 +31,8 @@
 
         protected string Language => SessionService.UserSession.Language;
         protected IEnumerable<Brand> BrandList => SessionService.UserSession.BrandList;
+        protected IDictionary<int, int[]> AgentList => AuthParameterHelper.GetAgentList(BrandList, BrandList.Select(_ => _.Id).ToArray());
+        protected IDictionary<int, string> CurrencyList => AuthParameterHelper.GetCurrencyList(BrandList);
 
         public IProductService ProductService { get; set; }
         public ISessionService SessionService { get; set; }

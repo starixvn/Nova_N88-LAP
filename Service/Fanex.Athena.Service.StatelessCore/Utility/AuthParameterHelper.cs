@@ -10,6 +10,13 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
     [CLSCompliant(false)]
     public static class AuthParameterHelper
     {
+        public static IDictionary<int, string> GetCurrencyList(IEnumerable<Brand> brands)
+        {
+            return brands.SelectMany(_ => _.CurrencyList)
+                .GroupBy(_ => _.Key)
+                .ToDictionary(x => x.Key, y => y.First().Value);
+        }
+
         public static IDictionary<int, int[]> GetAgentList(IEnumerable<Brand> brands, int[] brandIds)
         {
             var combinedAgentList = new Dictionary<int, int[]>();
@@ -66,22 +73,6 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
                         var agentList = currencyAgentList.Single(x => x.Key == currencyId).Value;
                         result.Append(GenerateAgentXmlBody(currencyId, agentList));
                     }
-                }
-            }
-
-            result.Append("</ROOT>");
-            return result.ToString();
-        }
-
-        public static string GenerateAgentListXml(IDictionary<int, string> currencyList,
-            IDictionary<int, IEnumerable<int>> currencyAgentList)
-        {
-            var result = new StringBuilder("<ROOT>");
-            foreach (var item in currencyAgentList)
-            {
-                if (currencyList.ContainsKey(item.Key))
-                {
-                    result.Append(GenerateAgentXmlBody(item.Key, item.Value));
                 }
             }
 

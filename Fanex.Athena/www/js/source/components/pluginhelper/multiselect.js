@@ -50,7 +50,10 @@ define(['jquery', 'common/site', 'lib/jquery.multiselect'], function ($, Site) {
                 }
             });
         },
-        initBrandList: function (onChange) {
+        initBrandList: function (brands, defaultBaseCurrencyId, numberOfDefaultCurrency) {
+
+            Site.initBrandList(brands, defaultBaseCurrencyId, numberOfDefaultCurrency);
+
             const selector = '#grid-brand-multiselect';
             const data = $.parseJSON($('#brandData').val());
             const length = data.length;
@@ -94,7 +97,9 @@ define(['jquery', 'common/site', 'lib/jquery.multiselect'], function ($, Site) {
                         }
                     }
                     
-                    onChange && onChange(checkedItems);
+                    const selectedBrands = checkedItems.map(function(item) { return parseInt(item)});
+                    Site.onChangeBrand(selectedBrands);
+
                     $('#BrandList').toggleClass('invalid', !hasItemsChecked);
                     $('#SubmitButton').prop('disabled', !hasItemsChecked);
                 }

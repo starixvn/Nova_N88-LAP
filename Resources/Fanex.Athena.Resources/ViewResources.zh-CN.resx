@@ -2535,9 +2535,6 @@
   <data name="BonusName" xml:space="preserve">
     <value>Bonus Name</value>
   </data>
-  <data name="Brand" xml:space="preserve">
-    <value>Brand</value>
-  </data>
   <data name="ClaimDate" xml:space="preserve">
     <value>Claim Date</value>
   </data>

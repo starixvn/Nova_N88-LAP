@@ -37,10 +37,7 @@
 
         protected void CheckDataPermission(int custId, long transId)
         {
-            if (!_authorizationService.HasPermissionOnData(
-                SessionService.UserSession.CurrencyAgentList,
-                custId,
-                transId))
+            if (!_authorizationService.HasPermissionOnData(AgentList, custId, transId))
             {
                 throw new UnauthorizedAccessException();
             }
@@ -75,7 +72,7 @@
         private BetListMetaModel UpdateMetaModel(BetListMetaModel metaModel, string uspKey, int pageIndex, int pageSize, int DefaultPageSize = 100)
         {
             var licenseeSession = SessionService.LicenseeSession;
-            var userSession = SessionService.UserSession;
+            var agentList = AgentList;
             var balanceUp = GetBalanceUp();
 
             metaModel.PageIndex = pageIndex < 1 ? 1 : pageIndex;
@@ -83,7 +80,7 @@
             metaModel.LicenseeId = licenseeSession.LicenseeId;
             metaModel.BalanceUpDay = DateTime.SpecifyKind(balanceUp.BalanceUpDay.Date, DateTimeKind.Utc);
             metaModel.MoveBetsDay = DateTime.SpecifyKind(balanceUp.MoveBetsDay.Date, DateTimeKind.Utc);
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList, metaModel.CurrencyId);
+            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, metaModel.CurrencyId);
             metaModel.HasPlayerCom = licenseeSession.IsAllowedCustomerComm;
             metaModel.UspKey = uspKey;
 

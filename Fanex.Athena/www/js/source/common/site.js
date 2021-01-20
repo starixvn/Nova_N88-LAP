@@ -1,6 +1,6 @@
 ﻿/*global _language_en_US*/
-define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 'components/selectlist'],
-    function ($, QueryString, Popup) {// jshint ignore:line
+define(['jquery', 'common/querystring', 'common/popup', 'helpers/datahelper', 'extensions/prototype', 'components/selectlist'],
+    function ($, QueryString, Popup, DataHelper) {// jshint ignore:line
         'use strict';
         const BASE_CURRENCY = { 'eur': '-1', 'usd': '-2', 'gbp': '-3', 'myr': '-4', 'cny': '-5', 'thb': '-6', 'idr': '-7', 'inh': '-8' };
         let REQUEST_VERIFICATION_TOKEN;
@@ -8,6 +8,9 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
         let _rootUrl = null;
         let _pageLanguage = null;
         let _isFakeLicensee = null;
+        let _brands = [];
+        let _defaultBaseCurrencyId = 0;
+        let _numberOfDefaultCurrency;
 
         const apiKeys = {
             report: 'reportApi',
@@ -66,6 +69,12 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
             $('select#CurrencyId').selectList({ canSearch: true });
         }
 
+        function initBrandList(brands, defaultBaseCurrencyId, numberOfDefaultCurrency) {
+            _brands = brands;
+            _defaultBaseCurrencyId = defaultBaseCurrencyId;
+            _numberOfDefaultCurrency = numberOfDefaultCurrency;
+        }
+
         function initialize() {
             REQUEST_VERIFICATION_TOKEN = $('input[name=__RequestVerificationToken]').val();
             initSelectElements();
@@ -78,6 +87,11 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
         function initEvent() {
             $('#CurrencyId').change(function () {
                 currencyConstraint(true);
+            });
+
+            $('#BrandId').change(function() {
+                const selectedBrand = $(this).val();
+                onChangeBrand([ parseInt(selectedBrand) ]);
             });
 
             $.ajaxSetup({
@@ -105,6 +119,30 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
                 }
             });
         }
+
+        function onChangeBrand(selectedBrands) {
+            let $currencyList = $('#CurrencyId');
+            let options = $currencyList.find('option')
+            
+            for (let index = 0; index < options.length; index++) {
+                const $option = $(options[index]);
+                if(index >= _numberOfDefaultCurrency) {
+                    $option.remove();
+                } else {
+                    $option.attr('selected', false);
+                }
+            }
+
+            const newCurrencyList = DataHelper.getCurrencyListByBrands(_brands, selectedBrands);
+            newCurrencyList.forEach(function(currency) {
+                $currencyList.append('<option value="' + currency.key + '">' + currency.value  + '</option>')
+            })
+
+            $('#CurrencyId').val(_defaultBaseCurrencyId);
+            $('#CurrencyId').selectList();
+            currencyConstraint(true)
+        }
+
         function getHistoryDate() {
             return _historyDate;
         }
@@ -486,6 +524,8 @@ define(['jquery', 'common/querystring', 'common/popup', 'extensions/prototype', 
 
         return {
             initialize: initialize,
+            initBrandList: initBrandList,
+            onChangeBrand: onChangeBrand,
             setProductCodeListParam: setProductCodeListParam,
             reload: reload,
             resolveClientUrl: resolveClientUrl,

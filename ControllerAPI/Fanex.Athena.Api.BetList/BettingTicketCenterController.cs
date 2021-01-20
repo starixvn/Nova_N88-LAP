@@ -46,7 +46,7 @@
         public async Task<dynamic> GetByRefno(RefNoBetListMetaModel metaModel)
         {
             var userSession = SessionService.UserSession;
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList);
+            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(AgentList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
 
             return await _betListApiClient.PostAsync(

@@ -2,6 +2,13 @@
 @model Fanex.Athena.Model.Report.ViewModel.CashOutWinLossViewModel
 @{
     var appSettings = new AppSettings();
+    var brands = Model.Brands.Select(x => new
+    {
+        id = x.Id,
+        currencies = x.CurrencyList.Select(y => new { key = y.Key, value = y.Value })
+    });
+
+    var numberOfDefaultCurrency = SystemConstants.BaseCurrencyList.Count + 1;
 }
 
 <div class="page-form">
@@ -9,7 +16,11 @@
         @Html.AntiForgeryToken()
 
         <div class="row">
-            <div class="input-field input col l3 m3 s12 calendar date-range">
+            <div class="input-field col l2 m2 s12" style=@(Model.Brands.Count() > 1 ? "" : "display:none;")>
+                @DesktopRazorHelper.SingleBrand(Model.Brands, appSettings.LicenseeId)
+                <label>@ViewResources.Brand</label>
+            </div>
+            <div class="input-field input col l2 m3 s12 calendar date-range">
                 @DesktopRazorHelper.DateRangePicker(Model.Param.FromDate, Model.Param.ToDate, appSettings.HistoryDate, DateTime.Today)
             </div>
 
@@ -57,4 +68,8 @@
     </form>
 
     <input type="hidden" id="IsLicenseeOfferBA" name="OriginalReportBy" value="@(Model.IsLicenseeOfferBA ? 1 : 0)" />
+
+    @Html.Hidden("DefaultBaseCurrencyId", Model.Param.CurrencyId)
+    @Html.Hidden("numberOfDefaultCurrency", numberOfDefaultCurrency)
+    @Html.Hidden("Brands", brands.ToJson())
 </div>

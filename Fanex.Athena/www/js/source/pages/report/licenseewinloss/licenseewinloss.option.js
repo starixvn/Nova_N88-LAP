@@ -8,10 +8,7 @@
         {
             isDisableBetList: false,
             licenseeId: 0,
-            defaultBaseCurrencyId: 0,
-            numberOfDefaultCurrency: 0,
             allowSelectBrand: false,
-            brands: [],
             currencyIndex: 4,
             turnoverIndex: 5,
             licenseeWlIndex: 12,

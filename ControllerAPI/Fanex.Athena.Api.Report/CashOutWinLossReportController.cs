@@ -38,7 +38,7 @@
         }
 
         [HttpPost]
-        [ValidationApiRequest(ObjectName = "metaModel", IsValidCurrency = true, IsIncludeKeanOcean = true)]
+        [ValidationApiRequest(ObjectName = "metaModel", IsValidBrandId = true)]
         public Task<dynamic> Index(
             ThirdPartyWinLossMetaModel metaModel,
             DateTime? fdate,
@@ -51,7 +51,7 @@
         }
 
         [HttpPost]
-        [ValidationApiRequest(ObjectName = "metaModel", IsValidCurrency = true, IsIncludeKeanOcean = true)]
+        [ValidationApiRequest(ObjectName = "metaModel", IsValidBrandId = true)]
         public Task<dynamic> Index([FromBody] ThirdPartyWinLossMetaModel metaModel)
         {
             return ProcessRequest(metaModel, null, null);
@@ -167,17 +167,17 @@
             metaModel.DrillDownCustomerId = custId;
             metaModel.DrillDownFromDate = fdate ?? metaModel.DrillDownFromDate;
             metaModel.DrillDownToDate = tdate ?? metaModel.DrillDownToDate;
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList,
-                level > 0 ? currencyId : metaModel.CurrencyId, metaModel.IsExcludedTestData);
+
+            var agentList = AuthParameterHelper.GetAgentList(BrandList, new[] { metaModel.BrandId });
+            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, level > 0 ? currencyId : metaModel.CurrencyId, metaModel.IsExcludedTestData);
             metaModel.DefaultBaseCurrency = userSession.DefaultBaseCurrency;
         }
 
         private async Task<SortableReportResultModel<CashOutWinLoss>> GetData(ThirdPartyWinLossMetaModel metaModel)
         {
-            var userCurrencyList = SessionService.UserSession.CurrencyList;
             return metaModel.DrillDownLevel == 0 ?
-                await _cashOutWinLossDataAccess.GetSummary(metaModel, userCurrencyList).ConfigureAwait(false) :
-                await _cashOutWinLossDataAccess.GetDetail(metaModel, userCurrencyList).ConfigureAwait(false);
+                await _cashOutWinLossDataAccess.GetSummary(metaModel, CurrencyList).ConfigureAwait(false) :
+                await _cashOutWinLossDataAccess.GetDetail(metaModel, CurrencyList).ConfigureAwait(false);
         }
     }
 }

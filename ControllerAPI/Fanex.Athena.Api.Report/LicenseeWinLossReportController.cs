@@ -267,19 +267,18 @@
         {
             if (metaModel.IsValid)
             {
-                var userCurrencyList = SessionService.UserSession.CurrencyList;
                 SortableReportResultModel<LicenseeWinLoss> result;
                 if (metaModel.DrillDownLevel == (int)ReportLevel.Main)
                 {
-                    result = await _licenseeWinLossDataAccess.GetSummaryWinloss(metaModel, userCurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
+                    result = await _licenseeWinLossDataAccess.GetSummaryWinloss(metaModel, CurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
                 }
                 else if(metaModel.DrillDownLevel == (int)ReportLevel.Licensee)
                 {
-                    result = await _licenseeWinLossDataAccess.GetAgentWinlossDetail(metaModel, userCurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
+                    result = await _licenseeWinLossDataAccess.GetAgentWinlossDetail(metaModel, CurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
                 }
                 else //ReportLevel.Customer
                 {
-                    result = await _licenseeWinLossDataAccess.GetCustomerWinlossDetail(metaModel, userCurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
+                    result = await _licenseeWinLossDataAccess.GetCustomerWinlossDetail(metaModel, CurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
                 }
 
                 return result;

@@ -4,6 +4,7 @@
 @using Fanex.Athena.Model.Core.DataDomain;
 @using Fanex.Athena.Resources;
 @using Fanex.Athena.Model.Core.DTO.Common;
+@using Fanex.NVC.Authentication.Infrastructure;
 
 @helper  PlatformList(string id, string className = null)
 {
@@ -157,6 +158,23 @@ bool addBasedOption = false)
     </select>
 }
 
+@helper SingleBrand(IEnumerable<Brand> brandList, int selected)
+{
+    var items = brandList
+                     .Select(_ => new System.Web.WebPages.Html.SelectListItem
+                     {
+                         Value = _.Id.ToString(),
+                         Text = _.Name,
+                         Selected = selected == _.Id
+                     }).ToList();
+    <select name="BrandId" id="BrandId" class="select hide" data-original="@selected">
+        @foreach (var item in items)
+        {
+            <option value="@item.Value" @(item.Selected ? new HtmlString("selected=selected") : new HtmlString(""))>@item.Text</option>
+        }
+    </select>
+}
+
 @helper MultiBrand(IEnumerable<CheckedItem> brandOptions)
 {
     var i = 0;
@@ -167,7 +185,7 @@ bool addBasedOption = false)
             {
                 <input type="hidden" name="brandOptions[@i].ID" value="@brandOption.ID" />
                 <input type="hidden" name="brandOptions[@i].Name" value="@brandOption.Name" />
-                <input type="checkbox" class="childCheckbox" data-original="@brandOption.Checked.ToString().ToLower()" id="@brandOption.ID"  @(brandOption.Checked ? "checked" : "") name="brandOptions[@i].Checked" value="true" />
+                <input type="checkbox" class="childCheckbox" data-original="@brandOption.Checked.ToString().ToLower()" id="@brandOption.ID" @(brandOption.Checked ? "checked" : "") name="brandOptions[@i].Checked" value="true" />
                 i++;
             }
         </div>

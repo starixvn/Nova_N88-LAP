@@ -1,4 +1,4 @@
-﻿// Generated at: 1/18/2021 9:07:03 AM
+﻿// Generated at: 1/22/2021 9:52:39 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -739,7 +739,6 @@ StakeFrom:"Stake From",
 StartDate:"Start Date",
 Statement:"Statement",
 Status:"Status",
-String1:"Canceled",
 Su:"Su",
 Subject:"Subject",
 Submit:"Submit",

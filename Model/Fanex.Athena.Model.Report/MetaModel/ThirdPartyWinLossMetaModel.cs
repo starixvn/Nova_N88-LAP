@@ -1,15 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ThirdPartyWinLossMetaModel.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Model.Report.MetaModel
+﻿namespace Fanex.Athena.Model.Report.MetaModel
 {
     using Fanex.Athena.Model.Core.Helper;
+    using Fanex.NVC.Authentication.Infrastructure;
     using System;
 
-    public class ThirdPartyWinLossMetaModel : BaseDrilldownReportMetaModel
+    public class ThirdPartyWinLossMetaModel : BaseDrilldownReportMetaModel, IBrandIdMetaModel
     {
         private DateTime? _fromDate;
 
@@ -42,7 +37,6 @@ namespace Fanex.Athena.Model.Report.MetaModel
             get
             {
                 return MetaModelValidationHelper.ValidateBaseCurrency(BaseCurrency);
-
             }
         }
 
@@ -54,5 +48,6 @@ namespace Fanex.Athena.Model.Report.MetaModel
 
         public string DefaultBaseCurrency { get; set; }
 
+        public int BrandId { get; set; }
     }
 }

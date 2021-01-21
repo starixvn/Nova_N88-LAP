@@ -4246,7 +4246,7 @@ const BonusInfoSummaryGridConfig = {
   [BonusInfoSummaryGridColumns.startDate]: {
     name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('StartDate'),
     attributes: {
-      sortBy: 'startDateString',
+      sortBy: 'startDate',
       colWidth: 60,
       className: "center-align"
     }
@@ -4254,7 +4254,7 @@ const BonusInfoSummaryGridConfig = {
   [BonusInfoSummaryGridColumns.endDate]: {
     name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('EndDate'),
     attributes: {
-      sortBy: 'endDateString',
+      sortBy: 'endDate',
       colWidth: 60,
       className: "center-align"
     }

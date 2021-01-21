@@ -147,4 +147,8 @@
   <data name="UserManagement" xml:space="preserve">
     <value>User Management - TW</value>
   </data>
+  <data name="BonusInfoReport" xml:space="preserve">
+    <value>Bonus Info</value>
+    <comment>146759</comment>
+  </data>
 </root>

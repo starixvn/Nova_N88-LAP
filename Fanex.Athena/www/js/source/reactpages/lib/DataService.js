@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Site from '@jsroot/lib/site'
+import QueryString from '@jsroot/lib/QueryString';
 
 export default class DataService {
     static apiKeys = {
@@ -14,7 +15,14 @@ export default class DataService {
     }
 
     static getData(url, params) {
-        return axios.get(url, { params: params });
+        url = QueryString.setParams(url, params);     
+
+        return axios.get(url, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                '__RequestVerificationToken': Site.getXsrfToken()
+            }
+        });
     }
 
     static postData(url, params) {
@@ -60,5 +68,14 @@ export default class DataService {
 
     static getBetListFile(url, params) {
         return this.getProxyFile(this.apiKeys.betlist, url, params);
+    }
+
+    static getProxyData(apiKey, apiUrl, params) {
+        const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
+        return this.getData(proxyUrl, params);
+    }
+
+    static getReportData(url, params) {
+        return this.getProxyData(this.apiKeys.report, url, params);
     }
 }

@@ -188,7 +188,7 @@ const getLink = (sysType, action) => () => {
   return commonService.getLink(sysType, action);
 };
 
-const ActionCreators = _objectSpread({}, _subtabAction__WEBPACK_IMPORTED_MODULE_2__, {
+const ActionCreators = _objectSpread(_objectSpread({}, _subtabAction__WEBPACK_IMPORTED_MODULE_2__), {}, {
   getCustomerBettingStatus,
   getLink
 });
@@ -808,6 +808,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/clientResourceManager */ "./www/js/source/reactpages/lib/clientResourceManager.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -907,11 +908,11 @@ const CustomerBettingStatus = props => {
       CancelledTicketCount
     } = data;
 
-    const dataSetItem = _objectSpread({}, defaultDataSetItem, {
+    const dataSetItem = _objectSpread(_objectSpread({}, defaultDataSetItem), {}, {
       data: [WonTicketCount, LoseTicketCount, DrawTicketCount, CancelledTicketCount]
     });
 
-    const chartData = _objectSpread({}, defaultChartData, {
+    const chartData = _objectSpread(_objectSpread({}, defaultChartData), {}, {
       datasets: [dataSetItem]
     });
 
@@ -1613,7 +1614,7 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
   }
 
   _buildCommonAjaxConfig(configOption, apiActionUrl, params) {
-    const commonConfig = _objectSpread({}, configOption, {
+    const commonConfig = _objectSpread(_objectSpread({}, configOption), {}, {
       url: apiActionUrl
     });
 
@@ -1629,11 +1630,11 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
     } : {
       data: qs__WEBPACK_IMPORTED_MODULE_4___default.a.stringify(params)
     };
-    return _objectSpread({}, config, {}, paramConfig);
+    return _objectSpread(_objectSpread({}, config), paramConfig);
   }
 
   fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
-    const config = _objectSpread({}, defaultAjaxConfig, {}, configOption);
+    const config = _objectSpread(_objectSpread({}, defaultAjaxConfig), configOption);
 
     const relativeUrl = this._baseUrl + action;
 
@@ -1847,7 +1848,7 @@ const resources = {
 const currentLangKey = window._langKey || DEFAULT_RESOURCE_KEY;
 class ClientResourceManager {
   static register(langKey, resourceValue) {
-    resources[langKey] = _objectSpread({}, resources[langKey], {}, resourceValue);
+    resources[langKey] = _objectSpread(_objectSpread({}, resources[langKey]), resourceValue);
   }
 
   static getText(key) {

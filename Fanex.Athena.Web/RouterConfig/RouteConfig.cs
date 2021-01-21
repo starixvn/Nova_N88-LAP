@@ -23,16 +23,26 @@
                     routeTemplate: "api/{controller}/{action}");
             apiRoute.RouteHandler = new ReadonlySessionRouteHandler();
 
-            var apiProxyRoute = routes.MapHttpRoute(
-                   name: "apiProxyRoute",
-                   routeTemplate: "api/proxy/{apiKey}/{apiUrl}",
-                   new { Controller = "Proxy" });
-            apiProxyRoute.RouteHandler = new ReadonlySessionRouteHandler();
+            routes.RegisterProxyRoutes();
 
             routes.MapRoute(
                 "Default",
                 "{controller}/{action}",
                 new { controller = "Home", action = "Index" });
+        }
+
+        private static void RegisterProxyRoutes(this RouteCollection routes)
+        {
+            routes.MapHttpRoute(
+                name: "apiProxyHealthRoute",
+                routeTemplate: "api/proxy/{apiKey}/health",
+                new { Controller = "Proxy", Action = "Health" });
+
+            var apiProxyRoute = routes.MapHttpRoute(
+                   name: "apiProxyRoute",
+                   routeTemplate: "api/proxy/{apiKey}/{apiUrl}",
+                   new { Controller = "Proxy" });
+            apiProxyRoute.RouteHandler = new ReadonlySessionRouteHandler();
         }
     }
 }

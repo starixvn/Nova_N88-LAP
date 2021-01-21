@@ -2487,6 +2487,25 @@
   <data name="ExtraPayout" xml:space="preserve">
     <value>额外派彩</value>
   </data>
+  <data name="BonusInfo" xml:space="preserve">
+    <value>Bonus Info</value>
+    <comment>#146759</comment>
+  </data>
+  <data name="BonusStatus" xml:space="preserve">
+    <value>Bonus Status</value>
+    <comment>146759</comment>
+  </data>
+  <data name="BonusType" xml:space="preserve">
+    <value>Bonus Type</value>
+    <comment>146759</comment>
+  </data>
+  <data name="ClaimStatus" xml:space="preserve">
+    <value>Claim Status</value>
+    <comment>146759</comment>
+  </data>
+  <data name="BonusNameCode" xml:space="preserve">
+    <value>Bonus Name/ Code</value>
+  </data>
   <data name="NumberOfDeposits" xml:space="preserve">
     <value>Number of Deposits</value>
     <comment>146760</comment>
@@ -2506,5 +2525,47 @@
   <data name="NoteReportDepositAndWithdrawal" xml:space="preserve">
     <value>Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone</value>
     <comment>147542</comment>
+  </data>
+  <data name="BonusCode" xml:space="preserve">
+    <value>Bonus Code</value>
+  </data>
+  <data name="BonusName" xml:space="preserve">
+    <value>Bonus Name</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="ClaimDate" xml:space="preserve">
+    <value>Claim Date</value>
+  </data>
+  <data name="Completion" xml:space="preserve">
+    <value>Completion</value>
+  </data>
+  <data name="Expiry" xml:space="preserve">
+    <value>Expiry</value>
+  </data>
+  <data name="Fulfill" xml:space="preserve">
+    <value>Fulfill</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="TotalClaimants" xml:space="preserve">
+    <value>Total Claimants</value>
+  </data>
+  <data name="TotalClaimedAmount" xml:space="preserve">
+    <value>Total Claimed Amount</value>
+  </data>
+  <data name="TotalDeposit" xml:space="preserve">
+    <value>Total Deposit</value>
+  </data>
+  <data name="TotalWithdrawal" xml:space="preserve">
+    <value>Total Withdrawal</value>
+  </data>
+  <data name="OtherPlatform" xml:space="preserve">
+    <value>Other Platform</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Canceled</value>
   </data>
 </root>

@@ -562,7 +562,7 @@ const defaultState = Object.assign({}, window.initialState, {
   isLoading: false
 });
 const store = _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_5__["default"].createStore(_reducers_index_js__WEBPACK_IMPORTED_MODULE_4__["default"], defaultState);
-const App = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(() => {
+const App = react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(() => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
     store: store
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContainer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null));
@@ -1455,6 +1455,10 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSexyGamingResultUrl(rootUrl, transdecs, extension2, bettype);
 
         this._openPopup(url, title);
+      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].Happy5LinkedGames) {
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getHappy5LinkedGamesResultUrl(rootUrl, extension1, refno, defaultPlatform);
+
+        this._showThirdPartyResult(url, title);
       } else {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getResultUrl(rootUrl, matchid, raceNo, bettype, sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid);
 
@@ -2211,6 +2215,14 @@ class BetList {
     return url;
   }
 
+  getHappy5LinkedGamesResultUrl(rootUrl, custId, transId3rd, platform) {
+    let url = rootUrl + 'Happy5LinkedGamesResultPopup/Index';
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId3rd', transId3rd);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'platform', platform);
+    return url;
+  }
+
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (new BetList());
@@ -2248,7 +2260,8 @@ const SportType = {
   SG: 247,
   VRG: 245,
   SXG: 243,
-  SBC: 200
+  SBC: 200,
+  Happy5LinkedGames: 168
 };
 
 /***/ }),

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 1/15/2021 5:12:10 PM
+// Generated at: 1/21/2021 1:16:11 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -467,6 +467,7 @@ window._language_en_US = {
   Handicap: "Handicap",
   HandicapOverUnderLive: "Handicap/Over Under/Live",
   Happy5: "Happy 5",
+  Happy5LinkedGames: "Happy 5 Linked Games",
   HD: "HD",
   HH: "HH",
   hide: "hide",
@@ -833,6 +834,7 @@ window._language_en_US = {
   StartDate: "Start Date",
   Statement: "Statement",
   Status: "Status",
+  String1: "Canceled",
   Su: "Su",
   Subject: "Subject",
   Submit: "Submit",

@@ -102,6 +102,7 @@
     <Compile Include="BonusInfoReportController.cs" />
     <Compile Include="MarketingReportController.cs" />
     <Compile Include="NoteController.cs" />
+    <Compile Include="Result\ResultPopup\Happy5LinkedGamesResultPopupController.cs" />
     <Compile Include="Result\ResultPopup\SabaClubResultPopupController.cs" />
     <Compile Include="Result\ResultPopup\CardClubResultPopupController.cs" />
     <Compile Include="Result\ResultPopup\SGResultPopupController.cs" />

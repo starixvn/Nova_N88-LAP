@@ -183,6 +183,27 @@ const setBaseCurrencyList = baseCurrencyList => {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/actions/brandAction.js":
+/*!*********************************************************!*\
+  !*** ./www/js/source/reactpages/actions/brandAction.js ***!
+  \*********************************************************/
+/*! exports provided: setSelectedBrand */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSelectedBrand", function() { return setSelectedBrand; });
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./www/js/source/reactpages/actions/types.js");
+
+const setSelectedBrand = brandIds => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_BRAND"],
+    data: brandIds
+  };
+};
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/actions/convertAllAction.js":
 /*!**************************************************************!*\
   !*** ./www/js/source/reactpages/actions/convertAllAction.js ***!
@@ -5414,6 +5435,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_actions_requestParamAction__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/actions/requestParamAction */ "./www/js/source/reactpages/actions/requestParamAction.js");
 /* harmony import */ var _jsroot_actions_reportTitleAction__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/actions/reportTitleAction */ "./www/js/source/reactpages/actions/reportTitleAction.js");
 /* harmony import */ var _jsroot_actions_userGuideAction__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @jsroot/actions/userGuideAction */ "./www/js/source/reactpages/actions/userGuideAction.js");
+/* harmony import */ var _jsroot_actions_brandAction__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @jsroot/actions/brandAction */ "./www/js/source/reactpages/actions/brandAction.js");
 
 
 
@@ -5427,7 +5449,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ActionCreators = Object.assign({}, _jsroot_actions_gridDataAction__WEBPACK_IMPORTED_MODULE_0__, _jsroot_actions_productAction__WEBPACK_IMPORTED_MODULE_1__, _jsroot_actions_baseCurrencyAction__WEBPACK_IMPORTED_MODULE_2__, _jsroot_actions_usernameAction__WEBPACK_IMPORTED_MODULE_3__, _jsroot_actions_statusAction__WEBPACK_IMPORTED_MODULE_4__, _jsroot_actions_platformAction__WEBPACK_IMPORTED_MODULE_5__, _jsroot_actions_liveStatusAction__WEBPACK_IMPORTED_MODULE_6__, _jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_7__, _jsroot_actions_dateRangeAction__WEBPACK_IMPORTED_MODULE_8__, _jsroot_actions_convertAllAction__WEBPACK_IMPORTED_MODULE_9__, _jsroot_actions_requestParamAction__WEBPACK_IMPORTED_MODULE_10__, _jsroot_actions_reportTitleAction__WEBPACK_IMPORTED_MODULE_11__, _jsroot_actions_userGuideAction__WEBPACK_IMPORTED_MODULE_12__);
+
+const ActionCreators = Object.assign({}, _jsroot_actions_gridDataAction__WEBPACK_IMPORTED_MODULE_0__, _jsroot_actions_productAction__WEBPACK_IMPORTED_MODULE_1__, _jsroot_actions_brandAction__WEBPACK_IMPORTED_MODULE_13__, _jsroot_actions_baseCurrencyAction__WEBPACK_IMPORTED_MODULE_2__, _jsroot_actions_usernameAction__WEBPACK_IMPORTED_MODULE_3__, _jsroot_actions_statusAction__WEBPACK_IMPORTED_MODULE_4__, _jsroot_actions_platformAction__WEBPACK_IMPORTED_MODULE_5__, _jsroot_actions_liveStatusAction__WEBPACK_IMPORTED_MODULE_6__, _jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_7__, _jsroot_actions_dateRangeAction__WEBPACK_IMPORTED_MODULE_8__, _jsroot_actions_convertAllAction__WEBPACK_IMPORTED_MODULE_9__, _jsroot_actions_requestParamAction__WEBPACK_IMPORTED_MODULE_10__, _jsroot_actions_reportTitleAction__WEBPACK_IMPORTED_MODULE_11__, _jsroot_actions_userGuideAction__WEBPACK_IMPORTED_MODULE_12__);
 
 /***/ }),
 
@@ -5653,6 +5676,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       PageIndex: 1,
       FromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__["default"].convertDateToString(fromDate),
       ToDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__["default"].convertDateToString(toDate),
+      BrandId: this.props.selectedBrand,
       ProductCodeList: this.props.selectedProduct,
       Username: this.props.username,
       BaseCurrency: this.props.isConvertAll ? this.props.selectedBaseCurrency : '',
@@ -5747,6 +5771,15 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
   }
 
+  _renderBrandSelectList() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      instanceId: "brandList",
+      value: this.props.selectedBrand,
+      options: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_13__["default"].brandOptions,
+      onChange: item => this.props.setSelectedBrand(item.value)
+    });
+  }
+
   render() {
     const excelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "icon-excel right",
@@ -5758,7 +5791,13 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       stickyFooter: excelButton
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
+    }, _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_13__["default"].allowSelectBrand && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "label-text"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource("Brand")), this._renderBrandSelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
@@ -5842,6 +5881,7 @@ function mapStateToProps(state) {
   const {
     requestParam,
     dateRange,
+    selectedBrand,
     selectedProduct,
     selectedBaseCurrency,
     username,
@@ -5854,6 +5894,7 @@ function mapStateToProps(state) {
   return Object.assign({}, {
     requestParam,
     dateRange,
+    selectedBrand,
     selectedProduct,
     selectedBaseCurrency,
     username,
@@ -5943,6 +5984,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_reducers_reportTitleReducer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @jsroot/reducers/reportTitleReducer */ "./www/js/source/reactpages/reducers/reportTitleReducer.js");
 /* harmony import */ var _jsroot_reducers_userGuideReducer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @jsroot/reducers/userGuideReducer */ "./www/js/source/reactpages/reducers/userGuideReducer.js");
 /* harmony import */ var _common_components_reducer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../common/components/reducer */ "./www/js/source/reactpages/pages/bettingticketscenter/common/components/reducer.js");
+/* harmony import */ var _jsroot_reducers_brandReducer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @jsroot/reducers/brandReducer */ "./www/js/source/reactpages/reducers/brandReducer.js");
 
 
 
@@ -5958,7 +6000,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(Object.assign(_jsroot_reducers_gridDataReducer_js__WEBPACK_IMPORTED_MODULE_1__, _jsroot_reducers_productReducer__WEBPACK_IMPORTED_MODULE_2__, _jsroot_reducers_baseCurrencyReducer__WEBPACK_IMPORTED_MODULE_3__, _jsroot_reducers_usernameReducer__WEBPACK_IMPORTED_MODULE_4__, _jsroot_reducers_statusReducer__WEBPACK_IMPORTED_MODULE_5__, _jsroot_reducers_platformReducer__WEBPACK_IMPORTED_MODULE_6__, _jsroot_reducers_liveStatusReducer__WEBPACK_IMPORTED_MODULE_7__, _jsroot_reducers_loaderReducer__WEBPACK_IMPORTED_MODULE_8__, _jsroot_reducers_dateRangeReducer__WEBPACK_IMPORTED_MODULE_9__, _jsroot_reducers_convertAllReducer__WEBPACK_IMPORTED_MODULE_10__, _jsroot_reducers_requestParamReducer__WEBPACK_IMPORTED_MODULE_11__, _jsroot_reducers_reportTitleReducer__WEBPACK_IMPORTED_MODULE_12__, _jsroot_reducers_userGuideReducer__WEBPACK_IMPORTED_MODULE_13__, _common_components_reducer__WEBPACK_IMPORTED_MODULE_14__)));
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(Object.assign(_jsroot_reducers_gridDataReducer_js__WEBPACK_IMPORTED_MODULE_1__, _jsroot_reducers_productReducer__WEBPACK_IMPORTED_MODULE_2__, _jsroot_reducers_brandReducer__WEBPACK_IMPORTED_MODULE_15__, _jsroot_reducers_baseCurrencyReducer__WEBPACK_IMPORTED_MODULE_3__, _jsroot_reducers_usernameReducer__WEBPACK_IMPORTED_MODULE_4__, _jsroot_reducers_statusReducer__WEBPACK_IMPORTED_MODULE_5__, _jsroot_reducers_platformReducer__WEBPACK_IMPORTED_MODULE_6__, _jsroot_reducers_liveStatusReducer__WEBPACK_IMPORTED_MODULE_7__, _jsroot_reducers_loaderReducer__WEBPACK_IMPORTED_MODULE_8__, _jsroot_reducers_dateRangeReducer__WEBPACK_IMPORTED_MODULE_9__, _jsroot_reducers_convertAllReducer__WEBPACK_IMPORTED_MODULE_10__, _jsroot_reducers_requestParamReducer__WEBPACK_IMPORTED_MODULE_11__, _jsroot_reducers_reportTitleReducer__WEBPACK_IMPORTED_MODULE_12__, _jsroot_reducers_userGuideReducer__WEBPACK_IMPORTED_MODULE_13__, _common_components_reducer__WEBPACK_IMPORTED_MODULE_14__)));
 
 /***/ }),
 
@@ -5985,6 +6028,29 @@ const selectedBaseCurrency = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODU
 });
 const baseCurrencyList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_BASECURRENCY_LIST"]](state, action) {
+    return action.data;
+  }
+
+});
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/reducers/brandReducer.js":
+/*!***********************************************************!*\
+  !*** ./www/js/source/reactpages/reducers/brandReducer.js ***!
+  \***********************************************************/
+/*! exports provided: selectedBrand */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectedBrand", function() { return selectedBrand; });
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./www/js/source/reactpages/actions/types.js");
+/* harmony import */ var _lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
+
+
+const selectedBrand = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_BRAND"]](state, action) {
     return action.data;
   }
 

@@ -102,7 +102,10 @@
             };
             var totalDataResult = dataListResult.ToList();
             var summaryTotalResult = new Dictionary<string, CashOutWinLoss> { { "EUR", new CashOutWinLoss() } };
-            _dataAccess.GetSummary(Arg.Is<ThirdPartyWinLossMetaModel>(x => IsValidMetaModelForLevel0(x, Level)), UserCurrencyList).Returns(
+            _dataAccess.GetSummary(
+                Arg.Is<ThirdPartyWinLossMetaModel>(x => IsValidMetaModelForLevel0(x, Level)),
+                Arg.Is<IDictionary<int, string>>(x => IsValidCurrencyList(x)))
+            .Returns(
                 new SortableReportResultModel<CashOutWinLoss>
                 {
                     SummaryTotal = summaryTotalResult,
@@ -141,7 +144,9 @@
             };
             var totalDataResult = dataListResult.ToList();
             var summaryTotalResult = new Dictionary<string, CashOutWinLoss> { { "EUR", new CashOutWinLoss() } };
-            _dataAccess.GetDetail(Arg.Is<ThirdPartyWinLossMetaModel>(x => IsValidMetaModelForLevel0(x, Level)), UserCurrencyList).Returns(
+            _dataAccess.GetDetail(Arg.Is<ThirdPartyWinLossMetaModel>(x => IsValidMetaModelForLevel0(x, Level)),
+                Arg.Is<IDictionary<int, string>>(x => IsValidCurrencyList(x)))
+                .Returns(
                 new SortableReportResultModel<CashOutWinLoss>
                 {
                     SummaryTotal = summaryTotalResult,
@@ -285,6 +290,25 @@
                 metaModel.DrillDownCustomerId == 1 && metaModel.DrillDownFromDate == new DateTime(2017, 4, 1) &&
                 metaModel.DrillDownToDate == new DateTime(2017, 4, 18) && metaModel.AgentListXml == "<ROOT></ROOT>";
         }
+
+        private static bool IsValidCurrencyList(IDictionary<int, string> currencyList)
+        {
+            if (currencyList == null || currencyList.Count != ExpectedCurrencyList.Count)
+            {
+                return false;
+            }
+
+            foreach (var item in ExpectedCurrencyList)
+            {
+                if (currencyList[item.Key] != item.Value)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private static readonly IDictionary<int, string> ExpectedCurrencyList = new Dictionary<int, string> { { 1, "EUR" }, { 2, "USD" }, { 3, "INH" } };
 
         private string CreateResultData(List<CashOutWinLoss> data, List<CashOutWinLoss> total, Dictionary<string, CashOutWinLoss> summaryTotal)
         {

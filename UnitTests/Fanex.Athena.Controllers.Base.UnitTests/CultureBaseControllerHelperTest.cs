@@ -25,7 +25,7 @@
             CurrencyAgentList = new Dictionary<int, int[]>(),
             BrandList = new List<Brand>
             {
-                new Brand { Id = 402, Name = "N88" }
+                new Brand { Id = 402, Name = "N88", CurrencyAgentList = new Dictionary<int, int[]>() }
             }
         };
 

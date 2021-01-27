@@ -14,6 +14,7 @@
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Service.Interface;
+    using Fanex.NVC.Authentication.Infrastructure;
     using Model.Core.DTO.Common;
     using NSubstitute;
     using NUnit.Framework;
@@ -41,6 +42,8 @@
             _licenseeDataAccess = Substitute.For<ILicenseeDataAccess>();
             _userService = Substitute.For<IUserService>();
             _brandService = Substitute.For<IBrandService>();
+            _brandService.GetAllowedBrands(Arg.Any<int>(), Arg.Any<IEnumerable<NVCFunctionAuthInfo>>(), Arg.Any<BrandCollection>())
+                .Returns(new List<Brand> { new Brand { Id = 0 } });
             var licenseeList = new List<Licensee>
             {
                 new Licensee
@@ -65,148 +68,6 @@
         {
             _licenseeDataAccess = null;
             _sessionService = null;
-        }
-
-        [Test]
-        public void GenerateAgentListXml_CurrencyIdIsNumberAndPositive_ReturnCorrectXmlString()
-        {
-            // Arrange
-            var currencyUserList = new List<CurrencyUser>
-            {
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 1,
-                    CurrencyName = "USD",
-                    AgentId = 2,
-                    AgentIdList = new[] { 1, 2 }
-                },
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 20,
-                    CurrencyName = "UUS",
-                    AgentId = 3,
-                    AgentIdList = new[] { 3, 4, 5 }
-                }
-            };
-            CreateDefaultNewSession();
-            var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
-
-            // Action
-            var result = AuthParameterHelper.GenerateAgentListXml(_sessionService.UserSession.CurrencyAgentList, 0, true);
-
-            // Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
-        }
-
-        [Test]
-        public void GenerateAgentListXml_CurrencyIdIsNumberAndNegative_ReturnCorrectXmlString()
-        {
-            // Arrange
-            var currencyUserList = new List<CurrencyUser>
-            {
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 1,
-                    CurrencyName = "USD",
-                    AgentId = 2,
-                    AgentIdList = new[] { 1, 2 }
-                }
-            };
-            CreateDefaultNewSession();
-            var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
-
-            // Action
-            var result = AuthParameterHelper.GenerateAgentListXml(_sessionService.UserSession.CurrencyAgentList, -2, true);
-
-            // Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
-        }
-
-        [Test]
-        public void GenerateAgentListXml_CurrencyIdIsNumberAndExcludeTestDataParamIsFalse_ReturnCorrectXmlString()
-        {
-            // Arrange
-            var currencyUserList = new List<CurrencyUser>
-            {
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 1,
-                    CurrencyName = "USD",
-                    AgentId = 2,
-                    AgentIdList = new[] { 1, 2 }
-                },
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 2,
-                    CurrencyName = "EUR",
-                    AgentId = 3,
-                    AgentIdList = new[] { 3 }
-                }
-            };
-            CreateDefaultNewSession();
-            var expectedResult = "<ROOT><Agent AgentId=\"3\" Currency=\"2\"/></ROOT>";
-
-            // Action
-            var result = AuthParameterHelper.GenerateAgentListXml(_sessionService.UserSession.CurrencyAgentList, 2, false);
-
-            // Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
-        }
-
-        [Test]
-        public void GenerateAgentListXml_CurrencyIdIsListAndContainUUSCurrency_ReturnCorrectXmlString()
-        {
-            // Arrange
-            var currencyUserList = new List<CurrencyUser>
-            {
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 1,
-                    CurrencyName = "USD",
-                    AgentId = 2,
-                    AgentIdList = new[] { 1, 2 }
-                },
-                new CurrencyUser
-                {
-                    IsActive = true,
-                    CurrencyId = 20,
-                    CurrencyName = "UUS",
-                    AgentId = 3,
-                    AgentIdList = new[] { 3 }
-                }
-            };
-            CreateDefaultNewSession();
-            var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/><Agent AgentId=\"2\" Currency=\"1\"/></ROOT>";
-
-            // Action
-            var result = AuthParameterHelper.GenerateAgentListXml(_sessionService.UserSession.CurrencyAgentList, new[] { 1, 20 }, true);
-
-            // Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
-        }
-
-        [Test]
-        public void GenerateAgentListXmlByAgentIdList_WhenCall_ReturnCorrectXmlString()
-        {
-            // Arrange
-            var currencyAgentList = new Dictionary<int, IEnumerable<int>>
-            {
-                [1] = new List<int> { 1 }
-            };
-            CreateDefaultNewSession();
-            var expectedResult = "<ROOT><Agent AgentId=\"1\" Currency=\"1\"/></ROOT>";
-
-            // Action
-            var result = AuthParameterHelper.GenerateAgentListXml(_sessionService.UserSession.CurrencyList, currencyAgentList);
-
-            // Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
         }
 
         [Test]

@@ -49,7 +49,14 @@
             {
                 Language = SessionLanguage,
                 CurrencyList = new Dictionary<int, string>(),
-                CurrencyAgentList = new Dictionary<int, int[]>()
+                CurrencyAgentList = new Dictionary<int, int[]>(),
+                BrandList = new List<Brand>
+                    {
+                        new Brand { Id = 402, Name = "N88",
+                            CurrencyList = new Dictionary<int, string>(),
+                            CurrencyAgentList =  new Dictionary<int, int[]>()
+                        }
+                    }
             });
             ProductService = Substitute.For<IProductService>();
             AppSetting = Substitute.For<IAppSettings>();
@@ -77,7 +84,18 @@
                 UserName = SessionUserName,
                 CurrencyList = new Dictionary<int, string> { { 1, "EUR" }, { 2, "USD" } },
                 Language = SessionLanguage,
-                CurrencyAgentList = new Dictionary<int, int[]>()
+                CurrencyAgentList = new Dictionary<int, int[]>(),
+                BrandList = new List<Brand> 
+                { 
+                    new Brand { Id = 402, Name = "N88",
+                        CurrencyList = new Dictionary<int, string> { { 1, "EUR" }, { 2, "USD" } },
+                        CurrencyAgentList =  new Dictionary<int, int[]>()
+                    },
+                    new Brand { Id = 436, Name = "N8G",
+                        CurrencyList = new Dictionary<int, string> { { 1, "EUR" }, { 2, "USD" }, { 3, "INH" }  },
+                        CurrencyAgentList =  new Dictionary<int, int[]>()
+                    }
+                }
             };
 
             var licenseeSession = new NVCLicenseeAuthInfo

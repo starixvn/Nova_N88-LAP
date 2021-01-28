@@ -55,8 +55,8 @@
     <Reference Include="Fanex.N88.Core.Client, Version=1.2.1.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.1-alpha-1\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.3\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.4\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -143,7 +143,6 @@
     <Compile Include="Users\BrandServiceTest.cs" />
     <Compile Include="Users\SessionServiceTest.CreateNewSession.cs" />
     <Compile Include="Users\SessionServiceTest.cs" />
-    <Compile Include="Utility\BrandValidationTest.cs" />
     <Compile Include="Utility\ProductValidationTest.cs" />
     <Compile Include="Utility\CurrencyValidationTest.cs" />
     <Compile Include="Utility\ValidationServiceTest.cs" />

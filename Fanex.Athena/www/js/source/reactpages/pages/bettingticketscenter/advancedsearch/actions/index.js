@@ -15,10 +15,12 @@ import * as matchAction from './matchAction'
 import * as usernameAction from '@jsroot/actions/usernameAction'
 import * as convertAllAction from '@jsroot/actions/convertAllAction'
 import * as userGuideAction from '@jsroot/actions/userGuideAction'
+import * as brandAction from '@jsroot/actions/brandAction'
 
 export const ActionCreators = Object.assign({},
     gridDataAction,
     productAction,
+    brandAction,
     currencyAction,
     baseCurrencyAction,
     statusAction,

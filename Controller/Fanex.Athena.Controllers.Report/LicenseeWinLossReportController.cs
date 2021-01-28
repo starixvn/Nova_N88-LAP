@@ -78,11 +78,12 @@
             {
                 FromDate = selectedDate,
                 ToDate = selectedDate,
-                LicenseeId = SessionServiceInstance.LicenseeSession.LicenseeId,
+                LicenseeId = LicenseeId,
                 IsExcludedTestData = true,
                 DrawFilter = DrawFilterType.Normal,
                 ReportBy = ReportByType.Daily,
                 ProductOptions = ToProductOptions(productAccess.ProductList),
+                BrandOptions = BrandList.Select(_ => new CheckedItem { ID = _.Id, Name = _.Name, Checked = _.Id == LicenseeId }),
                 BaseCurrency = userSession.DefaultBaseCurrency,
                 CurrencyId = SystemConstants.BaseCurrencyList
                 .FirstOrDefault(x => x.Value.Equals(userSession.DefaultBaseCurrency, StringComparison.OrdinalIgnoreCase))
@@ -92,7 +93,8 @@
             var model = new LicenseeWinLossViewModel
             {
                 Param = param,
-                CurrencyList = userSession.CurrencyList,
+                CurrencyList = userSession.CurrencyList,     
+                Brands = BrandList,
                 IsAllowedCustomerCommission = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 ProductAccess = productAccess,
                 ReportSetting = reportSetting

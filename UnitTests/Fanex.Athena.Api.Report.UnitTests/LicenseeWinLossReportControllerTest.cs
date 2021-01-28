@@ -363,7 +363,8 @@
                         Code = "SB",
                         Status = true
                     }
-                }
+                }, 
+                BrandOptions = new List<CheckedItem>()
             };
             return model;
         }

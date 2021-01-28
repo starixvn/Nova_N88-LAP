@@ -33,12 +33,7 @@ export const GroupFilter = props => {
                     </div>
                 <div className="col-9 note">
                     {LangHelper.getSingleResource('NoteReportGrossRevenue')}
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-1" style={{ flex: "0 0 4%" }}>
-                </div>
-                <div className="col-9 note">
+                    <br />
                     {LangHelper.getSingleResource('NoteReportDepositAndWithdrawal')}
                 </div>
             </div>

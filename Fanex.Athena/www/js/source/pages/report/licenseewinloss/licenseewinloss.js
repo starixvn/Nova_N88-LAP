@@ -49,8 +49,16 @@
                     title: Site.getSingleResource('SabaProductsWinLoss')
                 });
                 MultiSelect.initProductList();
+                _me.initBrandList();
                 DatePicker.initDateRangePicker();
                 DateHelper.setConstraintMonthRange(VALID_MONTH_RANGE, LicenseeWinLossOption.urlExcelData);
+            },
+
+            initBrandList() {
+                const defaultBaseCurrencyId = parseInt($('#DefaultBaseCurrencyId').val());
+                const numberOfDefaultCurrency = parseInt($('#numberOfDefaultCurrency').val())
+                const brands = $.parseJSON($('#Brands').val());
+                MultiSelect.initBrandList(brands, defaultBaseCurrencyId, numberOfDefaultCurrency);
             },
 
             registerGlobalFunction: function () {
@@ -91,6 +99,7 @@
             initSetting: function () {
                 LicenseeWinLossOption.hasCustomerComm = Site.asBool($('#IsAllowedCustomerCommission').val());
                 LicenseeWinLossOption.licenseeId = parseInt($('#drillDownLicenseeId').val(), 10);
+                LicenseeWinLossOption.allowSelectBrand = Site.asBool($('#allowSelectBrand').val());
             },
 
             initEvent: function () {
@@ -128,6 +137,8 @@
                     else {
                         filterData = drillDownData;
                     }
+                    
+                    const selectedBrands = _me.getSelectedBrandIds();
 
                     const data = {
                         __RequestVerificationToken: Site.getXsrfToken(),
@@ -136,7 +147,8 @@
                         CurrencyId: filterData.CurrencyId,
                         CurrencyName: filterData.CurrencyName,
                         IsExcludedTestData: filterData.IsExcludedTestData,
-                        AgentId: filterData.AgentId
+                        AgentId: filterData.AgentId,
+                        BrandIds: selectedBrands.join() 
                     };
                     const url = Site.buildReportProxyUrl(LicenseeWinLossOption.urlPromotionPrizeExcelData);
                     _me.exportExcel(url, data, EXCEL_PP_FILENAME);
@@ -157,6 +169,12 @@
                 $(window).on('unload', function () {
                     $(window).off('resize');
                 });
+            },
+
+            getSelectedBrandIds: function() {
+                const selectedBrandOptions = $.parseJSON(_submitData.BrandOptions);
+                const selectedBrands = selectedBrandOptions.filter(_ => _.Checked).map(_ => _.ID);
+                return selectedBrands;
             },
 
             exportExcel: function (url, data, fileName) {
@@ -227,7 +245,7 @@
                         _me.setReportTitle($('#CurrencyId').val(), $('#FromDate').val(), $('#ToDate').val(), $('#BaseCurrency').val());
                     }
 
-                    Report.renderBreadCrumb(levelNumber, LicenseeWinLossOption.licenseeId);
+                    Report.renderBreadCrumb(levelNumber, LicenseeWinLossOption.allowSelectBrand);
                     _me.bindData(levelNumber, reportBy, response);
 
                     const pprizeCount = response.PromotionPrize;
@@ -259,6 +277,7 @@
                     success: function (response) {
                         _submitData = {
                             ProductOptions: response.ProductOptions,
+                            BrandOptions: response.BrandOptions,
                             DrawFilter: data.DrawFilter,
                             CurrencyId: data.CurrencyId,
                             ReportBy: Number(data.ReportBy),
@@ -300,6 +319,7 @@
                 const param =
                 {
                     ProductOptions: $.parseJSON(_submitData.ProductOptions),
+                    BrandOptions: $.parseJSON(_submitData.BrandOptions),
                     DrawFilter: _submitData.DrawFilter,
                     IsExcludedTestData: _submitData.IsExcludedTestData,
                     CurrencyId: _submitData.CurrencyId,

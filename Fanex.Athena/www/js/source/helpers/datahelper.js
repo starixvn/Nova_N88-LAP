@@ -16,7 +16,33 @@ define(["lib/linq"], function () {
         return Enumerable.From(arrayData)[sortType](sortByFunc)[sortThenType](sortThenByFunc).ToArray();
     }
 
+    function getCurrencyListByBrands(brands, brandIds) {
+        const existKeys = {};
+        const currencyList = brandIds.reduce((result, brandId) => {
+            const currencyListByBrand = _getCurrencyListByBrandId(brandId, brands, existKeys, 'currencies');
+            return result.concat(currencyListByBrand);
+        }, []);
+
+        return currencyList;
+    }
+
+    function _getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty) {
+        var brandInfo = brands.find(function(_) { return _.id === parseInt(brandId)});
+        if (brandInfo) {
+            return brandInfo[currencyProperty].reduce(function(result, currentValue) {
+                if (!existKeys[currentValue.key]) {
+                    existKeys[currentValue.key] = true;
+                    result.push({ key: currentValue.key, value: currentValue.value });
+                    return result;
+                }
+                return result;
+            }, [])
+        }
+        return [];
+    }
+
     return {
-        sort: sort
+        sort: sort,
+        getCurrencyListByBrands: getCurrencyListByBrands
     };
 });

@@ -38,7 +38,8 @@
             {
                 IsLicenseeOfferBA = licenseeSession.IsEnableBA,
                 Param = metaModel,
-                CurrencyList = userSession.CurrencyList
+                CurrencyList = userSession.CurrencyList ,
+                Brands = BrandList
             };
 
             return View("~/Views/Desktop/Report/CashOutWinLoss/Main.cshtml", model);

@@ -1,7 +1,6 @@
 ﻿define(['jquery', 'common/site', 'common/popup'], function ($, Site, Popup) {
     'use strict';
     const REPORT_BY_MONTHLY = 2;
-    const LICENSEE_12BET = 1;
     function lastDateOfMonth(year, month) {
         return new Date(year, month + 1, 0);
     }
@@ -151,7 +150,7 @@
                     : viewinKey.replace('{0}', baseCurrencyName.toUpperCase());
         },
 
-        renderBreadCrumb: function (level, licenseeId) {
+        renderBreadCrumb: function (level, allowShowLevel1 = true) {
             const $container = $('#level-link-container');
             const levelNumber = Number(level);
             if (levelNumber === 0) {
@@ -164,9 +163,8 @@
                 const isLevel2 = levelNumber === 2;
                 $container.find('.level2').toggle(isLevel2).toggleClass('active', isLevel2);
 
-                const allowShowLevel1 = licenseeId ? licenseeId === LICENSEE_12BET : true;
-                $container.find('.level1').toggle(allowShowLevel1);
-                $container.find('.level1').toggleClass('active', allowShowLevel1 && !isLevel2);
+                $container.find('.level1').toggle(!!allowShowLevel1);
+                $container.find('.level1').toggleClass('active', !!allowShowLevel1 && !isLevel2);
             }
         }
     };

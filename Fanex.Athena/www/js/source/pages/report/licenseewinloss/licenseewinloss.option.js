@@ -1,10 +1,4 @@
-﻿/// <reference path='/@JSense.js' />
-/*
-* Note:in this report, parameter level have 3 value
-*  '0' for master,'1' for agent and '2' for member
-*/
-
-define(
+﻿define(
     ['jquery', 'common/querystring', 'common/site', 'lib/jqgrid/jquery.jqgrid.additional', 'lib/linq'],
     function ($, QueryString, Site, jqGridAdditional) {
         'use strict';
@@ -14,6 +8,7 @@ define(
         {
             isDisableBetList: false,
             licenseeId: 0,
+            allowSelectBrand: false,
             currencyIndex: 4,
             turnoverIndex: 5,
             licenseeWlIndex: 12,
@@ -68,7 +63,7 @@ define(
         };
 
         const currencyFormatter = function (cellvalue, options, rowObject) {
-            const level = Number(_me.licenseeId) === 1 ? 1 : 2;
+            const level = _me.allowSelectBrand ? 1 : 2;
             return setDrillDownLink(level, rowObject.CurrencyId, 0, rowObject.Date, rowObject.CurrencyName, cellvalue);
         };
 

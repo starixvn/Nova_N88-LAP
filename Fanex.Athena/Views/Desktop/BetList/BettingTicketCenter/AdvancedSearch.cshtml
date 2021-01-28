@@ -11,7 +11,14 @@
     var selectedLiveStatus = string.Join(",", Model.LiveStatusList.Select(x => x.Key).ToArray());
     var baseCurrencyList = SystemConstants.BaseCurrencyList.Select(c =>
     new { value = c.Value, label = c.Value }).ToList();
-    var selectedCurrency = string.Join(",", Model.CurrencyList.Select(x => x.Key).ToArray());
+
+    var selectedCurrency = string.Join(",", Model.OwnBrand.CurrencyList.Select(x => x.Key).ToArray());
+    var brands = Model.Brands.Select(x => new
+    {
+        id = x.Id,
+        currencies = x.CurrencyList.Select(y => new { key = y.Key, value = y.Value })
+    });
+    var allowSelectBrand = Model.Brands.Count() > 1;
 }
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/betlist/index.css")" rel="stylesheet" type="text/css" />
@@ -27,6 +34,7 @@
     selectedProduct: '@Html.Raw(productList.First().Code)',
     selectedCurrency:  '@(selectedCurrency)',
     selectedBaseCurrency: '@(Model.SelectedBaseCurrency)',
+    selectedBrand: @Model.OwnBrand.Id,
     isLoading: false,
     selectedStatus: '@(selectedStatus)',
     selectedLiveStatus: '@(selectedLiveStatus)',
@@ -40,12 +48,14 @@
     isConvertAll: true
     };
     window._AppData = {
+    allowSelectBrand: @allowSelectBrand.ToString().ToLowerInvariant(), 
+    brands: @Html.Raw(brands.ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
     liveStatusList: @Html.Raw(Model.LiveStatusList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
     statusList: @Html.Raw(Model.StatusList.Select(x => new { Id = x.ID, Value = x.Name, Status = x.Checked }).ToJson()),
     isAllowedCustomerComm: @Model.IsAllowedCustomerComm.ToJson(),
     productList: @Html.Raw(Model.ProductOptionList.Select(x => new { value = x.Code, label = x.Name }).ToJson()),
-    currencyList: @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
     dateConstraint: { minDate: '@Model.MinDate.ToString("MM/dd/yyyy")', maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 3 },
     tabList: @Html.Raw(Model.TabList.ToJson())
     };

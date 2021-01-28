@@ -12,6 +12,7 @@ define(['jquery', 'common/querystring', 'common/site', './cashoutwinloss.option'
         const _me = {
             initialize: function () {
                 Site.initialize();
+                _me.initBrandList();
                 DatePicker.initDateRangePicker();
                 Site.addUserGuide({
                     resourceName: 'CashOutWL',
@@ -23,9 +24,18 @@ define(['jquery', 'common/querystring', 'common/site', './cashoutwinloss.option'
                 _me.registerGlobalFunction();
             },
 
+            initBrandList() {
+                const defaultBaseCurrencyId = parseInt($('#DefaultBaseCurrencyId').val());
+                const numberOfDefaultCurrency = parseInt($('#numberOfDefaultCurrency').val())
+                const brands = $.parseJSON($('#Brands').val());
+                Site.initBrandList(brands, defaultBaseCurrencyId, numberOfDefaultCurrency);
+            },
+
             initSetting: function () {
                 CashOutWinLossOption.isLicenseeOfferBA = $('#IsLicenseeOfferBA').val() === '1';
-            },
+                CashOutWinLossOption.defaultBaseCurrencyId = parseInt($('#DefaultBaseCurrencyId').val());
+                CashOutWinLossOption.numberOfDefaultCurrency = parseInt($('#numberOfDefaultCurrency').val())
+                CashOutWinLossOption.brands = $.parseJSON($('#Brands').val());            },
 
             registerGlobalFunction: function () {
                 window.cashoutDrillDown = _me.drillDown;
@@ -68,6 +78,29 @@ define(['jquery', 'common/querystring', 'common/site', './cashoutwinloss.option'
                 $(window).on('unload', function () {
                     $(window).off('resize');
                 });
+            },
+
+            onChangeBrand: function(selectedBrand) {
+                let $currencyList = $('#CurrencyId');
+                let options = $currencyList.find('option')
+                
+                for (let index = 0; index < options.length; index++) {
+                    const $option = $(options[index]);
+                    if(index >= CashOutWinLossOption.numberOfDefaultCurrency) {
+                        $option.remove();
+                    } else {
+                        $option.attr('selected', false);
+                    }
+                }
+
+                const newCurrencyList = DataHelper.getCurrencyListByBrands(CashOutWinLossOption.brands, [ parseInt(selectedBrand) ]);
+                newCurrencyList.forEach(function(currency) {
+                    $currencyList.append('<option value="' + currency.key + '">' + currency.value  + '</option>')
+                })
+
+                $('#CurrencyId').val(CashOutWinLossOption.defaultBaseCurrencyId);
+                $('#CurrencyId').selectList();
+                Site.currencyConstraint(true)
             },
 
             submit: function () {
@@ -208,6 +241,7 @@ define(['jquery', 'common/querystring', 'common/site', './cashoutwinloss.option'
                 const param =
                 {
                     IsExcludedTestData: _submitData.IsExcludedTestData,
+                    BrandId: parseInt(_submitData.BrandId),
                     CurrencyId: _submitData.CurrencyId,
                     FromDate: _submitData.FromDate,
                     ToDate: _submitData.ToDate,

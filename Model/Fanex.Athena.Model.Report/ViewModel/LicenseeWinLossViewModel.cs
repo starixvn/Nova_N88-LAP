@@ -1,21 +1,13 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LicenseeWinLossViewModel.cs" company="Microsoft">
-// Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Model.Report.ViewModel
+﻿namespace Fanex.Athena.Model.Report.ViewModel
 {
-    using System;
-    using System.Collections.Generic;
     using Core.DTO.Configuration;
     using Fanex.Athena.Model.Report.DTO;
     using Fanex.Athena.Model.Report.MetaModel;
+    using Fanex.NVC.Authentication.Infrastructure;
     using Model.Core.ViewModel;
+    using System;
+    using System.Collections.Generic;
 
-    /// <summary>
-    /// LicenseeWinLossViewModel class.
-    /// </summary>
     public class LicenseeWinLossViewModel : BaseViewModel
     {
         public IList<LicenseeWinLoss> MainResult { get; set; }
@@ -25,5 +17,8 @@ namespace Fanex.Athena.Model.Report.ViewModel
         public LicenseeWinLossMetaModel Param { get; set; }
 
         public ReportSetting ReportSetting { get; set; }
+
+        [CLSCompliant(false)]
+        public IEnumerable<Brand> Brands { get; set; }
     }
 }

@@ -19,7 +19,6 @@
     public class SessionService : ISessionService
     {
         private readonly ILicenseeDataAccess _licenseeDataAccess;
-        private readonly ICurrencyDataAccess _currencyDataAccess;
         private readonly IUserService _userService;
         private readonly ISessionStorage _sessionStorage;
         private readonly IAppSettings _appSettings;
@@ -28,7 +27,6 @@
 
         public SessionService(
             ILicenseeDataAccess licenseeDataAccess,
-            ICurrencyDataAccess currencyDataAccess,
             IUserService userService,
             IAppSettings appSettings,
             ISessionStorage sessionStorage,
@@ -36,7 +34,6 @@
             N88Settings n88Settings = null)
         {
             _licenseeDataAccess = licenseeDataAccess;
-            _currencyDataAccess = currencyDataAccess;
             _sessionStorage = sessionStorage;
             _appSettings = appSettings;
             _userService = userService;
@@ -69,23 +66,6 @@
             AssignMenuSession(userId);
         }
 
-        private (IDictionary<int, string>, IDictionary<int, int[]>) GetCurrencies()
-        {
-            var currencyUsers = _currencyDataAccess.GetCurrenciesByLicensee(_appSettings.LicenseeId);
-
-            var currencyList = currencyUsers
-                .Where(x => x.IsActive)
-                .Select(x => new { x.CurrencyId, x.CurrencyName })
-                .ToDictionary(x => x.CurrencyId, x => x.CurrencyName);
-
-            var currencyAgentList = currencyUsers
-                .Where(x => x.IsActive)
-                .Select(x => new { x.CurrencyId, x.AgentIdList })
-                .ToDictionary(x => x.CurrencyId, x => x.AgentIdList.ToArray());
-
-            return (currencyList, currencyAgentList);
-        }
-
         private void AssignMenuSession(int userId)
         {
             var menuItems = _userService.GetMenuItem(userId, _n88Settings.SiteId, _n88Settings.Environment, true)
@@ -97,11 +77,10 @@
 
         private void AssignUserSession(int userId, int onuserId, string userName, string userDefaultBaseCurrencyCode, bool isLicenseeUser, string language)
         {
-            var (currencyList, currencyAgentList) = GetCurrencies();
-
             var napFunctions = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
             var functions = GetUserFunction(napFunctions).ToList();
             var brandList = _brandService.GetAllowedBrands(_appSettings.LicenseeId, functions, BrandSetting.Setting?.Brands);
+            var ownBrand = brandList.First(_ => _.Id == _appSettings.LicenseeId);
 
             var userAuthInfo = new NVCUserAuthInfo
             {
@@ -111,8 +90,8 @@
                 IsLicenseeUser = isLicenseeUser,
                 Language = language,
                 FunctionList = functions,
-                CurrencyList = currencyList,
-                CurrencyAgentList = currencyAgentList,
+                CurrencyList = ownBrand.CurrencyList,
+                CurrencyAgentList = ownBrand.CurrencyAgentList,
                 DefaultBaseCurrency = string.IsNullOrEmpty(userDefaultBaseCurrencyCode) ? _appSettings.DefaultBaseCurrency : userDefaultBaseCurrencyCode,
                 SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
                 BrandList = brandList

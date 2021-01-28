@@ -3900,20 +3900,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class CurrencyHelper {
   static getTpCurrencyList(brandIds, brands) {
-    return this.getCurrencyList(brandIds, brands, 'tpCurrencies');
+    return this._getCurrencyList(brandIds, brands, 'tpCurrencies');
   }
 
-  static getCurrencyList(brandIds, brands, currencyProperty) {
-    const brandIdList = brandIds.split(',');
+  static getAgentCurrencyList(brandIds, brands) {
+    return this._getCurrencyList(brandIds, brands, 'currencies');
+  }
+
+  static _getCurrencyList(brandIds, brands, currencyProperty) {
+    const brandIdList = (brandIds + '').split(',');
     const existKeys = {};
     const currencyList = brandIdList.reduce((result, brandId) => {
-      const currencyListByBrand = this.getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty);
+      const currencyListByBrand = this._getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty);
+
       return [...result, ...currencyListByBrand];
     }, []);
     return currencyList;
   }
 
-  static getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty) {
+  static _getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty) {
     var brandInfo = brands.find(_ => _.id === parseInt(brandId));
 
     if (brandInfo) {
@@ -4533,8 +4538,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
   _renderCurrencySelectList() {
     const {
       selectedCurrency,
-      setSelectedCurrency,
-      selectedBrand
+      setSelectedCurrency
     } = this.props;
     const currencyList = this.currencyList;
     const dataSource = _libs_helpers_collectionHelper__WEBPACK_IMPORTED_MODULE_15__["default"].createDataSourceFrom(currencyList, selectedCurrency);
@@ -4849,16 +4853,7 @@ const GroupFilter = props => {
     }
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('Note'), ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-9 note"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportGrossRevenue'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-1",
-    style: {
-      flex: "0 0 4%"
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-9 note"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportDepositAndWithdrawal'))));
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportGrossRevenue'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportDepositAndWithdrawal'))));
 };
 
 function mapDispatchToProps(dispatch) {

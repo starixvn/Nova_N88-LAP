@@ -13,6 +13,7 @@ import LangHelper from '@jsroot/lib/langHelper'
 import Site from '@jsroot/lib/site'
 import AppData from '@jsroot/lib/AppData'
 import DataService from '@jsroot/lib/DataService.js'
+import CurrencyHelper from '@jsroot/lib/currencyHelper'
 import { ApiUrl } from '../../common/lib/constants'
 import Service from '../../common/lib/Service'
 import UserGuide from '@jsroot/components/UserGuide'
@@ -24,6 +25,7 @@ export class FormFilter extends Component {
 
         this.baseCurrencyList = AppData.baseCurrencyList;
         this.defaultBaseCurrency = props.selectedBaseCurrency;
+        this.currencyList = CurrencyHelper.getAgentCurrencyList(this.props.selectedBrand, AppData.brands);
     }
 
     get isValidModel() {
@@ -57,6 +59,7 @@ export class FormFilter extends Component {
             PageSize: PageSize,
             PageIndex: 1,
             ProductCodeList: this.props.selectedProduct,
+            BrandId: this.props.selectedBrand,
             Username: this.props.username,
             CurrencyIdList: this.props.selectedCurrency,
             BaseCurrency: this.props.selectedBaseCurrency,
@@ -127,15 +130,15 @@ export class FormFilter extends Component {
     }
 
     _renderCurrencySelectList() {
-        const currencyList = AppData.currencyList;
+        const currencyList = this.currencyList;
 
         return currencyList && currencyList.length && (
             <MultipleSelect id="ddlCurrency"
                 language={LangHelper.currentLanguage}
                 dataSource={currencyList}
-                keyField={"Id"}
-                valueField={"Value"}
-                statusField={"Status"}
+                keyField={"key"}
+                valueField={"value"}
+                statusField={"status"}
                 onChange={(currentItem, selectedItemsKey) => this._onChangeCurrency(selectedItemsKey)} />);
     }
 
@@ -149,7 +152,7 @@ export class FormFilter extends Component {
                 this.defaultBaseCurrency;
         }
         else {
-            const currencyName = AppData.currencyList.find(x => x.Id == currencyIdList).Value;
+            const currencyName = this.currencyList.find(x => x.key == currencyIdList).value;
             if (!this.baseCurrencyList.find(x => x.label === currencyName)) {
                 baseCurrency = '';
                 this.baseCurrencyList = AppData.baseCurrencyList.slice(0);
@@ -188,6 +191,22 @@ export class FormFilter extends Component {
                 onChange={(currentItem, selectedItemsKey) => this.props.setSelectedStatus(selectedItemsKey)} />);
     }
 
+    _renderBrandSelectList() {
+        return (
+            <Select instanceId="brandList"
+                value={this.props.selectedBrand}
+                options={AppData.brandOptions}
+                onChange={item => {
+                    this.props.setSelectedBrand(item.value);
+                    this.currencyList = CurrencyHelper.getAgentCurrencyList(item.value, AppData.brands);
+                    const selectedCurrency = this.currencyList.map(_ => _.key).join(',');
+                    this.props.setSelectedCurrency(selectedCurrency);
+                    this.props.setSelectedBaseCurrency(this.defaultBaseCurrency);
+                }}
+            />
+        );
+    }
+
     render() {
         const excelButton = <div>
             <i className="icon-excel right" onClick={this.exportExcel} title={LangHelper.getSingleResource("ExportToExcel")}></i>
@@ -197,7 +216,14 @@ export class FormFilter extends Component {
         return (
             <CollapsiblePanel className="page-filter" stickyFooter={excelButton}>
                 <div className="row">
-
+                    {AppData.allowSelectBrand &&
+                        <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                            <div className="form-group">
+                                <label className="label-text">{LangHelper.getSingleResource("Brand")}</label>
+                                {this._renderBrandSelectList()}
+                            </div>
+                        </div>
+                    }
                     <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Product")}</label>
@@ -215,14 +241,14 @@ export class FormFilter extends Component {
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className={`col-12 col-md-3 col-sm-3 col-lg-3 col-xl-${AppData.allowSelectBrand ? 1 : 2}`}>
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Currency")}</label>
                             {this._renderCurrencySelectList()}
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className={`col-12 col-md-3 col-sm-3 col-lg-3 col-xl-${AppData.allowSelectBrand ? 1 : 2}`}>
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("BaseCurrency")}</label>
                             {this._renderBaseCurrencySelectList()}
@@ -262,8 +288,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(ActionCreators, dispatch);
 }
 function mapStateToProps(state) {
-    const { requestParam, selectedProduct, selectedCurrency, selectedBaseCurrency, username, selectedStatus, isConvertAll, userGuideContent } = state;
-    return Object.assign({}, { requestParam, selectedProduct, selectedCurrency, selectedBaseCurrency, username, selectedStatus, isConvertAll, userGuideContent });
+    const { requestParam, selectedProduct, selectedBrand, selectedCurrency, selectedBaseCurrency, username, selectedStatus, isConvertAll, userGuideContent } = state;
+    return Object.assign({}, { requestParam, selectedProduct, selectedBrand, selectedCurrency, selectedBaseCurrency, username, selectedStatus, isConvertAll, userGuideContent });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);

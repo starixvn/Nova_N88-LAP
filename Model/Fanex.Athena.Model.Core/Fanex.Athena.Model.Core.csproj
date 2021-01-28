@@ -150,8 +150,6 @@
     <Compile Include="MetaModel\IMetalModelCustomerIdentity.cs" />
     <Compile Include="MetaModel\IMetaModelAgent.cs" />
     <Compile Include="MetaModel\IMetaModelBalanceUpAndMoveBet.cs" />
-    <Compile Include="MetaModel\IMetaModelBrandId.cs" />
-    <Compile Include="MetaModel\IMetaModelBrandIdList.cs" />
     <Compile Include="MetaModel\IMetaModelCurrency.cs" />
     <Compile Include="MetaModel\BaseMetaModel.cs" />
     <Compile Include="MetaModel\Common\LeagueMetaModel.cs" />

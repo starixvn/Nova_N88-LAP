@@ -34,6 +34,7 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Api.StatelessBase.Logger;
     using System.Web.Http.ExceptionHandling;
+    using Fanex.NVC.Authentication.Infrastructure;
 
     public static class DIConfig
     {
@@ -67,6 +68,7 @@
             builder.RegisterType<SiteService>().As<ISiteService>();
             builder.RegisterType<SecurityService>().As<ISecurityService>();
             builder.RegisterType<CurrentSession>().As<ICurrentSession>();
+            builder.RegisterType<BrandValidation>().As<IBrandValidation>();
 
             builder.RegisterType<ApiExceptionLogger>().As<IExceptionLogger>();
 

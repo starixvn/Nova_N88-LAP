@@ -48,7 +48,7 @@
         }
 
         [HttpPost]
-        [ValidationApiRequest(ObjectName = "metaModel", IsValidCurrency = true, IsIncludeKeanOcean = true)]
+        [ValidationApiRequest(ObjectName = "metaModel", IsValidBrandIdList = true)]
         public Task<dynamic> Index(
             LicenseeWinLossMetaModel metaModel,
             DateTime? fdate,
@@ -62,7 +62,7 @@
         }
 
         [HttpPost]
-        [ValidationApiRequest(ObjectName = "metaModel", IsValidCurrency = true, IsIncludeKeanOcean = true)]
+        [ValidationApiRequest(ObjectName = "metaModel", IsValidBrandIdList = true)]
         public Task<dynamic> Index([FromBody] LicenseeWinLossMetaModel metaModel)
         {
             return ProcessRequest(metaModel, null, null);
@@ -267,19 +267,18 @@
         {
             if (metaModel.IsValid)
             {
-                var userCurrencyList = SessionService.UserSession.CurrencyList;
                 SortableReportResultModel<LicenseeWinLoss> result;
-                if (metaModel.DrillDownLevel == 0)
+                if (metaModel.DrillDownLevel == (int)ReportLevel.Main)
                 {
-                    result = await _licenseeWinLossDataAccess.GetSummaryWinloss(metaModel, userCurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
+                    result = await _licenseeWinLossDataAccess.GetSummaryWinloss(metaModel, CurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
                 }
-                else if (metaModel.LicenseeId != LicenseeIdentity.OneTwoBet || metaModel.DrillDownLevel == (int)ReportLevel.Customer)
+                else if(metaModel.DrillDownLevel == (int)ReportLevel.Licensee)
                 {
-                    result = await _licenseeWinLossDataAccess.GetCustomerWinlossDetail(metaModel, userCurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
+                    result = await _licenseeWinLossDataAccess.GetAgentWinlossDetail(metaModel, CurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
                 }
-                else
+                else //ReportLevel.Customer
                 {
-                    result = await _licenseeWinLossDataAccess.GetAgentWinlossDetail(metaModel, userCurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
+                    result = await _licenseeWinLossDataAccess.GetCustomerWinlossDetail(metaModel, CurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
                 }
 
                 return result;
@@ -315,8 +314,8 @@
                 metaModel.DrillDownCurrencyName = currencyName;
                 metaModel.DrillDownCustomerId = custId;
 
-                metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList,
-                    level == 0 ? metaModel.CurrencyId : currencyId, metaModel.IsExcludedTestData);
+                var agentList = AuthParameterHelper.GetAgentList(BrandList, metaModel.BrandIds);
+                metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, level == (int)ReportLevel.Main ? metaModel.CurrencyId : currencyId, metaModel.IsExcludedTestData);
                 var result = await GetData(metaModel);
 
                 if (metaModel.IsExportExcel)
@@ -336,6 +335,7 @@
                     Total = result.TotalDataList.Select(MapToGridView).ToList(),
                     SummaryTotal = summaryTotalView,
                     ProductOptions = metaModel.ProductOptions.ToJson(),
+                    BrandOptions = metaModel.BrandOptions.ToJson(),
                     PromotionPrize = result.AdditionalInfo
                 };
             }

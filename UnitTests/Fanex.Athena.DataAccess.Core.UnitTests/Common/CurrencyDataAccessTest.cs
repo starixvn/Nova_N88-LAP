@@ -20,7 +20,7 @@
             DataAccess.GetObjectDb(Arg.Is(GetCurrenciesByLicensee)).Returns(ObjectDb);
 
             // Action
-            DataAccess.GetCurrenciesByLicensee(LicenseeId);
+            DataAccess.GetCurrenciesByBrand(LicenseeId);
 
             // Assert
             Assert.Multiple(() =>
@@ -41,7 +41,7 @@
                 });
 
             // Action
-            var currencyList = DataAccess.GetCurrenciesByLicensee(0);
+            var currencyList = DataAccess.GetCurrenciesByBrand(0);
 
             // Assert
             Assert.Multiple(() =>

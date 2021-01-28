@@ -195,8 +195,8 @@
                 // Assert
                 Assert.Multiple(() =>
                 {
-                    Assert.That(viewModel.CurrencyList, Is.EqualTo(DefaultUserSession.CurrencyList));
-                    Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
+                    Assert.That(viewModel.Brands, Is.EqualTo(DefaultUserSession.BrandList));
+                    Assert.That(viewModel.OwnBrand, Is.EqualTo(DefaultUserSession.BrandList.FirstOrDefault(_ => _.Id == DefaultLicenseeSession.LicenseeId))); Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
                 });
             }
@@ -282,7 +282,8 @@
                 // Assert
                 Assert.Multiple(() =>
                 {
-                    Assert.That(viewModel.CurrencyList, Is.EqualTo(DefaultUserSession.CurrencyList));
+                    Assert.That(viewModel.Brands, Is.EqualTo(DefaultUserSession.BrandList));
+                    Assert.That(viewModel.OwnBrand, Is.EqualTo(DefaultUserSession.BrandList.FirstOrDefault(_ => _.Id == DefaultLicenseeSession.LicenseeId)));
                     Assert.That(viewModel.LiveStatusList, Is.Not.Empty);
                     Assert.That(viewModel.StatusList, Is.Not.Empty);
                     Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));

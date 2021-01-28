@@ -3,60 +3,62 @@
 @using Fanex.Athena.Model.Core.MetaModel.Product;
 @using Fanex.Athena.Model.Core.DataDomain;
 @using Fanex.Athena.Resources;
+@using Fanex.Athena.Model.Core.DTO.Common;
+@using Fanex.NVC.Authentication.Infrastructure;
 
 @helper  PlatformList(string id, string className = null)
 {
     /**/
-<select id="@id" name="@id" class="select @className">
-    <option value="@PlatformType.All">
-        @ViewResources.All
-    </option>
-    <option value="@PlatformType.Asia">
-        @ViewResources.Asia
-    </option>
-    <option value="@PlatformType.China">
-        @ViewResources.China
-    </option>
-    <option value="@PlatformType.Euro">
-        @ViewResources.Euro
-    </option>
-    <option value="@PlatformType.Wap">
-        @ViewResources.Wap
-    </option>
-    <option value="@PlatformType.Mobile">
-        @ViewResources.Mobile
-    </option>
-    <option value="@PlatformType.Tablet">
-        @ViewResources.Tablet
-    </option>
-    <option value="@PlatformType.NewAsia">
-        @ViewResources.NewAsia
-    </option>
-    <option value="@PlatformType.MobileApp">
-        @ViewResources.MobileApp
-    </option>
-    <option value="@PlatformType.MobileLiteVersion">
-        @ViewResources.MobileLiteVersion
-    </option>
-    <option value="@PlatformType.DeepLink">
-        @ViewResources.DeepLink
-    </option>
-    <option value="@PlatformType.NativeApp">
-        @ViewResources.NativeApp
-    </option>
-    <option value="@PlatformType.ESportsDesktop">
-        @ViewResources.ESportsDesktop
-    </option>
-    <option value="@PlatformType.ESportsMobile">
-        @ViewResources.ESportsMobile
-    </option>
-    <option value="@PlatformType.ESportsApp">
-        @ViewResources.ESportsApp
-    </option>
-    <option value="@PlatformType.BetfromOthers">
-        @ViewResources.BetfromOthers
-    </option>
-</select>
+    <select id="@id" name="@id" class="select @className">
+        <option value="@PlatformType.All">
+            @ViewResources.All
+        </option>
+        <option value="@PlatformType.Asia">
+            @ViewResources.Asia
+        </option>
+        <option value="@PlatformType.China">
+            @ViewResources.China
+        </option>
+        <option value="@PlatformType.Euro">
+            @ViewResources.Euro
+        </option>
+        <option value="@PlatformType.Wap">
+            @ViewResources.Wap
+        </option>
+        <option value="@PlatformType.Mobile">
+            @ViewResources.Mobile
+        </option>
+        <option value="@PlatformType.Tablet">
+            @ViewResources.Tablet
+        </option>
+        <option value="@PlatformType.NewAsia">
+            @ViewResources.NewAsia
+        </option>
+        <option value="@PlatformType.MobileApp">
+            @ViewResources.MobileApp
+        </option>
+        <option value="@PlatformType.MobileLiteVersion">
+            @ViewResources.MobileLiteVersion
+        </option>
+        <option value="@PlatformType.DeepLink">
+            @ViewResources.DeepLink
+        </option>
+        <option value="@PlatformType.NativeApp">
+            @ViewResources.NativeApp
+        </option>
+        <option value="@PlatformType.ESportsDesktop">
+            @ViewResources.ESportsDesktop
+        </option>
+        <option value="@PlatformType.ESportsMobile">
+            @ViewResources.ESportsMobile
+        </option>
+        <option value="@PlatformType.ESportsApp">
+            @ViewResources.ESportsApp
+        </option>
+        <option value="@PlatformType.BetfromOthers">
+            @ViewResources.BetfromOthers
+        </option>
+    </select>
 }
 @helper DateRangePicker(DateTime fromDate, DateTime toDate, DateTime minDate, DateTime maxDate)
 {
@@ -154,6 +156,41 @@ bool addBasedOption = false)
             <option value="@item.Value" @(item.Selected ? new HtmlString("selected=selected") : new HtmlString(""))>@item.Text</option>
         }
     </select>
+}
+
+@helper SingleBrand(IEnumerable<Brand> brandList, int selected)
+{
+    var items = brandList
+                     .Select(_ => new System.Web.WebPages.Html.SelectListItem
+                     {
+                         Value = _.Id.ToString(),
+                         Text = _.Name,
+                         Selected = selected == _.Id
+                     }).ToList();
+    <select name="BrandId" id="BrandId" class="select hide" data-original="@selected">
+        @foreach (var item in items)
+        {
+            <option value="@item.Value" @(item.Selected ? new HtmlString("selected=selected") : new HtmlString(""))>@item.Text</option>
+        }
+    </select>
+}
+
+@helper MultiBrand(IEnumerable<CheckedItem> brandOptions)
+{
+    var i = 0;
+    <div class="multiselect-container" id="BrandList">
+        <select id="grid-brand-multiselect" name="grid-brand-multiselect"></select>
+        <div class="hide" id="brand-container">
+            @foreach (var brandOption in brandOptions)
+            {
+                <input type="hidden" name="brandOptions[@i].ID" value="@brandOption.ID" />
+                <input type="hidden" name="brandOptions[@i].Name" value="@brandOption.Name" />
+                <input type="checkbox" class="childCheckbox" data-original="@brandOption.Checked.ToString().ToLower()" id="@brandOption.ID" @(brandOption.Checked ? "checked" : "") name="brandOptions[@i].Checked" value="true" />
+                i++;
+            }
+        </div>
+        <input type="hidden" id="brandData" value="@brandOptions.ToJson()" />
+    </div>
 }
 
 @helper BasedCurrency(string selectedBasedCurrency = "", string CurrencyName = null)

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
@@ -83,6 +84,7 @@
         {
             var licenseeSession = SessionServiceInstance.LicenseeSession;
             var userSession = SessionServiceInstance.UserSession;
+            var agentList = AgentList;
             var defaultMetaModel = metaModel ?? new BetListMetaModel();
 
             defaultMetaModel.LicenseeId = licenseeSession.LicenseeId;
@@ -92,8 +94,7 @@
             defaultMetaModel.ToDate = DateTime.SpecifyKind(defaultMetaModel.ToDate.Date, DateTimeKind.Unspecified);
             defaultMetaModel.Date = DateTime.SpecifyKind(defaultMetaModel.Date.Date, DateTimeKind.Unspecified);
             defaultMetaModel.IsFakeLicensee = IsFakeLicensee(licenseeSession.LicenseeName);
-            defaultMetaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList,
-                defaultMetaModel.CurrencyId);
+            defaultMetaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, defaultMetaModel.CurrencyId);
 
             var balanceUp = GetBalanceUp();
             defaultMetaModel.BalanceUpDay = DateTime.SpecifyKind(balanceUp.BalanceUpDay.Date, DateTimeKind.Unspecified);

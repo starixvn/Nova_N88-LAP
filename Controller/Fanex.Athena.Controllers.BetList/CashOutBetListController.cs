@@ -14,7 +14,7 @@
         public async Task<ActionResult> Detail(CashOutBetListDetailMetaModel metaModel)
         {
             var userSession = SessionServiceInstance.UserSession;
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(userSession.CurrencyAgentList);
+            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(AgentList);
             metaModel.HasPlayerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm;
 
             var viewModel = await BetListApiClient.PostAsync<CashOutBetListDetailViewModel>("/CashOutBetList/Detail", metaModel, userSession.Language).ConfigureAwait(false);

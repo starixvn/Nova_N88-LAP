@@ -4,12 +4,15 @@
     using Fanex.Athena.Controllers.Base;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Context;
     using Fanex.N88.Core.Web.Context;
+    using Fanex.NVC.Authentication.Infrastructure;
     using Service.Core.Users.Interfaces;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
 
     [CustomAuthorize]
@@ -21,6 +24,16 @@
         public IAppSettings AppSettingInstance { get; set; }
         public ILicenseeSettingService LicenseeSettingServiceInstance { get; set; }
         public N88Settings N88Settings { get; set; }
+
+        protected string DefaultBaseCurrency => SessionServiceInstance.UserSession.DefaultBaseCurrency;
+
+        protected string LicenseeName => SessionServiceInstance.LicenseeSession.LicenseeName;
+
+        protected int LicenseeId => SessionServiceInstance.LicenseeSession.LicenseeId;
+
+        protected IEnumerable<Brand> BrandList => SessionServiceInstance.UserSession.BrandList;
+
+        protected IDictionary<int, int[]> AgentList => AuthParameterHelper.GetAgentList(BrandList, BrandList.Select(_ => _.Id).ToArray());
 
         protected readonly IDictionary<int, string> siteNameList = new Dictionary<int, string>
         {

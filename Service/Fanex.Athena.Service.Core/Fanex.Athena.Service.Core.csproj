@@ -48,8 +48,8 @@
     <Reference Include="Fanex.N88.Core.Client, Version=1.2.1.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.1-alpha-1\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.3\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.4\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Flurl, Version=2.8.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Flurl.2.8.2\lib\net40\Flurl.dll</HintPath>
@@ -102,9 +102,7 @@
     <Compile Include="Users\Interfaces\ISessionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\SessionService.cs" />
-    <Compile Include="Utility\BrandValidation.cs" />
     <Compile Include="Utility\CurrencyValidation.cs" />
-    <Compile Include="Utility\Interfaces\IBrandValidation.cs" />
     <Compile Include="Utility\Interfaces\ICurrencyValidation.cs" />
     <Compile Include="Utility\Interfaces\IProductValidation.cs" />
     <Compile Include="Utility\Interfaces\IValidationService.cs" />

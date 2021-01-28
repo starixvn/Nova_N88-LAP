@@ -500,6 +500,61 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿
                     $('#SubmitButton').prop('disabled', !hasItemsChecked);
                 }
             });
+        },
+        initBrandList: function (brands, defaultBaseCurrencyId, numberOfDefaultCurrency) {
+
+            Site.initBrandList(brands, defaultBaseCurrencyId, numberOfDefaultCurrency);
+
+            const selector = '#grid-brand-multiselect';
+            const data = $.parseJSON($('#brandData').val());
+            const length = data.length;
+            const dataUI = [];
+            let checkedCount = 0;
+            for (let i = 0; i < length; i++) {
+                const item = data[i];
+                const isChecked = item['Checked'];
+                if (isChecked) {
+                    checkedCount++;
+                }
+
+                dataUI.push({
+                    Id: item['ID'],
+                    Value: item['ID'],
+                    Text: item['Name'],
+                    Checked: isChecked,
+                    Enable: true
+                });
+            }
+
+            const isCheckAll = checkedCount === length;
+            $(selector).multiSelect({
+                minWidth: 200,
+                maxHeight: 400,
+                shadow: true,
+                showHeader: true,
+                isCheckAll: isCheckAll,
+                checkAllText: Site.getSingleResource('All'),
+                selectedText: Site.getSingleResource('SelectedItemCount'),
+                noneSelectedText: Site.getSingleResource('SelectOptions'),
+                showFooter: false,
+                listData: dataUI,
+                onCheck: function () {
+                    const checkedItems = $(selector).multiSelect('getCheckedItems');
+                    $('#brand-container input[type=checkbox]:checked').prop('checked', false);
+                    const hasItemsChecked = checkedItems.length > 0;
+                    if (hasItemsChecked) {
+                        for (let i = 0; i < checkedItems.length; i++) {
+                            $('#brand-container #' + checkedItems[i]).prop('checked', true);
+                        }
+                    }
+                    
+                    const selectedBrands = checkedItems.map(function(item) { return parseInt(item)});
+                    Site.onChangeBrand(selectedBrands);
+
+                    $('#BrandList').toggleClass('invalid', !hasItemsChecked);
+                    $('#SubmitButton').prop('disabled', !hasItemsChecked);
+                }
+            });
         }
     };
 
@@ -1375,8 +1430,34 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿
         return Enumerable.From(arrayData)[sortType](sortByFunc)[sortThenType](sortThenByFunc).ToArray();
     }
 
+    function getCurrencyListByBrands(brands, brandIds) {
+        const existKeys = {};
+        const currencyList = brandIds.reduce((result, brandId) => {
+            const currencyListByBrand = _getCurrencyListByBrandId(brandId, brands, existKeys, 'currencies');
+            return result.concat(currencyListByBrand);
+        }, []);
+
+        return currencyList;
+    }
+
+    function _getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty) {
+        var brandInfo = brands.find(function(_) { return _.id === parseInt(brandId)});
+        if (brandInfo) {
+            return brandInfo[currencyProperty].reduce(function(result, currentValue) {
+                if (!existKeys[currentValue.key]) {
+                    existKeys[currentValue.key] = true;
+                    result.push({ key: currentValue.key, value: currentValue.value });
+                    return result;
+                }
+                return result;
+            }, [])
+        }
+        return [];
+    }
+
     return {
-        sort: sort
+        sort: sort,
+        getCurrencyListByBrands: getCurrencyListByBrands
     };
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -7840,8 +7921,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     title: Site.getSingleResource('SabaProductsWinLoss')
                 });
                 MultiSelect.initProductList();
+                _me.initBrandList();
                 DatePicker.initDateRangePicker();
                 DateHelper.setConstraintMonthRange(VALID_MONTH_RANGE, LicenseeWinLossOption.urlExcelData);
+            },
+
+            initBrandList() {
+                const defaultBaseCurrencyId = parseInt($('#DefaultBaseCurrencyId').val());
+                const numberOfDefaultCurrency = parseInt($('#numberOfDefaultCurrency').val())
+                const brands = $.parseJSON($('#Brands').val());
+                MultiSelect.initBrandList(brands, defaultBaseCurrencyId, numberOfDefaultCurrency);
             },
 
             registerGlobalFunction: function () {
@@ -7882,6 +7971,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
             initSetting: function () {
                 LicenseeWinLossOption.hasCustomerComm = Site.asBool($('#IsAllowedCustomerCommission').val());
                 LicenseeWinLossOption.licenseeId = parseInt($('#drillDownLicenseeId').val(), 10);
+                LicenseeWinLossOption.allowSelectBrand = Site.asBool($('#allowSelectBrand').val());
             },
 
             initEvent: function () {
@@ -7919,6 +8009,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     else {
                         filterData = drillDownData;
                     }
+                    
+                    const selectedBrands = _me.getSelectedBrandIds();
 
                     const data = {
                         __RequestVerificationToken: Site.getXsrfToken(),
@@ -7927,7 +8019,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                         CurrencyId: filterData.CurrencyId,
                         CurrencyName: filterData.CurrencyName,
                         IsExcludedTestData: filterData.IsExcludedTestData,
-                        AgentId: filterData.AgentId
+                        AgentId: filterData.AgentId,
+                        BrandIds: selectedBrands.join() 
                     };
                     const url = Site.buildReportProxyUrl(LicenseeWinLossOption.urlPromotionPrizeExcelData);
                     _me.exportExcel(url, data, EXCEL_PP_FILENAME);
@@ -7948,6 +8041,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 $(window).on('unload', function () {
                     $(window).off('resize');
                 });
+            },
+
+            getSelectedBrandIds: function() {
+                const selectedBrandOptions = $.parseJSON(_submitData.BrandOptions);
+                const selectedBrands = selectedBrandOptions.filter(_ => _.Checked).map(_ => _.ID);
+                return selectedBrands;
             },
 
             exportExcel: function (url, data, fileName) {
@@ -8018,7 +8117,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                         _me.setReportTitle($('#CurrencyId').val(), $('#FromDate').val(), $('#ToDate').val(), $('#BaseCurrency').val());
                     }
 
-                    Report.renderBreadCrumb(levelNumber, LicenseeWinLossOption.licenseeId);
+                    Report.renderBreadCrumb(levelNumber, LicenseeWinLossOption.allowSelectBrand);
                     _me.bindData(levelNumber, reportBy, response);
 
                     const pprizeCount = response.PromotionPrize;
@@ -8050,6 +8149,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     success: function (response) {
                         _submitData = {
                             ProductOptions: response.ProductOptions,
+                            BrandOptions: response.BrandOptions,
                             DrawFilter: data.DrawFilter,
                             CurrencyId: data.CurrencyId,
                             ReportBy: Number(data.ReportBy),
@@ -8091,6 +8191,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 const param =
                 {
                     ProductOptions: $.parseJSON(_submitData.ProductOptions),
+                    BrandOptions: $.parseJSON(_submitData.BrandOptions),
                     DrawFilter: _submitData.DrawFilter,
                     IsExcludedTestData: _submitData.IsExcludedTestData,
                     CurrencyId: _submitData.CurrencyId,
@@ -8339,13 +8440,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/// <reference path='/@JSense.js' />
-/*
-* Note:in this report, parameter level have 3 value
-*  '0' for master,'1' for agent and '2' for member
-*/
-
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js-exposed"), __webpack_require__(/*! common/querystring */ "./www/js/source/common/querystring.js"), __webpack_require__(/*! common/site */ "./www/js/source/common/site.js"), __webpack_require__(/*! lib/jqgrid/jquery.jqgrid.additional */ "./www/js/source/lib/jqgrid/jquery.jqgrid.additional.js"), __webpack_require__(/*! lib/linq */ "./www/js/source/lib/linq.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function ($, QueryString, Site, jqGridAdditional) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js-exposed"), __webpack_require__(/*! common/querystring */ "./www/js/source/common/querystring.js"), __webpack_require__(/*! common/site */ "./www/js/source/common/site.js"), __webpack_require__(/*! lib/jqgrid/jquery.jqgrid.additional */ "./www/js/source/lib/jqgrid/jquery.jqgrid.additional.js"), __webpack_require__(/*! lib/linq */ "./www/js/source/lib/linq.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function ($, QueryString, Site, jqGridAdditional) {
         'use strict';
         const IGNORED_LICENSEEWL_PRODUCTS = ['BA'];
         const IGNORED_TURNOVER_PRODUCTS = ['BT', 'CO'];
@@ -8353,6 +8448,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/// <referenc
         {
             isDisableBetList: false,
             licenseeId: 0,
+            allowSelectBrand: false,
             currencyIndex: 4,
             turnoverIndex: 5,
             licenseeWlIndex: 12,
@@ -8407,7 +8503,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/// <referenc
         };
 
         const currencyFormatter = function (cellvalue, options, rowObject) {
-            const level = Number(_me.licenseeId) === 1 ? 1 : 2;
+            const level = _me.allowSelectBrand ? 1 : 2;
             return setDrillDownLink(level, rowObject.CurrencyId, 0, rowObject.Date, rowObject.CurrencyName, cellvalue);
         };
 
@@ -9144,7 +9240,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/// <referenc
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js-exposed"), __webpack_require__(/*! common/site */ "./www/js/source/common/site.js"), __webpack_require__(/*! common/popup */ "./www/js/source/common/popup.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function ($, Site, Popup) {
     'use strict';
     const REPORT_BY_MONTHLY = 2;
-    const LICENSEE_12BET = 1;
     function lastDateOfMonth(year, month) {
         return new Date(year, month + 1, 0);
     }
@@ -9294,7 +9389,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     : viewinKey.replace('{0}', baseCurrencyName.toUpperCase());
         },
 
-        renderBreadCrumb: function (level, licenseeId) {
+        renderBreadCrumb: function (level, allowShowLevel1 = true) {
             const $container = $('#level-link-container');
             const levelNumber = Number(level);
             if (levelNumber === 0) {
@@ -9307,9 +9402,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 const isLevel2 = levelNumber === 2;
                 $container.find('.level2').toggle(isLevel2).toggleClass('active', isLevel2);
 
-                const allowShowLevel1 = licenseeId ? licenseeId === LICENSEE_12BET : true;
-                $container.find('.level1').toggle(allowShowLevel1);
-                $container.find('.level1').toggleClass('active', allowShowLevel1 && !isLevel2);
+                $container.find('.level1').toggle(!!allowShowLevel1);
+                $container.find('.level1').toggleClass('active', !!allowShowLevel1 && !isLevel2);
             }
         }
     };

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 1/22/2021 9:52:39 AM
+﻿// Generated at: 2/4/2021 1:10:31 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",

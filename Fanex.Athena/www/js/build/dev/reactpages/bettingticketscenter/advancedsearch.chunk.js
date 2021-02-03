@@ -8625,7 +8625,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       transition: react_toastify__WEBPACK_IMPORTED_MODULE_4__["Flip"]
     }), _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_16__["default"].allowSelectBrand && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2"
+      className: "col-12 col-md-3 col-sm-6 col-lg-4 col-xl-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -8637,19 +8637,19 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource("Date")), this._renderDateRange())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2"
+      className: `col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_16__["default"].allowSelectBrand ? 1 : 2}`
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource("Product")), this._renderProductSelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: `col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_16__["default"].allowSelectBrand ? 1 : 2}`
+      className: "col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource("Sport")), this._renderSportSelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: `col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_16__["default"].allowSelectBrand ? 1 : 2}`
+      className: "col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {

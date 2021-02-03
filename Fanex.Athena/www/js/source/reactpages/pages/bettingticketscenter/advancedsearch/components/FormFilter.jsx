@@ -379,7 +379,7 @@ export class FormFilter extends Component {
                         style={{ width: "500px" }}
                         transition={Flip} />
                     {AppData.allowSelectBrand &&
-                        <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
+                        <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-1">
                             <div className="form-group">
                                 <label className="label-text">{LangHelper.getSingleResource("Brand")}</label>
                                 {this._renderBrandSelectList()}
@@ -392,21 +392,21 @@ export class FormFilter extends Component {
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
+                    <div className={`col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${AppData.allowSelectBrand ? 1 : 2}`}>
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Product")}</label>
                             {this._renderProductSelectList()}
                         </div>
                     </div>
 
-                    <div className={`col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${AppData.allowSelectBrand ? 1 : 2}`}>
+                    <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Sport")}</label>
                             {this._renderSportSelectList()}
                         </div>
                     </div>
 
-                    <div className={`col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${AppData.allowSelectBrand ? 1 : 2}`}>
+                    <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("BetType")}</label>
                             {this._renderBettypeSelectList()}

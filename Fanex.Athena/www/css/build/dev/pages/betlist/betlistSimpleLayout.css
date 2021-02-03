@@ -1609,6 +1609,9 @@ tr.ui-search-toolbar select {
 .betlist-container .combinationLink {
   font-weight: normal; }
 
+.betlist-container .discount {
+  white-space: normal; }
+
 ﻿.sexygaming-bet-id {
   color: #bbb; }
 

@@ -1,5 +1,6 @@
 import Store from '@jsroot/lib/store';
 import reducers from '../reducers';
+import { GroupByOptionIds } from '../constants/filterConsts';
 
 const defaultState = {
    ...window.initialState,
@@ -11,7 +12,7 @@ const defaultState = {
       }
    },
    ...{
-      isCollapsedFormFilter: false
+      selectedGroupByOption: GroupByOptionIds.bonusCode,
    }
 }
 

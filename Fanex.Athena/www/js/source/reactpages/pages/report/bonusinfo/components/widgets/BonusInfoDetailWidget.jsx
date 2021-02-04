@@ -9,34 +9,54 @@ import QueryService from '../../libs/services/queryService';
 import { BonusInfoDetailGridColumns, BonusInfoDetailGridConfig, DefaultPagingOption, StyleRow, DigitsAmount } from '../../constants/gridConst';
 import { DefaultDetailSortInfo } from '../../constants/gridConst';
 import { Table, Pager, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
+import { DatePicker } from '@9softstudio/react-datepicker';
 import NumberFormat from '@jsroot/lib/numberFormat';
-import Select from 'react-select'
+import Select from 'react-select';
+import { GroupByOptionIds } from '../../constants/filterConsts';
+import Site from '@jsroot/lib/site';
 
 export const BonusInfoDetailWidget = props => {
-    const { detailFilter, bonusInfoDetailData, fetchBonusInfoDetailData, bonusCodeList, selectedBonusCode, setSelectedBonusCode} = props;   
+    const { detailFilter, bonusInfoSummaryData, bonusInfoDetailData, fetchBonusInfoDetailData, bonusCodeList, selectedBonusCode, setBonusCodeList, setSelectedBonusCode, selectedSummaryDate, setSelectedSummaryDate} = props;   
     const [isLoading, setLoading] = useState(false);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
     const [sortInfo, onSort] = useState(DefaultDetailSortInfo);
 
     useEffect(() => {
-        if (!detailFilter) {
+        if (!detailFilter || !selectedBonusCode || detailFilter.groupBy === GroupByOptionIds.bonusCodeAndDate && !selectedSummaryDate) {
             return;
         }
+
         _fetchData(null, null);
-    }, [detailFilter, selectedBonusCode]);
+    }, [detailFilter, selectedBonusCode, selectedSummaryDate]);
 
     const _title = React.useMemo(() => LangHelper.getSingleResource('Details'), []);
 
     const _handleExportExcel = () => {
-        const exportParams = DataService.getBonusInfoDetailExportAPIParams(detailFilter, sortInfo, selectedBonusCode);
+        const date = detailFilter.groupBy === GroupByOptionIds.bonusCodeAndDate ? Site.convertDateToString(selectedSummaryDate) : null;
+
+        const dateRange = {
+            fromDate: date ? date:  detailFilter.fromDate,
+            toDate: date ? date: detailFilter.toDate
+        }
+
+        const exportParams = DataService.getBonusInfoDetailExportAPIParams(detailFilter, sortInfo, dateRange, selectedBonusCode);
         QueryService.exportBonusInfoDetailData(exportParams);
     }
 
     const _fetchData = (pageIndex, pageSize, sort) => {
+
+        const date = detailFilter.groupBy === GroupByOptionIds.bonusCodeAndDate ? Site.convertDateToString(selectedSummaryDate) : null;
+
+        const dateRange = {
+            fromDate: date ? date:  detailFilter.fromDate,
+            toDate: date ? date: detailFilter.toDate
+        }
+
         const apiParams = DataService.getBonusInfoDetailAPIParams(
             detailFilter, 
             { PageIndex: pageIndex || pagingOption.PageIndex, PageSize: pageSize || pagingOption.PageSize}, 
-            sort || sortInfo, 
+            sort || sortInfo,
+            dateRange, 
             selectedBonusCode);
 
         setLoading(true);
@@ -77,10 +97,20 @@ export const BonusInfoDetailWidget = props => {
     }
 
     const _renderHeader = () => {
-        return (<HeaderRow style={StyleRow}>
+        const claimDateAtributes = {
+            colWidth: 60, 
+            className: "center-align" 
+        };
+
+        if (detailFilter.groupBy === GroupByOptionIds.bonusCode) {
+            claimDateAtributes.sortBy = 2; 
+        }
+        
+        return (
+            <HeaderRow style={StyleRow} key={detailFilter.groupBy}>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.userName].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.userName].name}</HeaderCell>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusCode].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusCode].name}</HeaderCell>
-                <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.claimDate].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.claimDate].name}</HeaderCell>
+                <HeaderCell {...claimDateAtributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.claimDate].name}</HeaderCell>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusAmountClaimed].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusAmountClaimed].name}</HeaderCell>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalDeposit].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalDeposit].name}</HeaderCell>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalWithdrawal].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalWithdrawal].name}</HeaderCell>
@@ -91,7 +121,7 @@ export const BonusInfoDetailWidget = props => {
 
     const _renderBody = () => {
         const data =  [...bonusInfoDetailData.dataList];
-        return data.map((item, index) => <Row style={StyleRow} key={item[BonusInfoDetailGridColumns.userName] + item[BonusInfoDetailGridColumns.bonusCode] + item[BonusInfoDetailGridColumns.claimDate]}>
+        return data.map(item => <Row style={StyleRow} key={item[BonusInfoDetailGridColumns.userName] + item[BonusInfoDetailGridColumns.bonusCode] + item[BonusInfoDetailGridColumns.claimDate]}>
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.userName].attributes}>{item[BonusInfoDetailGridColumns.userName]}</Cell>          
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusCode].attributes} >{item[BonusInfoDetailGridColumns.bonusCode]}</Cell>
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.claimDate].attributes} >{item[BonusInfoDetailGridColumns.claimDate]}</Cell>            
@@ -129,24 +159,63 @@ export const BonusInfoDetailWidget = props => {
             };
         })
         return (
-            <Select instanceId="bonusCodeList"
+            <Select  key={selectedSummaryDate} instanceId="bonusCodeList"
                 value={selectedBonusCode}
                 options={listValue}k
                 onChange={_bonusOnChange} />
         );
     }
 
+    const _onChangeDateRange = (date) => {
+        const dateStr = date.format("DD-MMM-yyy");
+
+        const bonusCodeList = bonusInfoSummaryData.dataList.filter(item => {
+            if(item.dateString === dateStr)
+            {
+                return item;
+            }
+        }).map(item => {
+            return item.bonusCode;
+        });
+
+        const uniqueBonusCodeList = bonusCodeList.filter((v, i, a) => a.indexOf(v) === i);
+
+        setBonusCodeList(uniqueBonusCodeList);
+
+        uniqueBonusCodeList?.length === 1 ? setSelectedBonusCode(uniqueBonusCodeList[0]) :   setSelectedBonusCode(null);
+
+        setSelectedSummaryDate(date);
+    }
+
+    const _renderDateFilter = () => {
+        const iconElement = (<i class="icon icon-calendar"></i>);
+
+        return (
+            <DatePicker  key={selectedSummaryDate} onChange={_onChangeDateRange} iconElement={iconElement} date={selectedSummaryDate} isEnable={true} />
+        )
+    }
+
     const hasData = bonusInfoDetailData && bonusInfoDetailData.dataList.length  > 0
 
-    return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel} hasData={hasData}>
-        {bonusCodeList && bonusCodeList.length > 1 && <div className="row bonus-filter">
-        <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
-                <div className="form-group">
-                    <label className="label-text">{LangHelper.getSingleResource("Bonus")}</label>
-                    {_renderBonusSelectList()}
+    return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel} hasData={true}>
+        <div className="row bonus-filter">
+            {
+                detailFilter.groupBy === GroupByOptionIds.bonusCodeAndDate && 
+                <div className="col-12 col-md-6 col-sm-6 col-lg-2 col-xl-1">
+                    <div className="form-group">
+                        <label className="label-text">{LangHelper.getSingleResource("Date")}</label>
+                        {_renderDateFilter()}
+                    </div>                    
                 </div>
-            </div>
-        </div>}    
+            }
+            {bonusCodeList && bonusCodeList.length > 1 &&
+            <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
+                    <div className="form-group">
+                        <label className="label-text">{LangHelper.getSingleResource("Bonus")}</label>
+                        {_renderBonusSelectList()}
+                    </div>
+            </div>}   
+        </div>         
         {hasData &&
         <>         
         <div className="sticky-box-container" >         
@@ -171,13 +240,13 @@ export const BonusInfoDetailWidget = props => {
 }
 
 function mapStateToProps(state) {
-    const { detailFilter, bonusInfoDetailData, bonusCodeList, selectedBonusCode } = state;
-    return Object.assign({}, { detailFilter, bonusInfoDetailData, bonusCodeList, selectedBonusCode });
+    const { detailFilter, dateRange, bonusInfoSummaryData, bonusInfoDetailData, bonusCodeList, selectedBonusCode, selectedSummaryDate } = state;
+    return Object.assign({}, { detailFilter, dateRange, bonusInfoSummaryData, bonusInfoDetailData, bonusCodeList, selectedBonusCode, selectedSummaryDate });
 }
 
 function mapDispatchToProps(dispatch) {
-    const { fetchBonusInfoDetailData, setSelectedBonusCode } = ActionCreators;
-    return bindActionCreators({ fetchBonusInfoDetailData, setSelectedBonusCode }, dispatch);
+    const { fetchBonusInfoDetailData, setDetailFilter, setBonusCodeList, setSelectedBonusCode, setSelectedSummaryDate } = ActionCreators;
+    return bindActionCreators({ fetchBonusInfoDetailData, setDetailFilter, setBonusCodeList, setSelectedBonusCode, setSelectedSummaryDate }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(BonusInfoDetailWidget));

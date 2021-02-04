@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import Select from 'react-select'
-import CollapsiblePanel from '@jsroot/components/collapsible-panel'
-import LangHelper from '@jsroot/lib/langHelper'
-import AppData from '@jsroot/lib/AppData'
-import Site from '@jsroot/lib/site'
-import ActionCreators from '../actions'
-import { DateRange } from '@jsroot/components/date-range'
-import MultipleSelect from '@9softstudio/react-multiselect'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Select from 'react-select';
+import CollapsiblePanel from '@jsroot/components/collapsible-panel';
+import LangHelper from '@jsroot/lib/langHelper';
+import AppData from '@jsroot/lib/AppData';
+import Site from '@jsroot/lib/site';
+import ActionCreators from '../actions';
+import { DateRange } from '@jsroot/components/date-range';
+import MultipleSelect from '@9softstudio/react-multiselect';
 import QueryService from '../libs/services/queryService';
+import GroupFilter from './filter/GroupFilter';
 
 export const FormFilter = props => {
     const { setDateRange, setSelectedBonusName, setSelectedBrand, setSelectedBaseCurrency, setSelectedClaimStatus, setSelectedBonusStatus, setSelectedBonusType, selectedClaimStatus, selectedBonusStatus, selectedBonusType, setGlobalFilter, setCollapseFormFilter,
-        dateRange, selectedBonusName, selectedBrand, selectedBaseCurrency, dropdownOptionsData, setDropdownOptionsData
+        dateRange, selectedBonusName, selectedBrand, selectedGroupByOption, selectedBaseCurrency, dropdownOptionsData, setDropdownOptionsData
     } = props;
 
     useEffect(() => {
@@ -36,13 +37,14 @@ export const FormFilter = props => {
             alert(message);
         }
     }
+
     const _renderDateFilter = () => {
         const dateConstraint = AppData.dateConstraint;
         return (
             <DateRange
                 startDate={dateRange.fromDate} endDate={dateRange.toDate}
                 minDate={dateConstraint.minDate} maxDate={dateConstraint.maxDate}
-                toDate={dateRange.toDate} limitedMonthRange={dateConstraint.limitedMonthRange}
+                today={dateRange.toDate} limitedMonthRange={dateConstraint.limitedMonthRange}
                 onChange={_onChangeDateRange}
             />
         )
@@ -115,19 +117,20 @@ export const FormFilter = props => {
         const globalFilter = { 
             fromDate: Site.convertDateToString(fromDate),
             toDate: Site.convertDateToString(toDate),
-            bonusName: selectedBonusName, 
-            selectedBaseCurrency, 
-            selectedBrand, 
+            bonusName: selectedBonusName,
+            baseCurrency: selectedBaseCurrency, 
+            brandId: selectedBrand, 
             claimStatus: selectedClaimStatus, 
             bonusStatus: selectedBonusStatus, 
-            bonusType: selectedBonusType 
+            bonusType: selectedBonusType ,
+            groupBy: selectedGroupByOption
         };
 
         setGlobalFilter(globalFilter);
     }
 
     return (<>
-        <CollapsiblePanel className="page-filter" onCollapse={() => setCollapseFormFilter(true)} onExpand={() => setCollapseFormFilter(false)}>
+        <CollapsiblePanel className="page-filter">
             <div className="row">
                 {AppData.brandOptions && AppData.brandOptions.length > 1 && <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
                     <div className="form-group">
@@ -174,21 +177,15 @@ export const FormFilter = props => {
                         {_renderBaseCurrencySelectList()}
                     </div>
                 </div>
-                <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
-                    <div className="form-group">
-                        <div className="button-group">
-                            <button type="button" className="btn btn-submit" disabled={!selectedClaimStatus || !selectedBonusStatus || !selectedBonusType} onClick={_onSubmit}>{LangHelper.getSingleResource("Submit")}</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </CollapsiblePanel>
+        <GroupFilter isDisabledSubmit={!selectedClaimStatus || !selectedBonusStatus || !selectedBonusType} onSubmit={_onSubmit} />
     </>
     );
 }
 
 function mapStateToProps(state) {
-    const { dateRange, selectedBrand, selectedBonusName, selectedBaseCurrency, selectedClaimStatus, selectedBonusStatus, selectedBonusType, dropdownOptionsData } = state;
+    const { dateRange, selectedBrand, selectedBonusName, selectedBaseCurrency, selectedClaimStatus, selectedBonusStatus, selectedBonusType, dropdownOptionsData, selectedGroupByOption } = state;
     return Object.assign({}, { 
         dateRange,
         selectedBonusName,
@@ -197,6 +194,7 @@ function mapStateToProps(state) {
         selectedClaimStatus, 
         selectedBonusStatus, 
         selectedBonusType,
+        selectedGroupByOption,
         dropdownOptionsData
     });
 }

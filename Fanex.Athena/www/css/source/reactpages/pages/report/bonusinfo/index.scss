@@ -17,6 +17,18 @@ html{
 .bonusinfo-report {
 
     padding-bottom: 15px;
+
+    .group-filter {
+        .form-group {
+            display: inline-block;
+            .radio-group {
+                margin-left: 30px;
+                span {
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
     
     .summary-container {
         .summary-table:not(:last-child) {

@@ -1,33 +1,18 @@
 export default class DataService {
 
-    static getCommonAPIParams = ({ selectedBrand, fromDate, toDate, selectedBaseCurrency, claimStatus}) => {
-        const params = {
-            brandId: selectedBrand,
-            fromDate: fromDate,
-            toDate: toDate,
-            baseCurrency: selectedBaseCurrency,
-            claimStatus
-        }
-        return params;
-    }
-
     static getBonusInfoSummaryAPIParams =  (filterData, sortInfo) => {
-        const { selectedBrand, selectedBaseCurrency, fromDate, toDate, claimStatus, ...rest } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, fromDate, toDate, selectedBaseCurrency, claimStatus });
         const params = {
-            ...commonParams,
-            ...sortInfo,
-            ...rest
+            ...filterData,
+            ...sortInfo
         }
         return params;
     }
 
-    static getBonusInfoDetailAPIParams =  (filterData, pagingOption, sortInfo, bonusCode) => {
-        const { fromDate, toDate, selectedBrand, selectedBaseCurrency, claimStatus, ...rest } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, fromDate, toDate, selectedBaseCurrency, claimStatus });
+    static getBonusInfoDetailAPIParams =  (filterData, pagingOption, sortInfo, dateRange, bonusCode) => {
         const params = {
-            ...commonParams,
+            ...filterData,
             ...sortInfo,
+            ...dateRange,
             ...{ pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize },
             bonusCode
         }
@@ -35,22 +20,18 @@ export default class DataService {
     }
 
     static getBonusInfoSummaryExportAPIParams =  (filterData, sortInfo) => {
-        const { fromDate, toDate, selectedBrand, selectedBaseCurrency, claimStatus, ...rest } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, fromDate, toDate, selectedBaseCurrency, claimStatus });
         const params = {
-            ...commonParams,
-            ...sortInfo,
-            ...rest
+            ...filterData,
+            ...sortInfo
         }
         return params;
     }
 
-    static getBonusInfoDetailExportAPIParams =  (filterData, sortInfo, bonusCode) => {
-        const { fromDate, toDate, selectedBrand, selectedBaseCurrency, claimStatus } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, fromDate, toDate, selectedBaseCurrency, claimStatus });
+    static getBonusInfoDetailExportAPIParams =  (filterData, sortInfo, dateRange, bonusCode) => {
         const params = {
-            ...commonParams,
+            ...filterData,
             ...sortInfo,
+            ...dateRange,
             bonusCode
         }
         return params;

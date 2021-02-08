@@ -2568,4 +2568,7 @@
   <data name="Canceled" xml:space="preserve">
     <value>Canceled</value>
   </data>
+  <data name="Happy5LinkedGames" xml:space="preserve">
+    <value>快乐5系列游戏</value>
+  </data>
 </root>

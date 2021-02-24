@@ -228,11 +228,10 @@ export const BonusInfoDetailWidget = props => {
         </div>         
         {hasData &&
         <>         
-        <div className="sticky-box-container" >         
-            <div style={{maxWidth: document.body.clientWidth*0.85}}>
-                <Table minWidth={650}
+            <div className="sticky-box-container" >         
+                <Table 
+                    minWidth={650}
                     autoWidth={true}
-                    maxWidth={document.body.clientWidth*0.85}
                     autoHeight={false}
                     bodyHeight={400}
                     header={_renderHeader()}
@@ -242,8 +241,6 @@ export const BonusInfoDetailWidget = props => {
                     shouldResetScrollPosition={isLoading}
                 />
                 <Pager pageOption={pagingOption} onPaging={_handlePaging} />
-            </div>
-            
             </div>            
         </>}
     </Widget>)

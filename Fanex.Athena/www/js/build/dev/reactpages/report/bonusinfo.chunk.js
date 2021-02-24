@@ -4252,14 +4252,9 @@ const BonusInfoDetailWidget = props => {
     className: "label-text"
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("Bonus")), _renderBonusSelectList()))), hasData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      maxWidth: document.body.clientWidth * 0.85
-    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Table"], {
     minWidth: 650,
     autoWidth: true,
-    maxWidth: document.body.clientWidth * 0.85,
     autoHeight: false,
     bodyHeight: 400,
     header: _renderHeader(),
@@ -4270,7 +4265,7 @@ const BonusInfoDetailWidget = props => {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Pager"], {
     pageOption: pagingOption,
     onPaging: _handlePaging
-  })))));
+  }))));
 };
 
 function mapStateToProps(state) {

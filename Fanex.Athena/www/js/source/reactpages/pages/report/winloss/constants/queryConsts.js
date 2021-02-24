@@ -1,4 +1,5 @@
 export const Url = {
+    setting: 'Api/WinLossReport/GetSetting',
     reportByGroup: 'Api/WinLossReport/GetData',
     exportReportByGroup: 'Api/WinLossReport/ExportData',
 };

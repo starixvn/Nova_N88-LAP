@@ -50,6 +50,9 @@ export const SET_PAGING_OPTION = 'SET_PAGING_OPTION';
 
 export const SET_SORT_OPTION = 'SET_SORT_OPTION';
 
+/* Setting Data */
+export const SET_SETTING_DATA = 'SET_SETTING_DATA'
+
 /* Bonus */
 export const SET_BONUS_NAME = "SET_BONUS_NAME";
 

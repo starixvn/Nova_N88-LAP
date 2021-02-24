@@ -2872,18 +2872,6 @@
     <value>Display Timezone</value>
     <comment>137064</comment>
   </data>
-  <data name="GMT0" xml:space="preserve">
-    <value>GMT+0</value>
-    <comment>137064</comment>
-  </data>
-  <data name="GMT8" xml:space="preserve">
-    <value>GMT+8</value>
-    <comment>137064</comment>
-  </data>
-  <data name="GMTNegative4" xml:space="preserve">
-    <value>GMT-4</value>
-    <comment>137064</comment>
-  </data>
   <data name="Marketing" xml:space="preserve">
     <value>Marketing</value>
     <comment>137395</comment>

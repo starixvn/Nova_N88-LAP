@@ -120,7 +120,7 @@
                 throw new ArgumentNullException(nameof(requestMessage));
             }
 
-            return _client.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            return _client.SendAsync(requestMessage, cancellationToken);
         }
 
         ~ProxyService()

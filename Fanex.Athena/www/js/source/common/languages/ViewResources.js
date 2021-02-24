@@ -1,4 +1,4 @@
-﻿// Generated at: 2/4/2021 1:10:31 PM
+﻿// Generated at: 2/24/2021 1:47:25 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -342,9 +342,6 @@ GameType:"Game Type",
 GameTypeName:"Game Type Name",
 General:"General",
 GGR:"GGR",
-GMT0:"GMT+0",
-GMT8:"GMT+8",
-GMTNegative4:"GMT-4",
 Go:"Go",
 GoldDeluxeNotOfferCurrency:"Gold Deluxe is not offered for this currency.",
 GoldDeluxeWinLossGuidelineContent:"Any query before 4PM GMT-4 will return the data up to 4PM of the day before. You can filter data up to 3 months per query.",

@@ -31,5 +31,6 @@ const setBonusInfoDetailData = data => {
 
 export default {
     fetchBonusInfoSummaryData,
-    fetchBonusInfoDetailData
+    fetchBonusInfoDetailData,
+    setBonusInfoDetailData
 }

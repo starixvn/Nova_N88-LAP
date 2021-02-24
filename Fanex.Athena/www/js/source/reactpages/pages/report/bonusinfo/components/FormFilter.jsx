@@ -11,10 +11,12 @@ import { DateRange } from '@jsroot/components/date-range';
 import MultipleSelect from '@9softstudio/react-multiselect';
 import QueryService from '../libs/services/queryService';
 import GroupFilter from './filter/GroupFilter';
+import { DefaultSummarySortInfo, DefaultSummarySortInfoGroupByDate } from '../constants/gridConst';
+import { GroupByOptionIds } from '../constants/filterConsts';
 
 export const FormFilter = props => {
     const { setDateRange, setSelectedBonusName, setSelectedBrand, setSelectedBaseCurrency, setSelectedClaimStatus, setSelectedBonusStatus, setSelectedBonusType, selectedClaimStatus, selectedBonusStatus, selectedBonusType, setGlobalFilter, setCollapseFormFilter,
-        dateRange, selectedBonusName, selectedBrand, selectedGroupByOption, selectedBaseCurrency, dropdownOptionsData, setDropdownOptionsData
+        dateRange, selectedBonusName, selectedBrand, selectedGroupByOption, selectedBaseCurrency, dropdownOptionsData, setDropdownOptionsData, setSummarySortInfo
     } = props;
 
     useEffect(() => {
@@ -126,7 +128,8 @@ export const FormFilter = props => {
             groupBy: selectedGroupByOption
         };
 
-        setGlobalFilter(globalFilter);
+        selectedGroupByOption === GroupByOptionIds.bonusCodeAndDate && setSummarySortInfo(DefaultSummarySortInfoGroupByDate) || setSummarySortInfo(DefaultSummarySortInfo)
+        setGlobalFilter(globalFilter);        
     }
 
     return (<>
@@ -201,7 +204,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     const { setDateRange, setSelectedBonusName, setSelectedBrand, setSelectedBaseCurrency, setSelectedClaimStatus, setSelectedBonusStatus, 
-        setSelectedBonusType, setGlobalFilter, setCollapseFormFilter, setDropdownOptionsData} = ActionCreators;
+        setSelectedBonusType, setGlobalFilter, setCollapseFormFilter, setDropdownOptionsData, setSummarySortInfo} = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         setDateRange, 
         setSelectedBonusName,
@@ -212,7 +215,8 @@ function mapDispatchToProps(dispatch) {
         setSelectedBonusType,
         setGlobalFilter,
         setCollapseFormFilter,
-        setDropdownOptionsData
+        setDropdownOptionsData, 
+        setSummarySortInfo
     }), dispatch);
 }
 

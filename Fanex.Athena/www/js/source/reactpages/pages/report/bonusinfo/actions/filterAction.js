@@ -1,4 +1,4 @@
-import { SET_GLOBAL_FILTER, SET_DETAIL_FILTER, SET_SUMMARY_GRID_HEIGHT, SET_DROPDOWN_OPTIONS_DATA, SET_SELECTED_GROUP_BY_OPTION, SET_SELECTED_SUMMARY_DATE } from './types';
+import { SET_GLOBAL_FILTER, SET_DETAIL_FILTER, SET_SUMMARY_GRID_HEIGHT, SET_DROPDOWN_OPTIONS_DATA, SET_SELECTED_GROUP_BY_OPTION, SET_SELECTED_SUMMARY_DATE, SET_SUMMARY_SORT_INFO } from './types';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
 import { setSelectedBrand } from '@jsroot/actions/brandAction';
 import { setSelectedBonusName, setSelectedBonusType, setSelectedBonusStatus, setBonusCodeList, setSelectedBonusCode } from '@jsroot/actions/bonusAction';
@@ -57,6 +57,13 @@ const setSelectedSummaryDate = data => {
     }
 }
 
+const setSummarySortInfo = data => {
+    return {
+        type: SET_SUMMARY_SORT_INFO,
+        data: data
+    }
+}
+
 export default {
     setDateRange,
     setSelectedBaseCurrency,
@@ -68,6 +75,7 @@ export default {
     setSelectedClaimStatus,
     setSelectedBonusCode,
     setSelectedSummaryDate,
+    setSummarySortInfo,
     setGlobalFilter,
     setDetailFilter,
     setSummaryGridHeight,

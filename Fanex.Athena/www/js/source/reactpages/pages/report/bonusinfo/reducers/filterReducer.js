@@ -1,4 +1,4 @@
-import { SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER, SET_DETAIL_FILTER, SET_SUMMARY_GRID_HEIGHT, SET_DROPDOWN_OPTIONS_DATA, SET_SELECTED_GROUP_BY_OPTION, SET_SELECTED_SUMMARY_DATE} from '../actions/types';
+import { SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER, SET_DETAIL_FILTER, SET_SUMMARY_GRID_HEIGHT, SET_DROPDOWN_OPTIONS_DATA, SET_SELECTED_GROUP_BY_OPTION, SET_SELECTED_SUMMARY_DATE, SET_SUMMARY_SORT_INFO} from '../actions/types';
 import createReducer from '@jsroot/lib/createReducer.js';
 import { dateRange } from '@jsroot/reducers/dateRangeReducer';
 import { selectedBaseCurrency } from '@jsroot/reducers/baseCurrencyReducer';
@@ -48,6 +48,12 @@ const selectedSummaryDate = createReducer(null, {
    }
 });
 
+const selectedSummarySortInfo = createReducer(null, {
+   [SET_SUMMARY_SORT_INFO](state, action) {
+       return action.data
+   }
+});
+
 export default {
    dateRange,
    selectedBrand,
@@ -59,6 +65,7 @@ export default {
    selectedBonusCode,
    selectedGroupByOption,
    selectedSummaryDate,
+   selectedSummarySortInfo,
    bonusCodeList,
    globalFilter,
    detailFilter,

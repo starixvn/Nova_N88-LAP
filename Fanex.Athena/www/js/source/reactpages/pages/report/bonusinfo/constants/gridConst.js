@@ -85,6 +85,11 @@ export const DefaultSummarySortInfo = {
     sortType: 'asc'
 }
 
+export const DefaultSummarySortInfoGroupByDate = {
+    sortBy: 'Date',
+    sortType: 'asc'
+}
+
 export const DigitsAmount = 2;
 
 export const StyleRow = { height: '32px' }

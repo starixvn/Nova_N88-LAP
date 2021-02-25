@@ -32,6 +32,10 @@ export const BonusInfoDetailWidget = props => {
     const _title = React.useMemo(() => LangHelper.getSingleResource('Details'), []);
 
     const _handleExportExcel = () => {
+        if(!selectedBonusCode) {
+            return;
+        }
+
         const date = detailFilter.groupBy === GroupByOptionIds.bonusCodeAndDate ? selectedSummaryDate : null;
 
         const dateRange = {

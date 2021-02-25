@@ -4087,6 +4087,10 @@ const BonusInfoDetailWidget = props => {
   const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Details'), []);
 
   const _handleExportExcel = () => {
+    if (!selectedBonusCode) {
+      return;
+    }
+
     const date = detailFilter.groupBy === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_13__["GroupByOptionIds"].bonusCodeAndDate ? selectedSummaryDate : null;
     const dateRange = {
       fromDate: date ? date : detailFilter.fromDate,
@@ -5038,29 +5042,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class QueryService {
   static async exportBonusInfoSummaryData(params) {
-    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusInfoSummaryExport, params);
-    const noContentStatusCode = 204;
-
-    if (response.status === noContentStatusCode) {
-      alert(LangHelper.getSingleResource("NoInfo"));
-    } else {
+    try {
+      const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusInfoSummaryExport, params);
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].bonusInfoSummaryExport);
+    } catch (e) {
+      console.log(e);
     }
-
-    ;
   }
 
   static async exportBonusInfoDetailData(params) {
-    const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusInfoDetailExport, params);
-    const noContentStatusCode = 204;
-
-    if (response.status === noContentStatusCode) {
-      alert(LangHelper.getSingleResource("NoInfo"));
-    } else {
+    try {
+      const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusInfoDetailExport, params);
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].bonusInfoDetailExport);
+    } catch (e) {
+      console.log(e);
     }
-
-    ;
   }
 
 }

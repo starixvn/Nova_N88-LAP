@@ -20,23 +20,23 @@ export default class QueryService {
     }
 
     static async exportBonusInfoSummaryData(params) {
-        const response = await DataService.getReportFile(Url.bonusInfoSummaryExport, params)
-        const noContentStatusCode = 204;
-        if (response.status === noContentStatusCode) {
-            alert(LangHelper.getSingleResource("NoInfo"));
-        } else {
+        try {
+            const response = await DataService.getReportFile(Url.bonusInfoSummaryExport, params)
             Site.downloadFile(response.data, FileNameExport.bonusInfoSummaryExport);
-        };
+        }
+        catch (e) {
+            console.log(e)
+        }       
     }
 
     static async exportBonusInfoDetailData(params) {
-        const response = await DataService.getReportFile(Url.bonusInfoDetailExport, params)
-        const noContentStatusCode = 204;
-        if (response.status === noContentStatusCode) {
-            alert(LangHelper.getSingleResource("NoInfo"));
-        } else {
+        try {
+            const response = await DataService.getReportFile(Url.bonusInfoDetailExport, params)
             Site.downloadFile(response.data, FileNameExport.bonusInfoDetailExport);
-        };
+        }
+        catch (e) {
+            console.log(e)
+        }       
     }
 
     static fetchData = async apiCall => {

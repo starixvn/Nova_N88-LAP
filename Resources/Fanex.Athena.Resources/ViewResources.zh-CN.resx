@@ -2562,4 +2562,8 @@
   <data name="JackpotWonDetails" xml:space="preserve">
     <value>积宝头奖详情</value>
   </data>
+  <data name="PlayerWinloss" xml:space="preserve">
+    <value>Player Win Loss</value>
+    <comment>150398</comment>
+  </data>
 </root>

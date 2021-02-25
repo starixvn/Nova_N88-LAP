@@ -1,4 +1,4 @@
-﻿// Generated at: 2/24/2021 1:47:25 PM
+﻿// Generated at: 3/4/2021 12:24:58 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -405,6 +405,7 @@ InvalidStartNameValidationMsg:"Username cannot start with &apos;starix&apos;",
 InvalidSubsidiaryNameMsg:"Please contact admin to check your subsidiary name.",
 IP:"IP",
 IsNeutral:"(N)",
+JackpotWonDetails:"Jackpot Won Details",
 Jan:"Jan",
 January:"January",
 Jul:"Jul",
@@ -625,6 +626,7 @@ Player:"Player",
 PlayerAdminUpdateFailedMsg:"Please try again!",
 PlayerName:"Player Name",
 PlayerStatementSupportMonths:"Support data up to 18 months",
+PlayerWinloss:"Player Win Loss",
 PortalAdmin:"Portal Admin",
 PreGame:"Pre Game",
 Prev:"Prev",

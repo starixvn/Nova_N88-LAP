@@ -68,14 +68,14 @@
             return ProcessRequest(metaModel, null, null);
         }
 
-        private static dynamic GetEmptyResult(IEnumerable<ProductOption> productOptions, LicenseeWinLossMetaModel metaModel, string promotionPrize = "0")
+        private static dynamic GetEmptyResult(LicenseeWinLossMetaModel metaModel, string promotionPrize = "0")
         {
             return new
             {
                 Data = new List<LicenseeWinLossGridViewModel>(),
                 Total = new List<LicenseeWinLossGridViewModel>(),
                 SummaryTotal = new Dictionary<string, LicenseeWinLossGridViewModel>(),
-                ProductOptions = productOptions.ToJson(),
+                ProductOptions = metaModel.ProductOptions.ToJson(),
                 BrandOptions = metaModel.BrandOptions.ToJson(),
                 PromotionPrize = promotionPrize
             };
@@ -326,7 +326,7 @@
 
                 if (!result.DataList.Any())
                 {
-                    return GetEmptyResult(metaModel.ProductOptions, metaModel, result.AdditionalInfo);
+                    return GetEmptyResult(metaModel, result.AdditionalInfo);
                 }
 
                 var summaryTotalView = result.SummaryTotal.ToDictionary(d => d.Key, d => MapToGridView(d.Value));
@@ -341,7 +341,7 @@
                 };
             }
 
-            return GetEmptyResult(metaModel.ProductOptions, metaModel);
+            return GetEmptyResult(metaModel);
         }
 
         protected internal virtual bool IsValidParams(LicenseeWinLossMetaModel metaModel)

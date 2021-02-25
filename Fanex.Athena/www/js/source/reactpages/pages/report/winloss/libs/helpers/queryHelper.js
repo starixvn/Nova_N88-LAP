@@ -1,7 +1,7 @@
 import Site from '@jsroot/lib/site';
 import store from '../store';
 import { setPagingOption, setSortOption, setDisplayedColumns } from '../../actions/gridAction';
-import { defaultSortOption, displayedColumns } from '../../constants/gridContants';
+import { displayedColumns } from '../../constants/gridContants';
 import GroupHelper from '../helpers/groupHelper';
 
 export default class QueryHelper {
@@ -28,7 +28,7 @@ export default class QueryHelper {
         }
     }
 
-    static callBackToUpdateGridOption = (pageIndex, pageSize) => response => {
+    static callBackToUpdateGridOption = (pageIndex, pageSize, sortBy, sortType, resetGridOption) => response => {
         const { totalRows } = response;
         const { pagingOption, selectedGroupByOption } = store.getState();
         const newPagingOption = {
@@ -39,11 +39,14 @@ export default class QueryHelper {
                 TotalItem: totalRows
             }
         }
-        const displayedAllowColumns = GroupHelper.getDislayedColumns(displayedColumns, selectedGroupByOption);
 
         store.dispatch(setPagingOption(newPagingOption));
-        store.dispatch(setSortOption(defaultSortOption));
-        store.dispatch(setDisplayedColumns(displayedAllowColumns));
+        store.dispatch(setSortOption({ sortBy, sortType }));
+
+        if(resetGridOption) {
+            const displayedAllowColumns = GroupHelper.getDislayedColumns(displayedColumns, selectedGroupByOption);
+            store.dispatch(setDisplayedColumns(displayedAllowColumns));
+        }
     }
 }
 

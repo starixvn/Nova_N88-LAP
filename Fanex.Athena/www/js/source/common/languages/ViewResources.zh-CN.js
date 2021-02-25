@@ -1,4 +1,4 @@
-﻿// Generated at: 2/24/2021 1:47:25 PM
+﻿// Generated at: 3/4/2021 12:24:58 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -333,6 +333,7 @@ InvalidRequestMsg:"请求无效",
 InvalidRequestOrNotAuthorizedMsg:"无效的请求或您未被授权访问所请求的资源",
 InvalidStartGroupNameValidationMsg:"Group Name cannot start with &apos;starix&apos;",
 IsNeutral:"(中)",
+JackpotWonDetails:"积宝头奖详情",
 Jan:"一月",
 January:"一月",
 Jul:"七月",
@@ -528,6 +529,7 @@ Platform:"平台",
 Player:"玩家",
 PlayerAdminUpdateFailedMsg:"请重试一次!",
 PlayerStatementSupportMonths:"数据最多只支持18个月",
+PlayerWinloss:"Player Win Loss",
 PreGame:"游戏开始前",
 Prev:"上个月",
 PreviousPeriod:"Previous Period",

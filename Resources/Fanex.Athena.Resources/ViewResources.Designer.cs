@@ -5695,6 +5695,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player Win Loss.
+        /// </summary>
+        public static string PlayerWinloss {
+            get {
+                return ResourceManager.GetString("PlayerWinloss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Portal Admin.
         /// </summary>
         public static string PortalAdmin {

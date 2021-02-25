@@ -15,7 +15,7 @@ import GroupFilter from './filter/GroupFilter';
 import QueryHelper from '../libs/helpers/queryHelper';
 import CollectionHelper from '../libs/helpers/collectionHelper';
 import { DateFilterTypeOptions, UserNameFilterOptions } from '../constants/filterConsts';
-import { defaultPagingOption } from '../constants/gridContants';
+import { defaultPagingOption, defaultSortOption } from '../constants/gridContants';
 import SelectOption from '../components/filter/SelectOption';
 
 export class FormFilter extends PureComponent {
@@ -156,7 +156,8 @@ export class FormFilter extends PureComponent {
         event.preventDefault();
         const newRequestParam = QueryHelper.toAPIParams(this.props);
         this.props.setRequestParam(newRequestParam);
-        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdateGridOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize));
+        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdateGridOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize,
+             defaultSortOption.sortBy, defaultSortOption.sortType, true));
     }
 
     render() {

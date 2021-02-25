@@ -12,6 +12,7 @@ export const columnKeys = {
     turnover: 'turnover',
     netTurnover: 'netTurnover',
     ggr: 'ggr',
+    playerWinloss: 'playerWinloss',
     betCount: 'betCount',
     avgBetAmount: 'avgBetAmount',
     uniquePlayers: 'uniquePlayers',
@@ -28,6 +29,7 @@ export const displayedColumns = [
     { key: columnKeys.turnover, name: LangHelper.getSingleResource('Turnover'), show: true, hasTotal: true },
     { key: columnKeys.netTurnover, name: LangHelper.getSingleResource('NetTurnover'), show: true, hasTotal: true },
     { key: columnKeys.ggr, name: LangHelper.getSingleResource('GGR'), show: true, hasTotal: true },
+    { key: columnKeys.playerWinloss, name: LangHelper.getSingleResource('PlayerWinloss'), show: true, hasTotal: true },
     { key: columnKeys.betCount, name: LangHelper.getSingleResource('BetCount'), show: true, hasTotal: true },
     { key: columnKeys.avgBetAmount, name: LangHelper.getSingleResource('AvgBetAmount'), show: true, hasTotal: true },
     { key: columnKeys.uniquePlayers, name: LangHelper.getSingleResource('UniquePlayers'), show: true, hasTotal: true },
@@ -43,7 +45,7 @@ export const defaultDisplayedColumns = [
 ]
 
 export const dataColumns = {
-    [columnKeys.group]: { sortBy: columnKeys.group, colWidth: 80, className: "left-align" },
+    [columnKeys.group]: { sortBy: 1, colWidth: 80, className: "left-align" },
     [columnKeys.sabaId]: {
         colWidth: 70, className: "left-align",
         draggable: true,
@@ -57,67 +59,73 @@ export const dataColumns = {
         onDragStart: event => onDragStart(event, columnKeys.sabaSystemId)
     },
     [columnKeys.turnover]: {
-        sortBy: columnKeys.turnover, colWidth: 70, className: "right-align",
+        sortBy: 2, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.turnover)
     },
     [columnKeys.netTurnover]: {
-        sortBy: columnKeys.netTurnover, colWidth: 70, className: "right-align",
+        sortBy: 3, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.netTurnover)
     },
     [columnKeys.ggr]: {
-        sortBy: columnKeys.ggr, colWidth: 60, className: "right-align",
+        sortBy: 4, colWidth: 60, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.ggr)
     },
+    [columnKeys.playerWinloss]: {
+        sortBy: 5, colWidth: 60, className: "right-align",
+        draggable: true,
+        onDragOver: event => event.preventDefault(),
+        onDragStart: event => onDragStart(event, columnKeys.playerWinloss)
+    },
     [columnKeys.betCount]: {
-        sortBy: columnKeys.betCount, colWidth: 50, className: "right-align",
+        sortBy: 6, colWidth: 50, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.betCount)
     },
     [columnKeys.avgBetAmount]: {
-        sortBy: columnKeys.avgBetAmount, colWidth: 70, className: "right-align",
+        sortBy: 7, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.avgBetAmount)
     },
     [columnKeys.uniquePlayers]: {
-        sortBy: columnKeys.uniquePlayers, colWidth: 60, className: "right-align",
+        sortBy: 8, colWidth: 60, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.uniquePlayers)
     },
     [columnKeys.margin]: {
-        sortBy: columnKeys.margin, colWidth: 50, className: "right-align",
+        sortBy: 9, colWidth: 50, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.margin)
     },
     [columnKeys.noOfDeposit]: {
-        sortBy: columnKeys.noOfDeposit, colWidth: 50, className: "right-align",
+        sortBy: 10, colWidth: 50, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.noOfDeposit)
     },
     [columnKeys.totalDepositAmount]: {
-        sortBy: columnKeys.totalDepositAmount, colWidth: 70, className: "right-align",
+        sortBy: 11, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.totalDepositAmount)
     },
     [columnKeys.noOfWithdrawal]: {
-        sortBy: columnKeys.noOfWithdrawal, colWidth: 60, className: "right-align",
+        sortBy: 12, colWidth: 60, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.noOfWithdrawal)
     },
     [columnKeys.totalWithdrawalAmount]: {
-        sortBy: columnKeys.totalWithdrawalAmount, colWidth: 70, className: "right-align",
+        sortBy: 13, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.totalWithdrawalAmount)
@@ -137,6 +145,7 @@ export const componentCells = {
     [columnKeys.turnover]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.turnover]} className={dataColumns[columnKeys.turnover].className + highLight} />,
     [columnKeys.netTurnover]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.netTurnover]} className={dataColumns[columnKeys.netTurnover].className + highLight} />,
     [columnKeys.ggr]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.ggr]} className={dataColumns[columnKeys.ggr].className + highLight} />,
+    [columnKeys.playerWinloss]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.playerWinloss]} disableWarning={true} className={dataColumns[columnKeys.playerWinloss].className + highLight} />,
     [columnKeys.betCount]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.betCount]} className={dataColumns[columnKeys.betCount].className + highLight} digits={0} />,
     [columnKeys.avgBetAmount]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.avgBetAmount]} className={dataColumns[columnKeys.avgBetAmount].className + highLight} />,
     [columnKeys.uniquePlayers]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.uniquePlayers]} className={dataColumns[columnKeys.uniquePlayers].className + highLight} digits={0} />,
@@ -155,6 +164,6 @@ export const defaultPagingOption = {
 }
 
 export const defaultSortOption = {
-    sortBy: null,
-    sortType: null
+    sortBy: 1,
+    sortType: 'asc'
 }

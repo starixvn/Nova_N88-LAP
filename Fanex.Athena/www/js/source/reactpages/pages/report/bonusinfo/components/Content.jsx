@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReportTitle from '@jsroot/components/ReportTitle';
-import LangHelper from '@jsroot/lib/langHelper'
+import LangHelper from '@jsroot/lib/langHelper';
 import { bindActionCreators } from 'redux';
 import ActionCreators from '../actions';
 import BonusInfoSummaryWidget from './widgets/BonusInfoSummaryWidget';
@@ -14,14 +14,14 @@ export const Content = props => {
         return null;
     }
 
-    const { selectedBaseCurrency, fromDate, toDate} = globalFilter;
+    const { baseCurrency, fromDate, toDate} = globalFilter;
 
     const _renderTitle = () => {
         const reportName = LangHelper.getSingleResource('BonusInfo');
         if (!globalFilter) {
             return <ReportTitle tag="div" content={reportName} />
         }
-        const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
+        const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', baseCurrency);
         const content = `${reportName}, ${fromDate} → ${toDate}, ${displayCurrency}`;
         return <ReportTitle tag="div" content={content} />
     }

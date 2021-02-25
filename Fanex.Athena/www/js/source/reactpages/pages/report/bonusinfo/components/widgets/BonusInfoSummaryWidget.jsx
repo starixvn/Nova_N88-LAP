@@ -7,35 +7,39 @@ import Widget from '../common/Widget';
 import DataService from '../../libs/services/dataService';
 import QueryService from '../../libs/services/queryService';
 import { BonusInfoSummaryGridColumns, BonusInfoSummaryGridConfig, StyleRow, DigitsAmount } from '../../constants/gridConst';
-import { DefaultSummarySortInfo } from '../../constants/gridConst';
 import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import NumberFormat from '@jsroot/lib/numberFormat';
+import { GroupByOptionIds } from '../../constants/filterConsts';
+import Site from '@jsroot/lib/site';
+
+let countRender = 0;
 
 export const BonusInfoSummaryWidget = props => {
-    const { globalFilter, bonusInfoSummaryData, fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList, setSelectedBonusCode, summaryGridHeight, setSummaryGridHeight} = props;   
+    const { globalFilter, bonusInfoSummaryData, fetchBonusInfoSummaryData, selectedSummarySortInfo, setSummarySortInfo, setDetailFilter, setBonusCodeList, setSelectedBonusCode, 
+        summaryGridHeight, setSummaryGridHeight, selectedSummaryDate, setSelectedSummaryDate, setBonusInfoDetailData} = props;   
     const [isLoading, setLoading] = useState(false);
-    const [sortInfo, onSort] = useState(DefaultSummarySortInfo);   
 
     useEffect(() => {
         if (!globalFilter) {
             return;
         }
 
-        _fetchData(null, null);        
+        countRender++;
+        _fetchData(null);        
     }, [globalFilter]);
 
     const _title = React.useMemo(() => LangHelper.getSingleResource('Summary'), []);
 
     const _handleExportExcel = () => {
-        const exportParams = DataService.getBonusInfoSummaryExportAPIParams(globalFilter, sortInfo);
+        const exportParams = DataService.getBonusInfoSummaryExportAPIParams(globalFilter, selectedSummarySortInfo);
         QueryService.exportBonusInfoSummaryData(exportParams);
     }
 
     const _fetchData = (sort) => {
-        const apiParams = DataService.getBonusInfoSummaryAPIParams(globalFilter,  sort || sortInfo);
+        const apiParams = DataService.getBonusInfoSummaryAPIParams(globalFilter,  sort || selectedSummarySortInfo);
 
         setLoading(true);
-        fetchBonusInfoSummaryData(apiParams, (data, isSuccess) => 
+        fetchBonusInfoSummaryData(apiParams, sort !== null, (data, isSuccess) => 
         {
             if(isSuccess && data.bonusCodeList)
             {
@@ -51,19 +55,47 @@ export const BonusInfoSummaryWidget = props => {
             sortType
         }
         _fetchData(sortInfo);
-        onSort && onSort(sortInfo);
+        setSummarySortInfo(sortInfo);
     }
 
     const _bonusCodeClick = (e, bonusCode) => {
         e.preventDefault();
  
         const detailFilter = { 
-            ...globalFilter,
-            bonusCode
+            ...globalFilter
         };        
 
         setDetailFilter(detailFilter);
         setSelectedBonusCode(bonusCode);
+        setSummaryGridHeight(200);
+    }
+
+    const _dateClick = (e, date, bonusCode) => {
+        e.preventDefault();
+      
+        const selectedDate = new Date(Date.parse(date));
+        const dateValue =  `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}`;
+
+        const detailFilter = { 
+            ...globalFilter
+        };  
+
+        const bonusCodeList = bonusInfoSummaryData.dataList.filter(item => {
+            if(item.date === date && item.bonusCode)
+            {
+                return item;
+            }
+        }).map(item => {
+            return item.bonusCode;
+        });
+
+        const uniqueBonusCodeList = bonusCodeList.filter((v, i, a) => a.indexOf(v) === i);
+
+        setSelectedBonusCode(bonusCode);
+        setBonusCodeList(uniqueBonusCodeList);      
+        setBonusInfoDetailData(null);
+        setDetailFilter(detailFilter);
+        setSelectedSummaryDate(dateValue);
         setSummaryGridHeight(200);
     }
 
@@ -76,7 +108,10 @@ export const BonusInfoSummaryWidget = props => {
         };
 
         const gridHeader = [
-            <HeaderRow style={StyleRow} key='header1'>                
+            <HeaderRow style={StyleRow} key='header1'>
+                {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate &&
+                    <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.date].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.date].name}</HeaderCell>
+                }
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusName].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusName].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusCode].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusCode].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusType].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusType].name}</HeaderCell>
@@ -86,6 +121,7 @@ export const BonusInfoSummaryWidget = props => {
                 <HeaderCell {...claimStatusAtributes}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.claimStatus].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimants].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimants].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimedAmount].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimedAmount].name}</HeaderCell>
+                <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].name}</HeaderCell>
             </HeaderRow>,
@@ -105,12 +141,21 @@ export const BonusInfoSummaryWidget = props => {
 
     const _renderBody = () => {
         const data =  [...bonusInfoSummaryData.dataList];
-        return data.map((item, index) => <Row style={StyleRow} key={item[BonusInfoSummaryGridColumns.bonusName] + item[BonusInfoSummaryGridColumns.bonusCode] + item[BonusInfoSummaryGridColumns.bonusType]}>           
+        return data.map((item, index) => <Row style={StyleRow} key={item[BonusInfoSummaryGridColumns.bonusCode] + item[BonusInfoSummaryGridColumns.bonusType] + item[BonusInfoSummaryGridColumns.date] + index}>           
+             {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate &&
+                <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.date].attributes}>                        
+                    <a href="#" onClick={(e)=> _dateClick(e, item.date, item.bonusCode)}>
+                        {item[BonusInfoSummaryGridColumns.date]}
+                    </a>
+                </Cell>
+            }
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusName].attributes} >{item[BonusInfoSummaryGridColumns.bonusName]}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusCode].attributes}>
-                <a href="#" onClick={(e)=> _bonusCodeClick(e, item[BonusInfoSummaryGridColumns.bonusCode])}>
-                    {item[BonusInfoSummaryGridColumns.bonusCode]}
-                </a>                
+                {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate ? item[BonusInfoSummaryGridColumns.bonusCode] :
+                    <a href="#" onClick={(e)=> _bonusCodeClick(e, item.bonusCode)}>
+                        {item[BonusInfoSummaryGridColumns.bonusCode]}
+                    </a>
+                }               
             </Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusType].attributes}>{item[BonusInfoSummaryGridColumns.bonusType]}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.startDate].attributes}>{item[BonusInfoSummaryGridColumns.startDate]}</Cell>
@@ -125,6 +170,7 @@ export const BonusInfoSummaryWidget = props => {
             }
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimants].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalClaimants], 0)}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimedAmount].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalClaimedAmount], DigitsAmount)}</Cell>
+            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.gGR], DigitsAmount)}</Cell>    
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalDeposit], DigitsAmount)}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalWithdrawal], DigitsAmount)}</Cell>
         </Row>)
@@ -132,8 +178,14 @@ export const BonusInfoSummaryWidget = props => {
 
     const _renderFooter = () => {
         const {totalData} =  bonusInfoSummaryData;
+
+        const totalAtributes = {
+            colSpan: globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate ? 7 : 6, 
+            className: "left-align"
+        };
+
         return (<Row className="fixed-table-grant-total" key="totalRow">
-            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.total].attributes}>{LangHelper.getSingleResource("Total")}</Cell>
+            <Cell {...totalAtributes}>{LangHelper.getSingleResource("Total")}</Cell>
             {
                 globalFilter.claimStatus.split(",").map((statusId, i) => {
                     return (
@@ -143,6 +195,7 @@ export const BonusInfoSummaryWidget = props => {
             }
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimants].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalClaimants], 0)}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimedAmount].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalClaimedAmount], DigitsAmount)}</Cell>
+            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.gGR], DigitsAmount)}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalDeposit], DigitsAmount)}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalWithdrawal], DigitsAmount)}</Cell>
         </Row>)
@@ -152,31 +205,31 @@ export const BonusInfoSummaryWidget = props => {
 
     return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel} hasData={hasData}>
         {hasData > 0 && <div className="sticky-box-container">                    
-                    <Table
-                        key={'BonusInfo_Summary' + summaryGridHeight}
-                        minWidth={650}
-                        autoWidth={true}
-                        autoHeight={false}
-                        bodyHeight={summaryGridHeight}
-                        header={_renderHeader()}
-                        body={_renderBody()}
-                        footer={_renderFooter()}
-                        onSort={_handleSort}
-                        containerPadding={65}
-                        shouldResetScrollPosition={isLoading}
-                    />
+            <Table
+                key={'BonusInfo_Summary' + summaryGridHeight + countRender}
+                minWidth={650}
+                autoWidth={true}
+                autoHeight={false}
+                bodyHeight={summaryGridHeight}
+                header={_renderHeader()}
+                body={_renderBody()}
+                footer={_renderFooter()}
+                onSort={_handleSort}
+                containerPadding={65}
+                shouldResetScrollPosition={isLoading}
+            />
         </div>}
     </Widget>)
 }
 
 function mapStateToProps(state) {
-    const { globalFilter, bonusInfoSummaryData, summaryGridHeight} = state;
-    return Object.assign({}, { globalFilter, bonusInfoSummaryData, summaryGridHeight });
+    const { globalFilter, bonusInfoSummaryData, summaryGridHeight, selectedSummarySortInfo, selectedSummaryDate} = state;
+    return Object.assign({}, { globalFilter, bonusInfoSummaryData, summaryGridHeight,  selectedSummarySortInfo, selectedSummaryDate });
 }
 
 function mapDispatchToProps(dispatch) {
-    const { fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList, setSelectedBonusCode, setSummaryGridHeight } = ActionCreators;
-    return bindActionCreators({ fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList ,setSelectedBonusCode, setSummaryGridHeight }, dispatch);
+    const { fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList, setSelectedBonusCode, setSummaryGridHeight, setSelectedSummaryDate, setSummarySortInfo, setBonusInfoDetailData } = ActionCreators;
+    return bindActionCreators({ fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList ,setSelectedBonusCode, setSummaryGridHeight, setSelectedSummaryDate, setSummarySortInfo, setBonusInfoDetailData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(BonusInfoSummaryWidget));

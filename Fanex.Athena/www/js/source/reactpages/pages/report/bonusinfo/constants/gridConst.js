@@ -5,6 +5,8 @@ export const BonusInfoSummaryGridColumns = {
     brand: 'brandName',
     bonusName: 'bonusName',
     bonusCode: 'bonusCode',
+    date: 'dateString',
+    gGR: 'ggr',
     bonusType: 'bonusTypeText',
     startDate: 'startDateString',
     endDate: 'endDateString',
@@ -36,17 +38,19 @@ export const BonusInfoDetailGridColumns = {
 
 export const BonusInfoSummaryGridConfig = {
     [BonusInfoSummaryGridColumns.total]: { name: LangHelper.getSingleResource('Total'), attributes: { colSpan: 6, className: "left-align" } },
-    [BonusInfoSummaryGridColumns.bonusName]: { name: LangHelper.getSingleResource('BonusName'), attributes: { sortBy: 'bonusName', colWidth: 120, className: "left-align" } },
-    [BonusInfoSummaryGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { sortBy: 'bonusCode', colWidth: 95, className: "left-align" } },
-    [BonusInfoSummaryGridColumns.bonusType]: { name: LangHelper.getSingleResource('BonusType'), attributes: { sortBy: 'bonusType', colWidth: 110, className: "left-align" } },
+    [BonusInfoSummaryGridColumns.date]: { name: LangHelper.getSingleResource('Date'), attributes: { sortBy: 'Date', colWidth: 60, className: "center-align" } },
+    [BonusInfoSummaryGridColumns.bonusName]: { name: LangHelper.getSingleResource('BonusName'), attributes: { sortBy: 'bonusName', colWidth: 110, className: "left-align" } },
+    [BonusInfoSummaryGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { sortBy: 'bonusCode', colWidth: 110, className: "left-align" } },
+    [BonusInfoSummaryGridColumns.bonusType]: { name: LangHelper.getSingleResource('BonusType'), attributes: { sortBy: 'bonusType', colWidth: 85, className: "left-align" } },
     [BonusInfoSummaryGridColumns.startDate]: { name: LangHelper.getSingleResource('StartDate'), attributes: { sortBy: 'startDate', colWidth: 60, className: "center-align" } },
     [BonusInfoSummaryGridColumns.endDate]: { name: LangHelper.getSingleResource('EndDate'), attributes: { sortBy: 'endDate', colWidth: 60, className: "center-align" } },
-    [BonusInfoSummaryGridColumns.bonusStatus]: { name: LangHelper.getSingleResource('BonusStatus'), attributes: { sortBy: 'bonusStatus', colWidth: 60, className: "center-align" } },
+    [BonusInfoSummaryGridColumns.bonusStatus]: { name: LangHelper.getSingleResource('BonusStatus'), attributes: { sortBy: 'bonusStatus', colWidth: 55, className: "center-align" } },
     [BonusInfoSummaryGridColumns.claimStatus]: { name: LangHelper.getSingleResource('ClaimStatus') },
-    [BonusInfoSummaryGridColumns.totalClaimants]: { name: LangHelper.getSingleResource('TotalClaimants'), attributes: { sortBy: 'totalClaimants', colWidth: 65, className: "right-align" } },
-    [BonusInfoSummaryGridColumns.totalClaimedAmount]: { name: LangHelper.getSingleResource('TotalClaimedAmount'), attributes: { sortBy: 'totalClaimedAmount', colWidth: 80, className: "right-align" } },
-    [BonusInfoSummaryGridColumns.totalDeposit]: { name: LangHelper.getSingleResource('TotalDeposit'), attributes: { sortBy: 'totalDeposit', colWidth: 80, className: "right-align" } },
-    [BonusInfoSummaryGridColumns.totalWithdrawal]: { name: LangHelper.getSingleResource('TotalWithdrawal'), attributes: { sortBy: 'totalWithdrawal', colWidth: 80, className: "right-align" } },
+    [BonusInfoSummaryGridColumns.totalClaimants]: { name: LangHelper.getSingleResource('TotalClaimants'), attributes: { sortBy: 'totalClaimants', colWidth: 55, className: "right-align" } },
+    [BonusInfoSummaryGridColumns.totalClaimedAmount]: { name: LangHelper.getSingleResource('TotalClaimedAmount'), attributes: { sortBy: 'totalClaimedAmount', colWidth: 70, className: "right-align" } },
+    [BonusInfoSummaryGridColumns.gGR]: { name: LangHelper.getSingleResource('GGR'), attributes: { sortBy: 'ggr', colWidth: 70, className: "right-align" } },
+    [BonusInfoSummaryGridColumns.totalDeposit]: { name: LangHelper.getSingleResource('TotalDeposit'), attributes: { sortBy: 'totalDeposit', colWidth: 70, className: "right-align" } },
+    [BonusInfoSummaryGridColumns.totalWithdrawal]: { name: LangHelper.getSingleResource('TotalWithdrawal'), attributes: { sortBy: 'totalWithdrawal', colWidth: 70, className: "right-align" } },
     [BonusInfoSummaryGridColumns.claimStatus1]: { name: LangHelper.getSingleResource('Running'), attributes: { sortBy: 'running', colWidth: 50, className: "right-align" } },
     [BonusInfoSummaryGridColumns.claimStatus2]: { name: LangHelper.getSingleResource('Canceled'), attributes: { sortBy: 'canceled', colWidth: 50, className: "right-align" } },
     [BonusInfoSummaryGridColumns.claimStatus4]: { name: LangHelper.getSingleResource('Fullfill'), attributes: { sortBy: 'fulfill', colWidth: 50, className: "right-align" } },
@@ -56,7 +60,7 @@ export const BonusInfoSummaryGridConfig = {
 export const BonusInfoDetailGridConfig = {
     [BonusInfoDetailGridColumns.userName]: { name: LangHelper.getSingleResource('UserName'), attributes: { sortBy: 1, colWidth: 100, className: "left-align" } },
     [BonusInfoDetailGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { colWidth: 120, className: "left-align" } },
-    [BonusInfoDetailGridColumns.claimDate]: { name: LangHelper.getSingleResource('ClaimDate'), attributes: { sortBy: 2, colWidth: 60, className: "center-align" } },
+    [BonusInfoDetailGridColumns.claimDate]: { name: LangHelper.getSingleResource('ClaimDate') },
     [BonusInfoDetailGridColumns.bonusAmountClaimed]: { name: LangHelper.getSingleResource('BonusAmountClaimed'), attributes: { sortBy: 3, colWidth: 100, className: "right-align" } },
     [BonusInfoDetailGridColumns.totalDeposit]: { name: LangHelper.getSingleResource('TotalDeposit'), attributes: { sortBy: 4, colWidth: 100, className: "right-align" } },
     [BonusInfoDetailGridColumns.totalWithdrawal]: { name: LangHelper.getSingleResource('TotalWithdrawal'), attributes: { sortBy: 5, colWidth: 100, className: "right-align" } },
@@ -78,6 +82,11 @@ export const DefaultDetailSortInfo = {
 
 export const DefaultSummarySortInfo = {
     sortBy: 'BonusCode',
+    sortType: 'asc'
+}
+
+export const DefaultSummarySortInfoGroupByDate = {
+    sortBy: 'Date',
     sortType: 'asc'
 }
 

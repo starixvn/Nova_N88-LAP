@@ -745,6 +745,12 @@ html {
 
 .bonusinfo-report {
   padding-bottom: 15px; }
+  .bonusinfo-report .group-filter .form-group {
+    display: inline-block; }
+    .bonusinfo-report .group-filter .form-group .radio-group {
+      margin-left: 30px; }
+      .bonusinfo-report .group-filter .form-group .radio-group span {
+        margin-right: 30px; }
   .bonusinfo-report .summary-container .summary-table:not(:last-child) {
     margin-bottom: 10px; }
   .bonusinfo-report .table-container {

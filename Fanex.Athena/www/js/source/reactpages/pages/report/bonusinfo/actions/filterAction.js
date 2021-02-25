@@ -1,4 +1,4 @@
-import { SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER, SET_DETAIL_FILTER, SET_SUMMARY_GRID_HEIGHT, SET_DROPDOWN_OPTIONS_DATA } from './types';
+import { SET_GLOBAL_FILTER, SET_DETAIL_FILTER, SET_SUMMARY_GRID_HEIGHT, SET_DROPDOWN_OPTIONS_DATA, SET_SELECTED_GROUP_BY_OPTION, SET_SELECTED_SUMMARY_DATE, SET_SUMMARY_SORT_INFO } from './types';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
 import { setSelectedBrand } from '@jsroot/actions/brandAction';
 import { setSelectedBonusName, setSelectedBonusType, setSelectedBonusStatus, setBonusCodeList, setSelectedBonusCode } from '@jsroot/actions/bonusAction';
@@ -7,7 +7,7 @@ import { setDateRange } from '@jsroot/actions/dateRangeAction';
 
 const setGlobalFilter = filterData => async dispatch => {
     dispatch(setGlobalFilterData(filterData));
-    dispatch(setSummaryGridHeight(500));
+    dispatch(setSummaryGridHeight(380));
     dispatch(setDetailFilter(null));
 }
 
@@ -29,13 +29,6 @@ const setDetailFilterData = detailFilterData => {
     }
 }
 
-const setCollapseFormFilter = isCollapsed => {
-    return {
-        type: SET_COLLAPSE_FORM_FILTER,
-        data: isCollapsed
-    }
-}
-
 const setSummaryGridHeight = data => {
     return {
         type: SET_SUMMARY_GRID_HEIGHT,
@@ -50,6 +43,27 @@ const setDropdownOptionsData = data => {
     }
 }
 
+const setSelectedGroupByOption = groupByOption => {
+    return {
+        type: SET_SELECTED_GROUP_BY_OPTION,
+        data: groupByOption
+    }
+}
+
+const setSelectedSummaryDate = data => {
+    return {
+        type: SET_SELECTED_SUMMARY_DATE,
+        data: data
+    }
+}
+
+const setSummarySortInfo = data => {
+    return {
+        type: SET_SUMMARY_SORT_INFO,
+        data: data
+    }
+}
+
 export default {
     setDateRange,
     setSelectedBaseCurrency,
@@ -60,9 +74,11 @@ export default {
     setSelectedBonusStatus,
     setSelectedClaimStatus,
     setSelectedBonusCode,
+    setSelectedSummaryDate,
+    setSummarySortInfo,
     setGlobalFilter,
     setDetailFilter,
-    setCollapseFormFilter,
     setSummaryGridHeight,
-    setDropdownOptionsData
+    setDropdownOptionsData,
+    setSelectedGroupByOption
 }

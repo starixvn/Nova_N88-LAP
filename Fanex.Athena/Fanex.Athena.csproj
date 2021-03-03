@@ -887,6 +887,7 @@
     <Content Include="Views\Desktop\Report\BonusInfo\Main.cshtml" />
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.chunk.js.map" />
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.css.map" />
+    <Content Include="Views\Desktop\BetList\SabaClubJackpotWonDetail\Main.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

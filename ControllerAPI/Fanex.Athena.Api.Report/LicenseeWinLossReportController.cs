@@ -68,7 +68,7 @@
             return ProcessRequest(metaModel, null, null);
         }
 
-        private static dynamic GetEmptyResult(IEnumerable<ProductOption> productOptions, string promotionPrize = "0")
+        private static dynamic GetEmptyResult(IEnumerable<ProductOption> productOptions, LicenseeWinLossMetaModel metaModel, string promotionPrize = "0")
         {
             return new
             {
@@ -76,6 +76,7 @@
                 Total = new List<LicenseeWinLossGridViewModel>(),
                 SummaryTotal = new Dictionary<string, LicenseeWinLossGridViewModel>(),
                 ProductOptions = productOptions.ToJson(),
+                BrandOptions = metaModel.BrandOptions.ToJson(),
                 PromotionPrize = promotionPrize
             };
         }
@@ -272,7 +273,7 @@
                 {
                     result = await _licenseeWinLossDataAccess.GetSummaryWinloss(metaModel, CurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
                 }
-                else if(metaModel.DrillDownLevel == (int)ReportLevel.Licensee)
+                else if (metaModel.DrillDownLevel == (int)ReportLevel.Licensee)
                 {
                     result = await _licenseeWinLossDataAccess.GetAgentWinlossDetail(metaModel, CurrencyList, !metaModel.IsExportExcel).ConfigureAwait(false);
                 }
@@ -325,7 +326,7 @@
 
                 if (!result.DataList.Any())
                 {
-                    return GetEmptyResult(metaModel.ProductOptions, result.AdditionalInfo);
+                    return GetEmptyResult(metaModel.ProductOptions, metaModel, result.AdditionalInfo);
                 }
 
                 var summaryTotalView = result.SummaryTotal.ToDictionary(d => d.Key, d => MapToGridView(d.Value));
@@ -340,7 +341,7 @@
                 };
             }
 
-            return GetEmptyResult(metaModel.ProductOptions);
+            return GetEmptyResult(metaModel.ProductOptions, metaModel);
         }
 
         protected internal virtual bool IsValidParams(LicenseeWinLossMetaModel metaModel)

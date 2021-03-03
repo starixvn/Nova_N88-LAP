@@ -232,6 +232,15 @@ class BetListLayout extends Component {
 
             this._openPopup(url, title);
         }
+        window.showSabaClubJackpotWonDetails = (transId, custId, betTypeId) => {
+            const { rootUrl, baseCurrency } = this.props;
+
+            const url = BetList.getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId);
+            const title = this._getResource('ProductSBC') + ' - ' +
+                this._getResource('JackpotWonDetails');
+
+            this._openPopup(url, title);
+        }
     }
 
     componentWillUnmount() {
@@ -253,6 +262,7 @@ class BetListLayout extends Component {
         window.showSGDetails = undefined;
         window.showSexyGamingBetDetails = undefined;
         window.showSabaClubDetails = undefined;
+        window.showSabaClubJackpotWonDetails = undefined;
     }
 
     _getResource(key) {

@@ -310,6 +310,16 @@ class BetList {
         return url;
     }
 
+    getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
+        let url = rootUrl + 'SabaClubJackpotWonBetList/Detail';
+        url = QueryString.setParam(url, 'transId', transId);
+        url = QueryString.setParam(url, 'custId', custId);
+        url = QueryString.setParam(url, 'bettype', betTypeId);
+        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
+
+        return url;
+    }
+
     getSGResultUrl(rootUrl, custid, gamePlayId) {
         let url = rootUrl + 'SGResultPopup/Index';
         url = QueryString.setParam(url, 'custid', custid);

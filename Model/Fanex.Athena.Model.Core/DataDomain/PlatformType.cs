@@ -35,65 +35,8 @@
 
         public const int ESportsApp = 14;
 
+        public const int MobileEuro = 15;
+
         public const int BetfromOthers = 88;
-
-        private static readonly IReadOnlyDictionary<int, string> MapPlatformKeys = new Dictionary<int, string>
-        {
-            { All, nameof(All) },
-            { Asia, nameof(Asia) },
-            { China, nameof(China) },
-            { Euro, nameof(Euro) },
-            { Wap, nameof(Wap) },
-            { Mobile, nameof(Mobile) },
-            { Tablet, nameof(Tablet) },
-            { NewAsia, nameof(NewAsia) },
-            { MobileApp, nameof(MobileApp) },
-            { MobileLiteVersion, nameof(MobileLiteVersion) },
-            { DeepLink, nameof(DeepLink) },
-            { BetfromOthers, nameof(BetfromOthers) },
-            { NativeApp, nameof(NativeApp) },
-            { ESportsDesktop, nameof(ESportsDesktop) },
-            { ESportsMobile, nameof(ESportsMobile) },
-            { ESportsApp, nameof(ESportsApp) }
-        };
-
-        private static readonly IReadOnlyDictionary<string, string> MapPlatformNames = new Dictionary<string, string>
-        {
-            { "z", ViewResources.China },
-            { "g", ViewResources.Asia },
-            { "y", ViewResources.Euro },
-            { "m", ViewResources.Wap },
-            { "l", ViewResources.Mobile },
-            { "r", ViewResources.Tablet },
-            { "x", ViewResources.NewAsia },
-            { "o", ViewResources.MobileApp },
-            { "c", ViewResources.MobileLiteVersion },
-            { "t", ViewResources.DeepLink },
-            { "v", ViewResources.BetfromOthers },
-            { "0", ViewResources.NativeApp },
-            { "1", ViewResources.ESportsDesktop },
-            { "2", ViewResources.ESportsMobile },
-            { "3", ViewResources.ESportsApp },
-        };
-
-        public static string GetPlatformKey(int type)
-        {
-            return MapPlatformKeys.ContainsKey(type) ? MapPlatformKeys[type] : "All";
-        }
-
-        public static string GetPlatformName(int type)
-        {
-            return MapPlatformKeys.ContainsKey(type) ? ViewResources.ResourceManager.GetString(MapPlatformKeys[type]) : ViewResources.All;
-        }
-
-        public static string GetPlatformName(string code)
-        {
-            return MapPlatformNames.ContainsKey(code) ? MapPlatformNames[code] : ViewResources.Others;
-        }
-
-        public static bool IsValidPlatform(int type)
-        {
-            return (type >= All && type <= ESportsApp) || type == BetfromOthers;
-        }
     }
 }

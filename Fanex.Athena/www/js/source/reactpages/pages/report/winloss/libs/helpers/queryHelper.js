@@ -28,7 +28,7 @@ export default class QueryHelper {
         }
     }
 
-    static callBackToUpdateGridOption = (pageIndex, pageSize, sortBy, sortType, resetGridOption) => response => {
+    static callBackToUpdateGridOption = (pageIndex, pageSize, sortBy, sortType) => response => {
         const { totalRows } = response;
         const { pagingOption, selectedGroupByOption } = store.getState();
         const newPagingOption = {
@@ -42,11 +42,6 @@ export default class QueryHelper {
 
         store.dispatch(setPagingOption(newPagingOption));
         store.dispatch(setSortOption({ sortBy, sortType }));
-
-        if(resetGridOption) {
-            const displayedAllowColumns = GroupHelper.getDislayedColumns(displayedColumns, selectedGroupByOption);
-            store.dispatch(setDisplayedColumns(displayedAllowColumns));
-        }
     }
 }
 

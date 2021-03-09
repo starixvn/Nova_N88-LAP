@@ -2572,4 +2572,12 @@
   <data name="ProductSLT" xml:space="preserve">
     <value>体育时时彩</value>
   </data>
+  <data name="ViewColumn" xml:space="preserve">
+    <value>View Column</value>
+    <comment>151187</comment>
+  </data>
+  <data name="QuickDownloadDateRangeExceedMsg" xml:space="preserve">
+    <value>To download excel file, please select data range within 1 month.</value>
+    <comment>151187</comment>
+  </data>
 </root>

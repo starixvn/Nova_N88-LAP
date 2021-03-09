@@ -17,6 +17,8 @@ import CollectionHelper from '../libs/helpers/collectionHelper';
 import { DateFilterTypeOptions, UserNameFilterOptions } from '../constants/filterConsts';
 import { defaultPagingOption, defaultSortOption } from '../constants/gridContants';
 import SelectOption from '../components/filter/SelectOption';
+import QueryService from '../libs/queryService';
+import GridHelper from '../libs/helpers/gridHelper';
 
 export class FormFilter extends PureComponent {
     constructor(props) {
@@ -152,12 +154,43 @@ export class FormFilter extends PureComponent {
         )
     }
 
+    _validateDateRangeSupportQuickDownload = dateRange => {
+        const { fromDate, toDate } = dateRange;
+        if(typeof fromDate === "string" || typeof toDate === "string") {
+            return true;
+        } else {
+            const differentDays = toDate.diff(fromDate, 'days');
+            return differentDays <= 30;
+        }
+    }
+
+    _handleQuickDownload = event => {
+        event.preventDefault();
+        const { displayedColumns, dateRange, toggleLoader } = this.props;
+        if(!this._validateDateRangeSupportQuickDownload(dateRange)) {
+            alert(LangHelper.getSingleResource('QuickDownloadDateRangeExceedMsg'))
+            return;
+        }
+
+        const params = {
+            ...QueryHelper.toAPIParams({
+                ...this.props,
+                requestParam: {}
+            }),
+            orderCols: GridHelper.getOrderCols(displayedColumns)
+        }
+        toggleLoader(true);
+        QueryService.exportReportDetailData(params, () => toggleLoader(false));
+       
+    }
+
     _handleSubmit = event => {
         event.preventDefault();
+        const { displayedColumns } = this.props;
         const newRequestParam = QueryHelper.toAPIParams(this.props);
-        this.props.setRequestParam(newRequestParam);
+        this.props.setRequestParam({ ...newRequestParam, displayedColumns });
         this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdateGridOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize,
-             defaultSortOption.sortBy, defaultSortOption.sortType, true));
+             defaultSortOption.sortBy, defaultSortOption.sortType));
     }
 
     render() {
@@ -232,7 +265,10 @@ export class FormFilter extends PureComponent {
                     </div>
                 </div>
             </CollapsiblePanel>
-            <GroupFilter isDisabledSubmit={!this.props.selectedCurrency || !this.props.selectedProduct} onSubmit={this._handleSubmit} />
+            <GroupFilter
+                isDisabledSubmit={!this.props.selectedCurrency || !this.props.selectedProduct} onSubmit={this._handleSubmit}
+                onQuickDownload={this._handleQuickDownload}
+            />
         </React.Fragment>
         )
     }
@@ -240,7 +276,7 @@ export class FormFilter extends PureComponent {
 
 function mapDispatchToProps(dispatch) {
     const { fetchReportData, fetchSettingData, setSelectedDateType, setSelectedBrand, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
-        changeIsExcludeTest, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone } = ActionCreators;
+        changeIsExcludeTest, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone, toggleLoader } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
         fetchSettingData,
@@ -256,13 +292,14 @@ function mapDispatchToProps(dispatch) {
         setNoDraw,
         setDrilldownInOriginalCurrency,
         setRequestParam,
-        setSelectedTimezone
+        setSelectedTimezone,
+        toggleLoader
     }), dispatch);
 }
 
 function mapStateToProps(state) {
     const { settingData, selectedDateType, dateRange, selectedBrand, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
-        isExcludeTest, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone } = state;
+        isExcludeTest, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone, displayedColumns } = state;
     return Object.assign({}, {
         settingData,
         selectedDateType,
@@ -277,7 +314,8 @@ function mapStateToProps(state) {
         selectedCurrency,
         selectedBaseCurrency,
         selectedGroupByOption,
-        selectedTimezone
+        selectedTimezone,
+        displayedColumns
     });
 };
 

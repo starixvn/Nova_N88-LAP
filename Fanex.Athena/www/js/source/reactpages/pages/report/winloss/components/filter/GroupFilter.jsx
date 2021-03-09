@@ -3,13 +3,45 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ActionCreators from '../../actions';
 import CollapsiblePanel from '@jsroot/components/collapsible-panel';
+import MultipleSelect from '@9softstudio/react-multiselect'
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import LangHelper from '@jsroot/lib/langHelper';
-import { GroupByOptions } from '../../constants/filterConsts';
+import { GroupByOptions, GroupByOptionAllowQuickDownload } from '../../constants/filterConsts';
+import GroupHelper from '../../libs/helpers/groupHelper';
+import { displayedColumns as DefaultDisplayedColumns } from '../../constants/gridContants';
 
 export const GroupFilter = props => {
 
-    const { setSelectedGroupByOption, selectedGroupByOption, onSubmit, isDisabledSubmit } = props;
+    const { setSelectedGroupByOption, selectedGroupByOption, onSubmit, onQuickDownload, isDisabledSubmit,
+        displayedColumns, setDisplayedColumns } = props;
+        
+    const isDisabledQuickDownload = React.useMemo(() => !GroupByOptionAllowQuickDownload.some(_ => _ === selectedGroupByOption), [selectedGroupByOption]);
+
+    const _handleChangeDisplayedColumn = (currentItem, selectedItemsKey) => {
+        const selectedKeyList = selectedItemsKey.split(',');
+        const newColumnList = displayedColumns.map(item => {
+            const isShow = selectedKeyList.indexOf(item.key) !== -1;
+            return item.show === isShow ? item : { ...item, show: isShow };
+        })
+        setDisplayedColumns(newColumnList);
+    }
+
+    const _renderViewColumnSelectList = () => {
+        return (
+            <MultipleSelect id="ddlViewColumn"
+                language={LangHelper.currentLanguage}
+                dataSource={displayedColumns}
+                keyField={"key"}
+                valueField={"name"}
+                statusField={"show"}
+                onChange={_handleChangeDisplayedColumn} />)
+    }
+
+    const _handleChangeGroupBy = React.useCallback(selectedGroupBy => {
+        setSelectedGroupByOption(selectedGroupBy)
+        const newDisplayedColumns = GroupHelper.getDislayedColumns(DefaultDisplayedColumns, selectedGroupBy)
+        setDisplayedColumns(newDisplayedColumns)
+    }, [])
 
     return (
         <CollapsiblePanel className="group-filter page-filter">
@@ -19,12 +51,21 @@ export const GroupFilter = props => {
                     name={'filterGroupBy'}
                     value={selectedGroupByOption}
                     options={GroupByOptions}
-                    onChange={setSelectedGroupByOption}
+                    onChange={_handleChangeGroupBy}
                 />
+            </div>
+            <div className="form-group">
+                <label className="label-text">{LangHelper.getSingleResource("ViewColumn")}</label>
+                {_renderViewColumnSelectList()}
             </div>
             <div className="form-group">
                 <div className="button-group">
                     <button type="button" className="btn btn-submit" disabled={isDisabledSubmit} onClick={onSubmit}>{LangHelper.getSingleResource("Submit")}</button>
+                </div>
+            </div>
+            <div className="form-group">
+                <div className="button-group">
+                    <button type="button" className="btn" disabled={isDisabledQuickDownload} onClick={onQuickDownload}>{LangHelper.getSingleResource("Download")}</button>
                 </div>
             </div>
             <div className="row">
@@ -42,18 +83,18 @@ export const GroupFilter = props => {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSelectedGroupByOption } = ActionCreators;
+    const { setSelectedGroupByOption, setDisplayedColumns } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
-        setSelectedGroupByOption
+        setSelectedGroupByOption,
+        setDisplayedColumns
     }), dispatch)
 }
 
-
 function mapStateToProps(state) {
-    const { selectedGroupByOption, requestParam } = state;
+    const { selectedGroupByOption, displayedColumns } = state;
     return Object.assign({}, {
         selectedGroupByOption,
-        requestParam
+        displayedColumns
     })
 }
 

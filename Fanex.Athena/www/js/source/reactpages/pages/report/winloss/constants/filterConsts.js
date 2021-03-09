@@ -8,6 +8,8 @@ export const GroupByOptionIds = {
     player: 5
 }
 
+export const GroupByOptionAllowQuickDownload = [GroupByOptionIds.date, GroupByOptionIds.month];
+
 export const GroupByOptions = [
     { label: LangHelper.getSingleResource("Date"), value: GroupByOptionIds.date },
     { label: LangHelper.getSingleResource("Month"), value: GroupByOptionIds.month },

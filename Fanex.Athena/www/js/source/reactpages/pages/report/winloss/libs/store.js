@@ -1,7 +1,7 @@
 import Store from '@jsroot/lib/store';
 import reducers from '../reducers';
 import { displayedColumns, defaultPagingOption, defaultSortOption } from '../constants/gridContants';
-import { GroupByOptionIds, TimezoneOptions } from '../constants/filterConsts';
+import { GroupByOptionIds, DefaultTimezone } from '../constants/filterConsts';
 import GroupHelper from '../libs/helpers/groupHelper';
 
 const defaultState = {
@@ -13,7 +13,8 @@ const defaultState = {
      pagingOption: defaultPagingOption,
      sortOption: defaultSortOption,
      selectedGroupByOption: GroupByOptionIds.date,
-     selectedTimezone: TimezoneOptions[0].value,
+     selectedTimezone: DefaultTimezone,
+     settingData: { timezones: [] },
      displayedColumns: GroupHelper.getDislayedColumns(displayedColumns, GroupByOptionIds.date)
    }
 }

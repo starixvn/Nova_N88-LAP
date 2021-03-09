@@ -6,6 +6,8 @@ import { setUsername } from '@jsroot/actions/usernameAction';
 import { setSelectedProduct } from '@jsroot/actions/productAction';
 import { changeIsExcludeTest } from '@jsroot/actions/excludeTestAction';
 import { setSelectedBrand } from '@jsroot/actions/brandAction';
+import { setSettingData } from '@jsroot/actions/settingDataAction';
+import QueryService from '../libs/queryService';
 
 const setNoDraw = isNoDraw => {
     return {
@@ -49,7 +51,16 @@ const setSelectedTimezone = timezone => {
     }
 }
 
+export const fetchSettingData = () => async dispatch => {
+    const response = await QueryService.getSettingData();
+    if(!response.isSuccess) {
+        alert(LangHelper.getSingleResource("ErrorProcessingMsg"));
+    } 
+    dispatch(setSettingData(response.data));
+}
+
 export default {
+    fetchSettingData,
     setSelectedDateType,
     setDateRange,
     setSelectedBrand,

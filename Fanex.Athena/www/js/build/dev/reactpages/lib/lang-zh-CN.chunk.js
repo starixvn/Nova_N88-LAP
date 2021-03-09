@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 2/4/2021 1:10:31 PM
+// Generated at: 3/4/2021 12:24:58 PM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -376,9 +376,6 @@ window._language_zh_CN = {
   GameTypeName: "游戏类型名称",
   General: "常规",
   GGR: "GGR",
-  GMT0: "GMT+0",
-  GMT8: "GMT+8",
-  GMTNegative4: "GMT-4",
   Go: "开始",
   GoldDeluxeWinLossGuidelineContent: "在GMT-4下午4点之前的任何查询将依据前一天下午4点的数据。您每次查询可以过滤最多3个月内的数据。",
   GotoCustomerList: "转至会员名单",
@@ -431,6 +428,7 @@ window._language_zh_CN = {
   InvalidRequestOrNotAuthorizedMsg: "无效的请求或您未被授权访问所请求的资源",
   InvalidStartGroupNameValidationMsg: "Group Name cannot start with &apos;starix&apos;",
   IsNeutral: "(中)",
+  JackpotWonDetails: "积宝头奖详情",
   Jan: "一月",
   January: "一月",
   Jul: "七月",
@@ -626,6 +624,7 @@ window._language_zh_CN = {
   Player: "玩家",
   PlayerAdminUpdateFailedMsg: "请重试一次!",
   PlayerStatementSupportMonths: "数据最多只支持18个月",
+  PlayerWinloss: "Player Win Loss",
   PreGame: "游戏开始前",
   Prev: "上个月",
   PreviousPeriod: "Previous Period",

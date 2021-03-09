@@ -14,14 +14,18 @@ import ActionCreators from '../actions'
 import GroupFilter from './filter/GroupFilter';
 import QueryHelper from '../libs/helpers/queryHelper';
 import CollectionHelper from '../libs/helpers/collectionHelper';
-import { DateFilterTypeOptions, UserNameFilterOptions, TimezoneOptions } from '../constants/filterConsts';
-import { defaultPagingOption } from '../constants/gridContants';
+import { DateFilterTypeOptions, UserNameFilterOptions } from '../constants/filterConsts';
+import { defaultPagingOption, defaultSortOption } from '../constants/gridContants';
 import SelectOption from '../components/filter/SelectOption';
 
 export class FormFilter extends PureComponent {
     constructor(props) {
         super(props);
         this.currencyList = CurrencyHelper.getTpCurrencyList(this.props.selectedBrand, AppData.brands);
+    }
+
+    componentDidMount() {
+       this.props.fetchSettingData();
     }
 
     currencyList = [];
@@ -74,10 +78,11 @@ export class FormFilter extends PureComponent {
     }
 
     _renderTimezoneSelectList() {
+        const timezones = this.props.settingData.timezones;
         return (
             <Select instanceId="ddlTimezone"
                 value={this.props.selectedTimezone}
-                options={TimezoneOptions}
+                options={timezones}
                 onChange={(item) => this.props.setSelectedTimezone(item.value)} />
         );
     }
@@ -151,7 +156,8 @@ export class FormFilter extends PureComponent {
         event.preventDefault();
         const newRequestParam = QueryHelper.toAPIParams(this.props);
         this.props.setRequestParam(newRequestParam);
-        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdateGridOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize));
+        this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdateGridOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize,
+             defaultSortOption.sortBy, defaultSortOption.sortType, true));
     }
 
     render() {
@@ -233,10 +239,11 @@ export class FormFilter extends PureComponent {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { fetchReportData, setSelectedDateType, setSelectedBrand, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
+    const { fetchReportData, fetchSettingData, setSelectedDateType, setSelectedBrand, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
         changeIsExcludeTest, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
+        fetchSettingData,
         setSelectedDateType,
         setSelectedBrand,
         setDateRange,
@@ -254,9 +261,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    const { selectedDateType, dateRange, selectedBrand, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
+    const { settingData, selectedDateType, dateRange, selectedBrand, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
         isExcludeTest, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone } = state;
     return Object.assign({}, {
+        settingData,
         selectedDateType,
         dateRange,
         selectedBrand,

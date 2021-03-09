@@ -27,8 +27,4 @@ export const UserNameFilterOptions = [
     { value: 3, label: LangHelper.getSingleResource('SabaSystemId') },
 ];
 
-export const TimezoneOptions = [
-    { value: 8, label: LangHelper.getSingleResource('GMT8') },
-    { value: -4, label: LangHelper.getSingleResource('GMTNegative4') },
-    { value: 0, label: LangHelper.getSingleResource('GMT0') }
-];
+export const DefaultTimezone = 8;

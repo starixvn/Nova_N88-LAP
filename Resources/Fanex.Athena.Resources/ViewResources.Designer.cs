@@ -19,7 +19,7 @@ namespace Fanex.Athena.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ViewResources {
@@ -3139,33 +3139,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GMT+0.
-        /// </summary>
-        public static string GMT0 {
-            get {
-                return ResourceManager.GetString("GMT0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to GMT+8.
-        /// </summary>
-        public static string GMT8 {
-            get {
-                return ResourceManager.GetString("GMT8", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to GMT-4.
-        /// </summary>
-        public static string GMTNegative4 {
-            get {
-                return ResourceManager.GetString("GMTNegative4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Go.
         /// </summary>
         public static string Go {
@@ -5718,6 +5691,15 @@ namespace Fanex.Athena.Resources {
         public static string PlayerStatementSupportMonths {
             get {
                 return ResourceManager.GetString("PlayerStatementSupportMonths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Win Loss.
+        /// </summary>
+        public static string PlayerWinloss {
+            get {
+                return ResourceManager.GetString("PlayerWinloss", resourceCulture);
             }
         }
         

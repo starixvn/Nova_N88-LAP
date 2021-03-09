@@ -346,7 +346,7 @@ const setDateRange = dateRange => {
 /*!***************************************************!*\
   !*** ./www/js/source/reactpages/actions/types.js ***!
   \***************************************************/
-/*! exports provided: FETCH_DATA, SET_GRID_DATA, SET_SELECTED_PRODUCT, SET_SELECTED_BRAND, SET_SELECTED_BASECURRENCY, SET_BASECURRENCY_LIST, SET_SELECTED_CURRENCY, TOGGLE_LOADER, CHANGE_IS_EXCLUDE_TEST, USER_GUIDE_CONTENT, SET_DATE_RANGE, GET_DATE_CONSTRAINT, CHANGE_IS_CONVERT_ALL, SET_SELECTED_STATUS, SET_SELECTED_PLATFORM, SET_SELECTED_LIVESTATUS, SET_USERNAME, SET_REQUEST_PARAM, SET_REPORT_TITLE, SET_PAGING_OPTION, SET_SORT_OPTION, SET_BONUS_NAME, SET_SELECTED_BONUS_TYPE, SET_SELECTED_BONUS_STATUS, SET_SELECTED_CLAIM_STATUS, SET_BONUS_CODE_LIST, SET_SELECTED_BONUS_CODE */
+/*! exports provided: FETCH_DATA, SET_GRID_DATA, SET_SELECTED_PRODUCT, SET_SELECTED_BRAND, SET_SELECTED_BASECURRENCY, SET_BASECURRENCY_LIST, SET_SELECTED_CURRENCY, TOGGLE_LOADER, CHANGE_IS_EXCLUDE_TEST, USER_GUIDE_CONTENT, SET_DATE_RANGE, GET_DATE_CONSTRAINT, CHANGE_IS_CONVERT_ALL, SET_SELECTED_STATUS, SET_SELECTED_PLATFORM, SET_SELECTED_LIVESTATUS, SET_USERNAME, SET_REQUEST_PARAM, SET_REPORT_TITLE, SET_PAGING_OPTION, SET_SORT_OPTION, SET_SETTING_DATA, SET_BONUS_NAME, SET_SELECTED_BONUS_TYPE, SET_SELECTED_BONUS_STATUS, SET_SELECTED_CLAIM_STATUS, SET_BONUS_CODE_LIST, SET_SELECTED_BONUS_CODE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -372,6 +372,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_REPORT_TITLE", function() { return SET_REPORT_TITLE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PAGING_OPTION", function() { return SET_PAGING_OPTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SORT_OPTION", function() { return SET_SORT_OPTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SETTING_DATA", function() { return SET_SETTING_DATA; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_BONUS_NAME", function() { return SET_BONUS_NAME; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BONUS_TYPE", function() { return SET_SELECTED_BONUS_TYPE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BONUS_STATUS", function() { return SET_SELECTED_BONUS_STATUS; });
@@ -425,6 +426,9 @@ const SET_REPORT_TITLE = "SET_REPORT_TITLE";
 
 const SET_PAGING_OPTION = 'SET_PAGING_OPTION';
 const SET_SORT_OPTION = 'SET_SORT_OPTION';
+/* Setting Data */
+
+const SET_SETTING_DATA = 'SET_SETTING_DATA';
 /* Bonus */
 
 const SET_BONUS_NAME = "SET_BONUS_NAME";
@@ -1107,13 +1111,13 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, showMonthArrow ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
       disabled: this.disablePrevButton,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthButton']), {}, {
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthButton'], {
         float: 'left'
       }),
       className: classes.prevButton,
       onClick: this.prevButtonClickHandler.bind(this)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthArrow']), styles['MonthArrowPrev'])
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthArrow'], {}, styles['MonthArrowPrev'])
     })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: classes.month
     }, this.renderMonthList(classes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -1123,13 +1127,13 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, this.renderYearList(classes))), showMonthArrow ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
       disabled: this.disableNextButton,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthButton']), {}, {
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthButton'], {
         float: 'right'
       }),
       className: classes.nextButton,
       onClick: this.nextButtonClickHandler.bind(this)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthArrow']), styles['MonthArrowNext'])
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthArrow'], {}, styles['MonthArrowNext'])
     })) : null);
   }
 
@@ -1273,10 +1277,10 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       classNames
     } = this.props;
 
-    const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"]), classNames);
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"], {}, classNames);
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['Calendar']), this.props.style),
+      style: onlyClasses ? undefined : _objectSpread({}, styles['Calendar'], {}, this.props.style),
       className: classes.calendar
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: classes.monthAndYear
@@ -1384,7 +1388,7 @@ class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       date,
       format
     } = props;
-    this.locale = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_4__["default"].locale), locale);
+    this.locale = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_4__["default"].locale, {}, locale);
     const selectedDate = Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(date, format, 'startOf');
     this.state = {
       selectedDate,
@@ -1424,7 +1428,7 @@ class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       classNames
     } = this.props;
 
-    const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"]), classNames);
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"], {}, classNames);
 
     const {
       show
@@ -1556,8 +1560,8 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const endDate = Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(props.endDate, format, 'endOf');
     this.styles = Object(_styles_js__WEBPACK_IMPORTED_MODULE_6__["default"])(theme);
     this.calendarSelectionStep = 0;
-    this.locale = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].locale), props.locale);
-    this.ranges = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].ranges(props.today, props.minDate, props.maxDate, props.limitedMonthRange)), props.ranges);
+    this.locale = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].locale, {}, props.locale);
+    this.ranges = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].ranges(props.today, props.minDate, props.maxDate, props.limitedMonthRange), {}, props.ranges);
     this.isValid = true;
     this.originalRange = {
       startDate,
@@ -1712,7 +1716,7 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       styles
     } = this;
 
-    const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"]), classNames);
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"], {}, classNames);
 
     const calendarsCount = Number(calendars) - 1;
     const buttonHandlers = {
@@ -1918,7 +1922,7 @@ class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const todayStyle = isToday ? styles['DayToday'] : {};
     const sundayStyle = isSunday ? styles['DaySunday'] : {};
     const specialDayStyle = isSpecialDay ? styles['DaySpecialDay'] : {};
-    return _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, todayStyle), sundayStyle), specialDayStyle), inRangeStyle), hoverStyle), passiveStyle), activeStyle), selectedStyle), startEdgeStyle), endEdgeStyle);
+    return _objectSpread({}, todayStyle, {}, sundayStyle, {}, specialDayStyle, {}, inRangeStyle, {}, hoverStyle, {}, passiveStyle, {}, activeStyle, {}, selectedStyle, {}, startEdgeStyle, {}, endEdgeStyle);
   }
 
   getClassNames(classes) {
@@ -1970,7 +1974,7 @@ class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onMouseDown: this.handleMouseEvent.bind(this),
       onMouseUp: this.handleMouseEvent.bind(this),
       className: classes,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['Day']), stateStyle)
+      style: onlyClasses ? undefined : _objectSpread({}, styles['Day'], {}, stateStyle)
     }, dayMoment.date()));
   }
 
@@ -2086,7 +2090,7 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       const active = this.selectedItem === name;
       gotActiveRange = !gotActiveRange && active;
 
-      const style = _objectSpread(_objectSpread({}, styles['PredefinedRangesItem']), gotActiveRange ? styles['PredefinedRangesItemActive'] : {});
+      const style = _objectSpread({}, styles['PredefinedRangesItem'], {}, gotActiveRange ? styles['PredefinedRangesItemActive'] : {});
 
       const predefinedRangeClass = classnames__WEBPACK_IMPORTED_MODULE_3___default()({
         [classes.predefinedRangesItem]: true,
@@ -2109,7 +2113,7 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       locale
     } = this.props;
 
-    const locales = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_6__["default"].locale), locale);
+    const locales = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_6__["default"].locale, {}, locale);
 
     const {
       styles
@@ -2122,12 +2126,12 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"].rangeButtonGroup
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: classes.applyButton,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['RangeApplyButton']), style),
+      style: onlyClasses ? undefined : _objectSpread({}, styles['RangeApplyButton'], {}, style),
       type: "button",
       onClick: e => this.clickButton(e, action.apply)
     }, locales.applyLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: classes.cancelButton,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['RangeCancelButton']), style),
+      style: onlyClasses ? undefined : _objectSpread({}, styles['RangeCancelButton'], {}, style),
       onClick: e => this.clickButton(e, action.cancel),
       type: "button"
     }, locales.cancelLabel));
@@ -2143,10 +2147,10 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       styles
     } = this;
 
-    const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"]), classNames);
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"], {}, classNames);
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['PredefinedRanges']), style),
+      style: onlyClasses ? undefined : _objectSpread({}, styles['PredefinedRanges'], {}, style),
       className: classes.predefinedRanges
     }, this.renderRangeList(classes), this.renderRangeButtons(classes));
   }
@@ -2509,39 +2513,39 @@ const defaultTheme = {
 
   const cellSize = (parseInt(calendarWidth, 10) - parseInt(calendarPadding, 10) * 2) / 7 - parseInt(cellMargin, 10) * 2;
   return {
-    DateRange: _objectSpread(_objectSpread({}, defaultTheme.DateRange), customTheme.DateRange),
-    Calendar: _objectSpread(_objectSpread({}, defaultTheme.Calendar), customTheme.Calendar),
-    Day: _objectSpread(_objectSpread({
+    DateRange: _objectSpread({}, defaultTheme.DateRange, {}, customTheme.DateRange),
+    Calendar: _objectSpread({}, defaultTheme.Calendar, {}, customTheme.Calendar),
+    Day: _objectSpread({
       width: cellSize,
       height: cellSize,
       lineHeight: cellSize + 'px'
-    }, defaultTheme.Day), customTheme.Day),
-    DayPassive: _objectSpread(_objectSpread({}, defaultTheme.DayPassive), customTheme.DayPassive),
-    DayHover: _objectSpread(_objectSpread({}, defaultTheme.DayHover), customTheme.DayHover),
-    DayToday: _objectSpread(_objectSpread({}, defaultTheme.DayToday), customTheme.DayToday),
-    DaySunday: _objectSpread(_objectSpread({}, defaultTheme.DaySunday), customTheme.DaySunday),
-    DaySpecialDay: _objectSpread(_objectSpread({}, defaultTheme.DaySpecialDay), customTheme.DaySpecialDay),
-    DayActive: _objectSpread(_objectSpread({}, defaultTheme.DayActive), customTheme.DayActive),
-    DaySelected: _objectSpread(_objectSpread({}, defaultTheme.DaySelected), customTheme.DaySelected),
-    DayStartEdge: _objectSpread(_objectSpread({}, defaultTheme.DayStartEdge), customTheme.DayStartEdge),
-    DayEndEdge: _objectSpread(_objectSpread({}, defaultTheme.DayEndEdge), customTheme.DayEndEdge),
-    DayInRange: _objectSpread(_objectSpread({}, defaultTheme.DayInRange), customTheme.DayInRange),
-    Weekday: _objectSpread(_objectSpread({
+    }, defaultTheme.Day, {}, customTheme.Day),
+    DayPassive: _objectSpread({}, defaultTheme.DayPassive, {}, customTheme.DayPassive),
+    DayHover: _objectSpread({}, defaultTheme.DayHover, {}, customTheme.DayHover),
+    DayToday: _objectSpread({}, defaultTheme.DayToday, {}, customTheme.DayToday),
+    DaySunday: _objectSpread({}, defaultTheme.DaySunday, {}, customTheme.DaySunday),
+    DaySpecialDay: _objectSpread({}, defaultTheme.DaySpecialDay, {}, customTheme.DaySpecialDay),
+    DayActive: _objectSpread({}, defaultTheme.DayActive, {}, customTheme.DayActive),
+    DaySelected: _objectSpread({}, defaultTheme.DaySelected, {}, customTheme.DaySelected),
+    DayStartEdge: _objectSpread({}, defaultTheme.DayStartEdge, {}, customTheme.DayStartEdge),
+    DayEndEdge: _objectSpread({}, defaultTheme.DayEndEdge, {}, customTheme.DayEndEdge),
+    DayInRange: _objectSpread({}, defaultTheme.DayInRange, {}, customTheme.DayInRange),
+    Weekday: _objectSpread({
       width: cellSize,
       height: cellSize / 2,
       lineHeight: cellSize / 2 + 'px'
-    }, defaultTheme.Weekday), customTheme.Weekday),
-    MonthAndYear: _objectSpread(_objectSpread({}, defaultTheme.MonthAndYear), customTheme.MonthAndYear),
-    MonthAndYearSelect: _objectSpread(_objectSpread({}, defaultTheme.MonthAndYearSelect), customTheme.MonthAndYearSelect),
-    MonthButton: _objectSpread(_objectSpread({}, defaultTheme.MonthButton), customTheme.MonthButton),
-    MonthArrow: _objectSpread(_objectSpread({}, defaultTheme.MonthArrow), customTheme.MonthArrow),
-    MonthArrowPrev: _objectSpread(_objectSpread({}, defaultTheme.MonthArrowPrev), customTheme.MonthArrowPrev),
-    MonthArrowNext: _objectSpread(_objectSpread({}, defaultTheme.MonthArrowNext), customTheme.MonthArrowNext),
-    PredefinedRanges: _objectSpread(_objectSpread({}, defaultTheme.PredefinedRanges), customTheme.PredefinedRanges),
-    PredefinedRangesItem: _objectSpread(_objectSpread({}, defaultTheme.PredefinedRangesItem), customTheme.PredefinedRangesItem),
-    PredefinedRangesItemActive: _objectSpread(_objectSpread({}, defaultTheme.PredefinedRangesItemActive), customTheme.PredefinedRangesItemActive),
-    RangeApplyButton: _objectSpread(_objectSpread(_objectSpread({}, defaultTheme.RangeButton), defaultTheme.RangeApplyButton), customTheme.RangeApplyButton),
-    RangeCancelButton: _objectSpread(_objectSpread(_objectSpread({}, defaultTheme.RangeButton), defaultTheme.RangeCancelButton), customTheme.RangeCancelButton)
+    }, defaultTheme.Weekday, {}, customTheme.Weekday),
+    MonthAndYear: _objectSpread({}, defaultTheme.MonthAndYear, {}, customTheme.MonthAndYear),
+    MonthAndYearSelect: _objectSpread({}, defaultTheme.MonthAndYearSelect, {}, customTheme.MonthAndYearSelect),
+    MonthButton: _objectSpread({}, defaultTheme.MonthButton, {}, customTheme.MonthButton),
+    MonthArrow: _objectSpread({}, defaultTheme.MonthArrow, {}, customTheme.MonthArrow),
+    MonthArrowPrev: _objectSpread({}, defaultTheme.MonthArrowPrev, {}, customTheme.MonthArrowPrev),
+    MonthArrowNext: _objectSpread({}, defaultTheme.MonthArrowNext, {}, customTheme.MonthArrowNext),
+    PredefinedRanges: _objectSpread({}, defaultTheme.PredefinedRanges, {}, customTheme.PredefinedRanges),
+    PredefinedRangesItem: _objectSpread({}, defaultTheme.PredefinedRangesItem, {}, customTheme.PredefinedRangesItem),
+    PredefinedRangesItemActive: _objectSpread({}, defaultTheme.PredefinedRangesItemActive, {}, customTheme.PredefinedRangesItemActive),
+    RangeApplyButton: _objectSpread({}, defaultTheme.RangeButton, {}, defaultTheme.RangeApplyButton, {}, customTheme.RangeApplyButton),
+    RangeCancelButton: _objectSpread({}, defaultTheme.RangeButton, {}, defaultTheme.RangeCancelButton, {}, customTheme.RangeCancelButton)
   };
 });
 
@@ -3414,7 +3418,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_objectSpread(_objectSpread({}, _filterAction__WEBPACK_IMPORTED_MODULE_0__["default"]), _dataAction__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (_objectSpread({}, _filterAction__WEBPACK_IMPORTED_MODULE_0__["default"], {}, _dataAction__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -3927,7 +3931,7 @@ const Widget = props => {
     isLoading: isLoading
   }), hasData && children || _renderNoData()));
 };
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
 
 /***/ }),
 
@@ -4006,7 +4010,7 @@ function mapStateToProps(state) {
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
 
 /***/ }),
 
@@ -4137,7 +4141,7 @@ const BonusInfoDetailWidget = props => {
   };
 
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
-    return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
+    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize,
       TotalItem: totalRows
@@ -4312,7 +4316,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoDetailWidget)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoDetailWidget)));
 
 /***/ }),
 
@@ -4461,29 +4465,29 @@ const BonusInfoSummaryWidget = props => {
     const gridHeader = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"],
       key: "header1"
-    }, globalFilter.groupBy === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__["GroupByOptionIds"].bonusCodeAndDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].date].attributes), {}, {
+    }, globalFilter.groupBy === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__["GroupByOptionIds"].bonusCodeAndDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].date].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].date].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusName].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].date].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusName].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusName].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusCode].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusName].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusCode].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusType].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusType].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusType].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].startDate].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusType].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].startDate].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].startDate].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].endDate].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].startDate].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].endDate].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].endDate].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusStatus].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].endDate].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusStatus].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusStatus].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], claimStatusAtributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].claimStatus].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimants].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].bonusStatus].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], claimStatusAtributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].claimStatus].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimants].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimants].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimedAmount].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimants].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimedAmount].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimedAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].gGR].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalClaimedAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].gGR].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].gGR].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalDeposit].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].gGR].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalDeposit].attributes, {
       rowSpan: 2
-    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalDeposit].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalWithdrawal].attributes), {}, {
+    }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalDeposit].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderCell"], _objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalWithdrawal].attributes, {
       rowSpan: 2
     }), _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["BonusInfoSummaryGridColumns"].totalWithdrawal].name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"],
@@ -4590,7 +4594,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoSummaryWidget)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoSummaryWidget)));
 
 /***/ }),
 
@@ -4986,16 +4990,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class DataService {}
 
 _defineProperty(DataService, "getBonusInfoSummaryAPIParams", (filterData, sortInfo) => {
-  const params = _objectSpread(_objectSpread({}, filterData), sortInfo);
+  const params = _objectSpread({}, filterData, {}, sortInfo);
 
   return params;
 });
 
 _defineProperty(DataService, "getBonusInfoDetailAPIParams", (filterData, pagingOption, sortInfo, dateRange, bonusCode) => {
-  const params = _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, filterData), sortInfo), dateRange), {
+  const params = _objectSpread({}, filterData, {}, sortInfo, {}, dateRange, {}, {
     pageIndex: pagingOption.PageIndex,
     pageSize: pagingOption.PageSize
-  }), {}, {
+  }, {
     bonusCode
   });
 
@@ -5003,13 +5007,13 @@ _defineProperty(DataService, "getBonusInfoDetailAPIParams", (filterData, pagingO
 });
 
 _defineProperty(DataService, "getBonusInfoSummaryExportAPIParams", (filterData, sortInfo) => {
-  const params = _objectSpread(_objectSpread({}, filterData), sortInfo);
+  const params = _objectSpread({}, filterData, {}, sortInfo);
 
   return params;
 });
 
 _defineProperty(DataService, "getBonusInfoDetailExportAPIParams", (filterData, sortInfo, dateRange, bonusCode) => {
-  const params = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, filterData), sortInfo), dateRange), {}, {
+  const params = _objectSpread({}, filterData, {}, sortInfo, {}, dateRange, {
     bonusCode
   });
 
@@ -5081,7 +5085,7 @@ _defineProperty(QueryService, "fetchData", async apiCall => {
     const response = await apiCall();
 
     if (response.status === 200) {
-      return _objectSpread(_objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["successResponse"]), {
+      return _objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["successResponse"], {}, {
         data: response.data
       });
     }
@@ -5116,13 +5120,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-const defaultState = _objectSpread(_objectSpread(_objectSpread({}, window.initialState), {
+const defaultState = _objectSpread({}, window.initialState, {}, {
   dropdownOptionsData: {
     bonusTypeList: [],
     bonusStatusList: [],
     claimStatusList: []
   }
-}), {
+}, {}, {
   selectedGroupByOption: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].bonusCode
 });
 

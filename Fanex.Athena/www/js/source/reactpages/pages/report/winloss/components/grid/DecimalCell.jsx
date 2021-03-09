@@ -3,8 +3,8 @@ import { Cell } from '@9softstudio/react-grid';
 import NumberFormat from '@jsroot/lib/numberFormat';
 
 const DecimalCell = props => {
-    const { value, className, children, digits } = props;
-    return (<Cell className={className + (value < 0 ? ' negative' : '')}>
+    const { value, className, children, digits, disableWarning } = props;
+    return (<Cell className={className + (value < 0 && !disableWarning ? ' negative' : '')}>
         {NumberFormat.format(value, digits)}
         {children}
     </Cell>)

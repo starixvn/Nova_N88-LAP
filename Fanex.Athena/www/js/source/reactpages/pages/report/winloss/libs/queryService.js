@@ -4,6 +4,26 @@ import LangHelper from '@jsroot/lib/langHelper';
 import { Url, FileNameExport, errorResponse, successResponse } from '../constants/queryConsts';
 
 export default class QueryService {
+    static async getSettingData() {
+        try {
+            const response = await DataService.getReportData(Url.setting);
+            if (response.status === 200) {
+                return {
+                    ...successResponse,
+                    ...{ data: response.data }
+                }
+            }
+        }
+        catch (e) {
+            console.log(e)
+        }
+
+        return {
+            ...errorResponse,
+            ...{ data: { gridData: {} } }
+        };
+    }
+
     static async getReportData(params) {
         try {
             const response = await DataService.postReportData(Url.reportByGroup, params);

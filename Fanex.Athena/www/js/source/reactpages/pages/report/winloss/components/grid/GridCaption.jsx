@@ -24,19 +24,16 @@ export class GridCaption extends React.Component {
 
     handleExportExcel = event => {
         event.preventDefault();
-        const { requestParam, toggleLoader, pagingOption, sortOption } = this.props;
+        const { requestParam, toggleLoader, sortOption } = this.props;
         if (!requestParam) {
             return;
         }
         toggleLoader(true)
         const params = {
             ...requestParam,
-            ...sortOption,
-            ...{
-                pageIndex: pagingOption.PageIndex,
-                pageSize: pagingOption.PageSize,
-                orderCols: this._getOrderCols()
-            }
+            sortById: sortOption.sortBy,
+            isSortAsc: sortOption.sortType === 'asc',
+            orderCols: this._getOrderCols()
         }
         QueryService.exportReportData(params, () => toggleLoader(false));
     }

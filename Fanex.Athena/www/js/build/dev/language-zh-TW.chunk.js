@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 2/4/2021 1:10:31 PM
+﻿// Generated at: 3/4/2021 12:24:58 PM
 window._language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
@@ -388,6 +388,7 @@ InvalidRequestMsg:"請求無效",
 InvalidRequestOrNotAuthorizedMsg:"無效的請求或您未被授權訪問所請求的資源",
 InvalidStartGroupNameValidationMsg:"Group Name cannot start with &apos;starix&apos;",
 IsNeutral:"(中)",
+JackpotWonDetails:"積寶頭獎詳情",
 Jan:"一月",
 January:"一月",
 Jul:"七月",

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 2/4/2021 1:10:31 PM
+﻿// Generated at: 3/4/2021 12:24:58 PM
 window._language_zh_Hans = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -388,6 +388,7 @@ InvalidParams:"Invalid parameters",
 InvalidRequestMsg:"请求无效",
 InvalidRequestOrNotAuthorizedMsg:"无效的请求或您未被授权访问所请求的资源",
 IsNeutral:"(中)",
+JackpotWonDetails:"积宝头奖详情",
 Jan:"一月",
 January:"一月",
 Jul:"七月",

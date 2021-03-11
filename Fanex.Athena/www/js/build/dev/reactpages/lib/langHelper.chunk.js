@@ -740,7 +740,7 @@ window._language_en_US = {
   ProductCS: "RNG Casino",
   ProductFW: "Fishing World",
   ProductGD: "Gold Deluxe",
-  ProductI4D: "Indo 4D",
+  ProductI4D: "Togel 4D",
   ProductKN: "RNG Keno",
   ProductLC: "Live Casino",
   ProductLT: "Lottery",

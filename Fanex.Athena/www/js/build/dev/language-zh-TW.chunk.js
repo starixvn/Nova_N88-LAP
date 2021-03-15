@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 3/4/2021 12:24:58 PM
+﻿// Generated at: 3/5/2021 3:14:41 PM
 window._language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
@@ -469,6 +469,7 @@ MixLiveAndNoneLive:"混合滾球&amp;非滾球",
 MixSportsParlay:"混合過關",
 Mo:"Mo",
 Mobile:"手機版",
+MobileEuro:"手機歐洲版",
 Modified_Date:"Modified_Date",
 Modifier:"Modifier",
 Monday:"星期一",

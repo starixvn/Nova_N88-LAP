@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 3/4/2021 12:24:58 PM
+// Generated at: 3/5/2021 3:14:41 PM
 window._language_zh_Hans = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -469,6 +469,7 @@ window._language_zh_Hans = {
   MixSportsParlay: "混合过关",
   Mo: "Mo",
   Mobile: "手机版",
+  MobileEuro: "手机欧洲版",
   Modified_Date: "Modified_Date",
   Modifier: "Modifier",
   Monday: "星期一",

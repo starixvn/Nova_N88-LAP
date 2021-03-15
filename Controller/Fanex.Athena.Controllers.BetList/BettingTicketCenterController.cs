@@ -225,6 +225,7 @@
                 { PlatformType.ESportsDesktop, ViewResources.ESportsDesktop },
                 { PlatformType.ESportsMobile, ViewResources.ESportsMobile },
                 { PlatformType.ESportsApp, ViewResources.ESportsApp },
+                { PlatformType.MobileEuro, ViewResources.MobileEuro },
                 { PlatformType.BetfromOthers, ViewResources.BetfromOthers }
             };
         }

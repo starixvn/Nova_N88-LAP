@@ -2148,4 +2148,7 @@
   <data name="JackpotWonDetails" xml:space="preserve">
     <value>积宝头奖详情</value>
   </data>
+  <data name="ProductSLT" xml:space="preserve">
+    <value>体育时时彩</value>
+  </data>
 </root>

@@ -210,6 +210,21 @@ namespace Fanex.Athena.Controllers.Report.Result
                 model, SessionServiceInstance.UserSession.Language).ConfigureAwait(false);
         }
 
+        [HttpGet]
+        public async Task<string> SportsLottery(string custId, string transId3rd, string platform)
+        {
+            var language = SessionServiceInstance.UserSession.Language;
+            var model = new
+            {
+                custId,
+                transId3rd,
+                platform,
+                languageCode = language
+            };
+
+            return await _betListApiClient.PostStringAsync("/SportsLotteryResultPopup/Index", model, language).ConfigureAwait(false);
+        }
+
         /// <summary>
         /// Generate tennis detailed result.
         /// </summary>

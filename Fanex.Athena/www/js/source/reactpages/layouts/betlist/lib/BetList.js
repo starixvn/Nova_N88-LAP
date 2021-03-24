@@ -271,6 +271,7 @@ class BetList {
         return url;
     }
 
+
     getRngCasinoResultUrl(rootUrl) {
         return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
     }
@@ -356,6 +357,15 @@ class BetList {
 
     getHappy5LinkedGamesResultUrl(rootUrl, custId, transId3rd, platform) {
         let url = rootUrl + 'Happy5LinkedGamesResultPopup/Index';
+        url = QueryString.setParam(url, 'custId', custId);
+        url = QueryString.setParam(url, 'transId3rd', transId3rd);
+        url = QueryString.setParam(url, 'platform', platform);
+
+        return url;
+    }
+
+    getSportsLotteryResultUrl(rootUrl, custId, transId3rd, platform) {
+        let url = rootUrl + 'ResultReport/SportsLottery';
         url = QueryString.setParam(url, 'custId', custId);
         url = QueryString.setParam(url, 'transId3rd', transId3rd);
         url = QueryString.setParam(url, 'platform', platform);

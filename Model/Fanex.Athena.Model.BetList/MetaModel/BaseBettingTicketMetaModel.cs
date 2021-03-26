@@ -5,7 +5,7 @@
     using Fanex.NVC.Authentication.Infrastructure;
     using System;
 
-    public class BaseBettingTicketMetaModel : IMetaModelValidation, IMetaModelCurrencyIdList, IBrandIdMetaModel
+    public class BaseBettingTicketMetaModel : IMetaModelValidation, IMetaModelCurrencyIdList, IBrandIdMetaModel, IMetaModelShowIPVN
     {
         private const int DefaultPageSize = 50;
 
@@ -81,5 +81,7 @@
         public string BaseCurrencyName { get; set; }
 
         public int BrandId { get; set; }
+
+        public bool IsShowIpvn { get; set; }
     }
 }

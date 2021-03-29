@@ -1,4 +1,4 @@
-﻿// Generated at: 3/5/2021 3:14:41 PM
+﻿// Generated at: 3/15/2021 4:30:23 PM
 window._language_zh_TW = {
 AA:"客客",
 AbnormalBet:"非正規註單",
@@ -466,6 +466,7 @@ ProductCS:"娛樂城",
 ProductKN:"快樂彩",
 ProductNG:"百練賽",
 ProductSB:"體育博彩",
+ProductSLT:"體育時時彩",
 ProductTG:"桌面遊戲",
 ProductVRG:"虛擬娛樂城",
 ProductVS:"虛擬運動",

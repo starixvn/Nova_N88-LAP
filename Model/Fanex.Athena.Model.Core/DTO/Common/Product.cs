@@ -61,6 +61,8 @@
 
         public const string SBC = "SBC";
 
+        public const string SLT = "SLT";
+
         #endregion Field
 
         #region Constructor

@@ -5,6 +5,7 @@
     using Extension.Utility;
 
     using Fanex.Athena.Model.Auth;
+    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.NVC.Authentication.Infrastructure;
     using Model.Core.DTO.Common;
@@ -78,6 +79,12 @@
 
         protected void MockSessionData()
         {
+            var functionList = new List<NVCFunctionAuthInfo> {
+                new NVCFunctionAuthInfo {
+                    FunctionKey = PermissionKeys.BetlistViewIpvn
+                }
+            };
+
             var userSession = new NVCUserAuthInfo
             {
                 UserId = SessionUserId,
@@ -95,7 +102,8 @@
                         CurrencyList = new Dictionary<int, string> { { 1, "EUR" }, { 2, "USD" }, { 3, "INH" }  },
                         CurrencyAgentList =  new Dictionary<int, int[]>()
                     }
-                }
+                },
+                FunctionList = functionList
             };
 
             var licenseeSession = new NVCLicenseeAuthInfo

@@ -590,7 +590,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const CheckBox = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
+const CheckBox = react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "checkbox-group",
     ref: ref
@@ -1950,7 +1950,7 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SLT) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSportsLotteryResultUrl(rootUrl, extension1, refno, defaultPlatform);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSportsLotteryResultUrl(rootUrl, custid, transdecs, defaultPlatform);
 
         this._showThirdPartyResult(url, title);
       } else {
@@ -3077,7 +3077,7 @@ class CurrencyHelper {
       return brandInfo[currencyProperty].reduce((result, currentValue) => {
         if (!existKeys[currentValue.key]) {
           existKeys[currentValue.key] = true;
-          return [...result, _objectSpread(_objectSpread({}, currentValue), {}, {
+          return [...result, _objectSpread({}, currentValue, {
             status: true
           })];
         }

@@ -592,7 +592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const CheckBox = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
+const CheckBox = react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "checkbox-group",
     ref: ref
@@ -1613,13 +1613,13 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, showMonthArrow ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
       disabled: this.disablePrevButton,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthButton']), {}, {
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthButton'], {
         float: 'left'
       }),
       className: classes.prevButton,
       onClick: this.prevButtonClickHandler.bind(this)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthArrow']), styles['MonthArrowPrev'])
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthArrow'], {}, styles['MonthArrowPrev'])
     })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: classes.month
     }, this.renderMonthList(classes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -1629,13 +1629,13 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, this.renderYearList(classes))), showMonthArrow ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
       disabled: this.disableNextButton,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthButton']), {}, {
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthButton'], {
         float: 'right'
       }),
       className: classes.nextButton,
       onClick: this.nextButtonClickHandler.bind(this)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthArrow']), styles['MonthArrowNext'])
+      style: onlyClasses ? undefined : _objectSpread({}, styles['MonthArrow'], {}, styles['MonthArrowNext'])
     })) : null);
   }
 
@@ -1779,10 +1779,10 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       classNames
     } = this.props;
 
-    const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"]), classNames);
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"], {}, classNames);
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['Calendar']), this.props.style),
+      style: onlyClasses ? undefined : _objectSpread({}, styles['Calendar'], {}, this.props.style),
       className: classes.calendar
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: classes.monthAndYear
@@ -1890,7 +1890,7 @@ class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       date,
       format
     } = props;
-    this.locale = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_4__["default"].locale), locale);
+    this.locale = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_4__["default"].locale, {}, locale);
     const selectedDate = Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(date, format, 'startOf');
     this.state = {
       selectedDate,
@@ -1930,7 +1930,7 @@ class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       classNames
     } = this.props;
 
-    const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"]), classNames);
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"], {}, classNames);
 
     const {
       show
@@ -2062,8 +2062,8 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const endDate = Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(props.endDate, format, 'endOf');
     this.styles = Object(_styles_js__WEBPACK_IMPORTED_MODULE_6__["default"])(theme);
     this.calendarSelectionStep = 0;
-    this.locale = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].locale), props.locale);
-    this.ranges = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].ranges(props.today, props.minDate, props.maxDate, props.limitedMonthRange)), props.ranges);
+    this.locale = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].locale, {}, props.locale);
+    this.ranges = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].ranges(props.today, props.minDate, props.maxDate, props.limitedMonthRange), {}, props.ranges);
     this.isValid = true;
     this.originalRange = {
       startDate,
@@ -2218,7 +2218,7 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       styles
     } = this;
 
-    const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"]), classNames);
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"], {}, classNames);
 
     const calendarsCount = Number(calendars) - 1;
     const buttonHandlers = {
@@ -2424,7 +2424,7 @@ class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const todayStyle = isToday ? styles['DayToday'] : {};
     const sundayStyle = isSunday ? styles['DaySunday'] : {};
     const specialDayStyle = isSpecialDay ? styles['DaySpecialDay'] : {};
-    return _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, todayStyle), sundayStyle), specialDayStyle), inRangeStyle), hoverStyle), passiveStyle), activeStyle), selectedStyle), startEdgeStyle), endEdgeStyle);
+    return _objectSpread({}, todayStyle, {}, sundayStyle, {}, specialDayStyle, {}, inRangeStyle, {}, hoverStyle, {}, passiveStyle, {}, activeStyle, {}, selectedStyle, {}, startEdgeStyle, {}, endEdgeStyle);
   }
 
   getClassNames(classes) {
@@ -2476,7 +2476,7 @@ class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onMouseDown: this.handleMouseEvent.bind(this),
       onMouseUp: this.handleMouseEvent.bind(this),
       className: classes,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['Day']), stateStyle)
+      style: onlyClasses ? undefined : _objectSpread({}, styles['Day'], {}, stateStyle)
     }, dayMoment.date()));
   }
 
@@ -2592,7 +2592,7 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       const active = this.selectedItem === name;
       gotActiveRange = !gotActiveRange && active;
 
-      const style = _objectSpread(_objectSpread({}, styles['PredefinedRangesItem']), gotActiveRange ? styles['PredefinedRangesItemActive'] : {});
+      const style = _objectSpread({}, styles['PredefinedRangesItem'], {}, gotActiveRange ? styles['PredefinedRangesItemActive'] : {});
 
       const predefinedRangeClass = classnames__WEBPACK_IMPORTED_MODULE_3___default()({
         [classes.predefinedRangesItem]: true,
@@ -2615,7 +2615,7 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       locale
     } = this.props;
 
-    const locales = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_6__["default"].locale), locale);
+    const locales = _objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_6__["default"].locale, {}, locale);
 
     const {
       styles
@@ -2628,12 +2628,12 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"].rangeButtonGroup
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: classes.applyButton,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['RangeApplyButton']), style),
+      style: onlyClasses ? undefined : _objectSpread({}, styles['RangeApplyButton'], {}, style),
       type: "button",
       onClick: e => this.clickButton(e, action.apply)
     }, locales.applyLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: classes.cancelButton,
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['RangeCancelButton']), style),
+      style: onlyClasses ? undefined : _objectSpread({}, styles['RangeCancelButton'], {}, style),
       onClick: e => this.clickButton(e, action.cancel),
       type: "button"
     }, locales.cancelLabel));
@@ -2649,10 +2649,10 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       styles
     } = this;
 
-    const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"]), classNames);
+    const classes = _objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"], {}, classNames);
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['PredefinedRanges']), style),
+      style: onlyClasses ? undefined : _objectSpread({}, styles['PredefinedRanges'], {}, style),
       className: classes.predefinedRanges
     }, this.renderRangeList(classes), this.renderRangeButtons(classes));
   }
@@ -3015,39 +3015,39 @@ const defaultTheme = {
 
   const cellSize = (parseInt(calendarWidth, 10) - parseInt(calendarPadding, 10) * 2) / 7 - parseInt(cellMargin, 10) * 2;
   return {
-    DateRange: _objectSpread(_objectSpread({}, defaultTheme.DateRange), customTheme.DateRange),
-    Calendar: _objectSpread(_objectSpread({}, defaultTheme.Calendar), customTheme.Calendar),
-    Day: _objectSpread(_objectSpread({
+    DateRange: _objectSpread({}, defaultTheme.DateRange, {}, customTheme.DateRange),
+    Calendar: _objectSpread({}, defaultTheme.Calendar, {}, customTheme.Calendar),
+    Day: _objectSpread({
       width: cellSize,
       height: cellSize,
       lineHeight: cellSize + 'px'
-    }, defaultTheme.Day), customTheme.Day),
-    DayPassive: _objectSpread(_objectSpread({}, defaultTheme.DayPassive), customTheme.DayPassive),
-    DayHover: _objectSpread(_objectSpread({}, defaultTheme.DayHover), customTheme.DayHover),
-    DayToday: _objectSpread(_objectSpread({}, defaultTheme.DayToday), customTheme.DayToday),
-    DaySunday: _objectSpread(_objectSpread({}, defaultTheme.DaySunday), customTheme.DaySunday),
-    DaySpecialDay: _objectSpread(_objectSpread({}, defaultTheme.DaySpecialDay), customTheme.DaySpecialDay),
-    DayActive: _objectSpread(_objectSpread({}, defaultTheme.DayActive), customTheme.DayActive),
-    DaySelected: _objectSpread(_objectSpread({}, defaultTheme.DaySelected), customTheme.DaySelected),
-    DayStartEdge: _objectSpread(_objectSpread({}, defaultTheme.DayStartEdge), customTheme.DayStartEdge),
-    DayEndEdge: _objectSpread(_objectSpread({}, defaultTheme.DayEndEdge), customTheme.DayEndEdge),
-    DayInRange: _objectSpread(_objectSpread({}, defaultTheme.DayInRange), customTheme.DayInRange),
-    Weekday: _objectSpread(_objectSpread({
+    }, defaultTheme.Day, {}, customTheme.Day),
+    DayPassive: _objectSpread({}, defaultTheme.DayPassive, {}, customTheme.DayPassive),
+    DayHover: _objectSpread({}, defaultTheme.DayHover, {}, customTheme.DayHover),
+    DayToday: _objectSpread({}, defaultTheme.DayToday, {}, customTheme.DayToday),
+    DaySunday: _objectSpread({}, defaultTheme.DaySunday, {}, customTheme.DaySunday),
+    DaySpecialDay: _objectSpread({}, defaultTheme.DaySpecialDay, {}, customTheme.DaySpecialDay),
+    DayActive: _objectSpread({}, defaultTheme.DayActive, {}, customTheme.DayActive),
+    DaySelected: _objectSpread({}, defaultTheme.DaySelected, {}, customTheme.DaySelected),
+    DayStartEdge: _objectSpread({}, defaultTheme.DayStartEdge, {}, customTheme.DayStartEdge),
+    DayEndEdge: _objectSpread({}, defaultTheme.DayEndEdge, {}, customTheme.DayEndEdge),
+    DayInRange: _objectSpread({}, defaultTheme.DayInRange, {}, customTheme.DayInRange),
+    Weekday: _objectSpread({
       width: cellSize,
       height: cellSize / 2,
       lineHeight: cellSize / 2 + 'px'
-    }, defaultTheme.Weekday), customTheme.Weekday),
-    MonthAndYear: _objectSpread(_objectSpread({}, defaultTheme.MonthAndYear), customTheme.MonthAndYear),
-    MonthAndYearSelect: _objectSpread(_objectSpread({}, defaultTheme.MonthAndYearSelect), customTheme.MonthAndYearSelect),
-    MonthButton: _objectSpread(_objectSpread({}, defaultTheme.MonthButton), customTheme.MonthButton),
-    MonthArrow: _objectSpread(_objectSpread({}, defaultTheme.MonthArrow), customTheme.MonthArrow),
-    MonthArrowPrev: _objectSpread(_objectSpread({}, defaultTheme.MonthArrowPrev), customTheme.MonthArrowPrev),
-    MonthArrowNext: _objectSpread(_objectSpread({}, defaultTheme.MonthArrowNext), customTheme.MonthArrowNext),
-    PredefinedRanges: _objectSpread(_objectSpread({}, defaultTheme.PredefinedRanges), customTheme.PredefinedRanges),
-    PredefinedRangesItem: _objectSpread(_objectSpread({}, defaultTheme.PredefinedRangesItem), customTheme.PredefinedRangesItem),
-    PredefinedRangesItemActive: _objectSpread(_objectSpread({}, defaultTheme.PredefinedRangesItemActive), customTheme.PredefinedRangesItemActive),
-    RangeApplyButton: _objectSpread(_objectSpread(_objectSpread({}, defaultTheme.RangeButton), defaultTheme.RangeApplyButton), customTheme.RangeApplyButton),
-    RangeCancelButton: _objectSpread(_objectSpread(_objectSpread({}, defaultTheme.RangeButton), defaultTheme.RangeCancelButton), customTheme.RangeCancelButton)
+    }, defaultTheme.Weekday, {}, customTheme.Weekday),
+    MonthAndYear: _objectSpread({}, defaultTheme.MonthAndYear, {}, customTheme.MonthAndYear),
+    MonthAndYearSelect: _objectSpread({}, defaultTheme.MonthAndYearSelect, {}, customTheme.MonthAndYearSelect),
+    MonthButton: _objectSpread({}, defaultTheme.MonthButton, {}, customTheme.MonthButton),
+    MonthArrow: _objectSpread({}, defaultTheme.MonthArrow, {}, customTheme.MonthArrow),
+    MonthArrowPrev: _objectSpread({}, defaultTheme.MonthArrowPrev, {}, customTheme.MonthArrowPrev),
+    MonthArrowNext: _objectSpread({}, defaultTheme.MonthArrowNext, {}, customTheme.MonthArrowNext),
+    PredefinedRanges: _objectSpread({}, defaultTheme.PredefinedRanges, {}, customTheme.PredefinedRanges),
+    PredefinedRangesItem: _objectSpread({}, defaultTheme.PredefinedRangesItem, {}, customTheme.PredefinedRangesItem),
+    PredefinedRangesItemActive: _objectSpread({}, defaultTheme.PredefinedRangesItemActive, {}, customTheme.PredefinedRangesItemActive),
+    RangeApplyButton: _objectSpread({}, defaultTheme.RangeButton, {}, defaultTheme.RangeApplyButton, {}, customTheme.RangeApplyButton),
+    RangeCancelButton: _objectSpread({}, defaultTheme.RangeButton, {}, defaultTheme.RangeCancelButton, {}, customTheme.RangeCancelButton)
   };
 });
 
@@ -3950,7 +3950,7 @@ class CurrencyHelper {
       return brandInfo[currencyProperty].reduce((result, currentValue) => {
         if (!existKeys[currentValue.key]) {
           existKeys[currentValue.key] = true;
-          return [...result, _objectSpread(_objectSpread({}, currentValue), {}, {
+          return [...result, _objectSpread({}, currentValue, {
             status: true
           })];
         }
@@ -4355,7 +4355,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_0__), _jsroot_actions_settingDataAction__WEBPACK_IMPORTED_MODULE_1__), _filterAction__WEBPACK_IMPORTED_MODULE_3__["default"]), _gridAction__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (_objectSpread({}, _jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_0__, {}, _jsroot_actions_settingDataAction__WEBPACK_IMPORTED_MODULE_1__, {}, _filterAction__WEBPACK_IMPORTED_MODULE_3__["default"], {}, _gridAction__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -4515,7 +4515,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
 /* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
 /* harmony import */ var _components_filter_SelectOption__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../components/filter/SelectOption */ "./www/js/source/reactpages/pages/report/winloss/components/filter/SelectOption.jsx");
+/* harmony import */ var _libs_queryService__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../libs/queryService */ "./www/js/source/reactpages/pages/report/winloss/libs/queryService.js");
+/* harmony import */ var _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../libs/helpers/gridHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/gridHelper.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -4551,11 +4559,53 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       }
     });
 
+    _defineProperty(this, "_validateDateRangeSupportQuickDownload", dateRange => {
+      const {
+        fromDate,
+        toDate
+      } = dateRange;
+
+      if (typeof fromDate === "string" || typeof toDate === "string") {
+        return true;
+      } else {
+        const differentDays = toDate.diff(fromDate, 'days');
+        return differentDays <= 30;
+      }
+    });
+
+    _defineProperty(this, "_handleQuickDownload", event => {
+      event.preventDefault();
+      const {
+        displayedColumns,
+        dateRange,
+        toggleLoader
+      } = this.props;
+
+      if (!this._validateDateRangeSupportQuickDownload(dateRange)) {
+        alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource('QuickDownloadDateRangeExceedMsg'));
+        return;
+      }
+
+      const params = _objectSpread({}, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_14__["default"].toAPIParams(_objectSpread({}, this.props, {
+        requestParam: {}
+      })), {
+        orderCols: _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_20__["default"].getOrderCols(displayedColumns)
+      });
+
+      toggleLoader(true);
+      _libs_queryService__WEBPACK_IMPORTED_MODULE_19__["default"].exportReportDetailData(params, () => toggleLoader(false));
+    });
+
     _defineProperty(this, "_handleSubmit", event => {
       event.preventDefault();
+      const {
+        displayedColumns
+      } = this.props;
       const newRequestParam = _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_14__["default"].toAPIParams(this.props);
-      this.props.setRequestParam(newRequestParam);
-      this.props.fetchReportData(newRequestParam, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_14__["default"].callBackToUpdateGridOption(_constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultPagingOption"].PageIndex, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultPagingOption"].PageSize, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultSortOption"].sortBy, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultSortOption"].sortType, true));
+      this.props.setRequestParam(_objectSpread({}, newRequestParam, {
+        displayedColumns
+      }));
+      this.props.fetchReportData(newRequestParam, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_14__["default"].callBackToUpdateGridOption(_constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultPagingOption"].PageIndex, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultPagingOption"].PageSize, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultSortOption"].sortBy, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultSortOption"].sortType));
     });
 
     this.currencyList = _jsroot_lib_currencyHelper__WEBPACK_IMPORTED_MODULE_10__["default"].getTpCurrencyList(this.props.selectedBrand, _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].brands);
@@ -4758,7 +4808,8 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("DrilldownInOriginalCurrency")
     }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_GroupFilter__WEBPACK_IMPORTED_MODULE_13__["default"], {
       isDisabledSubmit: !this.props.selectedCurrency || !this.props.selectedProduct,
-      onSubmit: this._handleSubmit
+      onSubmit: this._handleSubmit,
+      onQuickDownload: this._handleQuickDownload
     }));
   }
 
@@ -4780,7 +4831,8 @@ function mapDispatchToProps(dispatch) {
     setRequestParam,
     setDrilldownInOriginalCurrency,
     setUserNameFilterOption,
-    setSelectedTimezone
+    setSelectedTimezone,
+    toggleLoader
   } = _actions__WEBPACK_IMPORTED_MODULE_12__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(Object.assign({}, {
     fetchReportData,
@@ -4797,7 +4849,8 @@ function mapDispatchToProps(dispatch) {
     setNoDraw,
     setDrilldownInOriginalCurrency,
     setRequestParam,
-    setSelectedTimezone
+    setSelectedTimezone,
+    toggleLoader
   }), dispatch);
 }
 
@@ -4816,7 +4869,8 @@ function mapStateToProps(state) {
     selectedGroupByOption,
     drilldownInOriginalCurrency,
     userNameFilterOption,
-    selectedTimezone
+    selectedTimezone,
+    displayedColumns
   } = state;
   return Object.assign({}, {
     settingData,
@@ -4832,7 +4886,8 @@ function mapStateToProps(state) {
     selectedCurrency,
     selectedBaseCurrency,
     selectedGroupByOption,
-    selectedTimezone
+    selectedTimezone,
+    displayedColumns
   });
 }
 
@@ -4857,9 +4912,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/pages/report/winloss/actions/index.js");
 /* harmony import */ var _jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/components/collapsible-panel */ "./www/js/source/reactpages/components/collapsible-panel/index.jsx");
-/* harmony import */ var _jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/components/radio/RadioGroup */ "./www/js/source/reactpages/components/radio/RadioGroup.jsx");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+/* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @9softstudio/react-multiselect */ "./node_modules/@9softstudio/react-multiselect/dist/index.js");
+/* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/components/radio/RadioGroup */ "./www/js/source/reactpages/components/radio/RadioGroup.jsx");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+/* harmony import */ var _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../libs/helpers/groupHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js");
+/* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
 
 
 
@@ -4873,20 +4941,58 @@ const GroupFilter = props => {
     setSelectedGroupByOption,
     selectedGroupByOption,
     onSubmit,
-    isDisabledSubmit
+    onQuickDownload,
+    isDisabledSubmit,
+    displayedColumns,
+    setDisplayedColumns
   } = props;
+  const isDisabledQuickDownload = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => !_constants_filterConsts__WEBPACK_IMPORTED_MODULE_8__["GroupByOptionAllowQuickDownload"].some(_ => _ === selectedGroupByOption), [selectedGroupByOption]);
+
+  const _handleChangeDisplayedColumn = (currentItem, selectedItemsKey) => {
+    const selectedKeyList = selectedItemsKey.split(',');
+    const newColumnList = displayedColumns.map(item => {
+      const isShow = selectedKeyList.indexOf(item.key) !== -1;
+      return item.show === isShow ? item : _objectSpread({}, item, {
+        show: isShow
+      });
+    });
+    setDisplayedColumns(newColumnList);
+  };
+
+  const _renderViewColumnSelectList = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      id: "ddlViewColumn",
+      language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].currentLanguage,
+      dataSource: displayedColumns,
+      keyField: "key",
+      valueField: "name",
+      statusField: "show",
+      onChange: _handleChangeDisplayedColumn
+    });
+  };
+
+  const _handleChangeGroupBy = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedGroupBy => {
+    setSelectedGroupByOption(selectedGroupBy);
+    const newDisplayedColumns = _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_10__["displayedColumns"], selectedGroupBy);
+    setDisplayedColumns(newDisplayedColumns);
+  }, []);
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "group-filter page-filter"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "label-text"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource("GroupBy") + ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("GroupBy") + ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_6__["default"], {
     name: 'filterGroupBy',
     value: selectedGroupByOption,
-    options: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_7__["GroupByOptions"],
-    onChange: setSelectedGroupByOption
+    options: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_8__["GroupByOptions"],
+    onChange: _handleChangeGroupBy
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "label-text"
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("ViewColumn")), _renderViewColumnSelectList()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "button-group"
@@ -4895,39 +5001,50 @@ const GroupFilter = props => {
     className: "btn btn-submit",
     disabled: isDisabledSubmit,
     onClick: onSubmit
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource("Submit")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("Submit")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "button-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "btn",
+    disabled: isDisabledQuickDownload,
+    onClick: onQuickDownload
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("Download")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-1 note",
     style: {
       flex: "0 0 4%"
     }
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('Note'), ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('Note'), ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-9 note"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportGrossRevenue'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoteReportDepositAndWithdrawal'))));
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('NoteReportGrossRevenue'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('NoteReportDepositAndWithdrawal'))));
 };
 
 function mapDispatchToProps(dispatch) {
   const {
-    setSelectedGroupByOption
+    setSelectedGroupByOption,
+    setDisplayedColumns
   } = _actions__WEBPACK_IMPORTED_MODULE_3__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(Object.assign({}, {
-    setSelectedGroupByOption
+    setSelectedGroupByOption,
+    setDisplayedColumns
   }), dispatch);
 }
 
 function mapStateToProps(state) {
   const {
     selectedGroupByOption,
-    requestParam
+    displayedColumns
   } = state;
   return Object.assign({}, {
     selectedGroupByOption,
-    requestParam
+    displayedColumns
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
 
 /***/ }),
 
@@ -5054,7 +5171,7 @@ const DecimalCell = props => {
 DecimalCell.defaultProps = {
   digits: 2
 };
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DecimalCell));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DecimalCell));
 
 /***/ }),
 
@@ -5073,14 +5190,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _jsroot_components_ReportTitle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/components/ReportTitle */ "./www/js/source/reactpages/components/ReportTitle.jsx");
-/* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @9softstudio/react-multiselect */ "./node_modules/@9softstudio/react-multiselect/dist/index.js");
-/* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/pages/report/winloss/actions/index.js");
-/* harmony import */ var _libs_queryService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../libs/queryService */ "./www/js/source/reactpages/pages/report/winloss/libs/queryService.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/pages/report/winloss/actions/index.js");
+/* harmony import */ var _libs_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../libs/queryService */ "./www/js/source/reactpages/pages/report/winloss/libs/queryService.js");
+/* harmony import */ var _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../libs/helpers/gridHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/gridHelper.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -5096,22 +5216,7 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
   constructor(props) {
     super(props);
 
-    _defineProperty(this, "handleChangeDisplayedColumn", (currentItem, selectedItemsKey) => {
-      const {
-        displayedColumns,
-        setDisplayedColumns
-      } = this.props;
-      const selectedKeyList = selectedItemsKey.split(',');
-      const newColumnList = displayedColumns.map(item => {
-        const isShow = selectedKeyList.indexOf(item.key) !== -1;
-        return item.show === isShow ? item : _objectSpread(_objectSpread({}, item), {}, {
-          show: isShow
-        });
-      });
-      setDisplayedColumns(newColumnList);
-    });
-
-    _defineProperty(this, "handleExportExcel", event => {
+    _defineProperty(this, "_handleExportExcel", event => {
       event.preventDefault();
       const {
         requestParam,
@@ -5125,30 +5230,18 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
 
       toggleLoader(true);
 
-      const params = _objectSpread(_objectSpread({}, requestParam), {}, {
+      const {
+        displayedColumns
+      } = requestParam,
+            restRequestParam = _objectWithoutProperties(requestParam, ["displayedColumns"]);
+
+      const params = _objectSpread({}, restRequestParam, {
         sortById: sortOption.sortBy,
         isSortAsc: sortOption.sortType === 'asc',
-        orderCols: this._getOrderCols()
+        orderCols: _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getOrderCols(displayedColumns)
       });
 
-      _libs_queryService__WEBPACK_IMPORTED_MODULE_7__["default"].exportReportData(params, () => toggleLoader(false));
-    });
-
-    _defineProperty(this, "_getOrderCols", () => {
-      return this.props.displayedColumns.filter(_ => _.show).map(_ => _.key);
-    });
-  }
-
-  _buildDisplayedColumnList() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_4___default.a, {
-      id: "columnList",
-      className: "selection-column",
-      language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].currentLanguage,
-      dataSource: this.props.displayedColumns,
-      keyField: "key",
-      valueField: "name",
-      statusField: "show",
-      onChange: this.handleChangeDisplayedColumn
+      _libs_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].exportReportData(params, () => toggleLoader(false));
     });
   }
 
@@ -5161,20 +5254,20 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       key: "searchResult"
     }, `
-        ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource('WinLossAnalysis')},
+        ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('WinLossAnalysis')},
          ${fromDate} - ${toDate},
-          ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource('Viewin').replace('{0}', baseCurrency)}`);
+          ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('Viewin').replace('{0}', baseCurrency)}`);
   }
 
   _buildRightPart() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "caret-block"
-    }, this._buildDisplayedColumnList(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "icon-excel-wrapper",
-      onClick: this.handleExportExcel
+      onClick: this._handleExportExcel
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "icon-excel",
-      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource('ExportToExcel')
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('ExportToExcel')
     })));
   }
 
@@ -5194,11 +5287,9 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
 
 function mapDispatchToProps(dispatch) {
   const {
-    setDisplayedColumns,
     toggleLoader
-  } = _actions__WEBPACK_IMPORTED_MODULE_6__["default"];
+  } = _actions__WEBPACK_IMPORTED_MODULE_5__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(Object.assign({}, {
-    setDisplayedColumns,
     toggleLoader
   }), dispatch);
 }
@@ -5206,7 +5297,6 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   const {
     selectedBaseCurrency,
-    displayedColumns,
     gridData,
     requestParam,
     pagingOption,
@@ -5214,7 +5304,6 @@ function mapStateToProps(state) {
   } = state;
   return Object.assign({}, {
     selectedBaseCurrency,
-    displayedColumns,
     gridData,
     requestParam,
     pagingOption,
@@ -5247,6 +5336,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
 /* harmony import */ var _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../libs/helpers/gridHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/gridHelper.js");
 /* harmony import */ var _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../libs/helpers/queryHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/queryHelper.js");
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5266,14 +5359,11 @@ const GridData = props => {
   const MAX_WIDTH = Math.min(document.body.clientWidth, MAX_WIDTH_PAGE);
   const {
     gridData,
-    displayedColumns,
     pagingOption,
     sortOption,
     requestParam,
     isLoading,
-    setGridData,
-    setSortOption,
-    setDisplayedColumns,
+    setRequestParam,
     fetchReportData
   } = props;
   const {
@@ -5290,7 +5380,7 @@ const GridData = props => {
   }
 
   const _handleSort = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])((sortBy, sortType) => {
-    const params = _objectSpread(_objectSpread(_objectSpread({}, requestParam), pagingOption), {}, {
+    const params = _objectSpread({}, requestParam, {}, pagingOption, {
       sortbyId: sortBy,
       isSortAsc: sortType === 'asc'
     });
@@ -5299,19 +5389,26 @@ const GridData = props => {
   });
 
   const _handlePaging = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])((pageIndex, pageSize) => {
-    const params = _objectSpread(_objectSpread({}, requestParam), {}, {
+    const {
+      displayedColumns: omitted
+    } = requestParam,
+          restRequestParam = _objectWithoutProperties(requestParam, ["displayedColumns"]);
+
+    const params = _objectSpread({}, restRequestParam, {
       sortbyId: sortOption.sortBy,
       isSortAsc: sortOption.sortType === 'asc',
       pageIndex,
       pageSize
     });
 
-    fetchReportData(params, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_7__["default"].callBackToUpdateGridOption(pageIndex, pageSize, sortOption.sortBy, sortOption.sortType, false));
+    fetchReportData(params, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_7__["default"].callBackToUpdateGridOption(pageIndex, pageSize, sortOption.sortBy, sortOption.sortType));
   });
 
-  const header = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderHeader(displayedColumns, displayedColumns => setDisplayedColumns(displayedColumns)), [displayedColumns]);
-  const body = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderBody(dataList, displayedColumns), [dataList, displayedColumns]);
-  const footer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderFooter(totalData, displayedColumns), [totalData, displayedColumns]);
+  const header = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderHeader(requestParam.displayedColumns, displayedColumns => setRequestParam(_objectSpread({}, requestParam, {
+    displayedColumns
+  }))), [requestParam.displayedColumns]);
+  const body = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderBody(dataList, requestParam.displayedColumns), [dataList, requestParam.displayedColumns]);
+  const footer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_6__["default"].renderFooter(totalData, requestParam.displayedColumns), [totalData, requestParam.displayedColumns]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Table"], {
     minWidth: 500,
     autoWidth: false,
@@ -5333,13 +5430,13 @@ function mapDispatchToProps(dispatch) {
   const {
     setSortOption,
     setGridData,
-    setDisplayedColumns,
+    setRequestParam,
     fetchReportData
   } = _actions__WEBPACK_IMPORTED_MODULE_4__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
     setSortOption,
     setGridData,
-    setDisplayedColumns,
+    setRequestParam,
     fetchReportData
   }, dispatch);
 }
@@ -5363,7 +5460,7 @@ function mapStateToProps(state) {
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridData)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridData)));
 
 /***/ }),
 
@@ -5396,7 +5493,7 @@ const GridRow = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], null, [..._constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultDisplayedColumns"], ...displayedColumns].map(col => col.show && _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["componentCells"][col.key] && _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["componentCells"][col.key](rowData, highLight, groupChildClassName)));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridRow));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridRow));
 
 /***/ }),
 
@@ -5466,11 +5563,11 @@ const GroupCell = props => {
       newDataList.splice(rowIndex + 1, 0, ...rowData.drillDownData);
     }
 
-    newDataList[rowIndex] = _objectSpread(_objectSpread({}, rowData), {
+    newDataList[rowIndex] = _objectSpread({}, rowData, {}, {
       isDrillDown: !_isDrillDown
     });
 
-    const newGridData = _objectSpread(_objectSpread({}, gridData), {
+    const newGridData = _objectSpread({}, gridData, {}, {
       dataList: newDataList
     });
 
@@ -5504,7 +5601,7 @@ function mapStateToProps(state) {
 }
 
 ;
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupCell)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupCell)));
 
 /***/ }),
 
@@ -5512,12 +5609,13 @@ function mapStateToProps(state) {
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js ***!
   \*********************************************************************************/
-/*! exports provided: GroupByOptionIds, GroupByOptions, DateFilterTypeOptions, UserNameFilterOptions, DefaultTimezone */
+/*! exports provided: GroupByOptionIds, GroupByOptionAllowQuickDownload, GroupByOptions, DateFilterTypeOptions, UserNameFilterOptions, DefaultTimezone */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptionIds", function() { return GroupByOptionIds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptionAllowQuickDownload", function() { return GroupByOptionAllowQuickDownload; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptions", function() { return GroupByOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFilterTypeOptions", function() { return DateFilterTypeOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserNameFilterOptions", function() { return UserNameFilterOptions; });
@@ -5531,6 +5629,7 @@ const GroupByOptionIds = {
   currency: 4,
   player: 5
 };
+const GroupByOptionAllowQuickDownload = [GroupByOptionIds.date, GroupByOptionIds.month];
 const GroupByOptions = [{
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("Date"),
   value: GroupByOptionIds.date
@@ -5915,10 +6014,12 @@ __webpack_require__.r(__webpack_exports__);
 const Url = {
   setting: 'Api/WinLossReport/GetSetting',
   reportByGroup: 'Api/WinLossReport/GetData',
-  exportReportByGroup: 'Api/WinLossReport/ExportData'
+  exportReportByGroup: 'Api/WinLossReport/ExportData',
+  exportReportDetailByGroup: 'Api/WinLossReport/ExportDetailData'
 };
 const FileNameExport = {
-  reportByGroup: 'WinLossAnalysisReport.xlsx'
+  reportByGroup: 'WinLossAnalysisReport.xlsx',
+  reportDetailByGroup: 'WinLossAnalysisReport_Detail.xlsx'
 };
 const errorResponse = {
   data: null,
@@ -6040,6 +6141,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_grid_GridRow__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/grid/GridRow */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GridRow.jsx");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -6145,6 +6248,10 @@ class GridHelper {
 
 }
 
+_defineProperty(GridHelper, "getOrderCols", displayedColumns => {
+  return displayedColumns.filter(_ => _.show).map(_ => _.key);
+});
+
 /***/ }),
 
 /***/ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js":
@@ -6218,7 +6325,7 @@ class QueryHelper {
     userNameFilterOption,
     selectedTimezone
   }) {
-    return _objectSpread(_objectSpread({}, requestParam), {
+    return _objectSpread({}, requestParam, {}, {
       userNameFilterId: userNameFilterOption,
       username,
       currencyIdList: selectedCurrency,
@@ -6238,7 +6345,7 @@ class QueryHelper {
 
 }
 
-_defineProperty(QueryHelper, "callBackToUpdateGridOption", (pageIndex, pageSize, sortBy, sortType, resetGridOption) => response => {
+_defineProperty(QueryHelper, "callBackToUpdateGridOption", (pageIndex, pageSize, sortBy, sortType) => response => {
   const {
     totalRows
   } = response;
@@ -6247,7 +6354,7 @@ _defineProperty(QueryHelper, "callBackToUpdateGridOption", (pageIndex, pageSize,
     selectedGroupByOption
   } = _store__WEBPACK_IMPORTED_MODULE_1__["default"].getState();
 
-  const newPagingOption = _objectSpread(_objectSpread({}, pagingOption), {
+  const newPagingOption = _objectSpread({}, pagingOption, {}, {
     PageIndex: pageIndex,
     PageSize: pageSize,
     TotalItem: totalRows
@@ -6258,11 +6365,6 @@ _defineProperty(QueryHelper, "callBackToUpdateGridOption", (pageIndex, pageSize,
     sortBy,
     sortType
   }));
-
-  if (resetGridOption) {
-    const displayedAllowColumns = _helpers_groupHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_3__["displayedColumns"], selectedGroupByOption);
-    _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_actions_gridAction__WEBPACK_IMPORTED_MODULE_2__["setDisplayedColumns"])(displayedAllowColumns));
-  }
 });
 
 /***/ }),
@@ -6297,7 +6399,7 @@ class QueryService {
       const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportData(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["Url"].setting);
 
       if (response.status === 200) {
-        return _objectSpread(_objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["successResponse"]), {
+        return _objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["successResponse"], {}, {
           data: response.data
         });
       }
@@ -6305,7 +6407,7 @@ class QueryService {
       console.log(e);
     }
 
-    return _objectSpread(_objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["errorResponse"]), {
+    return _objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["errorResponse"], {}, {
       data: {
         gridData: {}
       }
@@ -6317,7 +6419,7 @@ class QueryService {
       const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["Url"].reportByGroup, params);
 
       if (response.status === 200) {
-        return _objectSpread(_objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["successResponse"]), {
+        return _objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["successResponse"], {}, {
           data: response.data
         });
       }
@@ -6325,7 +6427,7 @@ class QueryService {
       console.log(e);
     }
 
-    return _objectSpread(_objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["errorResponse"]), {
+    return _objectSpread({}, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["errorResponse"], {}, {
       data: {
         gridData: {}
       }
@@ -6341,6 +6443,26 @@ class QueryService {
         alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("NoInfo"));
       } else {
         _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["FileNameExport"].reportByGroup);
+      }
+
+      ;
+    } catch (e) {
+      alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("ErrorProcessingMsg"));
+      console.log(e);
+    } finally {
+      after && after();
+    }
+  }
+
+  static async exportReportDetailData(params, after) {
+    try {
+      const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["Url"].exportReportDetailByGroup, params);
+      const noContentStatusCode = 204;
+
+      if (response.status === noContentStatusCode) {
+        alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("NoInfo"));
+      } else {
+        _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConsts__WEBPACK_IMPORTED_MODULE_3__["FileNameExport"].reportDetailByGroup);
       }
 
       ;
@@ -6382,7 +6504,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-const defaultState = _objectSpread(_objectSpread({}, window.initialState), {
+const defaultState = _objectSpread({}, window.initialState, {}, {
   isLoading: false,
   gridData: {},
   requestParam: {},
@@ -6738,7 +6860,7 @@ const defaultPagingOption = {
 };
 const pagingOption = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(defaultPagingOption, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PAGING_OPTION"]](prevState, action) {
-    return _objectSpread(_objectSpread({}, prevState), action.data);
+    return _objectSpread({}, prevState, {}, action.data);
   }
 
 });
@@ -6842,7 +6964,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 const sortOption = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SORT_OPTION"]](prevState, action) {
-    return _objectSpread(_objectSpread({}, prevState), action.data);
+    return _objectSpread({}, prevState, {}, action.data);
   }
 
 });

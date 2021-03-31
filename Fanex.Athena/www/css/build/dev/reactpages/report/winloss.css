@@ -1286,11 +1286,14 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
   color: #ee0606; }
 
 .winloss-report .group-filter .form-group {
-  display: inline-block; }
+  display: inline-block;
+  margin-right: 20px; }
   .winloss-report .group-filter .form-group .radio-group {
     margin-left: 30px; }
     .winloss-report .group-filter .form-group .radio-group span {
       margin-right: 30px; }
+  .winloss-report .group-filter .form-group #multiple-select-ddlViewColumn {
+    width: 200px; }
 
 .winloss-report .table-container .header-content .table thead tr th {
   background: #a2beba;
@@ -1312,18 +1315,6 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
     text-align: center;
     width: 24px;
     height: 22px; }
-  .winloss-report .report-title-container .caret-block .multiple-select-container {
-    width: 103px; }
-    .winloss-report .report-title-container .caret-block .multiple-select-container .multiple-select-options-container {
-      width: 200px;
-      left: -110px; }
-      .winloss-report .report-title-container .caret-block .multiple-select-container .multiple-select-options-container .multiple-select-options {
-        max-height: 300px; }
-    .winloss-report .report-title-container .caret-block .multiple-select-container .multiple-select-label {
-      color: #fff;
-      border-bottom: none; }
-      .winloss-report .report-title-container .caret-block .multiple-select-container .multiple-select-label .text-display {
-        line-height: 13px; }
 
 .winloss-report .search-option [type="radio"]:not(:checked),
 .winloss-report .search-option [type="radio"]:checked {

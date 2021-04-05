@@ -11,7 +11,7 @@ export const DataGrid = (props) => {
             onPaging={onPaging}
             getHeaderNameFunc={getHeaderName}
             columns={['Index', 'RefNo', 'TransTime', 'Choice', 'Odds', 'OddsType', 'Stake', 'WinLoss', 'LicenseeWL', 'Status', 'Platform', 'Live']}
-            columnWidths={[40, 110, 150, 400, 70, 70, 80, 80, 80, 60, 60, 60]}
+            columnWidths={[40, 110, 150, 400, 70, 70, 80, 80, 80, 90, 60, 60]}
             sortableColumns={['Stake', 'WinLoss', 'LicenseeWL']}
             totalColumns={['Stake', 'WinLoss', 'LicenseeWL']}
             columnAlignments={[

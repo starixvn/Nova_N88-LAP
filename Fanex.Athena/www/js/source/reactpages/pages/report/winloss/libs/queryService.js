@@ -62,4 +62,23 @@ export default class QueryService {
             after && after();
         }
     }
+
+    static async exportReportDetailData(params, after) {
+        try {
+            const response = await DataService.getReportFile(Url.exportReportDetailByGroup, params)
+            const noContentStatusCode = 204;
+            if (response.status === noContentStatusCode) {
+                alert(LangHelper.getSingleResource("NoInfo"));
+            } else {
+                Site.downloadFile(response.data, FileNameExport.reportDetailByGroup);
+            };
+        }
+        catch(e) {
+            alert(LangHelper.getSingleResource("ErrorProcessingMsg"));
+            console.log(e)
+        }
+        finally {
+            after && after();
+        }
+    }
 }

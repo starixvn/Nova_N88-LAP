@@ -13,7 +13,7 @@ export const GridData = props => {
 
     const MAX_WIDTH = Math.min(document.body.clientWidth, MAX_WIDTH_PAGE);
 
-    const { gridData, displayedColumns, pagingOption, sortOption, requestParam, isLoading, setGridData, setSortOption, setDisplayedColumns, fetchReportData } = props;
+    const { gridData, pagingOption, sortOption, requestParam, isLoading, setRequestParam, fetchReportData } = props;
     const { dataList, totalData } = gridData;
 
     if (!dataList) {
@@ -34,19 +34,20 @@ export const GridData = props => {
     })
 
     const _handlePaging = useCallback((pageIndex, pageSize) => {
+        const { displayedColumns: omitted, ...restRequestParam } = requestParam;
         const params = {
-            ...requestParam,
+            ...restRequestParam,
             sortbyId: sortOption.sortBy,
             isSortAsc: sortOption.sortType === 'asc',
             pageIndex,
             pageSize
         }
-        fetchReportData(params, QueryHelper.callBackToUpdateGridOption(pageIndex, pageSize, sortOption.sortBy, sortOption.sortType, false));
+        fetchReportData(params, QueryHelper.callBackToUpdateGridOption(pageIndex, pageSize, sortOption.sortBy, sortOption.sortType));
     })
 
-    const header = useMemo(() => GridHelper.renderHeader(displayedColumns, displayedColumns => setDisplayedColumns(displayedColumns)), [displayedColumns]);
-    const body = useMemo(() => GridHelper.renderBody(dataList, displayedColumns), [dataList, displayedColumns]);
-    const footer = useMemo(() => GridHelper.renderFooter(totalData, displayedColumns), [totalData, displayedColumns]);
+    const header = useMemo(() => GridHelper.renderHeader(requestParam.displayedColumns, displayedColumns => setRequestParam({ ...requestParam, displayedColumns })), [requestParam.displayedColumns]);
+    const body = useMemo(() => GridHelper.renderBody(dataList, requestParam.displayedColumns), [dataList, requestParam.displayedColumns]);
+    const footer = useMemo(() => GridHelper.renderFooter(totalData, requestParam.displayedColumns), [totalData, requestParam.displayedColumns]);
 
     return (
        <React.Fragment>
@@ -69,8 +70,8 @@ export const GridData = props => {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSortOption, setGridData, setDisplayedColumns, fetchReportData } = ActionCreators;
-    return bindActionCreators({ setSortOption, setGridData, setDisplayedColumns, fetchReportData }, dispatch);
+    const { setSortOption, setGridData, setRequestParam, fetchReportData } = ActionCreators;
+    return bindActionCreators({ setSortOption, setGridData, setRequestParam, fetchReportData }, dispatch);
 }
 
 function mapStateToProps(state) {

@@ -1,4 +1,4 @@
-﻿// Generated at: 3/15/2021 4:30:23 PM
+﻿// Generated at: 3/31/2021 11:10:44 AM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -551,6 +551,7 @@ ProductVS:"虚拟运动",
 ProductVS2:"虚拟运动2",
 Promotion:"促销活动",
 PromotionPrize:"活动奖金",
+QuickDownloadDateRangeExceedMsg:"To download excel file, please select data range within 1 month.",
 RB:"赛马",
 Read:"Read",
 RealName:"真实姓名",
@@ -721,6 +722,7 @@ VendorMemberID:"厂商会员标识符",
 View:"检视",
 View_details_of:"View details of",
 ViewBy:"查看由",
+ViewColumn:"View Column",
 ViewDataInMonth:"检阅每月数据",
 Viewin:"以 {0} 查看",
 ViewNotification:"查看通知",

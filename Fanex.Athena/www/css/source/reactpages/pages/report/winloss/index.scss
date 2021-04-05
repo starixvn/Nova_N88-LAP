@@ -22,6 +22,11 @@
                     margin-right: 30px;
                 }
             }
+            #multiple-select-ddlViewColumn {
+                width: 200px;
+            }
+            
+            margin-right: 20px;
         }
     }
 
@@ -65,28 +70,6 @@
                 text-align: center;
                 width: 24px;
                 height: 22px;
-            }
-    
-            .multiple-select-container {
-                width: 103px;
-    
-                .multiple-select-options-container {
-                    width: 200px;
-                    left: -110px;
-    
-                    .multiple-select-options {
-                        max-height: 300px;
-                    }
-                }
-    
-                .multiple-select-label {
-                    color: #fff;
-                    border-bottom: none;
-    
-                    .text-display {
-                        line-height: 13px;
-                    }
-                }
             }
         }
     }

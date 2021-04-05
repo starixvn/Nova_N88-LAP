@@ -2,58 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReportTitle from '@jsroot/components/ReportTitle';
-import MultipleSelect from '@9softstudio/react-multiselect';
 import LangHelper from '@jsroot/lib/langHelper';
 import ActionCreators from '../../actions';
 import QueryService from '../../libs/queryService';
+import GridHelper from '../../libs/helpers/gridHelper';
 
 export class GridCaption extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    handleChangeDisplayedColumn = (currentItem, selectedItemsKey) => {
-        const { displayedColumns, setDisplayedColumns } = this.props;
-        const selectedKeyList = selectedItemsKey.split(',');
-        const newColumnList = displayedColumns.map(item => {
-            const isShow = selectedKeyList.indexOf(item.key) !== -1;
-            return item.show === isShow ? item : { ...item, show: isShow };
-        })
-        setDisplayedColumns(newColumnList);
-    }
-
-    handleExportExcel = event => {
+    _handleExportExcel = event => {
         event.preventDefault();
         const { requestParam, toggleLoader, sortOption } = this.props;
         if (!requestParam) {
             return;
         }
         toggleLoader(true)
+        const { displayedColumns, ...restRequestParam } = requestParam;
         const params = {
-            ...requestParam,
+            ...restRequestParam,
             sortById: sortOption.sortBy,
             isSortAsc: sortOption.sortType === 'asc',
-            orderCols: this._getOrderCols()
+            orderCols: GridHelper.getOrderCols(displayedColumns)
         }
         QueryService.exportReportData(params, () => toggleLoader(false));
-    }
-
-    _getOrderCols = () => {
-        return this.props.displayedColumns
-            .filter(_ => _.show)
-            .map(_ => _.key);
-    }
-
-    _buildDisplayedColumnList() {
-        return (
-            <MultipleSelect id="columnList" className="selection-column"
-                language={LangHelper.currentLanguage}
-                dataSource={this.props.displayedColumns}
-                keyField={"key"}
-                valueField={"name"}
-                statusField={"show"}
-                onChange={this.handleChangeDisplayedColumn} />
-        )
     }
 
     _buildLeftPart() {
@@ -68,8 +41,7 @@ export class GridCaption extends React.Component {
     _buildRightPart() {
         return (
             <span className="caret-block">
-                {this._buildDisplayedColumnList()}
-                <span className="icon-excel-wrapper" onClick={this.handleExportExcel}>
+                <span className="icon-excel-wrapper" onClick={this._handleExportExcel}>
                     <i className="icon-excel" title={LangHelper.getSingleResource('ExportToExcel')}></i>
                 </span>
             </span>
@@ -87,13 +59,13 @@ export class GridCaption extends React.Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setDisplayedColumns, toggleLoader } = ActionCreators;
-    return bindActionCreators(Object.assign({}, { setDisplayedColumns, toggleLoader }), dispatch);
+    const { toggleLoader } = ActionCreators;
+    return bindActionCreators(Object.assign({}, { toggleLoader }), dispatch);
 }
 
 function mapStateToProps(state) {
-    const { selectedBaseCurrency, displayedColumns, gridData, requestParam, pagingOption, sortOption } = state;
-    return Object.assign({}, { selectedBaseCurrency, displayedColumns, gridData, requestParam, pagingOption, sortOption });
+    const { selectedBaseCurrency, gridData, requestParam, pagingOption, sortOption } = state;
+    return Object.assign({}, { selectedBaseCurrency, gridData, requestParam, pagingOption, sortOption });
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridCaption);

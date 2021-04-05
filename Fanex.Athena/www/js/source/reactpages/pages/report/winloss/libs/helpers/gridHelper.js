@@ -72,6 +72,12 @@ export default class GridHelper {
             return noParent;
         });
     }
+
+    static getOrderCols = displayedColumns => {
+        return displayedColumns
+            .filter(_ => _.show)
+            .map(_ => _.key);
+    }
     
     static _orderColumnsLeftToRight(columns, sourceIndex, destIndex, dragElementX, targetX) {
         if(dragElementX >= targetX) {

@@ -6064,6 +6064,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To download excel file, please select data range within 1 month..
+        /// </summary>
+        public static string QuickDownloadDateRangeExceedMsg {
+            get {
+                return ResourceManager.GetString("QuickDownloadDateRangeExceedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RB.
         /// </summary>
         public static string RB {
@@ -7878,6 +7887,15 @@ namespace Fanex.Athena.Resources {
         public static string ViewBy {
             get {
                 return ResourceManager.GetString("ViewBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Column.
+        /// </summary>
+        public static string ViewColumn {
+            get {
+                return ResourceManager.GetString("ViewColumn", resourceCulture);
             }
         }
         

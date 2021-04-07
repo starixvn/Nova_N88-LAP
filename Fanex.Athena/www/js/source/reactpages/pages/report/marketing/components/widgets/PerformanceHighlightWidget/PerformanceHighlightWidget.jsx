@@ -140,6 +140,16 @@ export const PerformanceHighlightWidget = props => {
         />)
     }
 
+    const _renderNetCashAmountBox = () => {
+        const { netCashAmount, growthRateNetCashAmount } = performanceHighlightData;
+        return (<HighlightBox
+            enableCompare={allowedCompare}
+            title={LangHelper.getSingleResource('NetCashAmount')}
+            value={netCashAmount}
+            rate={growthRateNetCashAmount}
+        />)
+    }
+
     const _renderChurnRateBox = () => {
         const { fromDate, toDate } = globalFilter.reportDate;
         const { churnRate, differentChurnRate } = performanceHighlightData;
@@ -219,6 +229,7 @@ export const PerformanceHighlightWidget = props => {
             {_renderDepositAmountBox()}
             {_renderWithdrawalAmountBox()}
             {_renderBonusClaimedBox()}
+            {_renderNetCashAmountBox()}
             {_renderChurnRateBox()}
             {_renderRetentionRateBox()}
         </div>}

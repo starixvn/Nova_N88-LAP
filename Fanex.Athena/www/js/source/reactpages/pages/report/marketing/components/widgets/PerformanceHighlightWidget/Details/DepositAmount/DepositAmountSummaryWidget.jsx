@@ -71,24 +71,20 @@ const DepositAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, sel
             <HeaderCell>{LangHelper.getSingleResource('SignupUrl')}</HeaderCell>
             <HeaderCell>{LangHelper.getSingleResource('FirstDepositAmount')}</HeaderCell>
             <HeaderCell>{LangHelper.getSingleResource('TotalDepositAmount')}</HeaderCell>
+            <HeaderCell>{LangHelper.getSingleResource('NumberOfPlayers')}</HeaderCell>
         </HeaderRow>);
         const body = signupData.map(item => <Row style={StyleRow}>
-            <GroupCell displayText={item.signupUrl}
-                rowData={item}
-                dataList={signupData}
-                fieldKey={'signupUrl'}
-                allowedDrillDown={!item.noGrouping && item.childs && item.childs.length > 0}
-                isChild={!item.noGrouping && (!item.childs || !item.childs.length)}
-                onDrillDown={_onDrillDownSignupData}
-                {...{ className: 'left-align highlight-cell'}} />
+            {_renderGroupSignupCell(item, signupData)}
             <Cell className='right-align'>{NumberFormat.format(item.firstDepositAmount, DigitsAmount)}</Cell>
-            <Cell className='right-align'>{NumberFormat.format(item.depositAmount, DigitsAmount)}</Cell>
+            <Cell className='right-align'>{NumberFormat.format(item.totalDepositAmount, DigitsAmount)}</Cell>
+            <Cell className='right-align'>{NumberFormat.format(item.noOfPlayers, 0)}</Cell>
         </Row>)
 
         const totalRow = (<Row>
             <Cell className='left-align total-cell'>{LangHelper.getSingleResource('Total')}</Cell>
             <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalFirstDepositAmount, DigitsAmount)}</Cell>
             <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalDepositAmount, DigitsAmount)}</Cell>
+            <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalNoOfPlayers, 0)}</Cell>
         </Row>)
 
         return (<div className="summary-table">
@@ -104,6 +100,18 @@ const DepositAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, sel
             />
         </div>)
     };
+
+    const _renderGroupSignupCell = (item, signupData) => {
+        const isChild = !item.noGrouping && (!item.childs || !item.childs.length); 
+        return <GroupCell displayText={item.signupUrl}
+        rowData={item}
+        dataList={signupData}
+        fieldKey={'signupUrl'}
+        allowedDrillDown={!item.noGrouping && item.childs && item.childs.length > 0}
+        isChild={isChild}
+        onDrillDown={_onDrillDownSignupData}
+        {...{ className: 'left-align' + (isChild ? '' : ' highlight-cell') }} />
+    }
 
     return (
         <Widget title={LangHelper.getSingleResource('Summary')} isLoading={isLoading}>

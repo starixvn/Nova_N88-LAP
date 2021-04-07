@@ -223,6 +223,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AFF Code.
+        /// </summary>
+        public static string AffCode {
+            get {
+                return ResourceManager.GetString("AffCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Transfer.
         /// </summary>
         public static string AffiliateTransfer {
@@ -4795,6 +4804,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Net Cash Amount.
+        /// </summary>
+        public static string NetCashAmount {
+            get {
+                return ResourceManager.GetString("NetCashAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valid Turnover.
         /// </summary>
         public static string NetTurnover {
@@ -5178,6 +5196,15 @@ namespace Fanex.Athena.Resources {
         public static string NumberOfDeposits {
             get {
                 return ResourceManager.GetString("NumberOfDeposits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Of Players.
+        /// </summary>
+        public static string NumberOfPlayers {
+            get {
+                return ResourceManager.GetString("NumberOfPlayers", resourceCulture);
             }
         }
         

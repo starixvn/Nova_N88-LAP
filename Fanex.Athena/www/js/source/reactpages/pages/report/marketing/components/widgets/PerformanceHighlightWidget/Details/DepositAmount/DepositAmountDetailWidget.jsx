@@ -70,8 +70,10 @@ const DepositAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, so
         return (<HeaderRow style={StyleRow}>
             <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.rowId].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.rowId].name}</HeaderCell>
             <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.username].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.username].name}</HeaderCell>
+            <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.currency].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.currency].name}</HeaderCell>
             <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.registeredDateDisplay].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.registeredDateDisplay].name}</HeaderCell>
             <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.signupUrl].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.signupUrl].name}</HeaderCell>
+            <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.affCode].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.affCode].name}</HeaderCell>
             <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.firstDepositAmount].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.firstDepositAmount].name}</HeaderCell>
             <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.numberOfDeposits].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.numberOfDeposits].name}</HeaderCell>
             <HeaderCell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.depositAmount].attributes}>{DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.depositAmount].name}</HeaderCell>
@@ -83,8 +85,10 @@ const DepositAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, so
         return dataList.map(item => <Row style={StyleRow}>
             <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.rowId].attributes}>{item[DetailDepositAmountGridColumns.rowId]} </Cell>
             <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.username].attributes} >{item[DetailDepositAmountGridColumns.username]}</Cell>
+            <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.currency].attributes} >{item[DetailDepositAmountGridColumns.currency]}</Cell>
             <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.registeredDateDisplay].attributes}>{item[DetailDepositAmountGridColumns.registeredDateDisplay]}</Cell>
             <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.signupUrl].attributes}>{item[DetailDepositAmountGridColumns.signupUrl]}</Cell>
+            <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.affCode].attributes} >{item[DetailDepositAmountGridColumns.affCode]}</Cell>
             <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[DetailDepositAmountGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
             <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.numberOfDeposits].attributes} >{NumberFormat.format(item[DetailDepositAmountGridColumns.numberOfDeposits], 0)}</Cell>
             <Cell {...DetailDepositAmountGridConfig[DetailDepositAmountGridColumns.depositAmount].attributes}>{NumberFormat.format(item[DetailDepositAmountGridColumns.depositAmount], DigitsAmount)}</Cell>

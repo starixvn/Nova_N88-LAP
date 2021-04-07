@@ -52,7 +52,7 @@ export const GridData = props => {
     return (
        <React.Fragment>
             <Table minWidth={500}
-                autoWidth={false}
+                autoWidth={true}
                 maxWidth={MAX_WIDTH}
                 autoHeight={true}
                 header={header}

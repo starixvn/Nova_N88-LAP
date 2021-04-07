@@ -71,7 +71,10 @@ const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sor
             <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.rowId].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.rowId].name}</HeaderCell>
             <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.bonusCode].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.bonusCode].name}</HeaderCell>
             <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.username].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.username].name}</HeaderCell>
+            <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.currency].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.currency].name}</HeaderCell>
             <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.registeredDateDisplay].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.registeredDateDisplay].name}</HeaderCell>
+            <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.signupUrl].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.signupUrl].name}</HeaderCell>
+            <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.affCode].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.affCode].name}</HeaderCell>
             <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.depositAmount].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.depositAmount].name}</HeaderCell>
             <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.withdrawalAmount].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.withdrawalAmount].name}</HeaderCell>
             <HeaderCell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.bonusAmount].attributes}>{DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.bonusAmount].name}</HeaderCell>
@@ -84,7 +87,10 @@ const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sor
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.rowId].attributes}>{item[DetailBonusClaimedGridColumns.rowId]} </Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.bonusCode].attributes} >{item[DetailBonusClaimedGridColumns.bonusCode] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.username].attributes} >{item[DetailBonusClaimedGridColumns.username]}</Cell>
+            <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.currency].attributes} >{item[DetailBonusClaimedGridColumns.currency]}</Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.registeredDateDisplay].attributes}>{item[DetailBonusClaimedGridColumns.registeredDateDisplay]}</Cell>
+            <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.signupUrl].attributes} >{item[DetailBonusClaimedGridColumns.signupUrl]}</Cell>
+            <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.affCode].attributes} >{item[DetailBonusClaimedGridColumns.affCode]}</Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.depositAmount].attributes}>{NumberFormat.format(item[DetailBonusClaimedGridColumns.depositAmount], DigitsAmount)}</Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.withdrawalAmount].attributes} >{NumberFormat.format(item[DetailBonusClaimedGridColumns.withdrawalAmount], DigitsAmount)}</Cell>
             <Cell {...DetaiBonusClaimedGridConfig[DetailBonusClaimedGridColumns.bonusAmount].attributes}>{NumberFormat.format(item[DetailBonusClaimedGridColumns.bonusAmount], DigitsAmount)}</Cell>

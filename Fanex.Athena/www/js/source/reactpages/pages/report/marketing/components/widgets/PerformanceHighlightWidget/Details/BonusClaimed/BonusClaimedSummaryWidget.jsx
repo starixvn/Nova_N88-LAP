@@ -5,6 +5,7 @@ import Widget from '../../../../common/Widget';
 import DataService from '../../../../../libs/services/dataService';
 
 import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
+import GroupCell from '../../../../common/GroupCell';
 import QueryService from '../../../../../libs/services/queryService';
 import NumberHelper from '../../../../../libs/helpers/numberHelper';
 import { StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
@@ -26,24 +27,15 @@ const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, sele
     }, [reportDate, compareDate]);
 
     const _renderTotalData = () => {
-        const { totalData } = summaryData;
         const header = (<HeaderRow style={StyleRow}>
-            <HeaderCell>{LangHelper.getSingleResource('Total')}</HeaderCell>
+            <HeaderCell>{LangHelper.getSingleResource('TotalBonusAmountClaimed')}</HeaderCell>
             <HeaderCell>{LangHelper.getSingleResource('ReportDate')}</HeaderCell>
             {allowedCompare && <HeaderCell>{LangHelper.getSingleResource('CompareDate')}</HeaderCell>}
             {allowedCompare && <HeaderCell>{LangHelper.getSingleResource('ChangePercent')}</HeaderCell>}
         </HeaderRow>);
 
-        const item = totalData[0];
-        const roundRate = NumberFormat.round(item.changeRate, 0);
-        const displayRate = NumberHelper.displayRate(roundRate);
-        const colorRate = NumberHelper.getColorRate(roundRate);
-        const body = (<Row style={StyleRow}>
-            <Cell className='left-align highlight-cell' >{LangHelper.getSingleResource('BonusAmountClaimed')}</Cell>
-            <Cell className='right-align'>{NumberFormat.format(item.bonusAmountClaimeds, DigitsAmount)}</Cell>
-            {allowedCompare && <Cell className='right-align'>{NumberFormat.format(item.compareBonusAmountClaimeds, DigitsAmount)}</Cell>}
-            {allowedCompare && <Cell className={`right-align ${colorRate}`}>{displayRate}</Cell>}
-        </Row>);
+        const body = _renderBodyTotalData();
+        const totalRow = _rendertotalRowTotalData();
 
         return (<div className="summary-table">
             <Table
@@ -52,28 +44,66 @@ const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, sele
                 autoWidth={true}
                 autoHeight={true}
                 header={header}
-                body={body}
+                body={[...body, totalRow]}
                 isPaging={true}
                 containerPadding={70}
             />
         </div>)
     };
 
+    const _renderBodyTotalData = () => {
+        const { totalData } = summaryData;
+        return totalData.map(item => {
+            const roundRate = NumberFormat.round(item.changeRate, 0);
+            const displayRate = NumberHelper.displayRate(roundRate);
+            const colorRate = NumberHelper.getColorRate(roundRate);
+            return (<Row style={StyleRow}>
+                <Cell className='left-align highlight-cell' >{item.currencyCode}</Cell>
+                <Cell className='right-align'>{NumberFormat.format(item.bonusAmountClaimeds, DigitsAmount)}</Cell>
+                {allowedCompare && <Cell className='right-align'>{NumberFormat.format(item.compareBonusAmountClaimeds, DigitsAmount)}</Cell>}
+                {allowedCompare && <Cell className={`right-align ${colorRate}`}>{displayRate}</Cell>}
+            </Row>)
+        })
+    }
+
+    const _rendertotalRowTotalData = () => {
+        const { totalTotalData } = summaryData;
+        const roundRate = NumberFormat.round(totalTotalData.changeRate, 0);
+        const displayRate = NumberHelper.displayRate(roundRate);
+        const colorRate = NumberHelper.getColorRate(roundRate);
+        return (<Row>
+            <Cell className='left-align total-cell' >{LangHelper.getSingleResource('Total')}</Cell>
+            <Cell className='right-align total-cell'>{NumberFormat.format(totalTotalData.bonusAmountClaimeds, DigitsAmount)}</Cell>
+            {allowedCompare && <Cell className='right-align total-cell'>{NumberFormat.format(totalTotalData.compareBonusAmountClaimeds, DigitsAmount)}</Cell>}
+            {allowedCompare && <Cell className={`right-align total-cell ${colorRate}`}>{displayRate}</Cell>}
+        </Row>)
+    }
+
+    const _onDrillDownCampaignData = newCampaignData => {
+        const newSummaryData = { ...summaryData };
+        newSummaryData.detailData = newCampaignData;
+        setSummaryData(newSummaryData);
+    }
+
     const _renderCampaignData = () => {
         const { detailData, totalDetailData } = summaryData;
         const header = (<HeaderRow style={StyleRow}>
-            <HeaderCell>{LangHelper.getSingleResource('Bonus')}</HeaderCell>
+            <HeaderCell>{LangHelper.getSingleResource('BonusCode')}</HeaderCell>
+            <HeaderCell>{LangHelper.getSingleResource('BonusName')}</HeaderCell>
             <HeaderCell>{LangHelper.getSingleResource('NoOfBonusClaimed')}</HeaderCell>
             <HeaderCell>{LangHelper.getSingleResource('TotalBonusAmountClaimed')}</HeaderCell>
         </HeaderRow>);
-        const body = detailData.map(item => <Row style={StyleRow}>
-            <Cell className='left-align highlight-cell'>{item.bonusCode || LangHelper.getSingleResource('None')}</Cell>
+
+        const body = detailData.map(item => <Row key={item.id} style={StyleRow}>
+            {_renderGroupCampaignCell(item, detailData)}
+            <Cell className='left-align'>{item.bonusName || LangHelper.getSingleResource('None')}</Cell>
             <Cell className='right-align'>{NumberFormat.format(item.numberOfBonusClaimed, 0)}</Cell>
             <Cell className='right-align'>{NumberFormat.format(item.bonusAmount, DigitsAmount)}</Cell>
         </Row>)
 
         const totalRow = (<Row>
             <Cell className='left-align total-cell'>{LangHelper.getSingleResource('Total')}</Cell>
+            <Cell className='total-cell' />
             <Cell className='right-align total-cell'>{NumberFormat.format(totalDetailData.totalBonusClaimeds, 0)}</Cell>
             <Cell className='right-align total-cell'>{NumberFormat.format(totalDetailData.totalBonusAmount, 2)}</Cell>
         </Row>)
@@ -90,6 +120,18 @@ const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, sele
             />
         </div>)
     };
+
+    const _renderGroupCampaignCell = (item, detailData) => {
+        const isParent = item.childs && item.childs.length > 0; 
+        return <GroupCell displayText={item[isParent ? 'bonusCode' : 'currencyCode'] || LangHelper.getSingleResource('None')}
+        rowData={item}
+        dataList={detailData}
+        fieldKey={'id'}
+        allowedDrillDown={isParent}
+        isChild={!isParent}
+        onDrillDown={_onDrillDownCampaignData}
+        {...{ className: "left-align" + (isParent ? " highlight-cell" : "")  }} />
+    }
 
     return (
         <Widget title={LangHelper.getSingleResource('Summary')} isLoading={isLoading}>

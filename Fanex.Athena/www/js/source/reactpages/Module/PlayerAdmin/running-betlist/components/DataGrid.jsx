@@ -90,7 +90,7 @@ export class DataGrid extends Component {
             onPaging={this.onPaging}
             getHeaderNameFunc={this.getHeaderName}
             columns={['Index', 'RefNo', 'TransTime', 'Choice', 'Odds', 'OddsType', 'Stake', 'Status', 'Platform', 'Live']}
-            columnWidths={[40, 110, 150, 400, 70, 70, 100, 80, 80, 80]}
+            columnWidths={[40, 110, 150, 400, 70, 70, 100, 110, 80, 80]}
             sortableColumns={['Stake']}
             totalColumns={['Stake']}
             columnAlignments={[

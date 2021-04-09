@@ -401,7 +401,7 @@ class DataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onPaging: this.onPaging,
       getHeaderNameFunc: this.getHeaderName,
       columns: ['Index', 'RefNo', 'TransTime', 'Choice', 'Odds', 'OddsType', 'Stake', 'Status', 'Platform', 'Live'],
-      columnWidths: [40, 110, 150, 400, 70, 70, 100, 80, 80, 80],
+      columnWidths: [40, 110, 150, 400, 70, 70, 100, 110, 80, 80],
       sortableColumns: ['Stake'],
       totalColumns: ['Stake'],
       columnAlignments: ['center-align', 'center-align', 'center-align', 'right-align', 'right-align', 'right-align', 'right-align', 'center-align', 'center-align', 'center-align'],
@@ -562,7 +562,7 @@ const defaultState = Object.assign({}, window.initialState, {
   isLoading: false
 });
 const store = _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_5__["default"].createStore(_reducers_index_js__WEBPACK_IMPORTED_MODULE_4__["default"], defaultState);
-const App = react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(() => {
+const App = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(() => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
     store: store
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContainer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null));

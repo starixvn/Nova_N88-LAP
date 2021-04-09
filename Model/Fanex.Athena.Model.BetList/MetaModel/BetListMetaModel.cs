@@ -8,7 +8,7 @@ using Fanex.Athena.Model.Core.MetaModel;
 
 namespace Fanex.Athena.Model.BetList.MetaModel
 {
-    public class BetListMetaModel : BaseMetaModel, IMetaModelValidation, IMetaModelProductCodeList
+    public class BetListMetaModel : BaseMetaModel, IMetaModelValidation, IMetaModelProductCodeList, IMetaModelShowIPVN
     {
         public BetListMetaModel()
         {
@@ -20,6 +20,8 @@ namespace Fanex.Athena.Model.BetList.MetaModel
         }
 
         public bool HasPlayerCom { get; set; }
+
+        public bool IsShowIpvn { get; set; }
 
         [ScriptIgnore]
         public string UspKey { get; set; }

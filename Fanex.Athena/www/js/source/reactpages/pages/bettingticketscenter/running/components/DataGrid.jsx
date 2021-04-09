@@ -10,7 +10,7 @@ const Columns = [
 ];
 const ColumnWidths = [
     40, 120, 120, 110, 150, 400, 70,
-    70, 120, 80, 80, 80
+    70, 120, 110, 80, 80
 ];
 const ColumnAlignments = [
     'center-align', '', '', 'center-align', 'center-align', 'right-align', 'right-align',

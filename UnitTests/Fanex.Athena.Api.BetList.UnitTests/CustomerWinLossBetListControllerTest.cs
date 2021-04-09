@@ -33,19 +33,6 @@
                 {
                     CurrencyId = currencyId
                 };
-                StubUserSessionData(new NVCUserAuthInfo
-                {
-                    Language = SessionLanguage,
-                    CurrencyList = new Dictionary<int, string> { { currencyId, "Test" } },
-                    CurrencyAgentList = new Dictionary<int, int[]>(),
-                    BrandList = new List<Brand>
-                    {
-                        new Brand { Id = 402, Name = "N88",
-                            CurrencyList = new Dictionary<int, string> { { currencyId, "Test" } },
-                            CurrencyAgentList =  new Dictionary<int, int[]>()
-                        }
-                    }
-                });
 
                 var expect = new HttpResponseMessage();
                 StubBetListApiPostAsync(metaModel, ApiPath, expect);

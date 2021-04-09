@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 3/15/2021 4:30:23 PM
+﻿// Generated at: 3/31/2021 11:10:44 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -762,6 +762,7 @@ ProductVS2:"Virtual Sports 2",
 Promotion:"Promotion",
 PromotionPrize:"Promotion Prize",
 PropertiesMustMatchErrMsg:"&apos;{0}&apos; and &apos;{1}&apos; do not match.",
+QuickDownloadDateRangeExceedMsg:"To download excel file, please select data range within 1 month.",
 RB:"RB",
 Read:"Read",
 RealName:"Real Name",
@@ -964,6 +965,7 @@ VendorMemberID:"Vendor Member ID",
 View:"View",
 View_details_of:"Details",
 ViewBy:"View by",
+ViewColumn:"View Column",
 ViewDataInMonth:"View data in month",
 Viewin:"View in {0}",
 ViewNotification:"View Notification",

@@ -1,9 +1,11 @@
 ﻿namespace Fanex.Athena.Api.BetList
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using Base;
     using DataAccess.Core.Configuration.Interfaces;
+    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Model.BetList.MetaModel;
     using Model.Core.DTO.Configuration;
@@ -49,6 +51,7 @@
 
             var userSession = SessionService.UserSession;
             metaModel = UpdateMetaModel(metaModel, uspKey, 1, int.MaxValue - 1);
+            metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
 
             return await BridgeClientService.PostAsync(apiPath ?? "/BetList/GetBetList", metaModel, userSession.Language).ConfigureAwait(false);
         }
@@ -65,6 +68,7 @@
         
             metaModel.IsServerPaging = true;
             metaModel = UpdateMetaModel(metaModel, uspKey, pageIndex, pageSize);
+            metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
 
             return await BridgeClientService.PostAsync(apiPath ?? "/BetList/GetBetListPaging", metaModel, userSession.Language).ConfigureAwait(false);
         }

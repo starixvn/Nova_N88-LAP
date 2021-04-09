@@ -33,6 +33,7 @@
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
             var agentList = AuthParameterHelper.GetAgentList(BrandList, new[] { metaModel.BrandId });
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList);
+            metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
 
             return await _betListApiClient.PostAsync(
                 "/BettingTicketCenter/GetBySingleCustomer",
@@ -48,6 +49,7 @@
             var userSession = SessionService.UserSession;
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(AgentList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
+            metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
 
             return await _betListApiClient.PostAsync(
                 "/BettingTicketCenter/GetByRefno",
@@ -66,6 +68,7 @@
             var agentList = AuthParameterHelper.GetAgentList(BrandList, new[] { metaModel.BrandId });
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, currencyList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
+            metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
 
             return await _betListApiClient.PostAsync(
                 "/BettingTicketCenter/GetByRunning",

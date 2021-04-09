@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Athena.Module.PlayerAdmin.Controllers
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
@@ -52,6 +53,7 @@
         {
             metaModel.SiteName = SessionServiceInstance.LicenseeSession.LicenseeName;
             metaModel.Language = SessionServiceInstance.UserSession.Language;
+            metaModel.IsShowIpvn = SessionServiceInstance.UserSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
 
             return Content(await _playerStatementService.GetUrl(metaModel).ConfigureAwait(false));
         }

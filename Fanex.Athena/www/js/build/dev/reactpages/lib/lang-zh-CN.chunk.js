@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 3/31/2021 11:10:44 AM
+// Generated at: 4/7/2021 11:05:26 AM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -108,6 +108,7 @@ window._language_zh_CN = {
   AD: "客和",
   Adjustment: "调整",
   AdvancedSearch: "进阶搜寻",
+  AffCode: "AFF Code",
   AffiliateTransfer: "合作伙伴转账",
   AGCasino: "AG Casino",
   AGCasinoNotOfferCurrency: "AG Casino is not offered for this currency.",
@@ -536,6 +537,7 @@ window._language_zh_CN = {
   NA: "N/A",
   Name: "姓名",
   NativeApp: "原生App",
+  NetCashAmount: "Net Cash Amount",
   NetTurnover: "净交易额",
   NewAsia: "新亚洲版",
   NewGroup: "新组别",
@@ -574,6 +576,7 @@ window._language_zh_CN = {
   NRUNewlyRegisterdUsers: "NRU - Newly Registered Users",
   NumberGameNo: "百练赛编号",
   NumberOfDeposits: "Number of Deposits",
+  NumberOfPlayers: "Number Of Players",
   NumberOfWithdrawals: "Number Of Withdrawals",
   OANDANote: "请注意所有的换算的基础货币 (欧元, 美金) 仅供参考。",
   Oct: "十月",

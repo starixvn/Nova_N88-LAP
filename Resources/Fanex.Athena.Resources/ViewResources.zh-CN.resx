@@ -2580,4 +2580,16 @@
     <value>To download excel file, please select data range within 1 month.</value>
     <comment>151187</comment>
   </data>
+  <data name="AffCode" xml:space="preserve">
+    <value>AFF Code</value>
+    <comment>150876</comment>
+  </data>
+  <data name="NetCashAmount" xml:space="preserve">
+    <value>Net Cash Amount</value>
+    <comment>150876</comment>
+  </data>
+  <data name="NumberOfPlayers" xml:space="preserve">
+    <value>Number Of Players</value>
+    <comment>150876</comment>
+  </data>
 </root>

@@ -93,6 +93,7 @@ export class FormFilter extends PureComponent {
         const productOptions = AppData.productOptions;
         return productOptions && productOptions.length ? (
             <MultipleSelect id="ProductList"
+                hasSearchBox={true}
                 language={LangHelper.currentLanguage}
                 dataSource={productOptions}
                 keyField={"key"}

@@ -72,6 +72,7 @@ const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand,
         return (<HeaderRow style={StyleRow}>
             <HeaderCell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.rowId].attributes}>{DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.rowId].name}</HeaderCell>
             <HeaderCell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.username].attributes}>{DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.username].name}</HeaderCell>
+            <HeaderCell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.currency].attributes}>{DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.currency].name}</HeaderCell>
             <HeaderCell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.registeredDateDisplay].attributes}>{DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.registeredDateDisplay].name}</HeaderCell>
             <HeaderCell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.numberOfWithdrawals].attributes}>{DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.numberOfWithdrawals].name}</HeaderCell>
             <HeaderCell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.withdrawalAmount].attributes}>{DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.withdrawalAmount].name}</HeaderCell>
@@ -83,6 +84,7 @@ const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand,
         return dataList.map(item => <Row style={StyleRow}>
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.rowId].attributes}>{item[DetailWithdrawalAmountGridColumns.rowId]} </Cell>
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.username].attributes} >{item[DetailWithdrawalAmountGridColumns.username]}</Cell>
+            <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.currency].attributes} >{item[DetailWithdrawalAmountGridColumns.currency]}</Cell>
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.registeredDateDisplay].attributes}>{item[DetailWithdrawalAmountGridColumns.registeredDateDisplay]}</Cell>
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.numberOfWithdrawals].attributes}>{NumberFormat.format(item[DetailWithdrawalAmountGridColumns.numberOfWithdrawals], 0)}</Cell>
             <Cell {...DetaiWithdrawalAmountGridConfig[DetailWithdrawalAmountGridColumns.withdrawalAmount].attributes}>{NumberFormat.format(item[DetailWithdrawalAmountGridColumns.withdrawalAmount], DigitsAmount)}</Cell>

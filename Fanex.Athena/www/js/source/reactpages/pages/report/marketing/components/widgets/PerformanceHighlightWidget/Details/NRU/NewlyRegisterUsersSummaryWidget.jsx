@@ -61,16 +61,20 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
     const _renderCampaignData = () => {
         const { campaignData } = summaryData;
         const header = (<HeaderRow style={StyleRow}>
-            <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].name}</HeaderCell>
-            <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.newlyRegisterUsers].name}</HeaderCell>
-            <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.depositUsers].name}</HeaderCell>
-            <HeaderCell>{CampaignNRUGridConfig[CampaignNRUGridColumns.firstDepositAmount].name}</HeaderCell>
+            <HeaderCell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].attributes}>{CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].name}</HeaderCell>
+            <HeaderCell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusName].attributes}>{CampaignNRUGridConfig[CampaignNRUGridColumns.bonusName].name}</HeaderCell>
+            <HeaderCell {...CampaignNRUGridConfig[CampaignNRUGridColumns.newlyRegisterUsers].attributes}>{CampaignNRUGridConfig[CampaignNRUGridColumns.newlyRegisterUsers].name}</HeaderCell>
+            <HeaderCell {...CampaignNRUGridConfig[CampaignNRUGridColumns.depositUsers].attributes}>{CampaignNRUGridConfig[CampaignNRUGridColumns.depositUsers].name}</HeaderCell>
+            <HeaderCell {...CampaignNRUGridConfig[CampaignNRUGridColumns.firstDepositAmount].attributes}>{CampaignNRUGridConfig[CampaignNRUGridColumns.firstDepositAmount].name}</HeaderCell>
+            <HeaderCell {...CampaignNRUGridConfig[CampaignNRUGridColumns.totalDepositAmount].attributes} >{CampaignNRUGridConfig[CampaignNRUGridColumns.totalDepositAmount].name}</HeaderCell>
         </HeaderRow>);
         const body = campaignData.map(item => <Row style={StyleRow}>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].attributes}>{item[CampaignNRUGridColumns.bonusCode] || LangHelper.getSingleResource('None')}</Cell>
+            <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusName].attributes}>{item[CampaignNRUGridColumns.bonusName] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.newlyRegisterUsers].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.newlyRegisterUsers])}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.depositUsers].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.depositUsers])}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
+            <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.totalDepositAmount].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.totalDepositAmount], DigitsAmount)}</Cell>
         </Row>)
 
         return (<div className="summary-table">
@@ -87,7 +91,7 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
     };
 
     const _onDrillDownSignupData = newSignupData => {
-        const newSummaryData = {...summaryData };
+        const newSummaryData = { ...summaryData };
         newSummaryData.signupData = newSignupData;
         setSummaryData(newSummaryData);
     }
@@ -99,20 +103,15 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
             <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.newlyRegisterUsers].name}</HeaderCell>
             <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.depositUsers].name}</HeaderCell>
             <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.firstDepositAmount].name}</HeaderCell>
+            <HeaderCell>{SignupNRUGridConfig[SignupNRUGridColumns.totalDepositAmount].name}</HeaderCell>
         </HeaderRow>);
 
         const body = signupData.map(item => <Row key={`${item[SignupNRUGridColumns.source]}-${item[SignupNRUGridColumns.url]}`} style={StyleRow}>
-            <GroupCell displayText={item[SignupNRUGridColumns.url] || LangHelper.getSingleResource('None')}
-                rowData={item}
-                dataList={signupData}
-                fieldKey={SignupNRUGridColumns.url}
-                allowedDrillDown={!item.noGrouping && item.childs && item.childs.length > 0}
-                isChild={!item.noGrouping && (!item.childs || !item.childs.length)}
-                onDrillDown={_onDrillDownSignupData}
-                {...SignupNRUGridConfig[SignupNRUGridColumns.url].attributes} />
+            {_renderGroupSignupCell(item, signupData)}
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.newlyRegisterUsers].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.newlyRegisterUsers])}</Cell>
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.depositUsers].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.depositUsers])}</Cell>
             <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
+            <Cell {...SignupNRUGridConfig[SignupNRUGridColumns.totalDepositAmount].attributes}>{NumberFormat.format(item[SignupNRUGridColumns.totalDepositAmount], DigitsAmount)}</Cell>
         </Row>)
 
         const totalRow = (<Row>
@@ -120,6 +119,7 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
             <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalNewlyRegisterUsers, 0)}</Cell>
             <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalDepositUsers, 0)}</Cell>
             <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalFirstDepositAmount, 2)}</Cell>
+            <Cell className='right-align total-cell'>{NumberFormat.format(totalSignupData.totalDepositAmount, 2)}</Cell>
         </Row>)
 
         return (<div className="summary-table">
@@ -134,7 +134,19 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
                 containerPadding={70}
             />
         </div>)
-    };
+    }
+
+    const _renderGroupSignupCell = (item, signupData) => {
+        const isChild = !item.noGrouping && (!item.childs || !item.childs.length); 
+        return <GroupCell displayText={item[SignupNRUGridColumns.url] || LangHelper.getSingleResource('None')}
+        rowData={item}
+        dataList={signupData}
+        fieldKey={SignupNRUGridColumns.url}
+        allowedDrillDown={!item.noGrouping && item.childs && item.childs.length > 0}
+        isChild={isChild}
+        onDrillDown={_onDrillDownSignupData}
+        {...{ className: 'left-align' + (isChild ? '' : ' highlight-cell') }} />
+    }
 
     return (
         <Widget title={LangHelper.getSingleResource('Summary')} isLoading={isLoading}>

@@ -73,10 +73,13 @@ const NewlyRegisterUsersDetailWidget = ({ reportDate, baseCurrency, selectedBran
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.rowId].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.rowId].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.bonusCode].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.bonusCode].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.username].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.username].name}</HeaderCell>
+            <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.currency].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.currency].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.registeredDateDisplay].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.registeredDateDisplay].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.signupUrl].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.signupUrl].name}</HeaderCell>
+            <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.affCode].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.affCode].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.isDeposit].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.isDeposit].name}</HeaderCell>
             <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.firstDepositAmount].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.firstDepositAmount].name}</HeaderCell>
+            <HeaderCell {...DetailNRUGridConfig[DetailNRUGridColumns.totalDepositAmount].attributes}>{DetailNRUGridConfig[DetailNRUGridColumns.totalDepositAmount].name}</HeaderCell>
         </HeaderRow>);
     }
 
@@ -86,10 +89,13 @@ const NewlyRegisterUsersDetailWidget = ({ reportDate, baseCurrency, selectedBran
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.rowId].attributes}>{item[DetailNRUGridColumns.rowId]} </Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.bonusCode].attributes} >{item[DetailNRUGridColumns.bonusCode] || LangHelper.getSingleResource('None')}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.username].attributes} >{item[DetailNRUGridColumns.username]}</Cell>
+            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.currency].attributes} >{item[DetailNRUGridColumns.currency]}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.registeredDateDisplay].attributes}>{item[DetailNRUGridColumns.registeredDateDisplay]}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.signupUrl].attributes}>{item[DetailNRUGridColumns.signupUrl] || LangHelper.getSingleResource('None')}</Cell>
+            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.affCode].attributes} >{item[DetailNRUGridColumns.affCode]}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.isDeposit].attributes} >{item[DetailNRUGridColumns.isDeposit] ? LangHelper.getSingleResource('Yes') : LangHelper.getSingleResource('No')}</Cell>
             <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[DetailNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>
+            <Cell {...DetailNRUGridConfig[DetailNRUGridColumns.totalDepositAmount].attributes}>{NumberFormat.format(item[DetailNRUGridColumns.totalDepositAmount], DigitsAmount)}</Cell>
         </Row>)
     }
 

@@ -16,16 +16,20 @@ export const TotalNRUGridConfig = {
 
 export const CampaignNRUGridColumns = {
     bonusCode: 'bonusCode',
+    bonusName: 'bonusName',
     newlyRegisterUsers: 'newlyRegisterUsers',
     depositUsers: 'depositUsers',
-    firstDepositAmount: 'firstDepositAmount'
+    firstDepositAmount: 'firstDepositAmount',
+    totalDepositAmount: 'totalDepositAmount'
 }
 
 export const CampaignNRUGridConfig = {
-    [CampaignNRUGridColumns.bonusCode]: { name: LangHelper.getSingleResource('Bonus'), attributes: { className: "left-align highlight-cell" } },
-    [CampaignNRUGridColumns.newlyRegisterUsers]: { name: LangHelper.getSingleResource('NRU'), attributes: { className: "right-align" } },
-    [CampaignNRUGridColumns.depositUsers]: { name: LangHelper.getSingleResource('Deposit'), attributes: { className: "right-align" } },
-    [CampaignNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { className: "right-align" } }
+    [CampaignNRUGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { colWidth: 60, className: "left-align highlight-cell" } },
+    [CampaignNRUGridColumns.bonusName]: { name: LangHelper.getSingleResource('BonusName'), attributes: { colWidth: 100, className: "left-align" } },
+    [CampaignNRUGridColumns.newlyRegisterUsers]: { name: LangHelper.getSingleResource('NRU'), attributes: { colWidth: 50, className: "right-align" } },
+    [CampaignNRUGridColumns.depositUsers]: { name: LangHelper.getSingleResource('Deposit'), attributes: { colWidth: 50, className: "right-align" } },
+    [CampaignNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { colWidth: 50, className: "right-align" } },
+    [CampaignNRUGridColumns.totalDepositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { colWidth: 50, className: "right-align" } }
 }
 
 export const SignupNRUGridColumns = {
@@ -33,91 +37,111 @@ export const SignupNRUGridColumns = {
     source: 'signupSource',
     newlyRegisterUsers: 'newlyRegisterUsers',
     depositUsers: 'depositUsers',
-    firstDepositAmount: 'firstDepositAmount'
+    firstDepositAmount: 'firstDepositAmount',
+    totalDepositAmount: 'totalDepositAmount'
 }
 
 export const SignupNRUGridConfig = {
     [SignupNRUGridColumns.url]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { className: "left-align highlight-cell" } },
     [SignupNRUGridColumns.newlyRegisterUsers]: { name: LangHelper.getSingleResource('NRU'), attributes: { className: "right-align" } },
     [SignupNRUGridColumns.depositUsers]: { name: LangHelper.getSingleResource('Deposit'), attributes: { className: "right-align" } },
-    [SignupNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { className: "right-align" } }
+    [SignupNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { className: "right-align" } },
+    [SignupNRUGridColumns.totalDepositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { className: "right-align" } }
 }
 
 export const DetailNRUGridColumns = {
     rowId: 'rowId',
     bonusCode: 'bonusCode',
     username: 'username',
+    currency: 'currency',
     registeredDateDisplay: 'registeredDateDisplay',
     signupUrl: 'signupUrl',
+    affCode: 'affCode',
     isDeposit: 'isDeposit',
-    firstDepositAmount: 'firstDepositAmount'
+    firstDepositAmount: 'firstDepositAmount',
+    totalDepositAmount: 'totalDepositAmount'
 }
 
 export const DetailNRUGridConfig = {
     [DetailNRUGridColumns.rowId]: { name: '#', attributes: { colWidth: 30, className: "center-align" } },
-    [DetailNRUGridColumns.bonusCode]: { name: LangHelper.getSingleResource('Bonus'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
+    [DetailNRUGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
     [DetailNRUGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 2, colWidth: 80, className: "left-align" } },
-    [DetailNRUGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 3, colWidth: 80, className: "center-align" } },
-    [DetailNRUGridColumns.signupUrl]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { sortBy: 4, colWidth: 80, className: "left-align" } },
-    [DetailNRUGridColumns.isDeposit]: { name: LangHelper.getSingleResource('Deposit'), attributes: { sortBy: 5, colWidth: 50, className: "center-align" } },
-    [DetailNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { sortBy: 6, colWidth: 80, className: "right-align" } }
+    [DetailNRUGridColumns.currency]: { name: LangHelper.getSingleResource('Currency'), attributes: { sortBy: 3, colWidth: 50, className: "left-align" } },
+    [DetailNRUGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 4, colWidth: 80, className: "center-align" } },
+    [DetailNRUGridColumns.signupUrl]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { sortBy: 5, colWidth: 80, className: "left-align" } },
+    [DetailNRUGridColumns.affCode]: { name: LangHelper.getSingleResource('AffCode'), attributes: { sortBy: 6, colWidth: 50, className: "right-align" } },
+    [DetailNRUGridColumns.isDeposit]: { name: LangHelper.getSingleResource('Deposit'), attributes: { sortBy: 7, colWidth: 50, className: "center-align" } },
+    [DetailNRUGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { sortBy: 8, colWidth: 80, className: "right-align" } },
+    [DetailNRUGridColumns.totalDepositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 9, colWidth: 80, className: "right-align" } }
 }
 
 export const DetailWithdrawalAmountGridColumns = {
     rowId: 'rowId',
     username: 'username',
+    currency: 'currency',
     registeredDateDisplay: 'registeredDateDisplay',
     numberOfWithdrawals: 'numberOfWithdrawals',
-    withdrawalAmount: 'withdrawalAmount'
+    withdrawalAmount: 'totalWithdrawalAmount'
 }
 
 export const DetaiWithdrawalAmountGridConfig = {
     [DetailWithdrawalAmountGridColumns.rowId]: { name: '#', attributes: { colWidth: 30, className: "center-align" } },
     [DetailWithdrawalAmountGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
-    [DetailWithdrawalAmountGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 2, colWidth: 80, className: "center-align" } },
-    [DetailWithdrawalAmountGridColumns.numberOfWithdrawals]: { name: LangHelper.getSingleResource('NumberOfWithdrawals'), attributes: { sortBy: 3, colWidth: 80, className: "right-align" } },
-    [DetailWithdrawalAmountGridColumns.withdrawalAmount]: { name: LangHelper.getSingleResource('TotalWithdrawalAmount'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } }
+    [DetailWithdrawalAmountGridColumns.currency]: { name: LangHelper.getSingleResource('Currency'), attributes: { sortBy: 2, colWidth: 60, className: "left-align" } },
+    [DetailWithdrawalAmountGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 3, colWidth: 80, className: "center-align" } },
+    [DetailWithdrawalAmountGridColumns.numberOfWithdrawals]: { name: LangHelper.getSingleResource('NumberOfWithdrawals'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } },
+    [DetailWithdrawalAmountGridColumns.withdrawalAmount]: { name: LangHelper.getSingleResource('TotalWithdrawalAmount'), attributes: { sortBy: 5, colWidth: 80, className: "right-align" } }
 }
 
 export const DetailBonusClaimedGridColumns = {
     rowId: 'rowId',
     bonusCode: 'bonusCode',
     username: 'username',
+    currency: 'currency',
     registeredDateDisplay: 'registeredDateDisplay',
-    depositAmount: 'depositAmount',
-    withdrawalAmount: 'withdrawalAmount',
-    bonusAmount: 'bonusAmount'
+    signupUrl: 'signupUrl',
+    affCode: 'affCode',
+    depositAmount: 'totalDepositAmount',
+    withdrawalAmount: 'totalWithdrawalAmount',
+    bonusAmount: 'totalBonusAmount'
 }
 
 export const DetaiBonusClaimedGridConfig = {
     [DetailBonusClaimedGridColumns.rowId]: { name: '#', attributes: { colWidth: 30, className: "center-align" } },
-    [DetailBonusClaimedGridColumns.bonusCode]: { name: LangHelper.getSingleResource('Bonus'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
+    [DetailBonusClaimedGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
     [DetailBonusClaimedGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 2, colWidth: 80, className: "left-align" } },
-    [DetailBonusClaimedGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 3, colWidth: 80, className: "center-align" } },
-    [DetailBonusClaimedGridColumns.depositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } },
-    [DetailBonusClaimedGridColumns.withdrawalAmount]: { name: LangHelper.getSingleResource('TotalWithdrawalAmount'), attributes: { sortBy: 5, colWidth: 80, className: "right-align" } },
-    [DetailBonusClaimedGridColumns.bonusAmount]: { name: LangHelper.getSingleResource('TotalBonusAmountClaimed'), attributes: { sortBy: 6, colWidth: 80, className: "right-align" } }
+    [DetailBonusClaimedGridColumns.currency]: { name: LangHelper.getSingleResource('currency'), attributes: { sortBy: 3, colWidth: 50, className: "left-align" } },
+    [DetailBonusClaimedGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 4, colWidth: 80, className: "center-align" } },
+    [DetailBonusClaimedGridColumns.signupUrl]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { sortBy: 5, colWidth: 80, className: "left-align" } },
+    [DetailBonusClaimedGridColumns.affCode]: { name: LangHelper.getSingleResource('AffCode'), attributes: { sortBy: 6, colWidth: 50, className: "right-align" } },
+    [DetailBonusClaimedGridColumns.depositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 7, colWidth: 80, className: "right-align" } },
+    [DetailBonusClaimedGridColumns.withdrawalAmount]: { name: LangHelper.getSingleResource('TotalWithdrawalAmount'), attributes: { sortBy: 8, colWidth: 80, className: "right-align" } },
+    [DetailBonusClaimedGridColumns.bonusAmount]: { name: LangHelper.getSingleResource('TotalBonusAmountClaimed'), attributes: { sortBy: 9, colWidth: 80, className: "right-align" } }
 }
 
 
 export const DetailDepositAmountGridColumns = {
     rowId: 'rowId',
     username: 'username',
+    currency: 'currency',
     registeredDateDisplay: 'registeredDateDisplay',
     signupUrl: 'signupUrl',
+    affCode: 'affCode',
     firstDepositAmount: 'firstDepositAmount',
     numberOfDeposits: 'noOfDeposits',
-    depositAmount: 'depositAmount'
+    depositAmount: 'totalDepositAmount'
 }
 
 export const DetailDepositAmountGridConfig = {
     [DetailDepositAmountGridColumns.rowId]: { name: '#', attributes: { colWidth: 30, className: "center-align" } },
     [DetailDepositAmountGridColumns.username]: { name: LangHelper.getSingleResource('Username'), attributes: { sortBy: 1, colWidth: 80, className: "left-align" } },
-    [DetailDepositAmountGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 2, colWidth: 80, className: "center-align" } },
-    [DetailDepositAmountGridColumns.signupUrl]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { sortBy: 3, className: "left-align" } },
-    [DetailDepositAmountGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { sortBy: 4, colWidth: 80, className: "right-align" } },
-    [DetailDepositAmountGridColumns.numberOfDeposits]: { name: LangHelper.getSingleResource('NumberOfDeposits'), attributes: { sortBy: 5, colWidth: 80, className: "right-align" } },
-    [DetailDepositAmountGridColumns.depositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 6, colWidth: 80, className: "right-align" } }
+    [DetailDepositAmountGridColumns.currency]: { name: LangHelper.getSingleResource('Currency'), attributes: { sortBy: 2, colWidth: 50, className: "left-align" } },
+    [DetailDepositAmountGridColumns.registeredDateDisplay]: { name: LangHelper.getSingleResource('RegisteredDate'), attributes: { sortBy: 3, colWidth: 80, className: "center-align" } },
+    [DetailDepositAmountGridColumns.signupUrl]: { name: LangHelper.getSingleResource('SignupUrl'), attributes: { sortBy: 4, className: "left-align" } },
+    [DetailDepositAmountGridColumns.affCode]: { name: LangHelper.getSingleResource('AffCode'), attributes: { sortBy: 5, colWidth: 50, className: "right-align" } },
+    [DetailDepositAmountGridColumns.firstDepositAmount]: { name: LangHelper.getSingleResource('FirstDepositAmount'), attributes: { sortBy: 6, colWidth: 80, className: "right-align" } },
+    [DetailDepositAmountGridColumns.numberOfDeposits]: { name: LangHelper.getSingleResource('NumberOfDeposits'), attributes: { sortBy: 7, colWidth: 80, className: "right-align" } },
+    [DetailDepositAmountGridColumns.depositAmount]: { name: LangHelper.getSingleResource('TotalDepositAmount'), attributes: { sortBy: 8, colWidth: 80, className: "right-align" } }
 }
 
 export const DefaultPagingOption = {

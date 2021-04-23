@@ -1,4 +1,4 @@
-﻿// Generated at: 4/7/2021 11:05:26 AM
+﻿// Generated at: 4/23/2021 9:13:36 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -660,7 +660,7 @@ ProductSB:"Sportsbook",
 ProductSBC:"Saba.club",
 ProductSG:"SG",
 ProductSLT:"Sports Lottery",
-ProductSXG:"AE Casino",
+ProductSXG:"AE Sexy",
 ProductTG:"Table Game",
 ProductVB:"Macau Games",
 ProductVG:"Macau",

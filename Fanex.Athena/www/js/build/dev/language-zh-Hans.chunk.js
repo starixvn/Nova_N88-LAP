@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 3/31/2021 11:10:44 AM
+﻿// Generated at: 4/23/2021 9:13:36 AM
 window._language_zh_Hans = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -563,7 +563,7 @@ ProductKN:"快乐彩",
 ProductNG:"百练赛",
 ProductSB:"体育博彩",
 ProductSLT:"体育时时彩",
-ProductSXG:"AE 真人",
+ProductSXG:"AE性感真人",
 ProductVRG:"虚拟娱乐城",
 ProductVS:"虚拟运动",
 ProductVS2:"虚拟运动2",

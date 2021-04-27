@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 3/31/2021 11:10:44 AM
+﻿// Generated at: 4/23/2021 9:13:36 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -113,6 +113,7 @@ AddSuccessMsg:"{0} has been added successfully. You will be redirected in &lt;sp
 Adjustment:"Adjustment",
 Administrator:"Administrator",
 AdvancedSearch:"Advanced Search",
+AffCode:"AFF Code",
 AffiliateTransfer:"Affiliate Transfer",
 AGCasino:"AG Casino",
 AGCasinoNotOfferCurrency:"AG Casino is not offered for this currency.",
@@ -621,6 +622,7 @@ MultiCustomers:"Multi-Customers",
 NA:"N/A",
 Name:"Name",
 NativeApp:"Native App",
+NetCashAmount:"Net Cash Amount",
 NetTurnover:"Valid Turnover",
 NeverExpired:"Never Expired",
 NewAsia:"New Asia",
@@ -664,6 +666,7 @@ November:"November",
 NRUNewlyRegisterdUsers:"NRU - Newly Registered Users",
 NumberGameNo:"Number Game No",
 NumberOfDeposits:"Number of Deposits",
+NumberOfPlayers:"Number Of Players",
 NumberOfWithdrawals:"Number Of Withdrawals",
 OANDANote:"Please note that all conversions to base currency (EURO,USD) are for reference only.",
 Oct:"Oct",
@@ -752,7 +755,7 @@ ProductSB:"Sportsbook",
 ProductSBC:"Saba.club",
 ProductSG:"SG",
 ProductSLT:"Sports Lottery",
-ProductSXG:"AE Casino",
+ProductSXG:"AE Sexy",
 ProductTG:"Table Game",
 ProductVB:"Macau Games",
 ProductVG:"Macau",

@@ -1,9 +1,6 @@
 import Site from '@jsroot/lib/site';
 import store from '../store';
 import { setPagingOption, setSortOption, setDisplayedColumns } from '../../actions/gridAction';
-import { displayedColumns } from '../../constants/gridContants';
-import GroupHelper from '../helpers/groupHelper';
-
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
          selectedProduct, selectedBrand, selectedDateType, isExcludeTest, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption, selectedTimezone }) {
@@ -30,7 +27,7 @@ export default class QueryHelper {
 
     static callBackToUpdateGridOption = (pageIndex, pageSize, sortBy, sortType) => response => {
         const { totalRows } = response;
-        const { pagingOption, selectedGroupByOption } = store.getState();
+        const { pagingOption } = store.getState();
         const newPagingOption = {
             ...pagingOption,
             ...{

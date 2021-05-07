@@ -5479,6 +5479,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Original Currency.
+        /// </summary>
+        public static string OriginalCurrency {
+            get {
+                return ResourceManager.GetString("OriginalCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other Platform.
         /// </summary>
         public static string OtherPlatform {
@@ -5727,6 +5736,15 @@ namespace Fanex.Athena.Resources {
         public static string PlayerAdminUpdateFailedMsg {
             get {
                 return ResourceManager.GetString("PlayerAdminUpdateFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Bet List.
+        /// </summary>
+        public static string PlayerBetList {
+            get {
+                return ResourceManager.GetString("PlayerBetList", resourceCulture);
             }
         }
         

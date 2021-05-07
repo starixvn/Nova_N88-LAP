@@ -2598,4 +2598,10 @@
     <value>Number Of Players</value>
     <comment>150876</comment>
   </data>
+  <data name="OriginalCurrency" xml:space="preserve">
+    <value>Original Currency</value>
+  </data>
+  <data name="PlayerBetList" xml:space="preserve">
+    <value>Player Bet List</value>
+  </data>
 </root>

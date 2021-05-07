@@ -87,6 +87,7 @@
     <Compile Include="MetaModel\ResultPopupMetalModel.cs" />
     <Compile Include="MetaModel\CustomerWinlossMetaModel.cs" />
     <Compile Include="MetaModel\LicenseeWinLossMetaModel.cs" />
+    <Compile Include="MetaModel\WinLossNonSportsBetListMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CashOutWinLossViewModel.cs" />
     <Compile Include="ViewModel\CustomerWinlossViewModel.cs" />

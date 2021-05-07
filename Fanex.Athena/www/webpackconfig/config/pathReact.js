@@ -47,6 +47,7 @@ var scriptPaths = {
     statement: "./www/js/source/reactpages/Module/PlayerAdmin/statement/components/index.jsx",
 
     winlossreport: "./www/js/source/reactpages/pages/report/winloss/index.js",
+    winloss_nonsports_betlist: "./www/js/source/reactpages/pages/report/winloss/betlist/nonsports-betlist/index.js",
     marketingreport: "./www/js/source/reactpages/pages/report/marketing/index.js",
     marketingreport_performancehighlightdetail: "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/index.js",
     bonusinforeport: "./www/js/source/reactpages/pages/report/bonusinfo/index.js"

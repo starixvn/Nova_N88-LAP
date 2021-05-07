@@ -888,6 +888,7 @@
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.chunk.js.map" />
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.css.map" />
     <Content Include="Views\Desktop\BetList\SabaClubJackpotWonDetail\Main.cshtml" />
+    <Content Include="Views\Desktop\Report\WinLoss\NonSportsBetList.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -929,6 +930,7 @@
     <Content Include="www\js\build\dev\reactpages\report\bonusinfo.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\speciallicenseewl.chunk.js" />
+    <Content Include="www\js\build\dev\reactpages\report\winloss-nonsports-betlist.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing.chunk.js" />
     <Content Include="www\js\build\pro\language-zh-CN.chunk.js" />
@@ -2214,6 +2216,7 @@
     <Content Include="www\css\source\reactpages\pages\report\bonusinfo\index.scss" />
     <Content Include="www\css\source\reactpages\pages\report\marketing\index.scss" />
     <Content Include="www\css\source\reactpages\pages\report\winloss\index.scss" />
+    <Content Include="www\js\build\dev\reactpages\report\winloss-nonsports-betlist.chunk.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

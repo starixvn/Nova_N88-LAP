@@ -1345,5 +1345,20 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
 .winloss-report .arrow-right {
   transform: rotate(-90deg); }
 
+.winloss-report .right-align .icon-arrow {
+  margin-left: 5px; }
+
+.winloss-report .content-title {
+  font-weight: bold;
+  font-size: 15px;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 30px;
+  min-width: 650px;
+  color: #D2592D; }
+  .winloss-report .content-title .caret-block {
+    bottom: 5px; }
+
 
 /*# sourceMappingURL=winloss.css.map*/

@@ -4438,14 +4438,15 @@ const fetchReportData = (params, afterSuccess) => async dispatch => {
   dispatch(Object(_jsroot_actions_gridDataAction__WEBPACK_IMPORTED_MODULE_1__["setGridData"])(response.data));
   dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_5__["toggleLoader"])(false));
 };
-const setBetListParam = (custId, productId, parentName, sabaSystemId) => {
+const setBetListParam = params => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_BETLIST_PARAM"],
     data: {
-      custId,
-      productId,
-      username: parentName,
-      sabaSystemId
+      custId: params.custId,
+      productId: params.productId,
+      username: params.parentName,
+      sabaSystemId: params.sabaSystemId,
+      originalCurrency: params.originalCurrency
     }
   };
 };
@@ -4592,16 +4593,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
-/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
-/* harmony import */ var _jsroot_components_popup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/components/popup */ "./www/js/source/reactpages/components/popup/index.jsx");
-/* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _grid_GridData__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./grid/GridData */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GridData.jsx");
-/* harmony import */ var _grid_GridCaption__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./grid/GridCaption */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GridCaption.jsx");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../actions */ "./www/js/source/reactpages/pages/report/winloss/actions/index.js");
-/* harmony import */ var _constants_queryConsts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../constants/queryConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/queryConsts.js");
+/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+/* harmony import */ var _jsroot_components_popup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/components/popup */ "./www/js/source/reactpages/components/popup/index.jsx");
+/* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _grid_GridData__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./grid/GridData */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GridData.jsx");
+/* harmony import */ var _grid_GridCaption__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./grid/GridCaption */ "./www/js/source/reactpages/pages/report/winloss/components/grid/GridCaption.jsx");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../actions */ "./www/js/source/reactpages/pages/report/winloss/actions/index.js");
+/* harmony import */ var _constants_queryConsts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../constants/queryConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/queryConsts.js");
+/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
 
 
 
@@ -4619,12 +4619,13 @@ const Content = ({
   requestParam,
   setBetListParam
 }) => {
-  const _buildBetListUrl = () => {
+  const _buildNonSportsBetListUrl = () => {
     const params = {
       custId: betListParam.custId,
       productId: betListParam.productId,
       username: betListParam.username,
       sabaSystemId: betListParam.sabaSystemId,
+      originalCurrency: betListParam.originalCurrency,
       baseCurrency: requestParam.baseCurrency,
       dateType: requestParam.dateType,
       drilldownInOriginalCurrency: requestParam.drilldownInOriginalCurrency,
@@ -4633,7 +4634,24 @@ const Content = ({
       isNoDrawTicket: requestParam.isNoDrawTicket,
       timezone: requestParam.timezone
     };
-    const url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_6__["default"].setParams(_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_4__["default"].resolveClientUrl(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_11__["Url"].nonSportsBetListFrame), params);
+    const url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_5__["default"].setParams(_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_3__["default"].resolveClientUrl(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_10__["Url"].nonSportsBetListFrame), params);
+    return url;
+  };
+
+  const _buildSportsBetListUrl = () => {
+    const params = {
+      custId: betListParam.custId,
+      externalId: betListParam.username,
+      systemId: betListParam.sabaSystemId,
+      currencyName: betListParam.originalCurrency,
+      baseCurrency: requestParam.drilldownInOriginalCurrency ? '' : requestParam.baseCurrency,
+      fromDate: requestParam.fromDate,
+      toDate: requestParam.toDate,
+      filterBy: requestParam.dateType,
+      excludeDrawTicket: requestParam.isNoDrawTicket,
+      timezone: requestParam.timezone
+    };
+    const url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_5__["default"].setParams(_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_3__["default"].resolveClientUrl(_constants_queryConsts__WEBPACK_IMPORTED_MODULE_10__["Url"].sportsBetListFrame), params);
     return url;
   };
 
@@ -4647,19 +4665,18 @@ const Content = ({
       return null;
     }
 
-    const urlContent = _buildBetListUrl();
-
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_popup__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      iframeUrl: urlContent,
+    const betlistUrl = productId === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__["OWSportsProductId"] ? _buildSportsBetListUrl() : _buildNonSportsBetListUrl();
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_popup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      iframeUrl: betlistUrl,
       width: 1100,
       height: 700,
       isShow: true,
-      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('PlayerBetList'),
+      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('PlayerBetList'),
       onClose: () => setBetListParam({})
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_GridCaption__WEBPACK_IMPORTED_MODULE_9__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_GridData__WEBPACK_IMPORTED_MODULE_8__["default"], null), _renderBetListPopup());
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_GridCaption__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_GridData__WEBPACK_IMPORTED_MODULE_7__["default"], null), _renderBetListPopup());
 };
 
 function mapStateToProps(state) {
@@ -4676,7 +4693,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   const {
     setBetListParam
-  } = _actions__WEBPACK_IMPORTED_MODULE_10__["default"];
+  } = _actions__WEBPACK_IMPORTED_MODULE_9__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
     setBetListParam
   }, dispatch);
@@ -5761,6 +5778,7 @@ const GroupCell = props => {
 
   const _handleDrillDown = async () => {
     const dataList = gridData.dataList;
+    ``;
     const rowIndex = dataList.findIndex(_ => _.key === key);
 
     if (rowIndex === -1) {
@@ -5798,7 +5816,8 @@ const GroupCell = props => {
 
     const params = _objectSpread({}, restRequestParam, {
       custId: rowData.custId,
-      usernameParent: rowData.parentName
+      usernameParent: rowData.parentName,
+      originalCurrency: rowData.group
     });
 
     toggleLoader(true);
@@ -5832,7 +5851,7 @@ const GroupCell = props => {
 
   const _onViewBetList = event => {
     event.preventDefault();
-    setBetListParam(rowData.custId, rowData.productId, rowData.parentName, rowData.sabaSystemId);
+    setBetListParam(rowData);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], _extends({
@@ -5880,7 +5899,7 @@ function mapStateToProps(state) {
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js ***!
   \*********************************************************************************/
-/*! exports provided: GroupByOptionIds, GroupByOptionAllowQuickDownload, GroupByOptions, DateFilterTypeOptions, UserNameFilterOptions, DefaultTimezone */
+/*! exports provided: GroupByOptionIds, GroupByOptionAllowQuickDownload, GroupByOptions, DateFilterTypeOptions, UserNameFilterOptions, DefaultTimezone, OWSportsProductId */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5891,6 +5910,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFilterTypeOptions", function() { return DateFilterTypeOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserNameFilterOptions", function() { return UserNameFilterOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultTimezone", function() { return DefaultTimezone; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OWSportsProductId", function() { return OWSportsProductId; });
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
 const GroupByOptionIds = {
@@ -5935,6 +5955,7 @@ const UserNameFilterOptions = [{
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SabaSystemId')
 }];
 const DefaultTimezone = 8;
+const OWSportsProductId = 1;
 
 /***/ }),
 
@@ -6288,8 +6309,8 @@ const Url = {
   playerDetail: 'Api/WinLossReport/GetPlayerDetail',
   exportReportByGroup: 'Api/WinLossReport/ExportData',
   exportReportDetailByGroup: 'Api/WinLossReport/ExportDetailData',
-  sportsBetListFrame: 'WinLossReport/SportsBetList',
-  nonSportsBetListFrame: 'WinLossReport/NonSportsBetList'
+  nonSportsBetListFrame: 'WinLossReport/NonSportsBetList',
+  sportsBetListFrame: 'WinLossAnalysisBetList/Index'
 };
 const FileNameExport = {
   reportByGroup: 'WinLossAnalysisReport.xlsx',

@@ -4,8 +4,8 @@ export const Url = {
     playerDetail: 'Api/WinLossReport/GetPlayerDetail',
     exportReportByGroup: 'Api/WinLossReport/ExportData',
     exportReportDetailByGroup: 'Api/WinLossReport/ExportDetailData',
-    sportsBetListFrame: 'WinLossReport/SportsBetList',
-    nonSportsBetListFrame: 'WinLossReport/NonSportsBetList'
+    nonSportsBetListFrame: 'WinLossReport/NonSportsBetList',
+    sportsBetListFrame: 'WinLossAnalysisBetList/Index',
 };
 
 export const FileNameExport = {

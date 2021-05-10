@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Fanex.Athena.Extension.Helper;
+using Fanex.Athena.Model.Auth.DataDomain;
 using Fanex.Athena.Model.Core.MetaModel;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
@@ -62,11 +63,13 @@ namespace Fanex.Athena.Web.ActionFilter
                 AutoBindMetaModelService.MapIp(actionArgument,
                     ClientHelper.GetClientIp(httpContext: filterContext.HttpContext)
                     );
-            }
+            }  
+
             if (BindLicenseeContract)
             {
                 MapLicenseeContract(filterContext);
             }
+
             if (BindCurrencyList)
             {
                 AutoBindMetaModelService.MapCurrencyList(actionArgument, userSession.CurrencyList);

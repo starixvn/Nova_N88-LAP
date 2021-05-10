@@ -1357,6 +1357,9 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
   min-height: 30px;
   min-width: 650px;
   color: #D2592D; }
+  .winloss-report .content-title .currency-title {
+    font-size: 14px;
+    color: #024584; }
   .winloss-report .content-title .caret-block {
     bottom: 5px; }
 

@@ -27,7 +27,7 @@ export default class QueryService {
             if (response.status === noContentStatusCode) {
                 alert(LangHelper.getSingleResource("NoInfo"));
             } else {
-                Site.downloadFile(response.data, 'NonSports_PlayerBetList.xlsx');
+                Site.downloadFile(response.data, LangHelper.getSingleResource('PlayerBetList') + '_' + params.ProductName + '.xlsx');
             };
         }
         catch(e) {

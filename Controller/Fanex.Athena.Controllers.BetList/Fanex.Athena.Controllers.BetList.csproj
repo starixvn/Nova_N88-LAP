@@ -111,6 +111,7 @@
     <Compile Include="CashOutBetListController.cs" />
     <Compile Include="GlobalGamingBetListController.cs" />
     <Compile Include="CardClubBetListController.cs" />
+    <Compile Include="WinLossAnalysisBetListController.cs" />
     <Compile Include="SabaClubJackpotWonBetListController.cs" />
     <Compile Include="SexyGamingBetListController.cs" />
     <Compile Include="SabaClubBetListController.cs" />
@@ -174,7 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Fanex.Athena.Controllers.BetList.ruleset" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

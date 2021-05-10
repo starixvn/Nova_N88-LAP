@@ -127,5 +127,12 @@ namespace Fanex.Athena.Model.BetList.MetaModel
         }
 
         public bool IsFakeLicensee { get; set; }
+
+        public bool FromTpBetRecord { get; set; }
+        public byte FilterBy { get; set; }
+        public int TimeZone { get; set; }
+        public int ProductId { get; set; }
+        public bool ExcludeDrawTicket { get; set; }
+        public string ProductName { get; set; }
     }
 }

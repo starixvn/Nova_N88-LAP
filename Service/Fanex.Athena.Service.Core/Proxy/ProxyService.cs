@@ -16,7 +16,10 @@
         public ProxyService(IProxyOptions options)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
-            _client = new HttpClient(_options.MessageHandler ?? new HttpClientHandler { AllowAutoRedirect = false, UseCookies = false });
+            _client = new HttpClient(_options.MessageHandler ?? new HttpClientHandler { AllowAutoRedirect = false, UseCookies = false })
+            {
+                Timeout = Timeout.InfiniteTimeSpan
+            };
         }
 
         public async Task<HttpResponseMessage> HandleRequest(string apiKey, string apiUrl, HttpRequest originalRequest)

@@ -29,9 +29,16 @@
         }
 
         [HttpGet]
-        public ViewResult NonSportsBetList(WinLossNonSportsBetListMetaModel metaModel)
+        public ViewResult NonSportsBetList(WinLossNonSportsBetListMetaModel metaModel) 
         {
+            BindBetListMetaModel(metaModel);
             return View("~/Views/Desktop/Report/WinLoss/NonSportsBetList.cshtml", metaModel);
+        }
+
+        private void BindBetListMetaModel(WinLossNonSportsBetListMetaModel metaModel)
+        {
+            var tpProducts = _tpService.GetListTpProduct();
+            metaModel.ProductName = tpProducts.FirstOrDefault(_ => _.Id.Equals(metaModel.ProductId.ToString()))?.Name;
         }
 
         private WinLossViewModel CreateViewModel()

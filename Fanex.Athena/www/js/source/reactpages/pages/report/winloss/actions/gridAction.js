@@ -18,14 +18,15 @@ export const fetchReportData = (params, afterSuccess) => async dispatch => {
     dispatch(toggleLoader(false));
 }
 
-export const setBetListParam = (custId, productId, parentName, sabaSystemId) => {
+export const setBetListParam = params => {
     return {
         type: SET_BETLIST_PARAM,
         data: {
-            custId,
-            productId,
-            username: parentName,
-            sabaSystemId
+            custId: params.custId,
+            productId: params.productId,
+            username: params.parentName,
+            sabaSystemId: params.sabaSystemId,
+            originalCurrency: params.originalCurrency
         }
     }
 }

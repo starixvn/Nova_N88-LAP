@@ -18,7 +18,7 @@ export const GroupCell = props => {
 
     const _handleDrillDown = async () => {
         
-        const dataList = gridData.dataList;
+        const dataList = gridData.dataList;``
         const rowIndex = dataList.findIndex(_ => _.key === key);
         if (rowIndex === -1) {
             return;
@@ -51,7 +51,7 @@ export const GroupCell = props => {
 
     const _fetchDrillDownData = async () => {
         const { displayedColumns: omitted, ...restRequestParam }  = requestParam;
-        const params = { ...restRequestParam, custId: rowData.custId, usernameParent: rowData.parentName };
+        const params = { ...restRequestParam, custId: rowData.custId, usernameParent: rowData.parentName, originalCurrency: rowData.group };
         toggleLoader(true);
         const response  = await QueryService.getPlayerDetailData(params);
         toggleLoader(false);
@@ -80,7 +80,7 @@ export const GroupCell = props => {
 
     const _onViewBetList = event => {
         event.preventDefault();
-        setBetListParam(rowData.custId, rowData.productId, rowData.parentName, rowData.sabaSystemId);
+        setBetListParam(rowData);
     }
 
     return (<Cell key={`group-cell-${key}`} {...rest}>

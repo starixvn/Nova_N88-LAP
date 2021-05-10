@@ -634,23 +634,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const AppContainer = _ => {
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [sortOption, setSortOption] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_libs_constants__WEBPACK_IMPORTED_MODULE_6__["defaultSortOption"]);
+  const [pagingOption, setPagingOption] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_libs_constants__WEBPACK_IMPORTED_MODULE_6__["defaultPagingOption"]);
 
   const _handleExport = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(event => {
     event.preventDefault();
     setLoading(true);
 
     const params = _objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_6__["defaultState"], {
+      totalRows: pagingOption.TotalItem,
       sortById: sortOption.sortBy,
       isSortAsc: sortOption.sortType === 'asc'
     });
 
     _libs_queryService__WEBPACK_IMPORTED_MODULE_5__["default"].exportNonSportsBetList(params, () => setLoading(false));
-  }, [sortOption]);
+  }, [sortOption, pagingOption]);
 
   const _contentTitle = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content-title"
-    }, window.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    }, window.mainTitle, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "currency-title"
+    }, window.currencyTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "caret-block"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "icon-excel-wrapper",
@@ -669,7 +673,9 @@ const AppContainer = _ => {
     setLoading: setLoading,
     isLoading: isLoading,
     setSortOption: setSortOption,
-    sortOption: sortOption
+    sortOption: sortOption,
+    setPagingOption: setPagingOption,
+    pagingOption: pagingOption
   }));
 };
 /* harmony default export */ __webpack_exports__["default"] = (AppContainer);
@@ -709,15 +715,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 const GridData = ({
-  isLoading,
   setLoading,
   sortOption,
-  setSortOption
+  setSortOption,
+  pagingOption,
+  setPagingOption
 }) => {
   const [gridData, setGridData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultGridData"]);
-  const [pagingOption, setPagingOption] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultPagingOption"]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    fetchBetList(_libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultState"], response => {
+    fetchBetList(_objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultState"], {
+      sortById: sortOption.sortBy,
+      isSortAsc: sortOption.sortType === 'asc'
+    }), response => {
       const {
         totalRows
       } = response;
@@ -861,7 +870,7 @@ const GridData = ({
     onPaging: _handlePaging,
     onSort: _handleSort,
     containerPadding: 30,
-    shouldResetScrollPosition: isLoading
+    shouldResetScrollPosition: true
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 /* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridData));
@@ -968,7 +977,7 @@ class QueryService {
       if (response.status === noContentStatusCode) {
         alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource("NoInfo"));
       } else {
-        _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].downloadFile(response.data, 'NonSports_PlayerBetList.xlsx');
+        _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].downloadFile(response.data, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('PlayerBetList') + '_' + params.ProductName + '.xlsx');
       }
 
       ;

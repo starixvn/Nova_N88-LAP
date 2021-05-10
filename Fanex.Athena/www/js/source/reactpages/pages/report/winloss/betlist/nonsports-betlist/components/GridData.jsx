@@ -2,25 +2,28 @@
 import { Table, Row, Cell, HeaderCell, HeaderRow} from '@9softstudio/react-grid';
 import LangHelper from '@jsroot/lib/langHelper';
 import NoDataTitle from '@jsroot/components/NoDataTitle';
-import { defaultPagingOption, defaultGridData, defaultState } from '../libs/constants';
+import { defaultGridData, defaultState } from '../libs/constants';
 import QueryService from '../libs/queryService';
 import DecimalCell from '../../../components/grid/DecimalCell';
 
-export const GridData = ({ isLoading, setLoading, sortOption, setSortOption }) => {
+export const GridData = ({ setLoading, sortOption, setSortOption, pagingOption, setPagingOption }) => {
     const [gridData, setGridData] = useState(defaultGridData);
-    const [pagingOption, setPagingOption] = useState(defaultPagingOption);
 
     useEffect(() => {
-        fetchBetList(defaultState,
-            response => {
+        fetchBetList({
+            ...defaultState,
+            sortById: sortOption.sortBy,
+            isSortAsc: sortOption.sortType === 'asc'
+        },
+        response => {
                 const { totalRows } = response;
                 setPagingOption({ ...pagingOption, TotalItem: totalRows });
-            })        
+            })
     }, [])
 
     const { dataList, totalData } = gridData;
 
-    const fetchBetList = async (params,after) => {
+    const fetchBetList = async (params, after) => {
         setLoading(true);
         const response = await QueryService.getNonSportsBetList(params);
         const { dataList, totalData } = response;
@@ -99,7 +102,7 @@ export const GridData = ({ isLoading, setLoading, sortOption, setSortOption }) =
 
     return (
        <React.Fragment>
-            {dataList.length > 0? <Table minWidth={500}
+            {dataList.length > 0 ? <Table minWidth={500}
                 autoWidth={true}
                 autoHeight={true}
                 header={_header}
@@ -110,7 +113,7 @@ export const GridData = ({ isLoading, setLoading, sortOption, setSortOption }) =
                 onPaging={_handlePaging}
                 onSort={_handleSort}
                 containerPadding={30}
-                shouldResetScrollPosition={isLoading}
+                shouldResetScrollPosition={true}
             /> : <NoDataTitle />}
         </React.Fragment>
     );

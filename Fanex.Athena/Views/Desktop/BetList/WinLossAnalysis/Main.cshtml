@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = ViewResources.WinLossAnalysis + " - " + ViewResources.PlayerBetList;
+    Layout = "~/Views/Desktop/Shared/_BetListSimpleLayout.cshtml";
+}
+
+@model Fanex.Athena.Model.BetList.MetaModel.BetListMetaModel
+
+@{
+    var curencyId = Model.IsConvert ? Model.BaseCurrencyId : Model.CurrencyId;
+}
+
+@section pagecss {}
+@section pagejs {
+}
+@section ContentTitle
+{
+    @ViewResources.PlayerBetList @Model.FromDate.ToShortDateString()
+    <span class="header-title-arrow"> → </span>
+    @Model.ToDate.ToShortDateString() - @Model.ProductName - @Model.ExternalId@(string.IsNullOrWhiteSpace(Model.SystemId) ? string.Empty : " (" + Model.SystemId + ")") -
+    <span class="base-currency">
+        @DesktopRazorHelper.ViewInCurrency(curencyId, Model.CurrencyName)
+    </span>
+    <div id="note">
+        @ViewResources.Note: @ViewResources.LatencySabaSideNote <br />
+        &emsp;&emsp;&nbsp;&nbsp;&nbsp;@ViewResources.TimezoneServerNote
+    </div>
+}
+@section BackButton
+{
+}
+@{
+    <input type="hidden" id="ApiUrl" value="api/WinLossAnalysisBetList/Index" />
+    <input type="hidden" id="BetListMetaModel" value="@Model.ToJson()" />
+    <input type="hidden" id="HiddenColumnList" value="externalid,systemid" />
+}
+
+<style>
+    .content-title {
+        position: relative
+    }
+
+    #note {
+        font-size: 13px;
+        color: black;
+        font-weight: normal;
+    }
+
+    .right {
+        position: absolute;
+        right: 0px;
+        bottom: 5px;
+    }
+</style>

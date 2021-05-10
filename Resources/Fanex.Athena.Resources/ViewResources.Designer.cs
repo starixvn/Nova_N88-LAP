@@ -3949,6 +3949,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There might have some latencies from Saba side.
+        /// </summary>
+        public static string LatencySabaSideNote {
+            get {
+                return ResourceManager.GetString("LatencySabaSideNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1st.
         /// </summary>
         public static string lbl1st {
@@ -7014,6 +7023,15 @@ namespace Fanex.Athena.Resources {
         public static string TimeZone {
             get {
                 return ResourceManager.GetString("TimeZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The report is displayed in GMT -4.
+        /// </summary>
+        public static string TimezoneServerNote {
+            get {
+                return ResourceManager.GetString("TimezoneServerNote", resourceCulture);
             }
         }
         

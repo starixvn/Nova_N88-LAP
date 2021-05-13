@@ -19,7 +19,7 @@ namespace Fanex.Athena.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ViewResources {
@@ -1366,15 +1366,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to China.
-        /// </summary>
-        public static string China {
-            get {
-                return ResourceManager.GetString("China", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Choice.
         /// </summary>
         public static string Choice {
@@ -2230,6 +2221,33 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Desktop China.
+        /// </summary>
+        public static string DesktopChina {
+            get {
+                return ResourceManager.GetString("DesktopChina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desktop New Asia.
+        /// </summary>
+        public static string DesktopNewAsia {
+            get {
+                return ResourceManager.GetString("DesktopNewAsia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desktop Others.
+        /// </summary>
+        public static string DesktopOthers {
+            get {
+                return ResourceManager.GetString("DesktopOthers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detailed Bet list.
         /// </summary>
         public static string DetailedBetlist {
@@ -2707,7 +2725,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Sports App.
+        ///   Looks up a localized string similar to E-Sports APP.
         /// </summary>
         public static string ESportsApp {
             get {
@@ -4633,20 +4651,20 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile.
-        /// </summary>
-        public static string Mobile {
-            get {
-                return ResourceManager.GetString("Mobile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mobile App.
+        ///   Looks up a localized string similar to Mobile APP.
         /// </summary>
         public static string MobileApp {
             get {
                 return ResourceManager.GetString("MobileApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Compact.
+        /// </summary>
+        public static string MobileCompact {
+            get {
+                return ResourceManager.GetString("MobileCompact", resourceCulture);
             }
         }
         
@@ -4660,11 +4678,20 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile Lite Version.
+        ///   Looks up a localized string similar to Mobile Others.
         /// </summary>
-        public static string MobileLiteVersion {
+        public static string MobileOthers {
             get {
-                return ResourceManager.GetString("MobileLiteVersion", resourceCulture);
+                return ResourceManager.GetString("MobileOthers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Standard.
+        /// </summary>
+        public static string MobileStandard {
+            get {
+                return ResourceManager.GetString("MobileStandard", resourceCulture);
             }
         }
         
@@ -4795,7 +4822,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Native App.
+        ///   Looks up a localized string similar to Native APP.
         /// </summary>
         public static string NativeApp {
             get {
@@ -4827,15 +4854,6 @@ namespace Fanex.Athena.Resources {
         public static string NeverExpired {
             get {
                 return ResourceManager.GetString("NeverExpired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Asia.
-        /// </summary>
-        public static string NewAsia {
-            get {
-                return ResourceManager.GetString("NewAsia", resourceCulture);
             }
         }
         

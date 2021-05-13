@@ -921,8 +921,8 @@
   <data name="Mo" xml:space="preserve">
     <value>Mo</value>
   </data>
-  <data name="Mobile" xml:space="preserve">
-    <value>手机版</value>
+  <data name="MobileStandard" xml:space="preserve">
+    <value>手机經典版</value>
     <comment>118018</comment>
   </data>
   <data name="Monday" xml:space="preserve">
@@ -1749,8 +1749,11 @@
   <data name="Asia" xml:space="preserve">
     <value>亚洲版</value>
   </data>
-  <data name="China" xml:space="preserve">
-    <value>中国版</value>
+  <data name="DesktopChina" xml:space="preserve">
+    <value>桌机中国版</value>
+  </data>
+  <data name="DesktopOthers" xml:space="preserve">
+    <value>桌机其他</value>
   </data>
   <data name="Euro" xml:space="preserve">
     <value>欧洲版</value>
@@ -1759,8 +1762,8 @@
     <value>虚拟运动2</value>
     <comment>83759</comment>
   </data>
-  <data name="NewAsia" xml:space="preserve">
-    <value>新亚洲版</value>
+  <data name="DesktopNewAsia" xml:space="preserve">
+    <value>桌机新亚洲版</value>
   </data>
   <data name="ParlayComm" xml:space="preserve">
     <value>Parlay 佣金</value>
@@ -1929,8 +1932,11 @@
   <data name="MobileApp" xml:space="preserve">
     <value>手机 APP</value>
   </data>
-  <data name="MobileLiteVersion" xml:space="preserve">
+  <data name="MobileCompact" xml:space="preserve">
     <value>手机轻量版</value>
+  </data>
+  <data name="MobileOthers" xml:space="preserve">
+    <value>手机其他</value>
   </data>
   <data name="BettingTicketCenter_AdvancedSearchTabNote2" xml:space="preserve">
     <value>仅支援{0}以后的注单</value>
@@ -2191,7 +2197,7 @@
     <value>你尚未设置任何币别权限</value>
   </data>
   <data name="NativeApp" xml:space="preserve">
-    <value>原生App</value>
+    <value>原生 APP</value>
     <comment>125824</comment>
   </data>
   <data name="BetHistory" xml:space="preserve">
@@ -2256,7 +2262,7 @@
     <value>Account has no permission on this site</value>
   </data>
   <data name="ESportsApp" xml:space="preserve">
-    <value>电子竞技App</value>
+    <value>电子竞技 APP</value>
   </data>
   <data name="MobileEuro" xml:space="preserve">
     <value>手机欧洲版</value>

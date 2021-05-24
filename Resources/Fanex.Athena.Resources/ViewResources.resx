@@ -3158,4 +3158,18 @@
     <value>Number Of Players</value>
     <comment>150876</comment>
   </data>
+  <data name="OriginalCurrency" xml:space="preserve">
+    <value>Original Currency</value>
+  </data>
+  <data name="PlayerBetList" xml:space="preserve">
+    <value>Player Bet List</value>
+  </data>
+  <data name="LatencySabaSideNote" xml:space="preserve">
+    <value>There might have some latencies from Saba side</value>
+    <comment>139333</comment>
+  </data>
+  <data name="TimezoneServerNote" xml:space="preserve">
+    <value>The report is displayed in GMT -4</value>
+    <comment>139333</comment>
+  </data>
 </root>

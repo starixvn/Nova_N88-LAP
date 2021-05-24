@@ -30,3 +30,5 @@ export const UserNameFilterOptions = [
 ];
 
 export const DefaultTimezone = 8;
+
+export const OWSportsProductId = 1;

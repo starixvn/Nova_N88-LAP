@@ -1,4 +1,4 @@
-import { SET_DISPLAYED_COLUMNS } from './types';
+import { SET_DISPLAYED_COLUMNS, SET_BETLIST_PARAM } from './types';
 import { setGridData } from '@jsroot/actions/gridDataAction';
 import { setPagingOption } from '@jsroot/actions/pagingOptionAction';
 import { setSortOption } from '@jsroot/actions/sortOptionAction';
@@ -18,6 +18,19 @@ export const fetchReportData = (params, afterSuccess) => async dispatch => {
     dispatch(toggleLoader(false));
 }
 
+export const setBetListParam = params => {
+    return {
+        type: SET_BETLIST_PARAM,
+        data: {
+            custId: params.custId,
+            productId: params.productId,
+            username: params.parentName,
+            sabaSystemId: params.sabaSystemId,
+            originalCurrency: params.originalCurrency
+        }
+    }
+}
+
 export const setDisplayedColumns = columns => {
     return {
         type: SET_DISPLAYED_COLUMNS,
@@ -33,5 +46,6 @@ export default {
     setPagingOption,
     setSortOption,
     setRequestParam,
-    fetchReportData
+    fetchReportData,
+    setBetListParam
 }

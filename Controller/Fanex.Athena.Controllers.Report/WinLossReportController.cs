@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
@@ -25,6 +26,19 @@
         {
             var viewModel = CreateViewModel();
             return View("~/Views/Desktop/Report/WinLoss/Main.cshtml", viewModel);
+        }
+
+        [HttpGet]
+        public ViewResult NonSportsBetList(WinLossNonSportsBetListMetaModel metaModel) 
+        {
+            BindBetListMetaModel(metaModel);
+            return View("~/Views/Desktop/Report/WinLoss/NonSportsBetList.cshtml", metaModel);
+        }
+
+        private void BindBetListMetaModel(WinLossNonSportsBetListMetaModel metaModel)
+        {
+            var tpProducts = _tpService.GetListTpProduct();
+            metaModel.ProductName = tpProducts.FirstOrDefault(_ => _.Id.Equals(metaModel.ProductId.ToString()))?.Name;
         }
 
         private WinLossViewModel CreateViewModel()

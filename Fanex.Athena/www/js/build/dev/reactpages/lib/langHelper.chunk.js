@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 4/23/2021 9:13:36 AM
+// Generated at: 5/6/2021 3:34:01 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -697,6 +697,7 @@ window._language_en_US = {
   Open: "Open",
   OpeningBalance: "Opening Balance",
   OriginalBetTicket: "Original Bet Ticket",
+  OriginalCurrency: "Original Currency",
   OtherPlatform: "Other Platform",
   Others: "Others",
   OtherSport: "Other Sports",
@@ -725,6 +726,7 @@ window._language_en_US = {
   PlatformWinLossTitle: "Platform Win Loss - {0} --&gt; {1} - {2} - {3} - {4}",
   Player: "Player",
   PlayerAdminUpdateFailedMsg: "Please try again!",
+  PlayerBetList: "Player Bet List",
   PlayerName: "Player Name",
   PlayerStatementSupportMonths: "Support data up to 18 months",
   PlayerWinloss: "Player Win Loss",

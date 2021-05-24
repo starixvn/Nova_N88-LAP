@@ -44,6 +44,26 @@ export default class QueryService {
         };
     }
 
+    static async getPlayerDetailData(params) {
+        try {
+            const response = await DataService.postReportData(Url.playerDetail, params);
+            if (response.status === 200) {
+                return {
+                    ...successResponse,
+                    ...{ data: response.data }
+                }
+            }
+        }
+        catch (e) {
+            console.log(e)
+        }
+
+        return {
+            ...errorResponse,
+            ...{ data: { gridData: {} } }
+        };
+    }
+
     static async exportReportData(params, after) {
         try {
             const response = await DataService.getReportFile(Url.exportReportByGroup, params)

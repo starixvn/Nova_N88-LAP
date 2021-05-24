@@ -35,6 +35,7 @@ function generateConfig(environment) {
 
             [`${jsPath}/report/speciallicenseewl`]: pathConfig.scriptPaths.speciallicenseewl,
             [`${jsPath}/report/winloss`]: pathConfig.scriptPaths.winlossreport,
+            [`${jsPath}/report/winloss-nonsports-betlist`]: pathConfig.scriptPaths.winloss_nonsports_betlist,
             [`${jsPath}/report/marketing`]: pathConfig.scriptPaths.marketingreport,
             [`${jsPath}/report/bonusinfo`]: pathConfig.scriptPaths.bonusinforeport,
             [`${jsPath}/report/marketing-performancehighlightdetail`]: pathConfig.scriptPaths.marketingreport_performancehighlightdetail,

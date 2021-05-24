@@ -112,4 +112,30 @@
     .arrow-right {
         transform: rotate(-90deg);
     }
+
+    .right-align {
+        .icon-arrow {
+            margin-left: 5px;
+        }
+    }
+
+    .content-title {
+        font-weight: bold;
+        font-size: 15px;
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        min-height: 30px;
+        min-width: 650px;
+        color: #D2592D;
+
+        .currency-title {
+            font-size: 14px;
+            color: #024584;
+        }
+
+        .caret-block {
+            bottom: 5px;
+        }
+    }
 }

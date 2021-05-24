@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = ViewResources.BetList + " - " + ViewResources.WinLossAnalysis;
+    Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+}
+
+@model Fanex.Athena.Model.Report.MetaModel.WinLossNonSportsBetListMetaModel
+
+@{
+
+    var mainTitle = string.Format("{0} {1} → {2} - {3} - {4}{5} - ",
+        ViewResources.PlayerBetList,
+        DateTime.Parse(Model.FromDate).ToShortDateString(),
+        DateTime.Parse(Model.ToDate).ToShortDateString(),
+        Model.ProductName, Model.UserName,
+        string.IsNullOrWhiteSpace(Model.SabaSystemId) ? string.Empty : " (" + Model.SabaSystemId + ")");
+
+    var currencyTitle = string.Format("{0}, {1}",
+        string.Format(ViewResources.Viewin, (Model.DrilldownInOriginalCurrency ? Model.OriginalCurrency : Model.BaseCurrency).ToUpperInvariant()),
+        string.Format("GMT{0}{1}", Model.Timezone < 0 ? string.Empty : "+", Model.Timezone.ToString("00")));
+
+}
+
+@section pagecss {
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/report/winloss.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/report/winloss-nonsports-betlist.chunk.js")"></script>
+}
+
+@section globaljscode{
+    window.initialState = @Html.Raw(Model.ToJson())
+    window.mainTitle = '@mainTitle'
+    window.currencyTitle = '@currencyTitle'
+}
+
+<div id="app-container">
+</div>

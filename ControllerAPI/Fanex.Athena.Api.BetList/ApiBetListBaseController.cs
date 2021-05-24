@@ -47,7 +47,10 @@
 
         protected internal virtual async Task<dynamic> GetBetListResult(BetListMetaModel metaModel, string uspKey, string apiPath = null)
         {
-            CheckDataPermission(metaModel.CustId, metaModel.TransId);
+            if (!metaModel.FromTpBetRecord)
+            {
+                CheckDataPermission(metaModel.CustId, metaModel.TransId);
+            }
 
             var userSession = SessionService.UserSession;
             metaModel = UpdateMetaModel(metaModel, uspKey, 1, int.MaxValue - 1);

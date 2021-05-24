@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 4/23/2021 9:13:36 AM
+﻿// Generated at: 5/6/2021 3:34:01 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -604,6 +604,7 @@ Online:"在线",
 Open:"开启",
 OpeningBalance:"前期余额",
 OriginalBetTicket:"原始注单",
+OriginalCurrency:"Original Currency",
 OtherPlatform:"Other Platform",
 Others:"其他",
 OtherSport:"其他运动",
@@ -629,6 +630,7 @@ PlaceholderEmail:"精确查询电子邮件",
 Platform:"平台",
 Player:"玩家",
 PlayerAdminUpdateFailedMsg:"请重试一次!",
+PlayerBetList:"Player Bet List",
 PlayerStatementSupportMonths:"数据最多只支持18个月",
 PlayerWinloss:"Player Win Loss",
 PreGame:"游戏开始前",

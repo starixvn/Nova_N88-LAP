@@ -640,7 +640,7 @@ const AppContainer = _ => {
     event.preventDefault();
     setLoading(true);
 
-    const params = _objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_6__["defaultState"], {
+    const params = _objectSpread(_objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_6__["defaultState"]), {}, {
       totalRows: pagingOption.TotalItem,
       sortById: sortOption.sortBy,
       isSortAsc: sortOption.sortType === 'asc'
@@ -723,14 +723,14 @@ const GridData = ({
 }) => {
   const [gridData, setGridData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultGridData"]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    fetchBetList(_objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultState"], {
+    fetchBetList(_objectSpread(_objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultState"]), {}, {
       sortById: sortOption.sortBy,
       isSortAsc: sortOption.sortType === 'asc'
     }), response => {
       const {
         totalRows
       } = response;
-      setPagingOption(_objectSpread({}, pagingOption, {
+      setPagingOption(_objectSpread(_objectSpread({}, pagingOption), {}, {
         TotalItem: totalRows
       }));
     });
@@ -756,7 +756,7 @@ const GridData = ({
   };
 
   const _handleSort = (sortBy, sortType) => {
-    const params = _objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultState"], {}, pagingOption, {
+    const params = _objectSpread(_objectSpread(_objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultState"]), pagingOption), {}, {
       sortbyId: sortBy,
       isSortAsc: sortType === 'asc'
     });
@@ -770,7 +770,7 @@ const GridData = ({
   };
 
   const _handlePaging = (pageIndex, pageSize) => {
-    const params = _objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultState"], {
+    const params = _objectSpread(_objectSpread({}, _libs_constants__WEBPACK_IMPORTED_MODULE_4__["defaultState"]), {}, {
       sortbyId: sortOption.sortBy,
       isSortAsc: sortOption.sortType === 'asc',
       pageIndex,
@@ -778,7 +778,7 @@ const GridData = ({
     });
 
     fetchBetList(params, response => {
-      setPagingOption(_objectSpread({}, pagingOption, {
+      setPagingOption(_objectSpread(_objectSpread({}, pagingOption), {}, {
         PageIndex: pageIndex,
         PageSize: pageSize,
         TotalItem: response.totalRows
@@ -873,7 +873,7 @@ const GridData = ({
     shouldResetScrollPosition: true
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridData));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridData));
 
 /***/ }),
 
@@ -1027,7 +1027,7 @@ const DecimalCell = props => {
 DecimalCell.defaultProps = {
   digits: 2
 };
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DecimalCell));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DecimalCell));
 
 /***/ })
 

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 5/6/2021 3:34:01 PM
+// Generated at: 5/26/2021 11:34:46 AM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -527,6 +527,7 @@ window._language_en_US = {
   LastUpdatedBA: "Last Updated BA",
   LastUpdatedMsg: "Last Updated Special Level",
   Lastweek: "Last week",
+  LatencySabaSideNote: "There might have some latencies from Saba side",
   lbl1st: "1st",
   lbl1stHalf: "1st Half",
   lbl1stHandicap: "1st Handicap",
@@ -763,6 +764,7 @@ window._language_en_US = {
   ProductTG: "Table Game",
   ProductVB: "Macau Games",
   ProductVG: "Macau",
+  ProductVGA: "Vgaming",
   ProductVRG: "Virtual Games",
   ProductVS: "Virtual Sports",
   ProductVS2: "Virtual Sports 2",
@@ -868,6 +870,7 @@ window._language_en_US = {
   TicketType: "Ticket Type",
   Time: "Time",
   TimeZone: "Time Zone",
+  TimezoneServerNote: "The report is displayed in GMT -4",
   TipAmount: "Tip Amount",
   TipSharing: "Tip Sharing",
   To: "To",

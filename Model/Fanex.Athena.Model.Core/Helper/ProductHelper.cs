@@ -54,7 +54,8 @@
                 { Product.I4D, nameof(ViewResources.ProductI4D) },
                 { Product.SXG, nameof(ViewResources.ProductSXG) },
                 { Product.SBC, nameof(ViewResources.ProductSBC) },
-                { Product.SLT, nameof(ViewResources.ProductSLT) }
+                { Product.SLT, nameof(ViewResources.ProductSLT) },
+                { Product.VGA, nameof(ViewResources.ProductVGA) }
             };
 
         public static string GetProductCode(int productId)

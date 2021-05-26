@@ -63,6 +63,8 @@
 
         public const string SLT = "SLT";
 
+        public const string VGA = "VGA";
+
         #endregion Field
 
         #region Constructor

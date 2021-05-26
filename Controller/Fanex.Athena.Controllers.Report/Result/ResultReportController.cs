@@ -225,6 +225,22 @@ namespace Fanex.Athena.Controllers.Report.Result
             return await _betListApiClient.PostStringAsync("/SportsLotteryResultPopup/Index", model, language).ConfigureAwait(false);
         }
 
+        [HttpGet]
+        public async Task<string> VGaming(string custId, string siteId, string gameRoundId, string gameId, int sportType)
+        {
+            var language = SessionServiceInstance.UserSession.Language;
+            var model = new
+            {
+                custId,
+                siteId,
+                gameRoundId,
+                gameId,
+                sportType,
+                languageCode = language
+            };
+            return await _betListApiClient.PostStringAsync("/VGamingResultPopup/Index", model, language).ConfigureAwait(false);
+        }
+
         /// <summary>
         /// Generate tennis detailed result.
         /// </summary>

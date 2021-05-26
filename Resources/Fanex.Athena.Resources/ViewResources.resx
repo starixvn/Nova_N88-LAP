@@ -3172,4 +3172,7 @@
     <value>The report is displayed in GMT -4</value>
     <comment>139333</comment>
   </data>
+  <data name="ProductVGA" xml:space="preserve">
+    <value>Vgaming</value>
+  </data>
 </root>

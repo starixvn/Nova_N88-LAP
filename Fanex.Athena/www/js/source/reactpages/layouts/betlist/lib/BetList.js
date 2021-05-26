@@ -271,6 +271,16 @@ class BetList {
         return url;
     }
 
+    getVGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
+        let url = rootUrl + 'VGamingBetList/Detail';
+        url = QueryString.setParam(url, 'transId', transId);
+        url = QueryString.setParam(url, 'date', winlostDate);
+        url = QueryString.setParam(url, 'custId', custId);
+        url = QueryString.setParam(url, 'transType', transType);
+        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
+
+        return url;
+    }
 
     getRngCasinoResultUrl(rootUrl) {
         return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
@@ -313,6 +323,16 @@ class BetList {
 
     getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
         let url = rootUrl + 'SabaClubJackpotWonBetList/Detail';
+        url = QueryString.setParam(url, 'transId', transId);
+        url = QueryString.setParam(url, 'custId', custId);
+        url = QueryString.setParam(url, 'bettype', betTypeId);
+        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
+
+        return url;
+    }
+
+    getVGamingJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
+        let url = rootUrl + 'VGamingJackpotWonBetList/Detail';
         url = QueryString.setParam(url, 'transId', transId);
         url = QueryString.setParam(url, 'custId', custId);
         url = QueryString.setParam(url, 'bettype', betTypeId);
@@ -369,6 +389,17 @@ class BetList {
         url = QueryString.setParam(url, 'custId', custId);
         url = QueryString.setParam(url, 'transId3rd', transId3rd);
         url = QueryString.setParam(url, 'platform', platform);
+
+        return url;
+    }
+
+    getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType) {
+        let url = rootUrl + 'ResultReport/VGaming';
+        url = QueryString.setParam(url, 'custid', custid);
+        url = QueryString.setParam(url, 'gameId', gameId);
+        url = QueryString.setParam(url, 'siteId', siteId);
+        url = QueryString.setParam(url, 'gameRoundId', gameRoundId);
+        url = QueryString.setParam(url, 'sportType', sportType);
 
         return url;
     }

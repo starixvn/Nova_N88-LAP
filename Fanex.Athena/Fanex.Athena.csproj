@@ -890,6 +890,8 @@
     <Content Include="Views\Desktop\BetList\SabaClubJackpotWonDetail\Main.cshtml" />
     <Content Include="Views\Desktop\Report\WinLoss\NonSportsBetList.cshtml" />
     <Content Include="Views\Desktop\BetList\WinLossAnalysis\Main.cshtml" />
+    <Content Include="Views\Desktop\BetList\RNGDetail\Main.cshtml" />
+    <Content Include="Views\Desktop\BetList\VGamingJackpotWonDetail\Main.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />

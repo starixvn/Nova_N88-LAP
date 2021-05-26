@@ -163,7 +163,8 @@
                 Product.I4D,
                 Product.SXG,
                 Product.SBC,
-                Product.SLT
+                Product.SLT,
+                Product.VGA
             };
 
             var productAccess = _productService.GetSingleWalletProductAccess(

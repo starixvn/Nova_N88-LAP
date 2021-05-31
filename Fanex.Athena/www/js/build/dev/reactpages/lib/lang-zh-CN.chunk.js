@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 5/6/2021 3:34:01 PM
+// Generated at: 5/26/2021 11:34:46 AM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -453,6 +453,7 @@ window._language_zh_CN = {
   LastUpdatedBA: "投注总计最后更新",
   LastUpdatedMsg: "最近更新的特殊级别",
   Lastweek: "上周",
+  LatencySabaSideNote: "There might have some latencies from Saba side",
   lbl1st: "第一名",
   lbl1stHalf: "上半场",
   lbl1stHandicap: "上半场亚洲盘",
@@ -743,6 +744,7 @@ window._language_zh_CN = {
   TicketType: "注单类型",
   Time: "时间",
   TimeZone: "时区",
+  TimezoneServerNote: "The report is displayed in GMT -4",
   TipAmount: "打赏金额",
   TipSharing: "打赏分成",
   To: "至",

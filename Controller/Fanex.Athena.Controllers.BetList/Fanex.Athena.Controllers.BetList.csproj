@@ -111,6 +111,8 @@
     <Compile Include="CashOutBetListController.cs" />
     <Compile Include="GlobalGamingBetListController.cs" />
     <Compile Include="CardClubBetListController.cs" />
+    <Compile Include="VGamingBetListController.cs" />
+    <Compile Include="VGamingJackpotWonBetListController.cs" />
     <Compile Include="WinLossAnalysisBetListController.cs" />
     <Compile Include="SabaClubJackpotWonBetListController.cs" />
     <Compile Include="SexyGamingBetListController.cs" />

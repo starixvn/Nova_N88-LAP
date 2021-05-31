@@ -128,6 +128,14 @@ namespace Fanex.Athena.Model.Core.DTO.Common
             }
         }
 
+        public bool IsAllowVGA
+        {
+            get
+            {
+                return ProductList.Any(p => p.ProductCode == Product.VGA);
+            }
+        }
+
         public bool IsAllow(int productId)
         {
             return ProductList.Any(p => p.ProductID == productId);

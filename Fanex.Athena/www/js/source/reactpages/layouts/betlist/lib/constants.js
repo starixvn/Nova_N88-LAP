@@ -21,5 +21,7 @@ export const SportType = {
     SXG: 243,
     SBC: 200,
     Happy5LinkedGames: 168,
-    SLT: 169
+    SLT: 169,
+    VGA: 171,
+    VGA_FreeBets: 173
 }

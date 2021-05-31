@@ -1429,6 +1429,10 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSportsLotteryResultUrl(rootUrl, custid, transdecs, defaultPlatform);
 
         this._showThirdPartyResult(url, title);
+      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA_FreeBets) {
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype);
+
+        this._showThirdPartyResult(url, title);
       } else {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getResultUrl(rootUrl, matchid, raceNo, bettype, sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid);
 
@@ -1641,6 +1645,30 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
       this._openPopup(url, title);
     };
+
+    window.showVGamingDetails = (transId, winlostDate, custId, transType) => {
+      const {
+        rootUrl,
+        baseCurrency
+      } = this.props;
+      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
+
+      const title = this._getResource('ProductVGA') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
+
+      this._openPopup(url, title);
+    };
+
+    window.showVGamingJackpotWonDetails = (transId, custId, betTypeId) => {
+      const {
+        rootUrl,
+        baseCurrency
+      } = this.props;
+      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId);
+
+      const title = this._getResource('ProductVGA') + ' - ' + this._getResource('JackpotWonDetails');
+
+      this._openPopup(url, title);
+    };
   }
 
   componentWillUnmount() {
@@ -1663,6 +1691,8 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     window.showSexyGamingBetDetails = undefined;
     window.showSabaClubDetails = undefined;
     window.showSabaClubJackpotWonDetails = undefined;
+    window.showVGamingDetails = undefined;
+    window.showVGamingJackpotWonDetails = undefined;
   }
 
   _getResource(key) {
@@ -2133,6 +2163,16 @@ class BetList {
     return url;
   }
 
+  getVGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
+    let url = rootUrl + 'VGamingBetList/Detail';
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
+    return url;
+  }
+
   getRngCasinoResultUrl(rootUrl) {
     return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
   }
@@ -2170,6 +2210,15 @@ class BetList {
 
   getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
     let url = rootUrl + 'SabaClubJackpotWonBetList/Detail';
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'bettype', betTypeId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
+    return url;
+  }
+
+  getVGamingJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
+    let url = rootUrl + 'VGamingJackpotWonBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'bettype', betTypeId);
@@ -2223,6 +2272,16 @@ class BetList {
     return url;
   }
 
+  getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType) {
+    let url = rootUrl + 'ResultReport/VGaming';
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameId', gameId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'siteId', siteId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameRoundId', gameRoundId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'sportType', sportType);
+    return url;
+  }
+
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (new BetList());
@@ -2262,7 +2321,9 @@ const SportType = {
   SXG: 243,
   SBC: 200,
   Happy5LinkedGames: 168,
-  SLT: 169
+  SLT: 169,
+  VGA: 171,
+  VGA_FreeBets: 173
 };
 
 /***/ }),

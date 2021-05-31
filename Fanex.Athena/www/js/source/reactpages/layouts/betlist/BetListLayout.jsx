@@ -75,6 +75,10 @@ class BetListLayout extends Component {
                 const url = BetList.getSportsLotteryResultUrl(rootUrl, custid, transdecs, defaultPlatform);
                 this._showThirdPartyResult(url, title);
             }
+            else if (sporttype === SportType.VGA || sporttype === SportType.VGA_FreeBets) {
+                const url = BetList.getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype);
+                this._showThirdPartyResult(url, title);
+            }
             else {
                 const url = BetList.getResultUrl(rootUrl, matchid, raceNo, bettype,
                     sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid);
@@ -227,6 +231,7 @@ class BetListLayout extends Component {
 
             this._openPopup(url, title);
         }
+
         window.showSabaClubDetails = (transId, winlostDate, custId, transType) => {
             const { rootUrl, baseCurrency } = this.props;
 
@@ -236,11 +241,32 @@ class BetListLayout extends Component {
 
             this._openPopup(url, title);
         }
+
         window.showSabaClubJackpotWonDetails = (transId, custId, betTypeId) => {
             const { rootUrl, baseCurrency } = this.props;
 
             const url = BetList.getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId);
             const title = this._getResource('ProductSBC') + ' - ' +
+                this._getResource('JackpotWonDetails');
+
+            this._openPopup(url, title);
+        }
+
+        window.showVGamingDetails = (transId, winlostDate, custId, transType) => {
+            const { rootUrl, baseCurrency } = this.props;
+
+            const url = BetList.getVGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
+            const title = this._getResource('ProductVGA') + ' - ' +
+                this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
+
+            this._openPopup(url, title);
+        }
+
+        window.showVGamingJackpotWonDetails = (transId, custId, betTypeId) => {
+            const { rootUrl, baseCurrency } = this.props;
+
+            const url = BetList.getVGamingJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId);
+            const title = this._getResource('ProductVGA') + ' - ' +
                 this._getResource('JackpotWonDetails');
 
             this._openPopup(url, title);
@@ -267,6 +293,8 @@ class BetListLayout extends Component {
         window.showSexyGamingBetDetails = undefined;
         window.showSabaClubDetails = undefined;
         window.showSabaClubJackpotWonDetails = undefined;
+        window.showVGamingDetails = undefined;
+        window.showVGamingJackpotWonDetails = undefined;
     }
 
     _getResource(key) {

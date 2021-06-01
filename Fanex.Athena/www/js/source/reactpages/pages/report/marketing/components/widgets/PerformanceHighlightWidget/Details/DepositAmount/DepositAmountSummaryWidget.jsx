@@ -9,12 +9,12 @@ import QueryService from '../../../../../libs/services/queryService';
 import NumberHelper from '../../../../../libs/helpers/numberHelper';
 import { StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
 
-const DepositAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
+const DepositAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency, allowedCompare }) => {
     const [isLoading, setLoading] = useState(false);
     const [summaryData, setSummaryData] = useState(null);
 
     useEffect(() => {
-        const apiParams = DataService.getDepositAmountSummaryAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand });
+        const apiParams = DataService.getDepositAmountSummaryAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency });
         QueryService.fetchDepositAmountSummaryData(apiParams,
             () => {
                 setLoading(true)

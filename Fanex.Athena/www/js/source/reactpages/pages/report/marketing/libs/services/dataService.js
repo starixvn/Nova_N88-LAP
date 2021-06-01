@@ -1,19 +1,20 @@
 import DateTimeHelper from '../helpers/dateTimeHelper';
+import Site from '@jsroot/lib/site';
 
 export default class DataService {
 
-    static getCommonAPIParams = ({ selectedBrand, reportDate }) => {
+    static getCommonAPIParams = ({ selectedBrand, selectedCurrency, reportDate }) => {
         const params = {
             brandId: selectedBrand,
-            fromDate: DateTimeHelper.formatDateStructureToString(reportDate.fromDate),
-            toDate: DateTimeHelper.formatDateStructureToString(reportDate.toDate),
+            currencyIdList: selectedCurrency,
+            fromDate: Site.convertDateToString(reportDate.fromDate),
+            toDate: Site.convertDateToString(reportDate.toDate)
         }
         return params;
     }
 
-    static getPerformanceHighlightAPIParams = filterData => {
-        const { selectedBrand, selectedBaseCurrency, reportDate, compareDate } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
+    static getPerformanceHighlightAPIParams = ({ selectedBrand, selectedCurrency, selectedBaseCurrency, reportDate, compareDate }) => {
+        const commonParams = this.getCommonAPIParams({ selectedBrand, selectedCurrency, reportDate });
         const params = {
             ...commonParams,
             ...{
@@ -26,8 +27,7 @@ export default class DataService {
         return params;
     }
 
-    static getPerformanceHighlightPopupSummaryAPIParams =  filterData => {
-        const { baseCurrency, ...rest } = filterData;
+    static getPerformanceHighlightPopupSummaryAPIParams = ({ baseCurrency, ...rest }) => {
         const commonParams = this.getPerformanceHighlightAPIParams(rest);
         const params = {
             ...commonParams,
@@ -36,9 +36,8 @@ export default class DataService {
         return params;
     }
 
-    static getPerformanceHighlightPopupDetailAPIParams =  filterData => {
-        const { reportDate, selectedBrand, pagingOption, sortInfo, ...rest } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate  });
+    static getPerformanceHighlightPopupDetailAPIParams = ({ reportDate, selectedBrand, selectedCurrency, pagingOption, sortInfo, ...rest }) => {
+        const commonParams = this.getCommonAPIParams({ selectedBrand, selectedCurrency, reportDate  });
         const params = {
             ...commonParams,
             ...sortInfo,
@@ -48,8 +47,7 @@ export default class DataService {
         return params;
     }
 
-    static getPerformanceHighlightPopupExportAPIParams =  filterData => {
-        const { baseCurrency, sortInfo, allowedCompare, ...rest } = filterData;
+    static getPerformanceHighlightPopupExportAPIParams =  ({ baseCurrency, sortInfo, allowedCompare, ...rest }) => {
         const commonParams = this.getPerformanceHighlightAPIParams(rest);
         const params = {
             ...commonParams,
@@ -60,12 +58,12 @@ export default class DataService {
         return params;
     }
 
-    static getPerformanceHighlightExportAPIParams = filterData => {
-        const { selectedBrand, reportDate, selectedBaseCurrency } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
+    static getPerformanceHighlightExportAPIParams = ({ selectedBrand, selectedCurrency, reportDate, selectedBaseCurrency, currencyNameList }) => {
+        const commonParams = this.getCommonAPIParams({ selectedBrand, selectedCurrency, reportDate });
         const params = {
             ...commonParams,
-            baseCurrency: selectedBaseCurrency
+            baseCurrency: selectedBaseCurrency,
+            currencyNameList
         }
 
         return params;
@@ -136,8 +134,8 @@ export default class DataService {
     /* end detail popup */
 
     static getUserActivitiesAPIParams = filterData => {
-        const { selectedBrand, reportDate, viewMode } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
+        const { selectedBrand, selectedCurrency, reportDate, viewMode } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, selectedCurrency, reportDate });
         const params = {
             ...commonParams,
             ...{ 
@@ -149,8 +147,8 @@ export default class DataService {
     }
 
     static getAvgRevenueAPIParams = filterData => {
-        const { selectedBrand, reportDate, selectedBaseCurrency, products } = filterData;
-        const commonParams = this.getCommonAPIParams({ selectedBrand, reportDate });
+        const { selectedBrand, selectedCurrency, reportDate, selectedBaseCurrency, products } = filterData;
+        const commonParams = this.getCommonAPIParams({ selectedBrand, selectedCurrency, reportDate });
         const params = {
             ...commonParams,
             ...{ 

@@ -3,7 +3,7 @@ import store from '../store';
 import { setPagingOption, setSortOption, setDisplayedColumns } from '../../actions/gridAction';
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
-         selectedProduct, selectedBrand, selectedDateType, isExcludeTest, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption, selectedTimezone }) {
+         selectedProduct, selectedBrand, selectedDateType, isExcludeTest, includeFreeSpins, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption, selectedTimezone }) {
         return {
             ...requestParam,
             ...{
@@ -15,6 +15,7 @@ export default class QueryHelper {
                 brandIds: selectedBrand,
                 dateType: selectedDateType,
                 isIncludedTestData: !isExcludeTest, 
+                isIncludedFreeSpin: includeFreeSpins,
                 isNoDrawTicket: noDraw,
                 drilldownInOriginalCurrency: drilldownInOriginalCurrency,
                 fromDate: Site.convertDateToString(dateRange.fromDate),

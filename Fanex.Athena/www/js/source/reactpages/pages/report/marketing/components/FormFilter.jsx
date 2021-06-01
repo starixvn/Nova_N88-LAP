@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Select from 'react-select'
@@ -7,15 +7,27 @@ import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import CheckBox from '@jsroot/components/CheckBox'
 import LangHelper from '@jsroot/lib/langHelper'
 import AppData from '@jsroot/lib/AppData'
+import { DateRange } from '@jsroot/components/date-range';
+import MultipleSelect from '@9softstudio/react-multiselect'
+import CollectionHelper from '@jsroot/lib/collectionHelper';
+import CurrencyHelper from '@jsroot/lib/currencyHelper'
+import DateTimeHelper from '../libs/helpers/dateTimeHelper';
 import ActionCreators from '../actions'
-import { ViewModeOptions, ReportDateSelectionOptions, CompareDateSelectionOptions, CompareDateOptionValues, ViewModeOptionValues } from '../constants/filterConst';
+import { ViewModeOptions, CompareDateSelectionOptions, CompareDateOptionValues } from '../constants/filterConst';
 import FilterHelper from '../libs/helpers/filterHelper';
 import TimePeriodSelect from './common/TimePeriodSelect';
 
 export const FormFilter = props => {
-    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setAllowedCompare, setGlobalFilter, setCollapseFormFilter,
-        selectedBrand, selectedBaseCurrency, reportDate, compareDate, allowedCompare, viewMode
+    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setSelectedCurrency, setCompareDate, setAllowedCompare, setGlobalFilter, setCollapseFormFilter,
+        selectedBrand, selectedBaseCurrency, reportDate, compareDate, allowedCompare, viewMode, selectedCurrency
     } = props;
+
+    const currencyList = React.useMemo(() => CurrencyHelper.getTpCurrencyList(selectedBrand, AppData.brands), [selectedBrand]);
+
+    useEffect(() => {
+        const selectedCurrency = currencyList.map(_ => _.key).join(',');
+        setSelectedCurrency(selectedCurrency)
+    }, [currencyList])
 
     const _renderBaseCurrencySelectList = () => {
         const baseCurrencyList = AppData.baseCurrencyList;
@@ -27,12 +39,26 @@ export const FormFilter = props => {
         );
     }
 
+    const _renderCurrencySelectList = () => {
+        const dataSource = CollectionHelper.createDataSourceFrom(currencyList, selectedCurrency);
+        return currencyList && currencyList.length && (
+            <MultipleSelect id="ddlCurrency"
+                language={LangHelper.currentLanguage}
+                dataSource={dataSource}
+                keyField={"key"}
+                valueField={"value"}
+                statusField={"status"}
+                onChange={(_, selectedItemsKey) => setSelectedCurrency(selectedItemsKey)} />);
+    }
+
     const _renderBrandSelectList = () => {
         return (
             <Select instanceId="brandList"
                 value={selectedBrand}
                 options={AppData.brandOptions}
-                onChange={(item) => setSelectedBrand(item.value)} />
+                onChange={(item) => {
+                    setSelectedBrand(item.value)
+                }} />
         );
     }
 
@@ -45,59 +71,77 @@ export const FormFilter = props => {
         />)
     }
 
-    const _onChangeReportDateSelection = React.useCallback(selectedRange => {
-        setReportDate(selectedRange);
-        setCompareDate(FilterHelper.CompareDateGenerateRangeSelections[CompareDateOptionValues.previousPeriod](selectedRange)); //reset to default selection
-    }, [])
-
-    const _onChangeCompareDateSelection = React.useCallback(selectedRange => setCompareDate(selectedRange), [])
-
     const _renderReportDateSelection = () => {
-        return (<TimePeriodSelect
-            selectOptions={ReportDateSelectionOptions}
-            selectOptionGenerateRange={FilterHelper.ReportDateGenerateRangeSelections}
-            selectedRange={reportDate}
-            onChange={_onChangeReportDateSelection}
-        />)
+        const dateConstraint = AppData.dateConstraint;
+        return (
+            <DateRange
+                startDate={reportDate.fromDate} endDate={reportDate.toDate}
+                minDate={dateConstraint.minDate} maxDate={dateConstraint.maxDate}
+                today={AppData.today} limitedMonthRange={dateConstraint.limitedMonthRange}
+                onChange={_onChangeReportDate}
+            />
+        )
     }
+
+    const _onChangeReportDate = (range, isValidMonthRange = true) => {
+        if (isValidMonthRange) {
+            setReportDate(range);
+        }
+        else {
+            const message = LangHelper.getSingleResource("DateRangeExceedMsg").replace("{0}", AppData.dateConstraint.limitedMonthRange);
+            alert(message);
+        }
+    }
+
+    const convertedReportDate = React.useMemo(() => {
+        let { fromDate, toDate } = reportDate;
+        const isStringFormat = typeof fromDate === 'string';
+        fromDate = isStringFormat ? new Date(fromDate) : fromDate._d;
+        toDate = isStringFormat ? new Date(toDate) : toDate._d;
+        return {
+            fromDate: DateTimeHelper.convertToDateStructure(fromDate),
+            toDate: DateTimeHelper.convertToDateStructure(toDate),
+        }
+    }, [reportDate])
 
     const _renderCompareDateSelection = () => {
         return (<TimePeriodSelect
             selectOptions={CompareDateSelectionOptions}
             selectOptionGenerateRange={FilterHelper.CompareDateGenerateRangeSelections}
             selectedRange={compareDate}
-            selectedDependRange={reportDate}
+            selectedDependRange={convertedReportDate}
             disabled={!allowedCompare}
-            onChange={_onChangeCompareDateSelection}
+            onChange={setCompareDate}
+            defaultOption={CompareDateOptionValues.previousPeriod}
         />)
     }
 
     const _onSubmit = () => {
-        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency, selectedBrand, allowedCompare };
+        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency, selectedCurrency, selectedBrand, allowedCompare };
         setGlobalFilter(globalFilter);
     }
 
     return (<React.Fragment>
         <CollapsiblePanel className="page-filter" onCollapse={() => setCollapseFormFilter(true)} onExpand={() => setCollapseFormFilter(false)}>
             <div className="row">
-                {AppData.brandOptions && AppData.brandOptions.length > 1 && <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-1">
+                {AppData.brandOptions && AppData.brandOptions.length > 1 && <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("Brand")}</label>
                         {_renderBrandSelectList()}
                     </div>
                 </div>}
-                <div className="col-12 col-md-6 col-sm-6 col-lg-5 col-xl-3">
+                <div className="col-12 col-md-3 col-sm-6 col-lg-3 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("ReportDate")}</label>
                         {_renderReportDateSelection()}
                     </div>
                 </div>
-                <div className="col-12 col-md-6 col-sm-6 col-lg-5 col-xl-3">
+                <div className="col-12 col-md-6 col-sm-6 col-lg-5 col-xl-4">
                     <div className="form-group">
-                            <CheckBox id="CompareDate"
-                                checked={allowedCompare}
-                                onChange={checked => setAllowedCompare(checked)}
-                                label={LangHelper.getSingleResource("CompareDate")} />
+                        <CheckBox id="CompareDate"
+                            checked={allowedCompare}
+                            onChange={checked => setAllowedCompare(checked)}
+                            label={LangHelper.getSingleResource("CompareDate")} />
                         {_renderCompareDateSelection()}
                     </div>
                 </div>
@@ -109,7 +153,13 @@ export const FormFilter = props => {
                         {_renderViewModeOptions()}
                     </div>
                 </div>
-                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-1">
+                <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
+                    <div className="form-group">
+                        <label className="label-text">{LangHelper.getSingleResource("Currency")}</label>
+                        {_renderCurrencySelectList()}
+                    </div>
+                </div>
+                <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("BaseCurrency")}</label>
                         {_renderBaseCurrencySelectList()}
@@ -129,19 +179,20 @@ export const FormFilter = props => {
 }
 
 function mapStateToProps(state) {
-    const { selectedBrand, selectedBaseCurrency, viewMode, reportDate, compareDate, allowedCompare } = state;
+    const { selectedBrand, selectedBaseCurrency, viewMode, reportDate, compareDate, allowedCompare, selectedCurrency } = state;
     return Object.assign({}, {
         selectedBrand,
         selectedBaseCurrency,
         viewMode,
         reportDate,
         compareDate,
-        allowedCompare
+        allowedCompare,
+        selectedCurrency
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setAllowedCompare, setGlobalFilter, setCollapseFormFilter } = ActionCreators;
+    const { setSelectedBrand, setSelectedBaseCurrency, setViewMode, setReportDate, setCompareDate, setAllowedCompare, setGlobalFilter, setCollapseFormFilter, setSelectedCurrency } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         setSelectedBrand,
         setSelectedBaseCurrency,
@@ -150,7 +201,8 @@ function mapDispatchToProps(dispatch) {
         setCompareDate,
         setAllowedCompare,
         setGlobalFilter,
-        setCollapseFormFilter
+        setCollapseFormFilter,
+        setSelectedCurrency
     }), dispatch);
 }
 

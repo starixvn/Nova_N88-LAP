@@ -1,4 +1,5 @@
-import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE } from './types';
+import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION, DRILLDOWN_IN_ORIGINAL_CURRENCY, 
+    USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE, SET_INCLUDE_FREE_SPINS } from './types';
 import { setDateRange } from '@jsroot/actions/dateRangeAction';
 import { setSelectedCurrency } from '@jsroot/actions/currencyAction';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
@@ -13,6 +14,13 @@ const setNoDraw = isNoDraw => {
     return {
         type: SET_NO_DRAW,
         data: isNoDraw
+    }
+}
+
+const setIncludeFreeSpins = isIncludedFreeSpin => {
+    return {
+        type: SET_INCLUDE_FREE_SPINS,
+        data: isIncludedFreeSpin
     }
 }
 
@@ -73,5 +81,6 @@ export default {
     setNoDraw,
     setDrilldownInOriginalCurrency,
     setSelectedGroupByOption,
-    setSelectedTimezone
+    setSelectedTimezone,
+    setIncludeFreeSpins
 }

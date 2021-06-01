@@ -1,4 +1,4 @@
-﻿// Generated at: 5/26/2021 11:34:46 AM
+﻿// Generated at: 6/1/2021 2:22:58 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -322,6 +322,7 @@ HttpError_404:"页面不存在, 请检查地址",
 HttpError_Default:"Oops… 您在此处基于系统错误, 请通知管理员",
 Inactive:"Inactive",
 IncludeDrawData:"包含和局资料",
+IncludeFreeSpins:"Include Free Spins",
 IncludeTestData:"Include Test Data",
 IncorrectMaxBet:"不正确的最大投注",
 IncorrectMaxBetPerDraw:"错误的每局最大下注额",
@@ -477,6 +478,7 @@ NotAllowBA:"此Licensee不允许投注总计",
 Note:"注意",
 NoteReportDepositAndWithdrawal:"Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
 NoteReportGrossRevenue:"This report is reported gross revenue, have not yet deducted cost, fee, ect...",
+NoteSupportClosingBalance:"Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00",
 Notification:"通知",
 NotificationDateRangeLimitNote:"最多可以检索六个月前的资料",
 Nov:"十一月",

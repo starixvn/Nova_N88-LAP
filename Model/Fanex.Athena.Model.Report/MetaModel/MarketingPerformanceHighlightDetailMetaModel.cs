@@ -5,6 +5,7 @@
         public string SelectedBox { get; set; }
         public string BaseCurrency { get; set; }
         public int SelectedBrand { get; set; }
+        public string SelectedCurrency { get; set; }
         public bool AllowedCompare { get; set; }
         public string CompareFromDate { get; set; }
         public string CompareToDate { get; set; }

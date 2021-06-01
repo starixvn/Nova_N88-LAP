@@ -7,7 +7,7 @@ import { Table, Pager, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/rea
 import QueryService from '../../../../../libs/services/queryService';
 import { DetailWithdrawalAmountGridColumns, DetaiWithdrawalAmountGridConfig, DefaultPagingOption, StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
 
-const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sortInfo, onSort }) => {
+const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, selectedCurrency, sortInfo, onSort }) => {
     const [isLoading, setLoading] = useState(false);
     const [detailData, setDetailData] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
@@ -15,7 +15,7 @@ const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand,
     const MAX_WIDTH = Math.min(document.body.clientWidth, 1360);
 
     useEffect(() => {
-        const apiParams = DataService.getWithdrawalAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
+        const apiParams = DataService.getWithdrawalAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(null, null, data.totalRows);
             setPagingOption(newPagingOption);
@@ -40,7 +40,7 @@ const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand,
             sortbyId: sortBy,
             isSortAsc: sortType === 'asc'
         }
-        const apiParams = DataService.getWithdrawalAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
+        const apiParams = DataService.getWithdrawalAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(null, null, data.totalRows)
             setPagingOption(newPagingOption);
@@ -49,7 +49,7 @@ const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand,
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
-        const apiParams = DataService.getWithdrawalAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption: { PageIndex: pageIndex, PageSize: pageSize }, sortInfo });
+        const apiParams = DataService.getWithdrawalAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption: { PageIndex: pageIndex, PageSize: pageSize }, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows)
             setPagingOption(newPagingOption);

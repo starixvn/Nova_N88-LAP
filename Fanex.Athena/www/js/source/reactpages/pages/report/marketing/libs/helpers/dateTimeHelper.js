@@ -7,11 +7,7 @@ export default class DateTimeHelper {
         if(today) {
             return today;
         }
-        if(AppData.today) {
-            today = new Date(AppData.today);
-        } else {
-            today = new Date();
-        }
+        today = AppData.today ? new Date(AppData.today) : new Date();
         return today;
     }
 
@@ -42,9 +38,6 @@ export default class DateTimeHelper {
 
     static formatDateRangeToString = (fromDate, toDate) => {
         const displayFromDate = this.formatDateStructureToString(fromDate);
-        if (this.isEqualDate(fromDate, toDate)) {
-            return displayFromDate;
-        }
         const displayToDate = this.formatDateStructureToString(toDate);
         return `${displayFromDate} - ${displayToDate}`;
     }

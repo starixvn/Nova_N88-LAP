@@ -10,12 +10,12 @@ import QueryService from '../../../../../libs/services/queryService';
 import NumberHelper from '../../../../../libs/helpers/numberHelper';
 import { StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
 
-const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
+const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency, allowedCompare }) => {
     const [isLoading, setLoading] = useState(false);
     const [summaryData, setSummaryData] = useState(null);
 
     useEffect(() => {
-        const apiParams = DataService.getBonusClaimedSummaryAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand });
+        const apiParams = DataService.getBonusClaimedSummaryAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency });
         QueryService.fetchBonusClaimedSummaryData(apiParams,
             () => {
                 setLoading(true)

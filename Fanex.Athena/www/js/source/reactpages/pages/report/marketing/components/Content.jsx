@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReportTitle from '@jsroot/components/ReportTitle';
 import LangHelper from '@jsroot/lib/langHelper'
+import Site from '@jsroot/lib/site'
 import { bindActionCreators } from 'redux';
 import ActionCreators from '../actions';
 import PerformanceHighlightWidget from './widgets/PerformanceHighlightWidget';
 import UserActivitiesWidget from './widgets/UserActivitiesWidget';
 import AvgRevenueWidget from './widgets/AvgRevenueWidget';
-import DateTimeHelper from '../libs/helpers/dateTimeHelper';
 
 export const Content = props => {
     const { globalFilter, isCollapsedFormFilter } = props;
@@ -30,8 +30,7 @@ export const Content = props => {
             return <ReportTitle tag="div" content={reportName} />
         }
         const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
-        const reportDateRange = DateTimeHelper.formatDateRangeToString(fromDate, toDate);
-        const content = `${reportName}, ${reportDateRange}, ${displayCurrency}`;
+        const content = `${reportName}, ${Site.convertDateToString(fromDate)} - ${Site.convertDateToString(toDate)}, ${displayCurrency}`;
         return <ReportTitle tag="div" content={content} />
     }
 

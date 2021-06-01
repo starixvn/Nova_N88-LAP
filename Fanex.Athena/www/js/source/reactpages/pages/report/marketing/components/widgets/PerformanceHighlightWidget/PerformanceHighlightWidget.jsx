@@ -14,13 +14,13 @@ import Site from '@jsroot/lib/site';
 import { Url } from '../../../constants/queryConst';
 import { PerformanceHighlightDetailBoxKeys } from '../../../constants/chartConst';
 import QueryString from '@jsroot/lib/QueryString';
+import AppData from '@jsroot/lib/AppData';
 
 export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
     const { allowedCompare } = globalFilter;        
     const [isLoading, setLoading] = useState(false);
     const [selectedBox, setSelectedBox] = useState(null);
-
 
     useEffect(() => {
         if (!globalFilter) {
@@ -151,10 +151,8 @@ export const PerformanceHighlightWidget = props => {
     }
 
     const _renderChurnRateBox = () => {
-        const { fromDate, toDate } = globalFilter.reportDate;
         const { churnRate, differentChurnRate } = performanceHighlightData;
-        const isSingleDate = DateTimeHelper.isEqualDate(fromDate, toDate);
-        return !isSingleDate && (<HighlightBox
+        return (<HighlightBox
             enableCompare={allowedCompare}
             title={LangHelper.getSingleResource('CR')}
             description={LangHelper.getSingleResource('ChurnRate')}
@@ -165,10 +163,8 @@ export const PerformanceHighlightWidget = props => {
     }
 
     const _renderRetentionRateBox = () => {
-        const { fromDate, toDate } = globalFilter.reportDate;
         const { retentionRate, differentRetentionRate } = performanceHighlightData;
-        const isSingleDate = DateTimeHelper.isEqualDate(fromDate, toDate);
-        return !isSingleDate && (<HighlightBox
+        return (<HighlightBox
             enableCompare={allowedCompare}
             title={LangHelper.getSingleResource('RR')}
             description={LangHelper.getSingleResource('RetentionRate')}
@@ -180,8 +176,7 @@ export const PerformanceHighlightWidget = props => {
     const _renderPopupTitle = () => {
         const { selectedBaseCurrency, reportDate } = globalFilter;
         const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
-        const reportDateRange = DateTimeHelper.formatDateRangeToString(reportDate.fromDate, reportDate.toDate);
-        return `${LangHelper.getSingleResource('Marketing')}, ${reportDateRange}, ${displayCurrency}`;
+        return `${LangHelper.getSingleResource('Marketing')}, ${Site.convertDateToString(reportDate.fromDate)} - ${Site.convertDateToString(reportDate.toDate)}, ${displayCurrency}`;
     }
 
     const _buildPopupUrl = params => {
@@ -199,20 +194,31 @@ export const PerformanceHighlightWidget = props => {
             selectedBox: selectedBox,
             baseCurrency: globalFilter.selectedBaseCurrency,
             selectedBrand: globalFilter.selectedBrand,
+            selectedCurrency: globalFilter.selectedCurrency,
             allowedCompare: globalFilter.allowedCompare,
             compareFromDate: DateTimeHelper.formatDateStructureToString(globalFilter.compareDate.fromDate),
             compareToDate: DateTimeHelper.formatDateStructureToString(globalFilter.compareDate.toDate),
-            fromDate: DateTimeHelper.formatDateStructureToString(globalFilter.reportDate.fromDate),
-            toDate: DateTimeHelper.formatDateStructureToString(globalFilter.reportDate.toDate),
+            fromDate: Site.convertDateToString(globalFilter.reportDate.fromDate),
+            toDate: Site.convertDateToString(globalFilter.reportDate.toDate),
         }
         const urlContent =_buildPopupUrl(params);
         return (<Popup iframeUrl={urlContent} height={700} width={1250} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
         </Popup>)
     }
 
+    const _parseToCurrencyNameList = ({ selectedBrand, selectedCurrency }) => {
+        const currencies = AppData.brands.find(_ => _.id === selectedBrand).tpCurrencies;
+        const stringCurrencies = selectedCurrency.split(",");
+        if(currencies.length === stringCurrencies.length) {
+            return null;
+        }
+        return stringCurrencies
+                .map(_ => currencies.find(c => c.key == _).value)
+                .join(", ");
+    }
+
     const _handleExportExcel = () => {
-        const { selectedBrand, reportDate, selectedBaseCurrency } = globalFilter;
-        const exportParams = DataService.getPerformanceHighlightExportAPIParams({ selectedBrand, reportDate, selectedBaseCurrency });
+        const exportParams = DataService.getPerformanceHighlightExportAPIParams({ ...globalFilter, currencyNameList: _parseToCurrencyNameList(globalFilter) });
         QueryService.exportPerformanceHighlightData(exportParams);
     }
 

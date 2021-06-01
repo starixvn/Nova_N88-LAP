@@ -13,13 +13,14 @@ const initState = {
     selectedBox: params.selectedBox,
     baseCurrency: params.baseCurrency,
     selectedBrand: params.selectedBrand,
+    selectedCurrency: params.selectedCurrency,
     reportDate: {
-        fromDate: DateTimeHelper.convertToDateStructure(new Date(Date.parse(params.fromDate))),
-        toDate: DateTimeHelper.convertToDateStructure(new Date(Date.parse(params.toDate))),
+        fromDate: params.fromDate,
+        toDate: params.toDate
     },
     compareDate: {
-        fromDate: DateTimeHelper.convertToDateStructure(new Date(Date.parse(params.compareFromDate))),
-        toDate: DateTimeHelper.convertToDateStructure(new Date(Date.parse(params.compareToDate))),
+        fromDate: DateTimeHelper.convertToDateStructure(new Date(params.compareFromDate)),
+        toDate: DateTimeHelper.convertToDateStructure(new Date(params.compareToDate)),
     },
     allowedCompare: params.allowedCompare
 }

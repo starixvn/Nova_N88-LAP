@@ -15,6 +15,7 @@
         public string FromDate { get; set; }
         public string ToDate { get; set; }
         public bool IsNoDrawTicket { get; set; }
+        public bool IsIncludedFreeSpin { get; set; }
         public int Timezone { get; set; }
     }
 }

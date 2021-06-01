@@ -6,11 +6,14 @@ import NewlyRegisterUsersSummaryWidget from './NewlyRegisterUsersSummaryWidget';
 import NewlyRegisterUsersDetailWidget from './NewlyRegisterUsersDetailWidget';
 import { DefaultSortInfo } from '../../../../../constants/gridConst';
 
-const NewlyRegisterUsersDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare } ) => {
+const NewlyRegisterUsersDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency, allowedCompare }) => {
     const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState(DefaultSortInfo);
 
     const handleExportExcel = () => {
-        const exportParams = DataService.getNewlyRegisterUsersExportAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare, sortInfo: sortInfoDetailWidget });
+        const exportParams = DataService.getNewlyRegisterUsersExportAPIParams({
+            reportDate, compareDate, baseCurrency, selectedBrand,
+            selectedCurrency, allowedCompare, sortInfo: sortInfoDetailWidget
+        });
         QueryService.exportNewlyRegisterUsersData(exportParams);
     }
 
@@ -31,8 +34,10 @@ const NewlyRegisterUsersDetail = ({ reportDate, compareDate, baseCurrency, selec
         <div className="highlight-detail">
             {_renderCaption()}
             <div className="widget-list">
-                <NewlyRegisterUsersSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} allowedCompare={allowedCompare} />
-                <NewlyRegisterUsersDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
+                <NewlyRegisterUsersSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency}
+                    selectedBrand={selectedBrand} selectedCurrency={selectedCurrency} allowedCompare={allowedCompare} />
+                <NewlyRegisterUsersDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency}
+                    selectedBrand={selectedBrand} selectedCurrency={selectedCurrency} />
             </div>
         </div>
     )

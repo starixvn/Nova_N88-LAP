@@ -26,6 +26,7 @@ export const Content = ({ betListParam, requestParam, setBetListParam }) => {
             fromDate: requestParam.fromDate,
             toDate: requestParam.toDate,
             isNoDrawTicket: requestParam.isNoDrawTicket,
+            isIncludedFreeSpin: requestParam.isIncludedFreeSpin,
             timezone: requestParam.timezone,
         }
         const url = QueryString.setParams(Site.resolveClientUrl(Url.nonSportsBetListFrame), params);

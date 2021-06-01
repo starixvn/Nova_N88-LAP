@@ -17,6 +17,7 @@ export const columnKeys = {
     avgBetAmount: 'avgBetAmount',
     uniquePlayers: 'uniquePlayers',
     margin: 'margin',
+    closingBalance: 'closingBalance',
     noOfDeposit: 'numberOfDeposit',
     totalDepositAmount: 'depositAmount',
     noOfWithdrawal: 'numberOfWithdrawal',
@@ -34,6 +35,7 @@ export const displayedColumns = [
     { key: columnKeys.avgBetAmount, name: LangHelper.getSingleResource('AvgBetAmount'), show: true, hasTotal: true },
     { key: columnKeys.uniquePlayers, name: LangHelper.getSingleResource('UniquePlayers'), show: true, hasTotal: true },
     { key: columnKeys.margin, name: LangHelper.getSingleResource('Margin'), show: true, hasTotal: true },
+    { key: columnKeys.closingBalance, name: LangHelper.getSingleResource('ClosingBalance'), show: true, allowGroups: [GroupByOptionIds.player], hasTotal: true },
     { key: columnKeys.noOfDeposit, name: LangHelper.getSingleResource('NoOfDeposit'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player], show: true, hasTotal: true },
     { key: columnKeys.totalDepositAmount, name: LangHelper.getSingleResource('TotalDepositAmount'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player], show: true, hasTotal: true },
     { key: columnKeys.noOfWithdrawal, name: LangHelper.getSingleResource('NoOfWithdrawal'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player], show: true, hasTotal: true },
@@ -106,26 +108,32 @@ export const dataColumns = {
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.margin)
     },
+    [columnKeys.closingBalance]: {
+        sortBy: 10, colWidth: 60, className: "right-align",
+        draggable: true,
+        onDragOver: event => event.preventDefault(),
+        onDragStart: event => onDragStart(event, columnKeys.closingBalance)
+    },
     [columnKeys.noOfDeposit]: {
-        sortBy: 10, colWidth: 50, className: "right-align",
+        sortBy: 11, colWidth: 50, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.noOfDeposit)
     },
     [columnKeys.totalDepositAmount]: {
-        sortBy: 11, colWidth: 70, className: "right-align",
+        sortBy: 12, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.totalDepositAmount)
     },
     [columnKeys.noOfWithdrawal]: {
-        sortBy: 12, colWidth: 60, className: "right-align",
+        sortBy: 13, colWidth: 60, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.noOfWithdrawal)
     },
     [columnKeys.totalWithdrawalAmount]: {
-        sortBy: 13, colWidth: 70, className: "right-align",
+        sortBy: 14, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.totalWithdrawalAmount)
@@ -150,6 +158,7 @@ export const componentCells = {
     [columnKeys.avgBetAmount]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.avgBetAmount]} className={dataColumns[columnKeys.avgBetAmount].className + highLight} />,
     [columnKeys.uniquePlayers]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.uniquePlayers]} className={dataColumns[columnKeys.uniquePlayers].className + highLight} digits={0} />,
     [columnKeys.margin]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.margin]} className={dataColumns[columnKeys.margin].className + highLight}>{'%'}</DecimalCell>,
+    [columnKeys.closingBalance]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.closingBalance]} className={dataColumns[columnKeys.closingBalance].className + highLight} />,
     [columnKeys.noOfDeposit]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.noOfDeposit]} className={dataColumns[columnKeys.noOfDeposit].className + highLight} digits={0} />,
     [columnKeys.totalDepositAmount]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.totalDepositAmount]} className={dataColumns[columnKeys.totalDepositAmount].className + highLight} />,
     [columnKeys.noOfWithdrawal]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.noOfWithdrawal]} className={dataColumns[columnKeys.noOfWithdrawal].className + highLight} digits={0} />,

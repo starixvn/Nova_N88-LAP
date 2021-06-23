@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Fanex.Athena.DataAccess.Core.Common.Interfaces;
+    using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Common.Extensions;
     using VendorAdapter.Interfaces;
@@ -12,9 +13,12 @@
     {
         private readonly ICacheRefAdapter _cacheRefAdapter;
 
-        public MatchDataAccess(ICacheRefAdapter cacheRefAdapter)
+        private readonly IBalanceUpDataAccess _balanceUpDataAccess;
+
+        public MatchDataAccess(ICacheRefAdapter cacheRefAdapter, IBalanceUpDataAccess balanceUpDataAccess)
         {
             _cacheRefAdapter = cacheRefAdapter;
+            _balanceUpDataAccess = balanceUpDataAccess;
         }
 
         public async Task<IList<Match>> GetMatchesByLeague(int leagueId, DateTime fromDate, DateTime toDate, int sportId = 0)
@@ -28,7 +32,9 @@
                     SportId = sportId,
                     LeagueID = leagueId,
                     FromDate = fromDate,
-                    ToDate = toDate
+                    ToDate = toDate,
+                    MoveBetsDay = _balanceUpDataAccess.GetBalanceUp().MoveBetsDay,
+                    BalanceUpDay = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay
                 };
                 using (var reader = await db.ExecuteReaderAsync(uspParam).ConfigureAwait(false))
                 {

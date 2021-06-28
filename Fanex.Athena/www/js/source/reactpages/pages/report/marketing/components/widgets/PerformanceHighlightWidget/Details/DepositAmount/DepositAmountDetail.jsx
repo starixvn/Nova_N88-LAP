@@ -6,11 +6,14 @@ import DepositAmountSummaryWidget from './DepositAmountSummaryWidget';
 import DepositAmountDetailWidget from './DepositAmountDetailWidget';
 import { DefaultSortInfo } from '../../../../../constants/gridConst';
 
-const DepositAmountDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
+const DepositAmountDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency, allowedCompare }) => {
     const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState(DefaultSortInfo);
 
     const handleExportExcel = () => {
-        const exportParams = DataService.getDepositAmountExportAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare, sortInfo: sortInfoDetailWidget });
+        const exportParams = DataService.getDepositAmountExportAPIParams({
+            reportDate, compareDate, baseCurrency, selectedBrand,
+            selectedCurrency, allowedCompare, sortInfo: sortInfoDetailWidget
+        });
         QueryService.exportDepositAmountData(exportParams);
     }
 
@@ -31,8 +34,10 @@ const DepositAmountDetail = ({ reportDate, compareDate, baseCurrency, selectedBr
         <div className="highlight-detail">
             {_renderCaption()}
             <div className="widget-list">
-                <DepositAmountSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} allowedCompare={allowedCompare} />
-                <DepositAmountDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
+                <DepositAmountSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency}
+                    selectedBrand={selectedBrand} selectedCurrency={selectedCurrency} allowedCompare={allowedCompare} />
+                <DepositAmountDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency}
+                    selectedBrand={selectedBrand} selectedCurrency={selectedCurrency} />
             </div>
         </div>
     )

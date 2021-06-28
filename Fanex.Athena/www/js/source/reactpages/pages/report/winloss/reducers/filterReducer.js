@@ -1,5 +1,5 @@
 import { SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION,
-     DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE } from '../actions/types';
+     DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE, SET_INCLUDE_FREE_SPINS } from '../actions/types';
 import createReducer from '@jsroot/lib/createReducer.js';
 import { dateRange } from '@jsroot/reducers/dateRangeReducer';
 import { selectedCurrency } from '@jsroot/reducers/currencyReducer';
@@ -17,6 +17,12 @@ const selectedDateType = createReducer({}, {
 
 const noDraw = createReducer({}, {
     [SET_NO_DRAW](state, action) {
+        return action.data
+    }
+});
+
+const includeFreeSpins = createReducer(true, {
+    [SET_INCLUDE_FREE_SPINS](state, action) {
         return action.data
     }
 });
@@ -58,5 +64,6 @@ export default {
     drilldownInOriginalCurrency,
     isExcludeTest,
     selectedGroupByOption,
-    selectedTimezone
+    selectedTimezone,
+    includeFreeSpins
 }

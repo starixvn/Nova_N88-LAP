@@ -1,5 +1,6 @@
 import { SET_VIEW_MODE, SET_REPORT_DATE, SET_COMPARE_DATE, SET_ALLOWED_COMPARE, SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER } from './types';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
+import { setSelectedCurrency } from '@jsroot/actions/currencyAction';
 import { setSelectedBrand } from '@jsroot/actions/brandAction';
 
 const setViewMode = viewMode => {
@@ -12,7 +13,10 @@ const setViewMode = viewMode => {
 const setReportDate = reportDate => {
     return {
         type: SET_REPORT_DATE,
-        data: reportDate
+        data: {
+            fromDate: reportDate.startDate,
+            toDate: reportDate.endDate
+        }
     }
 }
 
@@ -52,5 +56,6 @@ export default {
     setCompareDate,
     setAllowedCompare,
     setGlobalFilter,
-    setCollapseFormFilter
+    setCollapseFormFilter,
+    setSelectedCurrency
 }

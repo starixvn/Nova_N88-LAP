@@ -7,13 +7,13 @@ import { Table, Pager, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/rea
 import QueryService from '../../../../../libs/services/queryService';
 import { DetailBonusClaimedGridColumns, DetaiBonusClaimedGridConfig, DefaultPagingOption, StyleRow , DigitsAmount} from '../../../../../constants/gridConst';
 
-const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sortInfo, onSort }) => {
+const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, selectedCurrency, sortInfo, onSort }) => {
     const [isLoading, setLoading] = useState(false);
     const [detailData, setDetailData] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
 
     useEffect(() => {
-        const apiParams = DataService.getBonusClaimedDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
+        const apiParams = DataService.getBonusClaimedDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(null, null, data.totalRows);
             setPagingOption(newPagingOption);
@@ -38,7 +38,7 @@ const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sor
             sortbyId: sortBy,
             isSortAsc: sortType === 'asc'
         }
-        const apiParams = DataService.getBonusClaimedDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
+        const apiParams = DataService.getBonusClaimedDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(null, null, data.totalRows)
             setPagingOption(newPagingOption);
@@ -47,7 +47,7 @@ const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sor
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
-        const apiParams = DataService.getBonusClaimedDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption: { PageIndex: pageIndex, PageSize: pageSize }, sortInfo });
+        const apiParams = DataService.getBonusClaimedDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption: { PageIndex: pageIndex, PageSize: pageSize }, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows)
             setPagingOption(newPagingOption);

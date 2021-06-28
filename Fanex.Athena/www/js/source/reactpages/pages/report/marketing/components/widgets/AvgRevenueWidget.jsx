@@ -4,14 +4,12 @@ import { bindActionCreators } from 'redux';
 import LangHelper from '@jsroot/lib/langHelper';
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import MultipleSelect from '@9softstudio/react-multiselect';
-import AppData from '@jsroot/lib/AppData';
+import AppData from '@jsroot/lib/AppData'
+import { DateRange } from '@jsroot/components/date-range';
 import ActionCreators from '../../actions';
 import Widget from '../common/Widget';
-import TimePeriodSelect from '../common/TimePeriodSelect';
 import BarChart from '../common/BarChart';
 import LineChart from '../common/LineChart';
-import { ReportDateSelectionOptions } from '../../constants/filterConst';
-import FilterHelper from '../../libs/helpers/filterHelper';
 import DataService from '../../libs/services/dataService';
 import { ChartMode, ChartModeOptions, AvgRevenueChartDataMapping } from '../../constants/chartConst';
 
@@ -41,20 +39,38 @@ export const AvgRevenueWidget = props => {
         return data;
     }, [products, avgRevenueData]);
 
-    const _onChangeReportDate = React.useCallback(selectedRange => {
-        setReportDate(selectedRange);
-        if (!selectedRange.isSpecificRange || reportDate.isSpecificRange) {
-            _reloadData(selectedRange);
-        }
-    }, [reportDate])
-
     const _reloadData = reportDate => {
         setLoading(true);
-        const { selectedBrand, selectedBaseCurrency } = globalFilter;
-        const apiParams = DataService.getAvgRevenueAPIParams({ reportDate, products: AppData.defaultSelectedProduct, selectedBrand, selectedBaseCurrency });
+        const { selectedBrand, selectedCurrency, selectedBaseCurrency } = globalFilter;
+        const apiParams = DataService.getAvgRevenueAPIParams({ reportDate, products: AppData.defaultSelectedProduct, selectedBrand, selectedCurrency, selectedBaseCurrency });
         fetchAvgRevenueData(apiParams, _ => {
             setLoading(false);
         });
+    }
+
+    const _renderReportDateSelection = () => {
+        const dateConstraint = AppData.dateConstraint;
+        return (
+            <DateRange
+                key={'AvgRevenueWidget_ReportDate_' + countRender}
+                startDate={reportDate.fromDate} endDate={reportDate.toDate}
+                minDate={dateConstraint.minDate} maxDate={dateConstraint.maxDate}
+                today={AppData.today} limitedMonthRange={dateConstraint.limitedMonthRange}
+                onChange={_onChangeReportDate}
+            />
+        )
+    }
+
+    const _onChangeReportDate = (range, isValidMonthRange = true) => {
+        if (isValidMonthRange) {
+            const { startDate, endDate } = range;
+            const convertedRange = { fromDate: startDate, toDate: endDate }
+            setReportDate(convertedRange);
+            _reloadData(convertedRange)
+        } else {
+            const message = LangHelper.getSingleResource("DateRangeExceedMsg").replace("{0}", AppData.dateConstraint.limitedMonthRange);
+            alert(message);
+        }
     }
 
     const _renderChart = () => {
@@ -69,19 +85,13 @@ export const AvgRevenueWidget = props => {
 
     const _renderFilter = () => {
         return (<div className="row">
-            <div className="col-12 col-md-6 col-sm-6 col-lg-4 col-xl-3">
+            <div className="col-12 col-md-4 col-sm-5 col-lg-3 col-xl-2">
                 <div className="form-group">
                     <label className="label-text">{LangHelper.getSingleResource("ReportDate")}</label>
-                    <TimePeriodSelect
-                        key={'AvgRevenueWidget_ReportDate_' + countRender}
-                        selectOptions={ReportDateSelectionOptions}
-                        selectOptionGenerateRange={FilterHelper.ReportDateGenerateRangeSelections}
-                        selectedRange={reportDate}
-                        onChange={_onChangeReportDate}
-                    />
+                    {_renderReportDateSelection()}
                 </div>
             </div>
-            <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
+            <div className="col-12 col-md-4 col-sm-5 col-lg-3 col-xl-2">
                 <div className="form-group">
                     <label className="label-text">{LangHelper.getSingleResource("Product")}</label>
                     <MultipleSelect id="ProductList"

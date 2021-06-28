@@ -1,4 +1,4 @@
-﻿// Generated at: 5/26/2021 11:34:46 AM
+﻿// Generated at: 6/1/2021 2:22:58 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -387,6 +387,7 @@ HttpError_404:"Page not found, please check the address",
 HttpError_Default:"Oops... you are here because of a system error, please notify the administrators",
 Inactive:"Inactive",
 IncludeDrawData:"Include Draw data",
+IncludeFreeSpins:"Include Free Spins",
 IncludeTestData:"Include Test Data",
 IncorrectMaxBet:"Incorrect Max Bet",
 IncorrectMaxBetPerDraw:"Incorrect Max Bet Per Draw",
@@ -567,6 +568,7 @@ NotAllowBA:"This licensee is not allowed BA",
 Note:"Note",
 NoteReportDepositAndWithdrawal:"Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
 NoteReportGrossRevenue:"This report is reported gross revenue, have not yet deducted cost, fee, ect...",
+NoteSupportClosingBalance:"Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00",
 Notification:"Notification",
 NotificationDateRangeLimitNote:"Data is available within 6 months",
 Nov:"Nov",

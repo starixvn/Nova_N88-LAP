@@ -13,6 +13,15 @@
         value = c.Value,
         label = c.Value
     }).ToList();
+
+    var selectedCurrency = string.Join(",", Model.OwnBrand.TpCurrencyList.Select(x => x.Key).ToArray());
+    var brands = Model.Brands.Select(x => new
+    {
+        id = x.Id,
+        tpCurrencies = x.TpCurrencyList.Select(y => new { key = y.Key, value = y.Value })
+    });
+
+    var today = Model.Today.ToString("MM/dd/yyyy");
 }
 
 @section pagecss {
@@ -25,21 +34,24 @@
 
 @section globaljscode{
     window.initialState = {
-        selectedBaseCurrency: '@Model.BaseCurrency',
-        selectedBrand: @Model.OwnBrand.Id
+    selectedBaseCurrency: '@Model.BaseCurrency',
+    selectedBrand: @Model.OwnBrand.Id,
+    selectedCurrency: '@selectedCurrency',
+    reportDate: { fromDate: '@today', toDate: '@today' },
     };
 
     window._AppData = {
-        dateConstraint: {
-            limitedMonthRange: @Model.LimitMonthRange,
-            minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
-            maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
-        },
-        baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
-        brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
-        productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
-        defaultSelectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
-        today: '@Model.Today.ToString("MM/dd/yyyy")'
+    brands: @Html.Raw(brands.ToJson()),
+    dateConstraint: {
+    limitedMonthRange: @Model.LimitMonthRange,
+    minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
+    maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
+    },
+    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+    brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
+    productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
+    defaultSelectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
+    today: '@today'
     }
 
 }

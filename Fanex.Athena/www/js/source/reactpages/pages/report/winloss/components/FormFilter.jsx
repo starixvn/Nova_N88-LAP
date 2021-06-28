@@ -13,7 +13,7 @@ import AppData from '@jsroot/lib/AppData'
 import ActionCreators from '../actions'
 import GroupFilter from './filter/GroupFilter';
 import QueryHelper from '../libs/helpers/queryHelper';
-import CollectionHelper from '../libs/helpers/collectionHelper';
+import CollectionHelper from '@jsroot/lib/collectionHelper';
 import { DateFilterTypeOptions, UserNameFilterOptions } from '../constants/filterConsts';
 import { defaultPagingOption, defaultSortOption } from '../constants/gridContants';
 import SelectOption from '../components/filter/SelectOption';
@@ -250,6 +250,14 @@ export class FormFilter extends PureComponent {
                     </div>
                     <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
                         <div className="form-group">
+                            <CheckBox id="IncludeFreeSpins"
+                                checked={this.props.includeFreeSpins}
+                                onChange={checked => this.props.setIncludeFreeSpins(checked)}
+                                label={LangHelper.getSingleResource("IncludeFreeSpins")} />
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
+                        <div className="form-group">
                             <CheckBox id="NoDraw"
                                 checked={this.props.noDraw}
                                 onChange={checked => this.props.setNoDraw(checked)}
@@ -277,7 +285,7 @@ export class FormFilter extends PureComponent {
 
 function mapDispatchToProps(dispatch) {
     const { fetchReportData, fetchSettingData, setSelectedDateType, setSelectedBrand, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
-        changeIsExcludeTest, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone, toggleLoader } = ActionCreators;
+        changeIsExcludeTest, setIncludeFreeSpins, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone, toggleLoader } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
         fetchSettingData,
@@ -290,17 +298,19 @@ function mapDispatchToProps(dispatch) {
         setSelectedCurrency,
         setSelectedBaseCurrency,
         changeIsExcludeTest,
+        setIncludeFreeSpins,
         setNoDraw,
         setDrilldownInOriginalCurrency,
         setRequestParam,
         setSelectedTimezone,
-        toggleLoader
+        toggleLoader,
+
     }), dispatch);
 }
 
 function mapStateToProps(state) {
     const { settingData, selectedDateType, dateRange, selectedBrand, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
-        isExcludeTest, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone, displayedColumns } = state;
+        isExcludeTest, includeFreeSpins,noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone, displayedColumns } = state;
     return Object.assign({}, {
         settingData,
         selectedDateType,
@@ -310,6 +320,7 @@ function mapStateToProps(state) {
         username,
         selectedProduct,
         isExcludeTest,
+        includeFreeSpins,
         noDraw,
         drilldownInOriginalCurrency,
         selectedCurrency,

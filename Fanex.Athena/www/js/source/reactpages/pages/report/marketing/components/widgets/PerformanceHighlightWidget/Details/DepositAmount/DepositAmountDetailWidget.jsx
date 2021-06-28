@@ -7,13 +7,13 @@ import { Table, Pager, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/rea
 import QueryService from '../../../../../libs/services/queryService';
 import { DetailDepositAmountGridColumns, DetailDepositAmountGridConfig, DefaultPagingOption, StyleRow , DigitsAmount} from '../../../../../constants/gridConst';
 
-const DepositAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sortInfo, onSort }) => {
+const DepositAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, selectedCurrency, sortInfo, onSort }) => {
     const [isLoading, setLoading] = useState(false);
     const [detailData, setDetailData] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
 
     useEffect(() => {
-        const apiParams = DataService.getDepositAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
+        const apiParams = DataService.getDepositAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(null, null, data.totalRows);
             setPagingOption(newPagingOption);
@@ -38,7 +38,7 @@ const DepositAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, so
             sortbyId: sortBy,
             isSortAsc: sortType === 'asc'
         }
-        const apiParams = DataService.getDepositAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption, sortInfo });
+        const apiParams = DataService.getDepositAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(null, null, data.totalRows)
             setPagingOption(newPagingOption);
@@ -47,7 +47,7 @@ const DepositAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, so
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
-        const apiParams = DataService.getDepositAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, pagingOption: { PageIndex: pageIndex, PageSize: pageSize }, sortInfo });
+        const apiParams = DataService.getDepositAmountDetailAPIParams({ reportDate, baseCurrency, selectedBrand, selectedCurrency, pagingOption: { PageIndex: pageIndex, PageSize: pageSize }, sortInfo });
         _fetchData(apiParams, null, data => {
             const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows)
             setPagingOption(newPagingOption);

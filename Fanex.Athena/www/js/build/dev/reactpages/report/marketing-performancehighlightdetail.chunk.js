@@ -630,7 +630,7 @@ const GroupCell = props => {
   }, displayText));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupCell));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupCell));
 
 /***/ }),
 
@@ -697,7 +697,7 @@ const Widget = props => {
     isLoading: isLoading
   }), children || _renderNoData()));
 };
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
 
 /***/ }),
 
@@ -731,6 +731,7 @@ const BonusClaimedDetail = ({
   compareDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   allowedCompare
 }) => {
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
@@ -741,6 +742,7 @@ const BonusClaimedDetail = ({
       compareDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       allowedCompare,
       sortInfo: sortInfoDetailWidget
     });
@@ -770,17 +772,19 @@ const BonusClaimedDetail = ({
     compareDate: compareDate,
     baseCurrency: baseCurrency,
     selectedBrand: selectedBrand,
+    selectedCurrency: selectedCurrency,
     allowedCompare: allowedCompare
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BonusClaimedDetailWidget__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSort: setSortInfoDetailWidget,
     sortInfo: sortInfoDetailWidget,
     reportDate: reportDate,
     baseCurrency: baseCurrency,
+    selectedCurrency: selectedCurrency,
     selectedBrand: selectedBrand
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetail));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetail));
 
 /***/ }),
 
@@ -822,6 +826,7 @@ const BonusClaimedDetailWidget = ({
   reportDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   sortInfo,
   onSort
 }) => {
@@ -833,6 +838,7 @@ const BonusClaimedDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption,
       sortInfo
     });
@@ -863,6 +869,7 @@ const BonusClaimedDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption,
       sortInfo
     });
@@ -880,6 +887,7 @@ const BonusClaimedDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption: {
         PageIndex: pageIndex,
         PageSize: pageSize
@@ -936,7 +944,7 @@ const BonusClaimedDetailWidget = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetailWidget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetailWidget));
 
 /***/ }),
 
@@ -985,6 +993,7 @@ const BonusClaimedSummaryWidget = ({
   compareDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   allowedCompare
 }) => {
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
@@ -994,7 +1003,8 @@ const BonusClaimedSummaryWidget = ({
       reportDate,
       compareDate,
       baseCurrency,
-      selectedBrand
+      selectedBrand,
+      selectedCurrency
     });
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_7__["default"].fetchBonusClaimedSummaryData(apiParams, () => {
       setLoading(true);
@@ -1137,7 +1147,7 @@ const BonusClaimedSummaryWidget = ({
   }, _renderTotalData(), _renderCampaignData()));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedSummaryWidget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedSummaryWidget));
 
 /***/ }),
 
@@ -1171,6 +1181,7 @@ const DepositAmountDetail = ({
   compareDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   allowedCompare
 }) => {
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
@@ -1181,6 +1192,7 @@ const DepositAmountDetail = ({
       compareDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       allowedCompare,
       sortInfo: sortInfoDetailWidget
     });
@@ -1210,17 +1222,19 @@ const DepositAmountDetail = ({
     compareDate: compareDate,
     baseCurrency: baseCurrency,
     selectedBrand: selectedBrand,
+    selectedCurrency: selectedCurrency,
     allowedCompare: allowedCompare
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DepositAmountDetailWidget__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSort: setSortInfoDetailWidget,
     sortInfo: sortInfoDetailWidget,
     reportDate: reportDate,
     baseCurrency: baseCurrency,
-    selectedBrand: selectedBrand
+    selectedBrand: selectedBrand,
+    selectedCurrency: selectedCurrency
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountDetail));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountDetail));
 
 /***/ }),
 
@@ -1262,6 +1276,7 @@ const DepositAmountDetailWidget = ({
   reportDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   sortInfo,
   onSort
 }) => {
@@ -1273,6 +1288,7 @@ const DepositAmountDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption,
       sortInfo
     });
@@ -1303,6 +1319,7 @@ const DepositAmountDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption,
       sortInfo
     });
@@ -1320,6 +1337,7 @@ const DepositAmountDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption: {
         PageIndex: pageIndex,
         PageSize: pageSize
@@ -1376,7 +1394,7 @@ const DepositAmountDetailWidget = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountDetailWidget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountDetailWidget));
 
 /***/ }),
 
@@ -1425,6 +1443,7 @@ const DepositAmountSummaryWidget = ({
   compareDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   allowedCompare
 }) => {
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
@@ -1434,7 +1453,8 @@ const DepositAmountSummaryWidget = ({
       reportDate,
       compareDate,
       baseCurrency,
-      selectedBrand
+      selectedBrand,
+      selectedCurrency
     });
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_7__["default"].fetchDepositAmountSummaryData(apiParams, () => {
       setLoading(true);
@@ -1550,7 +1570,7 @@ const DepositAmountSummaryWidget = ({
   }, _renderTotalData(), _renderSignupData()));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountSummaryWidget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountSummaryWidget));
 
 /***/ }),
 
@@ -1584,6 +1604,7 @@ const NewlyRegisterUsersDetail = ({
   compareDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   allowedCompare
 }) => {
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
@@ -1594,6 +1615,7 @@ const NewlyRegisterUsersDetail = ({
       compareDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       allowedCompare,
       sortInfo: sortInfoDetailWidget
     });
@@ -1623,17 +1645,19 @@ const NewlyRegisterUsersDetail = ({
     compareDate: compareDate,
     baseCurrency: baseCurrency,
     selectedBrand: selectedBrand,
+    selectedCurrency: selectedCurrency,
     allowedCompare: allowedCompare
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NewlyRegisterUsersDetailWidget__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSort: setSortInfoDetailWidget,
     sortInfo: sortInfoDetailWidget,
     reportDate: reportDate,
     baseCurrency: baseCurrency,
-    selectedBrand: selectedBrand
+    selectedBrand: selectedBrand,
+    selectedCurrency: selectedCurrency
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetail));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetail));
 
 /***/ }),
 
@@ -1675,6 +1699,7 @@ const NewlyRegisterUsersDetailWidget = ({
   reportDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   sortInfo,
   onSort
 }) => {
@@ -1686,6 +1711,7 @@ const NewlyRegisterUsersDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption,
       sortInfo
     });
@@ -1717,6 +1743,7 @@ const NewlyRegisterUsersDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption,
       sortInfo
     });
@@ -1734,6 +1761,7 @@ const NewlyRegisterUsersDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption: {
         PageIndex: pageIndex,
         PageSize: pageSize
@@ -1790,7 +1818,7 @@ const NewlyRegisterUsersDetailWidget = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetailWidget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetailWidget));
 
 /***/ }),
 
@@ -1839,6 +1867,7 @@ const NewlyRegisterUsersSummaryWidget = ({
   compareDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   allowedCompare
 }) => {
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
@@ -1848,7 +1877,8 @@ const NewlyRegisterUsersSummaryWidget = ({
       reportDate,
       compareDate,
       baseCurrency,
-      selectedBrand
+      selectedBrand,
+      selectedCurrency
     });
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_7__["default"].fetchNewlyRegisterUsersSummaryData(apiParams, () => {
       setLoading(true);
@@ -1977,7 +2007,7 @@ const NewlyRegisterUsersSummaryWidget = ({
   }, _renderTotalData(), _renderCampaignData(), _renderSignupData()));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersSummaryWidget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersSummaryWidget));
 
 /***/ }),
 
@@ -2011,6 +2041,7 @@ const WithdrawalAmountDetail = ({
   compareDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   allowedCompare
 }) => {
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
@@ -2021,6 +2052,7 @@ const WithdrawalAmountDetail = ({
       compareDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       allowedCompare,
       sortInfo: sortInfoDetailWidget
     });
@@ -2050,17 +2082,19 @@ const WithdrawalAmountDetail = ({
     compareDate: compareDate,
     baseCurrency: baseCurrency,
     selectedBrand: selectedBrand,
+    selectedCurrency: selectedCurrency,
     allowedCompare: allowedCompare
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WithdrawalAmountDetailWidget__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSort: setSortInfoDetailWidget,
     sortInfo: sortInfoDetailWidget,
     reportDate: reportDate,
     baseCurrency: baseCurrency,
+    selectedCurrency: selectedCurrency,
     selectedBrand: selectedBrand
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetail));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetail));
 ;
 
 /***/ }),
@@ -2103,6 +2137,7 @@ const WithdrawalAmountDetailWidget = ({
   reportDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   sortInfo,
   onSort
 }) => {
@@ -2115,6 +2150,7 @@ const WithdrawalAmountDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption,
       sortInfo
     });
@@ -2145,6 +2181,7 @@ const WithdrawalAmountDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption,
       sortInfo
     });
@@ -2162,6 +2199,7 @@ const WithdrawalAmountDetailWidget = ({
       reportDate,
       baseCurrency,
       selectedBrand,
+      selectedCurrency,
       pagingOption: {
         PageIndex: pageIndex,
         PageSize: pageSize
@@ -2218,7 +2256,7 @@ const WithdrawalAmountDetailWidget = ({
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetailWidget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetailWidget));
 
 /***/ }),
 
@@ -2257,6 +2295,7 @@ const WithdrawalAmountSummaryWidget = ({
   compareDate,
   baseCurrency,
   selectedBrand,
+  selectedCurrency,
   allowedCompare
 }) => {
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
@@ -2266,7 +2305,8 @@ const WithdrawalAmountSummaryWidget = ({
       reportDate,
       compareDate,
       baseCurrency,
-      selectedBrand
+      selectedBrand,
+      selectedCurrency
     });
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchWithdrawalAmountSummaryData(apiParams, () => {
       setLoading(true);
@@ -2342,7 +2382,7 @@ const WithdrawalAmountSummaryWidget = ({
   }, _renderTotalData()));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountSummaryWidget));
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountSummaryWidget));
 
 /***/ }),
 
@@ -2382,13 +2422,14 @@ const initState = {
   selectedBox: params.selectedBox,
   baseCurrency: params.baseCurrency,
   selectedBrand: params.selectedBrand,
+  selectedCurrency: params.selectedCurrency,
   reportDate: {
-    fromDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_6__["default"].convertToDateStructure(new Date(Date.parse(params.fromDate))),
-    toDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_6__["default"].convertToDateStructure(new Date(Date.parse(params.toDate)))
+    fromDate: params.fromDate,
+    toDate: params.toDate
   },
   compareDate: {
-    fromDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_6__["default"].convertToDateStructure(new Date(Date.parse(params.compareFromDate))),
-    toDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_6__["default"].convertToDateStructure(new Date(Date.parse(params.compareToDate)))
+    fromDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_6__["default"].convertToDateStructure(new Date(params.compareFromDate)),
+    toDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_6__["default"].convertToDateStructure(new Date(params.compareToDate))
   },
   allowedCompare: params.allowedCompare
 };
@@ -3065,12 +3106,7 @@ class DateTimeHelper {
       return today;
     }
 
-    if (_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].today) {
-      today = new Date(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].today);
-    } else {
-      today = new Date();
-    }
-
+    today = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].today ? new Date(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].today) : new Date();
     return today;
   }
 
@@ -3105,11 +3141,6 @@ _defineProperty(DateTimeHelper, "addYears", (date, numberOfYears) => {
 
 _defineProperty(DateTimeHelper, "formatDateRangeToString", (fromDate, toDate) => {
   const displayFromDate = DateTimeHelper.formatDateStructureToString(fromDate);
-
-  if (DateTimeHelper.isEqualDate(fromDate, toDate)) {
-    return displayFromDate;
-  }
-
   const displayToDate = DateTimeHelper.formatDateStructureToString(toDate);
   return `${displayFromDate} - ${displayToDate}`;
 });
@@ -3199,6 +3230,7 @@ _defineProperty(NumberHelper, "getColorRate", rate => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DataService; });
 /* harmony import */ var _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
+/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -3210,29 +3242,33 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+
 class DataService {}
 
 _defineProperty(DataService, "getCommonAPIParams", ({
   selectedBrand,
+  selectedCurrency,
   reportDate
 }) => {
   const params = {
     brandId: selectedBrand,
-    fromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(reportDate.fromDate),
-    toDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(reportDate.toDate)
+    currencyIdList: selectedCurrency,
+    fromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].convertDateToString(reportDate.fromDate),
+    toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].convertDateToString(reportDate.toDate)
   };
   return params;
 });
 
-_defineProperty(DataService, "getPerformanceHighlightAPIParams", filterData => {
-  const {
-    selectedBrand,
-    selectedBaseCurrency,
-    reportDate,
-    compareDate
-  } = filterData;
+_defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
+  selectedBrand,
+  selectedCurrency,
+  selectedBaseCurrency,
+  reportDate,
+  compareDate
+}) => {
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
+    selectedCurrency,
     reportDate
   });
 
@@ -3245,11 +3281,11 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", filterData => {
   return params;
 });
 
-_defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", filterData => {
-  const {
+_defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", (_ref) => {
+  let {
     baseCurrency
-  } = filterData,
-        rest = _objectWithoutProperties(filterData, ["baseCurrency"]);
+  } = _ref,
+      rest = _objectWithoutProperties(_ref, ["baseCurrency"]);
 
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
 
@@ -3260,17 +3296,19 @@ _defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", fil
   return params;
 });
 
-_defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", filterData => {
-  const {
+_defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", (_ref2) => {
+  let {
     reportDate,
     selectedBrand,
+    selectedCurrency,
     pagingOption,
     sortInfo
-  } = filterData,
-        rest = _objectWithoutProperties(filterData, ["reportDate", "selectedBrand", "pagingOption", "sortInfo"]);
+  } = _ref2,
+      rest = _objectWithoutProperties(_ref2, ["reportDate", "selectedBrand", "selectedCurrency", "pagingOption", "sortInfo"]);
 
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
+    selectedCurrency,
     reportDate
   });
 
@@ -3282,13 +3320,13 @@ _defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", filt
   return params;
 });
 
-_defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", filterData => {
-  const {
+_defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", (_ref3) => {
+  let {
     baseCurrency,
     sortInfo,
     allowedCompare
-  } = filterData,
-        rest = _objectWithoutProperties(filterData, ["baseCurrency", "sortInfo", "allowedCompare"]);
+  } = _ref3,
+      rest = _objectWithoutProperties(_ref3, ["baseCurrency", "sortInfo", "allowedCompare"]);
 
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
 
@@ -3300,19 +3338,22 @@ _defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", filt
   return params;
 });
 
-_defineProperty(DataService, "getPerformanceHighlightExportAPIParams", filterData => {
-  const {
-    selectedBrand,
-    reportDate,
-    selectedBaseCurrency
-  } = filterData;
+_defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
+  selectedBrand,
+  selectedCurrency,
+  reportDate,
+  selectedBaseCurrency,
+  currencyNameList
+}) => {
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
+    selectedCurrency,
     reportDate
   });
 
   const params = _objectSpread(_objectSpread({}, commonParams), {}, {
-    baseCurrency: selectedBaseCurrency
+    baseCurrency: selectedBaseCurrency,
+    currencyNameList
   });
 
   return params;
@@ -3381,11 +3422,13 @@ _defineProperty(DataService, "getDepositAmountExportAPIParams", filterData => {
 _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
   const {
     selectedBrand,
+    selectedCurrency,
     reportDate,
     viewMode
   } = filterData;
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
+    selectedCurrency,
     reportDate
   });
 
@@ -3399,12 +3442,14 @@ _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
 _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
   const {
     selectedBrand,
+    selectedCurrency,
     reportDate,
     selectedBaseCurrency,
     products
   } = filterData;
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
+    selectedCurrency,
     reportDate
   });
 

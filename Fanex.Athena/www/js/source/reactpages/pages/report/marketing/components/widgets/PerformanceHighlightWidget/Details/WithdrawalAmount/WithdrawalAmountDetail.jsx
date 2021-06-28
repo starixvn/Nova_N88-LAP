@@ -6,11 +6,14 @@ import WithdrawalAmountSummaryWidget from './WithdrawalAmountSummaryWidget';
 import WithdrawalAmountDetailWidget from './WithdrawalAmountDetailWidget';
 import { DefaultSortInfo } from '../../../../../constants/gridConst';
 
-const WithdrawalAmountDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
+const WithdrawalAmountDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency, allowedCompare }) => {
     const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState(DefaultSortInfo);
 
     const handleExportExcel = () => {
-        const exportParams = DataService.getWithdrawalAmountExportAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare, sortInfo: sortInfoDetailWidget });
+        const exportParams = DataService.getWithdrawalAmountExportAPIParams({
+            reportDate, compareDate, baseCurrency, selectedBrand,
+            selectedCurrency, allowedCompare, sortInfo: sortInfoDetailWidget
+        });
         QueryService.exportWithdrawalAmountData(exportParams);
     }
 
@@ -31,8 +34,10 @@ const WithdrawalAmountDetail = ({ reportDate, compareDate, baseCurrency, selecte
         <div className="highlight-detail">
             {_renderCaption()}
             <div className="widget-list">
-                <WithdrawalAmountSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} allowedCompare={allowedCompare} />
-                <WithdrawalAmountDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand} />
+                <WithdrawalAmountSummaryWidget reportDate={reportDate} compareDate={compareDate} baseCurrency={baseCurrency} selectedBrand={selectedBrand}
+                    selectedCurrency={selectedCurrency} allowedCompare={allowedCompare} />
+                <WithdrawalAmountDetailWidget onSort={setSortInfoDetailWidget} sortInfo={sortInfoDetailWidget} reportDate={reportDate} baseCurrency={baseCurrency}
+                    selectedCurrency={selectedCurrency} selectedBrand={selectedBrand} />
             </div>
         </div>
     )

@@ -3175,4 +3175,12 @@
   <data name="ProductVGA" xml:space="preserve">
     <value>Vgaming</value>
   </data>
+  <data name="IncludeFreeSpins" xml:space="preserve">
+    <value>Include Free Spins</value>
+    <comment>155334</comment>
+  </data>
+  <data name="NoteSupportClosingBalance" xml:space="preserve">
+    <value>Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00</value>
+    <comment>155334</comment>
+  </data>
 </root>

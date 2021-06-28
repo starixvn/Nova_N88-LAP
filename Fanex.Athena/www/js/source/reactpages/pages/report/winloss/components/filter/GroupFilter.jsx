@@ -6,7 +6,7 @@ import CollapsiblePanel from '@jsroot/components/collapsible-panel';
 import MultipleSelect from '@9softstudio/react-multiselect'
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import LangHelper from '@jsroot/lib/langHelper';
-import { GroupByOptions, GroupByOptionAllowQuickDownload } from '../../constants/filterConsts';
+import { GroupByOptions, GroupByOptionAllowQuickDownload, SupportClosingFromDate } from '../../constants/filterConsts';
 import GroupHelper from '../../libs/helpers/groupHelper';
 import { displayedColumns as DefaultDisplayedColumns } from '../../constants/gridContants';
 
@@ -76,6 +76,8 @@ export const GroupFilter = props => {
                     {LangHelper.getSingleResource('NoteReportGrossRevenue')}
                     <br />
                     {LangHelper.getSingleResource('NoteReportDepositAndWithdrawal')}
+                    <br />
+                    {LangHelper.getSingleResource('NoteSupportClosingBalance').replace('{0}', SupportClosingFromDate)}
                 </div>
             </div>
         </CollapsiblePanel>

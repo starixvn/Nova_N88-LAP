@@ -3544,6 +3544,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include Free Spins.
+        /// </summary>
+        public static string IncludeFreeSpins {
+            get {
+                return ResourceManager.GetString("IncludeFreeSpins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Include Test Data.
         /// </summary>
         public static string IncludeTestData {
@@ -5160,6 +5169,15 @@ namespace Fanex.Athena.Resources {
         public static string NoteReportGrossRevenue {
             get {
                 return ResourceManager.GetString("NoteReportGrossRevenue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00.
+        /// </summary>
+        public static string NoteSupportClosingBalance {
+            get {
+                return ResourceManager.GetString("NoteSupportClosingBalance", resourceCulture);
             }
         }
         

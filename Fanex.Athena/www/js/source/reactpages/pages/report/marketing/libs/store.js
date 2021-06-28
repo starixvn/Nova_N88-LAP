@@ -9,8 +9,7 @@ const defaultState = {
       isCollapsedFormFilter: false,
       allowedCompare: false,
       viewMode: ViewModeOptionValues.Daily,
-      reportDate: FilterHelper.DefaultReportDate,
-      compareDate: FilterHelper.DefaultCompareDate
+      compareDate: FilterHelper.GetDefaultCompareDate(window.initialState.reportDate)
    }
 }
 

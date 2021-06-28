@@ -3,21 +3,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LangHelper from '@jsroot/lib/langHelper';
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
+import AppData from '@jsroot/lib/AppData'
+import { DateRange } from '@jsroot/components/date-range';
 import ActionCreators from '../../actions';
 import Widget from '../common/Widget';
-import TimePeriodSelect from '../common/TimePeriodSelect';
 import BarChart from '../common/BarChart';
 import LineChart from '../common/LineChart';
-import { ReportDateSelectionOptions } from '../../constants/filterConst';
-import FilterHelper from '../../libs/helpers/filterHelper';
 import { ChartMode, ChartModeOptions, UserActivitiesChartDataMapping } from '../../constants/chartConst';
 import DataService from '../../libs/services/dataService';
 
 let countRender = 0;
 
-export const UserActivitiesWidget = props => {
-    const { globalFilter, userActivitiesData, fetchUserActivitiesData } = props;
-    const { selectedBrand, viewMode } = globalFilter;
+export const UserActivitiesWidget = ({ globalFilter, userActivitiesData, fetchUserActivitiesData }) => {
+    const { selectedBrand, selectedCurrency, viewMode } = globalFilter;
     const [reportDate, setReportDate] = useState(globalFilter.reportDate);
     const [isLoading, setLoading] = useState(false);
     const [chartMode, setChartMode] = useState(ChartMode.Bar);
@@ -30,16 +28,9 @@ export const UserActivitiesWidget = props => {
 
     const _title = React.useMemo(() => LangHelper.getSingleResource('UserActivities'), []);
 
-    const _onChangeReportDate = React.useCallback(selectedRange => {
-        setReportDate(selectedRange);
-        if (!selectedRange.isSpecificRange || reportDate.isSpecificRange) {
-            _reloadData(selectedRange);
-        }
-    }, [reportDate])
-
     const _reloadData = reportDate => {
         setLoading(true);
-        const apiParams = DataService.getUserActivitiesAPIParams({ selectedBrand, reportDate, viewMode });
+        const apiParams = DataService.getUserActivitiesAPIParams({ selectedBrand, selectedCurrency, reportDate, viewMode });
         fetchUserActivitiesData(apiParams, () => setLoading(false));
     }
 
@@ -53,18 +44,38 @@ export const UserActivitiesWidget = props => {
         return null;
     }
 
+    const _renderReportDateSelection = () => {
+        const dateConstraint = AppData.dateConstraint;
+        return (
+            <DateRange
+                key={'UserActivitiesWidget_ReportDate_' + countRender}
+                startDate={reportDate.fromDate} endDate={reportDate.toDate}
+                minDate={dateConstraint.minDate} maxDate={dateConstraint.maxDate}
+                today={AppData.today} limitedMonthRange={dateConstraint.limitedMonthRange}
+                onChange={_onChangeReportDate}
+            />
+        )
+    }
+
+    const _onChangeReportDate = (range, isValidMonthRange = true) => {
+        if (isValidMonthRange) {
+            const { startDate, endDate } = range;
+            const convertedRange = { fromDate: startDate, toDate: endDate }
+            setReportDate(convertedRange);
+            _reloadData(convertedRange)
+        }
+        else {
+            const message = LangHelper.getSingleResource("DateRangeExceedMsg").replace("{0}", AppData.dateConstraint.limitedMonthRange);
+            alert(message);
+        }
+    }
+
     const _renderFilter = () => {
         return (<div className="row">
-            <div className="col-12 col-md-6 col-sm-6 col-lg-5 col-xl-3">
+            <div className="col-12 col-md-4 col-sm-5 col-lg-3 col-xl-2">
                 <div className="form-group">
                     <label className="label-text">{LangHelper.getSingleResource("ReportDate")}</label>
-                    <TimePeriodSelect
-                        key={'UserActivitiesWidget_ReportDate_' + countRender}
-                        selectOptions={ReportDateSelectionOptions}
-                        selectOptionGenerateRange={FilterHelper.ReportDateGenerateRangeSelections}
-                        selectedRange={reportDate}
-                        onChange={_onChangeReportDate}
-                    />
+                    {_renderReportDateSelection()}
                 </div>
             </div>
         </div>)

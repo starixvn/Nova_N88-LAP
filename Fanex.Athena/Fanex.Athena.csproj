@@ -1380,7 +1380,6 @@
     <Content Include="www\js\source\reactpages\pages\report\winloss\constants\gridContants.js" />
     <Content Include="www\js\source\reactpages\pages\report\winloss\constants\queryConsts.js" />
     <Content Include="www\js\source\reactpages\pages\report\winloss\index.js" />
-    <Content Include="www\js\source\reactpages\pages\report\winloss\libs\helpers\collectionHelper.js" />
     <Content Include="www\js\source\reactpages\pages\report\winloss\libs\helpers\gridHelper.js" />
     <Content Include="www\js\source\reactpages\pages\report\winloss\libs\helpers\groupHelper.js" />
     <Content Include="www\js\source\reactpages\pages\report\winloss\libs\helpers\queryHelper.js" />

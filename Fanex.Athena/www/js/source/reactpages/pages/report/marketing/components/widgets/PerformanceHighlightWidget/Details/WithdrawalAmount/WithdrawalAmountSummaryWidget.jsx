@@ -9,12 +9,12 @@ import QueryService from '../../../../../libs/services/queryService';
 import NumberHelper from '../../../../../libs/helpers/numberHelper';
 import { StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
 
-const WithdrawalAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, allowedCompare }) => {
+const WithdrawalAmountSummaryWidget = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency ,allowedCompare }) => {
     const [isLoading, setLoading] = useState(false);
     const [summaryData, setSummaryData] = useState(null);
 
     useEffect(() => {
-        const apiParams = DataService.getWithdrawalAmountSummaryAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand });
+        const apiParams = DataService.getWithdrawalAmountSummaryAPIParams({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency });
         QueryService.fetchWithdrawalAmountSummaryData(apiParams,
             () => {
                 setLoading(true)

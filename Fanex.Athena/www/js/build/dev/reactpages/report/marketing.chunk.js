@@ -3798,7 +3798,7 @@ const FormFilter = props => {
 
   const _renderCurrencySelectList = () => {
     const dataSource = _jsroot_lib_collectionHelper__WEBPACK_IMPORTED_MODULE_11__["default"].createDataSourceFrom(currencyList, selectedCurrency);
-    return currencyList && currencyList.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    return currencyList && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
       id: "ddlCurrency",
       language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].currentLanguage,
       dataSource: dataSource,
@@ -3946,7 +3946,7 @@ const FormFilter = props => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
     className: "btn btn-submit",
-    disabled: false,
+    disabled: !selectedCurrency,
     onClick: _onSubmit
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("Submit"))))))));
 };

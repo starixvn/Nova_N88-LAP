@@ -13,12 +13,14 @@
     <style>
         body {
             font-family: Verdana,'sans-serif';
+            font-size: .8rem;
         }
 
         .center {
             margin: auto;
             width: 50%;
             padding: 10px;
+            text-align: center;
         }
 
         ol {
@@ -38,27 +40,18 @@
 </head>
 <body>
     <div class="error-content">
-        <img src="@Url.ContentLink("/www/assets/images/lap-restriction-page.png")" />
+        <img src="@Url.ContentLink("/www/assets/images/mpa-error-page.svg")" />
         <div class="center">
             <div>
-                <strong>@Html.Raw(ViewResources.ErrorNotification)</strong>
+                <strong style="color:#0F3630">@ViewResources.ErrorNotification</strong>
             </div>
             <ol style="list-style-type: decimal;">
-                @if (ViewBag.Message == ViewResources.OneTokenRestrictionDefaultMsg)
-                {
-                    <li>
-                        Your internet connection might be temporally broken.
-                    </li>
-                    <li>
-                        Your authorization may be no longer valid since web browser's caches are cleared.
-                    </li>
-                }
-                <li style="color:red">
+                <li style="color:#F15D22">
                     @Html.Raw(ViewBag.Message)
                 </li>
             </ol>
             <div>
-                @Html.Raw(ViewResources.TryLogin)
+                <strong style="color:#0F3630">@ViewResources.TryLogin</strong>
             </div>
             <ul style="list-style-type: none;">
                 @Html.Raw(ViewResources.SolutionForRestriction)

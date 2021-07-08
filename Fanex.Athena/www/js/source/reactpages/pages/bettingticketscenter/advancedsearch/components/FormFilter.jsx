@@ -276,7 +276,7 @@ export class FormFilter extends Component {
     _renderCurrencySelectList() {
         const currencyList = this.currencyList;
 
-        return currencyList && currencyList.length && (
+        return currencyList && (
             <MultipleSelect id="ddlCurrency"
                 language={LangHelper.currentLanguage}
                 dataSource={currencyList}

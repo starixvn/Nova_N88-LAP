@@ -28,6 +28,7 @@
         }
 
         [HttpGet]
+        [RequireCurrencyPermission]
         public ActionResult Index()
         {
             if (IsFakeLicensee(SessionServiceInstance.LicenseeSession.LicenseeName))

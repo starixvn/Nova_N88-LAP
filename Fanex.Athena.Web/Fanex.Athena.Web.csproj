@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilter\AutoBindMetaModelAttribute.cs" />
+    <Compile Include="ActionFilter\RequireCurrencyPermissionAttribute.cs" />
     <Compile Include="ActionFilter\ValidateProductPermissionAttribute.cs" />
     <Compile Include="ActionFilter\ValidatePermissionOnDataAttribute.cs" />
     <Compile Include="ActionFilter\CustomValidateAntiForgeryAttribute.cs" />

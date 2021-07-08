@@ -37,6 +37,17 @@ namespace Fanex.Athena.Service.Core.Utility
             return ValidateCurrency(currencyId, currencyList);
         }
 
+        public bool IsValidCurrency(string currencyIdList)
+        {
+            if (string.IsNullOrEmpty(currencyIdList))
+            {
+                return false;
+            }
+
+            var items = currencyIdList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            return !items.Any(x => !int.TryParse(x, out int n) || !_sessionService.UserSession.CurrencyList.ContainsKey(n));
+        }
+
         private static bool ValidateCurrency(int currencyId, IDictionary<int, string> currencyList)
         {
             return (currencyId < 0 && currencyId >= SystemConstants.MinBaseCurrencyType)
@@ -51,17 +62,6 @@ namespace Fanex.Athena.Service.Core.Utility
         private static bool ValidateCurrencyWithKeanOceanOption(int currencyId, IDictionary<int, string> currencyList, int licenseeId)
         {
             return ValidateCurrency(currencyId, currencyList) || VerifyKeanOceanCurrency(currencyId, licenseeId);
-        }
-
-        public bool IsValidCurrency(string currencyIdList)
-        {
-            if (string.IsNullOrEmpty(currencyIdList))
-            {
-                return false;
-            }
-
-            var items = currencyIdList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            return !items.Any(x => !int.TryParse(x, out int n) || !_sessionService.UserSession.CurrencyList.ContainsKey(n));
         }
     }
 }

@@ -16,6 +16,7 @@
     public class CashOutWinLossReportController : ReportBaseController
     {
         [HttpGet]
+        [RequireCurrencyPermission]
         public ActionResult Index()
         {
             var licenseeSession = this.SessionServiceInstance.LicenseeSession;

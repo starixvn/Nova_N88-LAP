@@ -3931,7 +3931,7 @@ const Widget = props => {
     isLoading: isLoading
   }), hasData && children || _renderNoData()));
 };
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
 
 /***/ }),
 
@@ -4010,7 +4010,7 @@ function mapStateToProps(state) {
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
 
 /***/ }),
 
@@ -4207,15 +4207,9 @@ const BonusInfoDetailWidget = props => {
   };
 
   const _onChangeDateRange = date => {
-    const dateString = date.format("DD-MMM-yyyy");
-    const newDate = date.format("MM/DD/yyyy");
-    const bonusCodeList = bonusInfoSummaryData.dataList.filter(item => {
-      if (item.dateString === dateString && item.bonusCode) {
-        return item;
-      }
-    }).map(item => {
-      return item.bonusCode;
-    });
+    const dateString = date.format("DD-MMM-YYYY");
+    const newDate = date.format("MM/DD/YYYY");
+    const bonusCodeList = bonusInfoSummaryData.dataList.filter(item => item.dateString === dateString && item.bonusCode).map(item => item.bonusCode);
     const uniqueBonusCodeList = bonusCodeList.filter((code, index, list) => list.indexOf(code) === index);
     setBonusCodeList(uniqueBonusCodeList);
     (uniqueBonusCodeList === null || uniqueBonusCodeList === void 0 ? void 0 : uniqueBonusCodeList.length) === 1 ? setSelectedBonusCode(uniqueBonusCodeList[0]) : setSelectedBonusCode(null);
@@ -4316,7 +4310,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoDetailWidget)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoDetailWidget)));
 
 /***/ }),
 
@@ -4594,7 +4588,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoSummaryWidget)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoSummaryWidget)));
 
 /***/ }),
 

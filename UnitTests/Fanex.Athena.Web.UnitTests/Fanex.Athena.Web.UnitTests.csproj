@@ -85,6 +85,7 @@
     <Compile Include="ActionFilter\CustomAuthorizeAttributeTest.cs" />
     <Compile Include="ActionFilter\BetListAuthorizationAttributeTest.cs" />
     <Compile Include="ActionFilter\AjaxRequestAttributeTest.cs" />
+    <Compile Include="ActionFilter\RequireCurrencyPermissionAttributeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

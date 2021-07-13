@@ -2707,7 +2707,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re here because of one of those reasons: &lt;br/&gt;遭遇问题了!.
+        ///   Looks up a localized string similar to You&apos;re here because of one of those reasons:.
         /// </summary>
         public static string ErrorNotification {
             get {
@@ -6730,7 +6730,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. Login at Licensee Admin.&lt;br/&gt;2. Access the reports/ functions you want. &lt;br/&gt; 请洽你们的最高管理者替你设置币别权限.
+        ///   Looks up a localized string similar to 1. Login at MPA site.&lt;br/&gt;2. Access the reports/ functions you want..
         /// </summary>
         public static string SolutionForRestriction {
             get {
@@ -7387,7 +7387,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please try to login again:&lt;br/&gt;解决方法.
+        ///   Looks up a localized string similar to Please try to login again:.
         /// </summary>
         public static string TryLogin {
             get {
@@ -7900,7 +7900,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have any currency permissions to view this report, please contact your administrator account. &lt;br/&gt;你尚未设置任何币别权限.
+        ///   Looks up a localized string similar to You do not have any currency permissions to view this report, please contact your administrator account..
         /// </summary>
         public static string UserNotHaveCurrency {
             get {

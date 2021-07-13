@@ -36,6 +36,7 @@
             _n88Settings = n88Settings ?? N88Settings.Settings;
         }
 
+        [RequireCurrencyPermission]
         public ActionResult Index()
         {
             var tabList = GetEnableTabList();
@@ -63,6 +64,7 @@
         }
 
         [FunctionAuthorization(PermissionKeys.BetHistoryAdvancedSearch)]
+        [RequireCurrencyPermission]
         public ActionResult AdvancedSearch()
         {
             var tabList = GetEnableTabList();
@@ -82,6 +84,7 @@
         }
 
         [FunctionAuthorization(PermissionKeys.BetHistorySingleCustomer)]
+        [RequireCurrencyPermission]
         public ActionResult SingleCustomer()
         {
             var tabList = GetEnableTabList();
@@ -101,6 +104,7 @@
         }
 
         [FunctionAuthorization(PermissionKeys.BetHistoryRefNo)]
+        [RequireCurrencyPermission]
         public ActionResult RefNo()
         {
             var tabList = GetEnableTabList();
@@ -118,6 +122,7 @@
         }
 
         [FunctionAuthorization(PermissionKeys.BetHistoryRunning)]
+        [RequireCurrencyPermission]
         public ActionResult Running()
         {
             var tabList = GetEnableTabList();

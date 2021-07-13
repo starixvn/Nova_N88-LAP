@@ -651,6 +651,7 @@
     <Content Include="www\assets\images\logo-text-402.svg" />
     <Content Include="www\assets\images\logo-text-436.svg" />
     <Content Include="www\assets\images\logo-text-437.svg" />
+    <Content Include="www\assets\images\mpa-error-page.svg" />
     <Content Include="www\assets\images\new-system.svg" />
     <Content Include="www\css\build\dev\pages\betlist\images\lotto_ball.png" />
     <Content Include="www\css\build\dev\pages\betlist\images\nphPromotion.png" />

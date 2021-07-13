@@ -10,6 +10,7 @@
     using System.Web.Mvc;
 
     [FunctionAuthorization(PermissionKeys.ReportWinLoss)]
+    [RequireCurrencyPermission]
     public class WinLossReportController : ReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;

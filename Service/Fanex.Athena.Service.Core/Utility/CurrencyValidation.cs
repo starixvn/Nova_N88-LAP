@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Fanex.Athena.Extension.Utility;
+﻿using Fanex.Athena.Extension.Utility;
 using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.Helper;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.Core.Utility.Interfaces;
+using Fanex.Athena.Service.StatelessCore.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Athena.Service.Core.Utility
 {
@@ -26,9 +27,21 @@ namespace Fanex.Athena.Service.Core.Utility
             return MetaModelValidationHelper.ValidateBaseCurrency(baseCurrency, isAllowEmpty);
         }
 
+        public bool IsValidCurrency(string currencyIdList)
+        {
+            if (string.IsNullOrEmpty(currencyIdList))
+            {
+                return false;
+            }
+
+            var items = currencyIdList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var currencyList = AuthParameterHelper.GetCurrencyList(_sessionService.UserSession.BrandList);
+            return !items.Any(x => !int.TryParse(x, out int n) || !currencyList.ContainsKey(n));
+        }
+
         public bool IsValidCurrency(int currencyId, bool isIncludeKeanOcean = false)
         {
-            var currencyList = _sessionService.UserSession.CurrencyList;
+            var currencyList = AuthParameterHelper.GetCurrencyList(_sessionService.UserSession.BrandList);
             if (isIncludeKeanOcean)
             {
                 return ValidateCurrencyWithKeanOceanOption(currencyId, currencyList, _appSettings.LicenseeId);
@@ -51,17 +64,6 @@ namespace Fanex.Athena.Service.Core.Utility
         private static bool ValidateCurrencyWithKeanOceanOption(int currencyId, IDictionary<int, string> currencyList, int licenseeId)
         {
             return ValidateCurrency(currencyId, currencyList) || VerifyKeanOceanCurrency(currencyId, licenseeId);
-        }
-
-        public bool IsValidCurrency(string currencyIdList)
-        {
-            if (string.IsNullOrEmpty(currencyIdList))
-            {
-                return false;
-            }
-
-            var items = currencyIdList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            return !items.Any(x => !int.TryParse(x, out int n) || !_sessionService.UserSession.CurrencyList.ContainsKey(n));
         }
     }
 }

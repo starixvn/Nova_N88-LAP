@@ -19,6 +19,7 @@
         }
 
         [HttpGet]
+        [RequireCurrencyPermission]
         public ViewResult Index()
         {
             var viewModel = CreateViewModel();

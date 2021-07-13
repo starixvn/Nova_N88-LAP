@@ -10,6 +10,7 @@
     using System.Web.Mvc;
 
     [FunctionAuthorization(PermissionKeys.ReportMarketing)]
+    [RequireCurrencyPermission]
     public class MarketingReportController : ReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;

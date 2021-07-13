@@ -172,17 +172,10 @@ export const BonusInfoDetailWidget = props => {
 
     const _onChangeDateRange = (date) => {
 
-        const dateString = date.format("DD-MMM-yyyy");
-        const newDate = date.format("MM/DD/yyyy");
+        const dateString = date.format("DD-MMM-YYYY");
+        const newDate = date.format("MM/DD/YYYY");
 
-        const bonusCodeList = bonusInfoSummaryData.dataList.filter(item => {
-            if(item.dateString === dateString && item.bonusCode)
-            {
-                return item;
-            }
-        }).map(item => {
-            return item.bonusCode;
-        });
+        const bonusCodeList = bonusInfoSummaryData.dataList.filter(item => item.dateString === dateString && item.bonusCode).map(item => item.bonusCode);
 
         const uniqueBonusCodeList = bonusCodeList.filter((code, index, list) => list.indexOf(code) === index);
 

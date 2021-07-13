@@ -50,9 +50,9 @@
                 Id = licenseeId,
                 Name = "N88",
                 FunctionKey = "N88",
-                TpCurrencyList = new Dictionary<int, string> { { 1, "USD" } },
-                CurrencyList = new Dictionary<int, string> { { 2, "EUR" } },
-                CurrencyAgentList = new Dictionary<int, int[]> { { 2, new[] { 100 } } }
+                TpCurrencyList = new Dictionary<int, string>(),
+                CurrencyList = new Dictionary<int, string>(),
+                CurrencyAgentList = new Dictionary<int, int[]>()
             };
 
             _tpService.GetListTpCurrency(licenseeId).Returns(new List<Currency> { new Currency { ID = 1, Name = "USD" } });
@@ -74,7 +74,7 @@
             var actualResult = _targetService.GetAllowedBrands(licenseeId, functions, fakeBrands);
 
             //Assert
-            Assert.That(actualResult.FirstOrDefault(), Tobe.SameProperties(expectedResult));
+            Assert.AreEqual(JsonConvert.SerializeObject(expectedResult), JsonConvert.SerializeObject(actualResult.FirstOrDefault()));
         }
 
         [Test]
@@ -113,7 +113,10 @@
 
             var functions = new List<NVCFunctionAuthInfo>
             {
-                new NVCFunctionAuthInfo { FunctionKey = fakeN8GBrand.FunctionKey }
+                new NVCFunctionAuthInfo { FunctionKey = fakeN8GBrand.FunctionKey },
+                new NVCFunctionAuthInfo { FunctionKey = "Currency", FunctionId = 1 },
+                new NVCFunctionAuthInfo { FunctionKey = "currency_usd_1", ParentId = 1 },
+                new NVCFunctionAuthInfo { FunctionKey = "currency_eur_2", ParentId = 1 }
             };
 
             _tpService.GetListTpCurrency(fakeN88Brand.Id).Returns(fakeN88Brand.TpCurrencyList.Select(_ => new Currency { ID = _.Key, Name = _.Value }));

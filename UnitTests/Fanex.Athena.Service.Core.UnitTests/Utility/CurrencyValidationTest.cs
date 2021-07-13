@@ -27,9 +27,21 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
 
             _sessionService.UserSession.Returns(new NVCUserAuthInfo
             {
-                CurrencyList = new Dictionary<int, string> { { 1, "USD" }, { 2, "EUR" }, { 4, "IDR" } }
+                BrandList = new List<Brand>
+                {
+                    new Brand
+                    {
+                        Id = 402,
+                        CurrencyList =  new Dictionary<int, string> { { 1, "USD" }, { 2, "EUR" }, }
+                    },
+                    new Brand
+                    {
+                        Id = 436,
+                        CurrencyList =  new Dictionary<int, string> { { 4, "IDR" } }
+                    }
+                }
             });
-            _sessionService.LicenseeSession.Returns(new NVCLicenseeAuthInfo { LicenseeId = 1 });
+            _sessionService.LicenseeSession.Returns(new NVCLicenseeAuthInfo { LicenseeId = 402 });
             _currencyValidation = new CurrencyValidation(_sessionService, _appSettings);
         }
 
@@ -45,8 +57,7 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         [TestCase(100, false)]
         [TestCase(-5, true)]
         [TestCase(-100, false)]
-        public void IsValidCurrency_WhenCalled_ReturnExpectedResult(int currencyId,
-          bool expected)
+        public void IsValidCurrency_WhenCalled_ReturnExpectedResult(int currencyId, bool expected)
         {
             //Arrange
 

@@ -23,6 +23,7 @@
         }
 
         [HttpGet]
+        [RequireCurrencyPermission(OnlyOwnBrand = true)]
         public ActionResult Index()
         {
             var viewmodel = CreateDefaultViewModel();

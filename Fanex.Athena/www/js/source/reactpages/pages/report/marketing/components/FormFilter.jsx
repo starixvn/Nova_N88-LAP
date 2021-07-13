@@ -41,7 +41,7 @@ export const FormFilter = props => {
 
     const _renderCurrencySelectList = () => {
         const dataSource = CollectionHelper.createDataSourceFrom(currencyList, selectedCurrency);
-        return currencyList && currencyList.length && (
+        return currencyList && (
             <MultipleSelect id="ddlCurrency"
                 language={LangHelper.currentLanguage}
                 dataSource={dataSource}
@@ -168,7 +168,7 @@ export const FormFilter = props => {
                 <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                     <div className="form-group">
                         <div className="button-group">
-                            <button type="button" className="btn btn-submit" disabled={false} onClick={_onSubmit}>{LangHelper.getSingleResource("Submit")}</button>
+                            <button type="button" className="btn btn-submit" disabled={!selectedCurrency} onClick={_onSubmit}>{LangHelper.getSingleResource("Submit")}</button>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ class BetListLayout extends Component {
         };
 
         window.ViewResult = (matchid, raceNo, bettype, sporttype, refno,
-            username, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs) => {
+            currency, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs) => {
             const title = this._getResource('Result');
             const rootUrl = this.props.rootUrl;
             const defaultPlatform = 'd';
@@ -76,7 +76,7 @@ class BetListLayout extends Component {
                 this._showThirdPartyResult(url, title);
             }
             else if (sporttype === SportType.VGA || sporttype === SportType.VGA_FreeBets) {
-                const url = BetList.getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype);
+                const url = BetList.getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype, currency);
                 this._showThirdPartyResult(url, title);
             }
             else {

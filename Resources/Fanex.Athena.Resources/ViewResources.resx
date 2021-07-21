@@ -3183,4 +3183,10 @@
     <value>Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00</value>
     <comment>155334</comment>
   </data>
+  <data name="ProgressiveWin" xml:space="preserve">
+    <value>Progressive Win</value>
+  </data>
+  <data name="ProgressiveBet" xml:space="preserve">
+    <value>Progressive Bet</value>
+  </data>
 </root>

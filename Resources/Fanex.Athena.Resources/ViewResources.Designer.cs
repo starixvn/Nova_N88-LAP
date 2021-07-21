@@ -6136,6 +6136,24 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progressive Bet.
+        /// </summary>
+        public static string ProgressiveBet {
+            get {
+                return ResourceManager.GetString("ProgressiveBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progressive Win.
+        /// </summary>
+        public static string ProgressiveWin {
+            get {
+                return ResourceManager.GetString("ProgressiveWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Promotion.
         /// </summary>
         public static string Promotion {

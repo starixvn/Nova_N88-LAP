@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 6/1/2021 2:22:58 PM
+// Generated at: 7/15/2021 1:18:02 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -389,7 +389,7 @@ window._language_en_US = {
   EndDate: "End Date",
   Entered: "Entered",
   Error: "Error",
-  ErrorNotification: "You&apos;re here because of one of those reasons: &lt;br/&gt;遭遇问题了!",
+  ErrorNotification: "You&apos;re here because of one of those reasons:",
   ErrorProcessingMsg: "Sorry, an error occurred while processing your request.",
   ESportsApp: "E-Sports APP",
   ESportsDesktop: "E-Sports Desktop",
@@ -770,6 +770,8 @@ window._language_en_US = {
   ProductVRG: "Virtual Games",
   ProductVS: "Virtual Sports",
   ProductVS2: "Virtual Sports 2",
+  ProgressiveBet: "Progressive Bet",
+  ProgressiveWin: "Progressive Win",
   Promotion: "Promotion",
   PromotionPrize: "Promotion Prize",
   PropertiesMustMatchErrMsg: "&apos;{0}&apos; and &apos;{1}&apos; do not match.",
@@ -836,7 +838,7 @@ window._language_en_US = {
   Site: "Site",
   SiteAdmin: "Site Admin",
   SiteName: "Site Name",
-  SolutionForRestriction: "1. Login at Licensee Admin.&lt;br/&gt;2. Access the reports/ functions you want. &lt;br/&gt; 请洽你们的最高管理者替你设置币别权限",
+  SolutionForRestriction: "1. Login at MPA site.&lt;br/&gt;2. Access the reports/ functions you want.",
   SpecialLevel: "Special Level",
   SpecificDate: "Specific Date",
   SpecificDateRange: "A specific date range",
@@ -909,7 +911,7 @@ window._language_en_US = {
   TransferIn: "Transfer In",
   TransferOut: "Transfer Out",
   TransTime: "Trans.Time",
-  TryLogin: "Please try to login again:&lt;br/&gt;解决方法",
+  TryLogin: "Please try to login again:",
   Tu: "Tu",
   Tuesday: "Tuesday",
   TurnOffBaTooltip: "Click to turn off",
@@ -966,7 +968,7 @@ window._language_en_US = {
   Username: "Username",
   UsernameNotExisted: "Username is not existed",
   UserNotExist: "Not found user",
-  UserNotHaveCurrency: "You do not have any currency permissions to view this report, please contact your administrator account. &lt;br/&gt;你尚未设置任何币别权限",
+  UserNotHaveCurrency: "You do not have any currency permissions to view this report, please contact your administrator account.",
   UserPermission: "User Permission",
   UserPwd: "UserPwd",
   Users: "Users",

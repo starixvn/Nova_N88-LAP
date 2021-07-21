@@ -84,7 +84,7 @@ export const GroupCell = props => {
     }
 
     return (<Cell key={`group-cell-${key}`} {...rest}>
-        {rowData.custId && rowData.productId ? <a href="#" onClick={_onViewBetList} className='right'>
+        {rowData.custId && rowData.productId ? <a href="#" onClick={_onViewBetList} className='right right-align'>
             {rowData[columnKeys.group]}
         </a> : rowData[columnKeys.group]}
         {_isAllowedDrillDown && <i className={`icon-arrow right ${_isDrillDown ? 'arrow-down' : 'arrow-right'}`} onClick={_handleDrillDown}></i>}

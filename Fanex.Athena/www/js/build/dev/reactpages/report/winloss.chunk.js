@@ -5914,7 +5914,7 @@ const GroupCell = props => {
   }, rest), rowData.custId && rowData.productId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
     onClick: _onViewBetList,
-    className: "right"
+    className: "right right-align"
   }, rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_6__["columnKeys"].group]) : rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_6__["columnKeys"].group], _isAllowedDrillDown && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: `icon-arrow right ${_isDrillDown ? 'arrow-down' : 'arrow-right'}`,
     onClick: _handleDrillDown

@@ -6208,8 +6208,16 @@ const dataColumns = {
     onDragOver: event => event.preventDefault(),
     onDragStart: event => onDragStart(event, columnKeys.ggr)
   },
-  [columnKeys.progressiveWin]: {
+  [columnKeys.playerWinloss]: {
     sortBy: 5,
+    colWidth: 60,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.playerWinloss)
+  },
+  [columnKeys.progressiveWin]: {
+    sortBy: 6,
     colWidth: 60,
     className: "right-align",
     draggable: true,
@@ -6217,20 +6225,12 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.progressiveWin)
   },
   [columnKeys.progressiveBet]: {
-    sortBy: 6,
-    colWidth: 60,
-    className: "right-align",
-    draggable: true,
-    onDragOver: event => event.preventDefault(),
-    onDragStart: event => onDragStart(event, columnKeys.progressiveBet)
-  },
-  [columnKeys.playerWinloss]: {
     sortBy: 7,
     colWidth: 60,
     className: "right-align",
     draggable: true,
     onDragOver: event => event.preventDefault(),
-    onDragStart: event => onDragStart(event, columnKeys.playerWinloss)
+    onDragStart: event => onDragStart(event, columnKeys.progressiveBet)
   },
   [columnKeys.betCount]: {
     sortBy: 8,

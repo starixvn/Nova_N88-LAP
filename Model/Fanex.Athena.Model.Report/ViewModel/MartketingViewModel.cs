@@ -16,5 +16,6 @@
         public DateTime MaxDate { get; set; }
         public DateTime MinDate { get; set; }
         public int LimitMonthRange { get; set; }
+        public int UserLimitDataRange { get; set; }
     }
 }

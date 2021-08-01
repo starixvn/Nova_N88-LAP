@@ -54,16 +54,13 @@
         }
 
         public void CreateNewSession(
-            int userId,
+            User user,
             int onuserId,
-            string userName,
-            string userDefaultBaseCurrencyCode,
-            bool isLicenseeUser,
             string language = "en-US")
         {
-            AssignUserSession(userId, onuserId, userName, userDefaultBaseCurrencyCode, isLicenseeUser, language);
+            AssignUserSession(user, onuserId, language);
             AssignLicenseeSession();
-            AssignMenuSession(userId);
+            AssignMenuSession(user.Id);
         }
 
         private void AssignMenuSession(int userId)
@@ -75,26 +72,27 @@
             _sessionStorage.Menu = menuItems;
         }
 
-        private void AssignUserSession(int userId, int onuserId, string userName, string userDefaultBaseCurrencyCode, bool isLicenseeUser, string language)
+        private void AssignUserSession(User user, int onuserId, string language)
         {
-            var napFunctions = _userService.GetPermissions(userId, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
+            var napFunctions = _userService.GetPermissions(user.Id, _n88Settings.SiteId, string.Empty, _n88Settings.Environment).ToList();
             var functions = GetUserFunction(napFunctions).ToList();
             var brandList = _brandService.GetAllowedBrands(_appSettings.LicenseeId, functions, BrandSetting.Setting?.Brands);
             var ownBrand = brandList.First(_ => _.Id == _appSettings.LicenseeId);
 
             var userAuthInfo = new NVCUserAuthInfo
             {
-                UserId = userId,
+                UserId = user.Id,
                 OnUserId = onuserId,
-                UserName = userName,
-                IsLicenseeUser = isLicenseeUser,
+                UserName = user.Username,
+                IsLicenseeUser = user.IsLicenseeUser,
                 Language = language,
                 FunctionList = functions,
                 CurrencyList = ownBrand.CurrencyList,
                 CurrencyAgentList = ownBrand.CurrencyAgentList,
-                DefaultBaseCurrency = string.IsNullOrEmpty(userDefaultBaseCurrencyCode) ? _appSettings.DefaultBaseCurrency : userDefaultBaseCurrencyCode,
+                DefaultBaseCurrency = string.IsNullOrEmpty(user.DefaultBaseCurrencyCode) ? _appSettings.DefaultBaseCurrency : user.DefaultBaseCurrencyCode,
                 SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
-                BrandList = brandList
+                BrandList = brandList,
+                DataRangeLimitation = user.DataRangeLimitation
             };
 
             _sessionStorage.User = userAuthInfo;

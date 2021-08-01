@@ -65,6 +65,11 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
         [SpParam(Ignored = true)]
         public int RerturnGroupId { get; set; }
 
+        public int? DataRangeLimitation { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool DataRangeLimitationRadio { get; set; }
+
         public override string GetSettingKey()
         {
             return "N88_User_Insert";

@@ -17,6 +17,7 @@
     using Fanex.N88.Core.Configuration;
     using MvcPaging;
     using Newtonsoft.Json;
+    using Fanex.Athena.Resources;
 
     [FunctionAuthorization(PermissionKeys.ManageUser)]
     public class AccountController : CultureBaseController
@@ -100,6 +101,7 @@
             ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
             var criteria = new InsertCustCriteria();
             criteria.DefaultBaseCurrencyId = _MYRCurency;
+            criteria.DataRangeLimitationRadio = true;
             ViewBag.Success = false;
             return View("~/Views/Account/NewUser.cshtml", criteria);
         }
@@ -110,6 +112,8 @@
         {
             ViewBag.GroupSelectList = GetGroups();
             ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
+
+            DataRangeLimitationValid(criteria.DataRangeLimitationRadio, criteria.DataRangeLimitation);
 
             if (ModelState.IsValid)
             {
@@ -125,6 +129,7 @@
                 criteria.Email = criteria.Email ?? string.Empty;
                 criteria.IsLicenseeUser = true;
                 criteria.SiteId = N88Settings.Settings.SiteId;
+                criteria.DataRangeLimitation = criteria.DataRangeLimitationRadio ? 0 : criteria.DataRangeLimitation;
 
                 UpdateCriteria(criteria);
                 var result = userService.Insert(criteria);
@@ -165,7 +170,7 @@
             if (user.IsLicenseeUser)
             {
                 criteria.DefaultBaseCurrencyId = user.DefaultBaseCurrencyId != 0 ? user.DefaultBaseCurrencyId : _MYRCurency;
-                ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();                
+                ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
             }
 
             ViewBag.GroupSelectList = GetGroups();
@@ -178,6 +183,7 @@
         public ActionResult Edit(UpdateCustCriteria criteria)
         {
             ViewBag.GroupSelectList = GetGroups();
+            DataRangeLimitationValid(criteria.DataRangeLimitationRadio, criteria.DataRangeLimitation);
 
             if (criteria.IsLicenseeUser)
             {
@@ -187,6 +193,7 @@
             if (ModelState.IsValid)
             {
                 UpdateUserInfoCriteria(criteria);
+                criteria.DataRangeLimitation = criteria.DataRangeLimitationRadio ? 0 : criteria.DataRangeLimitation;
                 CommandResult result = userService.Update(criteria);
 
                 if (result != null && result.IsSuccessful)
@@ -196,6 +203,38 @@
             }
 
             return View("~/Views/Account/EditUser.cshtml", criteria);
+        }
+
+        public void DataRangeLimitationValid(bool dataRangeLimitationRadio, int? dataRangeLimitation)
+        {
+            const int MinDay = 1;
+            const int MaxDay = 90;
+            string dataRangeLimitationMsg;
+
+            if (dataRangeLimitationRadio)
+            {
+                dataRangeLimitationMsg = "";
+            }
+            else
+            {
+                if (!dataRangeLimitation.HasValue)
+                {
+                    dataRangeLimitationMsg = ViewResources.ThelastXDaysRequiredValidationMsg;
+                }
+                else if (dataRangeLimitation < MinDay || dataRangeLimitation > MaxDay)
+                {
+                    dataRangeLimitationMsg = ViewResources.ThelastXDaysValidationMsg;
+                }
+                else
+                {
+                    dataRangeLimitationMsg = "";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(dataRangeLimitationMsg))
+            {
+                ModelState.AddModelError("e", dataRangeLimitationMsg);
+            }
         }
 
         [HttpGet]
@@ -334,6 +373,8 @@
             criteria.Username = user.Username;
             criteria.IsLicenseeUser = user.IsLicenseeUser;
             criteria.GroupId = user.Group != null ? user.Group.Id : 0;
+            criteria.DataRangeLimitation = user.DataRangeLimitation;
+            criteria.DataRangeLimitationRadio = user.DataRangeLimitation == 0;
         }
 
         private void UpdateUserInfoCriteria(UpdateCustCriteria criteria)

@@ -39,6 +39,7 @@
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportMarketing, LicenseeName);
             var tpProducts = _tpService.GetListTpProduct();
+            var userLimitDataRange = SessionServiceInstance.UserSession.DataRangeLimitation;
 
             var vm = new MarketingViewModel
             {
@@ -48,9 +49,11 @@
                 Brands = BrandList,
                 Today = reportSetting.MaxDate,
                 MaxDate = reportSetting.MaxDate,
-                MinDate = reportSetting.MinDate,
-                LimitMonthRange = reportSetting.LimitMonthRange
+                MinDate = userLimitDataRange > 0 ? reportSetting.MaxDate.AddDays(-userLimitDataRange + 1) : reportSetting.MinDate,
+                LimitMonthRange = reportSetting.LimitMonthRange,
+                UserLimitDataRange = userLimitDataRange
             };
+
             return vm;
         }
     }

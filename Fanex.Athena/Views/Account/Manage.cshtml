@@ -72,7 +72,11 @@
                 <th>@ViewResources.FirstName</th>
                 <th>@ViewResources.Group</th>
                 <th style="width: 150px">
-                @ViewResources.DefaultBaseCurency</th>
+                    @ViewResources.DefaultBaseCurency
+                </th>
+                <th style="width: 150px">
+                    @ViewResources.DataRangeLimitation
+                </th>
                 <th>
                     @ViewResources.Level
                 </th>
@@ -96,93 +100,104 @@
                     var NA = "NA";
                     var isEditable = (item.User.Id != ViewBag.CurrentUserId && (item.Level < ViewBag.currentUserLevel || item.Level == (int)Constant.Level.User));
 
-            <tr @Html.Raw(rowCss)>
-                <td class="text-center">
-                    @((Model.PageSize * (Model.PageIndex) + i + 1))
-                </td>
-                <td>
-                    <a href="javascript:;" uid="@item.User.Id" class="lnk-user-info"
-                       title="@ViewResources.View_details_of '@item.User.Username'">@item.User.Username</a>
-                </td>
-                <td>
-                    @(item.User.FirstName != null ? item.User.FirstName : string.Empty)
-                </td>
-                <td>
-                    @(item.User.Group != null ? item.User.Group.Name : string.Empty)
-                </td>
-                <td class="text-center">
-                    @item.User.DefaultBaseCurrencyCode
-                </td>
-                <td class="text-center">
-                    @if (!ReferenceEquals(item.Site, null))
-                    {
-                        @item.Level.ToUserLevel()
-                    }
-                </td>
-                <td>
-                    @(item.User.Creator != null ? item.User.Creator.Username : string.Empty)
-                </td>
-                <td class="text-center col-datetime">
-                    @item.User.CreatedDate.ToFullDateString()
-                </td>
-                <td class="text-center col-datetime">
-                    @if (item.User.LastLoginDate != DateTime.MinValue)
-                    {
-                        @item.User.LastLoginDate.ToFullDateString()
-                    }
-                    else
-                    {
-                        @NA
-                    }
-                </td>
-                <td class="text-center col-action">
-                    @{
-                        var itemStatus = (Constant.UserStatus)item.Status;
-                        string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
-                        var canEdit = ViewBag.HasHostPermission && isEditable;
-                        var title = canEdit ? string.Format("{0} '{1}'", activateText, @item.User.Username) : string.Empty;
+                    <tr @Html.Raw(rowCss)>
+                        <td class="text-center">
+                            @((Model.PageSize * (Model.PageIndex) + i + 1))
+                        </td>
+                        <td>
+                            <a href="javascript:;" uid="@item.User.Id" class="lnk-user-info"
+                               title="@ViewResources.View_details_of '@item.User.Username'">@item.User.Username</a>
+                        </td>
+                        <td>
+                            @(item.User.FirstName != null ? item.User.FirstName : string.Empty)
+                        </td>
+                        <td>
+                            @(item.User.Group != null ? item.User.Group.Name : string.Empty)
+                        </td>
+                        <td class="text-center">
+                            @item.User.DefaultBaseCurrencyCode
+                        </td>
+                        <td class="text-center">
+                            @if (item.User.DataRangeLimitation > 0)
+                            {
+                                var text = string.Format(ViewResources.LastXDays, @item.User.DataRangeLimitation);
+                                @text
+                            }
+                            else
+                            {
+                                @ViewResources.NoLimit
+                            }
+                        </td>
+                        <td class="text-center">
+                            @if (!ReferenceEquals(item.Site, null))
+                            {
+                                @item.Level.ToUserLevel()
+                            }
+                        </td>
+                        <td>
+                            @(item.User.Creator != null ? item.User.Creator.Username : string.Empty)
+                        </td>
+                        <td class="text-center col-datetime">
+                            @item.User.CreatedDate.ToFullDateString()
+                        </td>
+                        <td class="text-center col-datetime">
+                            @if (item.User.LastLoginDate != DateTime.MinValue)
+                            {
+                                @item.User.LastLoginDate.ToFullDateString()
+                            }
+                            else
+                            {
+                                @NA
+                            }
+                        </td>
+                        <td class="text-center col-action">
+                            @{
+                                var itemStatus = (Constant.UserStatus)item.Status;
+                                string activateText = (itemStatus == Constant.UserStatus.Active) ? "Deactivate" : "Activate";
+                                var canEdit = ViewBag.HasHostPermission && isEditable;
+                                var title = canEdit ? string.Format("{0} '{1}'", activateText, @item.User.Username) : string.Empty;
 
-                        <div class="js-tipsy-s active-deactive-link"
-                             title="@title"
-                             iseditable="@canEdit"
-                             username="@item.User.Username" activatetext="@activateText" userid="@item.User.Id">
-                            <input type="checkbox" class="checkbox" @(itemStatus == Constant.UserStatus.Active ? "checked" : string.Empty)
-                                   @(canEdit ? string.Empty : "disabled") />
-                            <label></label>
-                        </div>
-                    }
-                </td>
+                                <div class="js-tipsy-s active-deactive-link"
+                                     title="@title"
+                                     iseditable="@canEdit"
+                                     username="@item.User.Username" activatetext="@activateText" userid="@item.User.Id">
+                                    <input type="checkbox" class="checkbox" @(itemStatus == Constant.UserStatus.Active ? "checked" : string.Empty)
+                                           @(canEdit ? string.Empty : "disabled") />
+                                    <label></label>
+                                </div>
+                            }
+                        </td>
 
-                @if (ViewBag.HasHostPermission)
-                {
-                    <td class="text-center col-action">
-                        @if (isEditable)
+                        @if (ViewBag.HasHostPermission)
                         {
-                            <span class="btn-action icon-settings"></span>
-                            <div class="action-wrapper">
-                                <ul class="dropdown">
-                                    <li>
-                                        @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
-                                            "Edit", new { id = item.User.Id })
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
-                                            "ResetPassword", new { id = item.User.Id })
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
-                                            new { id = item.User.Id })
-                                    </li>
-                                </ul>
-                            </div>
+                            <td class="text-center col-action">
+                                @if (isEditable)
+                                {
+                                    <span class="btn-action icon-settings"></span>
+                                    <div class="action-wrapper">
+                                        <ul class="dropdown">
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Edit, item.User.Username, ViewResources.Details),
+                                                    "Edit", new { id = item.User.Id })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} '{1}' {2}", ViewResources.Reset, item.User.Username, ViewResources.Password),
+                                                    "ResetPassword", new { id = item.User.Id })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
+                                                    new { id = item.User.Id })
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="btn-action disabled icon-settings"></span>
+                                }
+                            </td>
                         }
-                        else
-                        {
-                            <span class="btn-action disabled icon-settings"></span>
-                        }
-                    </td>
-                }
-            </tr>
+                    </tr>
 
                     i++;
                 }

@@ -13,14 +13,15 @@ export default class DataService {
         return params;
     }
 
-    static getPerformanceHighlightAPIParams = ({ selectedBrand, selectedCurrency, selectedBaseCurrency, reportDate, compareDate }) => {
+    static getPerformanceHighlightAPIParams = ({ selectedBrand, selectedCurrency, selectedBaseCurrency, reportDate, compareDate, fromLastXDays }) => {
         const commonParams = this.getCommonAPIParams({ selectedBrand, selectedCurrency, reportDate });
         const params = {
             ...commonParams,
             ...{
                 compareFromDate: DateTimeHelper.formatDateStructureToString(compareDate.fromDate),
                 compareToDate: DateTimeHelper.formatDateStructureToString(compareDate.toDate),
-                baseCurrency: selectedBaseCurrency
+                baseCurrency: selectedBaseCurrency,
+                fromLastXDays
             }
         }
 
@@ -58,10 +59,11 @@ export default class DataService {
         return params;
     }
 
-    static getPerformanceHighlightExportAPIParams = ({ selectedBrand, selectedCurrency, reportDate, selectedBaseCurrency, currencyNameList }) => {
+    static getPerformanceHighlightExportAPIParams = ({ selectedBrand, selectedCurrency, reportDate, selectedBaseCurrency, fromLastXDays, currencyNameList }) => {
         const commonParams = this.getCommonAPIParams({ selectedBrand, selectedCurrency, reportDate });
         const params = {
             ...commonParams,
+            fromLastXDays,
             baseCurrency: selectedBaseCurrency,
             currencyNameList
         }

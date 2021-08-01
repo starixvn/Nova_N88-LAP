@@ -37,7 +37,7 @@ namespace Fanex.Athena.Model.UserManagement.Model
         public DateTime LastLoginDateUserSite { get; set; }
         public byte SiteId { get; set; }
         public string SiteName { get; set; }
-
         public int Status { get; set; }
+        public int DataRangeLimitation { get; set; }
     }
 }

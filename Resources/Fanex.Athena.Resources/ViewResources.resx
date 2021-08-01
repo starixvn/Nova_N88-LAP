@@ -3183,4 +3183,19 @@
     <value>Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00</value>
     <comment>155334</comment>
   </data>
+  <data name="DataRangeLimitation" xml:space="preserve">
+    <value>Data Range Limitation</value>
+  </data>
+  <data name="LastXDays" xml:space="preserve">
+    <value>Last {0} days</value>
+  </data>
+  <data name="NoLimit" xml:space="preserve">
+    <value>No Limit</value>
+  </data>
+  <data name="ThelastXDaysRequiredValidationMsg" xml:space="preserve">
+    <value>The last X days is required field.</value>
+  </data>
+  <data name="ThelastXDaysValidationMsg" xml:space="preserve">
+    <value>The last X days must be between 1 and 90. Please check again.</value>
+  </data>
 </root>

@@ -6,13 +6,11 @@
     using System.Web.SessionState;
     using Core.Users;
     using Core.Users.Interfaces;
-    using DataAccess.Core.Common.Interfaces;
     using DataAccess.Core.Users.Interfaces;
     using Extension.Utility;
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Core.Configuration;
-    using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.N88.Core.Configuration;
+    using Fanex.N88.Core.Models;
     using Fanex.N88.Core.Service.Interface;
     using Fanex.NVC.Authentication.Infrastructure;
     using Model.Core.DTO.Common;
@@ -107,12 +105,16 @@
         private void CreateDefaultNewSession()
         {
             MockHttpContext();
-            const int UserId = 1;
+            var user = new User
+            {
+                Id = 1,
+                Username = "user1",
+                DefaultBaseCurrencyCode = "USd",
+                IsLicenseeUser = true
+            };
             const int OnUserId = 2;
-            const string UserName = "user1";
-            const string UserDefaultBaseCurrencyCode = "USd";
-            const bool IsLicenseeUser = true;
-            _sessionService.CreateNewSession(UserId, OnUserId, UserName, UserDefaultBaseCurrencyCode, IsLicenseeUser);
+
+            _sessionService.CreateNewSession(user, OnUserId);
         }
     }
 }

@@ -13,4 +13,9 @@
         MIN2 = 2,
         MIN_DEFAULT = 0
     }
+
+    public enum NumberRange
+    {
+        MAX90 = 90
+    }
 }

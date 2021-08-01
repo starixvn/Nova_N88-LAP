@@ -17,11 +17,8 @@
         IEnumerable<MenuItem> MenuSession { get; }
 
         void CreateNewSession(
-            int userId,
+            User user,
             int onuserId,
-            string userName,
-            string userDefaultBaseCurrencyCode,
-            bool isLicenseeUser,
             string language = "en-US");
     }
 }

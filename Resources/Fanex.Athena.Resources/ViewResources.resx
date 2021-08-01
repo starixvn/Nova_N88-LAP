@@ -3198,4 +3198,10 @@
   <data name="ThelastXDaysValidationMsg" xml:space="preserve">
     <value>The last X days must be between 1 and 90. Please check again.</value>
   </data>
+  <data name="ProgressiveWin" xml:space="preserve">
+    <value>Progressive Win</value>
+  </data>
+  <data name="ProgressiveBet" xml:space="preserve">
+    <value>Progressive Bet</value>
+  </data>
 </root>

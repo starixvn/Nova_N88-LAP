@@ -808,8 +808,14 @@ const GridData = ({
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('PlayerWinloss')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
       sortBy: 5,
       colWidth: 70
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('GGR')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('ProgressiveWin')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
       sortBy: 6,
+      colWidth: 70
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('ProgressiveBet')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
+      sortBy: 7,
+      colWidth: 70
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('GGR')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
+      sortBy: 8,
       colWidth: 50
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('Status')));
   }, []);
@@ -835,6 +841,14 @@ const GridData = ({
       disableWarning: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
       className: "right-align",
+      value: item.progressiveWin,
+      disableWarning: true
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      className: "right-align",
+      value: item.progressiveBet,
+      disableWarning: true
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      className: "right-align",
       value: item.ggr
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
       className: "center-align"
@@ -851,6 +865,14 @@ const GridData = ({
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource("GrandTotal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
       className: "right-align",
       value: totalData.playerWinLoss,
+      disableWarning: true
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      className: "right-align",
+      value: totalData.progressiveWin,
+      disableWarning: true
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      className: "right-align",
+      value: totalData.progressiveBet,
       disableWarning: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
       className: "right-align",

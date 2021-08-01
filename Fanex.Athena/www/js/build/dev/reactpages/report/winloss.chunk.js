@@ -5914,7 +5914,7 @@ const GroupCell = props => {
   }, rest), rowData.custId && rowData.productId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
     onClick: _onViewBetList,
-    className: "right"
+    className: "right right-align"
   }, rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_6__["columnKeys"].group]) : rowData[_constants_gridContants__WEBPACK_IMPORTED_MODULE_6__["columnKeys"].group], _isAllowedDrillDown && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: `icon-arrow right ${_isDrillDown ? 'arrow-down' : 'arrow-right'}`,
     onClick: _handleDrillDown
@@ -6062,7 +6062,9 @@ const columnKeys = {
   noOfDeposit: 'numberOfDeposit',
   totalDepositAmount: 'depositAmount',
   noOfWithdrawal: 'numberOfWithdrawal',
-  totalWithdrawalAmount: 'withdrawalAmount'
+  totalWithdrawalAmount: 'withdrawalAmount',
+  progressiveBet: 'progressiveBet',
+  progressiveWin: 'progressiveWin'
 };
 const displayedColumns = [{
   key: columnKeys.sabaId,
@@ -6094,6 +6096,16 @@ const displayedColumns = [{
 }, {
   key: columnKeys.playerWinloss,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('PlayerWinloss'),
+  show: true,
+  hasTotal: true
+}, {
+  key: columnKeys.progressiveWin,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ProgressiveWin'),
+  show: true,
+  hasTotal: true
+}, {
+  key: columnKeys.progressiveBet,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ProgressiveBet'),
   show: true,
   hasTotal: true
 }, {
@@ -6204,8 +6216,24 @@ const dataColumns = {
     onDragOver: event => event.preventDefault(),
     onDragStart: event => onDragStart(event, columnKeys.playerWinloss)
   },
-  [columnKeys.betCount]: {
+  [columnKeys.progressiveWin]: {
     sortBy: 6,
+    colWidth: 60,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.progressiveWin)
+  },
+  [columnKeys.progressiveBet]: {
+    sortBy: 7,
+    colWidth: 60,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.progressiveBet)
+  },
+  [columnKeys.betCount]: {
+    sortBy: 8,
     colWidth: 50,
     className: "right-align",
     draggable: true,
@@ -6213,7 +6241,7 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.betCount)
   },
   [columnKeys.avgBetAmount]: {
-    sortBy: 7,
+    sortBy: 9,
     colWidth: 70,
     className: "right-align",
     draggable: true,
@@ -6221,7 +6249,7 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.avgBetAmount)
   },
   [columnKeys.uniquePlayers]: {
-    sortBy: 8,
+    sortBy: 10,
     colWidth: 60,
     className: "right-align",
     draggable: true,
@@ -6229,7 +6257,7 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.uniquePlayers)
   },
   [columnKeys.margin]: {
-    sortBy: 9,
+    sortBy: 11,
     colWidth: 50,
     className: "right-align",
     draggable: true,
@@ -6237,7 +6265,7 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.margin)
   },
   [columnKeys.closingBalance]: {
-    sortBy: 10,
+    sortBy: 12,
     colWidth: 60,
     className: "right-align",
     draggable: true,
@@ -6245,7 +6273,7 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.closingBalance)
   },
   [columnKeys.noOfDeposit]: {
-    sortBy: 11,
+    sortBy: 13,
     colWidth: 50,
     className: "right-align",
     draggable: true,
@@ -6253,7 +6281,7 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.noOfDeposit)
   },
   [columnKeys.totalDepositAmount]: {
-    sortBy: 12,
+    sortBy: 14,
     colWidth: 70,
     className: "right-align",
     draggable: true,
@@ -6261,7 +6289,7 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.totalDepositAmount)
   },
   [columnKeys.noOfWithdrawal]: {
-    sortBy: 13,
+    sortBy: 15,
     colWidth: 60,
     className: "right-align",
     draggable: true,
@@ -6269,7 +6297,7 @@ const dataColumns = {
     onDragStart: event => onDragStart(event, columnKeys.noOfWithdrawal)
   },
   [columnKeys.totalWithdrawalAmount]: {
-    sortBy: 14,
+    sortBy: 16,
     colWidth: 70,
     className: "right-align",
     draggable: true,
@@ -6351,6 +6379,16 @@ const componentCells = {
   [columnKeys.totalWithdrawalAmount]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
     value: rowData[columnKeys.totalWithdrawalAmount],
     className: dataColumns[columnKeys.totalWithdrawalAmount].className + highLight
+  }),
+  [columnKeys.progressiveWin]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.progressiveWin],
+    disableWarning: true,
+    className: dataColumns[columnKeys.progressiveWin].className + highLight
+  }),
+  [columnKeys.progressiveBet]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.progressiveBet],
+    disableWarning: true,
+    className: dataColumns[columnKeys.progressiveBet].className + highLight
   })
 };
 const defaultPagingOption = {

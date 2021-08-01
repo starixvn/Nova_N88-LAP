@@ -68,8 +68,10 @@ export const GridData = ({ setLoading, sortOption, setSortOption, pagingOption, 
             <HeaderCell sortBy={2} colWidth={70}>{LangHelper.getSingleResource('TransTime')}</HeaderCell>
             <HeaderCell sortBy={3} colWidth={80}>{LangHelper.getSingleResource('Stake')}</HeaderCell>
             <HeaderCell sortBy={4} colWidth={70}>{LangHelper.getSingleResource('PlayerWinloss')}</HeaderCell>
-            <HeaderCell sortBy={5} colWidth={70}>{LangHelper.getSingleResource('GGR')}</HeaderCell>
-            <HeaderCell sortBy={6} colWidth={50}>{LangHelper.getSingleResource('Status')}</HeaderCell>
+            <HeaderCell sortBy={5} colWidth={70}>{LangHelper.getSingleResource('ProgressiveWin')}</HeaderCell>
+            <HeaderCell sortBy={6} colWidth={70}>{LangHelper.getSingleResource('ProgressiveBet')}</HeaderCell>
+            <HeaderCell sortBy={7} colWidth={70}>{LangHelper.getSingleResource('GGR')}</HeaderCell>
+            <HeaderCell sortBy={8} colWidth={50}>{LangHelper.getSingleResource('Status')}</HeaderCell>
         </HeaderRow>)
 
     }, [])
@@ -81,6 +83,8 @@ export const GridData = ({ setLoading, sortOption, setSortOption, pagingOption, 
             <Cell className="center-align">{item.transTime}</Cell>
             <DecimalCell className="right-align" value={item.stake} disableWarning={true} />
             <DecimalCell className="right-align" value={item.playerWinLoss} disableWarning={true} />
+            <DecimalCell className="right-align" value={item.progressiveWin} disableWarning={true} />
+            <DecimalCell className="right-align" value={item.progressiveBet} disableWarning={true} />
             <DecimalCell className="right-align" value={item.ggr} />
             <Cell className="center-align">{item.ticketStatus}</Cell>
         </Row>)
@@ -95,6 +99,8 @@ export const GridData = ({ setLoading, sortOption, setSortOption, pagingOption, 
             {LangHelper.getSingleResource("GrandTotal")}
         </Cell>
         <DecimalCell className="right-align" value={totalData.playerWinLoss} disableWarning={true} />
+        <DecimalCell className="right-align" value={totalData.progressiveWin} disableWarning={true} />
+        <DecimalCell className="right-align" value={totalData.progressiveBet} disableWarning={true} />
         <DecimalCell className="right-align" value={totalData.ggr} />
         <Cell />    
     </Row>

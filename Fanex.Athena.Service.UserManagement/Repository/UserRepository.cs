@@ -43,6 +43,7 @@ namespace Fanex.Athena.Service.UserManagement.Repository
                     CreatedDate = i.CreatedDate,
                     ModifiedDate = i.ModifiedDate,
                     DefaultBaseCurrencyCode = i.DefaultBaseCurrencyCode,
+                    DataRangeLimitation = i.DataRangeLimitation,
                     Group = new Group
                     {
                         Id = i.GroupId,
@@ -124,6 +125,7 @@ namespace Fanex.Athena.Service.UserManagement.Repository
                 DefaultBaseCurrencyId = data.DefaultBaseCurrencyId,
                 DefaultBaseCurrencyCode = data.DefaultBaseCurrencyCode,
                 IsLicenseeUser = data.IsLicenseeUser,
+                DataRangeLimitation = data.DataRangeLimitation,
                 Creator = new User
                 {
                     Id = data.CreatorId,

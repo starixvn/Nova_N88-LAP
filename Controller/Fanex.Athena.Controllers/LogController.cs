@@ -131,6 +131,18 @@
                     {
                         FieldName = ViewResources.Group_Name,
                         NewValue = elementNew.Attribute(groupName).Value
+                    },
+
+                    new LogData
+                    {
+                        FieldName = ViewResources.DefaultBaseCurency,
+                        NewValue = elementNew.Attribute("DefaultBaseCurrencyCode").Value
+                    },
+
+                    new LogData
+                    {
+                        FieldName = ViewResources.DataRangeLimitation,
+                        NewValue = elementNew.Attribute("DataRangeLimitation").Value
                     }
                 };
 
@@ -318,6 +330,20 @@
                         FieldName = ViewResources.Email,
                         OldValue = elementOld.Attribute("Email").Value,
                         NewValue = elementNew.Attribute("Email").Value
+                    },
+
+                    new LogData
+                    {
+                        FieldName = ViewResources.DefaultBaseCurency,
+                        OldValue = elementOld.Attribute("DefaultBaseCurrencyCode").Value,
+                        NewValue = elementNew.Attribute("DefaultBaseCurrencyCode").Value
+                    },
+
+                    new LogData
+                    {
+                        FieldName = ViewResources.DataRangeLimitation,
+                        OldValue = elementOld.Attribute("DataRangeLimitation").Value,
+                        NewValue = elementNew.Attribute("DataRangeLimitation").Value
                     }
                 };
 

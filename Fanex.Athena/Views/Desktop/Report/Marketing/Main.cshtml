@@ -45,7 +45,8 @@
     dateConstraint: {
     limitedMonthRange: @Model.LimitMonthRange,
     minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
-    maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
+    maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")',
+    userLimitDataRange: @Model.UserLimitDataRange
     },
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),

@@ -475,7 +475,7 @@
 
         private void CreateSession(User user, int onUserId)
         {
-            SessionServiceInstance.CreateNewSession(user.Id, onUserId, user.Username, user.DefaultBaseCurrencyCode, user.IsLicenseeUser);
+            SessionServiceInstance.CreateNewSession(user, onUserId);
 
             _formAuthenticationService.SetAuthCookie(user.Username, false);
         }

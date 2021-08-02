@@ -152,7 +152,8 @@
 
                 InsertCustCriteria criteria = new InsertCustCriteria()
                 {
-                    Username = "mark"
+                    Username = "mark",
+                    DataRangeLimitationRadio = true
                 };
                 _userService.CheckUsernameExist(Arg.Any<string>(), Arg.Any<bool>(), Arg.Any<int>()).Returns(true);
 
@@ -163,7 +164,6 @@
                 Assert.That(result.ViewName, Is.EqualTo("~/Views/Account/NewUser.cshtml"));
                 Assert.IsTrue(result.ViewData.ModelState["UserName"].Errors.Count > 0);
                 Assert.AreEqual(result.ViewData.ModelState["UserName"].Errors[0].ErrorMessage, string.Format("Duplicate User {0}", criteria.Username));
-
             }
         }
 
@@ -193,7 +193,6 @@
                 };
                 _userService.Insert(criteria).Returns(expectedResult);
 
-
                 // Action
                 var result = controller.NewUser(criteria) as ViewResult;
 
@@ -218,7 +217,8 @@
                 {
                     Username = "mark",
                     UserPwd = "123",
-                    UserId = 1
+                    UserId = 1,
+                    DataRangeLimitationRadio = true
                 };
                 _userService.CheckUsernameExist(Arg.Any<string>(), Arg.Any<bool>(), Arg.Any<int>()).Returns(false);
 
@@ -254,7 +254,9 @@
                 };
                 UpdateCustCriteria expectedResult = new UpdateCustCriteria
                 {
-                    Username = "mark"
+                    Username = "mark",
+                    DataRangeLimitationRadio = true,
+                    DataRangeLimitation = 0
                 };
                 _userService.GetById(Arg.Any<int>()).Returns(expectedUser);
 
@@ -275,7 +277,8 @@
                 SetUpDefaultFakeData();
                 UpdateCustCriteria criteria = new UpdateCustCriteria()
                 {
-                    Username = "mark"
+                    Username = "mark",
+                    DataRangeLimitationRadio = true
                 };
                 CommandResult expectedResult = new CommandResult()
                 {
@@ -442,7 +445,6 @@
                     Id = 1
                 };
                 _userService.GetById(Arg.Any<int>()).Returns(expectedUser);
-
 
                 // Action
                 var result = controller.ResetPassword(1) as ViewResult;

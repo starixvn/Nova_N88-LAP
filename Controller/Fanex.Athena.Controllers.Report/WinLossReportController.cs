@@ -30,7 +30,7 @@
         }
 
         [HttpGet]
-        public ViewResult NonSportsBetList(WinLossNonSportsBetListMetaModel metaModel) 
+        public ViewResult NonSportsBetList(WinLossNonSportsBetListMetaModel metaModel)
         {
             BindBetListMetaModel(metaModel);
             return View("~/Views/Desktop/Report/WinLoss/NonSportsBetList.cshtml", metaModel);
@@ -46,6 +46,7 @@
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportWinLoss, LicenseeName);
             var tpProducts = _tpService.GetListTpProduct();
+            var userDataRangeLimitation = SessionServiceInstance.UserSession.DataRangeLimitation;
 
             var vm = new WinLossViewModel
             {
@@ -54,7 +55,7 @@
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
                 Brands = BrandList,
                 MaxDate = reportSetting.MaxDate,
-                MinDate = reportSetting.MinDate,
+                MinDate = userDataRangeLimitation > 0 ? reportSetting.MaxDate.AddDays(-userDataRangeLimitation + 1) : reportSetting.MinDate,
                 LimitMonthRange = reportSetting.LimitMonthRange
             };
             return vm;

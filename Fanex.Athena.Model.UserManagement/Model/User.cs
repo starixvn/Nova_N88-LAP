@@ -38,6 +38,8 @@ namespace Fanex.Athena.Model.UserManagement.Model
 
         public int DefaultBaseCurrencyId { get; set; }
 
+        public int DataRangeLimitation { get; set; }
+
         public bool IsLicenseeUser { get; set; }
     }
 }

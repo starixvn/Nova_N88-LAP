@@ -58,10 +58,10 @@
       <HintPath>..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.N88.Core.Client, Version=1.2.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.1-alpha-1\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.2-alpha-3\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.4\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.5\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

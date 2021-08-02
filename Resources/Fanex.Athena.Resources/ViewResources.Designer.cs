@@ -2023,6 +2023,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data Range Limitation.
+        /// </summary>
+        public static string DataRangeLimitation {
+            get {
+                return ResourceManager.GetString("DataRangeLimitation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -3958,6 +3967,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last {0} days.
+        /// </summary>
+        public static string LastXDays {
+            get {
+                return ResourceManager.GetString("LastXDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There might have some latencies from Saba side.
         /// </summary>
         public static string LatencySabaSideNote {
@@ -5034,6 +5052,15 @@ namespace Fanex.Athena.Resources {
         public static string NoInformationAvailable {
             get {
                 return ResourceManager.GetString("NoInformationAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Limit.
+        /// </summary>
+        public static string NoLimit {
+            get {
+                return ResourceManager.GetString("NoLimit", resourceCulture);
             }
         }
         
@@ -6136,6 +6163,24 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progressive Bet.
+        /// </summary>
+        public static string ProgressiveBet {
+            get {
+                return ResourceManager.GetString("ProgressiveBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progressive Win.
+        /// </summary>
+        public static string ProgressiveWin {
+            get {
+                return ResourceManager.GetString("ProgressiveWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Promotion.
         /// </summary>
         public static string Promotion {
@@ -6960,6 +7005,24 @@ namespace Fanex.Athena.Resources {
         public static string Th {
             get {
                 return ResourceManager.GetString("Th", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The last X days is required field..
+        /// </summary>
+        public static string ThelastXDaysRequiredValidationMsg {
+            get {
+                return ResourceManager.GetString("ThelastXDaysRequiredValidationMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The last X days must be between 1 and 90. Please check again..
+        /// </summary>
+        public static string ThelastXDaysValidationMsg {
+            get {
+                return ResourceManager.GetString("ThelastXDaysValidationMsg", resourceCulture);
             }
         }
         

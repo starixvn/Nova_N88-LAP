@@ -23,6 +23,7 @@ export const FormFilter = props => {
     } = props;
 
     const currencyList = React.useMemo(() => CurrencyHelper.getTpCurrencyList(selectedBrand, AppData.brands), [selectedBrand]);
+    var fromLastXDays = AppData.dateConstraint.userLimitDataRange > 0 ? AppData.dateConstraint.minDate : null;
 
     useEffect(() => {
         const selectedCurrency = currencyList.map(_ => _.key).join(',');
@@ -71,7 +72,7 @@ export const FormFilter = props => {
         />)
     }
 
-    const _renderReportDateSelection = () => {
+    const _renderReportDateSelection = () => {       
         const dateConstraint = AppData.dateConstraint;
         return (
             <DateRange
@@ -117,7 +118,7 @@ export const FormFilter = props => {
     }
 
     const _onSubmit = () => {
-        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency, selectedCurrency, selectedBrand, allowedCompare };
+        const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency, selectedCurrency, selectedBrand, allowedCompare, fromLastXDays };
         setGlobalFilter(globalFilter);
     }
 
@@ -141,7 +142,8 @@ export const FormFilter = props => {
                         <CheckBox id="CompareDate"
                             checked={allowedCompare}
                             onChange={checked => setAllowedCompare(checked)}
-                            label={LangHelper.getSingleResource("CompareDate")} />
+                            label={LangHelper.getSingleResource("CompareDate")} 
+                            disabled={AppData.dateConstraint.userLimitDataRange > 0}/>
                         {_renderCompareDateSelection()}
                     </div>
                 </div>

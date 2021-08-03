@@ -123,14 +123,7 @@
                     return View("~/Views/Account/NewUser.cshtml", criteria);
                 }
 
-                criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
-                criteria.FirstName = criteria.FirstName ?? string.Empty;
-                criteria.LastName = criteria.LastName ?? string.Empty;
-                criteria.Email = criteria.Email ?? string.Empty;
-                criteria.IsLicenseeUser = true;
-                criteria.SiteId = N88Settings.Settings.SiteId;
-                criteria.DataRangeLimitation = criteria.DataRangeLimitationRadio ? 0 : criteria.DataRangeLimitation;
-
+                UpdateInsertCustCriteria(criteria);
                 UpdateCriteria(criteria);
                 var result = userService.Insert(criteria);
                 if (result != null && result.IsSuccessful)
@@ -157,6 +150,17 @@
             }
 
             return View("~/Views/Account/NewUser.cshtml", criteria);
+        }
+
+        public void UpdateInsertCustCriteria(InsertCustCriteria criteria)
+        {
+            criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
+            criteria.FirstName = criteria.FirstName ?? string.Empty;
+            criteria.LastName = criteria.LastName ?? string.Empty;
+            criteria.Email = criteria.Email ?? string.Empty;
+            criteria.IsLicenseeUser = true;
+            criteria.SiteId = N88Settings.Settings.SiteId;
+            criteria.DataRangeLimitation = criteria.DataRangeLimitationRadio ? 0 : criteria.DataRangeLimitation;
         }
 
         [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]

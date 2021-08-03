@@ -226,7 +226,7 @@ namespace Fanex.Athena.Controllers.Report.Result
         }
 
         [HttpGet]
-        public async Task<string> VGaming(string custId, string siteId, string gameRoundId, string gameId, int sportType)
+        public async Task<string> VGaming(string custId, string siteId, string gameRoundId, string gameId, int sportType, string currencyName)
         {
             var language = SessionServiceInstance.UserSession.Language;
             var model = new
@@ -236,6 +236,7 @@ namespace Fanex.Athena.Controllers.Report.Result
                 gameRoundId,
                 gameId,
                 sportType,
+                currencyName,
                 languageCode = language
             };
             return await _betListApiClient.PostStringAsync("/VGamingResultPopup/Index", model, language).ConfigureAwait(false);

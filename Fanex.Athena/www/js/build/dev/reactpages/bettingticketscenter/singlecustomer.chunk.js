@@ -3743,7 +3743,7 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       window.logOpenBetlistEvent && window.logOpenBetlistEvent(this.props.pageName);
     };
 
-    window.ViewResult = (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs) => {
+    window.ViewResult = (matchid, raceNo, bettype, sporttype, refno, currency, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs) => {
       const title = this._getResource('Result');
 
       const rootUrl = this.props.rootUrl;
@@ -3798,7 +3798,7 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA_FreeBets) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype, currency);
 
         this._showThirdPartyResult(url, title);
       } else {
@@ -4640,13 +4640,14 @@ class BetList {
     return url;
   }
 
-  getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType) {
+  getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType, currencyName) {
     let url = rootUrl + 'ResultReport/VGaming';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameId', gameId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'siteId', siteId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameRoundId', gameRoundId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'sportType', sportType);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'currencyName', currencyName);
     return url;
   }
 
@@ -5816,6 +5817,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const productOptions = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_13__["default"].productOptions;
     return productOptions && productOptions.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_4___default.a, {
       id: "ProductList",
+      hasSearchBox: true,
       language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].currentLanguage,
       dataSource: productOptions,
       keyField: "Code",

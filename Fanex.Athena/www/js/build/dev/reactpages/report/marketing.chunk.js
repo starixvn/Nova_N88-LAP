@@ -3781,6 +3781,7 @@ const FormFilter = props => {
     selectedCurrency
   } = props;
   const currencyList = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_currencyHelper__WEBPACK_IMPORTED_MODULE_12__["default"].getTpCurrencyList(selectedBrand, _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].brands), [selectedBrand]);
+  var fromLastXDays = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].dateConstraint.userLimitDataRange > 0 ? _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].dateConstraint.minDate : null;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const selectedCurrency = currencyList.map(_ => _.key).join(',');
     setSelectedCurrency(selectedCurrency);
@@ -3885,7 +3886,8 @@ const FormFilter = props => {
       selectedBaseCurrency,
       selectedCurrency,
       selectedBrand,
-      allowedCompare
+      allowedCompare,
+      fromLastXDays
     };
     setGlobalFilter(globalFilter);
   };
@@ -3916,7 +3918,8 @@ const FormFilter = props => {
     id: "CompareDate",
     checked: allowedCompare,
     onChange: checked => setAllowedCompare(checked),
-    label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("CompareDate")
+    label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("CompareDate"),
+    disabled: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].dateConstraint.userLimitDataRange > 0
   }), _renderCompareDateSelection()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5671,7 +5674,8 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
   selectedCurrency,
   selectedBaseCurrency,
   reportDate,
-  compareDate
+  compareDate,
+  fromLastXDays
 }) => {
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
@@ -5682,7 +5686,8 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
   const params = _objectSpread(_objectSpread({}, commonParams), {
     compareFromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
     compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate),
-    baseCurrency: selectedBaseCurrency
+    baseCurrency: selectedBaseCurrency,
+    fromLastXDays
   });
 
   return params;
@@ -5750,6 +5755,7 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
   selectedCurrency,
   reportDate,
   selectedBaseCurrency,
+  fromLastXDays,
   currencyNameList
 }) => {
   const commonParams = DataService.getCommonAPIParams({
@@ -5759,6 +5765,7 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
   });
 
   const params = _objectSpread(_objectSpread({}, commonParams), {}, {
+    fromLastXDays,
     baseCurrency: selectedBaseCurrency,
     currencyNameList
   });

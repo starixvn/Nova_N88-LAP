@@ -3264,7 +3264,8 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
   selectedCurrency,
   selectedBaseCurrency,
   reportDate,
-  compareDate
+  compareDate,
+  fromLastXDays
 }) => {
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
@@ -3275,7 +3276,8 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
   const params = _objectSpread(_objectSpread({}, commonParams), {
     compareFromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
     compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate),
-    baseCurrency: selectedBaseCurrency
+    baseCurrency: selectedBaseCurrency,
+    fromLastXDays
   });
 
   return params;
@@ -3343,6 +3345,7 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
   selectedCurrency,
   reportDate,
   selectedBaseCurrency,
+  fromLastXDays,
   currencyNameList
 }) => {
   const commonParams = DataService.getCommonAPIParams({
@@ -3352,6 +3355,7 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
   });
 
   const params = _objectSpread(_objectSpread({}, commonParams), {}, {
+    fromLastXDays,
     baseCurrency: selectedBaseCurrency,
     currencyNameList
   });

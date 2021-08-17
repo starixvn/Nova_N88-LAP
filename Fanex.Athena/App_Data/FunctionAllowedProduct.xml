@@ -15,9 +15,9 @@
   <Group Name="BetList">
     <Function Name="BetList_CustomerOutstanding" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,SLT,VGA"></Function>
     <Function Name="BetList_CustomerOutstandingRunning" Product="SB,BA,NG,VS,CS,KN,AB,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,SLT,VGA"></Function>
-    <Function Name="BettingTicketCenter" Product="SB,BA,NG,VS,VS2,LT,KN,CO,TG,I4D,VRG,SLT,VGA"></Function>
-    <Function Name="BettingTicketCenter_Running" Product="SB,BA,NG,VS,VS2,LT,KN,TG,I4D,VRG,SLT,VGA"></Function>
-    <Function Name="BettingTicketCenter_AdvancedSearch" Product="SB,BA,NG,VS,VS2,LT,KN,CO,TG,I4D,VRG,SLT,VGA"></Function>
+    <Function Name="BettingTicketCenter" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,SLT,VGA"></Function>
+    <Function Name="BettingTicketCenter_Running" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,SLT,VGA"></Function>
+    <Function Name="BettingTicketCenter_AdvancedSearch" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,SLT,VGA"></Function>
   </Group>
 
   <Group Name="API">

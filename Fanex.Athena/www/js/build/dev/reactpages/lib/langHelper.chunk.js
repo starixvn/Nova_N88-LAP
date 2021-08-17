@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 7/15/2021 1:18:02 PM
+// Generated at: 8/2/2021 1:10:15 AM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -313,6 +313,7 @@ window._language_en_US = {
   DailyStatement: "Daily Statement",
   DailyStatementMsg: "Support data up to 4 months only",
   Data: "data",
+  DataRangeLimitation: "Data Range Limitation",
   Date: "Date",
   DateRange: "Date Range",
   DateRangeExceedMsg: "Date range exceeds {0} months. Please try again!",
@@ -528,6 +529,7 @@ window._language_en_US = {
   LastUpdatedBA: "Last Updated BA",
   LastUpdatedMsg: "Last Updated Special Level",
   Lastweek: "Last week",
+  LastXDays: "Last {0} days",
   LatencySabaSideNote: "There might have some latencies from Saba side",
   lbl1st: "1st",
   lbl1stHalf: "1st Half",
@@ -648,6 +650,7 @@ window._language_en_US = {
   NoGoal: "No Goal",
   NoInfo: "No information is available",
   NoInformationAvailable: "No Information Available",
+  NoLimit: "No Limit",
   None: "None",
   NoneCurrency: "None currency",
   NoneLevel: "None level",
@@ -864,6 +867,8 @@ window._language_en_US = {
   Tablet: "Tablet",
   Team: "Team",
   Th: "Th",
+  ThelastXDaysRequiredValidationMsg: "The last X days is required field.",
+  ThelastXDaysValidationMsg: "The last X days must be between 1 and 90. Please check again.",
   ThereIsNoSelectedItem: "There is no selected item.",
   Thursday: "Thursday",
   TicketDetailOf: "Ticket detail of {0}",

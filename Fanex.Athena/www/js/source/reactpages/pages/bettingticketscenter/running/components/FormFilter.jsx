@@ -120,6 +120,7 @@ export class FormFilter extends Component {
 
         return productOptions && productOptions.length ? (
             <MultipleSelect id="ProductList"
+                hasSearchBox={true}
                 language={LangHelper.currentLanguage}
                 dataSource={productOptions}
                 keyField={"Code"}

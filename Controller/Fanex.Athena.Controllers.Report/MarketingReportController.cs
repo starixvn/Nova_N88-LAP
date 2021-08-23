@@ -15,6 +15,7 @@
     {
         private readonly IReportSettingService _reportSettingService;
         private readonly ITpService _tpService;
+        private const int TimeZone = 8;
 
         public MarketingReportController(IReportSettingService reportSettingService, ITpService tpService)
         {
@@ -49,7 +50,7 @@
                 Brands = BrandList,
                 Today = reportSetting.MaxDate,
                 MaxDate = reportSetting.MaxDate,
-                MinDate = userLimitDataRange > 0 ? reportSetting.MaxDate.AddDays(-userLimitDataRange + 1) : reportSetting.MinDate,
+                MinDate = GetUserLimitDataRange(reportSetting.MinDate, TimeZone),
                 LimitMonthRange = reportSetting.LimitMonthRange,
                 UserLimitDataRange = userLimitDataRange
             };

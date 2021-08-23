@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Api.BetList
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
@@ -15,6 +16,7 @@
     public class BettingTicketCenterController : BaseApiController
     {
         private readonly IBetListApiClient _betListApiClient;
+        private const int TimeZone = -4;
 
         public BettingTicketCenterController(
             ILanguageService langService,
@@ -50,6 +52,7 @@
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(AgentList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
             metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
+            metaModel.LastXDays = GetUserLimitDataRange(null, TimeZone);
 
             return await _betListApiClient.PostAsync(
                 "/BettingTicketCenter/GetByRefno",

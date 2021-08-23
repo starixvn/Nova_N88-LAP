@@ -1010,6 +1010,20 @@ class Month extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return year > min.year && year < max.year || year === min.year && month >= min.month || year === max.year && month <= max.month;
   }
 
+  _checkValidNextMonth(month, year) {
+    const {
+      max
+    } = this.props;
+    return year < max.year || year === max.year && month <= max.month;
+  }
+
+  _checkValidPreMonth(month, year) {
+    const {
+      min
+    } = this.props;
+    return year > min.year || year === min.year && month >= min.month;
+  }
+
   _goToMonth(e, value) {
     e.preventDefault();
 
@@ -1027,9 +1041,9 @@ class Month extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
     const preMonth = this._getPrevMonth();
 
-    const validNexMonth = this._checkValidMonth(nexMonth.month, nexMonth.year);
+    const validNexMonth = this._checkValidNextMonth(nexMonth.month, nexMonth.year);
 
-    const validPreMonth = this._checkValidMonth(preMonth.month, preMonth.year);
+    const validPreMonth = this._checkValidPreMonth(preMonth.month, preMonth.year);
 
     const value = this.props.value;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

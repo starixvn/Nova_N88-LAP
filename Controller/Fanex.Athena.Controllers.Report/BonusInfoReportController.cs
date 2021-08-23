@@ -12,6 +12,7 @@
     public class BonusInfoReportController : ReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;
+        private const int TimeZone = 8;
 
         public BonusInfoReportController(IReportSettingService reportSettingService)
         {
@@ -37,9 +38,10 @@
                 Brands = BrandList,
                 Today = reportSetting.MaxDate,
                 MaxDate = reportSetting.MaxDate,
-                MinDate = reportSetting.MinDate,
+                MinDate = GetUserLimitDataRange(reportSetting.MinDate, TimeZone),
                 LimitMonthRange = reportSetting.LimitMonthRange
             };
+
             return vm;
         }
     }

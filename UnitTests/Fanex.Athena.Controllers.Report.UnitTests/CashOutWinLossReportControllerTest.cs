@@ -1,8 +1,10 @@
 ﻿namespace Fanex.Athena.Controllers.Report.UnitTests
 {
+    using System;
     using System.Web.Mvc;
     using Base.UnitTests;
     using Model.Report.ViewModel;
+    using NSubstitute;
     using NUnit.Framework;
     using Report;
 
@@ -25,6 +27,7 @@
                 // Action
                 var viewResult = controller.Index() as ViewResult;
                 var viewModel = viewResult.Model as CashOutWinLossViewModel;
+                AppSettings.HistoryDate.Returns(new DateTime(2019, 1, 1));
 
                 // Assert
                 Assert.Multiple(() =>
@@ -40,6 +43,7 @@
             return new CashOutWinLossReportController()
             {
                 LangService = LangService,
+                AppSettingInstance = AppSettings,
                 SessionServiceInstance = SessionService
             };
         }

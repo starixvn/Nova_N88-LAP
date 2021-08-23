@@ -49,5 +49,9 @@
         public string DefaultBaseCurrency { get; set; }
 
         public int BrandId { get; set; }
+
+        public DateTime MaxDate { get; set; }
+
+        public DateTime MinDate { get; set; }
     }
 }

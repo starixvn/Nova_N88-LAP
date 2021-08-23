@@ -4,6 +4,6 @@ namespace Fanex.Athena.Service.StatelessCore.Interfaces
 {
     public interface IReportSettingService
     {
-        ReportSetting GetSetting(string reportKey, string licenseeName);
+        ReportSetting GetSetting(string reportKey, string licenseeName, int userDataRangeLimitation = 0);
     }
 }

@@ -15,6 +15,7 @@
     {
         private readonly IReportSettingService _reportSettingService;
         private readonly ITpService _tpService;
+        private const int TimeZone = 8;
 
         public WinLossReportController(IReportSettingService reportSettingService, ITpService tpService)
         {
@@ -46,7 +47,6 @@
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportWinLoss, LicenseeName);
             var tpProducts = _tpService.GetListTpProduct();
-            var userDataRangeLimitation = SessionServiceInstance.UserSession.DataRangeLimitation;
 
             var vm = new WinLossViewModel
             {
@@ -55,7 +55,7 @@
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
                 Brands = BrandList,
                 MaxDate = reportSetting.MaxDate,
-                MinDate = userDataRangeLimitation > 0 ? reportSetting.MaxDate.AddDays(-userDataRangeLimitation + 1) : reportSetting.MinDate,
+                MinDate = GetUserLimitDataRange(reportSetting.MinDate, TimeZone),
                 LimitMonthRange = reportSetting.LimitMonthRange
             };
             return vm;

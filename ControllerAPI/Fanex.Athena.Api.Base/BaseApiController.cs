@@ -97,5 +97,19 @@
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             ContractResolver = new CamelCasePropertyNamesContractResolver()
         };
+
+        protected DateTime? GetUserLimitDataRange(DateTime? defaultDay, int? timeZone)
+        {
+            var userDataRangeLimitation = SessionService.UserSession.DataRangeLimitation;
+            if (userDataRangeLimitation > 0)
+            {
+                var toDay = timeZone.HasValue ? DateTime.UtcNow.AddHours(timeZone.Value) : DateTime.Now;
+                var lastXdays = toDay.AddDays(-userDataRangeLimitation);
+
+                return new DateTime(lastXdays.Year, lastXdays.Month, lastXdays.Day);
+            }
+
+            return defaultDay;
+        }
     }
 }

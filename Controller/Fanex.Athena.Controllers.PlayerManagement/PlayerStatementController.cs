@@ -31,14 +31,23 @@
         [HttpGet]
         public ViewResult Index(int custId, int currencyId)
         {
+            var userLimitDataRange = SessionServiceInstance.UserSession.DataRangeLimitation;
             var today = DateTime.Today;
+            var startDayOfMonth = 1;
+
+            if (userLimitDataRange > 0)
+            {
+                var dayAfterLimit = today.Day - userLimitDataRange;
+                startDayOfMonth = dayAfterLimit > 1 ? dayAfterLimit : 1;
+            }
+
             var viewModel = new PlayerStatementViewModel
             {
                 CustId = custId,
                 CurrencyId = currencyId,
-                FromDate = new DateTime(today.Year, today.Month, 1),
+                FromDate = new DateTime(today.Year, today.Month, startDayOfMonth),
                 ToDate = today,
-                MinDate = new DateTime(today.Year - MaximumYear, 1, 1)
+                MinDate = GetUserLimitDataRange(new DateTime(today.Year - MaximumYear, 1, 1), DefaultTimeZone)
             };
 
             return View("~/Views/Desktop/Module/PlayerAdmin/PlayerStatement/Statement.cshtml", viewModel);

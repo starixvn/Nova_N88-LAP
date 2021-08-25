@@ -11,6 +11,7 @@
     using Fanex.N88.Core.Web.Context;
     using Fanex.NVC.Authentication.Infrastructure;
     using Service.Core.Users.Interfaces;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -19,6 +20,7 @@
     public class CultureBaseController : Controller
     {
         protected const string DefaultLanguage = "en-US";
+        protected const int DefaultTimeZone = -4;
         public ILanguageService LangService { get; set; }
         public ISessionService SessionServiceInstance { get; set; }
         public IAppSettings AppSettingInstance { get; set; }
@@ -68,6 +70,20 @@
         protected static JsonNetResult JsonString(string jsonData)
         {
             return new JsonNetResult(jsonData);
+        }
+
+        protected DateTime GetUserLimitDataRange(DateTime defaultDay, int? timeZone)
+        {
+            var userDataRangeLimitation = SessionServiceInstance.UserSession.DataRangeLimitation;
+            if (userDataRangeLimitation > 0)
+            {
+                var toDay = timeZone.HasValue ? DateTime.UtcNow.AddHours(timeZone.Value) : DateTime.Now;
+                var lastXdays = toDay.AddDays(-userDataRangeLimitation);
+
+                return new DateTime(lastXdays.Year, lastXdays.Month, lastXdays.Day);
+            }
+
+            return defaultDay;
         }
     }
 }

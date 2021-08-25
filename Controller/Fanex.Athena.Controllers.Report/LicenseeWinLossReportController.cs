@@ -7,7 +7,6 @@
     using Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.DataDomain;
-    using Fanex.Athena.Model.Core.MetaModel.Product;
     using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
@@ -31,30 +30,7 @@
         [RequireCurrencyPermission]
         public ActionResult Index()
         {
-            if (IsFakeLicensee(SessionServiceInstance.LicenseeSession.LicenseeName))
-            {
-                return MapToFakeView();
-            }
-
             return MapToView();
-        }
-
-        private static IDictionary<int, string> GetFakeBaseCurrencies(string baseCurrencySetting, string defaultBaseCurrency)
-        {
-            var baseCurrencyList = string.IsNullOrWhiteSpace(baseCurrencySetting)
-                    ? SystemConstants.BaseCurrencyList
-                    : SystemConstants.BaseCurrencyList.Where(x => baseCurrencySetting.Split(',').Contains(x.Value)).ToDictionary(x => x.Key, x => x.Value);
-
-            var defaultBaseCurrencyKey = defaultBaseCurrency?.ToUpperInvariant();
-
-            if (defaultBaseCurrencyKey != null
-                && !baseCurrencyList.Any(x => x.Value == defaultBaseCurrencyKey)
-                && SystemConstants.BaseCurrencyList.Any(x => x.Value == defaultBaseCurrencyKey))
-            {
-                baseCurrencyList.Add(SystemConstants.BaseCurrencyList.First(x => x.Value == defaultBaseCurrencyKey));
-            }
-
-            return baseCurrencyList;
         }
 
         private static DateTime GetSelectedDate(ReportSetting reportSetting)
@@ -67,8 +43,9 @@
         private ActionResult MapToView()
         {
             var userSession = SessionServiceInstance.UserSession;
+            var userDataRangeLimitation = userSession.DataRangeLimitation;
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
-                SessionServiceInstance.LicenseeSession.LicenseeName);
+                SessionServiceInstance.LicenseeSession.LicenseeName, userDataRangeLimitation);
             var selectedDate = GetSelectedDate(reportSetting);
             var productAccess = ProductServiceInstance.GetSingleWalletProductAccess(
                 SessionServiceInstance.LicenseeSession.LicenseeId,
@@ -94,56 +71,13 @@
             var model = new LicenseeWinLossViewModel
             {
                 Param = param,
-                CurrencyList = userSession.CurrencyList,     
+                CurrencyList = userSession.CurrencyList,
                 Brands = BrandList,
                 IsAllowedCustomerCommission = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 ProductAccess = productAccess,
                 ReportSetting = reportSetting
             };
             return View("~/Views/Desktop/Report/LicenseeWinLoss/Main.cshtml", model);
-        }
-
-        private ActionResult MapToFakeView()
-        {
-            var userSession = SessionServiceInstance.UserSession;
-            var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
-                SessionServiceInstance.LicenseeSession.LicenseeName);
-            var selectedDate = GetSelectedDate(reportSetting);
-            var productAccess = ProductServiceInstance.GetSingleWalletProductAccess(
-                SessionServiceInstance.LicenseeSession.LicenseeId,
-                userSession.Language,
-                FunctionNames.SpecialLicenseeWinLoss);
-            var baseCurrencyList = GetFakeBaseCurrencies(reportSetting.BaseCurrencies, userSession.DefaultBaseCurrency);
-            var defaultBaseCurrency = baseCurrencyList.FirstOrDefault(x => x.Value.Equals(userSession.DefaultBaseCurrency, StringComparison.OrdinalIgnoreCase));
-
-            var param = new LicenseeWinLossMetaModel
-            {
-                FromDate = new DateTime(selectedDate.Year, selectedDate.Month, 1),
-                ToDate = selectedDate,
-                ReportBy = ReportByType.Daily,
-                ProductOptions = GetFakeProductOptions(productAccess.ProductList),
-                CurrencyId = defaultBaseCurrency.Key
-            };
-
-            var model = new SpecialLicenseeWinLossViewModel
-            {
-                Param = param,
-                CurrencyList = userSession.CurrencyList,
-                ReportSetting = reportSetting,
-                BaseCurrencyList = baseCurrencyList
-            };
-
-            return View("~/Views/Desktop/Report/SpecialLicenseeWinLoss/Main.cshtml", model);
-        }
-
-        private static IList<ProductOption> GetFakeProductOptions(IEnumerable<Product> productList)
-        {
-            return productList.Select(i => new ProductOption
-            {
-                Code = i.ProductCode,
-                Name = i.ProductCode.Equals(Product.CS, StringComparison.InvariantCultureIgnoreCase) ? "RNG" : i.ProductName,
-                Status = true
-            }).ToList();
         }
     }
 }

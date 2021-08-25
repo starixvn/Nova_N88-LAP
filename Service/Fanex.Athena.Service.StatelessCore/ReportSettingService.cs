@@ -37,7 +37,7 @@
             _licenseeSettingService = licenseeSettingService;
         }
 
-        public ReportSetting GetSetting(string reportKey, string licenseeName)
+        public ReportSetting GetSetting(string reportKey, string licenseeName, int userDataRangeLimitation = 0)
         {
             var settings = _cache.Get<IEnumerable<ReportSetting>>(CacheKey);
             if (settings == null)
@@ -50,7 +50,7 @@
             if (reportSetting != null)
             {
                 AssignFakeLicenseeSetting(reportSetting, licenseeName);
-                AssignDateRange(reportSetting);
+                AssignDateRange(reportSetting, userDataRangeLimitation);
             }
 
             return reportSetting;
@@ -81,10 +81,11 @@
             return Convert.ToDateTime(datetime);
         }
 
-        private void AssignDateRange(ReportSetting reportSetting)
+        private void AssignDateRange(ReportSetting reportSetting, int userDataRangeLimitation = 0)
         {
             reportSetting.MinDate = ConvertToDate(reportSetting.MinDateString, reportSetting.TimeZone, _appSettings.HistoryDate);
             reportSetting.MaxDate = ConvertToDate(reportSetting.MaxDateString, reportSetting.TimeZone, _appSettings.MaxDate);
+            reportSetting.MinDate = userDataRangeLimitation > 0 ? reportSetting.MaxDate.AddDays(-userDataRangeLimitation) : reportSetting.MinDate;
 
             if (reportSetting.LimitRecentMonths > 0)
             {

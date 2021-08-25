@@ -26,6 +26,8 @@
             {
                 FromDate = DateTime.Now,
                 ToDate = DateTime.Now,
+                MaxDate = DateTime.Now,
+                MinDate = GetUserLimitDataRange(AppSettingInstance.HistoryDate, DefaultTimeZone),
                 LicenseeId = licenseeSession.LicenseeId,
                 IsExcludedTestData = true,
                 ReportBy = 1,
@@ -39,7 +41,7 @@
             {
                 IsLicenseeOfferBA = licenseeSession.IsEnableBA,
                 Param = metaModel,
-                CurrencyList = userSession.CurrencyList ,
+                CurrencyList = userSession.CurrencyList,
                 Brands = BrandList
             };
 

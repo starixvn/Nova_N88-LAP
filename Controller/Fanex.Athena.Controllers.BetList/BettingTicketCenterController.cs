@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Controllers.BetList
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -68,12 +69,16 @@
         public ActionResult AdvancedSearch()
         {
             var tabList = GetEnableTabList();
+            var balanceUpday = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay;
+            var minDate = GetUserLimitDataRange(balanceUpday, DefaultTimeZone);
+            minDate = minDate < balanceUpday ? balanceUpday : minDate;
+
             var viewModel = new BettingTicketCenterViewModel
             {
                 LiveStatusList = GetLiveStatusList(),
                 StatusList = GetStatusList(),
                 ProductOptionList = GetProductOptionList(FunctionNames.BettingTicketCenterAdvancedSearch),
-                MinDate = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay,
+                MinDate = minDate,
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
@@ -88,12 +93,14 @@
         public ActionResult SingleCustomer()
         {
             var tabList = GetEnableTabList();
+
             var viewModel = new BettingTicketCenterViewModel
             {
                 LiveStatusList = GetLiveStatusList(),
                 StatusList = GetStatusList(),
                 PlatformList = GetPlatformList(),
                 ProductOptionList = GetProductOptionList(),
+                MinDate = GetUserLimitDataRange(new DateTime(2017, 1, 1), DefaultTimeZone),
                 IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),

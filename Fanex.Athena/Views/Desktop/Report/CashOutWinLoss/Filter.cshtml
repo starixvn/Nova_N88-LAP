@@ -21,7 +21,7 @@
                 <label>@ViewResources.Brand</label>
             </div>
             <div class="input-field input col l2 m3 s12 calendar date-range">
-                @DesktopRazorHelper.DateRangePicker(Model.Param.FromDate, Model.Param.ToDate, appSettings.HistoryDate, DateTime.Today)
+                @DesktopRazorHelper.DateRangePicker(Model.Param.FromDate, Model.Param.ToDate, Model.Param.MinDate, Model.Param.MaxDate)
             </div>
 
             <div class="input-field col l2 m2 s12">

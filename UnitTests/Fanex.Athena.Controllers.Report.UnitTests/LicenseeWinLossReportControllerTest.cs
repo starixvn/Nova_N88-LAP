@@ -68,32 +68,6 @@
             }
         }
 
-        [Test]
-        public void Index_WhenGetFakeLicensee_ReturnCorrectViewResult()
-        {
-            // Arrange
-            var reportSettingService = Substitute.For<IReportSettingService>();
-            reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss, Arg.Any<string>())
-                .Returns(new ReportSetting { BaseCurrencies = "USD,KKK", TimeZone = 8 });
-
-            _licenseeSettingService.IsFakeLicensee(Arg.Any<string>()).Returns(true);
-
-            using (var controller = CreateController(reportSettingService))
-            {
-                // Action
-                var viewResult = controller.Index() as ViewResult;
-                var viewModel = viewResult.Model as SpecialLicenseeWinLossViewModel;
-
-                // Assert
-                Assert.Multiple(() =>
-                {
-                    StringAssert.Contains("Report/SpecialLicenseeWinLoss/Main.cshtml", viewResult.ViewName);
-                    Assert.That(viewModel.Param.ReportBy, Is.EqualTo(ReportByType.Daily));
-                    Assert.That(string.Join(",", viewModel.BaseCurrencyList.Values), Is.EqualTo("USD,EUR"));
-                });
-            }
-        }
-
         private LicenseeWinLossReportController CreateController(IReportSettingService reportSettingService)
         {
             var productService = Substitute.For<IProductService>();

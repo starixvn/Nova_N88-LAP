@@ -48,7 +48,7 @@
     productOptions: @Html.Raw(productOptions.ToJson()),
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
-    dateConstraint: { minDate: '1/1/2017', maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 6 },
+    dateConstraint: { minDate: '@Model.MinDate.ToString("MM/dd/yyyy")', maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 6 },
     tabList: @Html.Raw(Model.TabList.ToJson())
     };
 }

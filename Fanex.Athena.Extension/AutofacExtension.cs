@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
@@ -19,7 +20,8 @@ namespace Fanex.Athena.Extension
                 var endPoint = new Uri(baseAdress);
                 var httpClient = new HttpClient
                 {
-                    BaseAddress = endPoint
+                    BaseAddress = endPoint,
+                    Timeout = Timeout.InfiniteTimeSpan
                 };
 
                 if (headerValues != null)

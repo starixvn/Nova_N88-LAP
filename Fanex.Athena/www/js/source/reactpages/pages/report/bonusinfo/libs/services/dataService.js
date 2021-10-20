@@ -8,13 +8,14 @@ export default class DataService {
         return params;
     }
 
-    static getBonusInfoDetailAPIParams =  (filterData, pagingOption, sortInfo, dateRange, bonusCode) => {
+    static getBonusInfoDetailAPIParams =  (filterData, pagingOption, sortInfo, dateRange, bonusCode, bonusTypeId) => {
         const params = {
             ...filterData,
             ...sortInfo,
             ...dateRange,
             ...{ pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize },
-            bonusCode
+            bonusCode,
+            bonusTypeId
         }
         return params;
     }
@@ -27,12 +28,13 @@ export default class DataService {
         return params;
     }
 
-    static getBonusInfoDetailExportAPIParams =  (filterData, sortInfo, dateRange, bonusCode) => {
+    static getBonusInfoDetailExportAPIParams =  (filterData, sortInfo, dateRange, bonusCode, bonusTypeId) => {
         const params = {
             ...filterData,
             ...sortInfo,
             ...dateRange,
-            bonusCode
+            bonusCode,
+            bonusTypeId
         }
         return params;
     }

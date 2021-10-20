@@ -13,6 +13,14 @@
         value = c.Value,
         label = c.Value
     }).ToList();
+
+    var selectedCurrency = string.Join(",", Model.OwnBrand.TpCurrencyList.Select(x => x.Key).ToArray());
+
+    var brands = Model.Brands.Select(x => new
+    {
+        id = x.Id,
+        tpCurrencies = x.TpCurrencyList.Select(y => new { key = y.Key, value = y.Value })
+    });
 }
 
 @section pagecss {
@@ -26,12 +34,14 @@
 @section globaljscode{
     window.initialState = {
     selectedBaseCurrency: '@Model.BaseCurrency',
+    selectedCurrency: '@selectedCurrency',
     selectedBrand: @Model.OwnBrand.Id,
     selectedBonusName: "",
     dateRange: { fromDate: '@Model.FromDate.ToString("MM/dd/yyyy")', toDate: '@Model.ToDate.ToString("MM/dd/yyyy")' }
     };
 
     window._AppData = {
+    brands: @Html.Raw(brands.ToJson()),
     dateConstraint: {
     limitedMonthRange: @Model.LimitMonthRange,
     minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',

@@ -31,6 +31,11 @@ export const BonusInfoDetailWidget = props => {
 
     const _title = React.useMemo(() => LangHelper.getSingleResource('Details'), []);
 
+    const _getBonusTypeId =  React.useCallback((bonusCode) => {
+        const bonusType = bonusInfoSummaryData.dataList.find(bonus => bonus.bonusCode === bonusCode);
+        return bonusType ? bonusType.bonusTypeId : 0;
+    }, [bonusInfoSummaryData])
+
     const _handleExportExcel = () => {
         if(!selectedBonusCode) {
             return;
@@ -42,8 +47,9 @@ export const BonusInfoDetailWidget = props => {
             fromDate: date ? date:  detailFilter.fromDate,
             toDate: date ? date: detailFilter.toDate
         }
+        const bonusTypeId = _getBonusTypeId(selectedBonusCode);
 
-        const exportParams = DataService.getBonusInfoDetailExportAPIParams(detailFilter, sortInfo, dateRange, selectedBonusCode);
+        const exportParams = DataService.getBonusInfoDetailExportAPIParams(detailFilter, sortInfo, dateRange, selectedBonusCode, bonusTypeId);
         QueryService.exportBonusInfoDetailData(exportParams);
     }
 
@@ -56,12 +62,15 @@ export const BonusInfoDetailWidget = props => {
             toDate: date ? date: detailFilter.toDate
         }
 
+        const bonusTypeId = _getBonusTypeId(selectedBonusCode);
+
         const apiParams = DataService.getBonusInfoDetailAPIParams(
             detailFilter, 
             { PageIndex: pageIndex || pagingOption.PageIndex, PageSize: pageSize || pagingOption.PageSize}, 
             sort || sortInfo,
             dateRange, 
-            selectedBonusCode);
+            selectedBonusCode,
+            bonusTypeId);
 
         setLoading(true);
 
@@ -154,18 +163,18 @@ export const BonusInfoDetailWidget = props => {
         onSort(DefaultDetailSortInfo);
     }
 
-
     const _renderBonusSelectList = () => {
         const listValue = bonusCodeList.map(function(item) {
             return {
                 value: item,
-                label: item
+                label: item,
+                
             };
         })
         return (
             <Select  key={selectedSummaryDate} instanceId="bonusCodeList"
                 value={selectedBonusCode}
-                options={listValue}k
+                options={listValue}
                 onChange={_bonusOnChange} />
         );
     }

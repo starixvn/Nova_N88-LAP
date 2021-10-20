@@ -9,15 +9,20 @@ import Site from '@jsroot/lib/site';
 import ActionCreators from '../actions';
 import { DateRange } from '@jsroot/components/date-range';
 import MultipleSelect from '@9softstudio/react-multiselect';
+import CollectionHelper from '@jsroot/lib/collectionHelper';
+import CurrencyHelper from '@jsroot/lib/currencyHelper'
 import QueryService from '../libs/services/queryService';
 import GroupFilter from './filter/GroupFilter';
 import { DefaultSummarySortInfo, DefaultSummarySortInfoGroupByDate } from '../constants/gridConst';
 import { GroupByOptionIds } from '../constants/filterConsts';
 
 export const FormFilter = props => {
-    const { setDateRange, setSelectedBonusName, setSelectedBrand, setSelectedBaseCurrency, setSelectedClaimStatus, setSelectedBonusStatus, setSelectedBonusType, selectedClaimStatus, selectedBonusStatus, selectedBonusType, setGlobalFilter, setCollapseFormFilter,
-        dateRange, selectedBonusName, selectedBrand, selectedGroupByOption, selectedBaseCurrency, dropdownOptionsData, setDropdownOptionsData, setSummarySortInfo
+    const { setDateRange, setSelectedBonusName, setSelectedBrand, setSelectedBaseCurrency, setSelectedCurrency, setSelectedClaimStatus, setSelectedBonusStatus,
+         setSelectedBonusType, selectedClaimStatus, selectedBonusStatus, selectedBonusType, setGlobalFilter, dateRange, selectedBonusName, selectedBrand,
+          selectedGroupByOption, selectedBaseCurrency, selectedCurrency, dropdownOptionsData, setDropdownOptionsData, setSummarySortInfo
     } = props;
+
+    const currencyList = React.useMemo(() => CurrencyHelper.getTpCurrencyList(selectedBrand, AppData.brands), [selectedBrand]);
 
     useEffect(() => {
         QueryService.fetchDropdownOptionsData(response => {
@@ -30,6 +35,11 @@ export const FormFilter = props => {
             }
         });
     }, []);    
+
+    useEffect(() => {
+        const selectedCurrency = currencyList.map(_ => _.key).join(',');
+        setSelectedCurrency(selectedCurrency)
+    }, [currencyList])
 
     const _onChangeDateRange = (range, isValid = true) => {
         if (isValid) {
@@ -50,6 +60,18 @@ export const FormFilter = props => {
                 onChange={_onChangeDateRange}
             />
         )
+    }
+
+    const _renderCurrencySelectList = () => {
+        const dataSource = CollectionHelper.createDataSourceFrom(currencyList, selectedCurrency);
+        return currencyList && (
+            <MultipleSelect id="ddlCurrency"
+                language={LangHelper.currentLanguage}
+                dataSource={dataSource}
+                keyField={"key"}
+                valueField={"value"}
+                statusField={"status"}
+                onChange={(_, selectedItemsKey) => setSelectedCurrency(selectedItemsKey)} />);
     }
 
     const _renderBaseCurrencySelectList = () => {
@@ -121,6 +143,7 @@ export const FormFilter = props => {
             toDate: Site.convertDateToString(toDate),
             bonusName: selectedBonusName,
             baseCurrency: selectedBaseCurrency, 
+            currencyIdList: selectedCurrency,
             brandId: selectedBrand, 
             claimStatus: selectedClaimStatus, 
             bonusStatus: selectedBonusStatus, 
@@ -176,24 +199,32 @@ export const FormFilter = props => {
                 </div>
                 <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
                     <div className="form-group">
+                        <label className="label-text">{LangHelper.getSingleResource("Currency")}</label>
+                        {_renderCurrencySelectList()}
+                    </div>
+                </div>
+                <div className="col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2">
+                    <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("BaseCurrency")}</label>
                         {_renderBaseCurrencySelectList()}
                     </div>
                 </div>
             </div>
         </CollapsiblePanel>
-        <GroupFilter isDisabledSubmit={!selectedClaimStatus || !selectedBonusStatus || !selectedBonusType} onSubmit={_onSubmit} />
+        <GroupFilter isDisabledSubmit={!selectedClaimStatus || !selectedBonusStatus || !selectedBonusType || !selectedCurrency} onSubmit={_onSubmit} />
     </>
     );
 }
 
 function mapStateToProps(state) {
-    const { dateRange, selectedBrand, selectedBonusName, selectedBaseCurrency, selectedClaimStatus, selectedBonusStatus, selectedBonusType, dropdownOptionsData, selectedGroupByOption } = state;
+    const { dateRange, selectedBrand, selectedBonusName, selectedBaseCurrency, selectedCurrency, selectedClaimStatus, selectedBonusStatus,
+         selectedBonusType, dropdownOptionsData, selectedGroupByOption } = state;
     return Object.assign({}, { 
         dateRange,
         selectedBonusName,
         selectedBrand,
         selectedBaseCurrency,
+        selectedCurrency,
         selectedClaimStatus, 
         selectedBonusStatus, 
         selectedBonusType,
@@ -203,13 +234,14 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setDateRange, setSelectedBonusName, setSelectedBrand, setSelectedBaseCurrency, setSelectedClaimStatus, setSelectedBonusStatus, 
+    const { setDateRange, setSelectedBonusName, setSelectedBrand, setSelectedBaseCurrency, setSelectedCurrency, setSelectedClaimStatus, setSelectedBonusStatus, 
         setSelectedBonusType, setGlobalFilter, setCollapseFormFilter, setDropdownOptionsData, setSummarySortInfo} = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         setDateRange, 
         setSelectedBonusName,
         setSelectedBrand,
         setSelectedBaseCurrency,
+        setSelectedCurrency,
         setSelectedClaimStatus, 
         setSelectedBonusStatus, 
         setSelectedBonusType,

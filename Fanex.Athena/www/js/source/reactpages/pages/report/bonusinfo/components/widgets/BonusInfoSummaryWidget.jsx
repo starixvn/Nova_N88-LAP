@@ -10,13 +10,12 @@ import { BonusInfoSummaryGridColumns, BonusInfoSummaryGridConfig, StyleRow, Digi
 import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import NumberFormat from '@jsroot/lib/numberFormat';
 import { GroupByOptionIds } from '../../constants/filterConsts';
-import Site from '@jsroot/lib/site';
 
 let countRender = 0;
 
 export const BonusInfoSummaryWidget = props => {
     const { globalFilter, bonusInfoSummaryData, fetchBonusInfoSummaryData, selectedSummarySortInfo, setSummarySortInfo, setDetailFilter, setBonusCodeList, setSelectedBonusCode, 
-        summaryGridHeight, setSummaryGridHeight, selectedSummaryDate, setSelectedSummaryDate, setBonusInfoDetailData} = props;   
+        summaryGridHeight, setSummaryGridHeight, setSelectedSummaryDate, setBonusInfoDetailData } = props;   
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {

@@ -18,7 +18,7 @@ import AppData from '@jsroot/lib/AppData';
 
 export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
-    const { allowedCompare } = globalFilter;        
+    const { allowedCompare, fromLastXDays } = globalFilter;        
     const [isLoading, setLoading] = useState(false);
     const [selectedBox, setSelectedBox] = useState(null);
 
@@ -236,8 +236,8 @@ export const PerformanceHighlightWidget = props => {
             {_renderWithdrawalAmountBox()}
             {_renderBonusClaimedBox()}
             {_renderNetCashAmountBox()}
-            {_renderChurnRateBox()}
-            {_renderRetentionRateBox()}
+            {!fromLastXDays && _renderChurnRateBox()}
+            {!fromLastXDays && _renderRetentionRateBox()}
         </div>}
     </Widget>)
 }

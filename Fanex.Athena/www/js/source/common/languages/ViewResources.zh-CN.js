@@ -1,4 +1,4 @@
-﻿// Generated at: 8/2/2021 1:10:15 AM
+﻿// Generated at: 10/29/2021 1:34:54 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -471,6 +471,7 @@ NonEntered:"成绩还没输入场数",
 NoOfBonusClaimed:"No. Of Bonus Claimed",
 NoOfCustmer:"会员数",
 NoOfDeposit:"No. Deposit",
+NoOfUserClaimingBonus:"No. of Users Claiming Bonus",
 NoOfWithdrawal:"No. Withdrawal",
 NoProductFound:"No product found",
 Normal:"正常",
@@ -663,6 +664,7 @@ TotalActiveCustomer:"总活跃会员人数",
 TotalActiveUsers:"Total Active Users",
 TotalAway:"客队总计",
 TotalBets:"总投注",
+TotalBonus:"Total Bonus",
 TotalBonusAmountClaimed:"Total Bonus Amount Claimed",
 TotalClaimants:"Total Claimants",
 TotalClaimedAmount:"Total Claimed Amount",

@@ -3204,4 +3204,10 @@
   <data name="ProgressiveBet" xml:space="preserve">
     <value>Progressive Bet</value>
   </data>
+  <data name="NoOfUserClaimingBonus" xml:space="preserve">
+    <value>No. of Users Claiming Bonus</value>
+  </data>
+  <data name="TotalBonus" xml:space="preserve">
+    <value>Total Bonus</value>
+  </data>
 </root>

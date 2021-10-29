@@ -2620,4 +2620,10 @@
     <value>Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00</value>
     <comment>155334</comment>
   </data>
+  <data name="NoOfUserClaimingBonus" xml:space="preserve">
+    <value>No. of Users Claiming Bonus</value>
+  </data>
+  <data name="TotalBonus" xml:space="preserve">
+    <value>Total Bonus</value>
+  </data>
 </root>

@@ -19,6 +19,7 @@ import { defaultPagingOption, defaultSortOption } from '../constants/gridContant
 import SelectOption from '../components/filter/SelectOption';
 import QueryService from '../libs/queryService';
 import GridHelper from '../libs/helpers/gridHelper';
+import { columnKeys } from '../constants/gridContants'
 
 export class FormFilter extends PureComponent {
     constructor(props) {
@@ -178,7 +179,13 @@ export class FormFilter extends PureComponent {
                 ...this.props,
                 requestParam: {}
             }),
-            orderCols: GridHelper.getOrderCols(displayedColumns)
+            orderCols: GridHelper.getOrderCols(displayedColumns, [
+                columnKeys.noOfDeposit,
+                columnKeys.totalDepositAmount,
+                columnKeys.noOfWithdrawal,
+                columnKeys.totalWithdrawalAmount,
+                columnKeys.bonusAmount
+            ])
         }
         toggleLoader(true);
         QueryService.exportReportDetailData(params, () => toggleLoader(false));

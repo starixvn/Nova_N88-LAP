@@ -70,7 +70,7 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
         </HeaderRow>);
         const body = campaignData.map(item => <Row style={StyleRow}>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].attributes}>{item[CampaignNRUGridColumns.bonusCode] || LangHelper.getSingleResource('None')}</Cell>
-            <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusName].attributes}>{item[CampaignNRUGridColumns.bonusName] || LangHelper.getSingleResource('None')}</Cell>
+            <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusName].attributes}>{item[CampaignNRUGridColumns.bonusName]}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.newlyRegisterUsers].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.newlyRegisterUsers])}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.depositUsers].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.depositUsers])}</Cell>
             <Cell {...CampaignNRUGridConfig[CampaignNRUGridColumns.firstDepositAmount].attributes}>{NumberFormat.format(item[CampaignNRUGridColumns.firstDepositAmount], DigitsAmount)}</Cell>

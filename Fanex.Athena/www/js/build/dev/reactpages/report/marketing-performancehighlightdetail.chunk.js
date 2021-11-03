@@ -609,7 +609,7 @@ const GroupCell = props => {
       dataList.splice(rowIndex + 1, 0, ...rowData.childs);
     }
 
-    dataList[rowIndex] = _objectSpread(_objectSpread({}, rowData), {
+    dataList[rowIndex] = _objectSpread({}, rowData, {}, {
       isDrillDown: !_isDrillDown
     });
     onDrillDown && onDrillDown(dataList);
@@ -902,7 +902,7 @@ const BonusClaimedDetailWidget = ({
   };
 
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
-    return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
+    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize,
       TotalItem: totalRows
@@ -1091,15 +1091,15 @@ const BonusClaimedSummaryWidget = ({
     } = summaryData;
     const header = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["StyleRow"]
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BonusCode')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BonusName')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NoOfBonusClaimed')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalBonusAmountClaimed')));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BonusCode')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BonusName')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NoOfUserClaimingBonus')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalBonusAmountClaimed')));
     const body = detailData.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
       key: item.id,
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["StyleRow"]
     }, _renderGroupCampaignCell(item, detailData), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
       className: "left-align"
-    }, item.bonusName || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+    }, item.bonusName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
       className: "right-align"
-    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item.numberOfBonusClaimed, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item.numberOfBonusUser, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
       className: "right-align"
     }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item.bonusAmount, _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["DigitsAmount"]))));
     const totalRow = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
@@ -1108,7 +1108,7 @@ const BonusClaimedSummaryWidget = ({
       className: "total-cell"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
       className: "right-align total-cell"
-    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(totalDetailData.totalBonusClaimeds, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(totalDetailData.totalBonusUsers, 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
       className: "right-align total-cell"
     }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(totalDetailData.totalBonusAmount, 2)));
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1352,7 +1352,7 @@ const DepositAmountDetailWidget = ({
   };
 
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
-    return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
+    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize,
       TotalItem: totalRows
@@ -1776,7 +1776,7 @@ const NewlyRegisterUsersDetailWidget = ({
   };
 
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
-    return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
+    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize,
       TotalItem: totalRows
@@ -1926,7 +1926,7 @@ const NewlyRegisterUsersSummaryWidget = ({
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusCode].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusName].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusName].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].newlyRegisterUsers].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].newlyRegisterUsers].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].depositUsers].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].depositUsers].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].firstDepositAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].firstDepositAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].totalDepositAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].totalDepositAmount].name));
     const body = campaignData.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Row"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["StyleRow"]
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusCode] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusName].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusName] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].newlyRegisterUsers].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].newlyRegisterUsers])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].depositUsers].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].depositUsers])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].firstDepositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].firstDepositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].totalDepositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].totalDepositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["DigitsAmount"]))));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusCode] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusName].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].bonusName]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].newlyRegisterUsers].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].newlyRegisterUsers])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].depositUsers].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].depositUsers])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].firstDepositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].firstDepositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].totalDepositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["CampaignNRUGridColumns"].totalDepositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["DigitsAmount"]))));
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "summary-table"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
@@ -2214,7 +2214,7 @@ const WithdrawalAmountDetailWidget = ({
   };
 
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
-    return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
+    return _objectSpread({}, pagingOption, {}, sortInfo, {}, {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize,
       TotalItem: totalRows
@@ -3273,7 +3273,7 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
     reportDate
   });
 
-  const params = _objectSpread(_objectSpread({}, commonParams), {
+  const params = _objectSpread({}, commonParams, {}, {
     compareFromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
     compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate),
     baseCurrency: selectedBaseCurrency,
@@ -3291,7 +3291,7 @@ _defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", (_r
 
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
 
-  const params = _objectSpread(_objectSpread({}, commonParams), {}, {
+  const params = _objectSpread({}, commonParams, {
     baseCurrency
   });
 
@@ -3314,10 +3314,10 @@ _defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", (_re
     reportDate
   });
 
-  const params = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, commonParams), sortInfo), {
+  const params = _objectSpread({}, commonParams, {}, sortInfo, {}, {
     pageIndex: pagingOption.PageIndex,
     pageSize: pagingOption.PageSize
-  }), rest);
+  }, {}, rest);
 
   return params;
 });
@@ -3332,7 +3332,7 @@ _defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", (_re
 
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
 
-  const params = _objectSpread(_objectSpread(_objectSpread({}, commonParams), sortInfo), {}, {
+  const params = _objectSpread({}, commonParams, {}, sortInfo, {
     baseCurrency,
     allowedCompare
   });
@@ -3354,7 +3354,7 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
     reportDate
   });
 
-  const params = _objectSpread(_objectSpread({}, commonParams), {}, {
+  const params = _objectSpread({}, commonParams, {
     fromLastXDays,
     baseCurrency: selectedBaseCurrency,
     currencyNameList
@@ -3436,7 +3436,7 @@ _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
     reportDate
   });
 
-  const params = _objectSpread(_objectSpread({}, commonParams), {
+  const params = _objectSpread({}, commonParams, {}, {
     viewMode
   });
 
@@ -3457,7 +3457,7 @@ _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
     reportDate
   });
 
-  const params = _objectSpread(_objectSpread({}, commonParams), {
+  const params = _objectSpread({}, commonParams, {}, {
     productIds: products,
     baseCurrency: selectedBaseCurrency
   });
@@ -3467,7 +3467,7 @@ _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
 
 _defineProperty(DataService, "filterDataWithSelectedProducts", (avgRevenueData, products) => {
   const selectedProducts = products.split(',');
-  const dicSelectedProducts = selectedProducts.reduce((prevValue, currentValue) => _objectSpread(_objectSpread({}, prevValue), {}, {
+  const dicSelectedProducts = selectedProducts.reduce((prevValue, currentValue) => _objectSpread({}, prevValue, {
     [currentValue]: true
   }), {});
   const newData = avgRevenueData.filter(_ => dicSelectedProducts[_.productId]);
@@ -3645,7 +3645,7 @@ _defineProperty(QueryService, "fetchData", async apiCall => {
     const response = await apiCall();
 
     if (response.status === 200) {
-      return _objectSpread(_objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["successResponse"]), {
+      return _objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["successResponse"], {}, {
         data: response.data
       });
     }

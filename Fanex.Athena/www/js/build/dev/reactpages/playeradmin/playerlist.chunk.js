@@ -337,7 +337,7 @@ const searchPlayer = param => dispatch => {
     dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setPlayerList"])(playerList));
     dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setIsFetchingData"])(false));
 
-    const pagingOption = _objectSpread(_objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"]), {}, {
+    const pagingOption = _objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"], {
       PageIndex: param.pageIndex,
       PageSize: param.pageSize,
       TotalItem: totalItem
@@ -363,7 +363,7 @@ const getSinglePlayer = param => dispatch => {
       dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setPlayerList"])([result]));
       dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setIsFetchingData"])(false));
 
-      const pagingOption = _objectSpread(_objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"]), {}, {
+      const pagingOption = _objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"], {
         TotalItem: 1
       });
 
@@ -856,7 +856,7 @@ const Content = props => {
       searchPlayer
     } = props;
 
-    const newParam = _objectSpread(_objectSpread({}, param), {}, {
+    const newParam = _objectSpread({}, param, {
       pageIndex,
       pageSize
     });
@@ -1221,7 +1221,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     const actualSpecialLevel = specialLevel.trim();
     const isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
 
-    const param = _objectSpread(_objectSpread({}, restParam), {}, {
+    const param = _objectSpread({}, restParam, {
       userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(userName),
       systemId: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(systemId),
       searchOption: isAdvancedSearch + 1,
@@ -1625,7 +1625,7 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
       const selectedKeyList = selectedItemsKey.split(',');
       const newColumnList = displayedColumnList.map(item => {
         const isShow = selectedKeyList.indexOf(item.key) !== -1;
-        return item.show === isShow ? item : _objectSpread(_objectSpread({}, item), {}, {
+        return item.show === isShow ? item : _objectSpread({}, item, {
           show: isShow
         });
       });
@@ -3151,7 +3151,7 @@ const UserNameCell = props => {
     event.preventDefault();
 
     if (contextMenu.isOpen) {
-      setContextMenu(_objectSpread(_objectSpread({}, contextMenu), {}, {
+      setContextMenu(_objectSpread({}, contextMenu, {
         isOpen: false
       }));
     }
@@ -3247,7 +3247,7 @@ const siteSetting = {
   isAllowedBA: false
 };
 
-const defaultState = _objectSpread(_objectSpread({}, window.initialState), {}, {
+const defaultState = _objectSpread({}, window.initialState, {
   displayedColumnList,
   hasBaPermission,
   siteSetting,
@@ -4217,7 +4217,7 @@ class GridInteractionService {
     }
 
     if (itemIndex !== -1) {
-      const newPlayerItem = _objectSpread(_objectSpread({}, playerList[itemIndex]), {}, {
+      const newPlayerItem = _objectSpread({}, playerList[itemIndex], {
         [fieldName]: value
       });
 
@@ -4230,7 +4230,7 @@ class GridInteractionService {
   static updatePlayerWithBaStatus(playerList, ibcCustId, isBa, oddsGroup) {
     const itemIndex = playerList.findIndex(x => x.IbcCustId === ibcCustId);
 
-    const newPlayerItem = _objectSpread(_objectSpread({}, playerList[itemIndex]), {}, {
+    const newPlayerItem = _objectSpread({}, playerList[itemIndex], {
       BaStatus: isBa,
       OddsGroup: oddsGroup
     });
@@ -5091,7 +5091,7 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
   }
 
   _buildCommonAjaxConfig(configOption, apiActionUrl, params) {
-    const commonConfig = _objectSpread(_objectSpread({}, configOption), {}, {
+    const commonConfig = _objectSpread({}, configOption, {
       url: apiActionUrl
     });
 
@@ -5107,11 +5107,11 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
     } : {
       data: qs__WEBPACK_IMPORTED_MODULE_4___default.a.stringify(params)
     };
-    return _objectSpread(_objectSpread({}, config), paramConfig);
+    return _objectSpread({}, config, {}, paramConfig);
   }
 
   fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
-    const config = _objectSpread(_objectSpread({}, defaultAjaxConfig), configOption);
+    const config = _objectSpread({}, defaultAjaxConfig, {}, configOption);
 
     const relativeUrl = this._baseUrl + action;
 
@@ -6577,12 +6577,12 @@ const bodyDecimalStyle = {
 const bodyCellStyle = {
   rowspan: bodyTextStyle,
   center: {
-    alignment: _objectSpread(_objectSpread({}, bodyTextStyle.alignment), {}, {
+    alignment: _objectSpread({}, bodyTextStyle.alignment, {
       horizontal: "center"
     })
   },
   left: {
-    alignment: _objectSpread(_objectSpread({}, bodyTextStyle.alignment), {}, {
+    alignment: _objectSpread({}, bodyTextStyle.alignment, {
       horizontal: "left"
     })
   },
@@ -6590,7 +6590,7 @@ const bodyCellStyle = {
     numFmt: "#,##0"
   },
   decimal: bodyDecimalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, bodyDecimalStyle), {}, {
+  negativeDecimal: _objectSpread({}, bodyDecimalStyle, {
     font: {
       color: {
         rgb: "FF0000"
@@ -6607,29 +6607,29 @@ const totalTextStyle = {
   }
 };
 
-const totalDecimalStyle = _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+const totalDecimalStyle = _objectSpread({}, totalTextStyle, {
   numFmt: "#,##0.00"
 });
 
 const totalCellStyle = {
   default: totalTextStyle,
-  rowspan: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  rowspan: _objectSpread({}, totalTextStyle, {
     alignment: {
       horizontal: "center",
       vertical: "center"
     }
   }),
-  center: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  center: _objectSpread({}, totalTextStyle, {
     alignment: {
       vertical: "center",
       horizontal: "center"
     }
   }),
-  number: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
+  number: _objectSpread({}, totalTextStyle, {
     numFmt: "#,##0"
   }),
   decimal: totalDecimalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, totalDecimalStyle), {}, {
+  negativeDecimal: _objectSpread({}, totalDecimalStyle, {
     font: {
       bold: true,
       color: {
@@ -6658,28 +6658,28 @@ const grandTotalTextStyle = {
   }
 };
 
-const decimalGrandTotalStyle = _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+const decimalGrandTotalStyle = _objectSpread({}, grandTotalTextStyle, {
   numFmt: "#,##0.00"
 });
 
 const grandTotalCellStyle = {
   default: grandTotalTextStyle,
-  rowspan: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  rowspan: _objectSpread({}, grandTotalTextStyle, {
     alignment: {
       horizontal: "center",
       vertical: "center"
     }
   }),
-  center: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  center: _objectSpread({}, grandTotalTextStyle, {
     alignment: {
       horizontal: "center"
     }
   }),
-  number: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  number: _objectSpread({}, grandTotalTextStyle, {
     numFmt: "#,##0"
   }),
   decimal: decimalGrandTotalStyle,
-  negativeDecimal: _objectSpread(_objectSpread({}, decimalGrandTotalStyle), {}, {
+  negativeDecimal: _objectSpread({}, decimalGrandTotalStyle, {
     font: {
       bold: true,
       color: {
@@ -6687,7 +6687,7 @@ const grandTotalCellStyle = {
       }
     }
   }),
-  percent: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
+  percent: _objectSpread({}, grandTotalTextStyle, {
     numFmt: "#,##0.00%"
   })
 };
@@ -6876,7 +6876,7 @@ const updateObjectInArray = (array, indexItem, updatedItem) => {
       return item;
     }
 
-    return _objectSpread(_objectSpread({}, item), updatedItem);
+    return _objectSpread({}, item, {}, updatedItem);
   });
 };
 
@@ -7247,7 +7247,7 @@ const defaultOkButton = {
 };
 const generateDefaultConfirmOption = (content, onClose, submitProps, cancelProps, icon = predefinedIcons.warning, customOption = {}) => {
   return _objectSpread({
-    buttons: [_objectSpread(_objectSpread({}, defaultSubmitButton), submitProps), _objectSpread(_objectSpread({}, defaultCancelButton), cancelProps)],
+    buttons: [_objectSpread({}, defaultSubmitButton, {}, submitProps), _objectSpread({}, defaultCancelButton, {}, cancelProps)],
     icon,
     isShow: true,
     children: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {

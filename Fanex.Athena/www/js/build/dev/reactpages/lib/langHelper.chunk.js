@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 8/2/2021 1:10:15 AM
+// Generated at: 10/29/2021 1:34:54 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -659,6 +659,7 @@ window._language_en_US = {
   NoOfBonusClaimed: "No. Of Bonus Claimed",
   NoOfCustmer: "No. of Customer",
   NoOfDeposit: "No. Deposit",
+  NoOfUserClaimingBonus: "No. of Users Claiming Bonus",
   NoOfWithdrawal: "No. Withdrawal",
   NoProductFound: "No product found",
   Normal: "Normal",
@@ -893,6 +894,7 @@ window._language_en_US = {
   TotalActiveUsers: "Total Active Users",
   TotalAway: "Total Away",
   TotalBets: "Total Bets",
+  TotalBonus: "Total Bonus",
   TotalBonusAmountClaimed: "Total Bonus Amount Claimed",
   TotalClaimants: "Total Claimants",
   TotalClaimedAmount: "Total Claimed Amount",

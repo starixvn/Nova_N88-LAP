@@ -3139,7 +3139,7 @@ class CurrencyHelper {
       return brandInfo[currencyProperty].reduce((result, currentValue) => {
         if (!existKeys[currentValue.key]) {
           existKeys[currentValue.key] = true;
-          return [...result, _objectSpread(_objectSpread({}, currentValue), {}, {
+          return [...result, _objectSpread({}, currentValue, {
             status: true
           })];
         }

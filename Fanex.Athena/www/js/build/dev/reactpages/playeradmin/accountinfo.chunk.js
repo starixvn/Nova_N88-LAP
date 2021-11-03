@@ -188,7 +188,7 @@ const getLink = (sysType, action) => () => {
   return commonService.getLink(sysType, action);
 };
 
-const ActionCreators = _objectSpread(_objectSpread({}, _subtabAction__WEBPACK_IMPORTED_MODULE_2__), {}, {
+const ActionCreators = _objectSpread({}, _subtabAction__WEBPACK_IMPORTED_MODULE_2__, {
   getCustomerBettingStatus,
   getLink
 });
@@ -907,11 +907,11 @@ const CustomerBettingStatus = props => {
       CancelledTicketCount
     } = data;
 
-    const dataSetItem = _objectSpread(_objectSpread({}, defaultDataSetItem), {}, {
+    const dataSetItem = _objectSpread({}, defaultDataSetItem, {
       data: [WonTicketCount, LoseTicketCount, DrawTicketCount, CancelledTicketCount]
     });
 
-    const chartData = _objectSpread(_objectSpread({}, defaultChartData), {}, {
+    const chartData = _objectSpread({}, defaultChartData, {
       datasets: [dataSetItem]
     });
 
@@ -1613,7 +1613,7 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
   }
 
   _buildCommonAjaxConfig(configOption, apiActionUrl, params) {
-    const commonConfig = _objectSpread(_objectSpread({}, configOption), {}, {
+    const commonConfig = _objectSpread({}, configOption, {
       url: apiActionUrl
     });
 
@@ -1629,11 +1629,11 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
     } : {
       data: qs__WEBPACK_IMPORTED_MODULE_4___default.a.stringify(params)
     };
-    return _objectSpread(_objectSpread({}, config), paramConfig);
+    return _objectSpread({}, config, {}, paramConfig);
   }
 
   fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
-    const config = _objectSpread(_objectSpread({}, defaultAjaxConfig), configOption);
+    const config = _objectSpread({}, defaultAjaxConfig, {}, configOption);
 
     const relativeUrl = this._baseUrl + action;
 
@@ -1847,7 +1847,7 @@ const resources = {
 const currentLangKey = window._langKey || DEFAULT_RESOURCE_KEY;
 class ClientResourceManager {
   static register(langKey, resourceValue) {
-    resources[langKey] = _objectSpread(_objectSpread({}, resources[langKey]), resourceValue);
+    resources[langKey] = _objectSpread({}, resources[langKey], {}, resourceValue);
   }
 
   static getText(key) {

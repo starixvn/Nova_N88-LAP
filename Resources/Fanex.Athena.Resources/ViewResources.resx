@@ -3058,7 +3058,7 @@
     <comment>147542</comment>
   </data>
   <data name="NoteReportDepositAndWithdrawal" xml:space="preserve">
-    <value>Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone</value>
+    <value>Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone</value>
     <comment>147542</comment>
   </data>
   <data name="Happy5LinkedGames" xml:space="preserve">

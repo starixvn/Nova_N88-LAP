@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 10/29/2021 1:34:54 PM
+// Generated at: 11/8/2021 5:14:20 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -665,7 +665,7 @@ window._language_en_US = {
   Normal: "Normal",
   NotAllowBA: "This licensee is not allowed BA",
   Note: "Note",
-  NoteReportDepositAndWithdrawal: "Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
+  NoteReportDepositAndWithdrawal: "Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
   NoteReportGrossRevenue: "This report is reported gross revenue, have not yet deducted cost, fee, ect...",
   NoteSupportClosingBalance: "Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00",
   Notification: "Notification",

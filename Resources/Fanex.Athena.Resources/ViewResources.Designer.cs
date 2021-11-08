@@ -5191,7 +5191,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone.
+        ///   Looks up a localized string similar to Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone.
         /// </summary>
         public static string NoteReportDepositAndWithdrawal {
             get {

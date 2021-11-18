@@ -5137,6 +5137,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No. of Users Claiming Bonus.
+        /// </summary>
+        public static string NoOfUserClaimingBonus {
+            get {
+                return ResourceManager.GetString("NoOfUserClaimingBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No. Withdrawal.
         /// </summary>
         public static string NoOfWithdrawal {
@@ -5182,7 +5191,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone.
+        ///   Looks up a localized string similar to Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone.
         /// </summary>
         public static string NoteReportDepositAndWithdrawal {
             get {
@@ -7239,6 +7248,15 @@ namespace Fanex.Athena.Resources {
         public static string TotalBets {
             get {
                 return ResourceManager.GetString("TotalBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Bonus.
+        /// </summary>
+        public static string TotalBonus {
+            get {
+                return ResourceManager.GetString("TotalBonus", resourceCulture);
             }
         }
         

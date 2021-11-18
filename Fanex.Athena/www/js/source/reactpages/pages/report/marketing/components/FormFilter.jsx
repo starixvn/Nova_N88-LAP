@@ -23,7 +23,6 @@ export const FormFilter = props => {
     } = props;
 
     const currencyList = React.useMemo(() => CurrencyHelper.getTpCurrencyList(selectedBrand, AppData.brands), [selectedBrand]);
-    var fromLastXDays = AppData.dateConstraint.userLimitDataRange > 0 ? AppData.dateConstraint.minDate : null;
 
     useEffect(() => {
         const selectedCurrency = currencyList.map(_ => _.key).join(',');
@@ -118,6 +117,7 @@ export const FormFilter = props => {
     }
 
     const _onSubmit = () => {
+        const fromLastXDays = AppData.dateConstraint.userLimitDataRange > 0 ? AppData.dateConstraint.minDate : null;
         const globalFilter = { reportDate, compareDate, viewMode, selectedBaseCurrency, selectedCurrency, selectedBrand, allowedCompare, fromLastXDays };
         setGlobalFilter(globalFilter);
     }

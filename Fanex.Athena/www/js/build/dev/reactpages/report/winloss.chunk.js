@@ -592,7 +592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const CheckBox = react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
+const CheckBox = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "checkbox-group",
     ref: ref
@@ -4805,6 +4805,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
   constructor(props) {
     super(props);
@@ -4850,7 +4851,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       const params = _objectSpread(_objectSpread({}, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_14__["default"].toAPIParams(_objectSpread(_objectSpread({}, this.props), {}, {
         requestParam: {}
       }))), {}, {
-        orderCols: _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_20__["default"].getOrderCols(displayedColumns)
+        orderCols: _libs_helpers_gridHelper__WEBPACK_IMPORTED_MODULE_20__["default"].getOrderCols(displayedColumns, [_constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["columnKeys"].noOfDeposit, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["columnKeys"].totalDepositAmount, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["columnKeys"].noOfWithdrawal, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["columnKeys"].totalWithdrawalAmount, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["columnKeys"].bonusAmount])
       });
 
       toggleLoader(true);
@@ -5319,7 +5320,7 @@ function mapStateToProps(state) {
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
 
 /***/ }),
 
@@ -5446,7 +5447,7 @@ const DecimalCell = props => {
 DecimalCell.defaultProps = {
   digits: 2
 };
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DecimalCell));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DecimalCell));
 
 /***/ }),
 
@@ -5735,7 +5736,7 @@ function mapStateToProps(state) {
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridData)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridData)));
 
 /***/ }),
 
@@ -5768,7 +5769,7 @@ const GridRow = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], null, [..._constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultDisplayedColumns"], ...displayedColumns].map(col => col.show && _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["componentCells"][col.key] && _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["componentCells"][col.key](rowData, highLight, groupChildClassName)));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridRow));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GridRow));
 
 /***/ }),
 
@@ -5946,7 +5947,7 @@ function mapStateToProps(state) {
 }
 
 ;
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupCell)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupCell)));
 
 /***/ }),
 
@@ -6063,6 +6064,7 @@ const columnKeys = {
   totalDepositAmount: 'depositAmount',
   noOfWithdrawal: 'numberOfWithdrawal',
   totalWithdrawalAmount: 'withdrawalAmount',
+  bonusAmount: 'bonusAmount',
   progressiveBet: 'progressiveBet',
   progressiveWin: 'progressiveWin'
 };
@@ -6155,6 +6157,12 @@ const displayedColumns = [{
 }, {
   key: columnKeys.totalWithdrawalAmount,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalWithdrawalAmount'),
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  show: true,
+  hasTotal: true
+}, {
+  key: columnKeys.bonusAmount,
+  name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalBonus'),
   allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
   show: true,
   hasTotal: true
@@ -6303,6 +6311,14 @@ const dataColumns = {
     draggable: true,
     onDragOver: event => event.preventDefault(),
     onDragStart: event => onDragStart(event, columnKeys.totalWithdrawalAmount)
+  },
+  [columnKeys.bonusAmount]: {
+    sortBy: 17,
+    colWidth: 70,
+    className: "right-align",
+    draggable: true,
+    onDragOver: event => event.preventDefault(),
+    onDragStart: event => onDragStart(event, columnKeys.bonusAmount)
   }
 };
 
@@ -6379,6 +6395,10 @@ const componentCells = {
   [columnKeys.totalWithdrawalAmount]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
     value: rowData[columnKeys.totalWithdrawalAmount],
     className: dataColumns[columnKeys.totalWithdrawalAmount].className + highLight
+  }),
+  [columnKeys.bonusAmount]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: rowData[columnKeys.bonusAmount],
+    className: dataColumns[columnKeys.bonusAmount].className + highLight
   }),
   [columnKeys.progressiveWin]: (rowData, highLight) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_grid_DecimalCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
     value: rowData[columnKeys.progressiveWin],
@@ -6598,8 +6618,8 @@ class GridHelper {
 
 }
 
-_defineProperty(GridHelper, "getOrderCols", displayedColumns => {
-  return displayedColumns.filter(_ => _.show).map(_ => _.key);
+_defineProperty(GridHelper, "getOrderCols", (displayedColumns, excludedCols) => {
+  return displayedColumns.filter(_ => _.show && (!excludedCols || excludedCols.every(col => col !== _.key))).map(_ => _.key);
 });
 
 /***/ }),

@@ -90,21 +90,21 @@ const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, sele
         const header = (<HeaderRow style={StyleRow}>
             <HeaderCell>{LangHelper.getSingleResource('BonusCode')}</HeaderCell>
             <HeaderCell>{LangHelper.getSingleResource('BonusName')}</HeaderCell>
-            <HeaderCell>{LangHelper.getSingleResource('NoOfBonusClaimed')}</HeaderCell>
+            <HeaderCell>{LangHelper.getSingleResource('NoOfUserClaimingBonus')}</HeaderCell>
             <HeaderCell>{LangHelper.getSingleResource('TotalBonusAmountClaimed')}</HeaderCell>
         </HeaderRow>);
 
         const body = detailData.map(item => <Row key={item.id} style={StyleRow}>
             {_renderGroupCampaignCell(item, detailData)}
-            <Cell className='left-align'>{item.bonusName || LangHelper.getSingleResource('None')}</Cell>
-            <Cell className='right-align'>{NumberFormat.format(item.numberOfBonusClaimed, 0)}</Cell>
+            <Cell className='left-align'>{item.bonusName}</Cell>
+            <Cell className='right-align'>{NumberFormat.format(item.numberOfBonusUser, 0)}</Cell>
             <Cell className='right-align'>{NumberFormat.format(item.bonusAmount, DigitsAmount)}</Cell>
         </Row>)
 
         const totalRow = (<Row>
             <Cell className='left-align total-cell'>{LangHelper.getSingleResource('Total')}</Cell>
             <Cell className='total-cell' />
-            <Cell className='right-align total-cell'>{NumberFormat.format(totalDetailData.totalBonusClaimeds, 0)}</Cell>
+            <Cell className='right-align total-cell'>{NumberFormat.format(totalDetailData.totalBonusUsers, 0)}</Cell>
             <Cell className='right-align total-cell'>{NumberFormat.format(totalDetailData.totalBonusAmount, 2)}</Cell>
         </Row>)
 

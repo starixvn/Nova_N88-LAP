@@ -317,6 +317,27 @@ const setSelectedClaimStatus = claimStatus => {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/actions/currencyAction.js":
+/*!************************************************************!*\
+  !*** ./www/js/source/reactpages/actions/currencyAction.js ***!
+  \************************************************************/
+/*! exports provided: setSelectedCurrency */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSelectedCurrency", function() { return setSelectedCurrency; });
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./www/js/source/reactpages/actions/types.js");
+
+const setSelectedCurrency = item => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_CURRENCY"],
+    data: item
+  };
+};
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/actions/dateRangeAction.js":
 /*!*************************************************************!*\
   !*** ./www/js/source/reactpages/actions/dateRangeAction.js ***!
@@ -3020,6 +3041,37 @@ class QueryString {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/lib/collectionHelper.js":
+/*!**********************************************************!*\
+  !*** ./www/js/source/reactpages/lib/collectionHelper.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CollectionHelper; });
+class CollectionHelper {
+  static createDataSourceFrom(originDataSource, selectedItems) {
+    const selectedItemList = selectedItems.split(',').filter(x => x !== '');
+    const convertedList = originDataSource.map(item => {
+      const {
+        key,
+        value
+      } = item;
+      return {
+        key,
+        value,
+        status: selectedItemList.find(_ => _ == key) ? true : false
+      };
+    });
+    return convertedList;
+  }
+
+}
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/lib/createReducer.js":
 /*!*******************************************************!*\
   !*** ./www/js/source/reactpages/lib/createReducer.js ***!
@@ -3038,6 +3090,65 @@ function createReducer(initialState, handlers) {
       return state;
     }
   };
+}
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/lib/currencyHelper.js":
+/*!********************************************************!*\
+  !*** ./www/js/source/reactpages/lib/currencyHelper.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CurrencyHelper; });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class CurrencyHelper {
+  static getTpCurrencyList(brandIds, brands) {
+    return this._getCurrencyList(brandIds, brands, 'tpCurrencies');
+  }
+
+  static getAgentCurrencyList(brandIds, brands) {
+    return this._getCurrencyList(brandIds, brands, 'currencies');
+  }
+
+  static _getCurrencyList(brandIds, brands, currencyProperty) {
+    const brandIdList = (brandIds + '').split(',');
+    const existKeys = {};
+    const currencyList = brandIdList.reduce((result, brandId) => {
+      const currencyListByBrand = this._getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty);
+
+      return [...result, ...currencyListByBrand];
+    }, []);
+    return currencyList;
+  }
+
+  static _getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty) {
+    var brandInfo = brands.find(_ => _.id === parseInt(brandId));
+
+    if (brandInfo) {
+      return brandInfo[currencyProperty].reduce((result, currentValue) => {
+        if (!existKeys[currentValue.key]) {
+          existKeys[currentValue.key] = true;
+          return [...result, _objectSpread(_objectSpread({}, currentValue), {}, {
+            status: true
+          })];
+        }
+
+        return result;
+      }, []);
+    }
+
+    return [];
+  }
+
 }
 
 /***/ }),
@@ -3308,10 +3419,12 @@ const setBonusInfoDetailData = data => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./www/js/source/reactpages/pages/report/bonusinfo/actions/types.js");
 /* harmony import */ var _jsroot_actions_baseCurrencyAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/actions/baseCurrencyAction */ "./www/js/source/reactpages/actions/baseCurrencyAction.js");
-/* harmony import */ var _jsroot_actions_brandAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/actions/brandAction */ "./www/js/source/reactpages/actions/brandAction.js");
-/* harmony import */ var _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/actions/bonusAction */ "./www/js/source/reactpages/actions/bonusAction.js");
-/* harmony import */ var _jsroot_actions_claimAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/actions/claimAction */ "./www/js/source/reactpages/actions/claimAction.js");
-/* harmony import */ var _jsroot_actions_dateRangeAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/actions/dateRangeAction */ "./www/js/source/reactpages/actions/dateRangeAction.js");
+/* harmony import */ var _jsroot_actions_currencyAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/actions/currencyAction */ "./www/js/source/reactpages/actions/currencyAction.js");
+/* harmony import */ var _jsroot_actions_brandAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/actions/brandAction */ "./www/js/source/reactpages/actions/brandAction.js");
+/* harmony import */ var _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/actions/bonusAction */ "./www/js/source/reactpages/actions/bonusAction.js");
+/* harmony import */ var _jsroot_actions_claimAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/actions/claimAction */ "./www/js/source/reactpages/actions/claimAction.js");
+/* harmony import */ var _jsroot_actions_dateRangeAction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/actions/dateRangeAction */ "./www/js/source/reactpages/actions/dateRangeAction.js");
+
 
 
 
@@ -3379,15 +3492,16 @@ const setSummarySortInfo = data => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  setDateRange: _jsroot_actions_dateRangeAction__WEBPACK_IMPORTED_MODULE_5__["setDateRange"],
+  setDateRange: _jsroot_actions_dateRangeAction__WEBPACK_IMPORTED_MODULE_6__["setDateRange"],
   setSelectedBaseCurrency: _jsroot_actions_baseCurrencyAction__WEBPACK_IMPORTED_MODULE_1__["setSelectedBaseCurrency"],
-  setSelectedBrand: _jsroot_actions_brandAction__WEBPACK_IMPORTED_MODULE_2__["setSelectedBrand"],
-  setBonusCodeList: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_3__["setBonusCodeList"],
-  setSelectedBonusName: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedBonusName"],
-  setSelectedBonusType: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedBonusType"],
-  setSelectedBonusStatus: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedBonusStatus"],
-  setSelectedClaimStatus: _jsroot_actions_claimAction__WEBPACK_IMPORTED_MODULE_4__["setSelectedClaimStatus"],
-  setSelectedBonusCode: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedBonusCode"],
+  setSelectedCurrency: _jsroot_actions_currencyAction__WEBPACK_IMPORTED_MODULE_2__["setSelectedCurrency"],
+  setSelectedBrand: _jsroot_actions_brandAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedBrand"],
+  setBonusCodeList: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_4__["setBonusCodeList"],
+  setSelectedBonusName: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_4__["setSelectedBonusName"],
+  setSelectedBonusType: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_4__["setSelectedBonusType"],
+  setSelectedBonusStatus: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_4__["setSelectedBonusStatus"],
+  setSelectedClaimStatus: _jsroot_actions_claimAction__WEBPACK_IMPORTED_MODULE_5__["setSelectedClaimStatus"],
+  setSelectedBonusCode: _jsroot_actions_bonusAction__WEBPACK_IMPORTED_MODULE_4__["setSelectedBonusCode"],
   setSelectedSummaryDate,
   setSummarySortInfo,
   setGlobalFilter,
@@ -3595,10 +3709,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_components_date_range__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/components/date-range */ "./www/js/source/reactpages/components/date-range/index.js");
 /* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @9softstudio/react-multiselect */ "./node_modules/@9softstudio/react-multiselect/dist/index.js");
 /* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../libs/services/queryService */ "./www/js/source/reactpages/pages/report/bonusinfo/libs/services/queryService.js");
-/* harmony import */ var _filter_GroupFilter__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./filter/GroupFilter */ "./www/js/source/reactpages/pages/report/bonusinfo/components/filter/GroupFilter.jsx");
-/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../constants/gridConst */ "./www/js/source/reactpages/pages/report/bonusinfo/constants/gridConst.js");
-/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../constants/filterConsts */ "./www/js/source/reactpages/pages/report/bonusinfo/constants/filterConsts.js");
+/* harmony import */ var _jsroot_lib_collectionHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/lib/collectionHelper */ "./www/js/source/reactpages/lib/collectionHelper.js");
+/* harmony import */ var _jsroot_lib_currencyHelper__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @jsroot/lib/currencyHelper */ "./www/js/source/reactpages/lib/currencyHelper.js");
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../libs/services/queryService */ "./www/js/source/reactpages/pages/report/bonusinfo/libs/services/queryService.js");
+/* harmony import */ var _filter_GroupFilter__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./filter/GroupFilter */ "./www/js/source/reactpages/pages/report/bonusinfo/components/filter/GroupFilter.jsx");
+/* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../constants/gridConst */ "./www/js/source/reactpages/pages/report/bonusinfo/constants/gridConst.js");
+/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../constants/filterConsts */ "./www/js/source/reactpages/pages/report/bonusinfo/constants/filterConsts.js");
+
+
 
 
 
@@ -3620,6 +3738,7 @@ const FormFilter = props => {
     setSelectedBonusName,
     setSelectedBrand,
     setSelectedBaseCurrency,
+    setSelectedCurrency,
     setSelectedClaimStatus,
     setSelectedBonusStatus,
     setSelectedBonusType,
@@ -3627,18 +3746,19 @@ const FormFilter = props => {
     selectedBonusStatus,
     selectedBonusType,
     setGlobalFilter,
-    setCollapseFormFilter,
     dateRange,
     selectedBonusName,
     selectedBrand,
     selectedGroupByOption,
     selectedBaseCurrency,
+    selectedCurrency,
     dropdownOptionsData,
     setDropdownOptionsData,
     setSummarySortInfo
   } = props;
+  const currencyList = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_currencyHelper__WEBPACK_IMPORTED_MODULE_12__["default"].getTpCurrencyList(selectedBrand, _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].brands), [selectedBrand]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_11__["default"].fetchDropdownOptionsData(response => {
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_13__["default"].fetchDropdownOptionsData(response => {
       if (response.isSuccess) {
         setDropdownOptionsData(response.data);
         setSelectedClaimStatus(response.data.claimStatusList.map(item => item.status && item.key).join(','));
@@ -3647,6 +3767,10 @@ const FormFilter = props => {
       }
     });
   }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const selectedCurrency = currencyList.map(_ => _.key).join(',');
+    setSelectedCurrency(selectedCurrency);
+  }, [currencyList]);
 
   const _onChangeDateRange = (range, isValid = true) => {
     if (isValid) {
@@ -3667,6 +3791,19 @@ const FormFilter = props => {
       today: dateRange.toDate,
       limitedMonthRange: dateConstraint.limitedMonthRange,
       onChange: _onChangeDateRange
+    });
+  };
+
+  const _renderCurrencySelectList = () => {
+    const dataSource = _jsroot_lib_collectionHelper__WEBPACK_IMPORTED_MODULE_11__["default"].createDataSourceFrom(currencyList, selectedCurrency);
+    return currencyList && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
+      id: "ddlCurrency",
+      language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].currentLanguage,
+      dataSource: dataSource,
+      keyField: "key",
+      valueField: "value",
+      statusField: "status",
+      onChange: (_, selectedItemsKey) => setSelectedCurrency(selectedItemsKey)
     });
   };
 
@@ -3738,13 +3875,14 @@ const FormFilter = props => {
       toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_7__["default"].convertDateToString(toDate),
       bonusName: selectedBonusName,
       baseCurrency: selectedBaseCurrency,
+      currencyIdList: selectedCurrency,
       brandId: selectedBrand,
       claimStatus: selectedClaimStatus,
       bonusStatus: selectedBonusStatus,
       bonusType: selectedBonusType,
       groupBy: selectedGroupByOption
     };
-    selectedGroupByOption === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_14__["GroupByOptionIds"].bonusCodeAndDate && setSummarySortInfo(_constants_gridConst__WEBPACK_IMPORTED_MODULE_13__["DefaultSummarySortInfoGroupByDate"]) || setSummarySortInfo(_constants_gridConst__WEBPACK_IMPORTED_MODULE_13__["DefaultSummarySortInfo"]);
+    selectedGroupByOption === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_16__["GroupByOptionIds"].bonusCodeAndDate && setSummarySortInfo(_constants_gridConst__WEBPACK_IMPORTED_MODULE_15__["DefaultSummarySortInfoGroupByDate"]) || setSummarySortInfo(_constants_gridConst__WEBPACK_IMPORTED_MODULE_15__["DefaultSummarySortInfo"]);
     setGlobalFilter(globalFilter);
   };
 
@@ -3803,8 +3941,14 @@ const FormFilter = props => {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "label-text"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("BaseCurrency")), _renderBaseCurrencySelectList())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_GroupFilter__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    isDisabledSubmit: !selectedClaimStatus || !selectedBonusStatus || !selectedBonusType,
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("Currency")), _renderCurrencySelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-md-6 col-sm-6 col-lg-3 col-xl-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "label-text"
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("BaseCurrency")), _renderBaseCurrencySelectList())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_GroupFilter__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    isDisabledSubmit: !selectedClaimStatus || !selectedBonusStatus || !selectedBonusType || !selectedCurrency,
     onSubmit: _onSubmit
   }));
 };
@@ -3815,6 +3959,7 @@ function mapStateToProps(state) {
     selectedBrand,
     selectedBonusName,
     selectedBaseCurrency,
+    selectedCurrency,
     selectedClaimStatus,
     selectedBonusStatus,
     selectedBonusType,
@@ -3826,6 +3971,7 @@ function mapStateToProps(state) {
     selectedBonusName,
     selectedBrand,
     selectedBaseCurrency,
+    selectedCurrency,
     selectedClaimStatus,
     selectedBonusStatus,
     selectedBonusType,
@@ -3840,6 +3986,7 @@ function mapDispatchToProps(dispatch) {
     setSelectedBonusName,
     setSelectedBrand,
     setSelectedBaseCurrency,
+    setSelectedCurrency,
     setSelectedClaimStatus,
     setSelectedBonusStatus,
     setSelectedBonusType,
@@ -3853,6 +4000,7 @@ function mapDispatchToProps(dispatch) {
     setSelectedBonusName,
     setSelectedBrand,
     setSelectedBaseCurrency,
+    setSelectedCurrency,
     setSelectedClaimStatus,
     setSelectedBonusStatus,
     setSelectedBonusType,
@@ -3931,7 +4079,7 @@ const Widget = props => {
     isLoading: isLoading
   }), hasData && children || _renderNoData()));
 };
-/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Widget));
 
 /***/ }),
 
@@ -4010,7 +4158,7 @@ function mapStateToProps(state) {
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupFilter)));
 
 /***/ }),
 
@@ -4090,6 +4238,11 @@ const BonusInfoDetailWidget = props => {
 
   const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Details'), []);
 
+  const _getBonusTypeId = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(bonusCode => {
+    const bonusType = bonusInfoSummaryData.dataList.find(bonus => bonus.bonusCode === bonusCode);
+    return bonusType ? bonusType.bonusTypeId : 0;
+  }, [bonusInfoSummaryData]);
+
   const _handleExportExcel = () => {
     if (!selectedBonusCode) {
       return;
@@ -4100,7 +4253,10 @@ const BonusInfoDetailWidget = props => {
       fromDate: date ? date : detailFilter.fromDate,
       toDate: date ? date : detailFilter.toDate
     };
-    const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_6__["default"].getBonusInfoDetailExportAPIParams(detailFilter, sortInfo, dateRange, selectedBonusCode);
+
+    const bonusTypeId = _getBonusTypeId(selectedBonusCode);
+
+    const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_6__["default"].getBonusInfoDetailExportAPIParams(detailFilter, sortInfo, dateRange, selectedBonusCode, bonusTypeId);
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_7__["default"].exportBonusInfoDetailData(exportParams);
   };
 
@@ -4110,10 +4266,13 @@ const BonusInfoDetailWidget = props => {
       fromDate: date ? date : detailFilter.fromDate,
       toDate: date ? date : detailFilter.toDate
     };
+
+    const bonusTypeId = _getBonusTypeId(selectedBonusCode);
+
     const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_6__["default"].getBonusInfoDetailAPIParams(detailFilter, {
       PageIndex: pageIndex || pagingOption.PageIndex,
       PageSize: pageSize || pagingOption.PageSize
-    }, sort || sortInfo, dateRange, selectedBonusCode);
+    }, sort || sortInfo, dateRange, selectedBonusCode, bonusTypeId);
     setLoading(true);
     fetchBonusInfoDetailData(apiParams, (data, isSuccess) => {
       setLoading(false);
@@ -4201,7 +4360,6 @@ const BonusInfoDetailWidget = props => {
       instanceId: "bonusCodeList",
       value: selectedBonusCode,
       options: listValue,
-      k: true,
       onChange: _bonusOnChange
     });
   };
@@ -4310,7 +4468,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoDetailWidget)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoDetailWidget)));
 
 /***/ }),
 
@@ -4338,13 +4496,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
 /* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/bonusinfo/constants/filterConsts.js");
-/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -4371,7 +4527,6 @@ const BonusInfoSummaryWidget = props => {
     setSelectedBonusCode,
     summaryGridHeight,
     setSummaryGridHeight,
-    selectedSummaryDate,
     setSelectedSummaryDate,
     setBonusInfoDetailData
   } = props;
@@ -4588,7 +4743,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoSummaryWidget)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusInfoSummaryWidget)));
 
 /***/ }),
 
@@ -4647,7 +4802,7 @@ const BonusInfoSummaryGridColumns = {
   bonusCode: 'bonusCode',
   date: 'dateString',
   gGR: 'ggr',
-  bonusType: 'bonusTypeText',
+  bonusType: 'bonusTypeName',
   startDate: 'startDateString',
   endDate: 'endDateString',
   bonusStatus: 'bonusStatusText',
@@ -4709,7 +4864,7 @@ const BonusInfoSummaryGridConfig = {
   [BonusInfoSummaryGridColumns.bonusType]: {
     name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('BonusType'),
     attributes: {
-      sortBy: 'bonusType',
+      sortBy: 'bonusTypeName',
       colWidth: 85,
       className: "left-align"
     }
@@ -4989,12 +5144,13 @@ _defineProperty(DataService, "getBonusInfoSummaryAPIParams", (filterData, sortIn
   return params;
 });
 
-_defineProperty(DataService, "getBonusInfoDetailAPIParams", (filterData, pagingOption, sortInfo, dateRange, bonusCode) => {
+_defineProperty(DataService, "getBonusInfoDetailAPIParams", (filterData, pagingOption, sortInfo, dateRange, bonusCode, bonusTypeId) => {
   const params = _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, filterData), sortInfo), dateRange), {
     pageIndex: pagingOption.PageIndex,
     pageSize: pagingOption.PageSize
   }), {}, {
-    bonusCode
+    bonusCode,
+    bonusTypeId
   });
 
   return params;
@@ -5006,9 +5162,10 @@ _defineProperty(DataService, "getBonusInfoSummaryExportAPIParams", (filterData, 
   return params;
 });
 
-_defineProperty(DataService, "getBonusInfoDetailExportAPIParams", (filterData, sortInfo, dateRange, bonusCode) => {
+_defineProperty(DataService, "getBonusInfoDetailExportAPIParams", (filterData, sortInfo, dateRange, bonusCode, bonusTypeId) => {
   const params = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, filterData), sortInfo), dateRange), {}, {
-    bonusCode
+    bonusCode,
+    bonusTypeId
   });
 
   return params;
@@ -5174,9 +5331,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _jsroot_reducers_dateRangeReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/reducers/dateRangeReducer */ "./www/js/source/reactpages/reducers/dateRangeReducer.js");
 /* harmony import */ var _jsroot_reducers_baseCurrencyReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/reducers/baseCurrencyReducer */ "./www/js/source/reactpages/reducers/baseCurrencyReducer.js");
-/* harmony import */ var _jsroot_reducers_brandReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/reducers/brandReducer */ "./www/js/source/reactpages/reducers/brandReducer.js");
-/* harmony import */ var _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/reducers/bonusReducer */ "./www/js/source/reactpages/reducers/bonusReducer.js");
-/* harmony import */ var _jsroot_reducers_claimReducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/reducers/claimReducer */ "./www/js/source/reactpages/reducers/claimReducer.js");
+/* harmony import */ var _jsroot_reducers_currencyReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/reducers/currencyReducer */ "./www/js/source/reactpages/reducers/currencyReducer.js");
+/* harmony import */ var _jsroot_reducers_brandReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/reducers/brandReducer */ "./www/js/source/reactpages/reducers/brandReducer.js");
+/* harmony import */ var _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/reducers/bonusReducer */ "./www/js/source/reactpages/reducers/bonusReducer.js");
+/* harmony import */ var _jsroot_reducers_claimReducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/reducers/claimReducer */ "./www/js/source/reactpages/reducers/claimReducer.js");
+
 
 
 
@@ -5234,17 +5393,18 @@ const selectedSummarySortInfo = Object(_jsroot_lib_createReducer_js__WEBPACK_IMP
 });
 /* harmony default export */ __webpack_exports__["default"] = ({
   dateRange: _jsroot_reducers_dateRangeReducer__WEBPACK_IMPORTED_MODULE_2__["dateRange"],
-  selectedBrand: _jsroot_reducers_brandReducer__WEBPACK_IMPORTED_MODULE_4__["selectedBrand"],
+  selectedBrand: _jsroot_reducers_brandReducer__WEBPACK_IMPORTED_MODULE_5__["selectedBrand"],
   selectedBaseCurrency: _jsroot_reducers_baseCurrencyReducer__WEBPACK_IMPORTED_MODULE_3__["selectedBaseCurrency"],
-  selectedBonusName: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_5__["selectedBonusName"],
-  selectedBonusType: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_5__["selectedBonusType"],
-  selectedBonusStatus: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_5__["selectedBonusStatus"],
-  selectedClaimStatus: _jsroot_reducers_claimReducer__WEBPACK_IMPORTED_MODULE_6__["selectedClaimStatus"],
-  selectedBonusCode: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_5__["selectedBonusCode"],
+  selectedCurrency: _jsroot_reducers_currencyReducer__WEBPACK_IMPORTED_MODULE_4__["selectedCurrency"],
+  selectedBonusName: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_6__["selectedBonusName"],
+  selectedBonusType: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_6__["selectedBonusType"],
+  selectedBonusStatus: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_6__["selectedBonusStatus"],
+  selectedClaimStatus: _jsroot_reducers_claimReducer__WEBPACK_IMPORTED_MODULE_7__["selectedClaimStatus"],
+  selectedBonusCode: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_6__["selectedBonusCode"],
   selectedGroupByOption,
   selectedSummaryDate,
   selectedSummarySortInfo,
-  bonusCodeList: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_5__["bonusCodeList"],
+  bonusCodeList: _jsroot_reducers_bonusReducer__WEBPACK_IMPORTED_MODULE_6__["bonusCodeList"],
   globalFilter,
   detailFilter,
   isCollapsedFormFilter,
@@ -5393,6 +5553,29 @@ __webpack_require__.r(__webpack_exports__);
 
 const selectedClaimStatus = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_CLAIM_STATUS"]](state, action) {
+    return action.data;
+  }
+
+});
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/reducers/currencyReducer.js":
+/*!**************************************************************!*\
+  !*** ./www/js/source/reactpages/reducers/currencyReducer.js ***!
+  \**************************************************************/
+/*! exports provided: selectedCurrency */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectedCurrency", function() { return selectedCurrency; });
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./www/js/source/reactpages/actions/types.js");
+/* harmony import */ var _lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
+
+
+const selectedCurrency = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_CURRENCY"]](state, action) {
     return action.data;
   }
 

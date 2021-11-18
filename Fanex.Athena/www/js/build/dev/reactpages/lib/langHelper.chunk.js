@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 8/2/2021 1:10:15 AM
+// Generated at: 11/8/2021 5:14:20 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -659,12 +659,13 @@ window._language_en_US = {
   NoOfBonusClaimed: "No. Of Bonus Claimed",
   NoOfCustmer: "No. of Customer",
   NoOfDeposit: "No. Deposit",
+  NoOfUserClaimingBonus: "No. of Users Claiming Bonus",
   NoOfWithdrawal: "No. Withdrawal",
   NoProductFound: "No product found",
   Normal: "Normal",
   NotAllowBA: "This licensee is not allowed BA",
   Note: "Note",
-  NoteReportDepositAndWithdrawal: "Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
+  NoteReportDepositAndWithdrawal: "Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
   NoteReportGrossRevenue: "This report is reported gross revenue, have not yet deducted cost, fee, ect...",
   NoteSupportClosingBalance: "Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00",
   Notification: "Notification",
@@ -893,6 +894,7 @@ window._language_en_US = {
   TotalActiveUsers: "Total Active Users",
   TotalAway: "Total Away",
   TotalBets: "Total Bets",
+  TotalBonus: "Total Bonus",
   TotalBonusAmountClaimed: "Total Bonus Amount Claimed",
   TotalClaimants: "Total Claimants",
   TotalClaimedAmount: "Total Claimed Amount",

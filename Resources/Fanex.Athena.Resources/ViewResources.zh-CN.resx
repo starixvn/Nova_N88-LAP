@@ -2520,7 +2520,7 @@
     <comment>147542</comment>
   </data>
   <data name="NoteReportDepositAndWithdrawal" xml:space="preserve">
-    <value>Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone</value>
+    <value>Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone</value>
     <comment>147542</comment>
   </data>
   <data name="Brand" xml:space="preserve">
@@ -2619,5 +2619,11 @@
   <data name="NoteSupportClosingBalance" xml:space="preserve">
     <value>Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00</value>
     <comment>155334</comment>
+  </data>
+  <data name="NoOfUserClaimingBonus" xml:space="preserve">
+    <value>No. of Users Claiming Bonus</value>
+  </data>
+  <data name="TotalBonus" xml:space="preserve">
+    <value>Total Bonus</value>
   </data>
 </root>

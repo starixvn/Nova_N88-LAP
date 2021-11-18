@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 8/2/2021 1:10:15 AM
+﻿// Generated at: 11/8/2021 5:14:20 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -566,12 +566,13 @@ NonEntered:"成绩还没输入场数",
 NoOfBonusClaimed:"No. Of Bonus Claimed",
 NoOfCustmer:"会员数",
 NoOfDeposit:"No. Deposit",
+NoOfUserClaimingBonus:"No. of Users Claiming Bonus",
 NoOfWithdrawal:"No. Withdrawal",
 NoProductFound:"No product found",
 Normal:"正常",
 NotAllowBA:"此Licensee不允许投注总计",
 Note:"注意",
-NoteReportDepositAndWithdrawal:"Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
+NoteReportDepositAndWithdrawal:"Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
 NoteReportGrossRevenue:"This report is reported gross revenue, have not yet deducted cost, fee, ect...",
 NoteSupportClosingBalance:"Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00",
 Notification:"通知",
@@ -758,6 +759,7 @@ TotalActiveCustomer:"总活跃会员人数",
 TotalActiveUsers:"Total Active Users",
 TotalAway:"客队总计",
 TotalBets:"总投注",
+TotalBonus:"Total Bonus",
 TotalBonusAmountClaimed:"Total Bonus Amount Claimed",
 TotalClaimants:"Total Claimants",
 TotalClaimedAmount:"Total Claimed Amount",

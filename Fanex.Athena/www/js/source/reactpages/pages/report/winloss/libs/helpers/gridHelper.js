@@ -73,9 +73,9 @@ export default class GridHelper {
         });
     }
 
-    static getOrderCols = displayedColumns => {
+    static getOrderCols = (displayedColumns, excludedCols) => {
         return displayedColumns
-            .filter(_ => _.show)
+            .filter(_ => _.show && (!excludedCols || excludedCols.every(col => col !== _.key)))
             .map(_ => _.key);
     }
     

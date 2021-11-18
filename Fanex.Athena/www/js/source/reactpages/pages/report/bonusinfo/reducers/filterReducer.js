@@ -2,6 +2,7 @@ import { SET_GLOBAL_FILTER, SET_COLLAPSE_FORM_FILTER, SET_DETAIL_FILTER, SET_SUM
 import createReducer from '@jsroot/lib/createReducer.js';
 import { dateRange } from '@jsroot/reducers/dateRangeReducer';
 import { selectedBaseCurrency } from '@jsroot/reducers/baseCurrencyReducer';
+import { selectedCurrency } from '@jsroot/reducers/currencyReducer';
 import { selectedBrand } from '@jsroot/reducers/brandReducer';
 import { selectedBonusName, selectedBonusType, selectedBonusStatus, bonusCodeList, selectedBonusCode } from '@jsroot/reducers/bonusReducer';
 import { selectedClaimStatus } from '@jsroot/reducers/claimReducer';
@@ -58,6 +59,7 @@ export default {
    dateRange,
    selectedBrand,
    selectedBaseCurrency,
+   selectedCurrency,
    selectedBonusName,
    selectedBonusType,
    selectedBonusStatus,

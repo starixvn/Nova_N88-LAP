@@ -96,7 +96,7 @@
             defaultMetaModel.Date = DateTime.SpecifyKind(defaultMetaModel.Date.Date, DateTimeKind.Unspecified);
             defaultMetaModel.IsFakeLicensee = IsFakeLicensee(licenseeSession.LicenseeName);
             defaultMetaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, defaultMetaModel.CurrencyId);
-            defaultMetaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
+            defaultMetaModel.IsShowIpvn = userSession.IsShowIpvn;
 
             var balanceUp = GetBalanceUp();
             defaultMetaModel.BalanceUpDay = DateTime.SpecifyKind(balanceUp.BalanceUpDay.Date, DateTimeKind.Unspecified);
@@ -147,7 +147,9 @@
 
             if (IsValidExportExcel(model))
             {
+                AutoBindMetaModelService.BindProductCodeList(model, SessionServiceInstance.LicenseeSession.OfferedSubProductList, ProductService);
                 model.UspKey = uspKey;
+
                 return await ExportExcel(model).ConfigureAwait(false);
             }
 

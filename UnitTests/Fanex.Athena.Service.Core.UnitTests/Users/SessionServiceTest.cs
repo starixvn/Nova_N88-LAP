@@ -9,6 +9,7 @@
     using DataAccess.Core.Users.Interfaces;
     using Extension.Utility;
     using Fanex.Athena.Model.Core.Configuration;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Models;
     using Fanex.N88.Core.Service.Interface;
@@ -30,6 +31,7 @@
         private IUserService _userService;
         private IBrandService _brandService;
         private N88Settings _n88Settings;
+        private IProductService _productService;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -40,6 +42,7 @@
             _licenseeDataAccess = Substitute.For<ILicenseeDataAccess>();
             _userService = Substitute.For<IUserService>();
             _brandService = Substitute.For<IBrandService>();
+            _productService = Substitute.For<IProductService>();
             _brandService.GetAllowedBrands(Arg.Any<int>(), Arg.Any<IEnumerable<NVCFunctionAuthInfo>>(), Arg.Any<BrandCollection>())
                 .Returns(new List<Brand> { new Brand { Id = 0 } });
             var licenseeList = new List<Licensee>
@@ -58,6 +61,7 @@
                 _appSettings,
                 _sessionStorage,
                 _brandService,
+                _productService,
                 _n88Settings);
         }
 

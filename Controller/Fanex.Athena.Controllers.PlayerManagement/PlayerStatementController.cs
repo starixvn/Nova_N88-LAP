@@ -62,7 +62,7 @@
         {
             metaModel.SiteName = SessionServiceInstance.LicenseeSession.LicenseeName;
             metaModel.Language = SessionServiceInstance.UserSession.Language;
-            metaModel.IsShowIpvn = SessionServiceInstance.UserSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
+            metaModel.IsShowIpvn = SessionServiceInstance.UserSession.IsShowIpvn;
 
             return Content(await _playerStatementService.GetUrl(metaModel).ConfigureAwait(false));
         }

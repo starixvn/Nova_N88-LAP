@@ -13,7 +13,7 @@ namespace Fanex.Athena.Model.Report.MetaModel
     using Fanex.Athena.Model.Core.MetaModel.Product;
     using Model.Core.MetaModel;
 
-    public class BaseReportMetaModel : BaseMetaModel, IMetaModelProductCodeList
+    public class BaseReportMetaModel : BaseMetaModel, IMetaModelProductCodeList, IMetaModelProductOptions
     {
         protected const int DefaultPageSize = 1000;
 
@@ -24,7 +24,9 @@ namespace Fanex.Athena.Model.Report.MetaModel
             ToDate = DateTime.Today;
         }
 
-        public string ProductCodeList { get; set; } = string.Empty;
+        public string ProductCodeList { get; set; }
+
+        public string OriginalProductCodeList { get; set; }
 
         public bool IsExportExcel { get; set; }
 
@@ -36,11 +38,9 @@ namespace Fanex.Athena.Model.Report.MetaModel
 
         public DateTime ToDate { get; set; }
 
-        public IList<ProductOption> ProductOptions
-        {
-            get;
-            set;
-        }
+        public IList<ProductOption> ProductOptions { get; set; }
+
+        public IList<ProductOption> OriginalProductOptions { get; set; }
 
         public override bool IsConvert
         {

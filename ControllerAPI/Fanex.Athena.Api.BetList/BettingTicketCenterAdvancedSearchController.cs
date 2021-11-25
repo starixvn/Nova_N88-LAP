@@ -3,21 +3,24 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-    using Fanex.Athena.Api.Base;
-    using Fanex.Athena.Api.Base.Attributes;
-    using Fanex.Athena.Extension.Utility;
+
+    using Base;
+    using Base.Attributes;
+
+    using Extension.Utility;
     using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Model.BetList.MetaModel;
-    using Fanex.Athena.Resources;
-    using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Utility;
+    using Model.BetList.MetaModel;
+    using Resources;
+    using Service.Core.Common.Interfaces;
 
     [ApiFunctionAuthorization(PermissionKeys.BetHistoryAdvancedSearch)]
     public class BettingTicketCenterAdvancedSearchController : BaseApiController
     {
         private const int ServerBusyErrorCode = 1002;
+
         private readonly IAppSettings _appSettings;
+
         private readonly IBetListApiClient _betListApiClient;
 
         public BettingTicketCenterAdvancedSearchController(
@@ -32,11 +35,13 @@
 
         [HttpPost]
         [ValidationApiRequest(IsValidBrandId = true)]
+        [ApiAutoBindMetaModel(BindAgent = true, BindShowingBetFromIP = true, BindProductCodeList = true)]
         public async Task<dynamic> GetData(AdvancedSearchBetListMetaModel metaModel)
         {
+            var licenseeSession = SessionService.LicenseeSession;
             if (metaModel.IsExport &&
                 _appSettings.IsDisableExportLargeBetList
-                && _appSettings.LicenseesWithLargeData.Contains(SessionService.LicenseeSession.LicenseeName))
+                && _appSettings.LicenseesWithLargeData.Contains(licenseeSession.LicenseeName))
             {
                 return new
                 {
@@ -45,20 +50,10 @@
                 };
             }
 
-            var userSession = SessionService.UserSession;
-            var currencyList = metaModel.CurrencyIdList?.Split(',').Select(x => int.Parse(x)).ToArray();
-
-            var agentList = AuthParameterHelper.GetAgentList(BrandList, new[] { metaModel.BrandId });
-            metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, currencyList);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
-            metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
-
             var timeOutInSecond = int.Parse(_appSettings.GetValue("BetListApiOutInSecond"));
-            return await _betListApiClient.PostAsync(
-                "/BettingTicketCenterAdvancedSearch/GetData",
-                metaModel,
-                userSession.Language,
-                timeOutInSecond);
+            return await _betListApiClient.PostAsync("/BettingTicketCenterAdvancedSearch/GetData",
+                metaModel, SessionService.UserSession.Language, timeOutInSecond).ConfigureAwait(false);
         }
     }
 }

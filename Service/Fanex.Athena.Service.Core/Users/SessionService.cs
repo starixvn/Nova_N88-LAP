@@ -3,9 +3,11 @@
     using DataAccess.Core.Common.Interfaces;
     using DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Extension.Utility;
+    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.Core.Configuration;
     using Fanex.Athena.Service.Core.Users.Interfaces;
+    using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Models;
     using Fanex.N88.Core.Models.ValueObject;
@@ -24,6 +26,7 @@
         private readonly IAppSettings _appSettings;
         private readonly IBrandService _brandService;
         private readonly N88Settings _n88Settings;
+        private readonly IProductService _productService;
 
         public SessionService(
             ILicenseeDataAccess licenseeDataAccess,
@@ -31,6 +34,7 @@
             IAppSettings appSettings,
             ISessionStorage sessionStorage,
             IBrandService brandService,
+            IProductService productService,
             N88Settings n88Settings = null)
         {
             _licenseeDataAccess = licenseeDataAccess;
@@ -39,6 +43,7 @@
             _userService = userService;
             _n88Settings = n88Settings ?? N88Settings.Settings;
             _brandService = brandService;
+            _productService = productService;
         }
 
         public NVCLicenseeAuthInfo LicenseeSession => _sessionStorage.Licensee;
@@ -92,7 +97,8 @@
                 DefaultBaseCurrency = string.IsNullOrEmpty(user.DefaultBaseCurrencyCode) ? _appSettings.DefaultBaseCurrency : user.DefaultBaseCurrencyCode,
                 SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
                 BrandList = brandList,
-                DataRangeLimitation = user.DataRangeLimitation
+                DataRangeLimitation = user.DataRangeLimitation,
+                IsShowIpvn = functions.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn)
             };
 
             _sessionStorage.User = userAuthInfo;
@@ -106,7 +112,8 @@
                 LicenseeId = licensee.Id,
                 LicenseeName = licensee.Name,
                 IsAllowedCustomerComm = licensee.IsAllowedCustomerComm,
-                IsEnableBA = licensee.IsEnableBA
+                IsEnableBA = licensee.IsEnableBA,
+                OfferedSubProductList = _productService.GetOfferedSubProducts(_appSettings.LicenseeId)
             };
 
             _sessionStorage.Licensee = NVCLicenseeAuthInfo;

@@ -26,6 +26,7 @@
         private readonly ILeagueDataAccess _leagueDataAccess;
         private readonly IMatchDataAccess _matchDataAccess;
         private readonly IBetTypeService _betTypeService;
+        private readonly IProductService _productService;
 
         public CommonDataApiController(
             ILanguageService langService,
@@ -33,7 +34,8 @@
             ISessionService sessionService,
             ILeagueDataAccess leagueDataAccess,
             IMatchDataAccess matchDataAccess,
-            IBetTypeService betTypeService)
+            IBetTypeService betTypeService,
+            IProductService productService)
         {
             _langService = langService;
             _sportTypeDataAccess = sportTypeDataAccess;
@@ -41,6 +43,7 @@
             _leagueDataAccess = leagueDataAccess;
             _matchDataAccess = matchDataAccess;
             _betTypeService = betTypeService;
+            _productService = productService;
         }
 
         protected override void Initialize(System.Web.Http.Controllers.HttpControllerContext controllerContext)
@@ -53,6 +56,10 @@
         [HttpGet]
         public async Task<IEnumerable<object>> GetSports(string productCode)
         {
+            productCode = _productService.GetAllowedSubProductCodeList(
+                _sessionService.LicenseeSession.OfferedSubProductList,
+                productCode);
+
             var sports = await _sportTypeDataAccess.GetSportsAndProducts(
                  _sessionService.LicenseeSession.LicenseeId,
                  _sessionService.UserSession.Language,
@@ -64,6 +71,10 @@
         [HttpGet]
         public async Task<IEnumerable<object>> GetBetTypes(string productCode)
         {
+            productCode = _productService.GetAllowedSubProductCodeList(
+                _sessionService.LicenseeSession.OfferedSubProductList,
+                productCode);
+
             var bettypes = await _betTypeService.GetBettypesByProduct(
                 _sessionService.LicenseeSession.LicenseeId,
                 productCode,

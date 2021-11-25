@@ -1,7 +1,9 @@
 ﻿using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
 using Fanex.Athena.Extension.Utility;
 using Fanex.Athena.Model.Core.DataDomain;
+using Fanex.Athena.Model.Core.Helper;
 using Fanex.Athena.Model.Core.MetaModel;
+using Fanex.Athena.Service.StatelessCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -152,6 +154,44 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
                 value.MoveBetsDay = temp.MoveBetsDay;
                 actionArguments[item.Key] = value;
             }
+        }
+
+        public static void MapShowingBetFromIP(IDictionary<string, object> actionArguments, bool isShowIpvn)
+        {
+            if (MetaModelHelper.IsMetaModel(actionArguments, out IMetaModelShowIPVN metaModelShowBetFromIP))
+            {
+                metaModelShowBetFromIP.IsShowIpvn = isShowIpvn;
+            }
+        }
+
+        public static void MapProductCodeList(IDictionary<string, object> actionArguments, IEnumerable<string> offeredSubProducts, IProductService productService)
+        {
+            if (MetaModelHelper.IsMetaModel(actionArguments, out IMetaModelProductCodeList metaModelProductCodeList)
+                && !string.IsNullOrEmpty(metaModelProductCodeList.ProductCodeList))
+            {
+                BindProductCodeList(metaModelProductCodeList, offeredSubProducts, productService);
+            }
+        }
+
+        public static void MapProductOptions(IDictionary<string, object> actionArguments, IEnumerable<string> offeredSubProducts, IProductService productService)
+        {
+            if (MetaModelHelper.IsMetaModel(actionArguments, out IMetaModelProductOptions metaModelProductOptions)
+                && metaModelProductOptions.ProductOptions != null && metaModelProductOptions.ProductOptions.Any())
+            {
+                BindProductOptions(metaModelProductOptions, offeredSubProducts, productService);
+            }
+        }
+
+        public static void BindProductCodeList(IMetaModelProductCodeList metaModel, IEnumerable<string> offeredSubProducts, IProductService productService)
+        {
+            metaModel.OriginalProductCodeList = metaModel.ProductCodeList;
+            metaModel.ProductCodeList = productService.GetAllowedSubProductCodeList(offeredSubProducts, metaModel.ProductCodeList);
+        }
+
+        private static void BindProductOptions(IMetaModelProductOptions metaModel, IEnumerable<string> offeredSubProducts, IProductService productService)
+        {
+            metaModel.OriginalProductOptions = metaModel.ProductOptions;
+            metaModel.ProductOptions = productService.GetAllowedSubProductOptions(offeredSubProducts, metaModel.ProductOptions);
         }
     }
 }

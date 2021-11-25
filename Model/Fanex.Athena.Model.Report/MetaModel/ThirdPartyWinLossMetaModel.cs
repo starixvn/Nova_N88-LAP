@@ -36,7 +36,7 @@
         {
             get
             {
-                return MetaModelValidationHelper.ValidateBaseCurrency(BaseCurrency);
+                return MetaModelHelper.ValidateBaseCurrency(BaseCurrency);
             }
         }
 

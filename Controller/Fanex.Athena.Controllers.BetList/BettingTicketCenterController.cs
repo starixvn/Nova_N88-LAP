@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
+    using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.BetList.ViewModel;
     using Fanex.Athena.Model.Core.DataDomain;
@@ -186,7 +187,12 @@
                 .Where(product => productsRequireUseName.Contains(product.ProductCode))
                 .Select(x => x.ProductName).ToList();
 
-            licProductsRequireUseName.Add(ViewResources.ProductSLT);
+            var offeredSubProductList = SessionServiceInstance.LicenseeSession.OfferedSubProductList;
+
+            if (offeredSubProductList.IsPresent(_ => _ == Product.SLT))
+            {
+                licProductsRequireUseName.Add(ViewResources.ProductSLT);
+            }
 
             if (productAccess.ProductList.Any(p => string.Equals(p.ProductCode, "NG")))
             {

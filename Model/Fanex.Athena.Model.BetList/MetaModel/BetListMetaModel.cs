@@ -26,7 +26,9 @@ namespace Fanex.Athena.Model.BetList.MetaModel
         [ScriptIgnore]
         public string UspKey { get; set; }
 
-        public string ProductCodeList { get; set; } = string.Empty;
+        public string ProductCodeList { get; set; }
+
+        public string OriginalProductCodeList { get; set; }
 
         public string ExcelFileName { get; set; }
 

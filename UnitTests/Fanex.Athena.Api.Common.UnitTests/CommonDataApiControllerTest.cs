@@ -28,6 +28,8 @@
 
         private readonly IBetTypeService _betTypeService = Substitute.For<IBetTypeService>();
 
+        private IProductService _productService = Substitute.For<IProductService>();
+
         [OneTimeSetUp]
         public void FixtureSetUp()
         {
@@ -48,6 +50,7 @@
             _leagueDataAccess = null;
             _matchDataAccess = null;
             _sessionService = null;
+            _productService = null;
         }
 
         [Test]
@@ -164,7 +167,8 @@
                 _sessionService,
                 _leagueDataAccess,
                 _matchDataAccess,
-                _betTypeService);
+                _betTypeService,
+                _productService);
         }
     }
 }

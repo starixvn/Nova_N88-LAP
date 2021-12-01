@@ -10,6 +10,6 @@ namespace Fanex.Athena.Model.BetList.MetaModel
 
         public DateTime? LastXDays { get; set; }
 
-        public override bool IsValid => RefNo > 0 && MetaModelValidationHelper.ValidateBaseCurrency(BaseCurrency);
+        public override bool IsValid => RefNo > 0 && MetaModelHelper.ValidateBaseCurrency(BaseCurrency);
     }
 }

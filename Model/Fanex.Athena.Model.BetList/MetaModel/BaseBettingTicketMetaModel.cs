@@ -5,7 +5,7 @@
     using Fanex.NVC.Authentication.Infrastructure;
     using System;
 
-    public class BaseBettingTicketMetaModel : IMetaModelValidation, IMetaModelCurrencyIdList, IBrandIdMetaModel, IMetaModelShowIPVN
+    public class BaseBettingTicketMetaModel : IMetaModelValidation, IMetaModelAgent, IMetaModelCurrencyIdList, IBrandIdMetaModel, IMetaModelShowIPVN, IMetaModelProductCodeList
     {
         private const int DefaultPageSize = 50;
 
@@ -38,6 +38,8 @@
 
         public string AgentListXml { get; set; }
 
+        public bool IsExcludedTestData { get; set; }
+
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
@@ -47,6 +49,8 @@
         public DateTime ToDate { get; set; }
 
         public string ProductCodeList { get; set; }
+
+        public string OriginalProductCodeList { get; set; }
 
         public string UserName
         {
@@ -72,7 +76,7 @@
         public virtual bool IsValid => FromDate <= ToDate
             && !string.IsNullOrWhiteSpace(ProductCodeList)
             && BrandId > 0
-            && MetaModelValidationHelper.ValidateBaseCurrency(BaseCurrency);
+            && MetaModelHelper.ValidateBaseCurrency(BaseCurrency);
 
         public bool HasPlayerCom { get; set; }
 

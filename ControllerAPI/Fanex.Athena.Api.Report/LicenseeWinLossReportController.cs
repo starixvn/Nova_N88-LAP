@@ -49,6 +49,7 @@
 
         [HttpPost]
         [ValidationApiRequest(ObjectName = "metaModel", IsValidBrandIdList = true)]
+        [ApiAutoBindMetaModel(BindProductOptions = true)]
         public Task<dynamic> Index(
             LicenseeWinLossMetaModel metaModel,
             DateTime? fdate,
@@ -63,6 +64,7 @@
 
         [HttpPost]
         [ValidationApiRequest(ObjectName = "metaModel", IsValidBrandIdList = true)]
+        [ApiAutoBindMetaModel(BindProductOptions = true)]
         public Task<dynamic> Index([FromBody] LicenseeWinLossMetaModel metaModel)
         {
             return ProcessRequest(metaModel, null, null);
@@ -75,7 +77,7 @@
                 Data = new List<LicenseeWinLossGridViewModel>(),
                 Total = new List<LicenseeWinLossGridViewModel>(),
                 SummaryTotal = new Dictionary<string, LicenseeWinLossGridViewModel>(),
-                ProductOptions = metaModel.ProductOptions.ToJson(),
+                ProductOptions = metaModel.OriginalProductOptions.ToJson(),
                 BrandOptions = metaModel.BrandOptions.ToJson(),
                 PromotionPrize = promotionPrize
             };
@@ -178,7 +180,6 @@
             licenseeWinLoss.LicenseeWLI4D = licenseeWLProducts.GetValueOrDefault(Product.I4D, 0);
             licenseeWinLoss.LicenseeWLSXG = licenseeWLProducts.GetValueOrDefault(Product.SXG, 0);
             licenseeWinLoss.LicenseeWLSBC = licenseeWLProducts.GetValueOrDefault(Product.SBC, 0);
-            licenseeWinLoss.LicenseeWLSLT = licenseeWLProducts.GetValueOrDefault(Product.SLT, 0);
             licenseeWinLoss.LicenseeWLVGA = licenseeWLProducts.GetValueOrDefault(Product.VGA, 0);
         }
 
@@ -205,7 +206,6 @@
             licenseeWinLoss.TurnOverI4D = turnOverProducts.GetValueOrDefault(Product.I4D, 0);
             licenseeWinLoss.TurnOverSXG = turnOverProducts.GetValueOrDefault(Product.SXG, 0);
             licenseeWinLoss.TurnOverSBC = turnOverProducts.GetValueOrDefault(Product.SBC, 0);
-            licenseeWinLoss.TurnOverSLT = turnOverProducts.GetValueOrDefault(Product.SLT, 0);
             licenseeWinLoss.TurnOverVGA = turnOverProducts.GetValueOrDefault(Product.VGA, 0);
         }
 
@@ -249,10 +249,10 @@
                 MetaModel = metaModel,
                 SummaryTotal = data.SummaryTotal,
                 TotalData = data.TotalDataList,
-                SBVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.SB),
-                BTVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.BT),
-                COVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.CO),
-                BAVisible = IsProductVisible(metaModel.ProductOptions, productAccess, Product.BA),
+                SBVisible = IsProductVisible(metaModel.OriginalProductOptions, productAccess, Product.SB),
+                BTVisible = IsProductVisible(metaModel.OriginalProductOptions, productAccess, Product.BT),
+                COVisible = IsProductVisible(metaModel.OriginalProductOptions, productAccess, Product.CO),
+                BAVisible = IsProductVisible(metaModel.OriginalProductOptions, productAccess, Product.BA),
                 CustomerCommVisible = SessionService.LicenseeSession.IsAllowedCustomerComm
             };
 
@@ -307,6 +307,7 @@
             string currencyName = null)
         {
             var userSession = SessionService.UserSession;
+            var licenseeSession = SessionService.LicenseeSession;
             metaModel.DefaultBaseCurrency = userSession.DefaultBaseCurrency;
             metaModel.DrillDownLevel = level;
             metaModel.DrillDownFromDate = fdate ?? metaModel.DrillDownFromDate;
@@ -339,7 +340,7 @@
                     Data = result.DataList.Select(MapToGridView).ToList(),
                     Total = result.TotalDataList.Select(MapToGridView).ToList(),
                     SummaryTotal = summaryTotalView,
-                    ProductOptions = metaModel.ProductOptions.ToJson(),
+                    ProductOptions = metaModel.OriginalProductOptions.ToJson(),
                     BrandOptions = metaModel.BrandOptions.ToJson(),
                     PromotionPrize = result.AdditionalInfo
                 };

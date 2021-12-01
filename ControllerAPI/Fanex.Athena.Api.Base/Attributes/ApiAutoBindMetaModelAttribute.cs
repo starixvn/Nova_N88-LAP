@@ -2,6 +2,7 @@
 using Fanex.Athena.Extension.Helper;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
+using Fanex.Athena.Service.StatelessCore.Interfaces;
 using Fanex.Athena.Service.StatelessCore.Utility;
 using System;
 using System.Web.Http.Controllers;
@@ -23,6 +24,14 @@ namespace Fanex.Athena.Api.Base.Attributes
         public bool BindIp { get; set; }
 
         public bool BindBalanceUpAndMoveBet { get; set; }
+
+        public bool BindShowingBetFromIP { get; set; }
+
+        public bool BindProductCodeList { get; set; }
+
+        public bool BindProductOptions { get; set; }
+
+        public IProductService ProductService { get; set; }
 
         private static readonly ISessionStorage _sessionStorage = new SessionStorage();
 
@@ -62,6 +71,21 @@ namespace Fanex.Athena.Api.Base.Attributes
             {
                 var balanceUpDataAccess = new BalanceUpDataAccess(null, null);
                 AutoBindMetaModelService.MapBalanceUpAndMoveBet(actionArgument, balanceUpDataAccess);
+            }
+
+            if (BindShowingBetFromIP)
+            {
+                AutoBindMetaModelService.MapShowingBetFromIP(actionArgument, userSession.IsShowIpvn);
+            }
+
+            if (BindProductCodeList)
+            {
+                AutoBindMetaModelService.MapProductCodeList(actionArgument, licenseeSession.OfferedSubProductList, ProductService);
+            }
+
+            if (BindProductOptions)
+            {
+                AutoBindMetaModelService.MapProductOptions(actionArgument, licenseeSession.OfferedSubProductList, ProductService);
             }
 
             base.OnActionExecuting(actionContext);

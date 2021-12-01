@@ -24,7 +24,7 @@ namespace Fanex.Athena.Service.Core.Utility
 
         public bool IsValidBaseCurrency(string baseCurrency, bool isAllowEmpty = true)
         {
-            return MetaModelValidationHelper.ValidateBaseCurrency(baseCurrency, isAllowEmpty);
+            return MetaModelHelper.ValidateBaseCurrency(baseCurrency, isAllowEmpty);
         }
 
         public bool IsValidCurrency(string currencyIdList)

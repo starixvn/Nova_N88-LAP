@@ -54,24 +54,24 @@
 
             var userSession = SessionService.UserSession;
             metaModel = UpdateMetaModel(metaModel, uspKey, 1, int.MaxValue - 1);
-            metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
+            metaModel.IsShowIpvn = userSession.IsShowIpvn;
 
             return await BridgeClientService.PostAsync(apiPath ?? "/BetList/GetBetList", metaModel, userSession.Language).ConfigureAwait(false);
         }
 
         protected internal virtual async Task<dynamic> GetPagingBetListResult(
-            BetListMetaModel metaModel, 
-            string uspKey, 
+            BetListMetaModel metaModel,
+            string uspKey,
             int pageIndex,
             int pageSize,
             string apiPath = null)
         {
             CheckDataPermission(metaModel.CustId, metaModel.TransId);
             var userSession = SessionService.UserSession;
-        
+
             metaModel.IsServerPaging = true;
             metaModel = UpdateMetaModel(metaModel, uspKey, pageIndex, pageSize);
-            metaModel.IsShowIpvn = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn);
+            metaModel.IsShowIpvn = userSession.IsShowIpvn;
 
             return await BridgeClientService.PostAsync(apiPath ?? "/BetList/GetBetListPaging", metaModel, userSession.Language).ConfigureAwait(false);
         }
@@ -89,6 +89,7 @@
             metaModel.MoveBetsDay = DateTime.SpecifyKind(balanceUp.MoveBetsDay.Date, DateTimeKind.Utc);
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, metaModel.CurrencyId);
             metaModel.HasPlayerCom = licenseeSession.IsAllowedCustomerComm;
+            AutoBindMetaModelService.BindProductCodeList(metaModel, SessionService.LicenseeSession.OfferedSubProductList, ProductService);
             metaModel.UspKey = uspKey;
 
             return metaModel;

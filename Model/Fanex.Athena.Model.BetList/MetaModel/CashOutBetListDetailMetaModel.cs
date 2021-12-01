@@ -24,6 +24,6 @@ namespace Fanex.Athena.Model.BetList.MetaModel
 
         public bool IsShowIpvn { get; set; }
 
-        public bool IsValid => MetaModelValidationHelper.ValidateBaseCurrency(BaseCurrency);
+        public bool IsValid => MetaModelHelper.ValidateBaseCurrency(BaseCurrency);
     }
 }

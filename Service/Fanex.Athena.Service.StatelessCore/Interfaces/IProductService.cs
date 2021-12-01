@@ -14,8 +14,8 @@
 
         IList<string> GetOfferedSubProducts(int licenseeId);
 
-        IList<ProductOption> GetAllowedSubProductOptions(IEnumerable<string> subProduct, IList<ProductOption> productOptions);
+        IList<ProductOption> GetAllowedSubProductOptions(IEnumerable<string> offeredSubProductList, IList<ProductOption> productOptions);
 
-        string GetAllowedSubProductCodeList(IEnumerable<string> subProduct, string productCodes);
+        string GetAllowedSubProductCodeList(IEnumerable<string> offeredSubProductList, string productCodes);
     }
 }

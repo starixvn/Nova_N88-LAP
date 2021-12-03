@@ -4,6 +4,7 @@
 
     using Extension.Utility.Interfaces;
     using Fanex.Athena.DataAccess.Core.Common.Interfaces;
+    using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Athena.Model.Core.DTO.Configuration;
@@ -121,7 +122,7 @@
 
         public IList<ProductOption> GetAllowedSubProductOptions(IEnumerable<string> offeredSubProductList, IList<ProductOption> productOptions)
         {
-            if (offeredSubProductList == null || !offeredSubProductList.Any() || !productOptions.Any(_ => _.Code == Product.SB && _.Status))
+            if (!offeredSubProductList.IsPresent() || !productOptions.IsPresent(_ => _.Code == Product.SB && _.Status))
             {
                 return productOptions;
             }
@@ -138,7 +139,7 @@
 
         public string GetAllowedSubProductCodeList(IEnumerable<string> offeredSubProductList, string productCodes)
         {
-            if (offeredSubProductList == null || !offeredSubProductList.Any() || !productCodes.Split(',').Any(_ => _ == Product.SB))
+            if (!offeredSubProductList.IsPresent() || !(productCodes?.Split(',')).IsPresent(_ => _ == Product.SB))
             {
                 return productCodes;
             }

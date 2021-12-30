@@ -226,5 +226,10 @@
 .footer-content .table tbody tr.fixed-table-grant-total td, .footer-content .table tbody tr td {
   background: #8DA6A2; }
 
+.table-container .header-content .table thead tr th {
+  background: #a2beba;
+  color: #222;
+  font-weight: normal; }
+
 
 /*# sourceMappingURL=playerwinloss.css.map*/

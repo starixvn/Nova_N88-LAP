@@ -496,6 +496,11 @@ input[type="checkbox"].checkbox {
 .footer-content .table tbody tr.fixed-table-grant-total td, .footer-content .table tbody tr td {
   background: #8DA6A2; }
 
+.table-container .header-content .table thead tr th {
+  background: #a2beba;
+  color: #222;
+  font-weight: normal; }
+
 .multiple-select-container {
   position: relative; }
 
@@ -807,11 +812,6 @@ input[type="checkbox"].checkbox {
 
 .Toastify__toast--success {
   background-color: #009b65; }
-
-.betlist-container .table-container .header-content .table thead tr th {
-  background: #a2beba;
-  color: #222;
-  font-weight: normal; }
 
 .table {
   line-height: inherit; }

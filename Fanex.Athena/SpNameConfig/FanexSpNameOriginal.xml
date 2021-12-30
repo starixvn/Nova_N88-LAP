@@ -106,4 +106,8 @@
     <Setting Key="N88_Admin_LogExecSp_Search" SpName="N88_Admin_LogExecSp_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
     <Setting Key="N88_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
   </Function>
+
+  <Function Name="Notification">
+    <Setting Key="Lrf_AmendmentTicketListingSel" SpName="Lrf_AmendmentTicketListingSel" DbName="DBEXT.bodb02.bodbLicenseeNet" />
+  </Function>
 </Functions>

@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Module.Notification.ViewModel
+﻿namespace Fanex.Athena.Model.Notification.ViewModel
 {
     using System;
 

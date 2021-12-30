@@ -307,7 +307,6 @@
             string currencyName = null)
         {
             var userSession = SessionService.UserSession;
-            var licenseeSession = SessionService.LicenseeSession;
             metaModel.DefaultBaseCurrency = userSession.DefaultBaseCurrency;
             metaModel.DrillDownLevel = level;
             metaModel.DrillDownFromDate = fdate ?? metaModel.DrillDownFromDate;

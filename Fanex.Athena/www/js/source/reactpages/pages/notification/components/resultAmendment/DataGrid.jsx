@@ -121,17 +121,28 @@ export class DataGrid extends Component {
                             isExpand={item.IsExpand}
                             isHtml={true} />
                     </Cell>
-                    {
-                        Site.asNull(item.DataFilePath) === null 
-                        ? <Cell></Cell>
-                        : <Cell title={exportToExcelTitle} className="center-align"><a onClick={() => this.exportExcel(item)} className="icon-excel"></a></Cell>
-                    }
+                    {this._buildTicketListView(item)}
                 </Row>)
             index++;
         }
 
         return rows;
     }
+
+    _buildTicketListView(item) {
+        if (!!Site.asNull(item.SessionId)) {
+            return <Cell className="center-align">
+                <button className="btn-default btn-link" onClick={() => this.props.setSelectedViewEvent(item)}>
+                    {LangHelper.getSingleResource("View")}
+                </button></Cell>
+        }
+
+        if (!!Site.asNull(item.DataFilePath)) {
+            return <Cell title={LangHelper.getSingleResource("ExportToExcel")} className="center-align"><a onClick={() => this.exportExcel(item)} className="icon-excel"></a></Cell>
+        }
+        return  <Cell />
+    }
+
 
     _renderNodata() {
         return (

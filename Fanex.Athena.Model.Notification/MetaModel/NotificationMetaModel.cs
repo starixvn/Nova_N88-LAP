@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Module.Notification.MetaModel
+﻿namespace Fanex.Athena.Model.Notification.MetaModel
 {
     using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Core.MetaModel;

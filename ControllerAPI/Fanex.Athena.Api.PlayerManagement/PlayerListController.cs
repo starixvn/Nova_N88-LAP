@@ -45,7 +45,7 @@
         }
 
         [HttpPost]
-        [ApiAutoBindMetaModelAttribute(BindLicenseeName = true, BindAgent = true)]
+        [ApiAutoBindMetaModel(BindLicenseeName = true, BindAgent = true)]
         public PlayerListResultViewModel GetPlayerListById(PlayerListByIdMetaModel metaModel)
         {
             metaModel.PageIndex = 1;

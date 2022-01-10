@@ -30,7 +30,7 @@ namespace Fanex.Athena.Excel.Notification
 
         protected override void AssignTitle(ISheet sheet)
         {
-            sheet.SetTextRowValue(TemplateSheet, RowTitleTemplate, ColumnTemplateCount, _data.MatchInfo);
+            sheet.SetTextRowValue(TemplateSheet, RowTitleTemplate, ColumnTemplateCount, $"{ViewResources.TicketList} - {_data.MatchInfo}");
             sheet.CreateFreezePane(0, RowContentTemplate);
             ClearTemplate(sheet, RowContentTemplate);
         }

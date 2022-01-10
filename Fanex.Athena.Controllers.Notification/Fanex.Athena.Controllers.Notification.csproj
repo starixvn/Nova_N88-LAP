@@ -38,6 +38,7 @@
     <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.7\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="NPOI, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1" />
     <Reference Include="ONEbook.UM, Version=2.0.2.9, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ONEbook.UM.2.0.2.9\lib\net40\ONEbook.UM.dll</HintPath>
     </Reference>
@@ -60,6 +61,14 @@
     <ProjectReference Include="..\Controller\Fanex.Athena.Controllers.Base\Fanex.Athena.Controllers.Base.csproj">
       <Project>{255E120A-83BF-4F72-9E31-6050D5704069}</Project>
       <Name>Fanex.Athena.Controllers.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Excel\Fanex.Athena.Excel.Base\Fanex.Athena.Excel.Base.csproj">
+      <Project>{413861ad-068b-4c02-b913-10b1de708fb7}</Project>
+      <Name>Fanex.Athena.Excel.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Excel\Fanex.Athena.Excel.Notification\Fanex.Athena.Excel.Notification.csproj">
+      <Project>{123932ea-0b69-4a30-85ba-0efb4c92ad68}</Project>
+      <Name>Fanex.Athena.Excel.Notification</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Athena.Extension\Fanex.Athena.Extension.csproj">
       <Project>{71F95E53-36D0-4091-828D-ED14C9939C35}</Project>

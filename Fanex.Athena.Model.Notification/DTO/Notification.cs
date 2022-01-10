@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Module.Notification.DTO
+﻿namespace Fanex.Athena.Model.Notification.DTO
 {
     using System;
 
@@ -16,4 +16,5 @@
 
         public bool IsRead { get; set; }
     }
+
 }

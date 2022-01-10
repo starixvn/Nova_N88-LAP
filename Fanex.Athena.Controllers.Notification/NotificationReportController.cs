@@ -1,20 +1,24 @@
-﻿namespace Fanex.Athena.Module.Notification.Report
+﻿namespace Fanex.Athena.Notification.Report
 {
     using Fanex.Athena.Controllers;
     using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Module.Notification.MetaModel;
-    using Fanex.Athena.Module.Notification.Service.Interfaces;
-    using Fanex.Athena.Module.Notification.ViewModel;
+    using Fanex.Athena.Notification.Service.Interfaces;
+    using Fanex.Athena.Model.Notification.ViewModel;
     using Fanex.Athena.Web.ActionFilter;
 
     using ONEbook.UM.Filters;
 
     using System;
     using System.Net;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Fanex.Athena.Model.Notification.MetaModel;
+    using Fanex.Athena.Excel.Notification;
+    using Fanex.Athena.Web.ResultExtension;
+    using Fanex.Athena.Excel.Base.Helpers;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
@@ -41,7 +45,7 @@
 
             return View("~/Views/Desktop/Notification/Notification.cshtml", model);
         }
-
+                                                                             
         [HttpGet]
         public ActionResult GetNotificationMessages()
         {
@@ -106,6 +110,31 @@
 
             return new HttpStatusCodeResult(HttpStatusCode.NoContent);
         }
+
+        [HttpPost]
+        [AutoBindMetaModel(BindAgent = true)]
+        public async Task<ActionResult> GetAmendmentTicketListing(AmendmentTicketListingMetaModel metaModel)
+        {
+            var data = await _notificationService.GetAmendmentTicketListing(metaModel);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [AutoBindMetaModel(BindAgent = true)]
+        public async Task<ActionResult> ExportAmendmentTicketListing(AmendmentTicketListingMetaModel metaModel)
+        {
+            var data = await _notificationService.GetAmendmentTicketListing(metaModel);
+            if (data.Data.IsPresent())
+            {
+                var excel = new AmendmentTicketListingExcel(data);
+                excel.Export();
+                var result = new ExcelResult(excel.Workbook, "TicketList");
+                return result;
+            }
+
+            return File(ExcelHelper.ExportEmptyFile(), "application/vnd.ms-excel");
+        }
+
 
         private void UpdateMetaModel(NotificationMetaModel metaModel)
         {

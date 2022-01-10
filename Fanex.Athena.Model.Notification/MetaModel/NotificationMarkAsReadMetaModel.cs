@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Module.Notification.MetaModel
+﻿namespace Fanex.Athena.Model.Notification.MetaModel
 {
     public class NotificationMarkAsReadMetaModel
     {

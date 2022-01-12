@@ -302,6 +302,10 @@
     <Content Include="App_Data\UserGuide\CustomerLog\en-US.htm" />
     <Content Include="App_Data\UserGuide\CustomerLog\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\CustomerLog\zh-TW.htm" />
+    <Content Include="App_Data\UserGuide\ExtraPayout\en-US.htm" />
+    <Content Include="App_Data\UserGuide\ExtraPayout\zh-CN.htm" />
+    <Content Include="App_Data\UserGuide\ExtraPayout\zh-Hans.htm" />
+    <Content Include="App_Data\UserGuide\ExtraPayout\zh-TW.htm" />
     <Content Include="Content\Account\AccountManagement.css" />
     <Content Include="Content\Account\msgbox-0.0.1.css" />
     <Content Include="Content\Account\reset.css" />
@@ -699,6 +703,8 @@
     <Content Include="www\css\build\dev\reactpages\playeradmin\statement.css" />
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.css" />
+    <Content Include="www\css\build\dev\reactpages\report\extrapayout.chunk.js" />
+    <Content Include="www\css\build\dev\reactpages\report\extrapayout.css" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.css" />
     <Content Include="www\css\build\dev\reactpages\report\marketing.css" />
@@ -777,6 +783,7 @@
     <Content Include="www\css\build\pro\reactpages\playeradmin\running-betlist.css" />
     <Content Include="www\css\build\pro\reactpages\playeradmin\statement.css" />
     <Content Include="www\css\build\pro\reactpages\report\bonusinfo.css" />
+    <Content Include="www\css\build\pro\reactpages\report\extrapayout.css" />
     <Content Include="www\css\build\pro\reactpages\report\marketing.css" />
     <Content Include="www\css\build\pro\reactpages\report\winloss.css" />
     <Content Include="www\css\build\pro\reactpages\speciallicenseewl\index.chunk.js" />
@@ -894,6 +901,10 @@
     <Content Include="Views\Desktop\BetList\RNGDetail\Main.cshtml" />
     <Content Include="Views\Desktop\BetList\VGamingJackpotWonDetail\Main.cshtml" />
     <Content Include="App_Data\Template\Notification\Resettlement\TicketListing.xls" />
+    <Content Include="Views\Desktop\Report\ExtraPayout\Detail.cshtml" />
+    <Content Include="Views\Desktop\Report\ExtraPayout\Main.cshtml" />
+    <Content Include="www\css\build\dev\reactpages\report\extrapayout.chunk.js.map" />
+    <Content Include="www\css\build\dev\reactpages\report\extrapayout.css.map" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -933,6 +944,7 @@
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\report\bonusinfo.chunk.js" />
+    <Content Include="www\js\build\dev\reactpages\report\extrapayout.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\speciallicenseewl.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\winloss-nonsports-betlist.chunk.js" />
@@ -961,6 +973,7 @@
     <Content Include="www\js\build\pro\reactpages\playeradmin\single-customer.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\playeradmin\statement.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\bonusinfo.chunk.js" />
+    <Content Include="www\js\build\pro\reactpages\report\extrapayout.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\marketing.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\winloss-nonsports-betlist.chunk.js" />
@@ -2222,6 +2235,8 @@
     <Content Include="www\css\source\reactpages\pages\report\marketing\index.scss" />
     <Content Include="www\css\source\reactpages\pages\report\winloss\index.scss" />
     <Content Include="www\js\build\dev\reactpages\report\winloss-nonsports-betlist.chunk.js.map" />
+    <Content Include="www\css\source\reactpages\pages\report\extrapayout\index.scss" />
+    <Content Include="www\js\build\dev\reactpages\report\extrapayout.chunk.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

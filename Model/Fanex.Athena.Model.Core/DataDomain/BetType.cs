@@ -265,8 +265,42 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         NumberGameHappy5OddEven = 8102,
 
-        PromotionPrize = 4300,
+        SingleMatchParlay = 38,
 
-        SingleMatchParlay = 38
+        PPTournamentPrize = 4299,
+
+        PPPromotionPrize = 4300,
+
+        PPJackpotPrize = 4298,
+
+        PPJackpotContribution = 4297,
+
+        SabaLuckySpin = 17000,
+
+        SabaLuckySpot = 17001,
+
+        SabaNonCashPrize = 17002,
+
+        SabaLoyaltyPointsExchange = 17003,
+
+        SabaRedEnvelope = 17004,
+
+        SAGamingTip = 3007,
+
+        SCBFreeBets = 150,
+
+        SCBFreeBetsJackpotPrize = 1699,
+
+        SCBFreeBetsJackpotContribution = 1698,
+
+        EASexyLuckyDraw = 3150,
+
+        ArcadiaGamingBonus = 1906,
+
+        VgamingFreeBets = 173,
+
+        VgamingFreeBetsJackpotPrize = 3899,
+
+        VgamingFreeBetsJackpotContribution = 3898
     }
 }

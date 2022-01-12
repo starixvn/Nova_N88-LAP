@@ -65,6 +65,8 @@
 
         public const string VGA = "VGA";
 
+        public const string SPR = "SPR";
+
         #endregion Field
 
         #region Constructor

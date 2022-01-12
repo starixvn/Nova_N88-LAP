@@ -21539,7 +21539,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
         openPopupWithButton: function (element, option, buttons) {
             var defaultOption = {
                 padding: 15,
-                id: "popup-content"
+                id: "popup-content",
+                float: "right"
             };
 
             $.extend(defaultOption, option || {});
@@ -21547,7 +21548,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
             const $element = $(element);
             const $popup = $("#" + defaultOption.id);
             if ($popup.length === 0 || $popup.hasClass('flat-popup') === false) {
-                $element.append('<div class="right popup-button"></div>');
+                $element.append('<div class="' + defaultOption.float + ' popup-button"></div>');
                 const $blockButton = $element.find(".popup-button");
 
                 var firstButton = true;
@@ -22228,6 +22229,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/*global _lan
             return REQUEST_VERIFICATION_TOKEN;
         }
 
+        function isEmptyObject(obj = {}) {
+            return Object.entries(obj).length === 0 && obj.constructor === Object;
+        }
+
         return {
             initialize: initialize,
             initBrandList: initBrandList,
@@ -22266,7 +22271,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/*global _lan
             addFilterCollapseExpand: addFilterCollapseExpand,
             isFakeLicensee: isFakeLicensee,
             getXsrfToken: getXsrfToken,
-            getBaseCurrencyName: getBaseCurrencyName
+            getBaseCurrencyName: getBaseCurrencyName,
+            isEmptyObject: isEmptyObject
         };
     }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));

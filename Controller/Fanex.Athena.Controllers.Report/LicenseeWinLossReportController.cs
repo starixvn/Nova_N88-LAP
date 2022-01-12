@@ -68,12 +68,15 @@
                 .Key
             };
 
+            var extraPayoutFunc = SessionServiceInstance.UserSession.FunctionList.First(x => x.FunctionKey == PermissionKeys.ReportExtraPayout);
+
             var model = new LicenseeWinLossViewModel
             {
                 Param = param,
                 CurrencyList = userSession.CurrencyList,
                 Brands = BrandList,
                 IsAllowedCustomerCommission = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
+                IsAllowedExtraPayout = extraPayoutFunc != null,
                 ProductAccess = productAccess,
                 ReportSetting = reportSetting
             };

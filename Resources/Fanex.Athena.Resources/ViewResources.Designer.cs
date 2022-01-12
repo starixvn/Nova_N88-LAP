@@ -1816,6 +1816,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Amount.
+        /// </summary>
+        public static string CustomerAmount {
+            get {
+                return ResourceManager.GetString("CustomerAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer Balance.
         /// </summary>
         public static string CustomerBalance {
@@ -3013,6 +3022,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Free Bets.
+        /// </summary>
+        public static string FreeBets {
+            get {
+                return ResourceManager.GetString("FreeBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Free Play.
         /// </summary>
         public static string FreePlay {
@@ -4125,6 +4143,15 @@ namespace Fanex.Athena.Resources {
         public static string LicenseeWL {
             get {
                 return ResourceManager.GetString("LicenseeWL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licensee Sharing Amount.
+        /// </summary>
+        public static string LicSharingAmount {
+            get {
+                return ResourceManager.GetString("LicSharingAmount", resourceCulture);
             }
         }
         
@@ -6100,6 +6127,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saba Promotion.
+        /// </summary>
+        public static string ProductSPR {
+            get {
+                return ResourceManager.GetString("ProductSPR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AE Sexy.
         /// </summary>
         public static string ProductSXG {
@@ -6199,11 +6235,29 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Promotion Details.
+        /// </summary>
+        public static string PromotionDetails {
+            get {
+                return ResourceManager.GetString("PromotionDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Promotion Prize.
         /// </summary>
         public static string PromotionPrize {
             get {
                 return ResourceManager.GetString("PromotionPrize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Type.
+        /// </summary>
+        public static string PromotionType {
+            get {
+                return ResourceManager.GetString("PromotionType", resourceCulture);
             }
         }
         

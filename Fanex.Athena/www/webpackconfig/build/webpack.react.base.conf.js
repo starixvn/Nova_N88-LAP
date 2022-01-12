@@ -38,6 +38,7 @@ function generateConfig(environment) {
             [`${jsPath}/report/winloss-nonsports-betlist`]: pathConfig.scriptPaths.winloss_nonsports_betlist,
             [`${jsPath}/report/marketing`]: pathConfig.scriptPaths.marketingreport,
             [`${jsPath}/report/bonusinfo`]: pathConfig.scriptPaths.bonusinforeport,
+            [`${jsPath}/report/extrapayout`]: pathConfig.scriptPaths.extrapayoutreport,
             [`${jsPath}/report/marketing-performancehighlightdetail`]: pathConfig.scriptPaths.marketingreport_performancehighlightdetail,
 
             /*css*/
@@ -56,6 +57,7 @@ function generateConfig(environment) {
             [`${cssPath}/report/winloss`]: pathConfig.cssPaths.winlossreport,
             [`${cssPath}/report/marketing`]: pathConfig.cssPaths.marketingreport,
             [`${cssPath}/report/bonusinfo`]: pathConfig.cssPaths.bonusinforeport,
+            [`${cssPath}/report/extrapayout`]: pathConfig.cssPaths.extrapayoutreport,
         },
         output: {
             path: pathConfig.projectRoot,

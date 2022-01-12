@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 11/8/2021 5:14:20 PM
+// Generated at: 12/30/2021 12:50:15 AM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -290,6 +290,7 @@ window._language_en_US = {
   Currentmonth: "Current month",
   Currentweek: "Current week",
   Customer: "Customer",
+  CustomerAmount: "Customer Amount",
   CustomerBalance: "Customer Balance",
   CustomerBetList: "Customer Bet List",
   CustomerComm: "Customer Comm",
@@ -423,6 +424,7 @@ window._language_en_US = {
   ForecastAway: "Forecast Away",
   ForecastHome: "Forecast Home",
   Fr: "Fr",
+  FreeBets: "Free Bets",
   FreePlay: "Free Play",
   Freeze: "Freeze",
   Friday: "Friday",
@@ -547,6 +549,7 @@ window._language_en_US = {
   LicenseeW_L: "Licensee W/L",
   LicenseeWinLoss: "Licensee Win Loss",
   LicenseeWL: "Licensee WL",
+  LicSharingAmount: "Licensee Sharing Amount",
   Live: "Live",
   LiveAndNonLive: "Live and Non-live",
   LiveGame: "Live Game",
@@ -766,6 +769,7 @@ window._language_en_US = {
   ProductSBC: "Saba.club",
   ProductSG: "SG",
   ProductSLT: "Sports Lottery",
+  ProductSPR: "Saba Promotion",
   ProductSXG: "AE Sexy",
   ProductTG: "Table Game",
   ProductVB: "Macau Games",
@@ -777,7 +781,9 @@ window._language_en_US = {
   ProgressiveBet: "Progressive Bet",
   ProgressiveWin: "Progressive Win",
   Promotion: "Promotion",
+  PromotionDetails: "Promotion Details",
   PromotionPrize: "Promotion Prize",
+  PromotionType: "Promotion Type",
   PropertiesMustMatchErrMsg: "&apos;{0}&apos; and &apos;{1}&apos; do not match.",
   QuickDownloadDateRangeExceedMsg: "To download excel file, please select data range within 1 month.",
   RB: "RB",

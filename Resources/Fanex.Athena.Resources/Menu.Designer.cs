@@ -106,6 +106,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extra Payout.
+        /// </summary>
+        public static string ExtraPayoutReport {
+            get {
+                return ResourceManager.GetString("ExtraPayoutReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saba Products Win Loss.
         /// </summary>
         public static string LicenseeWinLoss {

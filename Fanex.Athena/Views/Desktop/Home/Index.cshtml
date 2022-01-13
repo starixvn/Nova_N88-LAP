@@ -46,7 +46,7 @@
         window.addEventListener("message", function (event) {
             const message = event.data;
             if (message && message.key === 'lrf_go_to_extra_payout_report') {
-                $('li>#MenuItem47').get(0)?.click();
+                $('li>a[href*="ExtraPayoutReport/Index"]').get(0)?.click();
             }
         }, false);
     </script>

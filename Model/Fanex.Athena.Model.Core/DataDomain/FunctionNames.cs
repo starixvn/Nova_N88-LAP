@@ -21,5 +21,7 @@
         public const string BettingTicketCenterRunning = "BettingTicketCenter_Running";
 
         public const string BettingTicketCenterAdvancedSearch = "BettingTicketCenter_AdvancedSearch";
+
+        public const string ExtraPayout = "ExtraPayout";
     }
 }

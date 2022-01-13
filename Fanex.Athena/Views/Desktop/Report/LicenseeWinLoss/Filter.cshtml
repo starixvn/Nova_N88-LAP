@@ -96,5 +96,6 @@
     @Html.Hidden("allowSelectBrand", allowSelectBrand.ToString().ToLowerInvariant())
     @Html.Hidden("DefaultBaseCurrencyId", Model.Param.CurrencyId)
     @Html.Hidden("numberOfDefaultCurrency", numberOfDefaultCurrency)
+    @Html.Hidden("IsAllowedExtraPayout", Model.IsAllowedExtraPayout)
     @Html.Hidden("Brands", brands.ToJson())
 </div>

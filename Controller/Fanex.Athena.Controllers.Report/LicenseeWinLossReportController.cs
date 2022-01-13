@@ -74,6 +74,7 @@
                 CurrencyList = userSession.CurrencyList,
                 Brands = BrandList,
                 IsAllowedCustomerCommission = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
+                IsAllowedExtraPayout = SessionServiceInstance.UserSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportExtraPayout),
                 ProductAccess = productAccess,
                 ReportSetting = reportSetting
             };

@@ -10,6 +10,7 @@
     <Function Name="CustomerBalance" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA"></Function>
     <Function Name="CustomerWinLoss" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA"></Function>
     <Function Name="ResultPage_GetNormalSports" Product="SB,BA,NG,VS,KN,LT,I4D"></Function>
+    <Function Name="ExtraPayout" Product="SPR,SBC,VGA,CC"></Function>
   </Group>
 
   <Group Name="BetList">

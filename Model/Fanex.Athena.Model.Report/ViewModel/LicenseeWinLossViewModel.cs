@@ -20,5 +20,7 @@
 
         [CLSCompliant(false)]
         public IEnumerable<Brand> Brands { get; set; }
+
+        public bool IsAllowedExtraPayout { get; set; }
     }
 }

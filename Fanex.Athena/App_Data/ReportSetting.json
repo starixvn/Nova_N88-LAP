@@ -35,5 +35,10 @@
     "MinDateString": "01/01/2020",
     "LimitMonthRange": 3,
     "TimeZone": 8
+  },
+  {
+    "ReportKey": "ExtraPayoutReport",
+    "MinDateString": "",
+    "MaxDateString": "today"
   }
 ]

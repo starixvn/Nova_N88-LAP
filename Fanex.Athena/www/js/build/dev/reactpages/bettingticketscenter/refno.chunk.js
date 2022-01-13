@@ -506,7 +506,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const CheckBox = react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
+const CheckBox = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "checkbox-group",
     ref: ref
@@ -3102,6 +3102,10 @@ class Site {
 
   static convertDateToString(date) {
     return typeof date === "string" ? date : date.format("MM/DD/YYYY");
+  }
+
+  static isEmptyObject(obj = {}) {
+    return Object.entries(obj).length === 0 && obj.constructor === Object;
   }
 
   static asNull(text) {

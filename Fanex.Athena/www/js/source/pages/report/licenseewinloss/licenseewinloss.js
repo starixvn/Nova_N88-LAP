@@ -129,29 +129,12 @@
                 });
 
                 $('#ExportPromotionPrizeLink').click(function () {
-                    let filterData = {};
-
-                    if (_level === 0) {
-                        filterData = $('#licenseewinloss').serializeObject();
+                    if (Site.asBool($('#IsAllowedExtraPayout').val())) {
+                        _me.goToExtraPayout();
                     }
                     else {
-                        filterData = drillDownData;
+                        _me.showExtraPayoutErrorPopup();
                     }
-                    
-                    const selectedBrands = _me.getSelectedBrandIds();
-
-                    const data = {
-                        __RequestVerificationToken: Site.getXsrfToken(),
-                        FromDate: filterData.FromDate,
-                        ToDate: filterData.ToDate,
-                        CurrencyId: filterData.CurrencyId,
-                        CurrencyName: filterData.CurrencyName,
-                        IsExcludedTestData: filterData.IsExcludedTestData,
-                        AgentId: filterData.AgentId,
-                        BrandIds: selectedBrands.join() 
-                    };
-                    const url = Site.buildReportProxyUrl(LicenseeWinLossOption.urlPromotionPrizeExcelData);
-                    _me.exportExcel(url, data, EXCEL_PP_FILENAME);
                 });
 
                 $('#level-link-container').on('click', '.level-link', function () {
@@ -171,7 +154,51 @@
                 });
             },
 
-            getSelectedBrandIds: function() {
+            goToExtraPayout: function () {
+                window.top.postMessage({
+                    key: 'lrf_go_to_extra_payout_report'
+                }, '*');
+            },
+
+            showExtraPayoutErrorPopup: function () {
+                const options = {
+                    modal: true,
+                    title: Site.getSingleResource('Error'),
+                    height: 'auto',
+                    id: 'confirm-action',
+                    width: 450,
+                    float: 'center'
+                };
+
+                var buttons = [
+                    {
+                        text: Site.getSingleResource('OK'),
+                        isClosedOnClick: true,
+                        classes: 'btn btn-submit'
+                    }];
+
+                const icon = `<div class="swal-icon swal-icon--error">
+                        <div class="swal-icon--error__x-mark">
+                          <span class="swal-icon--error__line swal-icon--error__line--left"></span>
+                          <span class="swal-icon--error__line swal-icon--error__line--right"></span>
+                        </div>
+                     </div>`;
+
+                Popup.openPopupWithButton('<div>' + icon + '<p class="center-align">' + Site.getSingleResource('FunctionDeniedMsg') + '</p></div>', options, buttons);
+            },
+
+            isParentSameOrigin: function () {
+                let sameOrigin;
+                try {
+                    sameOrigin = window.parent.location.host === window.location.host;
+                }
+                catch (e) {
+                    sameOrigin = false;
+                }
+                return sameOrigin;
+            },
+
+            getSelectedBrandIds: function () {
                 const selectedBrandOptions = $.parseJSON(_submitData.BrandOptions);
                 const selectedBrands = selectedBrandOptions.filter(_ => _.Checked).map(_ => _.ID);
                 return selectedBrands;

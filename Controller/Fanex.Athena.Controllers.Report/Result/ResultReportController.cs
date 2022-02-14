@@ -153,20 +153,6 @@ namespace Fanex.Athena.Controllers.Report.Result
         }
 
         [HttpGet]
-        public async Task<string> VoidbridgeResult(string custId, string gamePlayId)
-        {
-            var language = SessionServiceInstance.UserSession.Language;
-            var model = new
-            {
-                custId,
-                gamePlayId,
-                languageCode = language
-            };
-            return await _betListApiClient.PostStringAsync("/VoidbridgeResultPopup/Index",
-                model, language).ConfigureAwait(false);
-        }
-
-        [HttpGet]
         public async Task<ActionResult> AllBetResult(string transDesc, string betCheck, string betType)
         {
             var language = SessionServiceInstance.UserSession.Language;
@@ -208,21 +194,6 @@ namespace Fanex.Athena.Controllers.Report.Result
             };
             return await _betListApiClient.PostStringAsync("/GlobalGamingResultPopup/Index",
                 model, SessionServiceInstance.UserSession.Language).ConfigureAwait(false);
-        }
-
-        [HttpGet]
-        public async Task<string> SportsLottery(string custId, string transId3rd, string platform)
-        {
-            var language = SessionServiceInstance.UserSession.Language;
-            var model = new
-            {
-                custId,
-                transId3rd,
-                platform,
-                languageCode = language
-            };
-
-            return await _betListApiClient.PostStringAsync("/SportsLotteryResultPopup/Index", model, language).ConfigureAwait(false);
         }
 
         [HttpGet]

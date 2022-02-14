@@ -286,31 +286,6 @@ class BetList {
         return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
     }
 
-    getVoidbridgeResultUrl(rootUrl, custid, gamePlayID) {
-        let url = rootUrl + 'ResultReport/VoidbridgeResult';
-        url = QueryString.setParam(url, 'custid', custid);
-        url = QueryString.setParam(url, 'gamePlayID', gamePlayID);
-
-        return url;
-    }
-
-    getPPResultUrl(rootUrl, custid, gamePlayId) {
-        let url = rootUrl + 'PPResultPopup/Index';
-        url = QueryString.setParam(url, 'custid', custid);
-        url = QueryString.setParam(url, 'gamePlayId', gamePlayId);
-
-        return url;
-    }
-
-    getCardClubResultUrl(rootUrl, custid, gameTypeId, transId3rd) {
-        let url = rootUrl + 'CardClubResultPopup/Index';
-        url = QueryString.setParam(url, 'custid', custid);
-        url = QueryString.setParam(url, 'gameTypeId', gameTypeId);
-        url = QueryString.setParam(url, 'transId3rd', transId3rd);
-
-        return url;
-    }
-
     getSabaClubResultUrl(rootUrl, custid, gameId, siteId, gameRoundId) {
         let url = rootUrl + 'SabaClubResultPopup/Index';
         url = QueryString.setParam(url, 'custid', custid);
@@ -341,14 +316,6 @@ class BetList {
         return url;
     }
 
-    getSGResultUrl(rootUrl, custid, gamePlayId) {
-        let url = rootUrl + 'SGResultPopup/Index';
-        url = QueryString.setParam(url, 'custid', custid);
-        url = QueryString.setParam(url, 'gamePlayId', gamePlayId);
-
-        return url;
-    }
-
     getAllBetResultUrl(rootUrl, transdesc, betcheck, bettype) {
         let url = rootUrl + 'ResultReport/AllBetResult';
         url = QueryString.setParam(url, 'betcheck', betcheck);
@@ -375,24 +342,6 @@ class BetList {
         return url;
     }
 
-    getHappy5LinkedGamesResultUrl(rootUrl, custId, transId3rd, platform) {
-        let url = rootUrl + 'Happy5LinkedGamesResultPopup/Index';
-        url = QueryString.setParam(url, 'custId', custId);
-        url = QueryString.setParam(url, 'transId3rd', transId3rd);
-        url = QueryString.setParam(url, 'platform', platform);
-
-        return url;
-    }
-
-    getSportsLotteryResultUrl(rootUrl, custId, transId3rd, platform) {
-        let url = rootUrl + 'ResultReport/SportsLottery';
-        url = QueryString.setParam(url, 'custId', custId);
-        url = QueryString.setParam(url, 'transId3rd', transId3rd);
-        url = QueryString.setParam(url, 'platform', platform);
-
-        return url;
-    }
-
     getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType, currencyName) {
         let url = rootUrl + 'ResultReport/VGaming';
         url = QueryString.setParam(url, 'custid', custid);
@@ -401,6 +350,19 @@ class BetList {
         url = QueryString.setParam(url, 'gameRoundId', gameRoundId);
         url = QueryString.setParam(url, 'sportType', sportType);
         url = QueryString.setParam(url, 'currencyName', currencyName);
+
+        return url;
+    }
+
+    getThirdPartyProductResultUrl(rootUrl, custId, transId3rd, gameId3rd, currencyId, siteId, betTypeId, productPath) {
+        let url = rootUrl + 'ThirdPartyResultPopup/Index';
+        url = QueryString.setParam(url, 'custId', custId);
+        url = QueryString.setParam(url, 'transId3rd', transId3rd);
+        url = QueryString.setParam(url, 'gameId3rd', gameId3rd);
+        url = QueryString.setParam(url, 'currencyId', currencyId);
+        url = QueryString.setParam(url, 'siteId', siteId);
+        url = QueryString.setParam(url, 'betTypeId', betTypeId);
+        url = QueryString.setParam(url, 'productPath', productPath);
 
         return url;
     }

@@ -1899,26 +1899,26 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       window.logOpenBetlistEvent && window.logOpenBetlistEvent(this.props.pageName);
     };
 
-    window.ViewResult = (matchid, raceNo, bettype, sporttype, refno, currency, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs) => {
+    window.ViewResult = (matchid, raceNo, bettype, sporttype, refno, currency, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs, siteId) => {
       const title = this._getResource('Result');
 
       const rootUrl = this.props.rootUrl;
       const defaultPlatform = 'd';
 
       if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_GAME || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_MINIGAME || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_MOBILE) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getRngCasinoResultUrl(rootUrl);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'RNGCasino');
 
-        this._showRngCasinoResult(refno, url, title);
+        this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VOIDBRIDGE) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVoidbridgeResultUrl(rootUrl, custid, extension2);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'Voidbridge');
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].PP) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getPPResultUrl(rootUrl, custid, extension2);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'PP');
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].CARDCLUB) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getCardClubResultUrl(rootUrl, custid, bettype, extension2);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'CardClub');
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SBC) {
@@ -1926,7 +1926,7 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SG) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSGResultUrl(rootUrl, custid, extension2);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'SG');
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VRG) {
@@ -1946,11 +1946,11 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
         this._openPopup(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].Happy5LinkedGames) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getHappy5LinkedGamesResultUrl(rootUrl, extension1, refno, defaultPlatform);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, refno, extension2, extension1, siteId, bettype, 'Happy5LinkedGames');
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SLT) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSportsLotteryResultUrl(rootUrl, custid, transdecs, defaultPlatform);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'SportsLottery');
 
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA_FreeBets) {
@@ -2701,28 +2701,6 @@ class BetList {
     return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
   }
 
-  getVoidbridgeResultUrl(rootUrl, custid, gamePlayID) {
-    let url = rootUrl + 'ResultReport/VoidbridgeResult';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gamePlayID', gamePlayID);
-    return url;
-  }
-
-  getPPResultUrl(rootUrl, custid, gamePlayId) {
-    let url = rootUrl + 'PPResultPopup/Index';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gamePlayId', gamePlayId);
-    return url;
-  }
-
-  getCardClubResultUrl(rootUrl, custid, gameTypeId, transId3rd) {
-    let url = rootUrl + 'CardClubResultPopup/Index';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameTypeId', gameTypeId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId3rd', transId3rd);
-    return url;
-  }
-
   getSabaClubResultUrl(rootUrl, custid, gameId, siteId, gameRoundId) {
     let url = rootUrl + 'SabaClubResultPopup/Index';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
@@ -2750,13 +2728,6 @@ class BetList {
     return url;
   }
 
-  getSGResultUrl(rootUrl, custid, gamePlayId) {
-    let url = rootUrl + 'SGResultPopup/Index';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gamePlayId', gamePlayId);
-    return url;
-  }
-
   getAllBetResultUrl(rootUrl, transdesc, betcheck, bettype) {
     let url = rootUrl + 'ResultReport/AllBetResult';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'betcheck', betcheck);
@@ -2780,22 +2751,6 @@ class BetList {
     return url;
   }
 
-  getHappy5LinkedGamesResultUrl(rootUrl, custId, transId3rd, platform) {
-    let url = rootUrl + 'Happy5LinkedGamesResultPopup/Index';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId3rd', transId3rd);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'platform', platform);
-    return url;
-  }
-
-  getSportsLotteryResultUrl(rootUrl, custId, transId3rd, platform) {
-    let url = rootUrl + 'ResultReport/SportsLottery';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId3rd', transId3rd);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'platform', platform);
-    return url;
-  }
-
   getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType, currencyName) {
     let url = rootUrl + 'ResultReport/VGaming';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
@@ -2804,6 +2759,18 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameRoundId', gameRoundId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'sportType', sportType);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'currencyName', currencyName);
+    return url;
+  }
+
+  getThirdPartyProductResultUrl(rootUrl, custId, transId3rd, gameId3rd, currencyId, siteId, betTypeId, productPath) {
+    let url = rootUrl + 'ThirdPartyResultPopup/Index';
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId3rd', transId3rd);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameId3rd', gameId3rd);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'currencyId', currencyId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'siteId', siteId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'betTypeId', betTypeId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'productPath', productPath);
     return url;
   }
 

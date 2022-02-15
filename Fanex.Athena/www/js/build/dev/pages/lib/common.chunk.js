@@ -22229,10 +22229,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/*global _lan
             return REQUEST_VERIFICATION_TOKEN;
         }
 
-        function isEmptyObject(obj = {}) {
-            return Object.entries(obj).length === 0 && obj.constructor === Object;
-        }
-
         return {
             initialize: initialize,
             initBrandList: initBrandList,
@@ -22271,8 +22267,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿/*global _lan
             addFilterCollapseExpand: addFilterCollapseExpand,
             isFakeLicensee: isFakeLicensee,
             getXsrfToken: getXsrfToken,
-            getBaseCurrencyName: getBaseCurrencyName,
-            isEmptyObject: isEmptyObject
+            getBaseCurrencyName: getBaseCurrencyName
         };
     }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));

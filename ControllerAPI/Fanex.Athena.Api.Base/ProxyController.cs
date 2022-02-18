@@ -22,7 +22,7 @@
         [AllowAnonymous]
         public async Task<HttpResponseMessage> Health(string apiKey)
         {
-            var result = await _proxyService.HealthCheck(apiKey);
+            var result = await _proxyService.HealthCheck(apiKey).ConfigureAwait(false);
             return result;
         }
 
@@ -31,7 +31,7 @@
         [ApiValidateAntiForgery]
         public async Task<HttpResponseMessage> Forward([FromUri]string apiKey, [FromUri]string apiUrl)
         {
-            var result = await _proxyService.HandleRequest(apiKey, apiUrl);
+            var result = await _proxyService.HandleRequest(apiKey, apiUrl).ConfigureAwait(false);
             return result;
         }
     }

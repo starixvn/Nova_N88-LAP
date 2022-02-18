@@ -98,9 +98,8 @@ const WithdrawalAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand,
                     <Pager pageOption={pagingOption} onPaging={_handlePaging} />
                     <Table minWidth={650}
                         autoWidth={true}
-                        maxWidth={document.body.clientWidth}
-                        autoHeight={false}
-                        bodyHeight={400}
+                        maxWidth={Math.min(document.body.clientWidth, 1920)}
+                        autoHeight={true}
                         header={_renderHeader()}
                         body={_renderBody()}
                         onSort={_handleSort}

@@ -62,16 +62,16 @@ export const GridData = ({ setLoading, sortOption, setSortOption, pagingOption, 
     }
 
     const _header = useMemo(() => {
-        return (<HeaderRow style={{ height: '25px' }}>
-            <HeaderCell colWidth={40}>{'#'}</HeaderCell>
-            <HeaderCell sortBy={1} colWidth={60}>{LangHelper.getSingleResource('RefNo')}</HeaderCell>
-            <HeaderCell sortBy={2} colWidth={70}>{LangHelper.getSingleResource('TransTime')}</HeaderCell>
-            <HeaderCell sortBy={3} colWidth={80}>{LangHelper.getSingleResource('Stake')}</HeaderCell>
+        return (<HeaderRow style={{ height: '35px' }}>
+            <HeaderCell colWidth={30}>{'#'}</HeaderCell>
+            <HeaderCell sortBy={1} colWidth={100}>{LangHelper.getSingleResource('RefNo')}</HeaderCell>
+            <HeaderCell sortBy={2} colWidth={60}>{LangHelper.getSingleResource('TransTime')}</HeaderCell>
+            <HeaderCell sortBy={3} colWidth={70}>{LangHelper.getSingleResource('Stake')}</HeaderCell>
             <HeaderCell sortBy={4} colWidth={70}>{LangHelper.getSingleResource('PlayerWinloss')}</HeaderCell>
             <HeaderCell sortBy={5} colWidth={70}>{LangHelper.getSingleResource('ProgressiveWin')}</HeaderCell>
             <HeaderCell sortBy={6} colWidth={70}>{LangHelper.getSingleResource('ProgressiveBet')}</HeaderCell>
-            <HeaderCell sortBy={7} colWidth={70}>{LangHelper.getSingleResource('GGR')}</HeaderCell>
-            <HeaderCell sortBy={8} colWidth={50}>{LangHelper.getSingleResource('Status')}</HeaderCell>
+            <HeaderCell sortBy={7} colWidth={50}>{LangHelper.getSingleResource('GGR')}</HeaderCell>
+            <HeaderCell sortBy={8} colWidth={40}>{LangHelper.getSingleResource('Status')}</HeaderCell>
         </HeaderRow>)
 
     }, [])

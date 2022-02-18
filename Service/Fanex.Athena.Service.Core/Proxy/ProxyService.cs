@@ -29,7 +29,7 @@
             {
                 if (_options.PrepareRequest != null)
                 {
-                    await _options.PrepareRequest(originalRequest, requestMessage);
+                    await _options.PrepareRequest(originalRequest, requestMessage).ConfigureAwait(false);
                 }
 
                 var responseMessage = null as HttpResponseMessage;
@@ -52,11 +52,8 @@
             }
         }
 
-        public async Task<HttpResponseMessage> HandleRequest(string apiKey, string apiUrl)
-        {
-            var result = await HandleRequest(apiKey, apiUrl, HttpContext.Current.Request);
-            return result;
-        }
+        public Task<HttpResponseMessage> HandleRequest(string apiKey, string apiUrl)
+            => HandleRequest(apiKey, apiUrl, HttpContext.Current.Request);
 
         public async Task<HttpResponseMessage> HealthCheck(string apiKey)
         {

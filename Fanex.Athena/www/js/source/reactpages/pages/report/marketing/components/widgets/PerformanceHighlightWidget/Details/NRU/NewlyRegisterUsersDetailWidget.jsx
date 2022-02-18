@@ -110,7 +110,7 @@ const NewlyRegisterUsersDetailWidget = ({ reportDate, baseCurrency, selectedBran
                     <Table
                         minWidth={650}
                         autoWidth={true}
-                        maxWidth={window.innerWidth}
+                        maxWidth={Math.min(document.body.clientWidth, 1920)}
                         autoHeight={false}
                         bodyHeight={400}
                         header={_renderHeader()}

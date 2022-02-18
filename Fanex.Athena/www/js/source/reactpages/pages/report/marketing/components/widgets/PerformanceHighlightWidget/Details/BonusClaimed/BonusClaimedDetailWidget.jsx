@@ -5,7 +5,7 @@ import Widget from '../../../../common/Widget';
 import DataService from '../../../../../libs/services/dataService';
 import { Table, Pager, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import QueryService from '../../../../../libs/services/queryService';
-import { DetailBonusClaimedGridColumns, DetaiBonusClaimedGridConfig, DefaultPagingOption, StyleRow , DigitsAmount} from '../../../../../constants/gridConst';
+import { DetailBonusClaimedGridColumns, DetaiBonusClaimedGridConfig, DefaultPagingOption, StyleRow, DigitsAmount } from '../../../../../constants/gridConst';
 
 const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, selectedCurrency, sortInfo, onSort }) => {
     const [isLoading, setLoading] = useState(false);
@@ -102,15 +102,16 @@ const BonusClaimedDetailWidget = ({ reportDate, baseCurrency, selectedBrand, sel
             {detailData &&
                 <>
                     <Pager pageOption={pagingOption} onPaging={_handlePaging} />
-                    <Table minWidth={650}
+                    <Table
+                        minWidth={650}
                         autoWidth={true}
-                        maxWidth={document.body.clientWidth}
+                        maxWidth={Math.min(document.body.clientWidth, 1920)}
                         autoHeight={false}
                         bodyHeight={400}
                         header={_renderHeader()}
                         body={_renderBody()}
                         onSort={_handleSort}
-                        containerPadding={70}
+                        containerPadding={55}
                         shouldResetScrollPosition={isLoading}
                     />
                 </>}

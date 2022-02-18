@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LangHelper from '@jsroot/lib/langHelper';
 import NumberFormat from '@jsroot/lib/numberFormat';
-import Popup from '@jsroot/components/popup';
 import ActionCreators from '../../../actions';
 import Widget from '../../common/Widget';
 import HighlightBox from '../../common/HighlightBox';
@@ -20,7 +19,6 @@ export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
     const { allowedCompare, fromLastXDays } = globalFilter;        
     const [isLoading, setLoading] = useState(false);
-    const [selectedBox, setSelectedBox] = useState(null);
 
     useEffect(() => {
         if (!globalFilter) {
@@ -89,7 +87,7 @@ export const PerformanceHighlightWidget = props => {
         const { newlyRegisterUsers, growthRateNewlyRegisterUsers } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={allowedCompare}
-            onViewDetail={() => setSelectedBox(PerformanceHighlightDetailBoxKeys.NewlyRegisteredUsers)}
+            onViewDetail={() => _onClickDetailBox(PerformanceHighlightDetailBoxKeys.NewlyRegisteredUsers)}
             title={LangHelper.getSingleResource('NRU')}
             description={LangHelper.getSingleResource('NewlyRegisteredUsers')}
             value={newlyRegisterUsers}
@@ -111,7 +109,7 @@ export const PerformanceHighlightWidget = props => {
         const { depositAmount, growthRateDepositAmount } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={allowedCompare}
-            onViewDetail={() => setSelectedBox(PerformanceHighlightDetailBoxKeys.DepositAmount)}
+            onViewDetail={() => _onClickDetailBox(PerformanceHighlightDetailBoxKeys.DepositAmount)}
             title={LangHelper.getSingleResource('DepositAmount')}
             value={depositAmount}
             rate={growthRateDepositAmount}
@@ -122,7 +120,7 @@ export const PerformanceHighlightWidget = props => {
         const { withdrawalAmount, growthRateWithdrawalAmount } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={allowedCompare}
-            onViewDetail={() => setSelectedBox(PerformanceHighlightDetailBoxKeys.WithdrawalAmount)}
+            onViewDetail={() => _onClickDetailBox(PerformanceHighlightDetailBoxKeys.WithdrawalAmount)}
             title={LangHelper.getSingleResource('WithdrawalAmount')}
             value={withdrawalAmount}
             rate={growthRateWithdrawalAmount}
@@ -133,7 +131,7 @@ export const PerformanceHighlightWidget = props => {
         const { bonusAmountClaimeds, growthRateBonusAmountClaimeds } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={allowedCompare}
-            onViewDetail={() => setSelectedBox(PerformanceHighlightDetailBoxKeys.BonusClaimed)}
+            onViewDetail={() => _onClickDetailBox(PerformanceHighlightDetailBoxKeys.BonusClaimed)}
             title={LangHelper.getSingleResource('BonusAmountClaimed')}
             value={bonusAmountClaimeds}
             rate={growthRateBonusAmountClaimeds}
@@ -186,10 +184,7 @@ export const PerformanceHighlightWidget = props => {
         return url;
     }
 
-    const _renderPopupDetail = () => {
-        if(!selectedBox) {
-            return null;
-        }
+    const _onClickDetailBox = selectedBox => {
         const params = {
             selectedBox: selectedBox,
             baseCurrency: globalFilter.selectedBaseCurrency,
@@ -201,9 +196,8 @@ export const PerformanceHighlightWidget = props => {
             fromDate: Site.convertDateToString(globalFilter.reportDate.fromDate),
             toDate: Site.convertDateToString(globalFilter.reportDate.toDate),
         }
-        const urlContent =_buildPopupUrl(params);
-        return (<Popup iframeUrl={urlContent} height={700} width={1250} isShow={true} title={_renderPopupTitle()} onClose={() => setSelectedBox(null)}>
-        </Popup>)
+        const urlContent = _buildPopupUrl(params);
+        window.open(urlContent, '_blank').focus();
     }
 
     const _parseToCurrencyNameList = ({ selectedBrand, selectedCurrency }) => {
@@ -224,7 +218,6 @@ export const PerformanceHighlightWidget = props => {
 
     return (<Widget title={_title} isLoading={isLoading} handleExportExcel={_handleExportExcel}>
         {performanceHighlightData && <div className="sticky-box-container">
-            {_renderPopupDetail()}
             {_renderTotalUsersBox()}
             {_renderTotalDepositUsersBox()}
             {_renderTotalActiveUsersBox()}

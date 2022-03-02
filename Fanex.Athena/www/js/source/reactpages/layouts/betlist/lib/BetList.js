@@ -366,6 +366,12 @@ class BetList {
 
         return url;
     }
+
+    getVS3ResultUrl(rootUrl, transdecs, sporttype) {
+        let url = rootUrl + 'ResultReport/ResultPopup' + '?transDesc=' + transdecs + '&sporttype=' + sporttype;
+
+        return url;
+    }
 }
 
 export default new BetList();

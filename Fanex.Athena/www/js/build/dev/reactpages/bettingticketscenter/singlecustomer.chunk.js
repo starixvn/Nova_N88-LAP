@@ -3801,6 +3801,10 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype, currency);
 
         this._showThirdPartyResult(url, title);
+      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VS3) {
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVS3ResultUrl(rootUrl, transdecs, sporttype);
+
+        this._openPopup(url, title);
       } else {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getResultUrl(rootUrl, matchid, raceNo, bettype, sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid);
 
@@ -4037,6 +4041,16 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
       this._openPopup(url, title);
     };
+
+    window.showDetail = id => {
+      var e = document.getElementById(id);
+
+      if (e.style.display == 'block') {
+        e.style.display = 'none';
+      } else {
+        e.style.display = 'block';
+      }
+    };
   }
 
   componentWillUnmount() {
@@ -4061,6 +4075,7 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     window.showSabaClubJackpotWonDetails = undefined;
     window.showVGamingDetails = undefined;
     window.showVGamingJackpotWonDetails = undefined;
+    window.showDetail = undefined;
   }
 
   _getResource(key) {
@@ -4618,6 +4633,11 @@ class BetList {
     return url;
   }
 
+  getVS3ResultUrl(rootUrl, transdecs, sporttype) {
+    let url = rootUrl + 'ResultReport/ResultPopup' + '?transDesc=' + transdecs + '&sporttype=' + sporttype;
+    return url;
+  }
+
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (new BetList());
@@ -4659,7 +4679,8 @@ const SportType = {
   Happy5LinkedGames: 168,
   SLT: 169,
   VGA: 171,
-  VGA_FreeBets: 173
+  VGA_FreeBets: 173,
+  VS3: 231
 };
 
 /***/ }),

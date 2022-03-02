@@ -7441,6 +7441,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
         const SPORT_SLT = 169;
         const SPORT_VGA = 171;
         const SPORT_VGA_FreeBets = 173;
+        const SPORT_VS3 = 231;
         const BETLIST_META_MODEL = '#BetListMetaModel';
 
         let _sortColumnName, _sortOrder;
@@ -7862,6 +7863,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     }
                 });
             },
+            viewVS3Result: function (transdecs, sporttype, title) {
+                let url = Site.resolveClientUrl('ResultReport/ResultPopup') + '?transDesc=' + transdecs + '&sporttype=' + sporttype;
+
+                Site.blockUI();
+                showResultPopUp(url, { width: 800, height: 380, title: title });
+                Site.unBlockUI();
+            },
             viewThirdPartyProductResult: function (custId, transId3rd, gameId3rd, currencyId, siteId, betTypeId, productPath, title) {
                 const param = 'custId=' + custId +
                     '&transId3rd=' + transId3rd +
@@ -7923,6 +7931,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 }
                 else if (sporttype === SPORT_VGA || sporttype === SPORT_VGA_FreeBets) {
                     _me.viewVGamingResult(custid, bettype, extension2, transdecs, title, sporttype, currency);
+                }
+                else if (sporttype === SPORT_VS3) {
+                    _me.viewVS3Result(transdecs, sporttype, title);
                 }
                 else {
                     const numberBettype = Number(bettype);
@@ -8271,6 +8282,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
 
                 showDetailPopUp(url, { width: 890, height: popH + 50, title: title });
             },
+            showDetail: function (id) {
+                var e = document.getElementById(id);
+                if (e.style.display == 'block') {
+                    e.style.display = 'none';
+                }
+                else {
+                    e.style.display = 'block';
+                }
+            },
             ValidProducts: function () {
                 let temp = true;
                 if ($('#ProductList').find('input:checked').length === 0) {
@@ -8360,6 +8380,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 window.showSabaClubJackpotWonDetails = _me.showSabaClubJackpotWonDetails;
                 window.showVGamingDetails = _me.showVGamingDetails;
                 window.showVGamingJackpotWonDetails = _me.showVGamingJackpotWonDetails;
+                window.showDetail = _me.showDetail;
 
                 const betList = {
                     ViewCasinoHandHistory: _me.ViewCasinoHandHistory

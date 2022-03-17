@@ -102,6 +102,7 @@
             var customcontent = AddCasinoProducts(content, products);
             customcontent = RemoveProductSection(customcontent, products, ProductTypes.VirtualSports, "VS");
             customcontent = RemoveProductSection(customcontent, products, ProductTypes.VirtualSports2, "VS2");
+            customcontent = RemoveProductSection(customcontent, products, ProductTypes.VS3, "VS3");
             return customcontent;
         }
 
@@ -120,7 +121,7 @@
                 }
                 else
                 {
-                    var pattern = @"\{" + productCode + @"-productlist-section\}.*\{/" + productCode + @"-productlist-section\}";
+                    var pattern = @"\{" + productCode + @"-productlist-section\}[\s\S]*{/" + productCode + @"-productlist-section\}";
                     customContent = new Regex(pattern).Replace(customContent, string.Empty);
                 }
             }

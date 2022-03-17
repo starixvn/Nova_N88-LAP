@@ -55,5 +55,7 @@ namespace Fanex.Athena.Model.Core.DataDomain
         public const int SLT = 63;
 
         public const int VGA = 66;
+
+        public const int VS3 = 49;
     }
 }

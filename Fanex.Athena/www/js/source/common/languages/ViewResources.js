@@ -1,4 +1,4 @@
-﻿// Generated at: 12/30/2021 12:50:15 AM
+﻿// Generated at: 3/2/2022 10:26:50 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -683,6 +683,7 @@ ProductVGA:"Vgaming",
 ProductVRG:"Virtual Games",
 ProductVS:"Virtual Sports",
 ProductVS2:"Virtual Sports 2",
+ProductVS3:"Virtual Sports 3",
 ProgressiveBet:"Progressive Bet",
 ProgressiveWin:"Progressive Win",
 Promotion:"Promotion",

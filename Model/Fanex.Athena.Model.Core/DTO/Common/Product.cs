@@ -67,6 +67,8 @@
 
         public const string SPR = "SPR";
 
+        public const string VS3 = "VS3";
+
         #endregion Field
 
         #region Constructor

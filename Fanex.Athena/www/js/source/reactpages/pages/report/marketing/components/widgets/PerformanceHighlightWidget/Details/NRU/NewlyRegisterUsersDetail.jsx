@@ -7,7 +7,7 @@ import NewlyRegisterUsersDetailWidget from './NewlyRegisterUsersDetailWidget';
 import { DefaultSortInfo } from '../../../../../constants/gridConst';
 
 const NewlyRegisterUsersDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency, allowedCompare }) => {
-    const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState(DefaultSortInfo);
+    const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState({...DefaultSortInfo, sortbyId: 0});
 
     const handleExportExcel = () => {
         const exportParams = DataService.getNewlyRegisterUsersExportAPIParams({

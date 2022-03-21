@@ -2533,129 +2533,6 @@ function parseInput(input, format, timeOfDay) {
 
 /***/ }),
 
-/***/ "./www/js/source/reactpages/components/popup/Popup.jsx":
-/*!*************************************************************!*\
-  !*** ./www/js/source/reactpages/components/popup/Popup.jsx ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/components/popup/constants.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-const Popup = props => {
-  const {
-    title,
-    isShow,
-    width,
-    height,
-    isHtml,
-    children,
-    iframeUrl
-  } = props;
-  let content;
-
-  if (iframeUrl) {
-    content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
-      frameBorder: "0",
-      src: iframeUrl,
-      width: "100%",
-      height: "100%"
-    });
-  } else {
-    content = isHtml ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "popup-content",
-      dangerouslySetInnerHTML: {
-        __html: children
-      }
-    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "popup-content"
-    }, children);
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: `popup-container ${isShow ? 'show' : 'hide'}`
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "popup-block-body"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flat-popup",
-    style: {
-      height: height,
-      width: width
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "popup-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "txt-title"
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "popup-close",
-    onClick: () => {
-      props.onClose && props.onClose();
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon-close"
-  }))), content));
-};
-
-Popup.propTypes = {
-  width: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
-  height: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
-  title: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
-  isShow: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.bool,
-  onClose: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func,
-  isHtml: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.bool,
-  iframeUrl: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string
-};
-Popup.defaultProps = {
-  width: _constants__WEBPACK_IMPORTED_MODULE_1__["DEFAULT_WIDTH"],
-  height: _constants__WEBPACK_IMPORTED_MODULE_1__["DEFAULT_HEIGHT"],
-  isShow: false,
-  isHtml: false,
-  iframeUrl: null
-};
-/* harmony default export */ __webpack_exports__["default"] = (Popup);
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/components/popup/constants.js":
-/*!****************************************************************!*\
-  !*** ./www/js/source/reactpages/components/popup/constants.js ***!
-  \****************************************************************/
-/*! exports provided: DEFAULT_WIDTH, DEFAULT_HEIGHT */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_WIDTH", function() { return DEFAULT_WIDTH; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_HEIGHT", function() { return DEFAULT_HEIGHT; });
-const DEFAULT_WIDTH = '55%';
-const DEFAULT_HEIGHT = '55%';
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/components/popup/index.jsx":
-/*!*************************************************************!*\
-  !*** ./www/js/source/reactpages/components/popup/index.jsx ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Popup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Popup */ "./www/js/source/reactpages/components/popup/Popup.jsx");
-
-/* harmony default export */ __webpack_exports__["default"] = (_Popup__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-/***/ }),
-
 /***/ "./www/js/source/reactpages/components/radio/Radio.jsx":
 /*!*************************************************************!*\
   !*** ./www/js/source/reactpages/components/radio/Radio.jsx ***!
@@ -4544,24 +4421,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
-/* harmony import */ var _jsroot_components_popup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/components/popup */ "./www/js/source/reactpages/components/popup/index.jsx");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
-/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
-/* harmony import */ var _common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../common/HighlightBox */ "./www/js/source/reactpages/pages/report/marketing/components/common/HighlightBox.jsx");
-/* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
-/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
-/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
-/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
-/* harmony import */ var _constants_queryConst__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../constants/queryConst */ "./www/js/source/reactpages/pages/report/marketing/constants/queryConst.js");
-/* harmony import */ var _constants_chartConst__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../constants/chartConst */ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js");
-/* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions */ "./www/js/source/reactpages/pages/report/marketing/actions/index.js");
+/* harmony import */ var _common_Widget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../common/Widget */ "./www/js/source/reactpages/pages/report/marketing/components/common/Widget.jsx");
+/* harmony import */ var _common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../common/HighlightBox */ "./www/js/source/reactpages/pages/report/marketing/components/common/HighlightBox.jsx");
+/* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
+/* harmony import */ var _libs_services_dataService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../libs/services/dataService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/dataService.js");
+/* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
+/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+/* harmony import */ var _constants_queryConst__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../constants/queryConst */ "./www/js/source/reactpages/pages/report/marketing/constants/queryConst.js");
+/* harmony import */ var _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../constants/chartConst */ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js");
+/* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
+/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -4590,13 +4465,12 @@ const PerformanceHighlightWidget = props => {
     fromLastXDays
   } = globalFilter;
   const [isLoading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  const [selectedBox, setSelectedBox] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     if (!globalFilter) {
       return;
     }
 
-    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_10__["default"].getPerformanceHighlightAPIParams(globalFilter);
+    const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_9__["default"].getPerformanceHighlightAPIParams(globalFilter);
     setLoading(true);
     fetchPeformanceHighlightData(apiParams, () => setLoading(false));
   }, [globalFilter]);
@@ -4607,7 +4481,7 @@ const PerformanceHighlightWidget = props => {
     const {
       totalUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: false,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalUsers'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AsOfNow'),
@@ -4619,7 +4493,7 @@ const PerformanceHighlightWidget = props => {
     const {
       totalDepositUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: false,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalDepositUsers'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AsOfNow'),
@@ -4631,7 +4505,7 @@ const PerformanceHighlightWidget = props => {
     const {
       totalActiveUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: false,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('TotalActiveUsers'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AsOfNow'),
@@ -4644,7 +4518,7 @@ const PerformanceHighlightWidget = props => {
       depositUsers,
       growthRateDepositUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('PU (APA)'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('DepositUsers'),
@@ -4658,7 +4532,7 @@ const PerformanceHighlightWidget = props => {
       activeUsers,
       growthRateActiveUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AU'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('ActiveUsers'),
@@ -4672,9 +4546,9 @@ const PerformanceHighlightWidget = props => {
       newlyRegisterUsers,
       growthRateNewlyRegisterUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
-      onViewDetail: () => setSelectedBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_14__["PerformanceHighlightDetailBoxKeys"].NewlyRegisteredUsers),
+      onViewDetail: () => _onClickDetailBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["PerformanceHighlightDetailBoxKeys"].NewlyRegisteredUsers),
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NRU'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NewlyRegisteredUsers'),
       value: newlyRegisterUsers,
@@ -4687,7 +4561,7 @@ const PerformanceHighlightWidget = props => {
       newlyActiveRegisterUsers,
       growthRateNewlyActiveRegisterUsers
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('ActiveNRU'),
       value: newlyActiveRegisterUsers,
@@ -4700,9 +4574,9 @@ const PerformanceHighlightWidget = props => {
       depositAmount,
       growthRateDepositAmount
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
-      onViewDetail: () => setSelectedBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_14__["PerformanceHighlightDetailBoxKeys"].DepositAmount),
+      onViewDetail: () => _onClickDetailBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["PerformanceHighlightDetailBoxKeys"].DepositAmount),
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('DepositAmount'),
       value: depositAmount,
       rate: growthRateDepositAmount
@@ -4714,9 +4588,9 @@ const PerformanceHighlightWidget = props => {
       withdrawalAmount,
       growthRateWithdrawalAmount
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
-      onViewDetail: () => setSelectedBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_14__["PerformanceHighlightDetailBoxKeys"].WithdrawalAmount),
+      onViewDetail: () => _onClickDetailBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["PerformanceHighlightDetailBoxKeys"].WithdrawalAmount),
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('WithdrawalAmount'),
       value: withdrawalAmount,
       rate: growthRateWithdrawalAmount
@@ -4728,9 +4602,9 @@ const PerformanceHighlightWidget = props => {
       bonusAmountClaimeds,
       growthRateBonusAmountClaimeds
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
-      onViewDetail: () => setSelectedBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_14__["PerformanceHighlightDetailBoxKeys"].BonusClaimed),
+      onViewDetail: () => _onClickDetailBox(_constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["PerformanceHighlightDetailBoxKeys"].BonusClaimed),
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('BonusAmountClaimed'),
       value: bonusAmountClaimeds,
       rate: growthRateBonusAmountClaimeds
@@ -4742,7 +4616,7 @@ const PerformanceHighlightWidget = props => {
       netCashAmount,
       growthRateNetCashAmount
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('NetCashAmount'),
       value: netCashAmount,
@@ -4755,7 +4629,7 @@ const PerformanceHighlightWidget = props => {
       churnRate,
       differentChurnRate
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('CR'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('ChurnRate'),
@@ -4770,7 +4644,7 @@ const PerformanceHighlightWidget = props => {
       retentionRate,
       differentRetentionRate
     } = performanceHighlightData;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_HighlightBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
       enableCompare: allowedCompare,
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('RR'),
       description: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('RetentionRate'),
@@ -4785,50 +4659,39 @@ const PerformanceHighlightWidget = props => {
       reportDate
     } = globalFilter;
     const displayCurrency = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
-    return `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Marketing')}, ${_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__["default"].convertDateToString(reportDate.fromDate)} - ${_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__["default"].convertDateToString(reportDate.toDate)}, ${displayCurrency}`;
+    return `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Marketing')}, ${_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].convertDateToString(reportDate.fromDate)} - ${_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].convertDateToString(reportDate.toDate)}, ${displayCurrency}`;
   };
 
   const _buildPopupUrl = params => {
     const url = Object.keys(params).reduce((result, currentKey) => {
-      return _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_15__["default"].setParam(result, currentKey, params[currentKey]);
-    }, _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__["default"].resolveClientUrl(_constants_queryConst__WEBPACK_IMPORTED_MODULE_13__["Url"].performanceHighlightDetailFrame));
+      return _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_14__["default"].setParam(result, currentKey, params[currentKey]);
+    }, _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].resolveClientUrl(_constants_queryConst__WEBPACK_IMPORTED_MODULE_12__["Url"].performanceHighlightDetailFrame));
     return url;
   };
 
-  const _renderPopupDetail = () => {
-    if (!selectedBox) {
-      return null;
-    }
-
+  const _onClickDetailBox = selectedBox => {
     const params = {
       selectedBox: selectedBox,
       baseCurrency: globalFilter.selectedBaseCurrency,
       selectedBrand: globalFilter.selectedBrand,
       selectedCurrency: globalFilter.selectedCurrency,
       allowedCompare: globalFilter.allowedCompare,
-      compareFromDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__["default"].formatDateStructureToString(globalFilter.compareDate.fromDate),
-      compareToDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_9__["default"].formatDateStructureToString(globalFilter.compareDate.toDate),
-      fromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__["default"].convertDateToString(globalFilter.reportDate.fromDate),
-      toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_12__["default"].convertDateToString(globalFilter.reportDate.toDate)
+      compareFromDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_8__["default"].formatDateStructureToString(globalFilter.compareDate.fromDate),
+      compareToDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_8__["default"].formatDateStructureToString(globalFilter.compareDate.toDate),
+      fromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].convertDateToString(globalFilter.reportDate.fromDate),
+      toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].convertDateToString(globalFilter.reportDate.toDate)
     };
 
     const urlContent = _buildPopupUrl(params);
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_popup__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      iframeUrl: urlContent,
-      height: 700,
-      width: 1250,
-      isShow: true,
-      title: _renderPopupTitle(),
-      onClose: () => setSelectedBox(null)
-    });
+    window.open(urlContent, '_blank').focus();
   };
 
   const _parseToCurrencyNameList = ({
     selectedBrand,
     selectedCurrency
   }) => {
-    const currencies = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_16__["default"].brands.find(_ => _.id === selectedBrand).tpCurrencies;
+    const currencies = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_15__["default"].brands.find(_ => _.id === selectedBrand).tpCurrencies;
     const stringCurrencies = selectedCurrency.split(",");
 
     if (currencies.length === stringCurrencies.length) {
@@ -4839,19 +4702,19 @@ const PerformanceHighlightWidget = props => {
   };
 
   const _handleExportExcel = () => {
-    const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_10__["default"].getPerformanceHighlightExportAPIParams(_objectSpread(_objectSpread({}, globalFilter), {}, {
+    const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_9__["default"].getPerformanceHighlightExportAPIParams(_objectSpread(_objectSpread({}, globalFilter), {}, {
       currencyNameList: _parseToCurrencyNameList(globalFilter)
     }));
-    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_11__["default"].exportPerformanceHighlightData(exportParams);
+    _libs_services_queryService__WEBPACK_IMPORTED_MODULE_10__["default"].exportPerformanceHighlightData(exportParams);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_6__["default"], {
     title: _title,
     isLoading: isLoading,
     handleExportExcel: _handleExportExcel
   }, performanceHighlightData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box-container"
-  }, _renderPopupDetail(), _renderTotalUsersBox(), _renderTotalDepositUsersBox(), _renderTotalActiveUsersBox(), _renderDepositUsersBox(), _renderActiveUsersBox(), _renderNewlyRegisteredUsersBox(), _renderNewlyActiveRegisteredUsersBox(), _renderDepositAmountBox(), _renderWithdrawalAmountBox(), _renderBonusClaimedBox(), _renderNetCashAmountBox(), !fromLastXDays && _renderChurnRateBox(), !fromLastXDays && _renderRetentionRateBox()));
+  }, _renderTotalUsersBox(), _renderTotalDepositUsersBox(), _renderTotalActiveUsersBox(), _renderDepositUsersBox(), _renderActiveUsersBox(), _renderNewlyRegisteredUsersBox(), _renderNewlyActiveRegisteredUsersBox(), _renderDepositAmountBox(), _renderWithdrawalAmountBox(), _renderBonusClaimedBox(), _renderNetCashAmountBox(), !fromLastXDays && _renderChurnRateBox(), !fromLastXDays && _renderRetentionRateBox()));
 };
 
 function mapStateToProps(state) {
@@ -4868,7 +4731,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   const {
     fetchPeformanceHighlightData
-  } = _actions__WEBPACK_IMPORTED_MODULE_6__["default"];
+  } = _actions__WEBPACK_IMPORTED_MODULE_5__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
     fetchPeformanceHighlightData
   }, dispatch);

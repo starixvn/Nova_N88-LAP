@@ -7,7 +7,7 @@ import BonusClaimedDetailWidget from './BonusClaimedDetailWidget';
 import { DefaultSortInfo } from '../../../../../constants/gridConst';
 
 const BonusClaimedDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency, allowedCompare }) => {
-    const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState(DefaultSortInfo);
+    const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState({...DefaultSortInfo, sortbyId: 0});
 
     const handleExportExcel = () => {
         const exportParams = DataService.getBonusClaimedExportAPIParams({

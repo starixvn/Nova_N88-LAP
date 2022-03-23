@@ -122,15 +122,15 @@ const BonusClaimedSummaryWidget = ({ reportDate, compareDate, baseCurrency, sele
     };
 
     const _renderGroupCampaignCell = (item, detailData) => {
-        const isParent = item.childs && item.childs.length > 0; 
+        const isParent = item.childs && item.childs.length > 0;
         return <GroupCell displayText={item[isParent ? 'bonusCode' : 'currencyCode'] || LangHelper.getSingleResource('None')}
-        rowData={item}
-        dataList={detailData}
-        fieldKey={'id'}
-        allowedDrillDown={isParent}
-        isChild={!isParent}
-        onDrillDown={_onDrillDownCampaignData}
-        {...{ className: "left-align" + (isParent ? " highlight-cell" : "")  }} />
+            rowData={item}
+            dataList={detailData}
+            fieldKey={'id'}
+            allowedDrillDown={isParent}
+            isChild={!isParent}
+            onDrillDown={_onDrillDownCampaignData}
+            {...{ className: "left-align" + (isParent ? " highlight-cell" : "") }} />
     }
 
     return (

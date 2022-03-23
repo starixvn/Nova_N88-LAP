@@ -100,9 +100,10 @@ const DepositAmountDetailWidget = ({ reportDate, baseCurrency, selectedBrand, se
             {detailData &&
                 <>
                     <Pager pageOption={pagingOption} onPaging={_handlePaging} />
-                    <Table minWidth={650}
+                    <Table 
+                        minWidth={650}
                         autoWidth={true}
-                        maxWidth={document.body.clientWidth}
+                        maxWidth={Math.min(document.body.clientWidth, 1920)}
                         autoHeight={false}
                         bodyHeight={400}
                         header={_renderHeader()}

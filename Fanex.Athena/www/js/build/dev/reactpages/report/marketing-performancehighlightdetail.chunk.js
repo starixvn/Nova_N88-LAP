@@ -722,6 +722,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BonusClaimedSummaryWidget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BonusClaimedSummaryWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedSummaryWidget.jsx");
 /* harmony import */ var _BonusClaimedDetailWidget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BonusClaimedDetailWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedDetailWidget.jsx");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -738,7 +744,9 @@ const BonusClaimedDetail = ({
   selectedCurrency,
   allowedCompare
 }) => {
-  const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
+  const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]), {}, {
+    sortbyId: 0
+  }));
 
   const handleExportExcel = () => {
     const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__["default"].getBonusClaimedExportAPIParams({
@@ -937,13 +945,13 @@ const BonusClaimedDetailWidget = ({
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
     minWidth: 650,
     autoWidth: true,
-    maxWidth: document.body.clientWidth,
+    maxWidth: Math.min(document.body.clientWidth, 1920),
     autoHeight: false,
     bodyHeight: 400,
     header: _renderHeader(),
     body: _renderBody(),
     onSort: _handleSort,
-    containerPadding: 70,
+    containerPadding: 55,
     shouldResetScrollPosition: isLoading
   })));
 };
@@ -1387,7 +1395,7 @@ const DepositAmountDetailWidget = ({
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
     minWidth: 650,
     autoWidth: true,
-    maxWidth: document.body.clientWidth,
+    maxWidth: Math.min(document.body.clientWidth, 1920),
     autoHeight: false,
     bodyHeight: 400,
     header: _renderHeader(),
@@ -1595,6 +1603,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NewlyRegisterUsersSummaryWidget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NewlyRegisterUsersSummaryWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersSummaryWidget.jsx");
 /* harmony import */ var _NewlyRegisterUsersDetailWidget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./NewlyRegisterUsersDetailWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersDetailWidget.jsx");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1611,7 +1625,9 @@ const NewlyRegisterUsersDetail = ({
   selectedCurrency,
   allowedCompare
 }) => {
-  const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
+  const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]), {}, {
+    sortbyId: 0
+  }));
 
   const handleExportExcel = () => {
     const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__["default"].getNewlyRegisterUsersExportAPIParams({
@@ -1811,7 +1827,7 @@ const NewlyRegisterUsersDetailWidget = ({
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
     minWidth: 650,
     autoWidth: true,
-    maxWidth: window.innerWidth,
+    maxWidth: Math.min(document.body.clientWidth, 1920),
     autoHeight: false,
     bodyHeight: 400,
     header: _renderHeader(),
@@ -1921,7 +1937,7 @@ const NewlyRegisterUsersSummaryWidget = ({
     }));
   };
 
-  const _renderCampaignData = () => {
+  const _renderBonusData = () => {
     const {
       campaignData
     } = summaryData;
@@ -2008,7 +2024,7 @@ const NewlyRegisterUsersSummaryWidget = ({
     isLoading: isLoading
   }, summaryData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "summary-container"
-  }, _renderTotalData(), _renderCampaignData(), _renderSignupData()));
+  }, _renderTotalData(), _renderSignupData(), _renderBonusData()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersSummaryWidget));
@@ -2249,9 +2265,8 @@ const WithdrawalAmountDetailWidget = ({
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
     minWidth: 650,
     autoWidth: true,
-    maxWidth: document.body.clientWidth,
-    autoHeight: false,
-    bodyHeight: 400,
+    maxWidth: Math.min(document.body.clientWidth, 1920),
+    autoHeight: true,
     header: _renderHeader(),
     body: _renderBody(),
     onSort: _handleSort,

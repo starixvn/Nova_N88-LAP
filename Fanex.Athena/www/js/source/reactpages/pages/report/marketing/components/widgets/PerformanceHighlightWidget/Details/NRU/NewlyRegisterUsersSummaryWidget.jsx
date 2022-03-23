@@ -58,7 +58,7 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
         </div>)
     };
 
-    const _renderCampaignData = () => {
+    const _renderBonusData = () => {
         const { campaignData } = summaryData;
         const header = (<HeaderRow style={StyleRow}>
             <HeaderCell {...CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].attributes}>{CampaignNRUGridConfig[CampaignNRUGridColumns.bonusCode].name}</HeaderCell>
@@ -152,8 +152,8 @@ const NewlyRegisterUsersSummaryWidget = ({ reportDate, compareDate, baseCurrency
         <Widget title={LangHelper.getSingleResource('Summary')} isLoading={isLoading}>
             {summaryData && <div className="summary-container">
                 {_renderTotalData()}
-                {_renderCampaignData()}
                 {_renderSignupData()}
+                {_renderBonusData()}
             </div>}
         </Widget>
     )

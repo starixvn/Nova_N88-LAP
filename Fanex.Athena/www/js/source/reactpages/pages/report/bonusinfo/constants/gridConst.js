@@ -30,6 +30,7 @@ export const BonusInfoDetailGridColumns = {
     bonusType: 'bonusType',
     claimDate: 'claimDateString',
     bonusAmountClaimed: 'claimedAmount',
+    transactionType: 'transactionType',
     totalDeposit: 'totalDeposit',
     totalWithdrawal: 'totalWithdrawal',
     status: 'statusText',
@@ -62,10 +63,11 @@ export const BonusInfoDetailGridConfig = {
     [BonusInfoDetailGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { colWidth: 120, className: "left-align" } },
     [BonusInfoDetailGridColumns.claimDate]: { name: LangHelper.getSingleResource('ClaimDate') },
     [BonusInfoDetailGridColumns.bonusAmountClaimed]: { name: LangHelper.getSingleResource('BonusAmountClaimed'), attributes: { sortBy: 3, colWidth: 100, className: "right-align" } },
-    [BonusInfoDetailGridColumns.totalDeposit]: { name: LangHelper.getSingleResource('TotalDeposit'), attributes: { sortBy: 4, colWidth: 100, className: "right-align" } },
-    [BonusInfoDetailGridColumns.totalWithdrawal]: { name: LangHelper.getSingleResource('TotalWithdrawal'), attributes: { sortBy: 5, colWidth: 100, className: "right-align" } },
-    [BonusInfoDetailGridColumns.status]: { name: LangHelper.getSingleResource('ClaimStatus'), attributes: { sortBy: 6, colWidth: 80, className: "center-align" } },
-    [BonusInfoDetailGridColumns.completion]: { name: '% ' + LangHelper.getSingleResource('Completion'), attributes: { sortBy: 7, colWidth: 120, className: "center-align" } }
+    [BonusInfoDetailGridColumns.transactionType]: { name: LangHelper.getSingleResource('TransactionType'), attributes: { sortBy: 4, colWidth: 100, className: "center-align" } },
+    [BonusInfoDetailGridColumns.totalDeposit]: { name: LangHelper.getSingleResource('TotalDeposit'), attributes: { sortBy: 5, colWidth: 100, className: "right-align" } },
+    [BonusInfoDetailGridColumns.totalWithdrawal]: { name: LangHelper.getSingleResource('TotalWithdrawal'), attributes: { sortBy: 6, colWidth: 100, className: "right-align" } },
+    [BonusInfoDetailGridColumns.status]: { name: LangHelper.getSingleResource('ClaimStatus'), attributes: { sortBy: 7, colWidth: 80, className: "center-align" } },
+    [BonusInfoDetailGridColumns.completion]: { name: '% ' + LangHelper.getSingleResource('Completion'), attributes: { sortBy: 8, colWidth: 120, className: "center-align" } }
 }
 
 export const DefaultPagingOption = {

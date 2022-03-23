@@ -125,6 +125,7 @@ export const BonusInfoDetailWidget = props => {
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusCode].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusCode].name}</HeaderCell>
                 <HeaderCell {...claimDateAtributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.claimDate].name}</HeaderCell>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusAmountClaimed].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusAmountClaimed].name}</HeaderCell>
+                <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.transactionType].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.transactionType].name}</HeaderCell>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalDeposit].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalDeposit].name}</HeaderCell>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalWithdrawal].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalWithdrawal].name}</HeaderCell>
                 <HeaderCell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.status].attributes}>{BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.status].name}</HeaderCell>
@@ -139,6 +140,7 @@ export const BonusInfoDetailWidget = props => {
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusCode].attributes} >{item[BonusInfoDetailGridColumns.bonusCode]}</Cell>
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.claimDate].attributes} >{item[BonusInfoDetailGridColumns.claimDate]}</Cell>            
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.bonusAmountClaimed].attributes}>{NumberFormat.format(item[BonusInfoDetailGridColumns.bonusAmountClaimed], DigitsAmount)}</Cell>
+            <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.transactionType].attributes}>{item[BonusInfoDetailGridColumns.transactionType]}</Cell>
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalDeposit].attributes}>{NumberFormat.format(item[BonusInfoDetailGridColumns.totalDeposit], DigitsAmount)}</Cell>
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.totalWithdrawal].attributes}>{NumberFormat.format(item[BonusInfoDetailGridColumns.totalWithdrawal], DigitsAmount)}</Cell>
             <Cell {...BonusInfoDetailGridConfig[BonusInfoDetailGridColumns.status].attributes}>{item[BonusInfoDetailGridColumns.status]}</Cell>
@@ -243,10 +245,12 @@ export const BonusInfoDetailWidget = props => {
                     header={_renderHeader()}
                     body={_renderBody()}
                     onSort={_handleSort}
+                    isPaging={true}
+                    pageOption={pagingOption}
+                    onPaging={_handlePaging}
                     containerPadding={60}
                     shouldResetScrollPosition={isLoading}
                 />
-                <Pager pageOption={pagingOption} onPaging={_handlePaging} />
             </div>            
         </>}
     </Widget>)

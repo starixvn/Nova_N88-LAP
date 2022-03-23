@@ -1,7 +1,7 @@
 ﻿define(['jquery', 'common/site'], function ($, Site) {
     'use strict';
     const columnNames = ['#', 'ExternalId', 'SystemId', 'TransTime', 'Choice', 'Odds', 'Stake',
-                    'WinLoss', 'EffectiveBettingValue', '@[LicenseeWL]/@[Comm]', 'Status'];
+        'WinLoss', 'EffectiveBettingValue', '@[LicenseeWL]/@[Comm]', 'Status'];
     const indexColumn =
     {
         name: 'Index',
@@ -45,7 +45,8 @@
         width: 300,
         align: 'right',
         sortable: false,
-        title: false
+        title: false,
+        cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' }
     };
     const odds =
     {

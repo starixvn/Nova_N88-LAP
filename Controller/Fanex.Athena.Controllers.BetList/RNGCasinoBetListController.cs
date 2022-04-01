@@ -27,7 +27,7 @@
                 CustomerCommVisible = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm
             };
             metaModel.HiddenColumns = HiddenColumns;
-            return await ProcessExportExcel(metaModel, "RngCasinoDetail").ConfigureAwait(false);
+            return await ProcessExportExcel(metaModel, "SabaCasinoDetail").ConfigureAwait(false);
         }
     }
 }

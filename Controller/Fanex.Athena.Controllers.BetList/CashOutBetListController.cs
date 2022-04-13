@@ -24,5 +24,17 @@
 
             return this.View("~/Views/Desktop/BetList/CashOutDetail/Main.cshtml", viewModel);
         }
+
+        [HttpGet]
+        [ValidationWebRequest]
+        public async Task<ActionResult> NewDetail(NewCashOutBetListDetailMetaModel metaModel)
+        {
+            var userSession = SessionServiceInstance.UserSession;
+            metaModel.CurrencyId = userSession.CurrencyList.FirstOrDefault(_ => _.Value == metaModel.Currency).Key;
+
+            var viewModel = await BetListApiClient.PostAsync<NewCashOutBetListDetailViewModel>("/CashOutBetList/History", metaModel, userSession.Language).ConfigureAwait(false);
+
+            return this.View("~/Views/Desktop/BetList/NewCashOutDetail/Main.cshtml", viewModel);
+        }
     }
 }

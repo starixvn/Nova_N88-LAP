@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 3/2/2022 10:26:50 AM
+// Generated at: 4/13/2022 9:45:23 AM
 window._language_zh_CN = {
   AA: "客客",
   AbnormalBet: "非正规注单",
@@ -105,6 +105,7 @@ window._language_zh_CN = {
   ActiveGroupConfirm: "Are you sure you want to {0} {1} ? (CN)",
   ActiveNRU: "Active NRU",
   ActiveUsers: "Active Users",
+  Activity: "活动",
   AD: "客和",
   Adjustment: "调整",
   AdvancedSearch: "进阶搜寻",
@@ -207,9 +208,12 @@ window._language_zh_CN = {
   Canceled: "Canceled",
   CashOutAmount: "预先兑现金额",
   CashOutAmt: "兑现金额",
+  CashOutCancelled: "取消实时兑现",
   CashOutCommission: "即时兑现佣金",
   CashOutDetails: "即时兑现详情",
+  CashOutHistory: "实时兑现历史记录",
   CashOutNotOfferCurrency: "即时兑现不支援此货币",
+  CashOutRecovered: "恢复实时兑现",
   CashOutShare: "兑现分红",
   CashOutStake: "即时兑现本金",
   CashOutTickets: "即时兑现注单",
@@ -289,6 +293,7 @@ window._language_zh_CN = {
   Date: "日期",
   DateRange: "日期范围",
   DateRangeNote: "数据可从{0:d MMM yyyy}查看",
+  DateTime: "日期/时间",
   DD: "和和",
   Deactive: "Deactive",
   Dec: "十二月",
@@ -544,6 +549,7 @@ window._language_zh_CN = {
   NativeApp: "原生 APP",
   NetCashAmount: "Net Cash Amount",
   NetTurnover: "净交易额",
+  NetworkLatency: "由于网络延迟，无法使用信息，请稍等几分钟后再次尝试。",
   NewGroup: "新组别",
   NewlyRegisteredUsers: "Newly Registered Users",
   Next: "下个",

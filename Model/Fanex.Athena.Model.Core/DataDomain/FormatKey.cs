@@ -16,6 +16,8 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         public const string DateTimeFormat = "MM/dd/yyyy hh:mm:ss tt";
 
+        public const string ShortDateTimeFormat = "M/d/yyyy hh:mm:ss tt";
+
         public const string DecimalFormat = "#,##0.00";
 
         public const string IntegerFormat = "#,##0";
@@ -25,6 +27,5 @@ namespace Fanex.Athena.Model.Core.DataDomain
         public const string Usd = "USD";
 
         public const string Gbp = "GBP";
-
     }
 }

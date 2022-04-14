@@ -276,6 +276,14 @@ class BetListLayout extends Component {
             this._openPopup(url, title);
         }
 
+        window.ViewNewCashOutHistory = (transId, custId, winlostDate, currency) => {
+            const { rootUrl, baseCurrency } = this.props;
+
+            const url = BetList.getNewCashOutHistoryPopupSetting(rootUrl, transId, custId, winlostDate, currency, baseCurrency);
+            const title = this._getResource('CashOutHistory');
+            this._openPopup(url, title);
+        }
+
         window.showDetail = (id) => {
             var e = document.getElementById(id);
             if (e.style.display == 'block') {

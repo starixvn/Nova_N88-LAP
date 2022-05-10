@@ -619,9 +619,6 @@
     <Content Include="SpNameConfig\FanexSpNameConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\UserGuide\CustomerWL\zh-CN.htm" />
-    <Content Include="App_Data\UserGuide\CustomerWL\zh-TW.htm" />
-    <Content Include="App_Data\UserGuide\CustomerWL\en-US.htm" />
     <Content Include="App_Data\UserGuide\SabaProductsWL\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\SabaProductsWL\zh-TW.htm" />
     <Content Include="App_Data\UserGuide\SabaProductsWL\en-US.htm" />

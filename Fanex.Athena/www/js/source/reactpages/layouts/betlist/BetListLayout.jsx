@@ -52,7 +52,7 @@ class BetListLayout extends Component {
                 this._showThirdPartyResult(url, title);
             }
             else if (sporttype === SportType.VRG) {
-                const url = BetList.getVRGResultUrl(rootUrl, refno, defaultPlatform);
+                const url = BetList.getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'VirtualGames');
                 this._showThirdPartyResult(url, title);
             }
             else if (sporttype === SportType.ALLBET) {

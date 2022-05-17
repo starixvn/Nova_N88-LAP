@@ -57,5 +57,7 @@ namespace Fanex.Athena.Model.Core.DataDomain
         public const int VGA = 66;
 
         public const int VS3 = 49;
+        
+        public const int BTC = 69;
     }
 }

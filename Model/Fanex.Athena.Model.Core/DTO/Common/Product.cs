@@ -68,6 +68,8 @@
         public const string SPR = "SPR";
 
         public const string VS3 = "VS3";
+        
+        public const string BTC = "BTC";
 
         #endregion Field
 

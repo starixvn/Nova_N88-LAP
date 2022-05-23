@@ -1,10 +1,12 @@
 import * as loaderAction from '@jsroot/actions/loaderAction';
 import * as settingDataAction from '@jsroot/actions/settingDataAction';
+import * as userGuideAction from '@jsroot/actions/userGuideAction'
 import gridAction from './gridAction';
 import filterAction from './filterAction';
 
 export default {
     ...loaderAction,
+    ...userGuideAction,
     ...settingDataAction,
     ...filterAction,
     ...gridAction

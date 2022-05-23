@@ -23,8 +23,9 @@ export const columnKeys = {
     noOfWithdrawal: 'numberOfWithdrawal',
     totalWithdrawalAmount: 'withdrawalAmount',
     bonusAmount: 'bonusAmount',
+    progressiveWin: 'progressiveWin',
     progressiveBet: 'progressiveBet',
-    progressiveWin: 'progressiveWin'
+    commission: 'commission'
 }
 
 export const displayedColumns = [
@@ -34,8 +35,9 @@ export const displayedColumns = [
     { key: columnKeys.netTurnover, name: LangHelper.getSingleResource('NetTurnover'), show: true, hasTotal: true },
     { key: columnKeys.ggr, name: LangHelper.getSingleResource('GGR'), show: true, hasTotal: true },
     { key: columnKeys.playerWinloss, name: LangHelper.getSingleResource('PlayerWinloss'), show: true, hasTotal: true },
-    { key: columnKeys.progressiveWin, name: LangHelper.getSingleResource('ProgressiveWin'), show: true, hasTotal: true },
-    { key: columnKeys.progressiveBet, name: LangHelper.getSingleResource('ProgressiveBet'), show: true, hasTotal: true },
+    { key: columnKeys.progressiveWin, name: LangHelper.getSingleResource('ProgressiveWin'), show: false, hasTotal: true },
+    { key: columnKeys.progressiveBet, name: LangHelper.getSingleResource('ProgressiveBet'), show: false, hasTotal: true },
+    { key: columnKeys.commission, name: LangHelper.getSingleResource('Commission'), show: false, hasTotal: true },
     { key: columnKeys.betCount, name: LangHelper.getSingleResource('BetCount'), show: true, hasTotal: true },
     { key: columnKeys.avgBetAmount, name: LangHelper.getSingleResource('AvgBetAmount'), show: true, hasTotal: true },
     { key: columnKeys.uniquePlayers, name: LangHelper.getSingleResource('UniquePlayers'), show: true, hasTotal: true },
@@ -102,62 +104,68 @@ export const dataColumns = {
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.progressiveBet)
     },
+    [columnKeys.commission]: {
+        sortBy: 8, colWidth: 60, className: "right-align",
+        draggable: true,
+        onDragOver: event => event.preventDefault(),
+        onDragStart: event => onDragStart(event, columnKeys.commission)
+    },
     [columnKeys.betCount]: {
-        sortBy: 8, colWidth: 50, className: "right-align",
+        sortBy: 9, colWidth: 50, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.betCount)
     },
     [columnKeys.avgBetAmount]: {
-        sortBy: 9, colWidth: 70, className: "right-align",
+        sortBy: 10, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.avgBetAmount)
     },
     [columnKeys.uniquePlayers]: {
-        sortBy: 10, colWidth: 60, className: "right-align",
+        sortBy: 11, colWidth: 60, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.uniquePlayers)
     },
     [columnKeys.margin]: {
-        sortBy: 11, colWidth: 50, className: "right-align",
+        sortBy: 12, colWidth: 50, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.margin)
     },
     [columnKeys.closingBalance]: {
-        sortBy: 12, colWidth: 60, className: "right-align",
+        sortBy: 13, colWidth: 60, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.closingBalance)
     },
     [columnKeys.noOfDeposit]: {
-        sortBy: 13, colWidth: 50, className: "right-align",
+        sortBy: 14, colWidth: 50, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.noOfDeposit)
     },
     [columnKeys.totalDepositAmount]: {
-        sortBy: 14, colWidth: 70, className: "right-align",
+        sortBy: 15, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.totalDepositAmount)
     },
     [columnKeys.noOfWithdrawal]: {
-        sortBy: 15, colWidth: 60, className: "right-align",
+        sortBy: 16, colWidth: 60, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.noOfWithdrawal)
     },
     [columnKeys.totalWithdrawalAmount]: {
-        sortBy: 16, colWidth: 70, className: "right-align",
+        sortBy: 17, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.totalWithdrawalAmount)
     },
     [columnKeys.bonusAmount]: {
-        sortBy: 17, colWidth: 70, className: "right-align",
+        sortBy: 18, colWidth: 70, className: "right-align",
         draggable: true,
         onDragOver: event => event.preventDefault(),
         onDragStart: event => onDragStart(event, columnKeys.bonusAmount)
@@ -189,7 +197,8 @@ export const componentCells = {
     [columnKeys.totalWithdrawalAmount]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.totalWithdrawalAmount]} className={dataColumns[columnKeys.totalWithdrawalAmount].className + highLight} />,
     [columnKeys.bonusAmount]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.bonusAmount]} className={dataColumns[columnKeys.bonusAmount].className + highLight} />,
     [columnKeys.progressiveWin]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.progressiveWin]} disableWarning={true} className={dataColumns[columnKeys.progressiveWin].className + highLight} />,
-    [columnKeys.progressiveBet]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.progressiveBet]} disableWarning={true} className={dataColumns[columnKeys.progressiveBet].className + highLight} />
+    [columnKeys.progressiveBet]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.progressiveBet]} disableWarning={true} className={dataColumns[columnKeys.progressiveBet].className + highLight} />,
+    [columnKeys.commission]: (rowData, highLight) => <DecimalCell value={rowData[columnKeys.commission]} disableWarning={true} className={dataColumns[columnKeys.commission].className + highLight} />
 }
 
 export const defaultPagingOption = {

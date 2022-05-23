@@ -7,7 +7,7 @@ import NewlyRegisterUsersDetailWidget from './NewlyRegisterUsersDetailWidget';
 import { DefaultSortInfo } from '../../../../../constants/gridConst';
 
 const NewlyRegisterUsersDetail = ({ reportDate, compareDate, baseCurrency, selectedBrand, selectedCurrency, allowedCompare }) => {
-    const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState({...DefaultSortInfo, sortbyId: 0});
+    const [sortInfoDetailWidget, setSortInfoDetailWidget] = useState({ ...DefaultSortInfo, sortbyId: 0 });
 
     const handleExportExcel = () => {
         const exportParams = DataService.getNewlyRegisterUsersExportAPIParams({
@@ -20,7 +20,7 @@ const NewlyRegisterUsersDetail = ({ reportDate, compareDate, baseCurrency, selec
     const _renderCaption = () => {
         return <div className="highlight-detail-title">
             <span>
-                {LangHelper.getSingleResource('NewlyRegisteredUsers')}
+                {`${LangHelper.getSingleResource('NewlyRegisteredUsers')}, ${reportDate.fromDate} - ${reportDate.toDate}, ${LangHelper.getSingleResource('Viewin').replace('{0}', baseCurrency)} `}
             </span>
             <span className="caret-block">
                 <span className="icon-excel-wrapper" onClick={handleExportExcel}>

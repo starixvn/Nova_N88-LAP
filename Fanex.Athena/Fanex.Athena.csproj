@@ -306,6 +306,7 @@
     <Content Include="App_Data\UserGuide\ExtraPayout\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\ExtraPayout\zh-Hans.htm" />
     <Content Include="App_Data\UserGuide\ExtraPayout\zh-TW.htm" />
+    <Content Include="App_Data\UserGuide\WinLossAnalysis\en-US.htm" />
     <Content Include="Content\Account\AccountManagement.css" />
     <Content Include="Content\Account\msgbox-0.0.1.css" />
     <Content Include="Content\Account\reset.css" />

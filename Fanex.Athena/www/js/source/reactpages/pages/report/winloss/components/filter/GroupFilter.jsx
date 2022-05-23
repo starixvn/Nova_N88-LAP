@@ -5,6 +5,7 @@ import ActionCreators from '../../actions';
 import CollapsiblePanel from '@jsroot/components/collapsible-panel';
 import MultipleSelect from '@9softstudio/react-multiselect'
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
+import UserGuide from '@jsroot/components/UserGuide';
 import LangHelper from '@jsroot/lib/langHelper';
 import { GroupByOptions, GroupByOptionAllowQuickDownload, SupportClosingFromDate } from '../../constants/filterConsts';
 import GroupHelper from '../../libs/helpers/groupHelper';
@@ -12,10 +13,10 @@ import { displayedColumns as DefaultDisplayedColumns } from '../../constants/gri
 
 export const GroupFilter = props => {
 
-    const { setSelectedGroupByOption, selectedGroupByOption, onSubmit, onQuickDownload, isDisabledSubmit,
-        displayedColumns, setDisplayedColumns } = props;
+    const { setSelectedGroupByOption, selectedGroupByOption, userGuideContent, onSubmit, onQuickDownload, isDisabledSubmit,
+        displayedColumns, setDisplayedColumns, getUserGuideContent } = props;
         
-    const isDisabledQuickDownload = React.useMemo(() => !GroupByOptionAllowQuickDownload.some(_ => _ === selectedGroupByOption), [selectedGroupByOption]);
+    const isDisabledQuickDownload = React.useMemo(() => isDisabledSubmit || !GroupByOptionAllowQuickDownload.some(_ => _ === selectedGroupByOption), [selectedGroupByOption, isDisabledSubmit]);
 
     const _handleChangeDisplayedColumn = (currentItem, selectedItemsKey) => {
         const selectedKeyList = selectedItemsKey.split(',');
@@ -43,8 +44,22 @@ export const GroupFilter = props => {
         setDisplayedColumns(newDisplayedColumns)
     }, [])
 
+    const showUserGuide = () => {
+        if (!userGuideContent || !userGuideContent.length) {
+            getUserGuideContent('WinLossAnalysis');
+        }
+    }
+
+    const _renderUserGuide = () => {
+        return (<UserGuide 
+                title={LangHelper.getSingleResource("UserGuide")} 
+                contentTitle={LangHelper.getSingleResource("WinLossAnalysis")}
+                onClick={showUserGuide}
+                content={userGuideContent} />)
+    }
+
     return (
-        <CollapsiblePanel className="group-filter page-filter">
+        <CollapsiblePanel className="group-filter page-filter" stickyFooter={<div>{_renderUserGuide()}</div>}>
             <div className="form-group">
                 <label className="label-text">{LangHelper.getSingleResource("GroupBy") + ":"}</label>
                 <RadioGroup
@@ -85,18 +100,20 @@ export const GroupFilter = props => {
 }
 
 function mapDispatchToProps(dispatch) {
-    const { setSelectedGroupByOption, setDisplayedColumns } = ActionCreators;
+    const { setSelectedGroupByOption, setDisplayedColumns, getUserGuideContent } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         setSelectedGroupByOption,
-        setDisplayedColumns
+        setDisplayedColumns,
+        getUserGuideContent
     }), dispatch)
 }
 
 function mapStateToProps(state) {
-    const { selectedGroupByOption, displayedColumns } = state;
+    const { selectedGroupByOption, displayedColumns, userGuideContent } = state;
     return Object.assign({}, {
         selectedGroupByOption,
-        displayedColumns
+        displayedColumns,
+        userGuideContent
     })
 }
 

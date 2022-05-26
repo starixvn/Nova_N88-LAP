@@ -56,7 +56,8 @@
                 { Product.SBC, nameof(ViewResources.ProductSBC) },
                 { Product.SLT, nameof(ViewResources.ProductSLT) },
                 { Product.VGA, nameof(ViewResources.ProductVGA) },
-                { Product.VS3, nameof(ViewResources.ProductVS3) }
+                { Product.VS3, nameof(ViewResources.ProductVS3) },
+                { Product.BTC, nameof(ViewResources.ProductBTC) }
             };
 
         public static string GetProductCode(int productId)

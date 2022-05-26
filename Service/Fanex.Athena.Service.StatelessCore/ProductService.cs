@@ -28,7 +28,7 @@
 
         private readonly ICustomMemoryCacheService _cache;
 
-        private static readonly IEnumerable<string> SubProducts = new[] { Product.SLT };
+        private static readonly IEnumerable<string> SubProducts = new[] { Product.SLT, Product.BTC };
 
         public ProductService(IAppSettings appSettings, IProductDataAccess productDataAccess, IXDocumentWrapper xmlWrapper, ICustomMemoryCacheService cache)
         {

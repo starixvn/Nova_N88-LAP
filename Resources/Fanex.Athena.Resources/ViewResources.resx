@@ -3249,4 +3249,7 @@
   <data name="NetworkLatency" xml:space="preserve">
     <value>Information is not available due to network latency. Please wait a few minutes and try again. </value>
   </data>
+  <data name="ProductBTC" xml:space="preserve">
+    <value>Bitcoin</value>
+  </data>
 </root>

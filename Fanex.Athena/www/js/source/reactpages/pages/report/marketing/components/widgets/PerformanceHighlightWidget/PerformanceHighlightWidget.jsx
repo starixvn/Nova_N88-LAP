@@ -17,7 +17,7 @@ import AppData from '@jsroot/lib/AppData';
 
 export const PerformanceHighlightWidget = props => {
     const { globalFilter, performanceHighlightData, fetchPeformanceHighlightData } = props;
-    const { allowedCompare, fromLastXDays } = globalFilter;        
+    const { allowedCompare, reportDate, fromLastXDays } = globalFilter;        
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -30,6 +30,13 @@ export const PerformanceHighlightWidget = props => {
     }, [globalFilter]);
 
     const _title = React.useMemo(() => LangHelper.getSingleResource('BusinessPerformanceHighlights'), []);
+    const _isHideRateBox = React.useMemo(() => {
+        const { fromDate, toDate } = reportDate;
+        if(fromLastXDays || Site.convertDateToString(fromDate) ===  Site.convertDateToString(toDate)) {
+            return true;
+        }
+        return false;
+    }, [fromLastXDays, reportDate])
 
     const _renderTotalUsersBox = () => {
         const { totalUsers } = performanceHighlightData;
@@ -149,6 +156,10 @@ export const PerformanceHighlightWidget = props => {
     }
 
     const _renderChurnRateBox = () => {
+        if(_isHideRateBox) {
+            return null;
+        }
+
         const { churnRate, differentChurnRate } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={allowedCompare}
@@ -161,6 +172,10 @@ export const PerformanceHighlightWidget = props => {
     }
 
     const _renderRetentionRateBox = () => {
+        if(_isHideRateBox) {
+            return null;
+        }
+
         const { retentionRate, differentRetentionRate } = performanceHighlightData;
         return (<HighlightBox
             enableCompare={allowedCompare}
@@ -169,12 +184,6 @@ export const PerformanceHighlightWidget = props => {
             value={`${NumberFormat.round(retentionRate, 0)}%`}
             rate={differentRetentionRate}
         />)
-    }
-
-    const _renderPopupTitle = () => {
-        const { selectedBaseCurrency, reportDate } = globalFilter;
-        const displayCurrency = LangHelper.getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
-        return `${LangHelper.getSingleResource('Marketing')}, ${Site.convertDateToString(reportDate.fromDate)} - ${Site.convertDateToString(reportDate.toDate)}, ${displayCurrency}`;
     }
 
     const _buildPopupUrl = params => {
@@ -229,8 +238,8 @@ export const PerformanceHighlightWidget = props => {
             {_renderWithdrawalAmountBox()}
             {_renderBonusClaimedBox()}
             {_renderNetCashAmountBox()}
-            {!fromLastXDays && _renderChurnRateBox()}
-            {!fromLastXDays && _renderRetentionRateBox()}
+            {_renderChurnRateBox()}
+            {_renderRetentionRateBox()}
         </div>}
     </Widget>)
 }

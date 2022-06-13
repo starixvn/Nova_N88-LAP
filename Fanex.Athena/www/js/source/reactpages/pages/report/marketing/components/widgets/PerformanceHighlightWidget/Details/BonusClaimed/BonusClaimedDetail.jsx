@@ -20,7 +20,7 @@ const BonusClaimedDetail = ({ reportDate, compareDate, baseCurrency, selectedBra
     const _renderCaption = () => {
         return <div className="highlight-detail-title">
             <span>
-                {LangHelper.getSingleResource('BonusAmountClaimed')}
+                {`${LangHelper.getSingleResource('BonusAmountClaimed')}, ${reportDate.fromDate} - ${reportDate.toDate}, ${LangHelper.getSingleResource('Viewin').replace('{0}', baseCurrency)} `}
             </span>
             <span className="caret-block">
                 <span className="icon-excel-wrapper" onClick={handleExportExcel}>

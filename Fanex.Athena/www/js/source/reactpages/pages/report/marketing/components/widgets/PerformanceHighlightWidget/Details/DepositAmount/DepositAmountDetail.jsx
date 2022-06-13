@@ -20,7 +20,7 @@ const DepositAmountDetail = ({ reportDate, compareDate, baseCurrency, selectedBr
     const _renderCaption = () => {
         return <div className="highlight-detail-title">
             <span>
-                {LangHelper.getSingleResource('DepositAmount')}
+                {`${LangHelper.getSingleResource('DepositAmount')}, ${reportDate.fromDate} - ${reportDate.toDate}, ${LangHelper.getSingleResource('Viewin').replace('{0}', baseCurrency)} `}
             </span>
             <span className="caret-block">
                 <span className="icon-excel-wrapper" onClick={handleExportExcel}>

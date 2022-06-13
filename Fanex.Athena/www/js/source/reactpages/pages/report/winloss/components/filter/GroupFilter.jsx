@@ -7,7 +7,8 @@ import MultipleSelect from '@9softstudio/react-multiselect'
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import UserGuide from '@jsroot/components/UserGuide';
 import LangHelper from '@jsroot/lib/langHelper';
-import { GroupByOptions, GroupByOptionAllowQuickDownload, SupportClosingFromDate } from '../../constants/filterConsts';
+import AppData from '@jsroot/lib/AppData'
+import { GroupByOptions, GroupByOptionAllowQuickDownload, GroupByOptionIds, SupportClosingFromDate } from '../../constants/filterConsts';
 import GroupHelper from '../../libs/helpers/groupHelper';
 import { displayedColumns as DefaultDisplayedColumns } from '../../constants/gridContants';
 
@@ -15,7 +16,8 @@ export const GroupFilter = props => {
 
     const { setSelectedGroupByOption, selectedGroupByOption, userGuideContent, onSubmit, onQuickDownload, isDisabledSubmit,
         displayedColumns, setDisplayedColumns, getUserGuideContent } = props;
-        
+
+    const allowedGroupByOptions = React.useMemo(() => GroupByOptions.filter(_ => _.value !== GroupByOptionIds.brand || (AppData.brandOptions && AppData.brandOptions.length > 1)), []);
     const isDisabledQuickDownload = React.useMemo(() => isDisabledSubmit || !GroupByOptionAllowQuickDownload.some(_ => _ === selectedGroupByOption), [selectedGroupByOption, isDisabledSubmit]);
 
     const _handleChangeDisplayedColumn = (currentItem, selectedItemsKey) => {
@@ -65,7 +67,7 @@ export const GroupFilter = props => {
                 <RadioGroup
                     name={'filterGroupBy'}
                     value={selectedGroupByOption}
-                    options={GroupByOptions}
+                    options={allowedGroupByOptions}
                     onChange={_handleChangeGroupBy}
                 />
             </div>
@@ -81,18 +83,6 @@ export const GroupFilter = props => {
             <div className="form-group">
                 <div className="button-group">
                     <button type="button" className="btn" disabled={isDisabledQuickDownload} onClick={onQuickDownload}>{LangHelper.getSingleResource("Download")}</button>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-1 note" style={{ flex: "0 0 4%" }}>
-                    {LangHelper.getSingleResource('Note')}:
-                    </div>
-                <div className="col-9 note">
-                    {LangHelper.getSingleResource('NoteReportGrossRevenue')}
-                    <br />
-                    {LangHelper.getSingleResource('NoteReportDepositAndWithdrawal')}
-                    <br />
-                    {LangHelper.getSingleResource('NoteSupportClosingBalance').replace('{0}', SupportClosingFromDate)}
                 </div>
             </div>
         </CollapsiblePanel>

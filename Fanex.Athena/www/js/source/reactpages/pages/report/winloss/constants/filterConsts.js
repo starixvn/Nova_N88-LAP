@@ -5,7 +5,8 @@ export const GroupByOptionIds = {
     month: 2,
     product: 3,
     currency: 4,
-    player: 5
+    player: 5,
+    brand: 6
 }
 
 export const GroupByOptionAllowQuickDownload = [GroupByOptionIds.date, GroupByOptionIds.month];
@@ -15,7 +16,8 @@ export const GroupByOptions = [
     { label: LangHelper.getSingleResource("Month"), value: GroupByOptionIds.month },
     { label: LangHelper.getSingleResource("Product"), value: GroupByOptionIds.product },
     { label: LangHelper.getSingleResource("Currency"), value: GroupByOptionIds.currency },
-    { label: LangHelper.getSingleResource("Player"), value: GroupByOptionIds.player }
+    { label: LangHelper.getSingleResource("Player"), value: GroupByOptionIds.player },
+    { label: LangHelper.getSingleResource("Brand"), value: GroupByOptionIds.brand }
 ];
 
 export const DateFilterTypeOptions = [

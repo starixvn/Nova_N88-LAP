@@ -43,11 +43,11 @@ export const displayedColumns = [
     { key: columnKeys.uniquePlayers, name: LangHelper.getSingleResource('UniquePlayers'), show: true, hasTotal: true },
     { key: columnKeys.margin, name: LangHelper.getSingleResource('Margin'), show: true, hasTotal: true },
     { key: columnKeys.closingBalance, name: LangHelper.getSingleResource('ClosingBalance'), show: true, allowGroups: [GroupByOptionIds.player], hasTotal: true },
-    { key: columnKeys.noOfDeposit, name: LangHelper.getSingleResource('NoOfDeposit'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player], show: true, hasTotal: true },
-    { key: columnKeys.totalDepositAmount, name: LangHelper.getSingleResource('TotalDepositAmount'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player], show: true, hasTotal: true },
-    { key: columnKeys.noOfWithdrawal, name: LangHelper.getSingleResource('NoOfWithdrawal'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player], show: true, hasTotal: true },
-    { key: columnKeys.totalWithdrawalAmount, name: LangHelper.getSingleResource('TotalWithdrawalAmount'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player], show: true, hasTotal: true },
-    { key: columnKeys.bonusAmount, name: LangHelper.getSingleResource('TotalBonus'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player], show: true, hasTotal: true },
+    { key: columnKeys.noOfDeposit, name: LangHelper.getSingleResource('NoOfDeposit'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player, GroupByOptionIds.brand], show: true, hasTotal: true },
+    { key: columnKeys.totalDepositAmount, name: LangHelper.getSingleResource('TotalDepositAmount'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player, GroupByOptionIds.brand], show: true, hasTotal: true },
+    { key: columnKeys.noOfWithdrawal, name: LangHelper.getSingleResource('NoOfWithdrawal'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player, GroupByOptionIds.brand], show: true, hasTotal: true },
+    { key: columnKeys.totalWithdrawalAmount, name: LangHelper.getSingleResource('TotalWithdrawalAmount'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player, GroupByOptionIds.brand], show: true, hasTotal: true },
+    { key: columnKeys.bonusAmount, name: LangHelper.getSingleResource('TotalBonus'), allowGroups: [GroupByOptionIds.date, GroupByOptionIds.month, GroupByOptionIds.currency, GroupByOptionIds.player, GroupByOptionIds.brand], show: true, hasTotal: true },
 ]
 
 export const defaultDisplayedColumns = [

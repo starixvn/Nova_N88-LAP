@@ -5272,33 +5272,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone.
-        /// </summary>
-        public static string NoteReportDepositAndWithdrawal {
-            get {
-                return ResourceManager.GetString("NoteReportDepositAndWithdrawal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This report is reported gross revenue, have not yet deducted cost, fee, ect....
-        /// </summary>
-        public static string NoteReportGrossRevenue {
-            get {
-                return ResourceManager.GetString("NoteReportGrossRevenue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00.
-        /// </summary>
-        public static string NoteSupportClosingBalance {
-            get {
-                return ResourceManager.GetString("NoteSupportClosingBalance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Notification.
         /// </summary>
         public static string Notification {

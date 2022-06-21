@@ -2295,10 +2295,6 @@
     <value>No Draw</value>
     <comment>#133254</comment>
   </data>
-  <data name="NoteReportGrossRevenue" xml:space="preserve">
-    <value>This report is reported gross revenue, have not yet deducted cost, fee, ect...</value>
-    <comment>#133254</comment>
-  </data>
   <data name="SettledDate" xml:space="preserve">
     <value>Settled Date</value>
     <comment>#133254</comment>
@@ -2519,10 +2515,6 @@
     <value>No. Withdrawal</value>
     <comment>147542</comment>
   </data>
-  <data name="NoteReportDepositAndWithdrawal" xml:space="preserve">
-    <value>Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone</value>
-    <comment>147542</comment>
-  </data>
   <data name="Brand" xml:space="preserve">
     <value>Brand</value>
   </data>
@@ -2614,10 +2606,6 @@
   </data>
   <data name="IncludeFreeSpins" xml:space="preserve">
     <value>Include Free Spins</value>
-    <comment>155334</comment>
-  </data>
-  <data name="NoteSupportClosingBalance" xml:space="preserve">
-    <value>Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00</value>
     <comment>155334</comment>
   </data>
   <data name="NoOfUserClaimingBonus" xml:space="preserve">

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 4/7/2022 2:21:10 PM
+// Generated at: 6/13/2022 12:46:24 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -674,9 +674,6 @@ window._language_en_US = {
   Normal: "Normal",
   NotAllowBA: "This licensee is not allowed BA",
   Note: "Note",
-  NoteReportDepositAndWithdrawal: "Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
-  NoteReportGrossRevenue: "This report is reported gross revenue, have not yet deducted cost, fee, ect...",
-  NoteSupportClosingBalance: "Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00",
   Notification: "Notification",
   NotificationDateRangeLimitNote: "Data is available within 6 months",
   Nov: "Nov",
@@ -757,6 +754,7 @@ window._language_en_US = {
   ProductAGC: "AG Casino",
   ProductBA: "BA",
   ProductBT: "Bet Trade",
+  ProductBTC: "Bitcoin",
   ProductBX: "Exchange",
   ProductCB: "Colossus Bets",
   ProductCC: "Arcadia Gaming",

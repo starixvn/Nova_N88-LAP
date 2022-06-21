@@ -5339,14 +5339,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/components/radio/RadioGroup */ "./www/js/source/reactpages/components/radio/RadioGroup.jsx");
 /* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
-/* harmony import */ var _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../libs/helpers/groupHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js");
-/* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
+/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
+/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+/* harmony import */ var _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../libs/helpers/groupHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js");
+/* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5372,7 +5374,8 @@ const GroupFilter = props => {
     setDisplayedColumns,
     getUserGuideContent
   } = props;
-  const isDisabledQuickDownload = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => isDisabledSubmit || !_constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__["GroupByOptionAllowQuickDownload"].some(_ => _ === selectedGroupByOption), [selectedGroupByOption, isDisabledSubmit]);
+  const allowedGroupByOptions = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _constants_filterConsts__WEBPACK_IMPORTED_MODULE_10__["GroupByOptions"].filter(_ => _.value !== _constants_filterConsts__WEBPACK_IMPORTED_MODULE_10__["GroupByOptionIds"].brand || _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_9__["default"].brandOptions && _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_9__["default"].brandOptions.length > 1), []);
+  const isDisabledQuickDownload = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => isDisabledSubmit || !_constants_filterConsts__WEBPACK_IMPORTED_MODULE_10__["GroupByOptionAllowQuickDownload"].some(_ => _ === selectedGroupByOption), [selectedGroupByOption, isDisabledSubmit]);
 
   const _handleChangeDisplayedColumn = (currentItem, selectedItemsKey) => {
     const selectedKeyList = selectedItemsKey.split(',');
@@ -5399,7 +5402,7 @@ const GroupFilter = props => {
 
   const _handleChangeGroupBy = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedGroupBy => {
     setSelectedGroupByOption(selectedGroupBy);
-    const newDisplayedColumns = _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_10__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_11__["displayedColumns"], selectedGroupBy);
+    const newDisplayedColumns = _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_12__["displayedColumns"], selectedGroupBy);
     setDisplayedColumns(newDisplayedColumns);
   }, []);
 
@@ -5428,7 +5431,7 @@ const GroupFilter = props => {
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("GroupBy") + ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_6__["default"], {
     name: 'filterGroupBy',
     value: selectedGroupByOption,
-    options: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__["GroupByOptions"],
+    options: allowedGroupByOptions,
     onChange: _handleChangeGroupBy
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -5452,16 +5455,7 @@ const GroupFilter = props => {
     className: "btn",
     disabled: isDisabledQuickDownload,
     onClick: onQuickDownload
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("Download")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-1 note",
-    style: {
-      flex: "0 0 4%"
-    }
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('Note'), ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-9 note"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('NoteReportGrossRevenue'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('NoteReportDepositAndWithdrawal'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('NoteSupportClosingBalance').replace('{0}', _constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__["SupportClosingFromDate"]))));
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("Download")))));
 };
 
 function mapDispatchToProps(dispatch) {
@@ -6145,7 +6139,8 @@ const GroupByOptionIds = {
   month: 2,
   product: 3,
   currency: 4,
-  player: 5
+  player: 5,
+  brand: 6
 };
 const GroupByOptionAllowQuickDownload = [GroupByOptionIds.date, GroupByOptionIds.month];
 const GroupByOptions = [{
@@ -6163,6 +6158,9 @@ const GroupByOptions = [{
 }, {
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("Player"),
   value: GroupByOptionIds.player
+}, {
+  label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("Brand"),
+  value: GroupByOptionIds.brand
 }];
 const DateFilterTypeOptions = [{
   value: 1,
@@ -6315,31 +6313,31 @@ const displayedColumns = [{
 }, {
   key: columnKeys.noOfDeposit,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NoOfDeposit'),
-  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].brand],
   show: true,
   hasTotal: true
 }, {
   key: columnKeys.totalDepositAmount,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalDepositAmount'),
-  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].brand],
   show: true,
   hasTotal: true
 }, {
   key: columnKeys.noOfWithdrawal,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('NoOfWithdrawal'),
-  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].brand],
   show: true,
   hasTotal: true
 }, {
   key: columnKeys.totalWithdrawalAmount,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalWithdrawalAmount'),
-  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].brand],
   show: true,
   hasTotal: true
 }, {
   key: columnKeys.bonusAmount,
   name: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalBonus'),
-  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player],
+  allowGroups: [_filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].date, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].month, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].currency, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].player, _filterConsts__WEBPACK_IMPORTED_MODULE_2__["GroupByOptionIds"].brand],
   show: true,
   hasTotal: true
 }];

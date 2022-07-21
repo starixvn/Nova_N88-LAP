@@ -1,10 +1,14 @@
 ﻿using Fanex.Athena.DataAccess.Core.Configuration;
 using Fanex.Athena.Extension.Helper;
+using Fanex.Athena.Model.Core.Helper;
 using Fanex.Athena.Service.Core.Users;
 using Fanex.Athena.Service.Core.Users.Interfaces;
 using Fanex.Athena.Service.StatelessCore.Interfaces;
 using Fanex.Athena.Service.StatelessCore.Utility;
+using Fanex.NVC.Authentication.Infrastructure;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
@@ -43,7 +47,7 @@ namespace Fanex.Athena.Api.Base.Attributes
 
             if (BindAgent)
             {
-                AutoBindMetaModelService.MapAgentXml(actionArgument, userSession.CurrencyAgentList);
+                MapAgent(actionArgument, userSession);
             }
 
             if (BindUserId)
@@ -89,6 +93,28 @@ namespace Fanex.Athena.Api.Base.Attributes
             }
 
             base.OnActionExecuting(actionContext);
+        }
+
+        private static void MapAgent(IDictionary<string, object> actionArgument, NVCUserAuthInfo userSession)
+        {
+            int[] brandIds;
+            if (MetaModelHelper.IsMetaModel(actionArgument, out IBrandIdMetaModel brandIdMetaModel))
+            {
+                brandIds = brandIdMetaModel.BrandId == default ? userSession.BrandList.Select(_ => _.Id).ToArray() : new[] { brandIdMetaModel.BrandId };
+            }
+            else if (MetaModelHelper.IsMetaModel(actionArgument, out IBrandIdListMetaModel brandIdListMetaModel))
+            {
+                brandIds = string.IsNullOrWhiteSpace(brandIdListMetaModel.BrandIds) ? 
+                    userSession.BrandList.Select(_ => _.Id).ToArray() : AuthParameterHelper.ParseIdList(brandIdListMetaModel.BrandIds).ToArray();
+            }
+            else
+            {
+                brandIds = null;
+            }
+
+            var currencyAgentList = brandIds != null && brandIds.Any() ?
+                AuthParameterHelper.GetAgentList(userSession.BrandList, brandIds) : userSession.CurrencyAgentList;
+            AutoBindMetaModelService.MapAgentXml(actionArgument, currencyAgentList);
         }
     }
 }

@@ -14,18 +14,26 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
     {
         public static void MapAgentXml(IDictionary<string, object> actionArguments, IDictionary<int, int[]> currencyAgentList)
         {
-            var item = actionArguments.Where(x => x.Value is IMetaModelAgent)
-                   .Select(x => x).FirstOrDefault();
-
-            var currencyId = 0;
-            if (item.Value is IMetaModelCurrency itemWithCurrency)
-            {
-                currencyId = itemWithCurrency.CurrencyId;
-            }
+            var item = actionArguments.FirstOrDefault(x => x.Value is IMetaModelAgent);
 
             if (item.Value is IMetaModelAgent itemWithAgent)
             {
-                itemWithAgent.AgentListXml = AuthParameterHelper.GenerateAgentListXml(currencyAgentList, currencyId, itemWithAgent.IsExcludedTestData);
+                IEnumerable<int> currencyIdList;
+                if (item.Value is IMetaModelCurrency itemWithSingleCurrency)
+                {
+                    currencyIdList = new[] { itemWithSingleCurrency.CurrencyId < 0 ? 0 : itemWithSingleCurrency.CurrencyId };
+                }
+                else if (item.Value is IMetaModelCurrencyIdList itemWithMultiCurrency
+                    && !string.IsNullOrEmpty(itemWithMultiCurrency.CurrencyIdList))
+                {
+                    currencyIdList = AuthParameterHelper.ParseIdList(itemWithMultiCurrency.CurrencyIdList);
+                }
+                else
+                {
+                    currencyIdList = new[] { 0 };
+                }
+
+                itemWithAgent.AgentListXml = AuthParameterHelper.GenerateAgentListXml(currencyAgentList, currencyIdList, itemWithAgent.IsExcludedTestData);
                 actionArguments[item.Key] = itemWithAgent;
             }
         }

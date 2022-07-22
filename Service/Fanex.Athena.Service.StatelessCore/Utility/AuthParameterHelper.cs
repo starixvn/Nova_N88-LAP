@@ -80,6 +80,15 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
             return result.ToString();
         }
 
+        public static IEnumerable<int> ParseIdList(string currencyIdList)
+        {
+            var selectedCurrencyIdList = currencyIdList.Trim()
+                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => Convert.ToInt32(x));
+
+            return selectedCurrencyIdList;
+        }
+
         private static StringBuilder GenerateAgentXmlBody(int currencyId, IEnumerable<int> agentList)
         {
             var result = new StringBuilder();

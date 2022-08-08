@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 4/7/2022 2:21:10 PM
+﻿// Generated at: 6/13/2022 12:46:25 PM
 window._language_zh_CN = {
 AA:"客客",
 AbnormalBet:"非正规注单",
@@ -578,9 +578,6 @@ NoProductFound:"No product found",
 Normal:"正常",
 NotAllowBA:"此Licensee不允许投注总计",
 Note:"注意",
-NoteReportDepositAndWithdrawal:"Total Bonus/Deposit/Withdrawal statistics will be affected by changing Date, Brand, Username, Currency and Timezone",
-NoteReportGrossRevenue:"This report is reported gross revenue, have not yet deducted cost, fee, ect...",
-NoteSupportClosingBalance:"Player Closing Balance can be displayed in GMT +7 and GMT +8 only, and support data from {0} GMT+00",
 Notification:"通知",
 NotificationDateRangeLimitNote:"最多可以检索六个月前的资料",
 Nov:"十一月",

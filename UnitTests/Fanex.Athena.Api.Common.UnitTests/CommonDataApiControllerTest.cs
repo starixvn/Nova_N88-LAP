@@ -68,6 +68,11 @@
                  _sessionService.UserSession.Language,
                  productCode).Returns(new List<SportProductItem> { parent, child });
 
+                _productService.GetAllowedSubProductCodeList(
+                    _sessionService.LicenseeSession.OfferedSubProductList,
+                    productCode)
+                    .Returns(productCode);
+
                 // action
                 var result = (await controller.GetSports(productCode).ConfigureAwait(false)).ElementAt(0);
 
@@ -76,6 +81,7 @@
                 {
                     Assert.That(result.GetType().GetProperty("value").GetValue(result, null), Is.EqualTo(child.ID));
                     Assert.That(result.GetType().GetProperty("label").GetValue(result, null), Is.EqualTo(child.Name));
+                    Assert.That(result.GetType().GetProperty("status").GetValue(result, null), Is.EqualTo(true));
                 });
             }
         }

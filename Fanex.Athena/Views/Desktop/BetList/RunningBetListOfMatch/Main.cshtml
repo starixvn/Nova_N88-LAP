@@ -26,7 +26,7 @@
     <a href="javascript:window.history.back();" class="icon-back"></a>
 }
 @{
-    <input type="hidden" id="BetListMetaModel" value="@Model.ToJson()" />
+    <input type="hidden" id="BetListMetaModel" value="@Model.ToBetDetail().ToJson()" />
     <input type="hidden" id="HiddenColumnList" value="winloss,licenseewl" />
     <input type="hidden" id="IsShowSumStake" value="@(Model.IsShowSumStake ? 1 : 0)" />
     <input type="hidden" id="ApiUrl" value="api/RunningMatchBetList/Index" />

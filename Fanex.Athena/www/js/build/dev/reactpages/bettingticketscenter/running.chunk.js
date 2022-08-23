@@ -590,7 +590,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const CheckBox = react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
+const CheckBox = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "checkbox-group",
     ref: ref
@@ -1258,6 +1258,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -1348,13 +1350,17 @@ class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
       for (let j = 0; j < columns.length; j++) {
         const column = columns[j];
-        cells.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+        let hasTooltip = columnAlignments[j].indexOf('tooltip') !== -1;
+        cells.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], _extends({
           key: `${column}-${i}`,
-          className: columnAlignments[j],
+          className: columnAlignments[j]
+        }, hasTooltip ? {
+          title: item[column]
+        } : {}, {
           dangerouslySetInnerHTML: {
             __html: item[column]
           }
-        }));
+        })));
       }
 
       rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], {
@@ -3150,7 +3156,7 @@ class CurrencyHelper {
       return brandInfo[currencyProperty].reduce((result, currentValue) => {
         if (!existKeys[currentValue.key]) {
           existKeys[currentValue.key] = true;
-          return [...result, _objectSpread({}, currentValue, {
+          return [...result, _objectSpread(_objectSpread({}, currentValue), {}, {
             status: true
           })];
         }
@@ -3851,8 +3857,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Columns = ['Index', 'ExternalId', 'SystemId', 'RefNo', 'TransTime', 'Choice', 'Odds', 'OddsType', 'Stake', 'Status', 'Platform', 'Live'];
-const ColumnWidths = [40, 120, 120, 110, 150, 400, 70, 70, 120, 110, 80, 80];
-const ColumnAlignments = ['center-align', '', '', 'center-align', 'center-align', 'right-align', 'right-align', 'right-align', 'right-align', 'center-align', 'center-align', 'center-align'];
+const ColumnWidths = [40, 120, 120, 160, 150, 400, 70, 70, 110, 110, 80, 80];
+const ColumnAlignments = ['center-align', '', '', 'center-align tooltip', 'center-align', 'right-align', 'right-align', 'right-align', 'right-align', 'center-align', 'center-align', 'center-align'];
 const SortableColumns = ['Stake'];
 const DataGrid = props => {
   const {

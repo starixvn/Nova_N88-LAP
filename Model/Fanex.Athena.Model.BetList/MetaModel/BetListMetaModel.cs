@@ -19,6 +19,21 @@ namespace Fanex.Athena.Model.BetList.MetaModel
             PageSize = int.MaxValue - 1;
         }
 
+        public object ToBetDetail() => new
+        {
+            BaseCurrency,
+            CustId,
+            TransId = TransId.ToString(),
+            FromDate,
+            FromDateString,
+            ToDate,
+            ToDateString,
+            TransType,
+            RefCode,
+            HasPlayerCom,
+            Date
+        };
+
         public bool HasPlayerCom { get; set; }
 
         public bool IsShowIpvn { get; set; }

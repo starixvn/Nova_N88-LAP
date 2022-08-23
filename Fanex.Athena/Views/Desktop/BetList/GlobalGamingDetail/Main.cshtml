@@ -18,6 +18,6 @@
 }
 @{
     <input type="hidden" id="ApiUrl" value="Api/GlobalGamingBetList/Detail" />
-    <input type="hidden" id="BetListMetaModel" value="@Model.ToJson()" />
+    <input type="hidden" id="BetListMetaModel" value="@Model.ToBetDetail().ToJson()" />
     <input type="hidden" id="HiddenColumnList" value="externalid,systemid" />
 }

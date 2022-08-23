@@ -31,18 +31,18 @@
     {
         name: 'TransTime',
         index: 'TransTime',
-        width: 110,
+        width: 150,
         align: 'center',
         sortable: false,
         resizable: false,
-        title: false,
-        classes: 'transtime'
+        classes: 'transtime',
+        cellattr: function (rowId, cellValue, rowObject) { return `title="${rowObject.TransId}"` }
     };
     const choice =
     {
         name: 'Choice',
         index: 'Choice',
-        width: 300,
+        width: 290,
         align: 'right',
         sortable: false,
         title: false,
@@ -62,7 +62,7 @@
     {
         name: 'Stake',
         index: 'Stake',
-        width: 120,
+        width: 100,
         align: 'right',
         sortable: true,
         resizable: false

@@ -1816,7 +1816,7 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
       return {
         Id,
         Value,
-        Status: selectedItemString === '' || selectedItemList.indexOf(Id) !== -1
+        Status: selectedItemList.indexOf(Id) !== -1
       };
     });
   }

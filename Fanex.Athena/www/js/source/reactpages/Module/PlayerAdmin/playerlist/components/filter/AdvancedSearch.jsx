@@ -24,7 +24,7 @@ export class AdvancedSearch extends React.Component {
             return {
                 Id,
                 Value,
-                Status: selectedItemString === '' || selectedItemList.indexOf(Id) !== -1
+                Status: selectedItemList.indexOf(Id) !== -1
             }
         })
     }

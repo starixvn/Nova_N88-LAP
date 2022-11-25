@@ -301,6 +301,8 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         VgamingFreeBetsJackpotPrize = 3899,
 
-        VgamingFreeBetsJackpotContribution = 3898
+        VgamingFreeBetsJackpotContribution = 3898,
+
+        TIPStreamerTips = 8700
     }
 }

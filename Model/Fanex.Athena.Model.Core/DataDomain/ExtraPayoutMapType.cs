@@ -37,5 +37,7 @@
         public const int VgamingFreeBetsJackpotPrize = 6602;
 
         public const int VgamingFreeBetsJackpotContribution = 6603;
+
+        public const int TIPStreamerTips = 7401;
     }
 }

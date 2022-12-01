@@ -1,20 +1,18 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
-    using Fanex.Athena.Api.Base.Attributes;
     using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.MetaModel.Product;
     using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.Athena.VendorAdapter.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
 
     [FunctionAuthorization(PermissionKeys.ReportExtraPayout)]
@@ -44,7 +42,7 @@
 
             var param = new ExtraPayoutMetaModel
             {
-                ProductOptions = ToProductOptions(productAccess.ProductList),
+                ProductOptions = AddPlayerTipsProDuct(ToProductOptions(productAccess.ProductList)),
                 IsExcludedTestData = true,
                 ReportBy = ReportByType.Daily
             };
@@ -127,7 +125,28 @@
                 });
             }
 
+            if (productCodeList.IsPresent(_ => _ == Product.TIP))
+            {
+                promotionTypeList.AddRange(new List<CheckedItem>
+                {
+                    new CheckedItem { ID = ExtraPayoutMapType.TIPStreamerTips,
+                        Name = _cacheRefAdapter.GetBettype((int)BetType.TIPStreamerTips), Checked = true }
+                });
+            }
+
             return promotionTypeList;
+        }
+
+        private IList<ProductOption> AddPlayerTipsProDuct(IList<ProductOption> productList)
+        {
+            var originalProductList = ProductServiceInstance.GetProductList(SessionServiceInstance.LicenseeSession.LicenseeId, SessionServiceInstance.UserSession.Language);
+
+            if (originalProductList.Any(_ => _.ProductCode == Product.SB))
+            {
+                productList.Add(new ProductOption { Code = Product.TIP, Name = ViewResources.ProductTIP, Status = true });
+            }
+
+            return productList;
         }
     }
 }

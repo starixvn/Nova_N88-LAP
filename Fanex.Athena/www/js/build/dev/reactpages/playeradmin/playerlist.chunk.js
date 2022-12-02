@@ -302,13 +302,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lib/helpers/playerDataBuilder */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/playerDataBuilder.js");
 /* harmony import */ var _lib_services_playerSuggestionService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../lib/services/playerSuggestionService */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/playerSuggestionService.js");
 /* harmony import */ var _playerDetailHandlerAction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./playerDetailHandlerAction */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/playerDetailHandlerAction.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -324,7 +322,6 @@ const processBeforeGettingData = dispatch => {
   dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_1__["toggleLoader"])(true));
   dispatch(Object(_playerDetailHandlerAction__WEBPACK_IMPORTED_MODULE_8__["setSelectedTabName"])(null));
 };
-
 const searchPlayer = param => dispatch => {
   const service = new _lib_services_playerQueryService__WEBPACK_IMPORTED_MODULE_2__["default"]();
   processBeforeGettingData(dispatch);
@@ -336,20 +333,16 @@ const searchPlayer = param => dispatch => {
     } = result;
     dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setPlayerList"])(playerList));
     dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setIsFetchingData"])(false));
-
     const pagingOption = _objectSpread(_objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"]), {}, {
       PageIndex: param.pageIndex,
       PageSize: param.pageSize,
       TotalItem: totalItem
     });
-
     dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setPagingOption"])(pagingOption));
-
     if (playerList.length === 1) {
       const selectedPlayer = Object(_lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_6__["buildSelectedPlayer"])(playerList[0]);
       dispatch(Object(_commonAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedPlayer"])(selectedPlayer));
     }
-
     dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_1__["toggleLoader"])(false));
   }).catch(() => {
     dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_1__["toggleLoader"])(false));
@@ -362,16 +355,13 @@ const getSinglePlayer = param => dispatch => {
     if (result) {
       dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setPlayerList"])([result]));
       dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setIsFetchingData"])(false));
-
       const pagingOption = _objectSpread(_objectSpread({}, _lib_constants_js__WEBPACK_IMPORTED_MODULE_5__["defaultPagingOption"]), {}, {
         TotalItem: 1
       });
-
       dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_4__["setPagingOption"])(pagingOption));
       const selectedPlayer = Object(_lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_6__["buildSelectedPlayer"])(result);
       dispatch(Object(_commonAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedPlayer"])(selectedPlayer));
     }
-
     dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_1__["toggleLoader"])(false));
   }).catch(() => {
     dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_1__["toggleLoader"])(false));
@@ -691,12 +681,10 @@ const getSiteSetting = (hasBaPermission, hasOddsGroupPermission, hasSpecialLevel
       IsAllowedBA
     } = response.data;
     const isAllowedBA = !isSubsidiary && IsAllowedBA;
-
     if (isAllowedBA) {
       const columnList = Object(_lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_2__["buildColumnList"])(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedBA);
       dispatch(Object(_gridHandlerAction__WEBPACK_IMPORTED_MODULE_1__["setDisplayedColumnList"])(columnList));
     }
-
     dispatch(setSiteSetting({
       isAllowedCustomerComm: IsAllowedCustomerComm,
       isAllowedBA
@@ -708,7 +696,6 @@ const getSiteSetting = (hasBaPermission, hasOddsGroupPermission, hasSpecialLevel
     }));
   });
 };
-
 const setSiteSetting = data => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_SITE_SETTING"],
@@ -795,7 +782,6 @@ const AppContainer = props => {
     isLoading: props.isLoading
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormFilter__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Content__WEBPACK_IMPORTED_MODULE_2__["default"], null), isAllowedStatement && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PlayerDetail__WEBPACK_IMPORTED_MODULE_6__["default"], null));
 };
-
 function mapStateToProps(state) {
   const {
     isLoading
@@ -804,7 +790,6 @@ function mapStateToProps(state) {
     isLoading
   });
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AppContainer)));
 
 /***/ }),
@@ -828,12 +813,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _content_header_GridCaption__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./content-header/GridCaption */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/content-header/GridCaption.jsx");
 /* harmony import */ var _DataGrid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./DataGrid */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/DataGrid.jsx");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/index.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -845,25 +829,20 @@ const Content = props => {
   const {
     pagingOption
   } = props;
-
   if (pagingOption.TotalItem === null) {
     return null;
   }
-
   const handlePaging = (pageIndex, pageSize) => {
     const {
       param,
       searchPlayer
     } = props;
-
     const newParam = _objectSpread(_objectSpread({}, param), {}, {
       pageIndex,
       pageSize
     });
-
     searchPlayer(newParam);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "result-content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Pager"], {
@@ -871,7 +850,6 @@ const Content = props => {
     onPaging: handlePaging
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_content_header_GridCaption__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DataGrid__WEBPACK_IMPORTED_MODULE_5__["default"], null));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     searchPlayer
@@ -880,7 +858,6 @@ function mapDispatchToProps(dispatch) {
     searchPlayer
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     pagingOption,
@@ -891,7 +868,6 @@ function mapStateToProps(state) {
     param
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Content));
 
@@ -924,10 +900,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
 /* harmony import */ var _jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @jsroot/components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
 /* harmony import */ var _components_sweet_alert__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../components/sweet-alert */ "./www/js/source/reactpages/components/sweet-alert/index.jsx");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -947,7 +923,6 @@ const MAX_WIDTH_PAGE = 1920;
 class DataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "handleSort", (sortBy, sortOrder) => {
       const {
         playerList,
@@ -956,13 +931,10 @@ class DataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       const sortedPlayerList = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_8__["default"].sortPlayerList(playerList, sortBy, sortOrder);
       setPlayerList(sortedPlayerList);
     });
-
     this.maxWidth = Math.min(document.body.clientWidth, MAX_WIDTH_PAGE);
   }
-
   _renderDataSection(dataList, displayedColumn) {
     const dataRows = [];
-
     for (let i = 0; i < dataList.length; i++) {
       const dataItem = dataList[i];
       const rowProps = {
@@ -973,10 +945,8 @@ class DataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
         key: dataItem.IbcCustId
       }, rowProps)));
     }
-
     return dataRows;
   }
-
   render() {
     const {
       playerList,
@@ -985,15 +955,12 @@ class DataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       displayedColumnList,
       sweetAlertOption
     } = this.props;
-
     if (!playerList) {
       return null;
     }
-
     if (!playerList.length) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_13__["default"], null);
     }
-
     const dataList = selectedPlayer ? [playerList.find(item => item.IbcCustId === selectedPlayer.ibcCustId)] : playerList;
     const displayedColumn = Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_12__["buildDisplayedColumnObject"])(displayedColumnList);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__["Table"], {
@@ -1008,9 +975,7 @@ class DataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       onSort: this.handleSort
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_ContextMenu__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_SpecialLevelDropdown__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_OddsGroupDropdown__WEBPACK_IMPORTED_MODULE_9__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_grid_StatusDropdown__WEBPACK_IMPORTED_MODULE_11__["default"], null), sweetAlertOption && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_sweet_alert__WEBPACK_IMPORTED_MODULE_14__["default"], sweetAlertOption));
   }
-
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     setPlayerList
@@ -1019,7 +984,6 @@ function mapDispatchToProps(dispatch) {
     setPlayerList
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     playerList,
@@ -1036,7 +1000,6 @@ function mapStateToProps(state) {
     sweetAlertOption
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(DataGrid));
 
@@ -1065,16 +1028,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
 /* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
 /* harmony import */ var _jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/lib/htmlHelper */ "./www/js/source/reactpages/lib/htmlHelper.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
+const _excluded = ["specialLevel", "currencyIdList", "oddsGroup", "isValidUserName"],
+  _excluded2 = ["bankAccountNumber", "email", "searchOption", "isValidUserName", "isValidsystemId"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1090,18 +1052,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "handleSubmit", event => {
       event.preventDefault();
       this.searchPlayer();
     });
-
     _defineProperty(this, "handlePressEnter", event => {
       if (event.charCode === 13) {
         this.searchPlayer();
       }
     });
-
     _defineProperty(this, "handleChange", event => {
       const {
         name,
@@ -1111,13 +1070,11 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
         [name]: value
       });
     });
-
     _defineProperty(this, "handleSpecificInputChange", (name, value) => {
       this.setState({
         [name]: value
       });
     });
-
     _defineProperty(this, "handleUserNameChange", event => {
       const {
         name,
@@ -1128,7 +1085,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
         isValidUserName: !!value
       });
     });
-
     _defineProperty(this, "hangedelSystemIdChange", event => {
       const {
         name,
@@ -1139,7 +1095,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
         isValidsystemId: !!value
       });
     });
-
     this.allOddsGroupString = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["oddsGroupListWithStyle"]).join(',');
     this.allCurrencyString = props.currencyList.map(c => c.Id).join(',');
     this.allSpecialLevel = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["specialLevelListWithColor"]).map(item => item).join(',');
@@ -1157,11 +1112,9 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       searchOption: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["searchOptions"].matchPrefix
     };
   }
-
   componentDidMount() {
     const ibcCustId = Number(_jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__["default"].getParam(window.location.href, 'custId'));
     const licenseeCustId = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__["default"].getParam(window.location.href, 'licenseeCustId');
-
     if (ibcCustId || licenseeCustId) {
       const param = {
         ibcCustId,
@@ -1174,7 +1127,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
         isValidUserName: !!userName
       });
     }
-
     const {
       hasBaPermission,
       hasOddsGroupPermission,
@@ -1183,12 +1135,10 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     } = this.props;
     this.props.getSiteSetting(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isSubsidiary);
   }
-
   componentDidUpdate(prevProps, prevState) {
     const {
       isAdvancedSearch
     } = this.props;
-
     if (prevProps.isAdvancedSearch !== isAdvancedSearch && !isAdvancedSearch) {
       this.setState({
         currencyIdList: this.allCurrencyString,
@@ -1198,7 +1148,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       });
     }
   }
-
   searchPlayer() {
     const userName = this.state.userName;
     const systemId = this.state.systemId;
@@ -1208,19 +1157,16 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       currencyList,
       isAdvancedSearch
     } = this.props;
-
     const _this$state = this.state,
-          {
-      specialLevel,
-      currencyIdList,
-      oddsGroup,
-      isValidUserName
-    } = _this$state,
-          restParam = _objectWithoutProperties(_this$state, ["specialLevel", "currencyIdList", "oddsGroup", "isValidUserName"]);
-
+      {
+        specialLevel,
+        currencyIdList,
+        oddsGroup,
+        isValidUserName
+      } = _this$state,
+      restParam = _objectWithoutProperties(_this$state, _excluded);
     const actualSpecialLevel = specialLevel.trim();
     const isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
-
     const param = _objectSpread(_objectSpread({}, restParam), {}, {
       userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(userName),
       systemId: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(systemId),
@@ -1231,10 +1177,8 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       pageSize: pagingOption.PageSize,
       pageIndex: 1
     });
-
     searchPlayer(param);
   }
-
   _renderUserGuide() {
     const userGuideContent = 'Player Admin User Guide';
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -1244,18 +1188,16 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       content: userGuideContent
     });
   }
-
   render() {
     const _this$state2 = this.state,
-          {
-      bankAccountNumber,
-      email,
-      searchOption,
-      isValidUserName,
-      isValidsystemId
-    } = _this$state2,
-          advancedSearchParam = _objectWithoutProperties(_this$state2, ["bankAccountNumber", "email", "searchOption", "isValidUserName", "isValidsystemId"]);
-
+      {
+        bankAccountNumber,
+        email,
+        searchOption,
+        isValidUserName,
+        isValidsystemId
+      } = _this$state2,
+      advancedSearchParam = _objectWithoutProperties(_this$state2, _excluded2);
     const {
       type,
       isAdvancedSearch,
@@ -1334,9 +1276,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("AdvancedSearch")
     })))));
   }
-
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     searchPlayer,
@@ -1355,7 +1295,6 @@ function mapDispatchToProps(dispatch) {
     getSiteSetting
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     type,
@@ -1380,7 +1319,6 @@ function mapStateToProps(state) {
     hasSpecialLevelPermission
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(FormFilter));
 
@@ -1402,8 +1340,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/index.js");
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1412,19 +1351,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class PlayerDetail extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "handleClickMenu", (event, tabName) => {
       event.preventDefault();
       this.props.setSelectedTabName(tabName);
     });
-
     this._tabList = this.props.getTabList();
   }
-
   _getDefaultSelectedTab() {
     return this._tabList && this._tabList.length && this._tabList[0].Name;
   }
-
   _buildActionUrl(systemType, action, tabName) {
     const {
       selectedPlayer
@@ -1441,23 +1376,17 @@ class PlayerDetail extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     const nameValuePairString = custIdQueryString + `&currencyId=${currencyId}&currencyName=${currency}&userName=${userName}`;
     const queryString = (action.indexOf('?') !== -1 ? '&' : '?') + nameValuePairString;
     let urlByPlayer = action + queryString;
-
     if (tabName === _lib_constants__WEBPACK_IMPORTED_MODULE_4__["tabNames"].playerInfo) {
       urlByPlayer += `&createdDate=${encodeURIComponent(createdDate)}`;
     }
-
     return this.props.getLink(systemType, urlByPlayer);
   }
-
   _renderTabList(tabList) {
     console.log(tabList);
-
     const selectedTabName = this.props.selectedTabName || this._getDefaultSelectedTab();
-
     const renderedTabList = tabList;
     return renderedTabList.map(item => {
       const actionUrl = this._buildActionUrl(item.SystemType, item.Action, item.Name);
-
       const tabNameBySelectedMenu = _lib_constants__WEBPACK_IMPORTED_MODULE_4__["tabNameByContextMenu"][selectedTabName];
       const isActive = tabNameBySelectedMenu === item.Name || selectedTabName === item.Name;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1470,24 +1399,20 @@ class PlayerDetail extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       }, item.Text));
     });
   }
-
   _getFrameHeight() {
     const {
       isAdvancedSearch,
       isFilterCollapsing
     } = this.props;
     let omittedHeight;
-
     if (isFilterCollapsing) {
       omittedHeight = _lib_constants__WEBPACK_IMPORTED_MODULE_4__["heightSlicing"].whenCollapsing;
     } else {
       const key = isAdvancedSearch ? 'withAdvancedSearch' : 'default';
       omittedHeight = _lib_constants__WEBPACK_IMPORTED_MODULE_4__["heightSlicing"][key];
     }
-
     return window.innerHeight - omittedHeight;
   }
-
   _getActionUrl() {
     const {
       selectedTabName
@@ -1497,28 +1422,21 @@ class PlayerDetail extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     const action = tabNameBySelectedMenu ? `${tabItem.Action}?subTab=${selectedTabName}` : tabItem.Action;
     return tabItem && this._buildActionUrl(tabItem.SystemType, action, tabItem.Name);
   }
-
   render() {
     const {
       selectedPlayer
     } = this.props;
-
     if (!selectedPlayer) {
       return null;
     }
-
     if (this._tabList.length === 0) {
       return null;
     }
-
     const src = this._getActionUrl();
-
     if (!src) {
       return null;
     }
-
     const frameHeight = this._getFrameHeight();
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "pa-detail-container"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1543,9 +1461,7 @@ class PlayerDetail extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       src: src
     })))));
   }
-
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     getLink,
@@ -1558,7 +1474,6 @@ function mapDispatchToProps(dispatch) {
     setSelectedTabName
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     selectedPlayer,
@@ -1573,7 +1488,6 @@ function mapStateToProps(state) {
     selectedTabName
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(PlayerDetail));
 
@@ -1599,12 +1513,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1616,7 +1529,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "handleChangeDisplayedColumn", (currentItem, selectedItemsKey) => {
       const {
         displayedColumnList,
@@ -1631,7 +1543,6 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
       });
       setDisplayedColumnList(newColumnList);
     });
-
     _defineProperty(this, "handleExportExcel", () => {
       const {
         playerList,
@@ -1640,18 +1551,15 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
         exportExcel,
         selectedPlayer
       } = this.props;
-
       if (displayedColumnList.filter(x => x.show).length === 0) {
         window.alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource("NoInfo"));
         return;
       }
-
       const displayedColumn = Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_7__["buildDisplayedColumnObject"])(displayedColumnList);
       const dataList = selectedPlayer ? [playerList.find(item => item.IbcCustId === selectedPlayer.ibcCustId)] : playerList;
       exportExcel(dataList, param, displayedColumn);
     });
   }
-
   _buildDisplayedColumnList() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_5___default.a, {
       id: "columnList",
@@ -1664,12 +1572,10 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
       onChange: this.handleChangeDisplayedColumn
     });
   }
-
   _buildLeftPart() {
     const {
       selectedPlayer
     } = this.props;
-
     if (selectedPlayer) {
       const {
         userName,
@@ -1690,7 +1596,6 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
       }, `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('SearchResult')}: ${playerCount} ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('Player')}(s)`);
     }
   }
-
   _buildRightPart() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "caret-block"
@@ -1702,7 +1607,6 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('ExportToExcel')
     })));
   }
-
   render() {
     const Content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this._buildLeftPart(), this._buildRightPart());
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_ReportTitle__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -1710,9 +1614,7 @@ class GridCaption extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
       content: Content
     });
   }
-
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     setSelectedPlayer,
@@ -1725,7 +1627,6 @@ function mapDispatchToProps(dispatch) {
     exportExcel
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     pagingOption,
@@ -1743,7 +1644,6 @@ function mapStateToProps(state) {
     param
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(GridCaption));
 
@@ -1769,8 +1669,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1781,15 +1682,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "handleChange", (name, value) => {
       this.props.onChange(name, value);
     });
-
     _defineProperty(this, "handleChangeSingleDropdown", (name, item) => {
       this.props.onChange(name, item.value);
     });
-
     this.oddsGroupList = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_4__["oddsGroupListWithStyle"]).map(item => ({
       Id: item,
       Value: item,
@@ -1805,7 +1703,6 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource(item)
     }));
   }
-
   _createSelectData(originalList, selectedItemString) {
     const selectedItemList = selectedItemString.split(',').filter(x => x !== '');
     return originalList.map(item => {
@@ -1820,7 +1717,6 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
       };
     });
   }
-
   render() {
     const {
       currencyList,
@@ -1835,13 +1731,9 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
       specialLevel,
       baFilter
     } = param;
-
     const convertedCurrencyList = this._createSelectData(currencyList, currencyIdList);
-
     const oddsGroupList = this._createSelectData(this.oddsGroupList, oddsGroup);
-
     const specialLevelList = this._createSelectData(this.specialLevelList, specialLevel);
-
     const selectedBaStatus = isAllowedBA ? this.baStatusList.find(x => x.value === baFilter) : null;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
@@ -1896,7 +1788,6 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
       onChange: item => this.handleChangeSingleDropdown('baFilter', item)
     }))));
   }
-
 }
 const propTypes = {
   param: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.shape({
@@ -1943,7 +1834,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const BaStatusCell = props => {
   const {
     dataItem,
@@ -1963,18 +1853,14 @@ const BaStatusCell = props => {
   } = dataItem;
   const canView = hasBaPermission.isallowed;
   const canUpdate = canView && hasBaPermission.policy == 2;
-
   const handleChangeBaStatus = event => {
     event.preventDefault();
-
     if (!canUpdate) {
       return;
     }
-
     const handleCloseAlert = () => {
       setSweetAlertOption(null);
     };
-
     const isBa = event.target.checked;
     const resourceName = isBa ? 'AlertTurnOnBAMsg' : 'AlertTurnOffBAMsg';
     const confirmMessage = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource(resourceName);
@@ -1996,13 +1882,11 @@ const BaStatusCell = props => {
             ErrorMessage,
             ExtendedData
           } = response.data;
-
           if (Success) {
             const oddsGroup = ExtendedData || OddsGroup;
             const newPlayerList = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_7__["default"].updatePlayerWithBaStatus(playerList, IbcCustId, isBa, oddsGroup);
             setPlayerList(newPlayerList);
           }
-
           const resultMessage = Success ? _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('UpdateSuccess') : Message || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource(ErrorMessage);
           const displayIcon = Success ? _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].success : _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].error;
           const alertOpt = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultAlertOption"])(resultMessage, handleCloseAlert, null, displayIcon);
@@ -2020,7 +1904,6 @@ const BaStatusCell = props => {
     const confirmOption = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultConfirmOption"])(confirmMessage, handleCloseAlert, confirmProps, cancelProps);
     setSweetAlertOption(confirmOption);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
     className: "center-align" + `${!canUpdate ? ' ba-disabled' : ''}`
   }, !IsArchived && BaStatus !== undefined && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_Switcher__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -2029,7 +1912,6 @@ const BaStatusCell = props => {
     onChange: handleChangeBaStatus
   }));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setPlayerList,
@@ -2044,7 +1926,6 @@ function mapDispatchToProps(dispatch) {
     setSweetAlertOption
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     playerList,
@@ -2055,7 +1936,6 @@ function mapStateToProps(state) {
     hasBaPermission
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(BaStatusCell));
 
@@ -2098,15 +1978,12 @@ const ContextMenu = props => {
     isOpen: isOpenContextMenu
   } = contextMenu;
   const [isOpen, setIsOpen] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-
   const handleMouseEnter = () => {
     setIsOpen(true);
   };
-
   const handleMouseLeave = () => {
     setIsOpen(isOpenContextMenu);
   };
-
   const handleClickMenu = tabName => {
     setSelectedTabName(tabName);
     const {
@@ -2131,18 +2008,15 @@ const ContextMenu = props => {
     };
     setSelectedPlayer(selectedPlayer);
   };
-
   const style = position && {
     top: position.y,
     left: position.x
   };
   let activeMenuList = [];
-
   if (currentActivePlayer) {
     const tabList = getTabList();
     activeMenuList = Object(_lib_helpers_contextMenuHelper__WEBPACK_IMPORTED_MODULE_5__["getActiveTabList"])(currentActivePlayer, tabList, type);
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dropdown context-menu",
     style: style
@@ -2159,7 +2033,6 @@ const ContextMenu = props => {
     }, item.name);
   })));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setSelectedPlayer,
@@ -2172,7 +2045,6 @@ function mapDispatchToProps(dispatch) {
     getTabList
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     currentActivePlayer,
@@ -2185,7 +2057,6 @@ function mapStateToProps(state) {
     type
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ContextMenu));
 
@@ -2230,19 +2101,16 @@ const OddsGroupCell = props => {
   const style = _lib_constants__WEBPACK_IMPORTED_MODULE_3__["oddsGroupListWithStyle"][value];
   const canView = hasOddsGroupPermission.isallowed;
   const canUpdate = canView && hasOddsGroupPermission.policy == 2 && !dataItem.BaStatus;
-
   const handleToggleOddsGroup = event => {
     if (!canUpdate) {
       return;
     }
-
     const currentActivePlayer = Object(_lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_7__["buildCurrentActivePlayer"])(dataItem);
     setCurrentActivePlayer(currentActivePlayer);
     const dropdownName = 'oddsGroupDropdown';
     const newPosition = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_6__["default"].getNextDropdownPosition(event.target, oddsGroupDropdownPosition, dropdownName);
     setOddsGroupDropdownPosition(newPosition);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_DropdownLabel__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: canUpdate ? '' : 'disabled',
     text: value,
@@ -2250,7 +2118,6 @@ const OddsGroupCell = props => {
     onClick: handleToggleOddsGroup
   });
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setCurrentActivePlayer,
@@ -2261,7 +2128,6 @@ function mapDispatchToProps(dispatch) {
     setOddsGroupDropdownPosition
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     oddsGroupDropdownPosition,
@@ -2272,7 +2138,6 @@ function mapStateToProps(state) {
     hasOddsGroupPermission
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(OddsGroupCell));
 
@@ -2319,11 +2184,9 @@ const OddsGroupDropdown = props => {
     top: oddsGroupDropdownPosition.y,
     left: oddsGroupDropdownPosition.x
   };
-
   const handleClose = () => {
     setOddsGroupDropdownPosition(null);
   };
-
   const {
     currentActivePlayer,
     updateOddsGroup,
@@ -2332,15 +2195,12 @@ const OddsGroupDropdown = props => {
     toggleLoader,
     setSweetAlertOption
   } = props;
-
   const handleCloseAlert = () => {
     setSweetAlertOption(null);
   };
-
   const cancelProps = {
     onClick: handleCloseAlert
   };
-
   const handleChangeOddsGroup = (event, value) => {
     event.preventDefault();
     const confirmMessage = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('AlertSetOddsGroupForCustomerMsg').replace('{0}', value);
@@ -2365,12 +2225,10 @@ const OddsGroupDropdown = props => {
               Message,
               ErrorMessage
             } = response.data;
-
             if (Success) {
               const newPlayerList = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_5__["default"].updatePlayerItem(playerList, ibcCustId, value, 'OddsGroup');
               setPlayerList(newPlayerList);
             }
-
             const resultMessage = Success ? _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('UpdateSuccess') : Message || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource(ErrorMessage);
             const displayIcon = Success ? _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].success : _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].error;
             const alertOpt = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultAlertOption"])(resultMessage, handleCloseAlert, null, displayIcon);
@@ -2386,14 +2244,12 @@ const OddsGroupDropdown = props => {
         } else {
           handleCloseAlert();
         }
-
         handleClose();
       }
     };
     const confirmOption = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultConfirmOption"])(confirmMessage, handleCloseAlert, confirmProps, cancelProps);
     setSweetAlertOption(confirmOption);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dropdown oddsgroup-menu",
     style: style
@@ -2410,7 +2266,6 @@ const OddsGroupDropdown = props => {
     }, item);
   })));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setOddsGroupDropdownPosition,
@@ -2427,7 +2282,6 @@ function mapDispatchToProps(dispatch) {
     setSweetAlertOption
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     oddsGroupDropdownPosition,
@@ -2440,7 +2294,6 @@ function mapStateToProps(state) {
     playerList
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(OddsGroupDropdown));
 
@@ -2518,7 +2371,6 @@ const PlayerRow = props => {
     dataItem: dataItem
   })));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setSelectedPlayer
@@ -2527,7 +2379,6 @@ function mapDispatchToProps(dispatch) {
     setSelectedPlayer
   }, dispatch);
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(PlayerRow));
 
 /***/ }),
@@ -2575,19 +2426,16 @@ const SpecialLevelCell = props => {
   };
   const canView = hasSpecialLevelPermission.isallowed;
   const canUpdate = canView && hasSpecialLevelPermission.policy == 2;
-
   const handleToggleSpecialLevel = event => {
     if (!canUpdate) {
       return;
     }
-
     const currentActivePlayer = Object(_lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_8__["buildCurrentActivePlayer"])(dataItem);
     setCurrentActivePlayer(currentActivePlayer);
     const dropdownName = 'specialLevelDropdown';
     const newPosition = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_6__["default"].getNextDropdownPosition(event.target, specialLevelDropdownPosition, dropdownName);
     setSpecialLevelDropdownPosition(newPosition);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_DropdownLabel__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: canUpdate ? '' : 'disabled',
     text: Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_7__["getSpecialLevelText"])(value),
@@ -2595,7 +2443,6 @@ const SpecialLevelCell = props => {
     onClick: handleToggleSpecialLevel
   });
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setCurrentActivePlayer,
@@ -2606,7 +2453,6 @@ function mapDispatchToProps(dispatch) {
     setSpecialLevelDropdownPosition
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     specialLevelDropdownPosition,
@@ -2617,7 +2463,6 @@ function mapStateToProps(state) {
     hasSpecialLevelPermission
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(SpecialLevelCell));
 
@@ -2653,7 +2498,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const SpecialLevelDropdown = props => {
   const {
     specialLevelDropdownPosition,
@@ -2664,11 +2508,9 @@ const SpecialLevelDropdown = props => {
     top: specialLevelDropdownPosition.y,
     left: specialLevelDropdownPosition.x
   };
-
   const handleClose = () => {
     setSpecialLevelDropdownPosition(null);
   };
-
   const {
     currentActivePlayer,
     updateSpecialLevel,
@@ -2677,15 +2519,12 @@ const SpecialLevelDropdown = props => {
     toggleLoader,
     setSweetAlertOption
   } = props;
-
   const handleCloseAlert = () => {
     setSweetAlertOption(null);
   };
-
   const cancelProps = {
     onClick: handleCloseAlert
   };
-
   const handleChangeOddsGroup = (event, value) => {
     event.preventDefault();
     const resourceName = Number(value) === 0 ? 'AlertRemoveSpecialLevelForCustomerMsg' : 'AlertSetSpecialLevelForCustomerMsg';
@@ -2711,12 +2550,10 @@ const SpecialLevelDropdown = props => {
               Message,
               ErrorMessage
             } = response.data;
-
             if (Success) {
               const newPlayerList = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_5__["default"].updatePlayerItem(playerList, ibcCustId, value, 'SpecialLevel');
               setPlayerList(newPlayerList);
             }
-
             const resultMessage = Success ? _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('UpdateSuccess') : Message || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource(ErrorMessage);
             const displayIcon = Success ? _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].success : _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].error;
             const alertOpt = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultAlertOption"])(resultMessage, handleCloseAlert, null, displayIcon);
@@ -2732,14 +2569,12 @@ const SpecialLevelDropdown = props => {
         } else {
           handleCloseAlert();
         }
-
         handleClose();
       }
     };
     const confirmOption = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultConfirmOption"])(confirmMessage, handleCloseAlert, confirmProps, cancelProps);
     setSweetAlertOption(confirmOption);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dropdown special-level-menu",
     style: style
@@ -2758,7 +2593,6 @@ const SpecialLevelDropdown = props => {
     }, Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_8__["getSpecialLevelText"])(item));
   })));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setSpecialLevelDropdownPosition,
@@ -2775,7 +2609,6 @@ function mapDispatchToProps(dispatch) {
     setSweetAlertOption
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     specialLevelDropdownPosition,
@@ -2788,7 +2621,6 @@ function mapStateToProps(state) {
     playerList
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(SpecialLevelDropdown));
 
@@ -2838,7 +2670,6 @@ const StatusCell = props => {
   const statusName = _lib_constants__WEBPACK_IMPORTED_MODULE_3__["playerStatus"][Status];
   const classname = 'status-text status-' + Status;
   const canUpdate = type === _lib_constants__WEBPACK_IMPORTED_MODULE_3__["licenseeType"].nonApi && !IsArchived && Status !== _lib_constants__WEBPACK_IMPORTED_MODULE_3__["playerStatusByName"].Closed;
-
   const handleToggleStatus = event => {
     const currentActivePlayer = Object(_lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_6__["buildCurrentActivePlayer"])(dataItem);
     setCurrentActivePlayer(currentActivePlayer);
@@ -2846,7 +2677,6 @@ const StatusCell = props => {
     const newPosition = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_5__["default"].getNextDropdownPosition(event.target, statusDropdownPosition, dropdownName);
     setStatusDropdownPosition(newPosition);
   };
-
   const shouldShowOnlineStatus = IsDeposit && Status === _lib_constants__WEBPACK_IMPORTED_MODULE_3__["playerStatusByName"].Active;
   const onlineText = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('Online');
   const offlineText = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('Offline');
@@ -2864,7 +2694,6 @@ const StatusCell = props => {
     className: "site-caret"
   })));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setCurrentActivePlayer,
@@ -2875,7 +2704,6 @@ function mapDispatchToProps(dispatch) {
     setStatusDropdownPosition
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     statusDropdownPosition,
@@ -2886,7 +2714,6 @@ function mapStateToProps(state) {
     type
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(StatusCell));
 
@@ -2922,7 +2749,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const StatusDropdown = props => {
   const {
     statusDropdownPosition,
@@ -2933,11 +2759,9 @@ const StatusDropdown = props => {
     top: statusDropdownPosition.y,
     left: statusDropdownPosition.x
   };
-
   const handleClose = () => {
     setStatusDropdownPosition(null);
   };
-
   const {
     currentActivePlayer,
     playerList,
@@ -2946,15 +2770,12 @@ const StatusDropdown = props => {
     updatePlayerStatus,
     setSweetAlertOption
   } = props;
-
   const handleCloseAlert = () => {
     setSweetAlertOption(null);
   };
-
   const cancelProps = {
     onClick: handleCloseAlert
   };
-
   const handleChangeOddsGroup = (event, value) => {
     event.preventDefault();
     const messageList = _lib_constants__WEBPACK_IMPORTED_MODULE_4__["messageUpdateState"][value] || [];
@@ -2976,7 +2797,6 @@ const StatusDropdown = props => {
             const {
               IsSuccessful
             } = response.data;
-
             if (IsSuccessful) {
               const {
                 ibcCustId
@@ -2985,7 +2805,6 @@ const StatusDropdown = props => {
               const newPlayerList = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_5__["default"].updatePlayerItem(playerList, playerId, value, 'Status');
               setPlayerList(newPlayerList);
             }
-
             const resultMessage = IsSuccessful ? _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('UpdateSuccess') : _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('PlayerAdminUpdateFailedMsg');
             const displayIcon = IsSuccessful ? _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].success : _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].error;
             const alertOpt = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultAlertOption"])(resultMessage, handleCloseAlert, null, displayIcon);
@@ -3000,7 +2819,6 @@ const StatusDropdown = props => {
             toggleLoader(false);
           });
         }
-
         handleClose();
       }
     };
@@ -3011,13 +2829,10 @@ const StatusDropdown = props => {
     const confirmOption = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultConfirmOption"])(confirmMessage, handleCloseAlert, confirmProps, cancelProps, _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].warning, customAlertOption);
     setSweetAlertOption(confirmOption);
   };
-
   const displayedStatusList = currentActivePlayer && _lib_constants__WEBPACK_IMPORTED_MODULE_4__["displayedPlayerStatusList"][currentActivePlayer.status];
-
   if (!displayedStatusList) {
     return null;
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dropdown status-menu",
     style: style
@@ -3034,7 +2849,6 @@ const StatusDropdown = props => {
     }, statusName);
   })));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setStatusDropdownPosition,
@@ -3051,7 +2865,6 @@ function mapDispatchToProps(dispatch) {
     setSweetAlertOption
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     statusDropdownPosition,
@@ -3064,7 +2877,6 @@ function mapStateToProps(state) {
     playerList
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(StatusDropdown));
 
@@ -3089,12 +2901,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib/helpers/playerDataBuilder */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/playerDataBuilder.js");
 /* harmony import */ var _lib_helpers_contextMenuHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib/helpers/contextMenuHelper */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/contextMenuHelper.js");
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -3115,20 +2926,17 @@ const UserNameCell = props => {
     getTabList,
     type
   } = props;
-
   const handleSelectPlayer = event => {
     event.preventDefault();
     const newSelectedPlayer = Object(_lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_5__["buildSelectedPlayer"])(dataItem);
     setSelectedPlayer(newSelectedPlayer);
     setSelectedTabName(null);
   };
-
   const handleEnterContextMenu = event => {
     event.preventDefault();
     const {
       isOpen
     } = contextMenu;
-
     if (!isOpen) {
       const currentActivePlayer = Object(_lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_5__["buildCurrentActivePlayer"])(dataItem);
       const tabList = getTabList();
@@ -3146,17 +2954,14 @@ const UserNameCell = props => {
       setCurrentActivePlayer(currentActivePlayer);
     }
   };
-
   const handleLeaveContextMenu = event => {
     event.preventDefault();
-
     if (contextMenu.isOpen) {
       setContextMenu(_objectSpread(_objectSpread({}, contextMenu), {}, {
         isOpen: false
       }));
     }
   };
-
   const {
     Status
   } = dataItem;
@@ -3172,7 +2977,6 @@ const UserNameCell = props => {
     onMouseLeave: handleLeaveContextMenu
   }));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setSelectedPlayer,
@@ -3189,7 +2993,6 @@ function mapDispatchToProps(dispatch) {
     getTabList
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     contextMenu,
@@ -3200,7 +3003,6 @@ function mapStateToProps(state) {
     type
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(UserNameCell));
 
@@ -3224,12 +3026,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/reducers/index.js");
 /* harmony import */ var _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/lib/store */ "./www/js/source/reactpages/lib/store.js");
 /* harmony import */ var _lib_helpers_gridColumnBuilder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lib/helpers/gridColumnBuilder */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/gridColumnBuilder.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -3246,7 +3047,6 @@ const siteSetting = {
   isAllowedCustomerComm: false,
   isAllowedBA: false
 };
-
 const defaultState = _objectSpread(_objectSpread({}, window.initialState), {}, {
   displayedColumnList,
   hasBaPermission,
@@ -3255,15 +3055,12 @@ const defaultState = _objectSpread(_objectSpread({}, window.initialState), {}, {
   hasSpecialLevelPermission,
   isAllowedCustomerComm
 });
-
 const store = _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_5__["default"].createStore(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], defaultState);
-
 const App = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
     store: store
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContainer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
-
 Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById("app-container"));
 
 /***/ }),
@@ -3571,15 +3368,12 @@ const isShowContextMenuItem = (item, isDeposit, isArchived, isClosed) => {
   if (!isDeposit) {
     return !_constants__WEBPACK_IMPORTED_MODULE_0__["excludedContextMenuWithNonDeposit"].includes(item.key);
   }
-
   if (isClosed) {
     return !_constants__WEBPACK_IMPORTED_MODULE_0__["excludedContextMenuWithClosed"].includes(item.key);
   }
-
   if (isArchived) {
     return !_constants__WEBPACK_IMPORTED_MODULE_0__["excludedContextMenuWithArchived"].includes(item.key);
   }
-
   return true;
 };
 const getActiveTabList = (player, tabList, licType) => {
@@ -3592,7 +3386,6 @@ const getActiveTabList = (player, tabList, licType) => {
     if (licType === _constants__WEBPACK_IMPORTED_MODULE_0__["licenseeType"].api && _constants__WEBPACK_IMPORTED_MODULE_0__["excludedContextMenuWithApiLicensee"].includes(item.key)) {
       return false;
     }
-
     const isClosedPlayer = status === _constants__WEBPACK_IMPORTED_MODULE_0__["playerStatusByName"].Closed;
     return !!tabList.find(t => item.tabName === t.Name) && isShowContextMenuItem(item, isDeposit, isArchived, isClosedPlayer);
   });
@@ -3612,23 +3405,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buildDefaultColumnList", function() { return buildDefaultColumnList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buildColumnList", function() { return buildColumnList; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 const buildDefaultColumnList = (hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission) => {
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(item => {
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
       return hasBaPermission.isallowed;
     }
-
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].OddsGroup) {
       return hasOddsGroupPermission.isallowed;
     }
-
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].SpecialLevel) {
       return hasSpecialLevelPermission.isallowed;
     } else {
@@ -3642,11 +3432,9 @@ const buildColumnList = (hasBaPermission, hasOddsGroupPermission, hasSpecialLeve
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
       return isAllowedBA && hasBaPermission.isallowed;
     }
-
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].OddsGroup) {
       return hasOddsGroupPermission.isallowed;
     }
-
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].SpecialLevel) {
       return hasSpecialLevelPermission.isallowed;
     } else {
@@ -3716,13 +3504,11 @@ class GridHelper {
       sortBy: SpecialLevel
     }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].SpecialLevel));
   }
-
   static calculateTopPosition(dropdownHeight = 0, currentTop) {
     const innerHeight = window.innerHeight;
     const expectedHeight = dropdownHeight + currentTop + 20;
     return expectedHeight > innerHeight ? currentTop - dropdownHeight : currentTop;
   }
-
 }
 
 /***/ }),
@@ -3765,7 +3551,6 @@ const buildLapPlayerList = playerList => {
   if (!playerList) {
     return [];
   }
-
   return playerList.map(item => {
     const {
       CustId,
@@ -3850,7 +3635,6 @@ class PlayerListDataHelper {
     if (!lrfList || !lapList) {
       return [];
     }
-
     return lapList.reduce((result, lapItem) => {
       const lrfItem = lrfList.find(x => x.IbcCustId === lapItem.IBCCustId) || {};
       const playerItem = this.mergePlayerItem(lrfItem, lapItem);
@@ -3858,7 +3642,6 @@ class PlayerListDataHelper {
       return result;
     }, []);
   }
-
   static mergePlayerItem(lrfItem, lapItem) {
     const {
       OddsGroup,
@@ -3900,35 +3683,29 @@ class PlayerListDataHelper {
       CreatedDate: CreatedDateString
     };
   }
-
   static getDataObject(targetList, listToMatch) {
     return targetList.reduce((accumulator, currentItem) => {
       const isExist = listToMatch.findIndex(p => this._isMatchIbcCustId(currentItem, p)) !== -1;
-
       if (isExist) {
         accumulator.commonList.push(currentItem);
       } else {
         accumulator.differenceList.push(currentItem);
       }
-
       return accumulator;
     }, {
       commonList: [],
       differenceList: []
     });
   }
-
   static _isMatchIbcCustId(source, destination) {
     return (!!destination.IbcCustId || !!source.IBCCustId) && destination.IbcCustId === source.IBCCustId || (!!destination.IBCCustId || !!source.IbcCustId) && destination.IBCCustId === source.IbcCustId;
   }
-
   static createEmptyResult() {
     return {
       playerList: [],
       totalItem: 0
     };
   }
-
 }
 
 /***/ }),
@@ -3977,26 +3754,21 @@ const getCustIdListFromLapData = lapPlayerList => {
     if (!isNonDepositOrArchived(item)) {
       result.push(item.IBCCustId);
     }
-
     return result;
   }, []);
 };
 const getErrorMessageForUpdating = errorInfo => {
   const defaultKey = 'HttpError_Default';
-
   if (!errorInfo) {
     return _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource(defaultKey);
   }
-
   const resourceKey = isUnauthorizedResponse(errorInfo) ? 'FunctionDeniedMsg' : defaultKey;
   return Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_2__["decode"])(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource(resourceKey));
 };
-
 const isUnauthorizedResponse = errorInfo => {
   if (!errorInfo.response) {
     return false;
   }
-
   const {
     status
   } = errorInfo.response;
@@ -4041,23 +3813,17 @@ class ReportExcel {
     this.currentRowIndex = DATA_ROW_INDEX;
     this.columnConfigs = this._getcolumnConfigs();
   }
-
   export(onFinished) {
     _jsroot_lib_excel__WEBPACK_IMPORTED_MODULE_0__["default"].process(() => {
       this._createHeader();
-
       this._createBodyData();
-
       this._createExcelConfig();
-
       _jsroot_lib_excel__WEBPACK_IMPORTED_MODULE_0__["default"].export(this.worksheet, this.title);
       onFinished && onFinished();
     });
   }
-
   _createHeader() {
     const totalColumn = this.columnConfigs.length;
-
     for (let i = 0; i < totalColumn; i++) {
       const field = this.columnConfigs[i].field;
       const address = _jsroot_lib_excel__WEBPACK_IMPORTED_MODULE_0__["default"].getCellAddress({
@@ -4071,13 +3837,10 @@ class ReportExcel {
       };
     }
   }
-
   _createBodyData() {
     const totalColumn = this.columnConfigs.length;
-
     for (let i = 0; i < this.data.length; i++) {
       const item = this.data[i];
-
       for (let j = 0; j < totalColumn; j++) {
         const address = _jsroot_lib_excel__WEBPACK_IMPORTED_MODULE_0__["default"].getCellAddress({
           c: j,
@@ -4085,11 +3848,9 @@ class ReportExcel {
         });
         this.worksheet[address] = this._buildDataRow(item, j);
       }
-
       this.currentRowIndex++;
     }
   }
-
   _buildDataRow(item, colIndex) {
     const columnConfig = this.columnConfigs[colIndex];
     const value = item[columnConfig.field];
@@ -4101,11 +3862,9 @@ class ReportExcel {
       s: columnConfig[MAIN_SECTION_STYLE]
     };
   }
-
   _shouldSetEmpty(value) {
     return value === undefined || value === null;
   }
-
   _createExcelConfig() {
     const cellStart = _jsroot_lib_excel__WEBPACK_IMPORTED_MODULE_0__["default"].getCellAddress({
       r: 0,
@@ -4120,7 +3879,6 @@ class ReportExcel {
       wpx: x.width
     }));
   }
-
   _getcolumnConfigs() {
     return [{
       field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].UserName,
@@ -4168,7 +3926,6 @@ class ReportExcel {
       width: 200
     }].filter(x => !!this.displayedColumn[x.field]);
   }
-
 }
 
 /***/ }),
@@ -4186,12 +3943,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_gridHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/gridHelper */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/gridHelper.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
 /* harmony import */ var _jsroot_lib_dataReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/dataReducer */ "./www/js/source/reactpages/lib/dataReducer.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -4200,7 +3956,6 @@ class GridInteractionService {
     if (!element || currentPosition) {
       return null;
     }
-
     const dropdownHeight = _constants__WEBPACK_IMPORTED_MODULE_1__["gridItemDropdownHeight"][dropdownItemName];
     const rect = element.getBoundingClientRect();
     return {
@@ -4208,41 +3963,31 @@ class GridInteractionService {
       y: _helpers_gridHelper__WEBPACK_IMPORTED_MODULE_0__["default"].calculateTopPosition(dropdownHeight, rect.top + 20)
     };
   }
-
   static updatePlayerItem(playerList, custId, value, fieldName) {
     let itemIndex = playerList.findIndex(x => x.IbcCustId === custId);
-
     if (itemIndex === -1) {
       itemIndex = playerList.findIndex(x => x.LicenseeCustId === custId);
     }
-
     if (itemIndex !== -1) {
       const newPlayerItem = _objectSpread(_objectSpread({}, playerList[itemIndex]), {}, {
         [fieldName]: value
       });
-
       return Object(_jsroot_lib_dataReducer__WEBPACK_IMPORTED_MODULE_2__["updateObjectInArray"])(playerList, itemIndex, newPlayerItem);
     }
-
     return [...playerList];
   }
-
   static updatePlayerWithBaStatus(playerList, ibcCustId, isBa, oddsGroup) {
     const itemIndex = playerList.findIndex(x => x.IbcCustId === ibcCustId);
-
     const newPlayerItem = _objectSpread(_objectSpread({}, playerList[itemIndex]), {}, {
       BaStatus: isBa,
       OddsGroup: oddsGroup
     });
-
     return Object(_jsroot_lib_dataReducer__WEBPACK_IMPORTED_MODULE_2__["updateObjectInArray"])(playerList, itemIndex, newPlayerItem);
   }
-
   static sortPlayerList(dataList, sortBy, sortOrder) {
     if (!dataList || dataList.length === 0) {
       return [];
     }
-
     const isSortAscending = sortOrder.toLowerCase() === 'asc';
     const newDataList = [...dataList];
     const isTringType = _constants__WEBPACK_IMPORTED_MODULE_1__["stringTypeFields"].includes(sortBy);
@@ -4250,7 +3995,6 @@ class GridInteractionService {
     newDataList.sort((currentItem, nextItem) => {
       const currentValue = currentItem[sortBy];
       const nextValue = nextItem[sortBy];
-
       if (isTringType) {
         return this.sortStringValue(currentValue || '', nextValue || '', isSortAscending);
       } else if (isDateTimeField) {
@@ -4259,23 +4003,19 @@ class GridInteractionService {
         const comparingResult = (this.isValidDate(currentItemDate) ? currentItemDate : 0) - (this.isValidDate(nextItemDate) ? nextItemDate : 0);
         return isSortAscending ? comparingResult : -comparingResult;
       }
-
       return isSortAscending ? currentValue - nextValue : -(currentValue - nextValue);
     });
     return newDataList;
   }
-
   static sortStringValue(current, next, isSortAscending) {
     const currentUpperCase = current.toUpperCase();
     const nextUpperCase = next.toUpperCase();
     const sortResult = currentUpperCase > nextUpperCase ? 1 : currentUpperCase < nextUpperCase ? -1 : 0;
     return isSortAscending ? sortResult : -sortResult;
   }
-
   static isValidDate(d) {
     return d instanceof Date && !isNaN(d);
   }
-
 }
 
 /***/ }),
@@ -4291,12 +4031,11 @@ class GridInteractionService {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LrfPlayerQueryService; });
 /* harmony import */ var _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/playerListDataHelper */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/playerListDataHelper.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 class LrfPlayerQueryService {
   static fetchData(param, commonService, apiInfo) {
@@ -4309,18 +4048,15 @@ class LrfPlayerQueryService {
         DataList,
         TotalItem
       } = lrfResponse.data;
-
       if (!DataList || !DataList.length) {
         return _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult();
       }
-
       return {
         playerList: DataList,
         totalItem: TotalItem
       };
     }).catch(() => _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult());
   }
-
   static _fetchFromLap(lrfPlayerList, lapDataById, commonService, lrfTotalItem) {
     const lapParam = {
       idList: lrfPlayerList.map(x => x.IbcCustId)
@@ -4329,11 +4065,9 @@ class LrfPlayerQueryService {
       const {
         PlayerList: lapPlayerList
       } = lapResponse.data;
-
       if (!lapPlayerList || !lapPlayerList.length) {
         return _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult();
       }
-
       const playerList = _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].mergePlayerList(lrfPlayerList, lapPlayerList);
       return {
         playerList,
@@ -4341,7 +4075,6 @@ class LrfPlayerQueryService {
       };
     }).catch(() => _helpers_playerListDataHelper__WEBPACK_IMPORTED_MODULE_0__["default"].createEmptyResult());
   }
-
 }
 
 /***/ }),
@@ -4358,47 +4091,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PlayerCommandService; });
 /* harmony import */ var _lib_factoryCommonService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../lib/factoryCommonService */ "./www/js/source/reactpages/Module/lib/factoryCommonService.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class PlayerCommandService {
   constructor() {
     this.commonService = _lib_factoryCommonService__WEBPACK_IMPORTED_MODULE_0__["default"].createInstance();
   }
-
   updateBaStatus(param) {
     const {
       updateBaStatus
     } = _constants__WEBPACK_IMPORTED_MODULE_1__["apiUpdateInfo"];
     return this.commonService.fetchData(updateBaStatus.type, updateBaStatus.action, _objectSpread({}, param));
   }
-
   updateOddsGroup(param) {
     const {
       updateOddsGroup
     } = _constants__WEBPACK_IMPORTED_MODULE_1__["apiUpdateInfo"];
     return this.commonService.fetchData(updateOddsGroup.type, updateOddsGroup.action, _objectSpread({}, param));
   }
-
   updateSpecialLevel(param) {
     const {
       updateSpecialLevel
     } = _constants__WEBPACK_IMPORTED_MODULE_1__["apiUpdateInfo"];
     return this.commonService.fetchData(updateSpecialLevel.type, updateSpecialLevel.action, _objectSpread({}, param));
   }
-
   updatePlayerStatus(param) {
     const {
       updatePlayerStatus
     } = _constants__WEBPACK_IMPORTED_MODULE_1__["apiUpdateInfo"];
     return this.commonService.fetchData(updatePlayerStatus.type, updatePlayerStatus.action, _objectSpread({}, param));
   }
-
 }
 
 /***/ }),
@@ -4440,7 +4167,6 @@ class PlayerItemQueryService {
     const lapPromise = commonService.fetchData(lapGetPlayerByLicenseeId.type, lapGetPlayerByLicenseeId.action, lapParam);
     return this._getResult(lrfPromise, lapPromise, commonService);
   }
-
   static _getResult(lrfPromise, lapPromise, commonService) {
     return commonService.fetchMultiple([lrfPromise, lapPromise], (lrfResponse, lapResponse) => {
       const {
@@ -4457,7 +4183,6 @@ class PlayerItemQueryService {
       return null;
     });
   }
-
 }
 
 /***/ }),
@@ -4486,29 +4211,23 @@ class PlayerQueryService {
   constructor() {
     this.commonService = _lib_factoryCommonService__WEBPACK_IMPORTED_MODULE_0__["default"].createInstance();
   }
-
   getTabList() {
     return this.commonService.getTabList();
   }
-
   getPlayerList(param) {
     const playerListService = _queryServiceFactory__WEBPACK_IMPORTED_MODULE_3__["default"].getPlayerListService(param, this.commonService);
     return playerListService.fetchData(param, this.commonService, _constants__WEBPACK_IMPORTED_MODULE_1__["apiInfo"]);
   }
-
   getSinglePlayer(param) {
     return _playerItemQueryService__WEBPACK_IMPORTED_MODULE_4__["default"].getPlayerById(param, this.commonService, _constants__WEBPACK_IMPORTED_MODULE_1__["apiInfo"]);
   }
-
   getLink(systemType, action) {
     return action;
   }
-
   exportExcel(playerList, param, displayedColumn, fileName = 'PlayerList') {
     const reportExcel = new _reportExcel__WEBPACK_IMPORTED_MODULE_2__["default"](playerList, displayedColumn, fileName);
     reportExcel.export();
   }
-
 }
 
 /***/ }),
@@ -4525,26 +4244,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PlayerSuggestionService; });
 /* harmony import */ var _lib_factoryCommonService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../lib/factoryCommonService */ "./www/js/source/reactpages/Module/lib/factoryCommonService.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class PlayerSuggestionService {
   constructor() {
     this.commonService = _lib_factoryCommonService__WEBPACK_IMPORTED_MODULE_0__["default"].createInstance();
   }
-
   getSuggestionList(param) {
     const configOption = {
       method: 'get'
     };
     return this.commonService.fetchData(_constants__WEBPACK_IMPORTED_MODULE_1__["apiSuggestion"].type, _constants__WEBPACK_IMPORTED_MODULE_1__["apiSuggestion"].action, _objectSpread({}, param), configOption);
   }
-
 }
 
 /***/ }),
@@ -4565,7 +4281,6 @@ class QueryServiceFactory {
   static getPlayerListService() {
     return _lrfPlayerQueryService__WEBPACK_IMPORTED_MODULE_0__["default"];
   }
-
 }
 
 /***/ }),
@@ -4588,11 +4303,9 @@ class SiteSettingService {
   constructor() {
     this.commonService = _lib_factoryCommonService__WEBPACK_IMPORTED_MODULE_0__["default"].createInstance();
   }
-
   getSetting() {
     return this.commonService.fetchData(_constants__WEBPACK_IMPORTED_MODULE_1__["apiSiteSetting"].type, _constants__WEBPACK_IMPORTED_MODULE_1__["apiSiteSetting"].action, {});
   }
-
 }
 
 /***/ }),
@@ -4619,25 +4332,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isFilterCollapsing", function() { return isFilterCollapsing; });
 /* harmony import */ var _lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _actions_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types.js */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/types.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const param = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_PARAM"]](preState, action) {
     return _objectSpread({}, action.data);
   }
-
 });
 const playerList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_PLAYER_LIST"]](preState, action) {
     return action.data && [...action.data];
   }
-
 });
 const type = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {});
 const currencyList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])([], {});
@@ -4650,13 +4360,11 @@ const isAdvancedSearch = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_ADVANCED_SEARCH"]](preState, action) {
     return action.data;
   }
-
 });
 const isFilterCollapsing = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(false, {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_COLLAPSE_FILTER"]](preState, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4678,12 +4386,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/types.js");
 /* harmony import */ var _lib_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/constants.js */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -4691,31 +4398,26 @@ const displayedColumnList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODUL
   [_actions_types__WEBPACK_IMPORTED_MODULE_1__["SET_DISPLAYED_COLUMN_LIST"]](preState, action) {
     return [...action.data];
   }
-
 });
 const currentActivePlayer = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_1__["SET_CURRENT_ACTIVE_PLAYER"]](preState, action) {
     return action.data && _objectSpread({}, action.data);
   }
-
 });
 const pagingOption = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_lib_constants_js__WEBPACK_IMPORTED_MODULE_2__["defaultPagingOption"], {
   [_actions_types__WEBPACK_IMPORTED_MODULE_1__["SET_PAGING"]](preState, action) {
     return _objectSpread({}, action.data);
   }
-
 });
 const isFetchingData = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(false, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_1__["SET_IS_FETCHING_DATA"]](preState, action) {
     return action.data;
   }
-
 });
 const sweetAlertOption = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_1__["SET_SWEET_ALERT_OPTION"]](preState, action) {
     return action.data && _objectSpread({}, action.data);
   }
-
 });
 
 /***/ }),
@@ -4732,19 +4434,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "oddsGroupDropdownPosition", function() { return oddsGroupDropdownPosition; });
 /* harmony import */ var _jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _actions_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types.js */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/types.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const oddsGroupDropdownPosition = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_ODDSGROUP_POSITION"]](preState, action) {
     return action.data && _objectSpread({}, action.data);
   }
-
 });
 
 /***/ }),
@@ -4761,19 +4461,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "statusDropdownPosition", function() { return statusDropdownPosition; });
 /* harmony import */ var _jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _actions_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types.js */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/types.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const statusDropdownPosition = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_STATUS_POSITION"]](preState, action) {
     return action.data && _objectSpread({}, action.data);
   }
-
 });
 
 /***/ }),
@@ -4790,19 +4488,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "specialLevelDropdownPosition", function() { return specialLevelDropdownPosition; });
 /* harmony import */ var _jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _actions_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types.js */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/types.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const specialLevelDropdownPosition = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_SPECIAL_LEVEL_POSITION"]](preState, action) {
     return action.data && _objectSpread({}, action.data);
   }
-
 });
 
 /***/ }),
@@ -4819,19 +4515,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contextMenu", function() { return contextMenu; });
 /* harmony import */ var _jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _actions_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types.js */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/types.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const contextMenu = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_CONTEXT_MENU"]](preState, action) {
     return _objectSpread({}, action.data);
   }
-
 });
 
 /***/ }),
@@ -4883,31 +4577,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectedTabName", function() { return selectedTabName; });
 /* harmony import */ var _lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _actions_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types.js */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/types.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const selectedPlayer = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(null, {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_SELECTED_PLAYER"]](preState, action) {
     return action.data && _objectSpread({}, action.data);
   }
-
 });
 const selectedPlayerIdList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])([], {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_SELECTED_PLAYERID_LIST"]](preState, action) {
     return [...action.data];
   }
-
 });
 const selectedTabName = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])('', {
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_SELECTED_TAB_NAME"]](preState, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4924,12 +4614,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "siteSetting", function() { return siteSetting; });
 /* harmony import */ var _lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
 /* harmony import */ var _actions_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types.js */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/types.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const defaultSiteSetting = {
@@ -4940,7 +4629,6 @@ const siteSetting = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["d
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_SITE_SETTING"]](preState, action) {
     return _objectSpread({}, action.data);
   }
-
 });
 
 /***/ }),
@@ -4982,21 +4670,16 @@ class BaseCommonService {
       throw new Error("Abstract classes can't be instantiated.");
     }
   }
-
   getTabList() {
     throw new Error("Method 'getTabList()' must be implemented.");
   }
-
   fetchData(sType, action, params, configOption = {}) {
     throw new Error("Method 'fetchData()' must be implemented.");
   }
-
   fetchMultiple(promiseList, callback) {
     throw new Error("Method 'fetchMultiple()' must be implemented.");
   }
-
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (BaseCommonService);
 
 /***/ }),
@@ -5016,11 +4699,9 @@ __webpack_require__.r(__webpack_exports__);
 class FactoryCommonService {
   static createInstance() {
     const pageConfig = window._pConfig;
-
     if (!pageConfig) {
       throw new Error("Missing _pConfig in window");
     }
-
     const {
       tabList,
       hostUrl
@@ -5031,7 +4712,6 @@ class FactoryCommonService {
     };
     return new _lapCommonService__WEBPACK_IMPORTED_MODULE_0__["default"](initialConfig);
   }
-
 }
 
 /***/ }),
@@ -5052,12 +4732,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -5074,7 +4753,6 @@ const defaultAjaxConfig = {
   responseType: 'json',
   cancelToken: new axios__WEBPACK_IMPORTED_MODULE_3___default.a.CancelToken(function (cancel) {})
 };
-
 class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(initialConfig) {
     super();
@@ -5085,21 +4763,16 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
     this._baseUrl = baseUrl;
     this._tabList = tabList || [];
   }
-
   getTabList() {
     return [...this._tabList];
   }
-
   _buildCommonAjaxConfig(configOption, apiActionUrl, params) {
     const commonConfig = _objectSpread(_objectSpread({}, configOption), {}, {
       url: apiActionUrl
     });
-
     const configWithParam = this._getConfigParam(commonConfig, params);
-
     return configWithParam;
   }
-
   _getConfigParam(config, params) {
     const isGetMethod = config.method.toLowerCase() === 'get';
     const paramConfig = isGetMethod ? {
@@ -5109,25 +4782,18 @@ class LapCommonService extends _baseCommonService__WEBPACK_IMPORTED_MODULE_0__["
     };
     return _objectSpread(_objectSpread({}, config), paramConfig);
   }
-
   fetchData(sysType, action, params, configOption = defaultAjaxConfig) {
     const config = _objectSpread(_objectSpread({}, defaultAjaxConfig), configOption);
-
     const relativeUrl = this._baseUrl + action;
-
     const ajaxConfig = this._buildCommonAjaxConfig(config, relativeUrl, params);
-
     return axios__WEBPACK_IMPORTED_MODULE_3___default()(ajaxConfig);
   }
-
   fetchMultiple(promiseList, callback) {
     if (promiseList && promiseList.length) {
       return axios__WEBPACK_IMPORTED_MODULE_3___default.a.all(promiseList).then(axios__WEBPACK_IMPORTED_MODULE_3___default.a.spread(callback));
     }
   }
-
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (LapCommonService);
 
 /***/ }),
@@ -5192,56 +4858,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BONUS_CODE", function() { return SET_SELECTED_BONUS_CODE; });
 const FETCH_DATA = 'FETCH_DATA';
 const SET_GRID_DATA = "SET_GRID_DATA";
+
 /* Product */
-
 const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
+
 /* Brand */
-
 const SET_SELECTED_BRAND = "SET_SELECTED_BRAND";
-/* Base Currency */
 
+/* Base Currency */
 const SET_SELECTED_BASECURRENCY = "SET_SELECTED_BASECURRENCY";
 const SET_BASECURRENCY_LIST = "SET_BASECURRENCY_LIST";
+
 /* Currency */
-
 const SET_SELECTED_CURRENCY = "SET_SELECTED_CURRENCY";
+
 /* Loader */
-
 const TOGGLE_LOADER = "TOGGLE_LOADER";
+
 /* Exclude Test Data */
-
 const CHANGE_IS_EXCLUDE_TEST = "CHANGE_IS_EXCLUDE_TEST";
+
 /* User mini guide */
-
 const USER_GUIDE_CONTENT = "USER_GUIDE_CONTENT;";
-/* Date range */
 
+/* Date range */
 const SET_DATE_RANGE = 'SET_DATE_RANGE';
 const GET_DATE_CONSTRAINT = 'GET_DATE_CONSTRAINT';
+
 /* Convert all figures to base currency */
-
 const CHANGE_IS_CONVERT_ALL = "CHANGE_IS_CONVERT_ALL";
+
 /* Status */
-
 const SET_SELECTED_STATUS = "SET_SELECTED_STATUS";
+
 /* Platform  */
-
 const SET_SELECTED_PLATFORM = "SET_SELECTED_PLATFORM";
-/* Live Status  */
 
+/* Live Status  */
 const SET_SELECTED_LIVESTATUS = "SET_SELECTED_LIVESTATUS";
 const SET_USERNAME = "SET_USERNAME";
 const SET_REQUEST_PARAM = "SET_REQUEST_PARAM";
 const SET_REPORT_TITLE = "SET_REPORT_TITLE";
-/* Live Status  */
 
+/* Live Status  */
 const SET_PAGING_OPTION = 'SET_PAGING_OPTION';
 const SET_SORT_OPTION = 'SET_SORT_OPTION';
+
 /* Setting Data */
-
 const SET_SETTING_DATA = 'SET_SETTING_DATA';
-/* Bonus */
 
+/* Bonus */
 const SET_BONUS_NAME = "SET_BONUS_NAME";
 const SET_SELECTED_BONUS_TYPE = "SET_BONUS_TYPE";
 const SET_SELECTED_BONUS_STATUS = "SET_BONUS_STATUS";
@@ -5313,25 +4979,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["className", "text", "iconElement", "labelStyle"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
 
 
 
 const DropdownLabel = props => {
   const {
-    className,
-    text,
-    iconElement,
-    labelStyle
-  } = props,
-        attrs = _objectWithoutProperties(props, ["className", "text", "iconElement", "labelStyle"]);
-
+      className,
+      text,
+      iconElement,
+      labelStyle
+    } = props,
+    attrs = _objectWithoutProperties(props, _excluded);
   const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-label-container', className, {
     disabled: props.disabled
   });
@@ -5342,7 +5004,6 @@ const DropdownLabel = props => {
     style: labelStyle
   }, text), iconElement);
 };
-
 const propTypes = {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
@@ -5377,7 +5038,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
 const Loader = ({
   isLoading
 }) => {
@@ -5392,7 +5052,6 @@ const Loader = ({
     className: "loader-inner ball-beat"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (Loader);
 
 /***/ }),
@@ -5411,7 +5070,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
 
-
 const NoDataTitle = ({
   title
 }) => {
@@ -5422,7 +5080,6 @@ const NoDataTitle = ({
     }
   });
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (NoDataTitle);
 
 /***/ }),
@@ -5443,8 +5100,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -5455,25 +5113,20 @@ const wrapperClasses = {
 class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "_unRegisterEvents", () => {
       const {
         closeOnOutsideClick
       } = this.props;
-
       if (closeOnOutsideClick) {
         document.removeEventListener('click', this._handleClickOutSide);
       }
     });
-
     _defineProperty(this, "_handleClickOutSide", event => {
       const clickOutside = this.containerElement && !this.containerElement.contains(event.target);
-
       if (clickOutside && this.state.isOpening) {
         this._close();
       }
     });
-
     this.containerElement = null;
     this.refHandlers = {
       container: ref => {
@@ -5484,7 +5137,6 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isOpening: this.props.isOpening
     };
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpening !== prevProps.isOpening) {
       const {
@@ -5503,21 +5155,17 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }, 0);
     }
   }
-
   componentWillUnmount() {
     this._unRegisterEvents();
   }
-
   _registerEvents() {
     const {
       closeOnOutsideClick
     } = this.props;
-
     if (closeOnOutsideClick) {
       document.addEventListener('click', this._handleClickOutSide);
     }
   }
-
   _close() {
     const {
       onClose
@@ -5526,7 +5174,6 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isOpening: false
     }, () => onClose && onClose());
   }
-
   render() {
     const {
       className,
@@ -5544,16 +5191,13 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       ref: this.refHandlers.container
     }, children);
   }
-
 }
-
 _defineProperty(Overlay, "propTypes", {
   closeOnOutsideClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   isOpening: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   onOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   onClose: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
 });
-
 _defineProperty(Overlay, "defaultProps", {
   closeOnOutsideClick: true,
   isOpening: false
@@ -5574,22 +5218,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["content", "tag"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
-
-
-const ReportTitle = (_ref) => {
+const ReportTitle = _ref => {
   let {
-    content,
-    tag
-  } = _ref,
-      attrs = _objectWithoutProperties(_ref, ["content", "tag"]);
-
+      content,
+      tag
+    } = _ref,
+    attrs = _objectWithoutProperties(_ref, _excluded);
   const Tag = tag;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "report-title-container"
@@ -5597,7 +5237,6 @@ const ReportTitle = (_ref) => {
     className: "report-title"
   }, attrs), content));
 };
-
 const propTypes = {
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   content: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any
@@ -5622,13 +5261,11 @@ ReportTitle.defaultProps = defaultProps;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const Switcher = props => {
-  const attributes = _extends({}, props);
-
+  const attributes = _extends({}, (_objectDestructuringEmpty(props), props));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "switch"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, attributes, {
@@ -5637,7 +5274,6 @@ const Switcher = props => {
     className: "lever"
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (Switcher);
 
 /***/ }),
@@ -5659,8 +5295,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _popup_Popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./popup/Popup */ "./www/js/source/reactpages/components/popup/Popup.jsx");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -5668,25 +5305,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class UserGuide extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "onClickHandler", () => {
       this.setState({
         isShow: true
       });
       this.props.onClick && this.props.onClick();
     });
-
     _defineProperty(this, "onCloseHandler", () => {
       this.setState({
         isShow: false
       });
     });
-
     this.state = {
       isShow: false
     };
   }
-
   render() {
     const {
       className,
@@ -5708,21 +5341,17 @@ class UserGuide extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       isHtml: true
     }, content));
   }
-
 }
-
 _defineProperty(UserGuide, "propTypes", {
   title: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
   className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
   content: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
   contentTitle: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string
 });
-
 _defineProperty(UserGuide, "defaultProps", {
   className: 'icon-book right',
   content: ''
 });
-
 ;
 
 /***/ }),
@@ -5740,62 +5369,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["tag", "className", "style"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class CollapsiblePanel extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "onClick", () => {
       const newState = !this.state.isCollapsed;
       const {
         onCollapse,
         onExpand
       } = this.props;
-
       if (newState) {
         onCollapse && onCollapse();
       }
-
       this.setState({
         isCollapsed: newState
       }, () => {
         window.dispatchEvent(new Event('resize'));
-
         if (!newState) {
           onExpand && onExpand();
         }
       });
     });
-
     this.state = {
       isCollapsed: false
     };
   }
-
   render() {
     const {
       stickyFooter,
       iconContainerStyle,
       iconToggle
     } = this.props;
-
     const {
-      tag,
-      className,
-      style
-    } = iconToggle,
-          attrs = _objectWithoutProperties(iconToggle, ["tag", "className", "style"]);
-
+        tag,
+        className,
+        style
+      } = iconToggle,
+      attrs = _objectWithoutProperties(iconToggle, _excluded);
     const IconTag = tag;
     const iconStyle = style || {
       transform: this.state.isCollapsed ? null : 'rotate(180deg)',
@@ -5823,15 +5442,12 @@ class CollapsiblePanel extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Comp
       style: iconStyle
     }, attrs))));
   }
-
 }
-
 _defineProperty(CollapsiblePanel, "propTypes", {
   stickyFooter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   onCollapse: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   onExpand: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
 });
-
 const propTypes = {
   stickyFooter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   onCollapse: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
@@ -5893,13 +5509,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _DropdownToggle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DropdownToggle */ "./www/js/source/reactpages/components/dropdown/DropdownToggle.jsx");
 /* harmony import */ var _DropdownMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DropdownMenu */ "./www/js/source/reactpages/components/dropdown/DropdownMenu.jsx");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["className", "children", "toggleButton", "dropdownMenu", "isOpen", "onOpen", "onClose", "onToggle", "buttonLabel"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
 
 
 
@@ -5907,18 +5520,17 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 const DropdownButton = props => {
   const {
-    className,
-    children,
-    toggleButton,
-    dropdownMenu,
-    isOpen,
-    onOpen,
-    onClose,
-    onToggle,
-    buttonLabel
-  } = props,
-        attrs = _objectWithoutProperties(props, ["className", "children", "toggleButton", "dropdownMenu", "isOpen", "onOpen", "onClose", "onToggle", "buttonLabel"]);
-
+      className,
+      children,
+      toggleButton,
+      dropdownMenu,
+      isOpen,
+      onOpen,
+      onClose,
+      onToggle,
+      buttonLabel
+    } = props,
+    attrs = _objectWithoutProperties(props, _excluded);
   const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown', className);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
     className: classes
@@ -5930,7 +5542,6 @@ const DropdownButton = props => {
     onClose: onClose
   }), children));
 };
-
 const propTypes = {
   buttonLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any,
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node.isRequired,
@@ -5978,42 +5589,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["tag", "className", "active"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
 class DropdownItem extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "handleClick", e => {
       e.preventDefault();
-
       if (this.props.disabled) {
         return;
       }
-
       this.props.onClick && this.props.onClick(e);
     });
   }
-
   render() {
     const _this$props = this.props,
-          {
-      tag,
-      className,
-      active
-    } = _this$props,
-          props = _objectWithoutProperties(_this$props, ["tag", "className", "active"]);
-
+      {
+        tag,
+        className,
+        active
+      } = _this$props,
+      props = _objectWithoutProperties(_this$props, _excluded);
     const Tag = tag;
     const type = Tag === 'button' && props.onClick ? 'button' : undefined;
     const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-item', className, {
@@ -6025,9 +5629,7 @@ class DropdownItem extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       type: type
     }, props));
   }
-
 }
-
 const propTypes = {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   active: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
@@ -6062,13 +5664,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["tag", "className", "isOpen", "onOpen", "onClose"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
 
 
 
@@ -6077,18 +5676,16 @@ class DropdownMenu extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   render() {
     const _this$props = this.props,
-          {
-      tag,
-      className,
-      isOpen,
-      onOpen,
-      onClose
-    } = _this$props,
-          attrs = _objectWithoutProperties(_this$props, ["tag", "className", "isOpen", "onOpen", "onClose"]);
-
+      {
+        tag,
+        className,
+        isOpen,
+        onOpen,
+        onClose
+      } = _this$props,
+      attrs = _objectWithoutProperties(_this$props, _excluded);
     const Tag = tag;
     const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-menu', className);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -6099,9 +5696,7 @@ class DropdownMenu extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: classes
     }, attrs)));
   }
-
 }
-
 const propTypes = {
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node.isRequired,
@@ -6134,24 +5729,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["className", "tag", "caret"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
 
 
 
 const DropdownToggle = props => {
   const {
-    className,
-    tag,
-    caret
-  } = props,
-        attrs = _objectWithoutProperties(props, ["className", "tag", "caret"]);
-
+      className,
+      tag,
+      caret
+    } = props,
+    attrs = _objectWithoutProperties(props, _excluded);
   const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('dropdown-toggle', className, {
     'site-caret': caret
   });
@@ -6160,7 +5751,6 @@ const DropdownToggle = props => {
     className: classes
   }, attrs));
 };
-
 const propTypes = {
   caret: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
@@ -6225,7 +5815,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const Popup = props => {
   const {
     title,
@@ -6237,7 +5826,6 @@ const Popup = props => {
     iframeUrl
   } = props;
   let content;
-
   if (iframeUrl) {
     content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
       frameBorder: "0",
@@ -6255,7 +5843,6 @@ const Popup = props => {
       className: "popup-content"
     }, children);
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: `popup-container ${isShow ? 'show' : 'hide'}`
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -6279,7 +5866,6 @@ const Popup = props => {
     className: "icon-close"
   }))), content));
 };
-
 Popup.propTypes = {
   width: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
   height: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
@@ -6393,12 +5979,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icon */ "./www/js/source/reactpages/components/sweet-alert/icon.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["text"],
+  _excluded2 = ["buttons", "children"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
 
 
 
@@ -6413,29 +5998,25 @@ class SweetAlert extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component 
   constructor(props) {
     super(props);
   }
-
   _buildButtonGroup(buttons) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "al-button-container"
     }, buttons.map((btnItem, index) => {
       const {
-        text
-      } = btnItem,
-            attrs = _objectWithoutProperties(btnItem, ["text"]);
-
+          text
+        } = btnItem,
+        attrs = _objectWithoutProperties(btnItem, _excluded);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
         key: index,
         type: "button"
       }, attrs), text);
     }));
   }
-
   _buildIcon() {
     const {
       icon
     } = this.props;
     const className = `${_icon__WEBPACK_IMPORTED_MODULE_3__["ICON"]} ${_icon__WEBPACK_IMPORTED_MODULE_3__["ICON"]}--${icon}`;
-
     if (PREDEFINED_ICONS.includes(icon)) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: className,
@@ -6444,23 +6025,19 @@ class SweetAlert extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component 
         }
       });
     }
-
     return null;
   }
-
   render() {
     const _this$props = this.props,
-          {
-      buttons,
-      children
-    } = _this$props,
-          props = _objectWithoutProperties(_this$props, ["buttons", "children"]);
-
+      {
+        buttons,
+        children
+      } = _this$props,
+      props = _objectWithoutProperties(_this$props, _excluded2);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sweet-alert"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_popup__WEBPACK_IMPORTED_MODULE_1__["default"], props, this._buildIcon(), children, this._buildButtonGroup(buttons)));
   }
-
 }
 SweetAlert.propTypes = {
   width: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
@@ -6514,12 +6091,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bodyCellStyle", function() { return bodyCellStyle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "totalCellStyle", function() { return totalCellStyle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "grandTotalCellStyle", function() { return grandTotalCellStyle; });
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 const titleCellStyle = {
   font: {
     color: {
@@ -6606,11 +6182,9 @@ const totalTextStyle = {
     bold: true
   }
 };
-
 const totalDecimalStyle = _objectSpread(_objectSpread({}, totalTextStyle), {}, {
   numFmt: "#,##0.00"
 });
-
 const totalCellStyle = {
   default: totalTextStyle,
   rowspan: _objectSpread(_objectSpread({}, totalTextStyle), {}, {
@@ -6657,11 +6231,9 @@ const grandTotalTextStyle = {
     }
   }
 };
-
 const decimalGrandTotalStyle = _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
   numFmt: "#,##0.00"
 });
-
 const grandTotalCellStyle = {
   default: grandTotalTextStyle,
   rowspan: _objectSpread(_objectSpread({}, grandTotalTextStyle), {}, {
@@ -6711,14 +6283,12 @@ class AppLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "container",
       className: `container-fluid ${this.props.className || ''}`
     }, this.props.children);
   }
-
 }
 
 /***/ }),
@@ -6737,10 +6307,8 @@ class QueryString {
   static _parseQueryString(queryString) {
     let args = queryString.split('&');
     let argsList = {};
-
     for (let i = 0; i < args.length; i++) {
       let arg = unescape(args[i]);
-
       if (arg.length > 0) {
         if (arg.indexOf('=') === -1) {
           argsList[arg.toLowerCase().trim()] = null;
@@ -6750,84 +6318,66 @@ class QueryString {
         }
       }
     }
-
     return argsList;
   }
-
   static _getQueryString(url) {
     var index = url.indexOf("?");
     return index < 0 ? "" : url.substring(index + 1, url.length);
   }
-
   static _getRawUrl(url) {
     var index = url.indexOf("?");
     return index < 0 ? url : url.substring(0, index);
   }
-
   static setParam(url, name, value) {
     var rawUrl = QueryString._getRawUrl(url);
-
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     if (!name) {
       return url;
-    } // Update value
+    }
 
-
+    // Update value
     var found = false;
-
     for (var key in args) {
       if (key && key.toLowerCase() === name.toLowerCase()) {
         // Does not update data if value = undefined
         if (value !== undefined) {
           args[key] = value;
         }
-
         found = true;
       }
     }
-
     if (!found) {
       args[name.toLowerCase()] = value;
     }
+    var queryArray = [];
 
-    var queryArray = []; // Rebuild query string, ignore null value
-
+    // Rebuild query string, ignore null value
     for (var key1 in args) {
       if (args[key1] != null && args[key1] !== undefined) {
         queryArray.push(key1.toLowerCase() + "=" + args[key1]);
       }
     }
-
     return rawUrl + "?" + queryArray.join("&");
   }
-
   static setParams(url, parameters) {
     for (var property in parameters) {
       if (parameters.hasOwnProperty(property)) {
         url = QueryString.setParam(url, property, parameters[property]);
       }
     }
-
     return url;
   }
-
   static getParam(url, name) {
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     for (var key in args) {
       if (key != null && key.toLowerCase() === name.toLowerCase()) {
         return args[key];
       }
     }
-
     return null;
   }
-
 }
 
 /***/ }),
@@ -6864,18 +6414,16 @@ function createReducer(initialState, handlers) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateObjectInArray", function() { return updateObjectInArray; });
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 const updateObjectInArray = (array, indexItem, updatedItem) => {
   return array.map((item, index) => {
     if (index !== indexItem) {
       return item;
     }
-
     return _objectSpread(_objectSpread({}, item), updatedItem);
   });
 };
@@ -6912,7 +6460,6 @@ class Excel {
       });
     }
   }
-
   static export(worksheet, fileName) {
     const option = {
       bookType: EXCEL_TYPE,
@@ -6925,30 +6472,25 @@ class Excel {
       Props: {}
     };
     workbook.Sheets[fileName] = worksheet;
-
     var workbookOutput = _XLSX.write(workbook, option);
-
     this.download(workbookOutput, fileName);
   }
-
   static getCellType(value) {
     return MapExcelType[typeof value];
   }
-
   static getCellAddress(cellObject) {
     return _XLSX.utils.encode_cell(cellObject);
   }
-
   static download(workbookOut, fileName) {
     const blob = new Blob([this.sheetToArrayBuffer(workbookOut)], {
       type: "application/octet-stream"
     });
     this.downloadFromBolb(blob, fileName);
   }
-
   static downloadFromBolb(blob, fileName) {
-    const fileNameDownload = `${fileName}.${EXCEL_TYPE}`; // IE 10+
+    const fileNameDownload = `${fileName}.${EXCEL_TYPE}`;
 
+    // IE 10+
     if (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob) {
       navigator.msSaveOrOpenBlob(blob, fileNameDownload);
     } else {
@@ -6960,16 +6502,12 @@ class Excel {
       document.body.removeChild(element);
     }
   }
-
   static sheetToArrayBuffer(s) {
     const buffer = new ArrayBuffer(s.length);
     const view = new Uint8Array(buffer);
-
     for (let i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-
     return buffer;
   }
-
 }
 
 /***/ }),
@@ -7015,17 +6553,14 @@ class LangHelper {
   static get currentLanguage() {
     return langCode;
   }
-
   static getSingleResource(key) {
     var langHandler = window[resourceName];
     return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
   }
-
   static getResources(keys) {
     var langHandler = window[resourceName];
     return keys.map(key => langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key);
   }
-
 }
 
 /***/ }),
@@ -7046,8 +6581,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const isDev = "development" === "development";
-const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name; // middleware that logs actions
-
+const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name;
+// middleware that logs actions
 const loggerMiddleware = Object(redux_logger__WEBPACK_IMPORTED_MODULE_0__["createLogger"])({
   predicate: (getState, action) => isDev || window[configName] && window[configName].env === _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].env && (!window[configName].actionFilter || window[configName].actionFilter === action.type)
 });
@@ -7055,7 +6590,6 @@ class Logger {
   static getLoggerMiddleware() {
     return loggerMiddleware;
   }
-
 }
 
 /***/ }),
@@ -7074,31 +6608,25 @@ class NumberFormat {
   static formatDecimal(value) {
     return this.format(value, 2);
   }
-
   static format(value, digits = 0) {
     if (!this.isNumber(value)) {
       return "";
     }
-
     const roundedValue = this.round(value, digits);
     return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
   static round(value, digits) {
     const sign = value < 0 ? -1 : 1;
     const absoluteValue = Math.abs(value);
     const rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
     return sign * rounded;
   }
-
   static isNumber(value) {
     return typeof value !== "number" || isNaN(value) ? false : true;
   }
-
   static parseToString(number) {
     return number.toString().replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
 }
 
 /***/ }),
@@ -7114,41 +6642,32 @@ class NumberFormat {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Site; });
 const _rootUrl = window.rootUrl || "/";
-
 let _xsrfToken = null;
 class Site {
   static getXsrfToken() {
     if (!_xsrfToken) {
       _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
     }
-
     return _xsrfToken;
   }
-
   static resolveClientUrl(relativeUrl) {
     return _rootUrl + relativeUrl;
   }
-
   static convertDateToString(date) {
     return typeof date === "string" ? date : date.format("MM/DD/YYYY");
   }
-
   static isEmptyObject(obj = {}) {
     return Object.entries(obj).length === 0 && obj.constructor === Object;
   }
-
   static asNull(text) {
     if (text != null) {
       text = text.trim();
-
       if (text === '') {
         return null;
       }
     }
-
     return text;
   }
-
   static downloadFile(data, fileName) {
     const url = window.URL.createObjectURL(new Blob([data]));
     const link = document.createElement('a');
@@ -7159,21 +6678,16 @@ class Site {
     link.parentNode.removeChild(link);
     window.URL.revokeObjectURL(url);
   }
-
   static readAsJson(blob, callback) {
     const reader = new FileReader();
-
     reader.onload = function () {
       callback && callback(JSON.parse(reader.result));
     };
-
     reader.readAsText(blob);
   }
-
   static getRootUrl() {
     return _rootUrl;
   }
-
 }
 
 /***/ }),
@@ -7197,11 +6711,11 @@ __webpack_require__.r(__webpack_exports__);
 class Store {
   static createStore(reducer, initialState) {
     const loggerMiddleware = _logger__WEBPACK_IMPORTED_MODULE_2__["default"].getLoggerMiddleware();
-    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], // lets us dispatch() functions
+    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"],
+    // lets us dispatch() functions
     loggerMiddleware));
     return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, initialState, enhancer);
   }
-
 }
 
 /***/ }),
@@ -7224,12 +6738,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const predefinedIcons = {
@@ -7296,8 +6809,18 @@ const isLoading = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["def
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["TOGGLE_LOADER"]](state, action) {
     return action.data;
   }
-
 });
+
+/***/ }),
+
+/***/ 1:
+/*!********************************!*\
+  !*** ./util.inspect (ignored) ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 

@@ -264,56 +264,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BONUS_CODE", function() { return SET_SELECTED_BONUS_CODE; });
 const FETCH_DATA = 'FETCH_DATA';
 const SET_GRID_DATA = "SET_GRID_DATA";
+
 /* Product */
-
 const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
+
 /* Brand */
-
 const SET_SELECTED_BRAND = "SET_SELECTED_BRAND";
-/* Base Currency */
 
+/* Base Currency */
 const SET_SELECTED_BASECURRENCY = "SET_SELECTED_BASECURRENCY";
 const SET_BASECURRENCY_LIST = "SET_BASECURRENCY_LIST";
+
 /* Currency */
-
 const SET_SELECTED_CURRENCY = "SET_SELECTED_CURRENCY";
+
 /* Loader */
-
 const TOGGLE_LOADER = "TOGGLE_LOADER";
+
 /* Exclude Test Data */
-
 const CHANGE_IS_EXCLUDE_TEST = "CHANGE_IS_EXCLUDE_TEST";
+
 /* User mini guide */
-
 const USER_GUIDE_CONTENT = "USER_GUIDE_CONTENT;";
-/* Date range */
 
+/* Date range */
 const SET_DATE_RANGE = 'SET_DATE_RANGE';
 const GET_DATE_CONSTRAINT = 'GET_DATE_CONSTRAINT';
+
 /* Convert all figures to base currency */
-
 const CHANGE_IS_CONVERT_ALL = "CHANGE_IS_CONVERT_ALL";
+
 /* Status */
-
 const SET_SELECTED_STATUS = "SET_SELECTED_STATUS";
+
 /* Platform  */
-
 const SET_SELECTED_PLATFORM = "SET_SELECTED_PLATFORM";
-/* Live Status  */
 
+/* Live Status  */
 const SET_SELECTED_LIVESTATUS = "SET_SELECTED_LIVESTATUS";
 const SET_USERNAME = "SET_USERNAME";
 const SET_REQUEST_PARAM = "SET_REQUEST_PARAM";
 const SET_REPORT_TITLE = "SET_REPORT_TITLE";
-/* Live Status  */
 
+/* Live Status  */
 const SET_PAGING_OPTION = 'SET_PAGING_OPTION';
 const SET_SORT_OPTION = 'SET_SORT_OPTION';
+
 /* Setting Data */
-
 const SET_SETTING_DATA = 'SET_SETTING_DATA';
-/* Bonus */
 
+/* Bonus */
 const SET_BONUS_NAME = "SET_BONUS_NAME";
 const SET_SELECTED_BONUS_TYPE = "SET_BONUS_TYPE";
 const SET_SELECTED_BONUS_STATUS = "SET_BONUS_STATUS";
@@ -382,7 +382,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
 const Loader = ({
   isLoading
 }) => {
@@ -397,7 +396,6 @@ const Loader = ({
     className: "loader-inner ball-beat"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (Loader);
 
 /***/ }),
@@ -418,8 +416,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -430,25 +429,20 @@ const wrapperClasses = {
 class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "_unRegisterEvents", () => {
       const {
         closeOnOutsideClick
       } = this.props;
-
       if (closeOnOutsideClick) {
         document.removeEventListener('click', this._handleClickOutSide);
       }
     });
-
     _defineProperty(this, "_handleClickOutSide", event => {
       const clickOutside = this.containerElement && !this.containerElement.contains(event.target);
-
       if (clickOutside && this.state.isOpening) {
         this._close();
       }
     });
-
     this.containerElement = null;
     this.refHandlers = {
       container: ref => {
@@ -459,7 +453,6 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isOpening: this.props.isOpening
     };
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpening !== prevProps.isOpening) {
       const {
@@ -478,21 +471,17 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }, 0);
     }
   }
-
   componentWillUnmount() {
     this._unRegisterEvents();
   }
-
   _registerEvents() {
     const {
       closeOnOutsideClick
     } = this.props;
-
     if (closeOnOutsideClick) {
       document.addEventListener('click', this._handleClickOutSide);
     }
   }
-
   _close() {
     const {
       onClose
@@ -501,7 +490,6 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isOpening: false
     }, () => onClose && onClose());
   }
-
   render() {
     const {
       className,
@@ -519,16 +507,13 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       ref: this.refHandlers.container
     }, children);
   }
-
 }
-
 _defineProperty(Overlay, "propTypes", {
   closeOnOutsideClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   isOpening: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   onOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   onClose: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
 });
-
 _defineProperty(Overlay, "defaultProps", {
   closeOnOutsideClick: true,
   isOpening: false
@@ -549,22 +534,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["content", "tag"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
-
-
-const ReportTitle = (_ref) => {
+const ReportTitle = _ref => {
   let {
-    content,
-    tag
-  } = _ref,
-      attrs = _objectWithoutProperties(_ref, ["content", "tag"]);
-
+      content,
+      tag
+    } = _ref,
+    attrs = _objectWithoutProperties(_ref, _excluded);
   const Tag = tag;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "report-title-container"
@@ -572,7 +553,6 @@ const ReportTitle = (_ref) => {
     className: "report-title"
   }, attrs), content));
 };
-
 const propTypes = {
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   content: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any
@@ -599,62 +579,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["tag", "className", "style"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class CollapsiblePanel extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "onClick", () => {
       const newState = !this.state.isCollapsed;
       const {
         onCollapse,
         onExpand
       } = this.props;
-
       if (newState) {
         onCollapse && onCollapse();
       }
-
       this.setState({
         isCollapsed: newState
       }, () => {
         window.dispatchEvent(new Event('resize'));
-
         if (!newState) {
           onExpand && onExpand();
         }
       });
     });
-
     this.state = {
       isCollapsed: false
     };
   }
-
   render() {
     const {
       stickyFooter,
       iconContainerStyle,
       iconToggle
     } = this.props;
-
     const {
-      tag,
-      className,
-      style
-    } = iconToggle,
-          attrs = _objectWithoutProperties(iconToggle, ["tag", "className", "style"]);
-
+        tag,
+        className,
+        style
+      } = iconToggle,
+      attrs = _objectWithoutProperties(iconToggle, _excluded);
     const IconTag = tag;
     const iconStyle = style || {
       transform: this.state.isCollapsed ? null : 'rotate(180deg)',
@@ -682,15 +652,12 @@ class CollapsiblePanel extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Comp
       style: iconStyle
     }, attrs))));
   }
-
 }
-
 _defineProperty(CollapsiblePanel, "propTypes", {
   stickyFooter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   onCollapse: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   onExpand: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
 });
-
 const propTypes = {
   stickyFooter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   onCollapse: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
@@ -754,14 +721,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DayCell_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DayCell.js */ "./www/js/source/reactpages/components/date-range/DayCell.js");
 /* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles.js */ "./www/js/source/reactpages/components/date-range/styles.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/components/date-range/constants.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -773,29 +738,24 @@ const START_OF_MONTH = 0;
 const END_OF_MONTH = 11;
 const START_DAY_OF_MONTH = 1;
 const DEFAULT_YEAR_RANGE = 5;
-
 function checkRange(dayMoment, range) {
   return dayMoment.isBetween(range['startDate'], range['endDate']) || dayMoment.isBetween(range['endDate'], range['startDate']);
 }
-
 function checkStartEdge(dayMoment, range) {
   const {
     startDate
   } = range;
   return dayMoment.startOf('day').isSame(startDate.startOf('day'));
 }
-
 function checkEndEdge(dayMoment, range) {
   const {
     endDate
   } = range;
   return dayMoment.endOf('day').isSame(endDate.endOf('day'));
 }
-
 function isOusideMinMax(dayMoment, minDate, maxDate, format) {
   return minDate && dayMoment.isBefore(Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(minDate, format, 'startOf')) || maxDate && dayMoment.isAfter(Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_3__["default"])(maxDate, format, 'endOf'));
 }
-
 class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props, context) {
     super(props, context);
@@ -817,14 +777,12 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     this.state = state;
     this.styles = Object(_styles_js__WEBPACK_IMPORTED_MODULE_5__["default"])(theme);
   }
-
   componentDidMount() {
     const {
       onInit
     } = this.props;
     onInit && onInit(this.state.date);
   }
-
   get limitedDate() {
     const {
       minDate,
@@ -832,51 +790,41 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     } = this.props;
     const m = moment__WEBPACK_IMPORTED_MODULE_2___default()();
     let startDate, endDate;
-
     if (minDate) {
       startDate = moment__WEBPACK_IMPORTED_MODULE_2___default.a.isMoment(minDate) ? minDate : moment__WEBPACK_IMPORTED_MODULE_2___default()(minDate, _constants__WEBPACK_IMPORTED_MODULE_6__["MomentFormat"].default);
     } else {
       startDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([m.year() - DEFAULT_YEAR_RANGE, START_OF_MONTH]);
     }
-
     if (maxDate) {
       endDate = moment__WEBPACK_IMPORTED_MODULE_2___default.a.isMoment(maxDate) ? maxDate : moment__WEBPACK_IMPORTED_MODULE_2___default()(maxDate, _constants__WEBPACK_IMPORTED_MODULE_6__["MomentFormat"].default);
     } else {
       endDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([m.year(), END_OF_MONTH]).endOf("month");
     }
-
     return {
       startDate,
       endDate
     };
   }
-
   get disablePrevButton() {
     const range = this.limitedDate;
     const startDate = range.startDate;
     const currentDate = this.state.shownDate;
     let prevMonth = this.state.shownDate.month() - 1;
-
     if (prevMonth < startDate.month() && currentDate.year() <= startDate.year()) {
       return true;
     }
-
     return false;
   }
-
   get disableNextButton() {
     const range = this.limitedDate;
     const endDate = range.endDate;
     const currentDate = this.state.shownDate;
     let nextMonth = this.state.shownDate.month() + 1;
-
     if (nextMonth > endDate.month() && currentDate.year() >= endDate.year()) {
       return true;
     }
-
     return false;
   }
-
   getShownDate() {
     const {
       link
@@ -884,85 +832,68 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const shownDate = link || this.state.shownDate;
     return shownDate;
   }
-
   handleSelect(newDate) {
     const {
       link,
       onChange
     } = this.props;
     onChange && onChange(newDate);
-
     if (!link) {
       this.setState({
         date: newDate
       });
     }
   }
-
   nextButtonClickHandler(event) {
     event.preventDefault();
-
     if (!this.disableNextButton) {
       this.changeMonth(this.state.shownDate.month() + 1, event);
     }
   }
-
   prevButtonClickHandler(event) {
     event.preventDefault();
-
     if (!this.disablePrevButton) {
       this.changeMonth(this.state.shownDate.month() - 1, event);
     }
   }
-
   changeMonth(direction, event) {
     event.preventDefault();
     let selectedMonth = Number(direction);
     let year = this.state.shownDate.year();
-
     if (selectedMonth < START_OF_MONTH) {
       selectedMonth = END_OF_MONTH;
       year -= 1;
     }
-
     if (selectedMonth > END_OF_MONTH) {
       selectedMonth = START_OF_MONTH;
       year += 1;
     }
-
     const {
       link,
       linkCB
     } = this.props;
     let newDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([year, selectedMonth, this.state.shownDate.date()]);
-
     if (!newDate.isValid()) {
       newDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([year, selectedMonth, START_DAY_OF_MONTH]);
     }
-
     if (link && linkCB) {
       return linkCB(newDate);
     }
-
     this.setState({
       shownDate: newDate
     });
   }
-
   changeYear(event) {
     event.preventDefault();
     const selectedYear = Number(event.target.value);
     let newDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([selectedYear, this.state.shownDate.month(), this.state.shownDate.date()]);
-
     if (!newDate.isValid()) {
       newDate = moment__WEBPACK_IMPORTED_MODULE_2___default()([selectedYear, this.state.shownDate.month(), START_DAY_OF_MONTH]);
     }
-
     this.setState({
       shownDate: newDate
     });
   }
-
   renderMonthList(classes) {
     const {
       styles
@@ -973,17 +904,14 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     } = this.props;
     const monthLabels = locale.months;
     let monthOptions = [];
-
     for (let i = 0; i < 12; i++) {
       const isDisabled = this._isDisabledMonth(i);
-
       monthOptions.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         disabled: isDisabled,
         key: `month${i}`,
         value: i
       }, monthLabels[i]));
     }
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
       style: onlyClasses ? undefined : styles["MonthAndYearSelect"],
       className: classes.monthAndYearSelect,
@@ -991,13 +919,11 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       value: this.state.shownDate.month()
     }, monthOptions);
   }
-
   _isDisabledMonth(currentMonth) {
     const range = this.limitedDate;
     const currentYear = this.state.shownDate.year();
     return currentMonth < range.startDate.month() && currentYear <= range.startDate.year() || currentMonth > range.endDate.month() && currentYear >= range.endDate.year();
   }
-
   renderYearList(classes) {
     const {
       styles
@@ -1007,14 +933,12 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     } = this.props;
     const range = this.limitedDate;
     const yearOptions = [];
-
     for (let i = range.startDate.year(); i <= range.endDate.year(); i++) {
       yearOptions.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         key: `year${i}`,
         value: i
       }, i));
     }
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
       style: onlyClasses ? undefined : styles["MonthAndYearSelect"],
       className: classes.monthAndYearSelect,
@@ -1022,7 +946,6 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       value: this.state.shownDate.year()
     }, yearOptions);
   }
-
   renderMonthAndYear(classes) {
     const shownDate = this.getShownDate();
     const year = shownDate.year();
@@ -1066,7 +989,6 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['MonthArrow']), styles['MonthArrowNext'])
     })) : null);
   }
-
   renderWeekdays(classes) {
     const dow = this.state.firstDayOfWeek;
     const weekdays = [];
@@ -1079,7 +1001,6 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     } = this.props;
     const weekDays = locale.weekdays;
     const dayLength = 7 + dow;
-
     for (let i = dow; i < dayLength; i++) {
       const weekDayIndex = i % 7;
       const day = weekDays[weekDayIndex];
@@ -1089,10 +1010,8 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         key: i + day
       }, day));
     }
-
     return weekdays;
   }
-
   renderDays(classes) {
     // TODO: Split this logic into smaller chunks
     const {
@@ -1121,24 +1040,23 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const lastMonthDayCount = lastMonth.daysInMonth();
     const nextMonth = shownDate.clone().month(monthNumber + 1);
     const nextMonthNumber = nextMonth.month();
-    const days = []; // Previous month's days
+    const days = [];
 
+    // Previous month's days
     const diff = Math.abs(firstDayOfWeek - (startOfMonth + 7)) % 7;
-
     for (let i = diff - 1; i >= 0; i--) {
       const dayMoment = lastMonth.clone().date(lastMonthDayCount - i);
       days.push({
         dayMoment,
         isPassive: true
       });
-    } // Current month's days
+    }
 
-
+    // Current month's days
     for (let i = 1; i <= dayCount; i++) {
-      const dayMoment = shownDate.clone().date(i); // set days before today to isPassive
-
+      const dayMoment = shownDate.clone().date(i);
+      // set days before today to isPassive
       var _today = moment__WEBPACK_IMPORTED_MODULE_2___default()();
-
       if (disableDaysBeforeToday && Number(dayMoment.diff(_today, "days")) <= -1) {
         days.push({
           dayMoment,
@@ -1149,11 +1067,10 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           dayMoment
         });
       }
-    } // Next month's days
+    }
 
-
+    // Next month's days
     const remainingCells = 42 - days.length; // 42cells = 7days * 6rows
-
     for (let i = 1; i <= remainingCells; i++) {
       const dayMoment = nextMonth.clone().date(i);
       days.push({
@@ -1161,7 +1078,6 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         isPassive: true
       });
     }
-
     const today = moment__WEBPACK_IMPORTED_MODULE_2___default()().startOf('day');
     return days.map((data, index) => {
       const {
@@ -1197,7 +1113,6 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }));
     });
   }
-
   render() {
     const {
       styles
@@ -1206,9 +1121,7 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onlyClasses,
       classNames
     } = this.props;
-
     const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"]), classNames);
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['Calendar']), this.props.style),
       className: classes.calendar
@@ -1220,9 +1133,7 @@ class Calendar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: classes.days
     }, this.renderDays(classes)));
   }
-
 }
-
 Calendar.defaultProps = {
   format: _constants__WEBPACK_IMPORTED_MODULE_6__["MomentFormat"].default,
   theme: {},
@@ -1287,12 +1198,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
 /* harmony import */ var _Calendar_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Calendar.js */ "./www/js/source/reactpages/components/date-range/Calendar.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1306,13 +1216,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "show", () => {
       this.setState({
         show: true
       });
     });
-
     const {
       locale,
       date,
@@ -1325,19 +1233,15 @@ class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       show: false
     };
   }
-
   get dateText() {
     const {
       selectedDate
     } = this.state;
-
     if (selectedDate) {
       return `${selectedDate.format(this.props.format)}`;
     }
-
     return "";
   }
-
   handleSelect(date) {
     const {
       onChange
@@ -1348,7 +1252,6 @@ class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       show: false
     });
   }
-
   render() {
     const {
       format,
@@ -1357,9 +1260,7 @@ class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       maxDate,
       classNames
     } = this.props;
-
     const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"]), classNames);
-
     const {
       show
     } = this.state;
@@ -1391,9 +1292,7 @@ class DatePicker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       locale: this.locale
     }))));
   }
-
 }
-
 _defineProperty(DatePicker, "propTypes", {
   format: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   firstDayOfWeek: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
@@ -1405,7 +1304,6 @@ _defineProperty(DatePicker, "propTypes", {
   locale: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
   date: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
 });
-
 _defineProperty(DatePicker, "defaultProps", {
   format: _constants__WEBPACK_IMPORTED_MODULE_5__["MomentFormat"].default
 });
@@ -1436,13 +1334,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/components/date-range/constants.js");
 /* harmony import */ var _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./defaultOptions.js */ "./www/js/source/reactpages/components/date-range/defaultOptions.js");
 /* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1457,14 +1353,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props, context) {
     super(props, context);
-
     _defineProperty(this, "show", () => {
       this.calendarSelectionStep = 0;
       this.setState({
         show: true
       });
     });
-
     _defineProperty(this, "handleApply", () => {
       const {
         onClickApplyButton,
@@ -1476,11 +1370,9 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onChange && onChange(range, this.isValid);
       this.close();
     });
-
     _defineProperty(this, "handleCancel", () => {
       this.setRange(this.originalRange, false);
     });
-
     const {
       format,
       linkedCalendars,
@@ -1506,33 +1398,27 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       show: false
     };
   }
-
   get dateRangeText() {
     const range = this.state.range;
-
     if (range.startDate && range.endDate) {
       const {
         format
       } = this.props;
       return `${range.startDate.format(format)} - ${range.endDate.format(format)}`;
     }
-
     return "";
   }
-
   close() {
     this.setState({
       show: false
     });
   }
-
   componentDidMount() {
     const {
       onInit
     } = this.props;
     onInit && onInit(this.state.range);
   }
-
   orderRange(range) {
     const {
       startDate,
@@ -1545,11 +1431,9 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       endDate: startDate
     };
   }
-
   setRange(dateRange, show) {
     let range = this.orderRange(dateRange);
     this.isValid = this.isValidMonthRange(range);
-
     if (this.isValid) {
       const newState = show === undefined ? {
         range
@@ -1565,7 +1449,6 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onChange && onChange(range, false);
     }
   }
-
   handlePredefinedRangesSelect(range) {
     this.setRange(range, false);
     this.originalRange = Object.assign({}, range);
@@ -1574,7 +1457,6 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     } = this.props;
     onChange && onChange(range, true);
   }
-
   handleCalendarSelect(date) {
     const {
       startDate,
@@ -1584,44 +1466,36 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       startDate: startDate,
       endDate: endDate
     };
-
     switch (this.calendarSelectionStep) {
       case 0:
         range['startDate'] = date;
         range['endDate'] = date;
         this.calendarSelectionStep = 1;
         break;
-
       case 1:
         range['endDate'] = date;
         this.calendarSelectionStep = 0;
         break;
     }
-
     this.setRange(range);
   }
-
   isValidMonthRange(date) {
     const {
       limitedMonthRange
     } = this.props;
-
     if (limitedMonthRange) {
       const startDate = date.startDate;
       const endDate = date.endDate;
       const diffMonth = 12 * (endDate.year() - startDate.year()) + endDate.month() - startDate.month() + 1;
       return diffMonth <= limitedMonthRange;
     }
-
     return true;
   }
-
   handleLinkChange(newDate) {
     this.setState({
       link: newDate
     });
   }
-
   render() {
     const {
       showRange,
@@ -1645,9 +1519,7 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const {
       styles
     } = this;
-
     const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"]), classNames);
-
     const calendarsCount = Number(calendars) - 1;
     const buttonHandlers = {
       apply: this.handleApply,
@@ -1686,10 +1558,8 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       buttonHandlers: buttonHandlers
     }), (() => {
       const _calendars = [];
-
       for (var i = calendarsCount; i >= 0; i--) {
         const shownDate = i == calendarsCount ? range.startDate : range.endDate;
-
         _calendars.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Calendar_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
           showMonthArrow: showMonthArrow,
           shownDate: shownDate,
@@ -1711,13 +1581,10 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           locale: this.locale
         }));
       }
-
       return _calendars;
     })())));
   }
-
 }
-
 DateRange.defaultProps = {
   linkedCalendars: false,
   theme: {},
@@ -1772,13 +1639,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles.js */ "./www/js/source/reactpages/components/date-range/styles.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1792,37 +1657,30 @@ class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     };
     this.styles = this.props.theme;
   }
-
   handleMouseEvent(event) {
     event.preventDefault();
     if (this.props.isPassive) return null;
     const newState = {};
-
     switch (event.type) {
       case 'mouseenter':
         newState['hover'] = true;
         break;
-
       case 'mouseup':
       case 'mouseleave':
         newState['hover'] = false;
         newState['active'] = false;
         break;
-
       case 'mousedown':
         newState['active'] = true;
         break;
     }
-
     this.setState(newState);
   }
-
   handleSelect(event) {
     event.preventDefault();
     if (this.props.isPassive) return null;
     this.props.onSelect(this.props.dayMoment);
   }
-
   getStateStyles() {
     const {
       hover,
@@ -1854,7 +1712,6 @@ class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const specialDayStyle = isSpecialDay ? styles['DaySpecialDay'] : {};
     return _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, todayStyle), sundayStyle), specialDayStyle), inRangeStyle), hoverStyle), passiveStyle), activeStyle), selectedStyle), startEdgeStyle), endEdgeStyle);
   }
-
   getClassNames(classes) {
     const {
       isSelected,
@@ -1878,7 +1735,6 @@ class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       [classes.daySpecialDay]: isSpecialDay
     });
   }
-
   render() {
     const {
       dayMoment,
@@ -1907,9 +1763,7 @@ class DayCell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['Day']), stateStyle)
     }, dayMoment.date()));
   }
-
 }
-
 DayCell.defaultProps = {
   theme: {
     'Day': {}
@@ -1953,13 +1807,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_parseInput_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/parseInput.js */ "./www/js/source/reactpages/components/date-range/utils/parseInput.js");
 /* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles.js */ "./www/js/source/reactpages/components/date-range/styles.js");
 /* harmony import */ var _defaultOptions_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./defaultOptions.js */ "./www/js/source/reactpages/components/date-range/defaultOptions.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1973,13 +1825,11 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     this.styles = this.props.theme;
     this.selectedItem = this._getSelectedRange();
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (this.props.range !== prevProps.range) {
       this.selectedItem = this._getSelectedRange();
     }
   }
-
   _getSelectedRange() {
     const {
       ranges,
@@ -1990,7 +1840,6 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       return range.startDate.isSame(currentRange.startDate, "day") && range.endDate.isSame(currentRange.endDate, "day");
     });
   }
-
   handleSelect(name, event) {
     event.preventDefault();
     this.selectedItem = name;
@@ -2000,12 +1849,10 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       endDate: Object(_utils_parseInput_js__WEBPACK_IMPORTED_MODULE_4__["default"])(range['endDate'], null, 'endOf')
     });
   }
-
   clickButton(event, action) {
     event.preventDefault();
     this.props.buttonHandlers[action]();
   }
-
   renderRangeList(classes) {
     const {
       ranges,
@@ -2019,9 +1866,7 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return Object.keys(ranges).map(name => {
       const active = this.selectedItem === name;
       gotActiveRange = !gotActiveRange && active;
-
       const style = _objectSpread(_objectSpread({}, styles['PredefinedRangesItem']), gotActiveRange ? styles['PredefinedRangesItemActive'] : {});
-
       const predefinedRangeClass = classnames__WEBPACK_IMPORTED_MODULE_3___default()({
         [classes.predefinedRangesItem]: true,
         [classes.predefinedRangesItemActive]: gotActiveRange
@@ -2035,16 +1880,13 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }, name);
     });
   }
-
   renderRangeButtons(classes) {
     const {
       style,
       onlyClasses,
       locale
     } = this.props;
-
     const locales = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_6__["default"].locale), locale);
-
     const {
       styles
     } = this;
@@ -2066,7 +1908,6 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       type: "button"
     }, locales.cancelLabel));
   }
-
   render() {
     const {
       style,
@@ -2076,17 +1917,13 @@ class PredefinedRanges extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const {
       styles
     } = this;
-
     const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_5__["defaultClasses"]), classNames);
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       style: onlyClasses ? undefined : _objectSpread(_objectSpread({}, styles['PredefinedRanges']), style),
       className: classes.predefinedRanges
     }, this.renderRangeList(classes), this.renderRangeButtons(classes));
   }
-
 }
-
 PredefinedRanges.defaultProps = {
   onlyClasses: false,
   classNames: {}
@@ -2131,13 +1968,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _utils_locale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/locale */ "./www/js/source/reactpages/components/date-range/utils/locale.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/components/date-range/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -2148,30 +1983,25 @@ const addRange = (rangeObj, name, start, end) => {
     endDate: end
   };
 };
-
 const addOneDay = (rangeObj, name, day, min, max) => {
   if (day >= min && day <= max) {
     addRange(rangeObj, name, day, day);
   }
 };
-
 const addDistanceDays = (rangeObj, name, start, end, min, max) => {
   if (!(max < start || end < min)) {
     addRange(rangeObj, name, start < min ? min : start, end > max ? max : end);
   }
 };
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   ranges: (todayDate, minDate, maxDate, limitMonths) => {
     var today = !todayDate ? moment__WEBPACK_IMPORTED_MODULE_0___default()() : !moment__WEBPACK_IMPORTED_MODULE_0___default.a.isMoment(todayDate) ? moment__WEBPACK_IMPORTED_MODULE_0___default()(todayDate, _constants__WEBPACK_IMPORTED_MODULE_3__["MomentFormat"].default) : todayDate;
     var max = !maxDate ? today : !moment__WEBPACK_IMPORTED_MODULE_0___default.a.isMoment(maxDate) ? moment__WEBPACK_IMPORTED_MODULE_0___default()(maxDate, _constants__WEBPACK_IMPORTED_MODULE_3__["MomentFormat"].default) : maxDate;
     var min = !minDate ? today : !moment__WEBPACK_IMPORTED_MODULE_0___default.a.isMoment(minDate) ? moment__WEBPACK_IMPORTED_MODULE_0___default()(minDate, _constants__WEBPACK_IMPORTED_MODULE_3__["MomentFormat"].default) : minDate;
     const range = {};
-
     if (today < min) {
       return range;
     }
-
     addOneDay(range, "Today", today, min, max);
     const yesterday = today.clone().add(-1, 'days');
     addOneDay(range, "Yesterday", yesterday, min, max);
@@ -2187,13 +2017,11 @@ const addDistanceDays = (rangeObj, name, start, end, min, max) => {
     const startLastmonth = today.clone().subtract(1, 'month').startOf('month');
     const endLastmonth = startLastmonth.clone().endOf('month');
     addDistanceDays(range, "Lastmonth", startLastmonth, endLastmonth, min, max);
-
     if (limitMonths && limitMonths > 1) {
       const startSincelastmonth = today.clone().subtract(1, 'month').startOf('month');
       const endSincelastmonth = today;
       addDistanceDays(range, "Sincelastmonth", startSincelastmonth, endSincelastmonth, min, max);
     }
-
     return range;
   },
   locale: _objectSpread({
@@ -2239,12 +2067,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultClasses", function() { return defaultClasses; });
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 const defaultClasses = {
   show: 'rdr-Show',
   hide: 'rdr-Hide',
@@ -2428,19 +2255,15 @@ const defaultTheme = {
   let calendarWidth = defaultTheme.Calendar.width;
   let calendarPadding = defaultTheme.Calendar.padding;
   let cellMargin = defaultTheme.Day.margin || 0;
-
   if (customTheme.Calendar && customTheme.Calendar.hasOwnProperty('width')) {
     calendarWidth = customTheme.Calendar.width;
   }
-
   if (customTheme.Calendar && customTheme.Calendar.hasOwnProperty('padding')) {
     calendarPadding = customTheme.Calendar.padding;
   }
-
   if (customTheme.Day && customTheme.Day.hasOwnProperty('margin')) {
     cellMargin = customTheme.Day.margin;
   }
-
   const cellSize = (parseInt(calendarWidth, 10) - parseInt(calendarPadding, 10) * 2) / 7 - parseInt(cellMargin, 10) * 2;
   return {
     DateRange: _objectSpread(_objectSpread({}, defaultTheme.DateRange), customTheme.DateRange),
@@ -2517,7 +2340,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function parseInput(input, format, timeOfDay) {
   let output = null;
-
   if (typeof input === 'undefined' || typeof input === 'null' || !input || input === '') {
     output = moment__WEBPACK_IMPORTED_MODULE_0___default()()[timeOfDay]('day');
   } else if (typeof input === 'string') {
@@ -2527,7 +2349,6 @@ function parseInput(input, format, timeOfDay) {
   } else if (input._isAMomentObject) {
     output = input[timeOfDay]('day').clone();
   }
-
   return output;
 }
 
@@ -2547,15 +2368,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class radio extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       type: "radio",
@@ -2568,9 +2389,7 @@ class radio extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       htmlFor: this.props.id
     }, this.props.label));
   }
-
 }
-
 _defineProperty(radio, "propTypes", {
   id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
   label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
@@ -2579,7 +2398,6 @@ _defineProperty(radio, "propTypes", {
   checked: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
 });
-
 _defineProperty(radio, "defaultProps", {
   label: '',
   name: '',
@@ -2604,8 +2422,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Radio__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Radio */ "./www/js/source/reactpages/components/radio/Radio.jsx");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -2616,25 +2435,21 @@ class RadioGroup extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       value: props.value
     };
   }
-
   onChange(value) {
     if (this.state.value === value) {
       return;
     }
-
     this.setState({
       value: value
     });
     this.props.onChange(value);
   }
-
   _renderItem() {
     const {
       options,
       name
     } = this.props;
     let radios = [];
-
     for (let i = 0; i < options.length; i++) {
       const item = options[i];
       const isChecked = item.value === this.state.value;
@@ -2649,10 +2464,8 @@ class RadioGroup extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         onChange: value => this.onChange(value)
       }));
     }
-
     return radios;
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "radio-group"
@@ -2660,9 +2473,7 @@ class RadioGroup extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "label-text"
     }, this.props.label), this._renderItem());
   }
-
 }
-
 _defineProperty(RadioGroup, "propTypes", {
   label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   name: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
@@ -2673,7 +2484,6 @@ _defineProperty(RadioGroup, "propTypes", {
   onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   value: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
 });
-
 _defineProperty(RadioGroup, "defaultProps", {
   label: '',
   name: '',
@@ -2717,14 +2527,12 @@ class AppLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "container",
       className: `container-fluid ${this.props.className || ''}`
     }, this.props.children);
   }
-
 }
 
 /***/ }),
@@ -2756,8 +2564,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -2767,7 +2576,6 @@ class DataService {
     const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
     return proxyUrl;
   }
-
   static getData(url, params) {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__["default"].setParams(url, params);
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
@@ -2777,7 +2585,6 @@ class DataService {
       }
     });
   }
-
   static postData(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       headers: {
@@ -2786,7 +2593,6 @@ class DataService {
       }
     });
   }
-
   static getFile(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       responseType: 'blob',
@@ -2796,44 +2602,34 @@ class DataService {
       }
     });
   }
-
   static postProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.postData(proxyUrl, params);
   }
-
   static postReportData(url, params) {
     return this.postProxyData(this.apiKeys.report, url, params);
   }
-
   static postBetListData(url, params) {
     return this.postProxyData(this.apiKeys.betlist, url, params);
   }
-
   static getProxyFile(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getFile(proxyUrl, params);
   }
-
   static getReportFile(url, params) {
     return this.getProxyFile(this.apiKeys.report, url, params);
   }
-
   static getBetListFile(url, params) {
     return this.getProxyFile(this.apiKeys.betlist, url, params);
   }
-
   static getProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getData(proxyUrl, params);
   }
-
   static getReportData(url, params) {
     return this.getProxyData(this.apiKeys.report, url, params);
   }
-
 }
-
 _defineProperty(DataService, "apiKeys", {
   report: 'reportApi',
   betlist: 'betlistApi'
@@ -2855,10 +2651,8 @@ class QueryString {
   static _parseQueryString(queryString) {
     let args = queryString.split('&');
     let argsList = {};
-
     for (let i = 0; i < args.length; i++) {
       let arg = unescape(args[i]);
-
       if (arg.length > 0) {
         if (arg.indexOf('=') === -1) {
           argsList[arg.toLowerCase().trim()] = null;
@@ -2868,84 +2662,66 @@ class QueryString {
         }
       }
     }
-
     return argsList;
   }
-
   static _getQueryString(url) {
     var index = url.indexOf("?");
     return index < 0 ? "" : url.substring(index + 1, url.length);
   }
-
   static _getRawUrl(url) {
     var index = url.indexOf("?");
     return index < 0 ? url : url.substring(0, index);
   }
-
   static setParam(url, name, value) {
     var rawUrl = QueryString._getRawUrl(url);
-
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     if (!name) {
       return url;
-    } // Update value
+    }
 
-
+    // Update value
     var found = false;
-
     for (var key in args) {
       if (key && key.toLowerCase() === name.toLowerCase()) {
         // Does not update data if value = undefined
         if (value !== undefined) {
           args[key] = value;
         }
-
         found = true;
       }
     }
-
     if (!found) {
       args[name.toLowerCase()] = value;
     }
+    var queryArray = [];
 
-    var queryArray = []; // Rebuild query string, ignore null value
-
+    // Rebuild query string, ignore null value
     for (var key1 in args) {
       if (args[key1] != null && args[key1] !== undefined) {
         queryArray.push(key1.toLowerCase() + "=" + args[key1]);
       }
     }
-
     return rawUrl + "?" + queryArray.join("&");
   }
-
   static setParams(url, parameters) {
     for (var property in parameters) {
       if (parameters.hasOwnProperty(property)) {
         url = QueryString.setParam(url, property, parameters[property]);
       }
     }
-
     return url;
   }
-
   static getParam(url, name) {
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     for (var key in args) {
       if (key != null && key.toLowerCase() === name.toLowerCase()) {
         return args[key];
       }
     }
-
     return null;
   }
-
 }
 
 /***/ }),
@@ -2976,7 +2752,6 @@ class CollectionHelper {
     });
     return convertedList;
   }
-
 }
 
 /***/ }),
@@ -3013,35 +2788,29 @@ function createReducer(initialState, handlers) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CurrencyHelper; });
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 class CurrencyHelper {
   static getTpCurrencyList(brandIds, brands) {
     return this._getCurrencyList(brandIds, brands, 'tpCurrencies');
   }
-
   static getAgentCurrencyList(brandIds, brands) {
     return this._getCurrencyList(brandIds, brands, 'currencies');
   }
-
   static _getCurrencyList(brandIds, brands, currencyProperty) {
     const brandIdList = (brandIds + '').split(',');
     const existKeys = {};
     const currencyList = brandIdList.reduce((result, brandId) => {
       const currencyListByBrand = this._getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty);
-
       return [...result, ...currencyListByBrand];
     }, []);
     return currencyList;
   }
-
   static _getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty) {
     var brandInfo = brands.find(_ => _.id === parseInt(brandId));
-
     if (brandInfo) {
       return brandInfo[currencyProperty].reduce((result, currentValue) => {
         if (!existKeys[currentValue.key]) {
@@ -3050,14 +2819,11 @@ class CurrencyHelper {
             status: true
           })];
         }
-
         return result;
       }, []);
     }
-
     return [];
   }
-
 }
 
 /***/ }),
@@ -3079,17 +2845,14 @@ class LangHelper {
   static get currentLanguage() {
     return langCode;
   }
-
   static getSingleResource(key) {
     var langHandler = window[resourceName];
     return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
   }
-
   static getResources(keys) {
     var langHandler = window[resourceName];
     return keys.map(key => langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key);
   }
-
 }
 
 /***/ }),
@@ -3110,8 +2873,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const isDev = "development" === "development";
-const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name; // middleware that logs actions
-
+const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name;
+// middleware that logs actions
 const loggerMiddleware = Object(redux_logger__WEBPACK_IMPORTED_MODULE_0__["createLogger"])({
   predicate: (getState, action) => isDev || window[configName] && window[configName].env === _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].env && (!window[configName].actionFilter || window[configName].actionFilter === action.type)
 });
@@ -3119,7 +2882,6 @@ class Logger {
   static getLoggerMiddleware() {
     return loggerMiddleware;
   }
-
 }
 
 /***/ }),
@@ -3138,31 +2900,25 @@ class NumberFormat {
   static formatDecimal(value) {
     return this.format(value, 2);
   }
-
   static format(value, digits = 0) {
     if (!this.isNumber(value)) {
       return "";
     }
-
     const roundedValue = this.round(value, digits);
     return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
   static round(value, digits) {
     const sign = value < 0 ? -1 : 1;
     const absoluteValue = Math.abs(value);
     const rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
     return sign * rounded;
   }
-
   static isNumber(value) {
     return typeof value !== "number" || isNaN(value) ? false : true;
   }
-
   static parseToString(number) {
     return number.toString().replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
 }
 
 /***/ }),
@@ -3178,41 +2934,32 @@ class NumberFormat {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Site; });
 const _rootUrl = window.rootUrl || "/";
-
 let _xsrfToken = null;
 class Site {
   static getXsrfToken() {
     if (!_xsrfToken) {
       _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
     }
-
     return _xsrfToken;
   }
-
   static resolveClientUrl(relativeUrl) {
     return _rootUrl + relativeUrl;
   }
-
   static convertDateToString(date) {
     return typeof date === "string" ? date : date.format("MM/DD/YYYY");
   }
-
   static isEmptyObject(obj = {}) {
     return Object.entries(obj).length === 0 && obj.constructor === Object;
   }
-
   static asNull(text) {
     if (text != null) {
       text = text.trim();
-
       if (text === '') {
         return null;
       }
     }
-
     return text;
   }
-
   static downloadFile(data, fileName) {
     const url = window.URL.createObjectURL(new Blob([data]));
     const link = document.createElement('a');
@@ -3223,21 +2970,16 @@ class Site {
     link.parentNode.removeChild(link);
     window.URL.revokeObjectURL(url);
   }
-
   static readAsJson(blob, callback) {
     const reader = new FileReader();
-
     reader.onload = function () {
       callback && callback(JSON.parse(reader.result));
     };
-
     reader.readAsText(blob);
   }
-
   static getRootUrl() {
     return _rootUrl;
   }
-
 }
 
 /***/ }),
@@ -3261,11 +3003,11 @@ __webpack_require__.r(__webpack_exports__);
 class Store {
   static createStore(reducer, initialState) {
     const loggerMiddleware = _logger__WEBPACK_IMPORTED_MODULE_2__["default"].getLoggerMiddleware();
-    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], // lets us dispatch() functions
+    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"],
+    // lets us dispatch() functions
     loggerMiddleware));
     return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, initialState, enhancer);
   }
-
 }
 
 /***/ }),
@@ -3283,46 +3025,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 
 
-
 const fetchPeformanceHighlightData = (params, callBack) => async dispatch => {
   const response = await _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__["default"].fetchPerformanceHighlightData(params);
   dispatch(setPeformanceHighlightData(response.data));
   callBack && callBack();
 };
-
 const fetchUserActivitiesData = (params, callBack) => async dispatch => {
   const response = await _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__["default"].fetchUserActivitiesData(params);
   dispatch(setUserActivitiesData(response.data));
   callBack && callBack();
 };
-
 const fetchAvgRevenueData = (params, callBack) => async dispatch => {
   const response = await _libs_services_queryService__WEBPACK_IMPORTED_MODULE_1__["default"].fetchAvgRevenueData(params);
   dispatch(setAvgRevenueData(response.data));
   callBack && callBack(response.data);
 };
-
 const setPeformanceHighlightData = data => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_PERFORMANCE_HIGHLIGHT_DATA"],
     data: data
   };
 };
-
 const setUserActivitiesData = data => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_USER_ACTIVITIES_DATA"],
     data: data
   };
 };
-
 const setAvgRevenueData = data => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_AVG_REVENUE_DATA"],
     data: data
   };
 };
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   fetchPeformanceHighlightData,
   fetchUserActivitiesData,
@@ -3348,14 +3083,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const setViewMode = viewMode => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_VIEW_MODE"],
     data: viewMode
   };
 };
-
 const setReportDate = reportDate => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_REPORT_DATE"],
@@ -3365,35 +3098,30 @@ const setReportDate = reportDate => {
     }
   };
 };
-
 const setCompareDate = compareDate => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_COMPARE_DATE"],
     data: compareDate
   };
 };
-
 const setAllowedCompare = hasCompare => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_ALLOWED_COMPARE"],
     data: hasCompare
   };
 };
-
 const setGlobalFilter = filterData => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_GLOBAL_FILTER"],
     data: filterData
   };
 };
-
 const setCollapseFormFilter = isCollapsed => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_COLLAPSE_FORM_FILTER"],
     data: isCollapsed
   };
 };
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   setSelectedBaseCurrency: _jsroot_actions_baseCurrencyAction__WEBPACK_IMPORTED_MODULE_1__["setSelectedBaseCurrency"],
   setSelectedBrand: _jsroot_actions_brandAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedBrand"],
@@ -3419,12 +3147,11 @@ const setCollapseFormFilter = isCollapsed => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _filterAction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./filterAction */ "./www/js/source/reactpages/pages/report/marketing/actions/filterAction.js");
 /* harmony import */ var _dataAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataAction */ "./www/js/source/reactpages/pages/report/marketing/actions/dataAction.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_objectSpread(_objectSpread({}, _filterAction__WEBPACK_IMPORTED_MODULE_0__["default"]), _dataAction__WEBPACK_IMPORTED_MODULE_1__["default"]));
@@ -3525,11 +3252,9 @@ const Content = props => {
     globalFilter,
     isCollapsedFormFilter
   } = props;
-
   if (!globalFilter) {
     return null;
   }
-
   const {
     selectedBaseCurrency,
     reportDate
@@ -3538,24 +3263,20 @@ const Content = props => {
     fromDate,
     toDate
   } = reportDate;
-
   const _maxHeightPixel = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
     const {
       innerHeight
     } = window;
     return innerHeight - (isCollapsedFormFilter ? 100 : 220) + 'px';
   }, [isCollapsedFormFilter]);
-
   const _renderTitle = () => {
     const reportName = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Marketing');
-
     if (!globalFilter) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_ReportTitle__WEBPACK_IMPORTED_MODULE_2__["default"], {
         tag: "div",
         content: reportName
       });
     }
-
     const displayCurrency = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Viewin').replace('{0}', selectedBaseCurrency);
     const content = `${reportName}, ${_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_4__["default"].convertDateToString(fromDate)} - ${_jsroot_lib_site__WEBPACK_IMPORTED_MODULE_4__["default"].convertDateToString(toDate)}, ${displayCurrency}`;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_ReportTitle__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -3563,7 +3284,6 @@ const Content = props => {
       content: content
     });
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "marketing-content"
   }, _renderTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3573,7 +3293,6 @@ const Content = props => {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_PerformanceHighlightWidget__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_UserActivitiesWidget__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_widgets_AvgRevenueWidget__WEBPACK_IMPORTED_MODULE_9__["default"], null)));
 };
-
 function mapStateToProps(state) {
   const {
     globalFilter,
@@ -3584,12 +3303,10 @@ function mapStateToProps(state) {
     isCollapsedFormFilter
   });
 }
-
 function mapDispatchToProps(dispatch) {
   const {} = _actions__WEBPACK_IMPORTED_MODULE_6__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_5__["bindActionCreators"])({}, dispatch);
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Content));
 
 /***/ }),
@@ -3666,7 +3383,6 @@ const FormFilter = props => {
     const selectedCurrency = currencyList.map(_ => _.key).join(',');
     setSelectedCurrency(selectedCurrency);
   }, [currencyList]);
-
   const _renderBaseCurrencySelectList = () => {
     const baseCurrencyList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].baseCurrencyList;
     return baseCurrencyList && baseCurrencyList.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -3676,7 +3392,6 @@ const FormFilter = props => {
       onChange: item => setSelectedBaseCurrency(item.value)
     });
   };
-
   const _renderCurrencySelectList = () => {
     const dataSource = _jsroot_lib_collectionHelper__WEBPACK_IMPORTED_MODULE_11__["default"].createDataSourceFrom(currencyList, selectedCurrency);
     return currencyList && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
@@ -3689,7 +3404,6 @@ const FormFilter = props => {
       onChange: (_, selectedItemsKey) => setSelectedCurrency(selectedItemsKey)
     });
   };
-
   const _renderBrandSelectList = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
       instanceId: "brandList",
@@ -3700,7 +3414,6 @@ const FormFilter = props => {
       }
     });
   };
-
   const _renderViewModeOptions = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_5__["default"], {
       name: 'ViewMode',
@@ -3709,7 +3422,6 @@ const FormFilter = props => {
       onChange: setViewMode
     });
   };
-
   const _renderReportDateSelection = () => {
     const dateConstraint = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].dateConstraint;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_date_range__WEBPACK_IMPORTED_MODULE_9__["DateRange"], {
@@ -3722,7 +3434,6 @@ const FormFilter = props => {
       onChange: _onChangeReportDate
     });
   };
-
   const _onChangeReportDate = (range, isValidMonthRange = true) => {
     if (isValidMonthRange) {
       setReportDate(range);
@@ -3731,7 +3442,6 @@ const FormFilter = props => {
       alert(message);
     }
   };
-
   const convertedReportDate = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
     let {
       fromDate,
@@ -3745,7 +3455,6 @@ const FormFilter = props => {
       toDate: _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_13__["default"].convertToDateStructure(toDate)
     };
   }, [reportDate]);
-
   const _renderCompareDateSelection = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TimePeriodSelect__WEBPACK_IMPORTED_MODULE_17__["default"], {
       selectOptions: _constants_filterConst__WEBPACK_IMPORTED_MODULE_15__["CompareDateSelectionOptions"],
@@ -3757,7 +3466,6 @@ const FormFilter = props => {
       defaultOption: _constants_filterConst__WEBPACK_IMPORTED_MODULE_15__["CompareDateOptionValues"].previousPeriod
     });
   };
-
   const _onSubmit = () => {
     const fromLastXDays = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].dateConstraint.userLimitDataRange > 0 ? _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].dateConstraint.minDate : null;
     const globalFilter = {
@@ -3772,7 +3480,6 @@ const FormFilter = props => {
     };
     setGlobalFilter(globalFilter);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "page-filter",
     onCollapse: () => setCollapseFormFilter(true),
@@ -3834,7 +3541,6 @@ const FormFilter = props => {
     onClick: _onSubmit
   }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("Submit"))))))));
 };
-
 function mapStateToProps(state) {
   const {
     selectedBrand,
@@ -3855,7 +3561,6 @@ function mapStateToProps(state) {
     selectedCurrency
   });
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     setSelectedBrand,
@@ -3880,7 +3585,6 @@ function mapDispatchToProps(dispatch) {
     setSelectedCurrency
   }), dispatch);
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(FormFilter));
 
 /***/ }),
@@ -3908,11 +3612,8 @@ const BarChart = props => {
     data,
     dataMapping
   } = props;
-
   const _chartData = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildBarChartData(data, dataMapping);
-
   const _chartOptions = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildBarChartOptions(_chartData.labels, dataMapping.isDecimal);
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
     data: _chartData,
     options: _chartOptions
@@ -3940,7 +3641,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const HighlightBox = props => {
   const {
     title,
@@ -3951,40 +3651,31 @@ const HighlightBox = props => {
     enableCompare,
     onViewDetail
   } = props;
-
   const _renderTitle = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sticky-box-title"
     }, title);
   };
-
   const _renderDescription = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sticky-box-description"
     }, description);
   };
-
   const _renderValue = () => {
     const isNumber = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].isNumber(value);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sticky-box-content"
     }, isNumber ? _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(value) : value);
   };
-
   const _getArrowColor = rate => {
     return rate >= 0 ? 'border-top-green' : 'border-top-red';
   };
-
   const _renderCompareRate = () => {
     const roundedRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(rate, 0);
     const rateDisplay = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_3__["default"].displayRate(roundedRate);
-
     const _roundedRate = isNegativeMean ? -roundedRate : roundedRate;
-
     const color = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getColorRate(_roundedRate);
-
     const arrowColor = _getArrowColor(_roundedRate);
-
     const arrow = roundedRate >= 0 ? 'triangle-top-left' : 'triangle-bottom-left';
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sticky-box-compare-title"
@@ -3996,7 +3687,6 @@ const HighlightBox = props => {
       className: `rate ${color}`
     }, rateDisplay)));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sticky-box",
     title: onViewDetail && _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TooltipViewDetails'),
@@ -4006,7 +3696,6 @@ const HighlightBox = props => {
     onClick: () => onViewDetail && onViewDetail()
   }, _renderTitle(), _renderDescription(), _renderValue(), enableCompare !== false && _renderCompareRate());
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(HighlightBox));
 
 /***/ }),
@@ -4034,11 +3723,8 @@ const LineChart = props => {
     data,
     dataMapping
   } = props;
-
   const _chartData = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildLineChartData(data, dataMapping);
-
   const _chartOptions = _libs_helpers_chartHelper__WEBPACK_IMPORTED_MODULE_2__["default"].buildLineChartOptions(_chartData.labels, dataMapping.isDecimal);
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__["Line"], {
     data: _chartData,
     options: _chartOptions
@@ -4082,7 +3768,6 @@ const TimePeriodSelect = props => {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     onChange(selectOptionGenerateRange[defaultOption](selectedDependRange));
   }, [selectedDependRange]);
-
   const _onChange = currentSelectOption => {
     const {
       value
@@ -4090,19 +3775,15 @@ const TimePeriodSelect = props => {
     const range = selectOptionGenerateRange[value](selectedDependRange);
     onChange && onChange(range);
   };
-
   const _getCurrentSelectOption = () => {
     let currentSelection = selectOptions.find(_ => {
       const range = selectOptionGenerateRange[_.value](selectedDependRange);
-
       return _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].isEqualDate(fromDate, range.fromDate) && _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_2__["default"].isEqualDate(toDate, range.toDate);
     });
     return currentSelection || selectOptions[0];
   };
-
   const _renderSelectOptions = () => {
     const selectedSelectOption = _getCurrentSelectOption();
-
     return selectOptions && selectOptions.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
       instanceId: "ddlSelectOptions",
       value: selectedSelectOption.value,
@@ -4110,7 +3791,6 @@ const TimePeriodSelect = props => {
       onChange: _onChange
     });
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: `time-period-select ${disabled ? 'disabled' : ''}`
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4148,7 +3828,6 @@ const Widget = props => {
     children
   } = props;
   const [isCollapsed, setIsCollapsed] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-
   const _renderTitle = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "widget-title"
@@ -4168,13 +3847,11 @@ const Widget = props => {
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('ExportToExcel')
     }))));
   };
-
   const _renderNoData = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "no-data-widget"
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('NoInfo'));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "widget"
   }, _renderTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4243,23 +3920,17 @@ const AvgRevenueWidget = props => {
   const [chartMode, setChartMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Bar);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     setReportDate(globalFilter.reportDate);
-
     _reloadData(globalFilter.reportDate);
-
     countRender++;
   }, [globalFilter]);
-
   const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('AvgRevenue')} (${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('Viewin').replace('{0}', globalFilter.selectedBaseCurrency)})`, [globalFilter.selectedBaseCurrency]);
-
   const _chartData = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
     if (!avgRevenueData) {
       return null;
     }
-
     const data = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_12__["default"].filterDataWithSelectedProducts(avgRevenueData, products);
     return data;
   }, [products, avgRevenueData]);
-
   const _reloadData = reportDate => {
     setLoading(true);
     const {
@@ -4278,7 +3949,6 @@ const AvgRevenueWidget = props => {
       setLoading(false);
     });
   };
-
   const _renderReportDateSelection = () => {
     const dateConstraint = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].dateConstraint;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_date_range__WEBPACK_IMPORTED_MODULE_7__["DateRange"], {
@@ -4292,7 +3962,6 @@ const AvgRevenueWidget = props => {
       onChange: _onChangeReportDate
     });
   };
-
   const _onChangeReportDate = (range, isValidMonthRange = true) => {
     if (isValidMonthRange) {
       const {
@@ -4304,14 +3973,12 @@ const AvgRevenueWidget = props => {
         toDate: endDate
       };
       setReportDate(convertedRange);
-
       _reloadData(convertedRange);
     } else {
       const message = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("DateRangeExceedMsg").replace("{0}", _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].dateConstraint.limitedMonthRange);
       alert(message);
     }
   };
-
   const _renderChart = () => {
     if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Bar) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_BarChart__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -4319,17 +3986,14 @@ const AvgRevenueWidget = props => {
         dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["AvgRevenueChartDataMapping"]
       });
     }
-
     if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["ChartMode"].Line) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_LineChart__WEBPACK_IMPORTED_MODULE_11__["default"], {
         data: _chartData,
         dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__["AvgRevenueChartDataMapping"]
       });
     }
-
     return null;
   };
-
   const _renderFilter = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
@@ -4355,13 +4019,11 @@ const AvgRevenueWidget = props => {
       onChange: (_, selectedItemsKey) => setProducts(selectedItemsKey)
     }))));
   };
-
   const _renderBody = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "chart-body"
     }, _renderChart());
   };
-
   const _renderFooter = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "chart-footer"
@@ -4372,7 +4034,6 @@ const AvgRevenueWidget = props => {
       onChange: setChartMode
     }));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_9__["default"], {
     title: _title,
     isLoading: isLoading
@@ -4380,7 +4041,6 @@ const AvgRevenueWidget = props => {
     className: "avg-revenue-container"
   }, _renderFilter(), _renderBody(), _renderFooter()));
 };
-
 function mapStateToProps(state) {
   const {
     globalFilter,
@@ -4391,7 +4051,6 @@ function mapStateToProps(state) {
     avgRevenueData
   });
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     fetchAvgRevenueData
@@ -4400,7 +4059,6 @@ function mapDispatchToProps(dispatch) {
     fetchAvgRevenueData
   }, dispatch);
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AvgRevenueWidget)));
 
 /***/ }),
@@ -4432,12 +4090,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_chartConst__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../constants/chartConst */ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js");
 /* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
 /* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -4470,27 +4127,21 @@ const PerformanceHighlightWidget = props => {
     if (!globalFilter) {
       return;
     }
-
     const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_9__["default"].getPerformanceHighlightAPIParams(globalFilter);
     setLoading(true);
     fetchPeformanceHighlightData(apiParams, () => setLoading(false));
   }, [globalFilter]);
-
   const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('BusinessPerformanceHighlights'), []);
-
   const _isHideRateBox = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
     const {
       fromDate,
       toDate
     } = reportDate;
-
     if (fromLastXDays || _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].convertDateToString(fromDate) === _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].convertDateToString(toDate)) {
       return true;
     }
-
     return false;
   }, [fromLastXDays, reportDate]);
-
   const _renderTotalUsersBox = () => {
     const {
       totalUsers
@@ -4502,7 +4153,6 @@ const PerformanceHighlightWidget = props => {
       value: totalUsers
     });
   };
-
   const _renderTotalDepositUsersBox = () => {
     const {
       totalDepositUsers
@@ -4514,7 +4164,6 @@ const PerformanceHighlightWidget = props => {
       value: totalDepositUsers
     });
   };
-
   const _renderTotalActiveUsersBox = () => {
     const {
       totalActiveUsers
@@ -4526,7 +4175,6 @@ const PerformanceHighlightWidget = props => {
       value: totalActiveUsers
     });
   };
-
   const _renderDepositUsersBox = () => {
     const {
       depositUsers,
@@ -4540,7 +4188,6 @@ const PerformanceHighlightWidget = props => {
       rate: growthRateDepositUsers
     });
   };
-
   const _renderActiveUsersBox = () => {
     const {
       activeUsers,
@@ -4554,7 +4201,6 @@ const PerformanceHighlightWidget = props => {
       rate: growthRateActiveUsers
     });
   };
-
   const _renderNewlyRegisteredUsersBox = () => {
     const {
       newlyRegisterUsers,
@@ -4569,7 +4215,6 @@ const PerformanceHighlightWidget = props => {
       rate: growthRateNewlyRegisterUsers
     });
   };
-
   const _renderNewlyActiveRegisteredUsersBox = () => {
     const {
       newlyActiveRegisterUsers,
@@ -4582,7 +4227,6 @@ const PerformanceHighlightWidget = props => {
       rate: growthRateNewlyActiveRegisterUsers
     });
   };
-
   const _renderDepositAmountBox = () => {
     const {
       depositAmount,
@@ -4596,7 +4240,6 @@ const PerformanceHighlightWidget = props => {
       rate: growthRateDepositAmount
     });
   };
-
   const _renderWithdrawalAmountBox = () => {
     const {
       withdrawalAmount,
@@ -4610,7 +4253,6 @@ const PerformanceHighlightWidget = props => {
       rate: growthRateWithdrawalAmount
     });
   };
-
   const _renderBonusClaimedBox = () => {
     const {
       bonusAmountClaimeds,
@@ -4624,7 +4266,6 @@ const PerformanceHighlightWidget = props => {
       rate: growthRateBonusAmountClaimeds
     });
   };
-
   const _renderNetCashAmountBox = () => {
     const {
       netCashAmount,
@@ -4637,12 +4278,10 @@ const PerformanceHighlightWidget = props => {
       rate: growthRateNetCashAmount
     });
   };
-
   const _renderChurnRateBox = () => {
     if (_isHideRateBox) {
       return null;
     }
-
     const {
       churnRate,
       differentChurnRate
@@ -4656,12 +4295,10 @@ const PerformanceHighlightWidget = props => {
       rate: differentChurnRate
     });
   };
-
   const _renderRetentionRateBox = () => {
     if (_isHideRateBox) {
       return null;
     }
-
     const {
       retentionRate,
       differentRetentionRate
@@ -4674,14 +4311,12 @@ const PerformanceHighlightWidget = props => {
       rate: differentRetentionRate
     });
   };
-
   const _buildPopupUrl = params => {
     const url = Object.keys(params).reduce((result, currentKey) => {
       return _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_14__["default"].setParam(result, currentKey, params[currentKey]);
     }, _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].resolveClientUrl(_constants_queryConst__WEBPACK_IMPORTED_MODULE_12__["Url"].performanceHighlightDetailFrame));
     return url;
   };
-
   const _onClickDetailBox = selectedBox => {
     const params = {
       selectedBox: selectedBox,
@@ -4694,33 +4329,26 @@ const PerformanceHighlightWidget = props => {
       fromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].convertDateToString(globalFilter.reportDate.fromDate),
       toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_11__["default"].convertDateToString(globalFilter.reportDate.toDate)
     };
-
     const urlContent = _buildPopupUrl(params);
-
     window.open(urlContent, '_blank').focus();
   };
-
   const _parseToCurrencyNameList = ({
     selectedBrand,
     selectedCurrency
   }) => {
     const currencies = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_15__["default"].brands.find(_ => _.id === selectedBrand).tpCurrencies;
     const stringCurrencies = selectedCurrency.split(",");
-
     if (currencies.length === stringCurrencies.length) {
       return null;
     }
-
     return stringCurrencies.map(_ => currencies.find(c => c.key == _).value).join(", ");
   };
-
   const _handleExportExcel = () => {
     const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_9__["default"].getPerformanceHighlightExportAPIParams(_objectSpread(_objectSpread({}, globalFilter), {}, {
       currencyNameList: _parseToCurrencyNameList(globalFilter)
     }));
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_10__["default"].exportPerformanceHighlightData(exportParams);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_6__["default"], {
     title: _title,
     isLoading: isLoading,
@@ -4729,7 +4357,6 @@ const PerformanceHighlightWidget = props => {
     className: "sticky-box-container"
   }, _renderTotalUsersBox(), _renderTotalDepositUsersBox(), _renderTotalActiveUsersBox(), _renderDepositUsersBox(), _renderActiveUsersBox(), _renderNewlyRegisteredUsersBox(), _renderNewlyActiveRegisteredUsersBox(), _renderDepositAmountBox(), _renderWithdrawalAmountBox(), _renderBonusClaimedBox(), _renderNetCashAmountBox(), _renderChurnRateBox(), _renderRetentionRateBox()));
 };
-
 function mapStateToProps(state) {
   const {
     globalFilter,
@@ -4740,7 +4367,6 @@ function mapStateToProps(state) {
     performanceHighlightData
   });
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     fetchPeformanceHighlightData
@@ -4749,7 +4375,6 @@ function mapDispatchToProps(dispatch) {
     fetchPeformanceHighlightData
   }, dispatch);
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(PerformanceHighlightWidget)));
 
 /***/ }),
@@ -4822,14 +4447,10 @@ const UserActivitiesWidget = ({
   const [chartMode, setChartMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_chartConst__WEBPACK_IMPORTED_MODULE_11__["ChartMode"].Bar);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     setReportDate(globalFilter.reportDate);
-
     _reloadData(globalFilter.reportDate);
-
     countRender++;
   }, [globalFilter]);
-
   const _title = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource('UserActivities'), []);
-
   const _reloadData = reportDate => {
     setLoading(true);
     const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_12__["default"].getUserActivitiesAPIParams({
@@ -4840,7 +4461,6 @@ const UserActivitiesWidget = ({
     });
     fetchUserActivitiesData(apiParams, () => setLoading(false));
   };
-
   const _renderChart = () => {
     if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_11__["ChartMode"].Bar) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_BarChart__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -4848,17 +4468,14 @@ const UserActivitiesWidget = ({
         dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_11__["UserActivitiesChartDataMapping"]
       });
     }
-
     if (chartMode === _constants_chartConst__WEBPACK_IMPORTED_MODULE_11__["ChartMode"].Line) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_LineChart__WEBPACK_IMPORTED_MODULE_10__["default"], {
         data: userActivitiesData,
         dataMapping: _constants_chartConst__WEBPACK_IMPORTED_MODULE_11__["UserActivitiesChartDataMapping"]
       });
     }
-
     return null;
   };
-
   const _renderReportDateSelection = () => {
     const dateConstraint = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_5__["default"].dateConstraint;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_date_range__WEBPACK_IMPORTED_MODULE_6__["DateRange"], {
@@ -4872,7 +4489,6 @@ const UserActivitiesWidget = ({
       onChange: _onChangeReportDate
     });
   };
-
   const _onChangeReportDate = (range, isValidMonthRange = true) => {
     if (isValidMonthRange) {
       const {
@@ -4884,14 +4500,12 @@ const UserActivitiesWidget = ({
         toDate: endDate
       };
       setReportDate(convertedRange);
-
       _reloadData(convertedRange);
     } else {
       const message = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("DateRangeExceedMsg").replace("{0}", _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_5__["default"].dateConstraint.limitedMonthRange);
       alert(message);
     }
   };
-
   const _renderFilter = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
@@ -4903,13 +4517,11 @@ const UserActivitiesWidget = ({
       className: "label-text"
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_3__["default"].getSingleResource("ReportDate")), _renderReportDateSelection())));
   };
-
   const _renderBody = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "chart-body"
     }, _renderChart());
   };
-
   const _renderFooter = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "chart-footer"
@@ -4920,7 +4532,6 @@ const UserActivitiesWidget = ({
       onChange: setChartMode
     }));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_8__["default"], {
     title: _title,
     isLoading: isLoading
@@ -4928,7 +4539,6 @@ const UserActivitiesWidget = ({
     className: "user-activities-container"
   }, _renderFilter(), _renderBody(), _renderFooter()));
 };
-
 function mapStateToProps(state) {
   const {
     globalFilter,
@@ -4939,7 +4549,6 @@ function mapStateToProps(state) {
     userActivitiesData
   });
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     fetchUserActivitiesData
@@ -4948,7 +4557,6 @@ function mapDispatchToProps(dispatch) {
     fetchUserActivitiesData
   }, dispatch);
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(UserActivitiesWidget)));
 
 /***/ }),
@@ -5138,13 +4746,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const App = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
     store: _libs_store__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AppContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
-
 Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById("app-container"));
 
 /***/ }),
@@ -5160,15 +4766,13 @@ Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WE
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChartHelper; });
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 class ChartHelper {}
-
 _defineProperty(ChartHelper, "buildBarChartData", (data, chartDataMapping) => {
   const labels = data.map(_ => _[chartDataMapping.labelField]);
   const datasets = chartDataMapping.datasets.map(dataMapping => {
@@ -5184,7 +4788,6 @@ _defineProperty(ChartHelper, "buildBarChartData", (data, chartDataMapping) => {
     datasets
   };
 });
-
 _defineProperty(ChartHelper, "buildLineChartData", (data, chartDataMapping) => {
   const labels = data.map(_ => _[chartDataMapping.labelField]);
   const datasets = chartDataMapping.datasets.map(dataMapping => {
@@ -5207,7 +4810,6 @@ _defineProperty(ChartHelper, "buildLineChartData", (data, chartDataMapping) => {
     datasets
   };
 });
-
 _defineProperty(ChartHelper, "buildBarChartOptions", (labels, isDecimal) => {
   return {
     maintainAspectRatio: false,
@@ -5260,7 +4862,6 @@ _defineProperty(ChartHelper, "buildBarChartOptions", (labels, isDecimal) => {
     }
   };
 });
-
 _defineProperty(ChartHelper, "buildLineChartOptions", (labels, isDecimal) => {
   return {
     maintainAspectRatio: false,
@@ -5310,7 +4911,6 @@ _defineProperty(ChartHelper, "buildLineChartOptions", (labels, isDecimal) => {
     }
   };
 });
-
 _defineProperty(ChartHelper, "tooltipFunc", isDecimal => (tooltipItem, data) => {
   const dataSet = data.datasets[tooltipItem.datasetIndex];
   return _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].format(dataSet.data[tooltipItem.index], isDecimal ? 2 : 0);
@@ -5329,8 +4929,9 @@ _defineProperty(ChartHelper, "tooltipFunc", isDecimal => (tooltipItem, data) => 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DateTimeHelper; });
 /* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 let today = null;
 class DateTimeHelper {
@@ -5338,46 +4939,38 @@ class DateTimeHelper {
     if (today) {
       return today;
     }
-
     today = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].today ? new Date(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].today) : new Date();
     return today;
   }
-
 }
-
 _defineProperty(DateTimeHelper, "getDiffDays", (date1, date2) => {
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   return diffDays;
 });
-
 _defineProperty(DateTimeHelper, "getDiffDaysOfDateStructure", (dateStructure1, dateStructure2) => {
   const dateObject1 = DateTimeHelper.convertToDateObject(dateStructure1);
   const dateObject2 = DateTimeHelper.convertToDateObject(dateStructure2);
   const diffDays = DateTimeHelper.getDiffDays(dateObject1, dateObject2);
   return diffDays;
 });
-
 _defineProperty(DateTimeHelper, "addDays", (date, numberOfDays) => {
   const cloneDate = new Date(date);
   const newDate = new Date(cloneDate.setDate(cloneDate.getDate() + numberOfDays));
   ;
   return newDate;
 });
-
 _defineProperty(DateTimeHelper, "addYears", (date, numberOfYears) => {
   const cloneDate = new Date(date);
   const newDate = new Date(cloneDate.setFullYear(cloneDate.getFullYear() + numberOfYears));
   ;
   return newDate;
 });
-
 _defineProperty(DateTimeHelper, "formatDateRangeToString", (fromDate, toDate) => {
   const displayFromDate = DateTimeHelper.formatDateStructureToString(fromDate);
   const displayToDate = DateTimeHelper.formatDateStructureToString(toDate);
   return `${displayFromDate} - ${displayToDate}`;
 });
-
 _defineProperty(DateTimeHelper, "formatDateStructureToString", ({
   year,
   month,
@@ -5385,7 +4978,6 @@ _defineProperty(DateTimeHelper, "formatDateStructureToString", ({
 }) => {
   return `${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}/${year}`;
 });
-
 _defineProperty(DateTimeHelper, "convertToDateStructure", dateObject => {
   return {
     year: dateObject.getFullYear(),
@@ -5393,7 +4985,6 @@ _defineProperty(DateTimeHelper, "convertToDateStructure", dateObject => {
     day: dateObject.getDate()
   };
 });
-
 _defineProperty(DateTimeHelper, "convertToDateObject", dateStructure => {
   const {
     year,
@@ -5402,17 +4993,14 @@ _defineProperty(DateTimeHelper, "convertToDateObject", dateStructure => {
   } = dateStructure;
   return new Date(year, month - 1, day);
 });
-
 _defineProperty(DateTimeHelper, "isEqualDate", (date1, date2) => {
   return date1.year === date2.year && date1.month === date2.month && date1.day === date2.day;
 });
-
 _defineProperty(DateTimeHelper, "getYesterdayDateStructure", () => {
   const yesterday = DateTimeHelper.addDays(DateTimeHelper.getToday(), -1);
   const yesterdayObject = DateTimeHelper.convertToDateStructure(yesterday);
   return yesterdayObject;
 });
-
 _defineProperty(DateTimeHelper, "getTodayDateStructure", () => {
   const today = DateTimeHelper.getToday();
   const todayObject = DateTimeHelper.convertToDateStructure(today);
@@ -5433,12 +5021,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FilterHelper; });
 /* harmony import */ var _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
 /* harmony import */ var _constants_filterConst__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/filterConst */ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class FilterHelper {}
-
 _defineProperty(FilterHelper, "CompareDateGenerateRangeSelections", {
   [_constants_filterConst__WEBPACK_IMPORTED_MODULE_1__["CompareDateOptionValues"].previousPeriod]: selectedDependRange => {
     const currentPeriodFromDate = _dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].convertToDateObject(selectedDependRange.fromDate);
@@ -5463,7 +5051,6 @@ _defineProperty(FilterHelper, "CompareDateGenerateRangeSelections", {
     };
   }
 });
-
 _defineProperty(FilterHelper, "GetDefaultCompareDate", defaultReportDate => {
   let {
     fromDate,
@@ -5490,21 +5077,19 @@ _defineProperty(FilterHelper, "GetDefaultCompareDate", defaultReportDate => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NumberHelper; });
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 class NumberHelper {
   static displayRate(rate) {
     return `${rate > 0 ? '+' : ''}${_jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].format(rate)}%`;
   }
-
 }
-
 _defineProperty(NumberHelper, "getColorRate", rate => {
   if (rate === 0) {
     return '';
   }
-
   return rate > 0 ? 'green-color' : 'red-color';
 });
 
@@ -5522,20 +5107,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DataService; });
 /* harmony import */ var _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+const _excluded = ["baseCurrency"],
+  _excluded2 = ["reportDate", "selectedBrand", "selectedCurrency", "pagingOption", "sortInfo"],
+  _excluded3 = ["baseCurrency", "sortInfo", "allowedCompare"];
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class DataService {}
-
 _defineProperty(DataService, "getCommonAPIParams", ({
   selectedBrand,
   selectedCurrency,
@@ -5549,7 +5133,6 @@ _defineProperty(DataService, "getCommonAPIParams", ({
   };
   return params;
 });
-
 _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
   selectedBrand,
   selectedCurrency,
@@ -5563,74 +5146,59 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread({}, commonParams), {
     compareFromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
     compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate),
     baseCurrency: selectedBaseCurrency,
     fromLastXDays
   });
-
   return params;
 });
-
-_defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", (_ref) => {
+_defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", _ref => {
   let {
-    baseCurrency
-  } = _ref,
-      rest = _objectWithoutProperties(_ref, ["baseCurrency"]);
-
+      baseCurrency
+    } = _ref,
+    rest = _objectWithoutProperties(_ref, _excluded);
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
-
   const params = _objectSpread(_objectSpread({}, commonParams), {}, {
     baseCurrency
   });
-
   return params;
 });
-
-_defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", (_ref2) => {
+_defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", _ref2 => {
   let {
-    reportDate,
-    selectedBrand,
-    selectedCurrency,
-    pagingOption,
-    sortInfo
-  } = _ref2,
-      rest = _objectWithoutProperties(_ref2, ["reportDate", "selectedBrand", "selectedCurrency", "pagingOption", "sortInfo"]);
-
+      reportDate,
+      selectedBrand,
+      selectedCurrency,
+      pagingOption,
+      sortInfo
+    } = _ref2,
+    rest = _objectWithoutProperties(_ref2, _excluded2);
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, commonParams), sortInfo), {
     pageIndex: pagingOption.PageIndex,
     pageSize: pagingOption.PageSize
   }), rest);
-
   return params;
 });
-
-_defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", (_ref3) => {
+_defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", _ref3 => {
   let {
-    baseCurrency,
-    sortInfo,
-    allowedCompare
-  } = _ref3,
-      rest = _objectWithoutProperties(_ref3, ["baseCurrency", "sortInfo", "allowedCompare"]);
-
+      baseCurrency,
+      sortInfo,
+      allowedCompare
+    } = _ref3,
+    rest = _objectWithoutProperties(_ref3, _excluded3);
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
-
   const params = _objectSpread(_objectSpread(_objectSpread({}, commonParams), sortInfo), {}, {
     baseCurrency,
     allowedCompare
   });
-
   return params;
 });
-
 _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
   selectedBrand,
   selectedCurrency,
@@ -5644,76 +5212,61 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread({}, commonParams), {}, {
     fromLastXDays,
     baseCurrency: selectedBaseCurrency,
     currencyNameList
   });
-
   return params;
 });
-
 _defineProperty(DataService, "getNewlyRegisterUsersSummaryAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getNewlyRegisterUsersDetailAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getNewlyRegisterUsersExportAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getWithdrawalAmountSummaryAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getWithdrawalAmountDetailAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getWithdrawalAmountExportAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getBonusClaimedSummaryAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getBonusClaimedDetailAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getBonusClaimedExportAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getDepositAmountSummaryAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getDepositAmountDetailAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getDepositAmountExportAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
   const {
     selectedBrand,
@@ -5726,14 +5279,11 @@ _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread({}, commonParams), {
     viewMode
   });
-
   return params;
 });
-
 _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
   const {
     selectedBrand,
@@ -5747,15 +5297,12 @@ _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread({}, commonParams), {
     productIds: products,
     baseCurrency: selectedBaseCurrency
   });
-
   return params;
 });
-
 _defineProperty(DataService, "filterDataWithSelectedProducts", (avgRevenueData, products) => {
   const selectedProducts = products.split(',');
   const dicSelectedProducts = selectedProducts.reduce((prevValue, currentValue) => _objectSpread(_objectSpread({}, prevValue), {}, {
@@ -5780,161 +5327,134 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/DataService */ "./www/js/source/reactpages/lib/DataService.js");
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/queryConst */ "./www/js/source/reactpages/pages/report/marketing/constants/queryConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
 class QueryService {
   /* detail popup*/
+
   static async exportNewlyRegisterUsersData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].newlyRegisterUsers);
     }
-
     ;
   }
-
   static async exportWithdrawalAmountData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].withdrawalAmount);
     }
-
     ;
   }
-
   static async exportBonusClaimedData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].bonusClaimed);
     }
-
     ;
   }
-
   static async exportDepositAmountData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].depositAmount);
     }
-
     ;
   }
-  /* end detail popup*/
 
+  /* end detail popup*/
 
   static async exportPerformanceHighlightData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlightExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].performanceHighlight);
     }
-
     ;
   }
-
 }
-
 _defineProperty(QueryService, "fetchPerformanceHighlightData", async params => {
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlight, params));
   return data;
 });
-
 _defineProperty(QueryService, "fetchUserActivitiesData", async params => {
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].userActivities, params));
   return data;
 });
-
 _defineProperty(QueryService, "fetchAvgRevenueData", async params => {
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].avgRevenue, params));
   return data;
 });
-
 _defineProperty(QueryService, "fetchNewlyRegisterUsersSummaryData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersSummary, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchNewlyRegisterUsersDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersDetail, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchWithdrawalAmountSummaryData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountSummary, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchWithdrawalAmountDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountDetail, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchBonusClaimedSummaryData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedSummary, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchBonusClaimedDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedDetail, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchDepositAmountSummaryData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountSummary, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchDepositAmountDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountDetail, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchData", async apiCall => {
   try {
     const response = await apiCall();
-
     if (response.status === 200) {
       return _objectSpread(_objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["successResponse"]), {
         data: response.data
@@ -5943,7 +5463,6 @@ _defineProperty(QueryService, "fetchData", async apiCall => {
   } catch (e) {
     console.log(e);
   }
-
   return _objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["errorResponse"]);
 });
 
@@ -5962,13 +5481,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers */ "./www/js/source/reactpages/pages/report/marketing/reducers/index.js");
 /* harmony import */ var _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../libs/helpers/filterHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/filterHelper.js");
 /* harmony import */ var _constants_filterConst__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/filterConst */ "./www/js/source/reactpages/pages/report/marketing/constants/filterConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -5979,7 +5496,6 @@ const defaultState = _objectSpread(_objectSpread({}, window.initialState), {
   viewMode: _constants_filterConst__WEBPACK_IMPORTED_MODULE_3__["ViewModeOptionValues"].Daily,
   compareDate: _libs_helpers_filterHelper__WEBPACK_IMPORTED_MODULE_2__["default"].GetDefaultCompareDate(window.initialState.reportDate)
 });
-
 const store = _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].createStore(_reducers__WEBPACK_IMPORTED_MODULE_1__["default"], defaultState);
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
@@ -6002,19 +5518,16 @@ const performanceHighlightData = Object(_jsroot_lib_createReducer_js__WEBPACK_IM
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PERFORMANCE_HIGHLIGHT_DATA"]](state, action) {
     return action.data;
   }
-
 });
 const userActivitiesData = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_USER_ACTIVITIES_DATA"]](state, action) {
     return action.data;
   }
-
 });
 const avgRevenueData = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_AVG_REVENUE_DATA"]](state, action) {
     return action.data;
   }
-
 });
 /* harmony default export */ __webpack_exports__["default"] = ({
   performanceHighlightData,
@@ -6047,37 +5560,31 @@ const viewMode = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1_
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_VIEW_MODE"]](state, action) {
     return action.data;
   }
-
 });
 const reportDate = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_REPORT_DATE"]](state, action) {
     return action.data;
   }
-
 });
 const compareDate = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_COMPARE_DATE"]](state, action) {
     return action.data;
   }
-
 });
 const allowedCompare = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_ALLOWED_COMPARE"]](state, action) {
     return action.data;
   }
-
 });
 const globalFilter = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_GLOBAL_FILTER"]](state, action) {
     return action.data;
   }
-
 });
 const isCollapsedFormFilter = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(null, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_COLLAPSE_FORM_FILTER"]](state, action) {
     return action.data;
   }
-
 });
 /* harmony default export */ __webpack_exports__["default"] = ({
   selectedBrand: _jsroot_reducers_brandReducer__WEBPACK_IMPORTED_MODULE_4__["selectedBrand"],
@@ -6131,13 +5638,11 @@ const selectedBaseCurrency = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODU
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_BASECURRENCY"]](state, action) {
     return action.data;
   }
-
 });
 const baseCurrencyList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_BASECURRENCY_LIST"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -6160,7 +5665,6 @@ const selectedBrand = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__[
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_BRAND"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -6183,7 +5687,6 @@ const selectedCurrency = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_CURRENCY"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ })

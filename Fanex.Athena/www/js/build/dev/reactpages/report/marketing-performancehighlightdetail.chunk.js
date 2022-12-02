@@ -167,7 +167,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
 const Loader = ({
   isLoading
 }) => {
@@ -182,7 +181,6 @@ const Loader = ({
     className: "loader-inner ball-beat"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (Loader);
 
 /***/ }),
@@ -214,8 +212,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -225,7 +224,6 @@ class DataService {
     const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
     return proxyUrl;
   }
-
   static getData(url, params) {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__["default"].setParams(url, params);
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
@@ -235,7 +233,6 @@ class DataService {
       }
     });
   }
-
   static postData(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       headers: {
@@ -244,7 +241,6 @@ class DataService {
       }
     });
   }
-
   static getFile(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       responseType: 'blob',
@@ -254,44 +250,34 @@ class DataService {
       }
     });
   }
-
   static postProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.postData(proxyUrl, params);
   }
-
   static postReportData(url, params) {
     return this.postProxyData(this.apiKeys.report, url, params);
   }
-
   static postBetListData(url, params) {
     return this.postProxyData(this.apiKeys.betlist, url, params);
   }
-
   static getProxyFile(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getFile(proxyUrl, params);
   }
-
   static getReportFile(url, params) {
     return this.getProxyFile(this.apiKeys.report, url, params);
   }
-
   static getBetListFile(url, params) {
     return this.getProxyFile(this.apiKeys.betlist, url, params);
   }
-
   static getProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getData(proxyUrl, params);
   }
-
   static getReportData(url, params) {
     return this.getProxyData(this.apiKeys.report, url, params);
   }
-
 }
-
 _defineProperty(DataService, "apiKeys", {
   report: 'reportApi',
   betlist: 'betlistApi'
@@ -313,10 +299,8 @@ class QueryString {
   static _parseQueryString(queryString) {
     let args = queryString.split('&');
     let argsList = {};
-
     for (let i = 0; i < args.length; i++) {
       let arg = unescape(args[i]);
-
       if (arg.length > 0) {
         if (arg.indexOf('=') === -1) {
           argsList[arg.toLowerCase().trim()] = null;
@@ -326,84 +310,66 @@ class QueryString {
         }
       }
     }
-
     return argsList;
   }
-
   static _getQueryString(url) {
     var index = url.indexOf("?");
     return index < 0 ? "" : url.substring(index + 1, url.length);
   }
-
   static _getRawUrl(url) {
     var index = url.indexOf("?");
     return index < 0 ? url : url.substring(0, index);
   }
-
   static setParam(url, name, value) {
     var rawUrl = QueryString._getRawUrl(url);
-
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     if (!name) {
       return url;
-    } // Update value
+    }
 
-
+    // Update value
     var found = false;
-
     for (var key in args) {
       if (key && key.toLowerCase() === name.toLowerCase()) {
         // Does not update data if value = undefined
         if (value !== undefined) {
           args[key] = value;
         }
-
         found = true;
       }
     }
-
     if (!found) {
       args[name.toLowerCase()] = value;
     }
+    var queryArray = [];
 
-    var queryArray = []; // Rebuild query string, ignore null value
-
+    // Rebuild query string, ignore null value
     for (var key1 in args) {
       if (args[key1] != null && args[key1] !== undefined) {
         queryArray.push(key1.toLowerCase() + "=" + args[key1]);
       }
     }
-
     return rawUrl + "?" + queryArray.join("&");
   }
-
   static setParams(url, parameters) {
     for (var property in parameters) {
       if (parameters.hasOwnProperty(property)) {
         url = QueryString.setParam(url, property, parameters[property]);
       }
     }
-
     return url;
   }
-
   static getParam(url, name) {
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     for (var key in args) {
       if (key != null && key.toLowerCase() === name.toLowerCase()) {
         return args[key];
       }
     }
-
     return null;
   }
-
 }
 
 /***/ }),
@@ -425,17 +391,14 @@ class LangHelper {
   static get currentLanguage() {
     return langCode;
   }
-
   static getSingleResource(key) {
     var langHandler = window[resourceName];
     return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
   }
-
   static getResources(keys) {
     var langHandler = window[resourceName];
     return keys.map(key => langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key);
   }
-
 }
 
 /***/ }),
@@ -454,31 +417,25 @@ class NumberFormat {
   static formatDecimal(value) {
     return this.format(value, 2);
   }
-
   static format(value, digits = 0) {
     if (!this.isNumber(value)) {
       return "";
     }
-
     const roundedValue = this.round(value, digits);
     return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
   static round(value, digits) {
     const sign = value < 0 ? -1 : 1;
     const absoluteValue = Math.abs(value);
     const rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
     return sign * rounded;
   }
-
   static isNumber(value) {
     return typeof value !== "number" || isNaN(value) ? false : true;
   }
-
   static parseToString(number) {
     return number.toString().replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
 }
 
 /***/ }),
@@ -494,41 +451,32 @@ class NumberFormat {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Site; });
 const _rootUrl = window.rootUrl || "/";
-
 let _xsrfToken = null;
 class Site {
   static getXsrfToken() {
     if (!_xsrfToken) {
       _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
     }
-
     return _xsrfToken;
   }
-
   static resolveClientUrl(relativeUrl) {
     return _rootUrl + relativeUrl;
   }
-
   static convertDateToString(date) {
     return typeof date === "string" ? date : date.format("MM/DD/YYYY");
   }
-
   static isEmptyObject(obj = {}) {
     return Object.entries(obj).length === 0 && obj.constructor === Object;
   }
-
   static asNull(text) {
     if (text != null) {
       text = text.trim();
-
       if (text === '') {
         return null;
       }
     }
-
     return text;
   }
-
   static downloadFile(data, fileName) {
     const url = window.URL.createObjectURL(new Blob([data]));
     const link = document.createElement('a');
@@ -539,21 +487,16 @@ class Site {
     link.parentNode.removeChild(link);
     window.URL.revokeObjectURL(url);
   }
-
   static readAsJson(blob, callback) {
     const reader = new FileReader();
-
     reader.onload = function () {
       callback && callback(JSON.parse(reader.result));
     };
-
     reader.readAsText(blob);
   }
-
   static getRootUrl() {
     return _rootUrl;
   }
-
 }
 
 /***/ }),
@@ -571,54 +514,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+const _excluded = ["rowData", "dataList", "fieldKey", "allowedDrillDown", "isChild", "onDrillDown", "displayText"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
 
 
 const GroupCell = props => {
   const {
-    rowData,
-    dataList,
-    fieldKey,
-    allowedDrillDown,
-    isChild,
-    onDrillDown,
-    displayText
-  } = props,
-        rest = _objectWithoutProperties(props, ["rowData", "dataList", "fieldKey", "allowedDrillDown", "isChild", "onDrillDown", "displayText"]);
-
+      rowData,
+      dataList,
+      fieldKey,
+      allowedDrillDown,
+      isChild,
+      onDrillDown,
+      displayText
+    } = props,
+    rest = _objectWithoutProperties(props, _excluded);
   const _isDrillDown = rowData.isDrillDown || false;
-
   const _handleDrillDown = () => {
     const rowIndex = dataList.findIndex(_ => _[fieldKey] === rowData[fieldKey]);
-
     if (rowIndex === -1) {
       return;
     }
-
     if (_isDrillDown) {
       dataList.splice(rowIndex + 1, rowData.childs.length);
     } else {
       dataList.splice(rowIndex + 1, 0, ...rowData.childs);
     }
-
     dataList[rowIndex] = _objectSpread(_objectSpread({}, rowData), {
       isDrillDown: !_isDrillDown
     });
     onDrillDown && onDrillDown(dataList);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], _extends({
     key: `group-cell-${rowData[fieldKey]}`
   }, rest), allowedDrillDown && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -633,7 +566,6 @@ const GroupCell = props => {
     }
   }, displayText));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(GroupCell));
 
 /***/ }),
@@ -663,7 +595,6 @@ const Widget = props => {
     children
   } = props;
   const [isCollapsed, setIsCollapsed] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-
   const _renderTitle = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "widget-title"
@@ -683,13 +614,11 @@ const Widget = props => {
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('ExportToExcel')
     }))));
   };
-
   const _renderNoData = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "no-data-widget"
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('NoInfo'));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "widget"
   }, _renderTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -722,13 +651,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BonusClaimedSummaryWidget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BonusClaimedSummaryWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedSummaryWidget.jsx");
 /* harmony import */ var _BonusClaimedDetailWidget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BonusClaimedDetailWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/BonusClaimed/BonusClaimedDetailWidget.jsx");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -747,7 +674,6 @@ const BonusClaimedDetail = ({
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]), {}, {
     sortbyId: 0
   }));
-
   const handleExportExcel = () => {
     const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__["default"].getBonusClaimedExportAPIParams({
       reportDate,
@@ -760,7 +686,6 @@ const BonusClaimedDetail = ({
     });
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__["default"].exportBonusClaimedData(exportParams);
   };
-
   const _renderCaption = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "highlight-detail-title"
@@ -774,7 +699,6 @@ const BonusClaimedDetail = ({
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ExportToExcel')
     }))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "highlight-detail"
   }, _renderCaption(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -795,7 +719,6 @@ const BonusClaimedDetail = ({
     selectedBrand: selectedBrand
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetail));
 
 /***/ }),
@@ -819,13 +742,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -854,13 +775,11 @@ const BonusClaimedDetailWidget = ({
       pagingOption,
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(null, null, data.totalRows);
       setPagingOption(newPagingOption);
     });
   }, [reportDate]);
-
   const _fetchData = (params, before, after) => {
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchBonusClaimedDetailData(params, () => {
       before && before();
@@ -871,7 +790,6 @@ const BonusClaimedDetailWidget = ({
       setLoading(false);
     });
   };
-
   const _handleSort = (sortBy, sortType) => {
     const sortInfo = {
       sortbyId: sortBy,
@@ -885,15 +803,12 @@ const BonusClaimedDetailWidget = ({
       pagingOption,
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(null, null, data.totalRows);
       setPagingOption(newPagingOption);
     });
-
     onSort && onSort(sortInfo);
   };
-
   const _handlePaging = (pageIndex, pageSize) => {
     const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getBonusClaimedDetailAPIParams({
       reportDate,
@@ -906,13 +821,11 @@ const BonusClaimedDetailWidget = ({
       },
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows);
       setPagingOption(newPagingOption);
     });
   };
-
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
     return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
       PageIndex: pageIndex || pagingOption.PageIndex,
@@ -920,13 +833,11 @@ const BonusClaimedDetailWidget = ({
       TotalItem: totalRows
     });
   };
-
   const _renderHeader = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].rowId].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].rowId].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusCode].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].username].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].username].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].currency].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].currency].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].registeredDateDisplay].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].registeredDateDisplay].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].signupUrl].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].signupUrl].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].affCode].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].affCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusAmount].name));
   };
-
   const _renderBody = () => {
     const {
       dataList
@@ -935,7 +846,6 @@ const BonusClaimedDetailWidget = ({
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].rowId].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].rowId], " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusCode] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].username].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].username]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].currency].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].currency]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].registeredDateDisplay].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].registeredDateDisplay]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].signupUrl].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].signupUrl]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].affCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].affCode]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].depositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].withdrawalAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiBonusClaimedGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailBonusClaimedGridColumns"].bonusAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"]))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Details'),
     isLoading: isLoading
@@ -955,7 +865,6 @@ const BonusClaimedDetailWidget = ({
     shouldResetScrollPosition: isLoading
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedDetailWidget));
 
 /***/ }),
@@ -981,15 +890,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 /* harmony import */ var _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../libs/helpers/numberHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/numberHelper.js");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1025,16 +930,12 @@ const BonusClaimedSummaryWidget = ({
       setLoading(false);
     });
   }, [reportDate, compareDate]);
-
   const _renderTotalData = () => {
     const header = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('TotalBonusAmountClaimed')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ReportDate')), allowedCompare && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), allowedCompare && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ChangePercent')));
-
     const body = _renderBodyTotalData();
-
     const totalRow = _rendertotalRowTotalData();
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "summary-table"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
@@ -1048,7 +949,6 @@ const BonusClaimedSummaryWidget = ({
       containerPadding: 70
     }));
   };
-
   const _renderBodyTotalData = () => {
     const {
       totalData
@@ -1070,7 +970,6 @@ const BonusClaimedSummaryWidget = ({
       }, displayRate));
     });
   };
-
   const _rendertotalRowTotalData = () => {
     const {
       totalTotalData
@@ -1088,14 +987,11 @@ const BonusClaimedSummaryWidget = ({
       className: `right-align total-cell ${colorRate}`
     }, displayRate));
   };
-
   const _onDrillDownCampaignData = newCampaignData => {
     const newSummaryData = _objectSpread({}, summaryData);
-
     newSummaryData.detailData = newCampaignData;
     setSummaryData(newSummaryData);
   };
-
   const _renderCampaignData = () => {
     const {
       detailData,
@@ -1135,22 +1031,19 @@ const BonusClaimedSummaryWidget = ({
       containerPadding: 70
     }));
   };
-
   const _renderGroupCampaignCell = (item, detailData) => {
     const isParent = item.childs && item.childs.length > 0;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_GroupCell__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_GroupCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
       displayText: item[isParent ? 'bonusCode' : 'currencyCode'] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None'),
       rowData: item,
       dataList: detailData,
       fieldKey: 'id',
       allowedDrillDown: isParent,
       isChild: !isParent,
-      onDrillDown: _onDrillDownCampaignData
-    }, {
+      onDrillDown: _onDrillDownCampaignData,
       className: "left-align" + (isParent ? " highlight-cell" : "")
-    }));
+    });
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Summary'),
     isLoading: isLoading
@@ -1158,7 +1051,6 @@ const BonusClaimedSummaryWidget = ({
     className: "summary-container"
   }, _renderTotalData(), _renderCampaignData()));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(BonusClaimedSummaryWidget));
 
 /***/ }),
@@ -1187,7 +1079,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const DepositAmountDetail = ({
   reportDate,
   compareDate,
@@ -1197,7 +1088,6 @@ const DepositAmountDetail = ({
   allowedCompare
 }) => {
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
-
   const handleExportExcel = () => {
     const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__["default"].getDepositAmountExportAPIParams({
       reportDate,
@@ -1210,7 +1100,6 @@ const DepositAmountDetail = ({
     });
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__["default"].exportDepositAmountData(exportParams);
   };
-
   const _renderCaption = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "highlight-detail-title"
@@ -1224,7 +1113,6 @@ const DepositAmountDetail = ({
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ExportToExcel')
     }))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "highlight-detail"
   }, _renderCaption(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1245,7 +1133,6 @@ const DepositAmountDetail = ({
     selectedCurrency: selectedCurrency
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountDetail));
 
 /***/ }),
@@ -1269,13 +1156,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1304,13 +1189,11 @@ const DepositAmountDetailWidget = ({
       pagingOption,
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(null, null, data.totalRows);
       setPagingOption(newPagingOption);
     });
   }, [reportDate]);
-
   const _fetchData = (params, before, after) => {
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchDepositAmountDetailData(params, () => {
       before && before();
@@ -1321,7 +1204,6 @@ const DepositAmountDetailWidget = ({
       setLoading(false);
     });
   };
-
   const _handleSort = (sortBy, sortType) => {
     const sortInfo = {
       sortbyId: sortBy,
@@ -1335,15 +1217,12 @@ const DepositAmountDetailWidget = ({
       pagingOption,
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(null, null, data.totalRows);
       setPagingOption(newPagingOption);
     });
-
     onSort && onSort(sortInfo);
   };
-
   const _handlePaging = (pageIndex, pageSize) => {
     const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getDepositAmountDetailAPIParams({
       reportDate,
@@ -1356,13 +1235,11 @@ const DepositAmountDetailWidget = ({
       },
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows);
       setPagingOption(newPagingOption);
     });
   };
-
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
     return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
       PageIndex: pageIndex || pagingOption.PageIndex,
@@ -1370,13 +1247,11 @@ const DepositAmountDetailWidget = ({
       TotalItem: totalRows
     });
   };
-
   const _renderHeader = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].rowId].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].rowId].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].username].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].username].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].currency].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].currency].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].registeredDateDisplay].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].registeredDateDisplay].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].signupUrl].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].signupUrl].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].affCode].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].affCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].firstDepositAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].firstDepositAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].numberOfDeposits].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].numberOfDeposits].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].depositAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].depositAmount].name));
   };
-
   const _renderBody = () => {
     const {
       dataList
@@ -1385,7 +1260,6 @@ const DepositAmountDetailWidget = ({
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].rowId].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].rowId], " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].username].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].username]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].currency].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].currency]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].registeredDateDisplay].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].registeredDateDisplay]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].signupUrl].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].signupUrl]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].affCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].affCode]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].firstDepositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].firstDepositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].numberOfDeposits].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].numberOfDeposits], 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].depositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailDepositAmountGridColumns"].depositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"]))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Details'),
     isLoading: isLoading
@@ -1405,7 +1279,6 @@ const DepositAmountDetailWidget = ({
     shouldResetScrollPosition: isLoading
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountDetailWidget));
 
 /***/ }),
@@ -1431,15 +1304,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 /* harmony import */ var _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../libs/helpers/numberHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/numberHelper.js");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1475,14 +1344,11 @@ const DepositAmountSummaryWidget = ({
       setLoading(false);
     });
   }, [reportDate, compareDate]);
-
   const _onDrillDownSignupData = newSignupData => {
     const newSummaryData = _objectSpread({}, summaryData);
-
     newSummaryData.signupData = newSignupData;
     setSummaryData(newSummaryData);
   };
-
   const _renderTotalData = () => {
     const {
       totalData
@@ -1518,7 +1384,6 @@ const DepositAmountSummaryWidget = ({
       containerPadding: 70
     }));
   };
-
   const _renderSignupData = () => {
     const {
       signupData,
@@ -1558,22 +1423,19 @@ const DepositAmountSummaryWidget = ({
       containerPadding: 70
     }));
   };
-
   const _renderGroupSignupCell = (item, signupData) => {
     const isChild = !item.noGrouping && (!item.childs || !item.childs.length);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_GroupCell__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_GroupCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
       displayText: item.signupUrl,
       rowData: item,
       dataList: signupData,
       fieldKey: 'signupUrl',
       allowedDrillDown: !item.noGrouping && item.childs && item.childs.length > 0,
       isChild: isChild,
-      onDrillDown: _onDrillDownSignupData
-    }, {
+      onDrillDown: _onDrillDownSignupData,
       className: 'left-align' + (isChild ? '' : ' highlight-cell')
-    }));
+    });
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Summary'),
     isLoading: isLoading
@@ -1581,7 +1443,6 @@ const DepositAmountSummaryWidget = ({
     className: "summary-container"
   }, _renderTotalData(), _renderSignupData()));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(DepositAmountSummaryWidget));
 
 /***/ }),
@@ -1603,13 +1464,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NewlyRegisterUsersSummaryWidget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NewlyRegisterUsersSummaryWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersSummaryWidget.jsx");
 /* harmony import */ var _NewlyRegisterUsersDetailWidget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./NewlyRegisterUsersDetailWidget */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/NRU/NewlyRegisterUsersDetailWidget.jsx");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1628,7 +1487,6 @@ const NewlyRegisterUsersDetail = ({
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_objectSpread(_objectSpread({}, _constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]), {}, {
     sortbyId: 0
   }));
-
   const handleExportExcel = () => {
     const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__["default"].getNewlyRegisterUsersExportAPIParams({
       reportDate,
@@ -1641,7 +1499,6 @@ const NewlyRegisterUsersDetail = ({
     });
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__["default"].exportNewlyRegisterUsersData(exportParams);
   };
-
   const _renderCaption = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "highlight-detail-title"
@@ -1655,7 +1512,6 @@ const NewlyRegisterUsersDetail = ({
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ExportToExcel')
     }))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "highlight-detail"
   }, _renderCaption(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1676,7 +1532,6 @@ const NewlyRegisterUsersDetail = ({
     selectedCurrency: selectedCurrency
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetail));
 
 /***/ }),
@@ -1700,13 +1555,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1742,7 +1595,6 @@ const NewlyRegisterUsersDetailWidget = ({
       });
     }, 100);
   }, [reportDate]);
-
   const _fetchData = (params, before, after) => {
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchNewlyRegisterUsersDetailData(params, () => {
       before && before();
@@ -1753,7 +1605,6 @@ const NewlyRegisterUsersDetailWidget = ({
       setLoading(false);
     });
   };
-
   const _handleSort = (sortBy, sortType) => {
     const sortInfo = {
       sortbyId: sortBy,
@@ -1767,15 +1618,12 @@ const NewlyRegisterUsersDetailWidget = ({
       pagingOption,
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(null, null, data.totalRows);
       setPagingOption(newPagingOption);
     });
-
     onSort && onSort(sortInfo);
   };
-
   const _handlePaging = (pageIndex, pageSize) => {
     const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getNewlyRegisterUsersDetailAPIParams({
       reportDate,
@@ -1788,13 +1636,11 @@ const NewlyRegisterUsersDetailWidget = ({
       },
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows);
       setPagingOption(newPagingOption);
     });
   };
-
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
     return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
       PageIndex: pageIndex || pagingOption.PageIndex,
@@ -1802,13 +1648,11 @@ const NewlyRegisterUsersDetailWidget = ({
       TotalItem: totalRows
     });
   };
-
   const _renderHeader = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].rowId].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].rowId].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].bonusCode].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].bonusCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].username].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].username].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].currency].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].currency].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].registeredDateDisplay].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].registeredDateDisplay].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].signupUrl].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].signupUrl].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].affCode].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].affCode].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].isDeposit].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].isDeposit].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].firstDepositAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].firstDepositAmount].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].totalDepositAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].totalDepositAmount].name));
   };
-
   const _renderBody = () => {
     const {
       dataList
@@ -1817,7 +1661,6 @@ const NewlyRegisterUsersDetailWidget = ({
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].rowId].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].rowId], " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].bonusCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].bonusCode] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].username].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].username]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].currency].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].currency]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].registeredDateDisplay].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].registeredDateDisplay]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].signupUrl].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].signupUrl] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].affCode].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].affCode]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].isDeposit].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].isDeposit] ? _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Yes') : _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('No')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].firstDepositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].firstDepositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].totalDepositAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailNRUGridColumns"].totalDepositAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"]))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Details'),
     isLoading: isLoading
@@ -1837,7 +1680,6 @@ const NewlyRegisterUsersDetailWidget = ({
     shouldResetScrollPosition: isLoading
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersDetailWidget));
 
 /***/ }),
@@ -1863,15 +1705,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 /* harmony import */ var _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../libs/helpers/numberHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/numberHelper.js");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
 
@@ -1907,7 +1746,6 @@ const NewlyRegisterUsersSummaryWidget = ({
       setLoading(false);
     });
   }, [reportDate, compareDate]);
-
   const _renderTotalData = () => {
     const {
       totalData
@@ -1936,7 +1774,6 @@ const NewlyRegisterUsersSummaryWidget = ({
       containerPadding: 70
     }));
   };
-
   const _renderBonusData = () => {
     const {
       campaignData
@@ -1959,14 +1796,11 @@ const NewlyRegisterUsersSummaryWidget = ({
       containerPadding: 70
     }));
   };
-
   const _onDrillDownSignupData = newSignupData => {
     const newSummaryData = _objectSpread({}, summaryData);
-
     newSummaryData.signupData = newSignupData;
     setSummaryData(newSummaryData);
   };
-
   const _renderSignupData = () => {
     const {
       signupData,
@@ -2003,22 +1837,19 @@ const NewlyRegisterUsersSummaryWidget = ({
       containerPadding: 70
     }));
   };
-
   const _renderGroupSignupCell = (item, signupData) => {
     const isChild = !item.noGrouping && (!item.childs || !item.childs.length);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_GroupCell__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_GroupCell__WEBPACK_IMPORTED_MODULE_6__["default"], {
       displayText: item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["SignupNRUGridColumns"].url] || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('None'),
       rowData: item,
       dataList: signupData,
       fieldKey: _constants_gridConst__WEBPACK_IMPORTED_MODULE_9__["SignupNRUGridColumns"].url,
       allowedDrillDown: !item.noGrouping && item.childs && item.childs.length > 0,
       isChild: isChild,
-      onDrillDown: _onDrillDownSignupData
-    }, {
+      onDrillDown: _onDrillDownSignupData,
       className: 'left-align' + (isChild ? '' : ' highlight-cell')
-    }));
+    });
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Summary'),
     isLoading: isLoading
@@ -2026,7 +1857,6 @@ const NewlyRegisterUsersSummaryWidget = ({
     className: "summary-container"
   }, _renderTotalData(), _renderSignupData(), _renderBonusData()));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NewlyRegisterUsersSummaryWidget));
 
 /***/ }),
@@ -2055,7 +1885,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const WithdrawalAmountDetail = ({
   reportDate,
   compareDate,
@@ -2065,7 +1894,6 @@ const WithdrawalAmountDetail = ({
   allowedCompare
 }) => {
   const [sortInfoDetailWidget, setSortInfoDetailWidget] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_constants_gridConst__WEBPACK_IMPORTED_MODULE_6__["DefaultSortInfo"]);
-
   const handleExportExcel = () => {
     const exportParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_2__["default"].getWithdrawalAmountExportAPIParams({
       reportDate,
@@ -2078,7 +1906,6 @@ const WithdrawalAmountDetail = ({
     });
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_3__["default"].exportWithdrawalAmountData(exportParams);
   };
-
   const _renderCaption = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "highlight-detail-title"
@@ -2092,7 +1919,6 @@ const WithdrawalAmountDetail = ({
       title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ExportToExcel')
     }))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "highlight-detail"
   }, _renderCaption(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2113,7 +1939,6 @@ const WithdrawalAmountDetail = ({
     selectedBrand: selectedBrand
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetail));
 ;
 
@@ -2138,13 +1963,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -2174,13 +1997,11 @@ const WithdrawalAmountDetailWidget = ({
       pagingOption,
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(null, null, data.totalRows);
       setPagingOption(newPagingOption);
     });
   }, [reportDate]);
-
   const _fetchData = (params, before, after) => {
     _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__["default"].fetchWithdrawalAmountDetailData(params, () => {
       before && before();
@@ -2191,7 +2012,6 @@ const WithdrawalAmountDetailWidget = ({
       setLoading(false);
     });
   };
-
   const _handleSort = (sortBy, sortType) => {
     const sortInfo = {
       sortbyId: sortBy,
@@ -2205,15 +2025,12 @@ const WithdrawalAmountDetailWidget = ({
       pagingOption,
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(null, null, data.totalRows);
       setPagingOption(newPagingOption);
     });
-
     onSort && onSort(sortInfo);
   };
-
   const _handlePaging = (pageIndex, pageSize) => {
     const apiParams = _libs_services_dataService__WEBPACK_IMPORTED_MODULE_4__["default"].getWithdrawalAmountDetailAPIParams({
       reportDate,
@@ -2226,13 +2043,11 @@ const WithdrawalAmountDetailWidget = ({
       },
       sortInfo
     });
-
     _fetchData(apiParams, null, data => {
       const newPagingOption = getNewPagingOption(pageIndex, pageSize, data.totalRows);
       setPagingOption(newPagingOption);
     });
   };
-
   const getNewPagingOption = (pageIndex, pageSize, totalRows) => {
     return _objectSpread(_objectSpread(_objectSpread({}, pagingOption), sortInfo), {
       PageIndex: pageIndex || pagingOption.PageIndex,
@@ -2240,13 +2055,11 @@ const WithdrawalAmountDetailWidget = ({
       TotalItem: totalRows
     });
   };
-
   const _renderHeader = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].rowId].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].rowId].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].username].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].username].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].currency].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].currency].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].registeredDateDisplay].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].registeredDateDisplay].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].numberOfWithdrawals].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].numberOfWithdrawals].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].withdrawalAmount].attributes, _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].withdrawalAmount].name));
   };
-
   const _renderBody = () => {
     const {
       dataList
@@ -2255,7 +2068,6 @@ const WithdrawalAmountDetailWidget = ({
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].rowId].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].rowId], " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].username].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].username]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].currency].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].currency]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].registeredDateDisplay].attributes, item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].registeredDateDisplay]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].numberOfWithdrawals].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].numberOfWithdrawals], 0)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetaiWithdrawalAmountGridConfig"][_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].withdrawalAmount].attributes, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].format(item[_constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DetailWithdrawalAmountGridColumns"].withdrawalAmount], _constants_gridConst__WEBPACK_IMPORTED_MODULE_7__["DigitsAmount"]))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Details'),
     isLoading: isLoading
@@ -2274,7 +2086,6 @@ const WithdrawalAmountDetailWidget = ({
     shouldResetScrollPosition: isLoading
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountDetailWidget));
 
 /***/ }),
@@ -2299,7 +2110,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_services_queryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../libs/services/queryService */ "./www/js/source/reactpages/pages/report/marketing/libs/services/queryService.js");
 /* harmony import */ var _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../libs/helpers/numberHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/numberHelper.js");
 /* harmony import */ var _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../constants/gridConst */ "./www/js/source/reactpages/pages/report/marketing/constants/gridConst.js");
-
 
 
 
@@ -2334,13 +2144,11 @@ const WithdrawalAmountSummaryWidget = ({
       setLoading(false);
     });
   }, [reportDate, compareDate]);
-
   const _header = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderRow"], {
       style: _constants_gridConst__WEBPACK_IMPORTED_MODULE_8__["StyleRow"]
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ReportDate')), allowedCompare && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CompareDate')), allowedCompare && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["HeaderCell"], null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('ChangePercent')));
   }, []);
-
   const _renderTotalAmountRow = () => {
     const roundRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(summaryData.withdrawalAmountChangeRate, 0);
     const displayRate = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__["default"].displayRate(roundRate);
@@ -2357,7 +2165,6 @@ const WithdrawalAmountSummaryWidget = ({
       className: `right-align ${colorRate}`
     }, displayRate));
   };
-
   const _renderTotalUsersRow = () => {
     const roundRate = _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].round(summaryData.withdrawalUsersChangeRate, 0);
     const displayRate = _libs_helpers_numberHelper__WEBPACK_IMPORTED_MODULE_7__["default"].displayRate(roundRate);
@@ -2374,12 +2181,9 @@ const WithdrawalAmountSummaryWidget = ({
       className: `right-align ${colorRate}`
     }, displayRate));
   };
-
   const _renderTotalData = () => {
     const totalAmountRow = _renderTotalAmountRow();
-
     const totalUsersRow = _renderTotalUsersRow();
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "summary-table"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Table"], {
@@ -2392,7 +2196,6 @@ const WithdrawalAmountSummaryWidget = ({
       containerPadding: 70
     }));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Widget__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Summary'),
     isLoading: isLoading
@@ -2400,7 +2203,6 @@ const WithdrawalAmountSummaryWidget = ({
     className: "summary-container"
   }, _renderTotalData()));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(WithdrawalAmountSummaryWidget));
 
 /***/ }),
@@ -2424,10 +2226,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DepositAmount_DepositAmountDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./DepositAmount/DepositAmountDetail */ "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/DepositAmount/DepositAmountDetail.jsx");
 /* harmony import */ var _libs_helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../libs/helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
 /* harmony import */ var _constants_chartConst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../constants/chartConst */ "./www/js/source/reactpages/pages/report/marketing/constants/chartConst.js");
+const _excluded = ["selectedBox"];
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
 
 
 
@@ -2452,36 +2253,28 @@ const initState = {
   },
   allowedCompare: params.allowedCompare
 };
-
-const DetailPopup = (_ref) => {
+const DetailPopup = _ref => {
   let {
-    selectedBox
-  } = _ref,
-      rest = _objectWithoutProperties(_ref, ["selectedBox"]);
-
+      selectedBox
+    } = _ref,
+    rest = _objectWithoutProperties(_ref, _excluded);
   const _render = () => {
     if (selectedBox === _constants_chartConst__WEBPACK_IMPORTED_MODULE_7__["PerformanceHighlightDetailBoxKeys"].NewlyRegisteredUsers) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NRU_NewlyRegisterUsersDetail__WEBPACK_IMPORTED_MODULE_2__["default"], rest);
     }
-
     if (selectedBox === _constants_chartConst__WEBPACK_IMPORTED_MODULE_7__["PerformanceHighlightDetailBoxKeys"].WithdrawalAmount) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WithdrawalAmount_WithdrawalAmountDetail__WEBPACK_IMPORTED_MODULE_3__["default"], rest);
     }
-
     if (selectedBox === _constants_chartConst__WEBPACK_IMPORTED_MODULE_7__["PerformanceHighlightDetailBoxKeys"].BonusClaimed) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BonusClaimed_BonusClaimedDetail__WEBPACK_IMPORTED_MODULE_4__["default"], rest);
     }
-
     if (selectedBox === _constants_chartConst__WEBPACK_IMPORTED_MODULE_7__["PerformanceHighlightDetailBoxKeys"].DepositAmount) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DepositAmount_DepositAmountDetail__WEBPACK_IMPORTED_MODULE_5__["default"], rest);
     }
-
     return null;
   };
-
   return _render();
 };
-
 Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DetailPopup, initState), document.getElementById("app-container"));
 
 /***/ }),
@@ -3115,8 +2908,9 @@ const successResponse = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DateTimeHelper; });
 /* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 let today = null;
 class DateTimeHelper {
@@ -3124,46 +2918,38 @@ class DateTimeHelper {
     if (today) {
       return today;
     }
-
     today = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].today ? new Date(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].today) : new Date();
     return today;
   }
-
 }
-
 _defineProperty(DateTimeHelper, "getDiffDays", (date1, date2) => {
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   return diffDays;
 });
-
 _defineProperty(DateTimeHelper, "getDiffDaysOfDateStructure", (dateStructure1, dateStructure2) => {
   const dateObject1 = DateTimeHelper.convertToDateObject(dateStructure1);
   const dateObject2 = DateTimeHelper.convertToDateObject(dateStructure2);
   const diffDays = DateTimeHelper.getDiffDays(dateObject1, dateObject2);
   return diffDays;
 });
-
 _defineProperty(DateTimeHelper, "addDays", (date, numberOfDays) => {
   const cloneDate = new Date(date);
   const newDate = new Date(cloneDate.setDate(cloneDate.getDate() + numberOfDays));
   ;
   return newDate;
 });
-
 _defineProperty(DateTimeHelper, "addYears", (date, numberOfYears) => {
   const cloneDate = new Date(date);
   const newDate = new Date(cloneDate.setFullYear(cloneDate.getFullYear() + numberOfYears));
   ;
   return newDate;
 });
-
 _defineProperty(DateTimeHelper, "formatDateRangeToString", (fromDate, toDate) => {
   const displayFromDate = DateTimeHelper.formatDateStructureToString(fromDate);
   const displayToDate = DateTimeHelper.formatDateStructureToString(toDate);
   return `${displayFromDate} - ${displayToDate}`;
 });
-
 _defineProperty(DateTimeHelper, "formatDateStructureToString", ({
   year,
   month,
@@ -3171,7 +2957,6 @@ _defineProperty(DateTimeHelper, "formatDateStructureToString", ({
 }) => {
   return `${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}/${year}`;
 });
-
 _defineProperty(DateTimeHelper, "convertToDateStructure", dateObject => {
   return {
     year: dateObject.getFullYear(),
@@ -3179,7 +2964,6 @@ _defineProperty(DateTimeHelper, "convertToDateStructure", dateObject => {
     day: dateObject.getDate()
   };
 });
-
 _defineProperty(DateTimeHelper, "convertToDateObject", dateStructure => {
   const {
     year,
@@ -3188,17 +2972,14 @@ _defineProperty(DateTimeHelper, "convertToDateObject", dateStructure => {
   } = dateStructure;
   return new Date(year, month - 1, day);
 });
-
 _defineProperty(DateTimeHelper, "isEqualDate", (date1, date2) => {
   return date1.year === date2.year && date1.month === date2.month && date1.day === date2.day;
 });
-
 _defineProperty(DateTimeHelper, "getYesterdayDateStructure", () => {
   const yesterday = DateTimeHelper.addDays(DateTimeHelper.getToday(), -1);
   const yesterdayObject = DateTimeHelper.convertToDateStructure(yesterday);
   return yesterdayObject;
 });
-
 _defineProperty(DateTimeHelper, "getTodayDateStructure", () => {
   const today = DateTimeHelper.getToday();
   const todayObject = DateTimeHelper.convertToDateStructure(today);
@@ -3218,21 +2999,19 @@ _defineProperty(DateTimeHelper, "getTodayDateStructure", () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NumberHelper; });
 /* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 class NumberHelper {
   static displayRate(rate) {
     return `${rate > 0 ? '+' : ''}${_jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_0__["default"].format(rate)}%`;
   }
-
 }
-
 _defineProperty(NumberHelper, "getColorRate", rate => {
   if (rate === 0) {
     return '';
   }
-
   return rate > 0 ? 'green-color' : 'red-color';
 });
 
@@ -3250,20 +3029,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DataService; });
 /* harmony import */ var _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/dateTimeHelper */ "./www/js/source/reactpages/pages/report/marketing/libs/helpers/dateTimeHelper.js");
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+const _excluded = ["baseCurrency"],
+  _excluded2 = ["reportDate", "selectedBrand", "selectedCurrency", "pagingOption", "sortInfo"],
+  _excluded3 = ["baseCurrency", "sortInfo", "allowedCompare"];
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class DataService {}
-
 _defineProperty(DataService, "getCommonAPIParams", ({
   selectedBrand,
   selectedCurrency,
@@ -3277,7 +3055,6 @@ _defineProperty(DataService, "getCommonAPIParams", ({
   };
   return params;
 });
-
 _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
   selectedBrand,
   selectedCurrency,
@@ -3291,74 +3068,59 @@ _defineProperty(DataService, "getPerformanceHighlightAPIParams", ({
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread({}, commonParams), {
     compareFromDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.fromDate),
     compareToDate: _helpers_dateTimeHelper__WEBPACK_IMPORTED_MODULE_0__["default"].formatDateStructureToString(compareDate.toDate),
     baseCurrency: selectedBaseCurrency,
     fromLastXDays
   });
-
   return params;
 });
-
-_defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", (_ref) => {
+_defineProperty(DataService, "getPerformanceHighlightPopupSummaryAPIParams", _ref => {
   let {
-    baseCurrency
-  } = _ref,
-      rest = _objectWithoutProperties(_ref, ["baseCurrency"]);
-
+      baseCurrency
+    } = _ref,
+    rest = _objectWithoutProperties(_ref, _excluded);
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
-
   const params = _objectSpread(_objectSpread({}, commonParams), {}, {
     baseCurrency
   });
-
   return params;
 });
-
-_defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", (_ref2) => {
+_defineProperty(DataService, "getPerformanceHighlightPopupDetailAPIParams", _ref2 => {
   let {
-    reportDate,
-    selectedBrand,
-    selectedCurrency,
-    pagingOption,
-    sortInfo
-  } = _ref2,
-      rest = _objectWithoutProperties(_ref2, ["reportDate", "selectedBrand", "selectedCurrency", "pagingOption", "sortInfo"]);
-
+      reportDate,
+      selectedBrand,
+      selectedCurrency,
+      pagingOption,
+      sortInfo
+    } = _ref2,
+    rest = _objectWithoutProperties(_ref2, _excluded2);
   const commonParams = DataService.getCommonAPIParams({
     selectedBrand,
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, commonParams), sortInfo), {
     pageIndex: pagingOption.PageIndex,
     pageSize: pagingOption.PageSize
   }), rest);
-
   return params;
 });
-
-_defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", (_ref3) => {
+_defineProperty(DataService, "getPerformanceHighlightPopupExportAPIParams", _ref3 => {
   let {
-    baseCurrency,
-    sortInfo,
-    allowedCompare
-  } = _ref3,
-      rest = _objectWithoutProperties(_ref3, ["baseCurrency", "sortInfo", "allowedCompare"]);
-
+      baseCurrency,
+      sortInfo,
+      allowedCompare
+    } = _ref3,
+    rest = _objectWithoutProperties(_ref3, _excluded3);
   const commonParams = DataService.getPerformanceHighlightAPIParams(rest);
-
   const params = _objectSpread(_objectSpread(_objectSpread({}, commonParams), sortInfo), {}, {
     baseCurrency,
     allowedCompare
   });
-
   return params;
 });
-
 _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
   selectedBrand,
   selectedCurrency,
@@ -3372,76 +3134,61 @@ _defineProperty(DataService, "getPerformanceHighlightExportAPIParams", ({
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread({}, commonParams), {}, {
     fromLastXDays,
     baseCurrency: selectedBaseCurrency,
     currencyNameList
   });
-
   return params;
 });
-
 _defineProperty(DataService, "getNewlyRegisterUsersSummaryAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getNewlyRegisterUsersDetailAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getNewlyRegisterUsersExportAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getWithdrawalAmountSummaryAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getWithdrawalAmountDetailAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getWithdrawalAmountExportAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getBonusClaimedSummaryAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getBonusClaimedDetailAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getBonusClaimedExportAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getDepositAmountSummaryAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupSummaryAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getDepositAmountDetailAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupDetailAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getDepositAmountExportAPIParams", filterData => {
   const params = DataService.getPerformanceHighlightPopupExportAPIParams(filterData);
   return params;
 });
-
 _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
   const {
     selectedBrand,
@@ -3454,14 +3201,11 @@ _defineProperty(DataService, "getUserActivitiesAPIParams", filterData => {
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread({}, commonParams), {
     viewMode
   });
-
   return params;
 });
-
 _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
   const {
     selectedBrand,
@@ -3475,15 +3219,12 @@ _defineProperty(DataService, "getAvgRevenueAPIParams", filterData => {
     selectedCurrency,
     reportDate
   });
-
   const params = _objectSpread(_objectSpread({}, commonParams), {
     productIds: products,
     baseCurrency: selectedBaseCurrency
   });
-
   return params;
 });
-
 _defineProperty(DataService, "filterDataWithSelectedProducts", (avgRevenueData, products) => {
   const selectedProducts = products.split(',');
   const dicSelectedProducts = selectedProducts.reduce((prevValue, currentValue) => _objectSpread(_objectSpread({}, prevValue), {}, {
@@ -3508,161 +3249,134 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/DataService */ "./www/js/source/reactpages/lib/DataService.js");
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/queryConst */ "./www/js/source/reactpages/pages/report/marketing/constants/queryConst.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
 class QueryService {
   /* detail popup*/
+
   static async exportNewlyRegisterUsersData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].newlyRegisterUsers);
     }
-
     ;
   }
-
   static async exportWithdrawalAmountData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].withdrawalAmount);
     }
-
     ;
   }
-
   static async exportBonusClaimedData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].bonusClaimed);
     }
-
     ;
   }
-
   static async exportDepositAmountData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].depositAmount);
     }
-
     ;
   }
-  /* end detail popup*/
 
+  /* end detail popup*/
 
   static async exportPerformanceHighlightData(params) {
     const response = await _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportFile(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlightExport, params);
     const noContentStatusCode = 204;
-
     if (response.status === noContentStatusCode) {
       alert(LangHelper.getSingleResource("NoInfo"));
     } else {
       _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].downloadFile(response.data, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["FileNameExport"].performanceHighlight);
     }
-
     ;
   }
-
 }
-
 _defineProperty(QueryService, "fetchPerformanceHighlightData", async params => {
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].performanceHighlight, params));
   return data;
 });
-
 _defineProperty(QueryService, "fetchUserActivitiesData", async params => {
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].userActivities, params));
   return data;
 });
-
 _defineProperty(QueryService, "fetchAvgRevenueData", async params => {
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].avgRevenue, params));
   return data;
 });
-
 _defineProperty(QueryService, "fetchNewlyRegisterUsersSummaryData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersSummary, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchNewlyRegisterUsersDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].newlyRegisterUsersDetail, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchWithdrawalAmountSummaryData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountSummary, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchWithdrawalAmountDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].withdrawalAmountDetail, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchBonusClaimedSummaryData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedSummary, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchBonusClaimedDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusClaimedDetail, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchDepositAmountSummaryData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountSummary, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchDepositAmountDetailData", async (params, before, after) => {
   before && before();
   var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].postReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].depositAmountDetail, params));
   after && after(data);
   return data;
 });
-
 _defineProperty(QueryService, "fetchData", async apiCall => {
   try {
     const response = await apiCall();
-
     if (response.status === 200) {
       return _objectSpread(_objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["successResponse"]), {
         data: response.data
@@ -3671,7 +3385,6 @@ _defineProperty(QueryService, "fetchData", async apiCall => {
   } catch (e) {
     console.log(e);
   }
-
   return _objectSpread({}, _constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["errorResponse"]);
 });
 

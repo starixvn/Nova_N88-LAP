@@ -173,7 +173,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const getData = param => dispatch => {
   const url = _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_3__["default"].resolveClientUrl('PlayerWinLoss/Index');
   dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_1__["toggleLoader"])(true));
@@ -186,14 +185,12 @@ const getData = param => dispatch => {
     dispatch(Object(_jsroot_actions_loaderAction__WEBPACK_IMPORTED_MODULE_1__["toggleLoader"])(false));
   });
 };
-
 const setGridData = data => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_GRID_DATA"],
     data
   };
 };
-
 const ActionCreators = Object.assign({}, {
   getData
 });
@@ -246,13 +243,11 @@ const AppContainer = props => {
     content: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].reportTitle
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DataGrid__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
-
 function mapStateToProps(state) {
   return Object.assign({}, {
     isLoading: state.isLoading
   });
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(AppContainer));
 
 /***/ }),
@@ -277,14 +272,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_gridHelper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lib/gridHelper */ "./www/js/source/reactpages/Module/PlayerAdmin/playerwinloss/lib/gridHelper.js");
 /* harmony import */ var _GridRow__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GridRow */ "./www/js/source/reactpages/Module/PlayerAdmin/playerwinloss/components/GridRow.jsx");
 /* harmony import */ var _jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -303,21 +296,16 @@ const DataGrid = props => {
   } = props;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const param = _objectSpread({}, requestParam);
-
     getData(param);
   }, []);
-
   if (!gridData) {
     return null;
   }
-
   if (gridData.length === 0) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_7__["default"], null);
   }
-
   const renderBodyData = () => {
     const dataRows = [];
-
     for (let i = 0; i < gridData.length; i++) {
       const dataRow = gridData[i];
       const rowProps = {
@@ -330,10 +318,8 @@ const DataGrid = props => {
         key: i
       }, rowProps)));
     }
-
     return dataRows;
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__["Table"], {
     minWidth: 650,
     autoWidth: true,
@@ -343,7 +329,6 @@ const DataGrid = props => {
     containerPadding: 30
   });
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     getData
@@ -352,7 +337,6 @@ function mapDispatchToProps(dispatch) {
     getData
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     requestParam,
@@ -367,7 +351,6 @@ function mapStateToProps(state) {
     isAllowedBA
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(DataGrid));
 
@@ -453,13 +436,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _AppContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AppContainer */ "./www/js/source/reactpages/Module/PlayerAdmin/playerwinloss/components/AppContainer.jsx");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -467,15 +448,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 const defaultState = _objectSpread({}, window.initialState);
-
 const store = _lib_store__WEBPACK_IMPORTED_MODULE_3__["default"].createStore(_reducers_index_js__WEBPACK_IMPORTED_MODULE_2__["default"], defaultState);
-
 const App = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__["Provider"], {
     store: store
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContainer__WEBPACK_IMPORTED_MODULE_5__["default"], null));
 };
-
 Object(react_dom__WEBPACK_IMPORTED_MODULE_4__["render"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById("app-container"));
 
 /***/ }),
@@ -561,7 +539,6 @@ const buildHeader = (hasCustomerComm, isAllowedBA) => {
     rowSpan: rowSpan,
     colWidth: 80
   }, headerText.AmtDueToBA))];
-
   if (hasCustomerComm) {
     gridHeader.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
       key: "thead2",
@@ -576,7 +553,6 @@ const buildHeader = (hasCustomerComm, isAllowedBA) => {
       colWidth: 80
     }, headerText.Total)));
   }
-
   return gridHeader;
 };
 
@@ -593,12 +569,11 @@ const buildHeader = (hasCustomerComm, isAllowedBA) => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateHeaderText", function() { return generateHeaderText; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerwinloss/lib/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 const generateHeaderText = hasCustomerComm => {
   const winLossColumn = hasCustomerComm ? _constants__WEBPACK_IMPORTED_MODULE_0__["winLossText"] : _constants__WEBPACK_IMPORTED_MODULE_0__["headerText"].CustomerWinLoss;
@@ -630,7 +605,6 @@ const gridData = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0_
   [_actions_types__WEBPACK_IMPORTED_MODULE_2__["SET_GRID_DATA"]](preState, action) {
     return [...action.data];
   }
-
 });
 const requestParam = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, {});
 const hasCustomerComm = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(false, {});
@@ -704,56 +678,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BONUS_CODE", function() { return SET_SELECTED_BONUS_CODE; });
 const FETCH_DATA = 'FETCH_DATA';
 const SET_GRID_DATA = "SET_GRID_DATA";
+
 /* Product */
-
 const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
+
 /* Brand */
-
 const SET_SELECTED_BRAND = "SET_SELECTED_BRAND";
-/* Base Currency */
 
+/* Base Currency */
 const SET_SELECTED_BASECURRENCY = "SET_SELECTED_BASECURRENCY";
 const SET_BASECURRENCY_LIST = "SET_BASECURRENCY_LIST";
+
 /* Currency */
-
 const SET_SELECTED_CURRENCY = "SET_SELECTED_CURRENCY";
+
 /* Loader */
-
 const TOGGLE_LOADER = "TOGGLE_LOADER";
+
 /* Exclude Test Data */
-
 const CHANGE_IS_EXCLUDE_TEST = "CHANGE_IS_EXCLUDE_TEST";
+
 /* User mini guide */
-
 const USER_GUIDE_CONTENT = "USER_GUIDE_CONTENT;";
-/* Date range */
 
+/* Date range */
 const SET_DATE_RANGE = 'SET_DATE_RANGE';
 const GET_DATE_CONSTRAINT = 'GET_DATE_CONSTRAINT';
+
 /* Convert all figures to base currency */
-
 const CHANGE_IS_CONVERT_ALL = "CHANGE_IS_CONVERT_ALL";
+
 /* Status */
-
 const SET_SELECTED_STATUS = "SET_SELECTED_STATUS";
+
 /* Platform  */
-
 const SET_SELECTED_PLATFORM = "SET_SELECTED_PLATFORM";
-/* Live Status  */
 
+/* Live Status  */
 const SET_SELECTED_LIVESTATUS = "SET_SELECTED_LIVESTATUS";
 const SET_USERNAME = "SET_USERNAME";
 const SET_REQUEST_PARAM = "SET_REQUEST_PARAM";
 const SET_REPORT_TITLE = "SET_REPORT_TITLE";
-/* Live Status  */
 
+/* Live Status  */
 const SET_PAGING_OPTION = 'SET_PAGING_OPTION';
 const SET_SORT_OPTION = 'SET_SORT_OPTION';
+
 /* Setting Data */
-
 const SET_SETTING_DATA = 'SET_SETTING_DATA';
-/* Bonus */
 
+/* Bonus */
 const SET_BONUS_NAME = "SET_BONUS_NAME";
 const SET_SELECTED_BONUS_TYPE = "SET_BONUS_TYPE";
 const SET_SELECTED_BONUS_STATUS = "SET_BONUS_STATUS";
@@ -775,7 +749,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
 const Loader = ({
   isLoading
 }) => {
@@ -790,7 +763,6 @@ const Loader = ({
     className: "loader-inner ball-beat"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (Loader);
 
 /***/ }),
@@ -809,7 +781,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
 
-
 const NoDataTitle = ({
   title
 }) => {
@@ -820,7 +791,6 @@ const NoDataTitle = ({
     }
   });
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (NoDataTitle);
 
 /***/ }),
@@ -838,22 +808,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["content", "tag"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
-
-
-const ReportTitle = (_ref) => {
+const ReportTitle = _ref => {
   let {
-    content,
-    tag
-  } = _ref,
-      attrs = _objectWithoutProperties(_ref, ["content", "tag"]);
-
+      content,
+      tag
+    } = _ref,
+    attrs = _objectWithoutProperties(_ref, _excluded);
   const Tag = tag;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "report-title-container"
@@ -861,7 +827,6 @@ const ReportTitle = (_ref) => {
     className: "report-title"
   }, attrs), content));
 };
-
 const propTypes = {
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   content: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any
@@ -909,14 +874,12 @@ class AppLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "container",
       className: `container-fluid ${this.props.className || ''}`
     }, this.props.children);
   }
-
 }
 
 /***/ }),
@@ -948,8 +911,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -959,7 +923,6 @@ class DataService {
     const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
     return proxyUrl;
   }
-
   static getData(url, params) {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__["default"].setParams(url, params);
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
@@ -969,7 +932,6 @@ class DataService {
       }
     });
   }
-
   static postData(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       headers: {
@@ -978,7 +940,6 @@ class DataService {
       }
     });
   }
-
   static getFile(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       responseType: 'blob',
@@ -988,44 +949,34 @@ class DataService {
       }
     });
   }
-
   static postProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.postData(proxyUrl, params);
   }
-
   static postReportData(url, params) {
     return this.postProxyData(this.apiKeys.report, url, params);
   }
-
   static postBetListData(url, params) {
     return this.postProxyData(this.apiKeys.betlist, url, params);
   }
-
   static getProxyFile(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getFile(proxyUrl, params);
   }
-
   static getReportFile(url, params) {
     return this.getProxyFile(this.apiKeys.report, url, params);
   }
-
   static getBetListFile(url, params) {
     return this.getProxyFile(this.apiKeys.betlist, url, params);
   }
-
   static getProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getData(proxyUrl, params);
   }
-
   static getReportData(url, params) {
     return this.getProxyData(this.apiKeys.report, url, params);
   }
-
 }
-
 _defineProperty(DataService, "apiKeys", {
   report: 'reportApi',
   betlist: 'betlistApi'
@@ -1047,10 +998,8 @@ class QueryString {
   static _parseQueryString(queryString) {
     let args = queryString.split('&');
     let argsList = {};
-
     for (let i = 0; i < args.length; i++) {
       let arg = unescape(args[i]);
-
       if (arg.length > 0) {
         if (arg.indexOf('=') === -1) {
           argsList[arg.toLowerCase().trim()] = null;
@@ -1060,84 +1009,66 @@ class QueryString {
         }
       }
     }
-
     return argsList;
   }
-
   static _getQueryString(url) {
     var index = url.indexOf("?");
     return index < 0 ? "" : url.substring(index + 1, url.length);
   }
-
   static _getRawUrl(url) {
     var index = url.indexOf("?");
     return index < 0 ? url : url.substring(0, index);
   }
-
   static setParam(url, name, value) {
     var rawUrl = QueryString._getRawUrl(url);
-
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     if (!name) {
       return url;
-    } // Update value
+    }
 
-
+    // Update value
     var found = false;
-
     for (var key in args) {
       if (key && key.toLowerCase() === name.toLowerCase()) {
         // Does not update data if value = undefined
         if (value !== undefined) {
           args[key] = value;
         }
-
         found = true;
       }
     }
-
     if (!found) {
       args[name.toLowerCase()] = value;
     }
+    var queryArray = [];
 
-    var queryArray = []; // Rebuild query string, ignore null value
-
+    // Rebuild query string, ignore null value
     for (var key1 in args) {
       if (args[key1] != null && args[key1] !== undefined) {
         queryArray.push(key1.toLowerCase() + "=" + args[key1]);
       }
     }
-
     return rawUrl + "?" + queryArray.join("&");
   }
-
   static setParams(url, parameters) {
     for (var property in parameters) {
       if (parameters.hasOwnProperty(property)) {
         url = QueryString.setParam(url, property, parameters[property]);
       }
     }
-
     return url;
   }
-
   static getParam(url, name) {
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     for (var key in args) {
       if (key != null && key.toLowerCase() === name.toLowerCase()) {
         return args[key];
       }
     }
-
     return null;
   }
-
 }
 
 /***/ }),
@@ -1181,17 +1112,14 @@ class LangHelper {
   static get currentLanguage() {
     return langCode;
   }
-
   static getSingleResource(key) {
     var langHandler = window[resourceName];
     return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
   }
-
   static getResources(keys) {
     var langHandler = window[resourceName];
     return keys.map(key => langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key);
   }
-
 }
 
 /***/ }),
@@ -1212,8 +1140,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const isDev = "development" === "development";
-const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name; // middleware that logs actions
-
+const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name;
+// middleware that logs actions
 const loggerMiddleware = Object(redux_logger__WEBPACK_IMPORTED_MODULE_0__["createLogger"])({
   predicate: (getState, action) => isDev || window[configName] && window[configName].env === _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].env && (!window[configName].actionFilter || window[configName].actionFilter === action.type)
 });
@@ -1221,7 +1149,6 @@ class Logger {
   static getLoggerMiddleware() {
     return loggerMiddleware;
   }
-
 }
 
 /***/ }),
@@ -1240,31 +1167,25 @@ class NumberFormat {
   static formatDecimal(value) {
     return this.format(value, 2);
   }
-
   static format(value, digits = 0) {
     if (!this.isNumber(value)) {
       return "";
     }
-
     const roundedValue = this.round(value, digits);
     return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
   static round(value, digits) {
     const sign = value < 0 ? -1 : 1;
     const absoluteValue = Math.abs(value);
     const rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
     return sign * rounded;
   }
-
   static isNumber(value) {
     return typeof value !== "number" || isNaN(value) ? false : true;
   }
-
   static parseToString(number) {
     return number.toString().replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
 }
 
 /***/ }),
@@ -1280,41 +1201,32 @@ class NumberFormat {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Site; });
 const _rootUrl = window.rootUrl || "/";
-
 let _xsrfToken = null;
 class Site {
   static getXsrfToken() {
     if (!_xsrfToken) {
       _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
     }
-
     return _xsrfToken;
   }
-
   static resolveClientUrl(relativeUrl) {
     return _rootUrl + relativeUrl;
   }
-
   static convertDateToString(date) {
     return typeof date === "string" ? date : date.format("MM/DD/YYYY");
   }
-
   static isEmptyObject(obj = {}) {
     return Object.entries(obj).length === 0 && obj.constructor === Object;
   }
-
   static asNull(text) {
     if (text != null) {
       text = text.trim();
-
       if (text === '') {
         return null;
       }
     }
-
     return text;
   }
-
   static downloadFile(data, fileName) {
     const url = window.URL.createObjectURL(new Blob([data]));
     const link = document.createElement('a');
@@ -1325,21 +1237,16 @@ class Site {
     link.parentNode.removeChild(link);
     window.URL.revokeObjectURL(url);
   }
-
   static readAsJson(blob, callback) {
     const reader = new FileReader();
-
     reader.onload = function () {
       callback && callback(JSON.parse(reader.result));
     };
-
     reader.readAsText(blob);
   }
-
   static getRootUrl() {
     return _rootUrl;
   }
-
 }
 
 /***/ }),
@@ -1363,11 +1270,11 @@ __webpack_require__.r(__webpack_exports__);
 class Store {
   static createStore(reducer, initialState) {
     const loggerMiddleware = _logger__WEBPACK_IMPORTED_MODULE_2__["default"].getLoggerMiddleware();
-    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], // lets us dispatch() functions
+    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"],
+    // lets us dispatch() functions
     loggerMiddleware));
     return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, initialState, enhancer);
   }
-
 }
 
 /***/ }),
@@ -1390,7 +1297,6 @@ const isLoading = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["def
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["TOGGLE_LOADER"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ })

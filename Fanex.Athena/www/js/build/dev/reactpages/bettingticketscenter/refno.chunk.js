@@ -226,13 +226,11 @@ __webpack_require__.r(__webpack_exports__);
 function getGridData(url, params, apiKey) {
   return async dispatch => {
     let apiCaller = null;
-
     if (apiKey) {
       apiCaller = _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_1__["default"].postProxyData(apiKey, url, params);
     } else {
       apiCaller = _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_1__["default"].postData(url, params);
     }
-
     try {
       var response = await apiCaller;
       response.data.timestamp = new Date().getTime();
@@ -243,19 +241,16 @@ function getGridData(url, params, apiKey) {
     }
   };
 }
-
 const handleError = error => {
   switch (error.response.status) {
     case 403:
       window.location.href = _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].resolveClientUrl('Utility/AccessDenied');
       break;
-
     default:
       alert("Sorry, an error occurred while processing your request.");
       break;
   }
 };
-
 function setGridData(data) {
   return {
     type: _jsroot_actions_types_js__WEBPACK_IMPORTED_MODULE_0__["SET_GRID_DATA"],
@@ -367,56 +362,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BONUS_CODE", function() { return SET_SELECTED_BONUS_CODE; });
 const FETCH_DATA = 'FETCH_DATA';
 const SET_GRID_DATA = "SET_GRID_DATA";
+
 /* Product */
-
 const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
+
 /* Brand */
-
 const SET_SELECTED_BRAND = "SET_SELECTED_BRAND";
-/* Base Currency */
 
+/* Base Currency */
 const SET_SELECTED_BASECURRENCY = "SET_SELECTED_BASECURRENCY";
 const SET_BASECURRENCY_LIST = "SET_BASECURRENCY_LIST";
+
 /* Currency */
-
 const SET_SELECTED_CURRENCY = "SET_SELECTED_CURRENCY";
+
 /* Loader */
-
 const TOGGLE_LOADER = "TOGGLE_LOADER";
+
 /* Exclude Test Data */
-
 const CHANGE_IS_EXCLUDE_TEST = "CHANGE_IS_EXCLUDE_TEST";
+
 /* User mini guide */
-
 const USER_GUIDE_CONTENT = "USER_GUIDE_CONTENT;";
-/* Date range */
 
+/* Date range */
 const SET_DATE_RANGE = 'SET_DATE_RANGE';
 const GET_DATE_CONSTRAINT = 'GET_DATE_CONSTRAINT';
+
 /* Convert all figures to base currency */
-
 const CHANGE_IS_CONVERT_ALL = "CHANGE_IS_CONVERT_ALL";
+
 /* Status */
-
 const SET_SELECTED_STATUS = "SET_SELECTED_STATUS";
+
 /* Platform  */
-
 const SET_SELECTED_PLATFORM = "SET_SELECTED_PLATFORM";
-/* Live Status  */
 
+/* Live Status  */
 const SET_SELECTED_LIVESTATUS = "SET_SELECTED_LIVESTATUS";
 const SET_USERNAME = "SET_USERNAME";
 const SET_REQUEST_PARAM = "SET_REQUEST_PARAM";
 const SET_REPORT_TITLE = "SET_REPORT_TITLE";
-/* Live Status  */
 
+/* Live Status  */
 const SET_PAGING_OPTION = 'SET_PAGING_OPTION';
 const SET_SORT_OPTION = 'SET_SORT_OPTION';
+
 /* Setting Data */
-
 const SET_SETTING_DATA = 'SET_SETTING_DATA';
-/* Bonus */
 
+/* Bonus */
 const SET_BONUS_NAME = "SET_BONUS_NAME";
 const SET_SELECTED_BONUS_TYPE = "SET_BONUS_TYPE";
 const SET_SELECTED_BONUS_STATUS = "SET_BONUS_STATUS";
@@ -444,7 +439,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const fetchData = resourceName => {
   const url = _lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].resolveClientUrl('UserGuide/Index?resourcename=' + resourceName) + "&_=" + new Date().getTime();
   return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(url, {
@@ -453,7 +447,6 @@ const fetchData = resourceName => {
     }
   });
 };
-
 function getUserGuideContent(params) {
   return dispatch => {
     fetchData(params).then(response => {
@@ -550,7 +543,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
 const Loader = ({
   isLoading
 }) => {
@@ -565,7 +557,6 @@ const Loader = ({
     className: "loader-inner ball-beat"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (Loader);
 
 /***/ }),
@@ -584,7 +575,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
 
-
 const NoDataTitle = ({
   title
 }) => {
@@ -595,7 +585,6 @@ const NoDataTitle = ({
     }
   });
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (NoDataTitle);
 
 /***/ }),
@@ -616,8 +605,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -628,25 +618,20 @@ const wrapperClasses = {
 class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "_unRegisterEvents", () => {
       const {
         closeOnOutsideClick
       } = this.props;
-
       if (closeOnOutsideClick) {
         document.removeEventListener('click', this._handleClickOutSide);
       }
     });
-
     _defineProperty(this, "_handleClickOutSide", event => {
       const clickOutside = this.containerElement && !this.containerElement.contains(event.target);
-
       if (clickOutside && this.state.isOpening) {
         this._close();
       }
     });
-
     this.containerElement = null;
     this.refHandlers = {
       container: ref => {
@@ -657,7 +642,6 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isOpening: this.props.isOpening
     };
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpening !== prevProps.isOpening) {
       const {
@@ -676,21 +660,17 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }, 0);
     }
   }
-
   componentWillUnmount() {
     this._unRegisterEvents();
   }
-
   _registerEvents() {
     const {
       closeOnOutsideClick
     } = this.props;
-
     if (closeOnOutsideClick) {
       document.addEventListener('click', this._handleClickOutSide);
     }
   }
-
   _close() {
     const {
       onClose
@@ -699,7 +679,6 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isOpening: false
     }, () => onClose && onClose());
   }
-
   render() {
     const {
       className,
@@ -717,16 +696,13 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       ref: this.refHandlers.container
     }, children);
   }
-
 }
-
 _defineProperty(Overlay, "propTypes", {
   closeOnOutsideClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   isOpening: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   onOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   onClose: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
 });
-
 _defineProperty(Overlay, "defaultProps", {
   closeOnOutsideClick: true,
   isOpening: false
@@ -747,22 +723,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["content", "tag"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
-
-
-const ReportTitle = (_ref) => {
+const ReportTitle = _ref => {
   let {
-    content,
-    tag
-  } = _ref,
-      attrs = _objectWithoutProperties(_ref, ["content", "tag"]);
-
+      content,
+      tag
+    } = _ref,
+    attrs = _objectWithoutProperties(_ref, _excluded);
   const Tag = tag;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "report-title-container"
@@ -770,7 +742,6 @@ const ReportTitle = (_ref) => {
     className: "report-title"
   }, attrs), content));
 };
-
 const propTypes = {
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   content: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any
@@ -801,8 +772,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _popup_Popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./popup/Popup */ "./www/js/source/reactpages/components/popup/Popup.jsx");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -810,25 +782,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class UserGuide extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "onClickHandler", () => {
       this.setState({
         isShow: true
       });
       this.props.onClick && this.props.onClick();
     });
-
     _defineProperty(this, "onCloseHandler", () => {
       this.setState({
         isShow: false
       });
     });
-
     this.state = {
       isShow: false
     };
   }
-
   render() {
     const {
       className,
@@ -850,21 +818,17 @@ class UserGuide extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       isHtml: true
     }, content));
   }
-
 }
-
 _defineProperty(UserGuide, "propTypes", {
   title: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
   className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
   content: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
   contentTitle: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string
 });
-
 _defineProperty(UserGuide, "defaultProps", {
   className: 'icon-book right',
   content: ''
 });
-
 ;
 
 /***/ }),
@@ -890,10 +854,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
 /* harmony import */ var _SuggestionList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SuggestionList */ "./www/js/source/reactpages/components/auto-complete/SuggestionList.jsx");
 /* harmony import */ var _utils_timer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/timer */ "./www/js/source/reactpages/components/utils/timer.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -905,14 +869,11 @@ const DELAY_TIME_MILLISECOND = 300;
 class AutoComplete extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "_onKeyDown", event => {
       if (!this.isShowSuggestionList) {
         return;
       }
-
       const selectedIndex = this.state.selectedIndex;
-
       switch (event.keyCode) {
         case 38:
           //up
@@ -921,9 +882,7 @@ class AutoComplete extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               selectedIndex: selectedIndex - 1
             });
           }
-
           break;
-
         case 40:
           //down
           if (selectedIndex < this.state.suggestions.length - 1) {
@@ -931,69 +890,54 @@ class AutoComplete extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               selectedIndex: selectedIndex + 1
             });
           }
-
           break;
-
         case 13:
           //enter
           if (selectedIndex > -1) {
             const selectedItem = this.state.suggestions[selectedIndex];
-
             this._onSelect(selectedItem);
           }
-
           break;
       }
     });
-
     _defineProperty(this, "_clearState", () => {
       this.setState({
         suggestions: null,
         selectedIndex: -1
       });
     });
-
     _defineProperty(this, "_onSelect", selectedItem => {
       const {
         onSelect
       } = this.props;
       onSelect && onSelect(selectedItem);
       this.input.value = typeof selectedItem === "object" ? selectedItem.value : selectedItem;
-
       this._clearState();
     });
-
     _defineProperty(this, "_onChange", event => {
       const value = (this.input.value || "").trim();
       const {
         onInput
       } = this.props;
       onInput && onInput(value);
-
       if (value.length < 3) {
         this._clearState();
-
         return;
       }
-
       const cachedData = this.cacheData[value];
-
       if (cachedData) {
         this.setState({
           suggestions: cachedData
         });
         return;
       }
-
       const {
         url
       } = this.props;
-
       if (url) {
         this._getDataByUrl(url, value);
       }
     });
-
     this.state = {
       suggestions: null,
       selectedIndex: -1
@@ -1002,22 +946,18 @@ class AutoComplete extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     this.cacheData = {};
     this.onChange = _utils_timer__WEBPACK_IMPORTED_MODULE_6__["default"].debounce(this._onChange, DELAY_TIME_MILLISECOND).bind(this);
   }
-
   get isShowSuggestionList() {
     return this.state.suggestions && this.state.suggestions.length > 0;
   }
-
   _setStateWithCaching(value, suggestionList) {
     if (this.props.cache) {
       const cacheKey = value.toLowerCase();
       this.cacheData[cacheKey] = suggestionList;
     }
-
     this.setState({
       suggestions: suggestionList
     });
   }
-
   _getDataByUrl(url, value) {
     const {
       responseDataField,
@@ -1030,11 +970,9 @@ class AutoComplete extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }
     }).then(response => {
       const data = responseDataField ? response.data[responseDataField] : response.data;
-
       this._setStateWithCaching(value, data);
     });
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ac-container"
@@ -1055,9 +993,7 @@ class AutoComplete extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onSelect: this._onSelect
     })));
   }
-
 }
-
 _defineProperty(AutoComplete, "propTypes", {
   url: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
   onSelect: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func,
@@ -1067,7 +1003,6 @@ _defineProperty(AutoComplete, "propTypes", {
   queryParamName: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
   htmlAttributes: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.object
 });
-
 _defineProperty(AutoComplete, "defaultProps", {
   url: null,
   responseDataField: "suggestions",
@@ -1093,8 +1028,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1102,14 +1038,12 @@ class SuggestionList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   onSelect(selectedItem) {
     const {
       onSelect
     } = this.props;
     onSelect && onSelect(selectedItem);
   }
-
   _renderDataList() {
     return this.props.dataList.map((item, index) => {
       const className = index === this.props.selectedIndex ? "ac-item ac-item-active" : "ac-item";
@@ -1120,7 +1054,6 @@ class SuggestionList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }, item && typeof item === "object" ? item.value : item);
     });
   }
-
   render() {
     const style = {
       width: this.props.width
@@ -1130,9 +1063,7 @@ class SuggestionList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       style: style
     }, this._renderDataList());
   }
-
 }
-
 _defineProperty(SuggestionList, "propTypes", {
   dataList: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.array.isRequired,
   onSelect: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func,
@@ -1174,11 +1105,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @jsroot/components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1187,42 +1117,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "onSort", (sortBy, sortOrder) => {
       this.props.onSort && this.props.onSort(sortBy, sortOrder);
     });
-
     _defineProperty(this, "onPaging", (index, size) => {
       this.props.onPaging && this.props.onPaging(index, size);
     });
   }
-
   componentDidUpdate(prevProps) {
     if (this.props.data !== prevProps.data) {
       this.props.afterLoad && this.props.afterLoad();
     }
   }
-
   _getResource(key) {
     return this.props.getResourceFunc ? this.props.getResourceFunc(key) : key;
   }
-
   _getTotalCellClassName(column, value) {
     if (this.props.getTotalCellClassNameFunc) {
       return this.props.getTotalCellClassNameFunc(column, value);
     }
-
     return column === 'LicenseeWL' && value.substring(0, 1) === '-' ? 'negative' : '';
   }
-
   _getHeaderName(column) {
     return this.props.getHeaderNameFunc ? this.props.getHeaderNameFunc(column) : column;
   }
-
   _mapData(data) {
     return this.props.mappingDataFunc ? this.props.mappingDataFunc(data) : data;
   }
-
   _buildHeader() {
     let rows = [];
     const {
@@ -1230,27 +1151,22 @@ class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       columnWidths,
       sortableColumns
     } = this.props;
-
     for (let i = 0; i < columns.length; i++) {
       const column = columns[i];
       const isSortable = sortableColumns.indexOf(column) >= 0;
-
       const headerName = this._getHeaderName(column);
-
       rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
         key: column,
         colWidth: columnWidths[i],
         sortBy: isSortable ? column : null
       }, headerName));
     }
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
       style: {
         height: 32
       }
     }, rows);
   }
-
   _buildBody() {
     const {
       columns,
@@ -1258,12 +1174,9 @@ class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       data
     } = this.props;
     let rows = [];
-
     for (let i = 0; i < data.length; i++) {
       const item = this._mapData(data[i]);
-
       let cells = [];
-
       for (let j = 0; j < columns.length; j++) {
         const column = columns[j];
         let hasTooltip = columnAlignments[j].indexOf('tooltip') !== -1;
@@ -1278,20 +1191,16 @@ class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           }
         })));
       }
-
       rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], {
         key: i
       }, cells));
     }
-
     return rows;
   }
-
   _buildFooter() {
     if (!this.props.totalColumns || !this.props.totalColumns.length) {
       return false;
     }
-
     const {
       columns,
       totalColumns,
@@ -1307,15 +1216,11 @@ class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "right-align",
       colSpan: startTotalIndex
     }, totalText));
-
     const item = this._mapData(total);
-
     for (let i = 0; i < totalColumns.length; i++) {
       const column = totalColumns[i];
       const columnIndex = columns.indexOf(column);
-
       const className = this._getTotalCellClassName(column, item[column]);
-
       cells.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
         key: `Sum${column}`,
         className: `${columnAlignments[columnIndex]} ${className}`,
@@ -1324,23 +1229,19 @@ class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         }
       }));
     }
-
     const blankRows = columns.length - totalColumns.length - startTotalIndex;
-
     if (blankRows) {
       cells.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
         key: "blank",
         colSpan: blankRows
       }));
     }
-
     rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], {
       className: "fixed-table-grant-total",
       key: "totalRow"
     }, cells));
     return rows;
   }
-
   _renderNodata() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "result-content"
@@ -1348,20 +1249,16 @@ class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "no-info-row center-align"
     }, this._getResource('NoInfo')));
   }
-
   render() {
     if (!this.props.data) {
       return null;
     }
-
     const {
       data
     } = this.props;
-
     if (!data.length) {
       return this._renderNodata();
     }
-
     const {
       isPaging,
       pageOption,
@@ -1383,9 +1280,7 @@ class BetListDataGrid extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       adjustedHeight: adjustedHeight
     }));
   }
-
 }
-
 BetListDataGrid.propTypes = {
   isPaging: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.bool,
   pageOption: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.shape({
@@ -1446,62 +1341,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["tag", "className", "style"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 class CollapsiblePanel extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "onClick", () => {
       const newState = !this.state.isCollapsed;
       const {
         onCollapse,
         onExpand
       } = this.props;
-
       if (newState) {
         onCollapse && onCollapse();
       }
-
       this.setState({
         isCollapsed: newState
       }, () => {
         window.dispatchEvent(new Event('resize'));
-
         if (!newState) {
           onExpand && onExpand();
         }
       });
     });
-
     this.state = {
       isCollapsed: false
     };
   }
-
   render() {
     const {
       stickyFooter,
       iconContainerStyle,
       iconToggle
     } = this.props;
-
     const {
-      tag,
-      className,
-      style
-    } = iconToggle,
-          attrs = _objectWithoutProperties(iconToggle, ["tag", "className", "style"]);
-
+        tag,
+        className,
+        style
+      } = iconToggle,
+      attrs = _objectWithoutProperties(iconToggle, _excluded);
     const IconTag = tag;
     const iconStyle = style || {
       transform: this.state.isCollapsed ? null : 'rotate(180deg)',
@@ -1529,15 +1414,12 @@ class CollapsiblePanel extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Comp
       style: iconStyle
     }, attrs))));
   }
-
 }
-
 _defineProperty(CollapsiblePanel, "propTypes", {
   stickyFooter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   onCollapse: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   onExpand: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
 });
-
 const propTypes = {
   stickyFooter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   onCollapse: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
@@ -1599,7 +1481,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const Popup = props => {
   const {
     title,
@@ -1611,7 +1492,6 @@ const Popup = props => {
     iframeUrl
   } = props;
   let content;
-
   if (iframeUrl) {
     content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
       frameBorder: "0",
@@ -1629,7 +1509,6 @@ const Popup = props => {
       className: "popup-content"
     }, children);
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: `popup-container ${isShow ? 'show' : 'hide'}`
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1653,7 +1532,6 @@ const Popup = props => {
     className: "icon-close"
   }))), content));
 };
-
 Popup.propTypes = {
   width: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
   height: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
@@ -1721,17 +1599,14 @@ class Timer {
     let timeout;
     return function () {
       const context = this,
-            args = arguments;
-
+        args = arguments;
       const later = () => {
         func.apply(context, args);
       };
-
       clearTimeout(timeout);
       timeout = setTimeout(later, wait || DEFAULT_TIME_DELAY_MILLISECOND);
     };
   }
-
 }
 
 /***/ }),
@@ -1770,14 +1645,12 @@ class AppLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "container",
       className: `container-fluid ${this.props.className || ''}`
     }, this.props.children);
   }
-
 }
 
 /***/ }),
@@ -1805,7 +1678,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
@@ -1815,116 +1687,91 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       popupTitle: null
     };
   }
-
   componentDidMount() {
     window.onload = () => {
       window.logOpenBetlistEvent && window.logOpenBetlistEvent(this.props.pageName);
     };
-
     window.ViewResult = (matchid, raceNo, bettype, sporttype, refno, currency, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs, siteId) => {
       const title = this._getResource('Result');
-
       const rootUrl = this.props.rootUrl;
       const defaultPlatform = 'd';
-
       if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_GAME || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_MINIGAME || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_MOBILE) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'RNGCasino');
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VOIDBRIDGE) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'Voidbridge');
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].PP) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'PP');
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].CARDCLUB) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'CardClub');
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SBC) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSabaClubResultUrl(rootUrl, custid, bettype, extension2, transdecs);
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SG) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'SG');
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VRG) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'VirtualGames');
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].ALLBET) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBetResultUrl(rootUrl, transdecs, extension2, bettype);
-
         this._openPopup(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].GLOBALGAMING) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getGlobalGamingResultUrl(rootUrl, custid, extension2);
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SXG) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSexyGamingResultUrl(rootUrl, transdecs, extension2, bettype);
-
         this._openPopup(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].Happy5LinkedGames) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, refno, extension2, extension1, siteId, bettype, 'Happy5LinkedGames');
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SLT) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'SportsLottery');
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA_FreeBets) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype, currency);
-
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VS3) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVS3ResultUrl(rootUrl, transdecs, sporttype);
-
         this._openPopup(url, title);
       } else {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getResultUrl(rootUrl, matchid, raceNo, bettype, sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid);
-
         this._openPopup(url, title);
       }
     };
-
     window.showMP = transId => {
       let divEvent = document.querySelector('#divEvent_' + transId);
       divEvent.classList.add('mx-parlay'); //to make line-through for void-parlay-ticket
-
       this._showMixParlayDetail(transId, divEvent);
     };
-
     window.showCombMP = (transId, index) => {
       let divEvent = document.querySelector('#divEvent_' + transId + '' + index);
       divEvent.classList.add('mx-parlay'); //to make line-through for void-parlay-ticket
-
       this._showMixParlayDetail(transId, divEvent);
-    }; // expand choice content
+    };
 
-
+    // expand choice content
     window.showNewCombMP = (...args) => {
       this._showNewParlayDetail.apply(this, [this.props.rootUrl, ...args]);
-    }; // expand choice content
+    };
 
-
+    // expand choice content
     window.showSingleMatchParlayDetail = (...args) => {
       this._showSingleMatchParlayDetail.apply(this, [this.props.rootUrl, ...args]);
-    }; // show detail popup (in choice column)
+    };
 
-
+    // show detail popup (in choice column)
     window.showCombMPDetail = (transId, refNo, betId, custId, betTeam) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getParlayDetailUrl(rootUrl, transId, refNo, betId, custId, betTeam, baseCurrency);
-
       this._openPopup(url, betTeam);
     };
-
     window.ViewCashOutHistory = (transId, refNo, betType, betdaqId) => {
       const {
         rootUrl,
@@ -1934,207 +1781,155 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         url,
         isCashOut
       } = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getCashOutHistoryPopupSetting(rootUrl, baseCurrency, transId, refNo, betType, betdaqId);
-
       const title = this._getResource(isCashOut ? 'CashOutDetails' : 'BoughtDetails');
-
       this._openPopup(url, title);
     };
-
     window.ShowBonusDetails = (refCode, transId) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getBonusDetailUrl(rootUrl, refCode, transId, baseCurrency);
-
       const title = this._getResource('TransactionDetail');
-
       this._openPopup(url, title);
     };
-
     window.showAGCasinoDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getAGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('AGCasino') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showRnGCasinoDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getRnGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductCS') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showVoidBridgeDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVoidBridgeDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductVB') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showTodayRunningBetsDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBetDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductAB') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showColossusBetsDetails = (refNo, winlostDate, transId, custId, betCheck) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getColossusBetsDetailUrl(rootUrl, baseCurrency, refNo, winlostDate, transId, custId, betCheck);
-
       const title = this._getResource('TicketDetailOf').replace('{0}', refNo);
-
       this._openPopup(url, title);
     };
-
     window.showGlobalGaming = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getGlobalGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductFW') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showPPDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getPPDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductPP') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showVideoPokerGameDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVideoPokerGameDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductCC') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showSGDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSGDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductSG') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showSexyGamingBetDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSexyGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductSXG') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showSabaClubDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSBCDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductSBC') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showSabaClubJackpotWonDetails = (transId, custId, betTypeId) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId);
-
       const title = this._getResource('ProductSBC') + ' - ' + this._getResource('JackpotWonDetails');
-
       this._openPopup(url, title);
     };
-
     window.showVGamingDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-
       const title = this._getResource('ProductVGA') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-
       this._openPopup(url, title);
     };
-
     window.showVGamingJackpotWonDetails = (transId, custId, betTypeId) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId);
-
       const title = this._getResource('ProductVGA') + ' - ' + this._getResource('JackpotWonDetails');
-
       this._openPopup(url, title);
     };
-
     window.ViewNewCashOutHistory = (transId, custId, winlostDate, currency) => {
       const {
         rootUrl,
         baseCurrency
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getNewCashOutHistoryPopupSetting(rootUrl, transId, custId, winlostDate, currency, baseCurrency);
-
       const title = this._getResource('CashOutHistory');
-
       this._openPopup(url, title);
     };
-
     window.showDetail = id => {
       var e = document.getElementById(id);
-
       if (e.style.display == 'block') {
         e.style.display = 'none';
       } else {
@@ -2142,7 +1937,6 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }
     };
   }
-
   componentWillUnmount() {
     window.showMP = undefined;
     window.showCombMP = undefined;
@@ -2167,53 +1961,40 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     window.showVGamingJackpotWonDetails = undefined;
     window.showDetail = undefined;
   }
-
   _getResource(key) {
     return this.props.getResourceFunc ? this.props.getResourceFunc(key) : key;
   }
-
   _formatDateString(dateString) {
     return this.props.formatDateStringFunc ? this.props.formatDateStringFunc(dateString) : dateString;
   }
-
   _beforeShow() {
     this.props.beforeShowFunc && this.props.beforeShowFunc();
   }
-
   _afterShow() {
     this.props.afterShowFunc && this.props.afterShowFunc();
   }
-
   _resolveClientUrl(relativeUrl) {
     return this.props.rootUrl + relativeUrl;
   }
-
   _showMixParlayDetail(transId, divEvent) {
     if (divEvent.style.display === 'none') {
       const url = this._resolveClientUrl('api/MixParlayBetList/Detail?transId=' + transId);
-
       this._beforeShow(); // this.props.toggleLoader(true);
-
 
       _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].getData(url).then(result => {
         let choice = '';
         const length = result.data.length;
-
         for (let i = 0; i < length; i++) {
           choice += result.data[i];
-
           if (i < length - 1) {
             choice += '<div class="line"></div>';
           }
         }
-
         divEvent.innerHTML = choice;
         divEvent.style.display = 'block';
-
         this._afterShow();
       }).catch(error => {
         this._afterShow();
-
         console.log(error);
       });
     } else {
@@ -2221,7 +2002,6 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       divEvent.innerHTML = '';
     }
   }
-
   _showNewParlayDetail(rootUrl, transId, transIndex, refNo, handicap1, handicap2, betcheck, betteam, custId) {
     let divEvent = document.querySelector('#divEvent_' + transId + '' + transIndex);
     let nameDiv = document.querySelector('#combinationOfferName_' + transId + transIndex);
@@ -2229,20 +2009,15 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
     if (divEvent.style.display == 'none') {
       let url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getChoiceParlayDetailUrl(rootUrl, transId, refNo, handicap1, handicap2, betcheck, betteam, custId);
-
       this._beforeShow(); //this.props.toggleLoader(true);
-
-
       _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].getData(url).then(result => {
         let choice = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].buildChoiceParlayDetail(result.data);
         divEvent.innerHTML = choice;
         divEvent.style.display = 'block';
         nameDiv.style.display = 'none';
-
         this._afterShow();
       }).catch(error => {
         this._afterShow();
-
         console.log(error);
       });
     } else {
@@ -2251,27 +2026,20 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       nameDiv.style.display = 'block';
     }
   }
-
   _showThirdPartyResult(url, title) {
     this._beforeShow(); //this.props.toggleLoader(true);
-
-
     _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].getData(url).then(result => {
       if (result.data !== '') {
         this._openPopup(result.data, title);
       }
-
       this._afterShow();
     }).catch(error => {
       this._afterShow();
-
       console.log(error);
     });
   }
-
   _showRngCasinoResult(refno, url, title) {
     this._beforeShow();
-
     _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].postData(url, {
       refno
     }).then(result => {
@@ -2279,33 +2047,25 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         if (result.data.Result === '') {
           return;
         }
-
         this._openPopup(result.data.Result, title);
       } else {
         alert(this._getResource("ErrorProcessingMsg"));
       }
-
       this._afterShow();
     }).catch(error => {
       this._afterShow();
-
       console.log(error);
     });
   }
-
   _showSingleMatchParlayDetail(rootUrl, transId, custId, status, transIndex) {
     const divEvent = document.querySelector('#divEvent_' + transId + '' + transIndex);
-
     if (divEvent.style.display == 'none') {
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleMatchParlayDetailUrl(rootUrl, transId, custId, status);
-
       this._beforeShow();
-
       _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].getData(url).then(result => {
         const selection = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].buildSingleMatchParlayDetail(result.data);
         divEvent.innerHTML = selection;
         divEvent.style.display = 'block';
-
         this._afterShow();
       }).catch(function (error) {
         console.log(error);
@@ -2315,7 +2075,6 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       divEvent.innerHTML = '';
     }
   }
-
   _openPopup(url, title) {
     this.setState({
       isShowPopup: true,
@@ -2323,13 +2082,11 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       popupTitle: title
     });
   }
-
   _closePopup() {
     this.setState({
       isShowPopup: false
     });
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "betlist-layout"
@@ -2342,9 +2099,7 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClose: () => this._closePopup()
     }));
   }
-
 }
-
 BetListLayout.propTypes = {
   pageName: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.string.isRequired,
   rootUrl: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.string.isRequired,
@@ -2377,12 +2132,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/layouts/betlist/lib/constants.js");
 
 
-
 class BetList {
   _isFastMarket(bettype) {
     return bettype >= _constants__WEBPACK_IMPORTED_MODULE_1__["BetType"].MIN_FASTMARKET && bettype <= _constants__WEBPACK_IMPORTED_MODULE_1__["BetType"].MAX_FASTMARKET;
   }
-
   _getMixParlayResultUrl(rootUrl, refno, winlostdate, bettype) {
     let url = rootUrl + 'ResultReport/ResultPopup';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'refno', refno);
@@ -2391,7 +2144,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'matchid', 1);
     return url;
   }
-
   _getSportBookResultUrl(rootUrl, matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2) {
     let url = rootUrl + 'ResultReport/ResultPopup';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'matchid', matchid);
@@ -2399,7 +2151,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'raceno', raceNo);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'sporttype', sporttype);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'isoutright', isOutright);
-
     if (this._isFastMarket(bettype)) {
       url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'handicap1', extension1);
       url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'handicap2', extension2);
@@ -2407,17 +2158,14 @@ class BetList {
       url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'betid', extension1);
       url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transdesc', extension2);
     }
-
     return url;
   }
-
   getResultUrl(rootUrl, matchid, raceNo, bettype, sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid) {
     bettype = Number(bettype);
     let isParlay = bettype === _constants__WEBPACK_IMPORTED_MODULE_1__["BetType"].MIXPARLAY || bettype === _constants__WEBPACK_IMPORTED_MODULE_1__["BetType"].SYSTEMPARLAY || bettype === _constants__WEBPACK_IMPORTED_MODULE_1__["BetType"].MIXPARLAY_BETRADAR;
     let url = isParlay ? this._getMixParlayResultUrl(rootUrl, refnoMixParlay, winlostdate, bettype) : this._getSportBookResultUrl(rootUrl, matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2, custid);
     return url;
   }
-
   getChoiceParlayDetailUrl(rootUrl, transId, refNo, handicap1, handicap2, betcheck, betteam, custId) {
     var url = rootUrl + 'api/MixParlayBetList/NewParlayDetail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2429,72 +2177,56 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
     return url;
   }
-
   buildChoiceParlayDetail(response) {
     let choice = '';
     let length = response.Data === null ? 0 : response.Data.length;
-
     if (length > 0) {
       for (let i = 0; i < response.Texts.length; i++) {
         choice += response.Texts[i];
       }
-
       choice += '<div class="line"></div>';
-
       for (let i = 0; i < response.Data.length; i++) {
         let item = response.Data[i];
         choice += item;
-
         if (i < length - 1) {
           choice += '<div class="line"></div>';
         }
       }
     }
-
     return choice;
   }
-
   buildSingleMatchParlayDetail(data) {
     let selection = '';
     let length = data === null ? 0 : data.length;
-
     if (length > 0) {
       selection = '<div class="single-match-parlay-detail">';
-
       for (let i = 0; i < data.length; i++) {
         selection += data[i];
       }
-
       selection += '</div>';
     }
-
     return selection;
   }
-
   getParlayDetailUrl(rootUrl, transId, refNo, betId, custId, betTeam, baseCurrency) {
     if (Number(transId) === 0) {
       return;
     }
-
     var url = rootUrl + 'SystemParlayBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'refno', refNo);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'betteam', betTeam);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'basecurrency', baseCurrency);
     return url;
   }
-
   getSingleMatchParlayDetailUrl(rootUrl, transId, custId, status) {
     if (Number(transId) === 0) {
       return;
     }
-
     var url = rootUrl + 'api/SingleMatchParlayBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, "status", status);
     return url;
   }
-
   getCashOutHistoryPopupSetting(rootUrl, baseCurrency, transId, refNo, betType, betdaqId) {
     var isCashOut = betdaqId < 1 || betType === _constants__WEBPACK_IMPORTED_MODULE_1__["BetType"].CASHOUT;
     var url = rootUrl + 'CashOutBetList/Detail';
@@ -2509,7 +2241,6 @@ class BetList {
       isCashOut: isCashOut
     };
   }
-
   getBonusDetailUrl(rootUrl, refCode, transId, baseCurrency) {
     let url = rootUrl + 'BonusBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'RefCode', refCode);
@@ -2517,7 +2248,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getAGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'AGCasinoBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transid', transId);
@@ -2527,7 +2257,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getRnGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'RnGCasinoBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2537,7 +2266,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getVoidBridgeDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'VoidbridgeBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2547,7 +2275,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getAllBetDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'AllBetBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transid', transId);
@@ -2557,7 +2284,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getColossusBetsDetailUrl(rootUrl, baseCurrency, refNo, winlostDate, transId, custId, betCheck) {
     let url = rootUrl + 'ColossusBetBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'refNo', refNo);
@@ -2568,7 +2294,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getGlobalGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'GlobalGamingBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2578,7 +2303,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getPPDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'PragmaticPlayBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2588,7 +2312,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getVideoPokerGameDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'CardClubBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2598,7 +2321,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getSGDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'SGBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2608,7 +2330,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getSBCDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'SabaClubBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2618,7 +2339,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getVRGResultUrl(rootUrl, gamePlayId, platform) {
     let url = rootUrl + 'VirtualGamesResultPopup/Index';
     console.log(gamePlayId);
@@ -2626,7 +2346,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'platform', platform);
     return url;
   }
-
   getSexyGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'SexyGamingBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2636,7 +2355,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getVGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'VGamingBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2646,7 +2364,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getNewCashOutHistoryPopupSetting(rootUrl, transId, custId, winlostDate, currency, baseCurrency) {
     var url = rootUrl + 'CashOutBetList/NewDetail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2656,11 +2373,9 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getRngCasinoResultUrl(rootUrl) {
     return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
   }
-
   getSabaClubResultUrl(rootUrl, custid, gameId, siteId, gameRoundId) {
     let url = rootUrl + 'SabaClubResultPopup/Index';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
@@ -2669,7 +2384,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameRoundId', gameRoundId);
     return url;
   }
-
   getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
     let url = rootUrl + 'SabaClubJackpotWonBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2678,7 +2392,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getVGamingJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
     let url = rootUrl + 'VGamingJackpotWonBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
@@ -2687,7 +2400,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-
   getAllBetResultUrl(rootUrl, transdesc, betcheck, bettype) {
     let url = rootUrl + 'ResultReport/AllBetResult';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'betcheck', betcheck);
@@ -2695,7 +2407,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transdesc', encodeURIComponent(transdesc));
     return url;
   }
-
   getSexyGamingResultUrl(rootUrl, transdesc, matchCode, bettype) {
     let url = rootUrl + 'ResultReport/SexyGaming';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'matchCode', matchCode);
@@ -2703,14 +2414,12 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transdesc', encodeURIComponent(transdesc));
     return url;
   }
-
   getGlobalGamingResultUrl(rootUrl, custid, gameId) {
     let url = rootUrl + 'ResultReport/GlobalGamingResult';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameId', gameId);
     return url;
   }
-
   getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType, currencyName) {
     let url = rootUrl + 'ResultReport/VGaming';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
@@ -2721,7 +2430,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'currencyName', currencyName);
     return url;
   }
-
   getThirdPartyProductResultUrl(rootUrl, custId, transId3rd, gameId3rd, currencyId, siteId, betTypeId, productPath) {
     let url = rootUrl + 'ThirdPartyResultPopup/Index';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
@@ -2733,14 +2441,11 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'productPath', productPath);
     return url;
   }
-
   getVS3ResultUrl(rootUrl, transdecs, sporttype) {
     let url = rootUrl + 'ResultReport/ResultPopup' + '?transDesc=' + transdecs + '&sporttype=' + sporttype;
     return url;
   }
-
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (new BetList());
 
 /***/ }),
@@ -2813,8 +2518,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -2824,7 +2530,6 @@ class DataService {
     const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
     return proxyUrl;
   }
-
   static getData(url, params) {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__["default"].setParams(url, params);
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
@@ -2834,7 +2539,6 @@ class DataService {
       }
     });
   }
-
   static postData(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       headers: {
@@ -2843,7 +2547,6 @@ class DataService {
       }
     });
   }
-
   static getFile(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       responseType: 'blob',
@@ -2853,44 +2556,34 @@ class DataService {
       }
     });
   }
-
   static postProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.postData(proxyUrl, params);
   }
-
   static postReportData(url, params) {
     return this.postProxyData(this.apiKeys.report, url, params);
   }
-
   static postBetListData(url, params) {
     return this.postProxyData(this.apiKeys.betlist, url, params);
   }
-
   static getProxyFile(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getFile(proxyUrl, params);
   }
-
   static getReportFile(url, params) {
     return this.getProxyFile(this.apiKeys.report, url, params);
   }
-
   static getBetListFile(url, params) {
     return this.getProxyFile(this.apiKeys.betlist, url, params);
   }
-
   static getProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getData(proxyUrl, params);
   }
-
   static getReportData(url, params) {
     return this.getProxyData(this.apiKeys.report, url, params);
   }
-
 }
-
 _defineProperty(DataService, "apiKeys", {
   report: 'reportApi',
   betlist: 'betlistApi'
@@ -2912,10 +2605,8 @@ class QueryString {
   static _parseQueryString(queryString) {
     let args = queryString.split('&');
     let argsList = {};
-
     for (let i = 0; i < args.length; i++) {
       let arg = unescape(args[i]);
-
       if (arg.length > 0) {
         if (arg.indexOf('=') === -1) {
           argsList[arg.toLowerCase().trim()] = null;
@@ -2925,84 +2616,66 @@ class QueryString {
         }
       }
     }
-
     return argsList;
   }
-
   static _getQueryString(url) {
     var index = url.indexOf("?");
     return index < 0 ? "" : url.substring(index + 1, url.length);
   }
-
   static _getRawUrl(url) {
     var index = url.indexOf("?");
     return index < 0 ? url : url.substring(0, index);
   }
-
   static setParam(url, name, value) {
     var rawUrl = QueryString._getRawUrl(url);
-
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     if (!name) {
       return url;
-    } // Update value
+    }
 
-
+    // Update value
     var found = false;
-
     for (var key in args) {
       if (key && key.toLowerCase() === name.toLowerCase()) {
         // Does not update data if value = undefined
         if (value !== undefined) {
           args[key] = value;
         }
-
         found = true;
       }
     }
-
     if (!found) {
       args[name.toLowerCase()] = value;
     }
+    var queryArray = [];
 
-    var queryArray = []; // Rebuild query string, ignore null value
-
+    // Rebuild query string, ignore null value
     for (var key1 in args) {
       if (args[key1] != null && args[key1] !== undefined) {
         queryArray.push(key1.toLowerCase() + "=" + args[key1]);
       }
     }
-
     return rawUrl + "?" + queryArray.join("&");
   }
-
   static setParams(url, parameters) {
     for (var property in parameters) {
       if (parameters.hasOwnProperty(property)) {
         url = QueryString.setParam(url, property, parameters[property]);
       }
     }
-
     return url;
   }
-
   static getParam(url, name) {
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     for (var key in args) {
       if (key != null && key.toLowerCase() === name.toLowerCase()) {
         return args[key];
       }
     }
-
     return null;
   }
-
 }
 
 /***/ }),
@@ -3046,17 +2719,14 @@ class LangHelper {
   static get currentLanguage() {
     return langCode;
   }
-
   static getSingleResource(key) {
     var langHandler = window[resourceName];
     return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
   }
-
   static getResources(keys) {
     var langHandler = window[resourceName];
     return keys.map(key => langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key);
   }
-
 }
 
 /***/ }),
@@ -3077,8 +2747,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const isDev = "development" === "development";
-const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name; // middleware that logs actions
-
+const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name;
+// middleware that logs actions
 const loggerMiddleware = Object(redux_logger__WEBPACK_IMPORTED_MODULE_0__["createLogger"])({
   predicate: (getState, action) => isDev || window[configName] && window[configName].env === _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].env && (!window[configName].actionFilter || window[configName].actionFilter === action.type)
 });
@@ -3086,7 +2756,6 @@ class Logger {
   static getLoggerMiddleware() {
     return loggerMiddleware;
   }
-
 }
 
 /***/ }),
@@ -3102,41 +2771,32 @@ class Logger {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Site; });
 const _rootUrl = window.rootUrl || "/";
-
 let _xsrfToken = null;
 class Site {
   static getXsrfToken() {
     if (!_xsrfToken) {
       _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
     }
-
     return _xsrfToken;
   }
-
   static resolveClientUrl(relativeUrl) {
     return _rootUrl + relativeUrl;
   }
-
   static convertDateToString(date) {
     return typeof date === "string" ? date : date.format("MM/DD/YYYY");
   }
-
   static isEmptyObject(obj = {}) {
     return Object.entries(obj).length === 0 && obj.constructor === Object;
   }
-
   static asNull(text) {
     if (text != null) {
       text = text.trim();
-
       if (text === '') {
         return null;
       }
     }
-
     return text;
   }
-
   static downloadFile(data, fileName) {
     const url = window.URL.createObjectURL(new Blob([data]));
     const link = document.createElement('a');
@@ -3147,21 +2807,16 @@ class Site {
     link.parentNode.removeChild(link);
     window.URL.revokeObjectURL(url);
   }
-
   static readAsJson(blob, callback) {
     const reader = new FileReader();
-
     reader.onload = function () {
       callback && callback(JSON.parse(reader.result));
     };
-
     reader.readAsText(blob);
   }
-
   static getRootUrl() {
     return _rootUrl;
   }
-
 }
 
 /***/ }),
@@ -3185,11 +2840,11 @@ __webpack_require__.r(__webpack_exports__);
 class Store {
   static createStore(reducer, initialState) {
     const loggerMiddleware = _logger__WEBPACK_IMPORTED_MODULE_2__["default"].getLoggerMiddleware();
-    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], // lets us dispatch() functions
+    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"],
+    // lets us dispatch() functions
     loggerMiddleware));
     return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, initialState, enhancer);
   }
-
 }
 
 /***/ }),
@@ -3267,19 +2922,15 @@ const BaseDataGrid = props => {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     toggleLoader(false);
   }, [gridData]);
-
   const getHeaderName = column => {
     if (column === 'LicenseeWL') {
       return `${_lib_constants__WEBPACK_IMPORTED_MODULE_7__["HeaderText"].LicenseeWL}/${_lib_constants__WEBPACK_IMPORTED_MODULE_7__["HeaderText"].Comm}`;
     }
-
     if (column === 'WinLoss' && _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_8__["default"].isAllowedCustomerComm) {
       return `${_lib_constants__WEBPACK_IMPORTED_MODULE_7__["HeaderText"].WinLoss}/${_lib_constants__WEBPACK_IMPORTED_MODULE_7__["HeaderText"].Comm}`;
     }
-
     return _lib_constants__WEBPACK_IMPORTED_MODULE_7__["HeaderText"][column];
   };
-
   const onPaging = (index, size) => {
     const param = Object.assign({}, requestParam, {
       PageIndex: index,
@@ -3287,17 +2938,14 @@ const BaseDataGrid = props => {
     });
     getData(param);
   };
-
   const afterLoad = () => {
     toggleLoader(false);
   };
-
   const getData = param => {
     toggleLoader(true);
     getGridData(dataUrl, param);
     setRequestParam(param);
   };
-
   const onSort = (sortBy, sortOrder) => {
     const param = Object.assign({}, requestParam, {
       SortBy: sortBy === 'WinLoss' ? 'WinLost' : sortBy,
@@ -3305,15 +2953,12 @@ const BaseDataGrid = props => {
     });
     getData(param);
   };
-
   const getResource = key => {
     return _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource(key);
   };
-
   if (!gridData || !gridData.Data) {
     return null;
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "betlist-container result-content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_ReportTitle__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -3337,7 +2982,6 @@ const BaseDataGrid = props => {
     adjustedHeight: -20
   }));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     toggleLoader,
@@ -3350,7 +2994,6 @@ function mapDispatchToProps(dispatch) {
     setRequestParam
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     gridData,
@@ -3363,7 +3006,6 @@ function mapStateToProps(state) {
     reportTitle
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(BaseDataGrid));
 
@@ -3411,26 +3053,21 @@ const PageLayout = props => {
     selectedTabIndex,
     children
   } = props;
-
   const getResource = key => {
     return _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource(key);
   };
-
   const formatDateString = dateString => {
     const date = new Date(dateString);
     const month = date.getMonth() + 1;
     const day = date.getDate();
     return `${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}/${date.getFullYear()}`;
   };
-
   const beforeShow = () => {
     toggleLoader(true);
   };
-
   const afterShow = () => {
     toggleLoader(false);
   };
-
   const activedTabList = _lib_constants__WEBPACK_IMPORTED_MODULE_9__["tabList"].filter(x => _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_10__["default"].tabList.includes(x.key));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_layouts_betlist_BetListLayout__WEBPACK_IMPORTED_MODULE_5__["default"], {
     pageName: "BTC",
@@ -3447,7 +3084,6 @@ const PageLayout = props => {
     url: item.url
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, children)));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     toggleLoader
@@ -3456,7 +3092,6 @@ function mapDispatchToProps(dispatch) {
     toggleLoader
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     isConvertAll,
@@ -3467,7 +3102,6 @@ function mapStateToProps(state) {
     selectedBaseCurrency
   });
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(PageLayout));
 
 /***/ }),
@@ -3528,7 +3162,6 @@ class Service {
     const baseCurrencyText = baseCurrency ? `, ${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("BaseCurrency")}: ${baseCurrency}` : '';
     return _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("BetHistory") + dateRangeText + baseCurrencyText;
   }
-
 }
 
 /***/ }),
@@ -3700,7 +3333,6 @@ class AppContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_components_PageLayout__WEBPACK_IMPORTED_MODULE_4__["default"], {
       selectedTabIndex: "1"
@@ -3708,15 +3340,12 @@ class AppContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isLoading: this.props.isLoading
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormFilter__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DataGrid__WEBPACK_IMPORTED_MODULE_2__["default"], null));
   }
-
 }
-
 function mapStateToProps(state) {
   return Object.assign({}, {
     isLoading: state.isLoading
   });
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(AppContainer));
 
 /***/ }),
@@ -3740,7 +3369,6 @@ __webpack_require__.r(__webpack_exports__);
 const Columns = ['Index', 'ExternalId', 'SystemId', 'RefNo', 'TransTime', 'Choice', 'Odds', 'OddsType', 'Stake', 'WinLoss', 'LicenseeWL', 'Status', 'Platform', 'Live'];
 const ColumnWidths = [40, 120, 120, 160, 140, 370, 70, 70, 100, 100, 100, 110, 80, 80];
 const ColumnAlignments = ['center-align', '', '', 'center-align tooltip', 'center-align', 'right-align', 'right-align', 'right-align', 'right-align', 'right-align', 'right-align', 'center-align', 'center-align', 'center-align'];
-
 const DataGrid = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_components_BaseDataGrid__WEBPACK_IMPORTED_MODULE_2__["default"], {
     dataUrl: _common_lib_constants__WEBPACK_IMPORTED_MODULE_1__["ApiUrl"].REFNO_DATA_URL,
@@ -3753,7 +3381,6 @@ const DataGrid = props => {
     sortableColumns: []
   });
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (DataGrid);
 
 /***/ }),
@@ -3785,8 +3412,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_lib_Service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../common/lib/Service */ "./www/js/source/reactpages/pages/bettingticketscenter/common/lib/Service.js");
 /* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
 /* harmony import */ var _jsroot_lib_validationHelper__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @jsroot/lib/validationHelper */ "./www/js/source/reactpages/lib/validationHelper.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -3806,64 +3434,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "submit", event => {
       event.preventDefault();
-
       const params = this._getParams();
-
       if (!params) {
         return;
       }
-
       this.props.setReportTitle(_common_lib_Service__WEBPACK_IMPORTED_MODULE_13__["default"].getTitle(null, null, params.BaseCurrency));
       this.props.setRequestParam(params);
       this.props.toggleLoader(true);
       this.props.getGridData(_common_lib_constants__WEBPACK_IMPORTED_MODULE_12__["ApiUrl"].REFNO_DATA_URL, params);
     });
-
     _defineProperty(this, "exportExcel", event => {
       event.preventDefault();
-
       const params = this._getParams();
-
       if (!params) {
         return;
       }
-
       params.IsExport = true;
       this.props.toggleLoader(true);
       _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_11__["default"].getFile(_common_lib_constants__WEBPACK_IMPORTED_MODULE_12__["ApiUrl"].REFNO_DATA_URL, params).then(response => {
         const NoContentStatusCode = 204;
-
         if (response.status === NoContentStatusCode) {
           alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("NoInfo"));
         } else {
           _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_9__["default"].downloadFile(response.data, 'BetHistory_RefNo.xls');
         }
-
         this.props.toggleLoader(false);
       });
     });
-
     _defineProperty(this, "showUserGuide", () => {
       const userGuideContent = this.props.userGuideContent;
-
       if (!userGuideContent || userGuideContent.length === 0) {
         this.props.getUserGuideContent('BettingTicketCenterRefno');
       }
     });
   }
-
   get isValidModel() {
     return this.props.refno !== "" && Object(_jsroot_lib_validationHelper__WEBPACK_IMPORTED_MODULE_15__["validateBaseCurrency"])(this.props.selectedBaseCurrency);
   }
-
   _getParams() {
     if (!this.isValidModel) {
       return null;
     }
-
     const {
       PageSize,
       SortBy,
@@ -3880,7 +3493,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       SortOrder: SortOrder
     };
   }
-
   _renderUserGuide() {
     const userGuideContent = this.props.userGuideContent;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_14__["default"], {
@@ -3890,7 +3502,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: userGuideContent
     });
   }
-
   _renderBaseCurrencySelectList() {
     const selectedBaseCurrency = this.props.selectedBaseCurrency;
     const baseCurrencyList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_10__["default"].baseCurrencyList;
@@ -3901,7 +3512,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onChange: item => this.props.setSelectedBaseCurrency(item.value)
     });
   }
-
   render() {
     const excelButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "icon-excel right",
@@ -3977,13 +3587,10 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "col-9"
     }, "* ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('BettingTicketCenter_RefnoTabNote1'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "* ", _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_10__["default"].productsRequireUseNameNote)));
   }
-
 }
-
 function mapDispatchToProps(dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_actions_index_js__WEBPACK_IMPORTED_MODULE_7__["ActionCreators"], dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     requestParam,
@@ -4002,7 +3609,6 @@ function mapStateToProps(state) {
     userGuideContent
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(FormFilter));
 
@@ -4045,13 +3651,11 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
       store: store
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContainer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null));
   }
-
 }
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById('app-container'));
 
@@ -4075,7 +3679,6 @@ const refno = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_REFNO"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4134,13 +3737,11 @@ const selectedBaseCurrency = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODU
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_BASECURRENCY"]](state, action) {
     return action.data;
   }
-
 });
 const baseCurrencyList = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_BASECURRENCY_LIST"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4163,7 +3764,6 @@ const isConvertAll = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["CHANGE_IS_CONVERT_ALL"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4186,7 +3786,6 @@ const gridData = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_0__["defa
   [_actions_types_js__WEBPACK_IMPORTED_MODULE_1__["SET_GRID_DATA"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4209,7 +3808,6 @@ const isLoading = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["def
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["TOGGLE_LOADER"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4232,7 +3830,6 @@ const reportTitle = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["d
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_REPORT_TITLE"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4249,19 +3846,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestParam", function() { return requestParam; });
 /* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./www/js/source/reactpages/actions/types.js");
 /* harmony import */ var _lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const requestParam = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_REQUEST_PARAM"]](state, action) {
     return _objectSpread({}, action.data);
   }
-
 });
 
 /***/ }),
@@ -4284,7 +3879,6 @@ const userGuideContent = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["USER_GUIDE_CONTENT"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -4307,7 +3901,6 @@ const username = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["defa
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_USERNAME"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ })

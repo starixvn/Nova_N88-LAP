@@ -228,8 +228,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DataContent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DataContent */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/components/DataContent.jsx");
 /* harmony import */ var _jsroot_components_Loader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/components/Loader */ "./www/js/source/reactpages/components/Loader.jsx");
 /* harmony import */ var _jsroot_components_sweet_alert__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/components/sweet-alert */ "./www/js/source/reactpages/components/sweet-alert/index.jsx");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
 
@@ -245,7 +244,6 @@ const AppContainer = props => {
     isHtml: false
   }, props.alertOption)));
 };
-
 function mapStateToProps(state) {
   const {
     isLoading,
@@ -256,7 +254,6 @@ function mapStateToProps(state) {
     alertOption
   });
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AppContainer)));
 
 /***/ }),
@@ -294,7 +291,6 @@ const Setting = {
   [_lib_constants__WEBPACK_IMPORTED_MODULE_2__["BetLimitProduct"].KN]: _grid_data_contents_GameDataContent__WEBPACK_IMPORTED_MODULE_4__["default"],
   [_lib_constants__WEBPACK_IMPORTED_MODULE_2__["BetLimitProduct"].AGC]: _grid_data_contents_AGCDataContent__WEBPACK_IMPORTED_MODULE_6__["default"]
 };
-
 const DataContent = props => {
   const {
     ProductId
@@ -302,7 +298,6 @@ const DataContent = props => {
   const Content = Setting[ProductId];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Content, null);
 };
-
 function mapStateToProps(state) {
   const {
     requestParam
@@ -311,7 +306,6 @@ function mapStateToProps(state) {
     requestParam
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(DataContent));
 
@@ -341,14 +335,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const FormFilter = props => {
   const [productId, setProductId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.requestParam.ProductId);
   const productList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_5__["default"].productList;
-
   const onProductChange = item => {
     setProductId(item.value);
-
     if (item.value !== props.requestParam.ProductId) {
       const param = Object.assign({}, props.requestParam, {
         ProductId: item.value
@@ -356,7 +347,6 @@ const FormFilter = props => {
       props.setRequestParam(param);
     }
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-filter"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -374,7 +364,6 @@ const FormFilter = props => {
     onChange: onProductChange
   })))));
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     setRequestParam
@@ -383,7 +372,6 @@ function mapDispatchToProps(dispatch) {
     setRequestParam
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     requestParam
@@ -392,7 +380,6 @@ function mapStateToProps(state) {
     requestParam
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(FormFilter)));
 
@@ -418,11 +405,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_utility__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../lib/utility */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/utility.js");
 /* harmony import */ var _jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/components/CheckBox */ "./www/js/source/reactpages/components/CheckBox.jsx");
 /* harmony import */ var _jsroot_components_Balloon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/components/Balloon */ "./www/js/source/reactpages/components/Balloon.jsx");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -434,34 +420,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 const SettingContent = (Grid, DataHandling) => {
-  var _temp;
-
-  return _temp = class extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
+  return class extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     constructor(props) {
       super(props);
-
       _defineProperty(this, "_unRegisterEvents", () => {
         document.removeEventListener('click', this._handleClickOutSide);
       });
-
       _defineProperty(this, "_handleClickOutSide", event => {
         if (this.state.showError) {
           const isError = this.errorRef.current && this.errorRef.current.contains(event.target);
           const isCheckBox = this.checkBoxRef.current && this.checkBoxRef.current.contains(event.target);
           const isButton = this.submitButtonRef.current && this.submitButtonRef.current.contains(event.target);
           const clickOutside = !isError && !isCheckBox && !isButton;
-
           if (clickOutside) {
             this._closeError();
           }
         }
       });
-
       _defineProperty(this, "setInputRef", (type, id, element) => {
         this.ref[type] = this.ref[type] || {};
         this.ref[type][id] = element;
       });
-
       _defineProperty(this, "onReset", () => {
         if (!this.state.disabledButton) {
           this.setState({
@@ -469,18 +448,15 @@ const SettingContent = (Grid, DataHandling) => {
           }, () => this._getData(this.props.requestParam));
         }
       });
-
       _defineProperty(this, "onChange", data => {
         this.setState({
           data: data
         });
       });
-
       _defineProperty(this, "onSubmit", () => {
         if (!this.state.showError) {
           const data = this.state.data;
           const submitData = DataHandling.getSubmitData(data);
-
           if (!submitData.IsValid) {
             this._showError(submitData.Data);
           } else {
@@ -488,7 +464,6 @@ const SettingContent = (Grid, DataHandling) => {
           }
         }
       });
-
       _defineProperty(this, "onCheck", checked => {
         if (checked) {
           const {
@@ -496,18 +471,15 @@ const SettingContent = (Grid, DataHandling) => {
             errorBalloon,
             showError
           } = this.state;
-
           if (showError && errorBalloon.Id === setting.CopyId) {
             return false;
           }
-
           const {
             data
           } = this.state;
           const copyRow = data.find(e => e.Id === setting.CopyId);
           const copyValue = DataHandling.getSubmitRowData(copyRow);
           const invalidData = DataHandling.validate(copyValue, copyRow);
-
           if (invalidData !== null) {
             this._showError(invalidData);
           } else {
@@ -515,7 +487,6 @@ const SettingContent = (Grid, DataHandling) => {
               if (e.Id === copyRow.id) {
                 return e;
               }
-
               return Object.assign({}, e, {
                 MinBet: copyRow.MinBet,
                 MaxBet: copyRow.MaxBet,
@@ -533,7 +504,6 @@ const SettingContent = (Grid, DataHandling) => {
           });
         }
       });
-
       _defineProperty(this, "onCloseAlert", () => {
         this.setState({
           disabledButton: false
@@ -541,11 +511,9 @@ const SettingContent = (Grid, DataHandling) => {
           isShow: false
         }));
       });
-
       _defineProperty(this, "onRefresh", () => {
         this._getData(this.props.requestParam);
       });
-
       this.state = {
         data: null,
         setting: {
@@ -568,7 +536,6 @@ const SettingContent = (Grid, DataHandling) => {
       this.submitButtonRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
       this.getHeaderName = DataHandling.getHeaderName;
     }
-
     componentDidUpdate(prevProps, prevState) {
       if (prevState.timeStamp !== this.state.timeStamp) {
         this.props.toggleLoader(false);
@@ -576,32 +543,25 @@ const SettingContent = (Grid, DataHandling) => {
           isShow: false
         });
       }
-
       if (prevProps.requestParam !== this.props.requestParam) {
         this._getData(this.props.requestParam);
       }
     }
-
     componentWillUnmount() {
       this._unRegisterEvents();
     }
-
     componentDidMount() {
       this._getData(this.props.requestParam);
-
       this._registerEvents();
     }
-
     _registerEvents() {
       document.addEventListener('click', this._handleClickOutSide);
     }
-
     _closeError() {
       this.setState({
         showError: false
       });
     }
-
     _submit(data) {
       this.props.toggleLoader(true);
       const param = Object.assign({}, this.props.requestParam, {
@@ -609,7 +569,6 @@ const SettingContent = (Grid, DataHandling) => {
       });
       _lib_dataTransfer__WEBPACK_IMPORTED_MODULE_6__["default"].updateData(param, this._showSubmitResult.bind(this));
     }
-
     _showConfirmation(onOK) {
       const buttons = [{
         text: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('OK'),
@@ -635,7 +594,6 @@ const SettingContent = (Grid, DataHandling) => {
         height: 130
       }));
     }
-
     _showSubmitResult(title, msg, isSuccess) {
       const content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "center-align"
@@ -660,10 +618,8 @@ const SettingContent = (Grid, DataHandling) => {
         this.props.toggleLoader(false);
       });
     }
-
     _showError(invalidData) {
       const invalidInput = this.ref[invalidData.Type][invalidData.Id];
-
       if (invalidInput) {
         const pos = invalidInput.getBoundingClientRect();
         this.setState({
@@ -677,7 +633,6 @@ const SettingContent = (Grid, DataHandling) => {
         }, () => invalidInput.focus());
       }
     }
-
     _refreshState(data, setting) {
       this.setState(state => ({
         data: DataHandling.getViewData(data),
@@ -688,19 +643,15 @@ const SettingContent = (Grid, DataHandling) => {
         timeStamp: new Date().getTime()
       }));
     }
-
     _getData(param) {
       this.props.toggleLoader(true);
       _lib_dataTransfer__WEBPACK_IMPORTED_MODULE_6__["default"].getData(param, this._refreshState.bind(this));
     }
-
     render() {
       const data = this.state.data;
-
       if (!data || !data.length) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_5__["default"], null);
       }
-
       const {
         setting,
         disabledButton,
@@ -742,10 +693,8 @@ const SettingContent = (Grid, DataHandling) => {
         ref: this.errorRef
       }, errorBalloon)));
     }
-
-  }, _temp;
+  };
 };
-
 function mapDispatchToProps(dispatch) {
   const {
     toggleLoader,
@@ -756,7 +705,6 @@ function mapDispatchToProps(dispatch) {
     setAlertOption
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     requestParam
@@ -765,7 +713,6 @@ function mapStateToProps(state) {
     requestParam
   });
 }
-
 ;
 const createSetting = Object(redux__WEBPACK_IMPORTED_MODULE_2__["compose"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps), SettingContent);
 /* harmony default export */ __webpack_exports__["default"] = (createSetting);
@@ -785,13 +732,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _lib_utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../lib/utility */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/utility.js");
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -803,39 +748,31 @@ const SettingGrid = props => {
     getHeaderName
   } = props;
   const setInputRef = props.setInputRef;
-
   const onInputChange = (type, id, value) => {
     const newData = data.map(e => {
       if (e.Id === id) {
         const newItem = _objectSpread({}, e);
-
         newItem[type] = value;
         return newItem;
       }
-
       return e;
     });
     onChange(newData);
   };
-
   const onInputBlur = (type, id, value) => {
     const newValue = _lib_utility__WEBPACK_IMPORTED_MODULE_1__["default"].formatValue(_lib_utility__WEBPACK_IMPORTED_MODULE_1__["default"].getValueAsNumber(value));
-
     if (newValue !== value) {
       const newData = data.map(e => {
         if (e.Id === id) {
           const newItem = _objectSpread({}, e);
-
           newItem[type] = newValue;
           return newItem;
         }
-
         return e;
       });
       onChange(newData);
     }
   };
-
   const buildCell = (type, value, disabled) => {
     const isChanged = value[type] !== value['Original' + type];
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -850,10 +787,8 @@ const SettingGrid = props => {
       disabled: disabled
     });
   };
-
   const buildBody = (editable, data) => {
     let rows = [];
-
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
       const disabled = !editable;
@@ -867,17 +802,14 @@ const SettingGrid = props => {
         className: "pa-betlimit-cell"
       }, buildCell(_lib_constants__WEBPACK_IMPORTED_MODULE_2__["BetLimitType"].MaxPerMatch, item, disabled), item.MaxPerMatchMax > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ` <= ${_lib_utility__WEBPACK_IMPORTED_MODULE_1__["default"].formatValue(item.MaxPerMatchMax)}`))));
     }
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pa-betlimit-grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, getHeaderName('Sport')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, getHeaderName('MinBet')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, getHeaderName('MaxBet')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, getHeaderName('MaxPerMatch')))), buildBody(setting.Editable, data)));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(SettingGrid));
 
 /***/ }),
@@ -903,8 +835,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.es.js");
 /* harmony import */ var _sport_settings_AGCSettingGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../sport-settings/AGCSettingGrid */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/components/grid/sport-settings/AGCSettingGrid.jsx");
 /* harmony import */ var _jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -918,35 +851,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "onGroupChange", item => {
       if (this.state.selectedGroup !== item.value) {
         const {
           data
         } = this.state;
-
         const disabledButton = this._isDisabledButton(data, item.value);
-
         this.setState({
           selectedGroup: item.value,
           disabledButton: disabledButton
         });
       }
     });
-
     _defineProperty(this, "onReset", () => {
       this._getData(this.props.requestParam);
     });
-
     _defineProperty(this, "onSubmit", () => {
       const {
         selectedGroup,
         data,
         setting
       } = this.state;
-
       const invalid = this._isDisabledButton(data, selectedGroup);
-
       if (invalid) {
         this.setState({
           disabledButton: true
@@ -955,7 +881,6 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
         this._showConfirmation(() => this._submit(selectedGroup, setting.BetSetting.AgGroup));
       }
     });
-
     _defineProperty(this, "onCloseAlert", () => {
       this.setState({
         disabledButton: false
@@ -963,11 +888,9 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
         isShow: false
       }));
     });
-
     _defineProperty(this, "onRefresh", () => {
       this._getData(this.props.requestParam);
     });
-
     this.state = {
       data: null,
       setting: {},
@@ -976,7 +899,6 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
       disabledButton: false
     };
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevState.data !== this.state.data) {
       this.props.toggleLoader(false);
@@ -985,20 +907,16 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
       });
     }
   }
-
   componentDidMount() {
     this._getData(this.props.requestParam);
   }
-
   _isDisabledButton(data, selectedGroup) {
     if (!selectedGroup) {
       return true;
     }
-
     const gamesHaveGroup = data.filter(x => x.Groups.find(g => g.GroupType === selectedGroup));
     return !gamesHaveGroup || gamesHaveGroup.length !== data.length;
   }
-
   _updateState(data, setting) {
     if (setting.BetSetting) {
       const groups = setting.BetSetting ? setting.BetSetting.CheckedGroups.map(x => {
@@ -1007,9 +925,7 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
           label: x
         };
       }) : [];
-
       const disabledButton = this._isDisabledButton(data, setting.BetSetting.AgGroup);
-
       this.setState({
         data: data,
         setting: setting,
@@ -1019,12 +935,10 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
       });
     }
   }
-
   _getData(param) {
     this.props.toggleLoader(true);
     _lib_dataTransfer__WEBPACK_IMPORTED_MODULE_6__["default"].getData(param, this._updateState.bind(this));
   }
-
   _submit(group, oldGroup) {
     this.props.toggleLoader(true);
     const param = Object.assign({}, this.props.requestParam, {
@@ -1035,10 +949,8 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
     });
     _lib_dataTransfer__WEBPACK_IMPORTED_MODULE_6__["default"].updateData(param, this._showSubmitResult.bind(this));
   }
-
   _showConfirmation(onOK) {
     const onClose = () => this.onCloseAlert(false);
-
     const buttons = [{
       text: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('OK'),
       onClick: onOK,
@@ -1063,7 +975,6 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
       height: 130
     }));
   }
-
   _showSubmitResult(title, msg, isSuccess) {
     const content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "center-align"
@@ -1088,23 +999,19 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
       this.props.toggleLoader(false);
     });
   }
-
   render() {
     const {
       data,
       setting
     } = this.state;
-
     if (setting.BetSetting && !setting.BetSetting.IsLineEnabled) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_9__["default"], {
         title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('AGCasinoNotOfferCurrency')
       });
     }
-
     if (data === null) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_9__["default"], null);
     }
-
     const {
       groups,
       selectedGroup,
@@ -1148,9 +1055,7 @@ class AGCDataContent extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]
       onClick: this.onSubmit
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('Submit'))));
   }
-
 }
-
 function mapDispatchToProps(dispatch) {
   const {
     toggleLoader,
@@ -1161,7 +1066,6 @@ function mapDispatchToProps(dispatch) {
     setAlertOption
   }, dispatch);
 }
-
 function mapStateToProps(state) {
   const {
     requestParam
@@ -1170,7 +1074,6 @@ function mapStateToProps(state) {
     requestParam
   });
 }
-
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(AGCDataContent));
 
@@ -1195,11 +1098,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Content = Object(_base_SettingContent__WEBPACK_IMPORTED_MODULE_2__["default"])(_base_SettingGrid__WEBPACK_IMPORTED_MODULE_3__["default"], new _lib_gameSettingDataHandling__WEBPACK_IMPORTED_MODULE_1__["default"]());
-
 const GameDataContent = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Content, null);
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (GameDataContent);
 
 /***/ }),
@@ -1223,11 +1124,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Content = Object(_base_SettingContent__WEBPACK_IMPORTED_MODULE_2__["default"])(_sport_settings_NGSettingGrid__WEBPACK_IMPORTED_MODULE_3__["default"], new _lib_ngDataHandling__WEBPACK_IMPORTED_MODULE_1__["default"]());
-
 const NGDataContent = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Content, null);
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (NGDataContent);
 
 /***/ }),
@@ -1251,11 +1150,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Content = Object(_base_SettingContent__WEBPACK_IMPORTED_MODULE_2__["default"])(_base_SettingGrid__WEBPACK_IMPORTED_MODULE_3__["default"], new _lib_dataHandling__WEBPACK_IMPORTED_MODULE_1__["default"]());
-
 const SportDataContent = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Content, null);
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (SportDataContent);
 
 /***/ }),
@@ -1276,17 +1173,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const AGCSettingGrid = props => {
   const {
     data,
     isEnabled,
     group
   } = props;
-
   const buildBody = () => {
     let rows = [];
-
     for (let i = 0; i < data.length; i++) {
       const game = data[i];
       const gameGroup = game.Groups.find(x => x.GroupType === group);
@@ -1298,17 +1192,14 @@ const AGCSettingGrid = props => {
         className: isEnabled ? '' : 'disabled-text'
       }, gameGroup ? _lib_utility__WEBPACK_IMPORTED_MODULE_1__["default"].formatValue(gameGroup.Max) : '')));
     }
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pa-betlimit-grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('GameType')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('MinBet')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('MaxBet')))), buildBody()));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AGCSettingGrid));
 
 /***/ }),
@@ -1327,13 +1218,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../lib/utility */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/utility.js");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/constants.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -1345,39 +1234,31 @@ const NGSettingGrid = props => {
     onChange
   } = props;
   const setInputRef = props.setInputRef;
-
   const onInputChange = (type, id, value) => {
     const newData = data.map(e => {
       if (e.Id === id) {
         const newItem = _objectSpread({}, e);
-
         newItem[type] = value;
         return newItem;
       }
-
       return e;
     });
     onChange(newData);
   };
-
   const onInputBlur = (type, id, value) => {
     const newValue = _lib_utility__WEBPACK_IMPORTED_MODULE_1__["default"].formatValue(_lib_utility__WEBPACK_IMPORTED_MODULE_1__["default"].getValueAsNumber(value));
-
     if (newValue !== value) {
       const newData = data.map(e => {
         if (e.Id === id) {
           const newItem = _objectSpread({}, e);
-
           newItem[type] = newValue;
           return newItem;
         }
-
         return e;
       });
       onChange(newData);
     }
   };
-
   const buildCell = (type, value, disabled) => {
     const isChanged = value[type] !== value['Original' + type];
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1392,10 +1273,8 @@ const NGSettingGrid = props => {
       disabled: disabled
     });
   };
-
   const buildBody = (editable, data) => {
     let rows = [];
-
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
       const disabled = !editable;
@@ -1411,17 +1290,14 @@ const NGSettingGrid = props => {
         className: "pa-betlimit-cell"
       }, buildCell(_lib_constants__WEBPACK_IMPORTED_MODULE_3__["BetLimitType"].MaxPerBall, item, disabled), item.MaxPerBallMax > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ` <= ${_lib_utility__WEBPACK_IMPORTED_MODULE_1__["default"].formatValue(item.MaxPerBallMax)}`))));
     }
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows);
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pa-betlimit-grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('Sport')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('MinBet')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('MaxBet')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('MaxPerMatch')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource('MaxPerBall')))), buildBody(setting.Editable, data)));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(NGSettingGrid));
 
 /***/ }),
@@ -1518,7 +1394,6 @@ class DataHandling {
       return this.getViewRowData(rawRow);
     });
   }
-
   getViewRowData(rawData) {
     let row = {
       Id: rawData.Id,
@@ -1540,7 +1415,6 @@ class DataHandling {
     row.OriginalMaxPerMatch = row.MaxPerMatch;
     return row;
   }
-
   getSubmitRowData(row) {
     return {
       Id: row.Id,
@@ -1555,49 +1429,38 @@ class DataHandling {
       IsUpdated: row.MinBet !== row.OriginalMinBet || row.MaxBet !== row.OriginalMaxBet || row.MaxPerMatch !== row.OriginalMaxPerMatch
     };
   }
-
   getSubmitData(rows) {
     const submitData = [];
-
     for (let i = 0; i < rows.length; i++) {
       const row = rows[i];
       const currentValue = this.getSubmitRowData(row);
       const invalidData = this.validate(currentValue, row);
-
       if (invalidData !== null) {
         return {
           IsValid: false,
           Data: invalidData
         };
       }
-
       submitData.push(currentValue);
     }
-
     return {
       IsValid: true,
       Data: submitData
     };
   }
-
   validate(currentValue, row) {
     if (!currentValue.IsUpdated) {
       return null;
     }
-
     const validateMinMaxBet = _validatation__WEBPACK_IMPORTED_MODULE_0__["default"].validateMinMaxBet(currentValue, row);
-
     if (validateMinMaxBet !== null) {
       return validateMinMaxBet;
     }
-
     return _validatation__WEBPACK_IMPORTED_MODULE_0__["default"].validateMaxPerMatch(currentValue, row);
   }
-
   getHeaderName(header) {
     return _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_2__["default"].getSingleResource(header);
   }
-
 }
 
 /***/ }),
@@ -1616,10 +1479,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/DataService */ "./www/js/source/reactpages/lib/DataService.js");
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./www/js/source/reactpages/Module/PlayerAdmin/betlimit/lib/constants.js");
+const _excluded = ["Data"];
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
 
 
 
@@ -1638,18 +1500,16 @@ class DataTransfer {
     const url = _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].resolveClientUrl(Url[param.ProductId] + '/GetSetting');
     _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].postData(url, param).then(response => {
       const _response$data = response.data,
-            {
-        Data
-      } = _response$data,
-            setting = _objectWithoutProperties(_response$data, ["Data"]);
-
+        {
+          Data
+        } = _response$data,
+        setting = _objectWithoutProperties(_response$data, _excluded);
       callBack && callBack(Data, setting);
     }).catch(error => {
       console.log(error.message);
       callBack && callBack([], {});
     });
   }
-
   static updateData(param, callBack) {
     const url = _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_2__["default"].resolveClientUrl(Url[param.ProductId] + '/UpdateSetting');
     _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].postData(url, param).then(response => {
@@ -1662,7 +1522,6 @@ class DataTransfer {
       callBack(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('Error'), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('ErrorProcessingMsg'), false);
     });
   }
-
 }
 
 /***/ }),
@@ -1686,28 +1545,21 @@ class GameSettingDataHandling extends _dataHandling__WEBPACK_IMPORTED_MODULE_1__
     if (!currentValue.IsUpdated) {
       return null;
     }
-
     const validateMinMaxBet = _validatation__WEBPACK_IMPORTED_MODULE_0__["default"].validateMinMaxBet(currentValue, row);
-
     if (validateMinMaxBet !== null) {
       return validateMinMaxBet;
     }
-
     return _validatation__WEBPACK_IMPORTED_MODULE_0__["default"].validateMaxBetPerDraw(currentValue, row);
   }
-
   getHeaderName(header) {
     if (header === 'Sport') {
       return super.getHeaderName('GameType');
     }
-
     if (header === 'MaxPerMatch') {
       return super.getHeaderName('MaxBetPerDraw');
     }
-
     return super.getHeaderName(header);
   }
-
 }
 
 /***/ }),
@@ -1737,7 +1589,6 @@ class NGDataHandling extends _dataHandling__WEBPACK_IMPORTED_MODULE_2__["default
     row.OriginalMaxPerBall = row.MaxPerBall;
     return row;
   }
-
   getSubmitRowData(row) {
     let data = super.getSubmitRowData(row);
     data.MaxPerBall = _utility__WEBPACK_IMPORTED_MODULE_1__["default"].getValueAsNumber(row.MaxPerBall);
@@ -1745,41 +1596,32 @@ class NGDataHandling extends _dataHandling__WEBPACK_IMPORTED_MODULE_2__["default
     data.IsUpdated = data.IsUpdated || row.MaxPerBall !== row.OriginalMaxPerBall;
     return data;
   }
-
   getSubmitData(rows) {
     const submitData = [];
-
     for (let i = 0; i < rows.length; i++) {
       const row = rows[i];
       const currentValue = this.getSubmitRowData(row);
       const invalidData = this.validate(currentValue, row);
-
       if (invalidData !== null) {
         return {
           IsValid: false,
           Data: invalidData
         };
       }
-
       submitData.push(currentValue);
     }
-
     return {
       IsValid: true,
       Data: submitData
     };
   }
-
   validate(currentValue, row) {
     const validatationResult = super.validate(currentValue, row);
-
     if (validatationResult !== null) {
       return validatationResult;
     }
-
     return _validatation__WEBPACK_IMPORTED_MODULE_0__["default"].validateMaxPerBall(currentValue, row);
   }
-
 }
 
 /***/ }),
@@ -1830,23 +1672,18 @@ const ConfirmationMsg = {
 class Utility {
   static getConfirmationMsg(productId) {
     const message = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource(ConfirmationMsg[productId].Msg);
-
     if (!ConfirmationMsg[productId].Product) {
       return message;
     }
-
     return message.replace('{0}', _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource(ConfirmationMsg[productId].Product));
   }
-
   static formatValue(number) {
     return _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_1__["default"].parseToString(number);
   }
-
   static getValueAsNumber(text) {
     const number = parseFloat(text.replace(/,/g, ''));
     return !isNaN(number) && isFinite(number) ? _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_1__["default"].round(number, 2) : NaN;
   }
-
 }
 
 /***/ }),
@@ -1873,7 +1710,6 @@ class Validatation {
       MaxPerMatch,
       Id
     } = current;
-
     if (isNaN(MinBet)) {
       return {
         Id: Id,
@@ -1881,7 +1717,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('IncorrectMinBet')
       };
     }
-
     if (isNaN(MaxBet)) {
       return {
         Id: Id,
@@ -1889,7 +1724,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('IncorrectMaxBet')
       };
     }
-
     if (limitData.BetValueMin > 0 && MinBet < limitData.BetValueMin) {
       return {
         Id: Id,
@@ -1897,7 +1731,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MinBetGreaterThanOrEqual') + ' ' + limitData.BetValueMin
       };
     }
-
     if (limitData.BetValueMax > 0 && MaxBet > limitData.BetValueMax) {
       return {
         Id: Id,
@@ -1905,7 +1738,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MaxBetLessThanOrEqual') + ' ' + limitData.BetValueMax
       };
     }
-
     if (MinBet > MaxBet) {
       return {
         Id: Id,
@@ -1913,17 +1745,14 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MinBetCanNotGreaterThanMaxBet') + ' ' + MaxBet
       };
     }
-
     return null;
   }
-
   static validateMaxPerMatch(current, limitData) {
     const {
       MaxBet,
       MaxPerMatch,
       Id
     } = current;
-
     if (isNaN(MaxPerMatch)) {
       return {
         Id: Id,
@@ -1931,7 +1760,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('IncorrectMaxPerMatch')
       };
     }
-
     if (limitData.MaxPerMatchMax > 0 && MaxPerMatch > limitData.MaxPerMatchMax) {
       return {
         Id: Id,
@@ -1939,7 +1767,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MaxBetMatchMoreThanOrEqual') + ' ' + limitData.MaxPerMatchMax
       };
     }
-
     if (limitData.MaxPerMatchMin > 0 && MaxPerMatch < limitData.MaxPerMatchMin) {
       return {
         Id: Id,
@@ -1947,7 +1774,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MaxBetMatchLessThanOrEqual') + ' ' + limitData.MaxPerMatchMin
       };
     }
-
     if (MaxBet > MaxPerMatch) {
       return {
         Id: Id,
@@ -1955,17 +1781,14 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MaxBetCanNotGreaterThanMaxPerMatch') + ' ' + MaxPerMatch
       };
     }
-
     return null;
   }
-
   static validateMaxBetPerDraw(current, limitData) {
     const {
       MaxBet,
       MaxPerMatch,
       Id
     } = current;
-
     if (isNaN(MaxPerMatch)) {
       return {
         Id: Id,
@@ -1973,7 +1796,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('IncorrectMaxBetPerDraw')
       };
     }
-
     if (limitData.MaxPerMatchMax > 0 && MaxPerMatch > limitData.MaxPerMatchMax) {
       return {
         Id: Id,
@@ -1981,7 +1803,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MaxBetPerDrawMoreThanOrEqual') + ' ' + limitData.MaxPerMatchMax
       };
     }
-
     if (limitData.MaxPerMatchMin > 0 && MaxPerMatch < limitData.MaxPerMatchMin) {
       return {
         Id: Id,
@@ -1989,7 +1810,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MaxBetPerDrawLessThanOrEqual') + ' ' + limitData.MaxPerMatchMin
       };
     }
-
     if (MaxBet > MaxPerMatch) {
       return {
         Id: Id,
@@ -1997,16 +1817,13 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MaxBetCanNotGreaterThanMaxBetPerDraw') + ' ' + MaxPerMatch
       };
     }
-
     return null;
   }
-
   static validateMaxPerBall(current, limitData) {
     const {
       MaxPerBall,
       Id
     } = current;
-
     if (isNaN(MaxPerBall)) {
       return {
         Id: Id,
@@ -2014,7 +1831,6 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('IncorrectMaxPerBall')
       };
     }
-
     if (limitData.MaxPerBallMax > 0 && MaxPerBall > limitData.MaxPerBallMax) {
       return {
         Id: Id,
@@ -2022,10 +1838,8 @@ class Validatation {
         Message: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('MaxPerBallLessThanOrEqual') + ' ' + limitData.MaxPerBallMax
       };
     }
-
     return null;
   }
-
 }
 
 /***/ }),
@@ -2048,7 +1862,6 @@ const alertOption = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_ALERT_OPTION"]](state, action) {
     return Object.assign({}, state, action.data);
   }
-
 });
 
 /***/ }),
@@ -2155,56 +1968,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_BONUS_CODE", function() { return SET_SELECTED_BONUS_CODE; });
 const FETCH_DATA = 'FETCH_DATA';
 const SET_GRID_DATA = "SET_GRID_DATA";
+
 /* Product */
-
 const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
+
 /* Brand */
-
 const SET_SELECTED_BRAND = "SET_SELECTED_BRAND";
-/* Base Currency */
 
+/* Base Currency */
 const SET_SELECTED_BASECURRENCY = "SET_SELECTED_BASECURRENCY";
 const SET_BASECURRENCY_LIST = "SET_BASECURRENCY_LIST";
+
 /* Currency */
-
 const SET_SELECTED_CURRENCY = "SET_SELECTED_CURRENCY";
+
 /* Loader */
-
 const TOGGLE_LOADER = "TOGGLE_LOADER";
+
 /* Exclude Test Data */
-
 const CHANGE_IS_EXCLUDE_TEST = "CHANGE_IS_EXCLUDE_TEST";
+
 /* User mini guide */
-
 const USER_GUIDE_CONTENT = "USER_GUIDE_CONTENT;";
-/* Date range */
 
+/* Date range */
 const SET_DATE_RANGE = 'SET_DATE_RANGE';
 const GET_DATE_CONSTRAINT = 'GET_DATE_CONSTRAINT';
+
 /* Convert all figures to base currency */
-
 const CHANGE_IS_CONVERT_ALL = "CHANGE_IS_CONVERT_ALL";
+
 /* Status */
-
 const SET_SELECTED_STATUS = "SET_SELECTED_STATUS";
+
 /* Platform  */
-
 const SET_SELECTED_PLATFORM = "SET_SELECTED_PLATFORM";
-/* Live Status  */
 
+/* Live Status  */
 const SET_SELECTED_LIVESTATUS = "SET_SELECTED_LIVESTATUS";
 const SET_USERNAME = "SET_USERNAME";
 const SET_REQUEST_PARAM = "SET_REQUEST_PARAM";
 const SET_REPORT_TITLE = "SET_REPORT_TITLE";
-/* Live Status  */
 
+/* Live Status  */
 const SET_PAGING_OPTION = 'SET_PAGING_OPTION';
 const SET_SORT_OPTION = 'SET_SORT_OPTION';
+
 /* Setting Data */
-
 const SET_SETTING_DATA = 'SET_SETTING_DATA';
-/* Bonus */
 
+/* Bonus */
 const SET_BONUS_NAME = "SET_BONUS_NAME";
 const SET_SELECTED_BONUS_TYPE = "SET_BONUS_TYPE";
 const SET_SELECTED_BONUS_STATUS = "SET_BONUS_STATUS";
@@ -2228,11 +2041,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Overlay */ "./www/js/source/reactpages/components/Overlay.jsx");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -2245,14 +2057,12 @@ class Balloon extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       left: 0
     };
   }
-
   componentDidUpdate(prevProps) {
     const {
       targetTop,
       targetLeft,
       width
     } = this.props;
-
     if (!prevProps.isOpen && this.props.isOpen && (prevProps.targetTop !== targetTop || prevProps.targetLeft !== targetLeft || prevProps.msg !== this.props.msg)) {
       this.setState({
         left: targetLeft - width / 2,
@@ -2260,7 +2070,6 @@ class Balloon extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       });
     }
   }
-
   render() {
     const {
       msg,
@@ -2298,9 +2107,7 @@ class Balloon extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       }
     }));
   }
-
 }
-
 _defineProperty(Balloon, "propTypes", {
   isOpen: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.bool,
   msg: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
@@ -2308,7 +2115,6 @@ _defineProperty(Balloon, "propTypes", {
   targetLeft: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,
   width: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number
 });
-
 _defineProperty(Balloon, "defaultProps", {
   isOpen: false,
   msg: '',
@@ -2316,7 +2122,6 @@ _defineProperty(Balloon, "defaultProps", {
   targetLeft: 0,
   width: 0
 });
-
 const balloonWithRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef((props, ref) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Balloon, _extends({}, props, {
     forwardedRef: ref
@@ -2385,7 +2190,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
 const Loader = ({
   isLoading
 }) => {
@@ -2400,7 +2204,6 @@ const Loader = ({
     className: "loader-inner ball-beat"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (Loader);
 
 /***/ }),
@@ -2419,7 +2222,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
 
-
 const NoDataTitle = ({
   title
 }) => {
@@ -2430,7 +2232,6 @@ const NoDataTitle = ({
     }
   });
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (NoDataTitle);
 
 /***/ }),
@@ -2451,8 +2252,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -2463,25 +2265,20 @@ const wrapperClasses = {
 class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
     _defineProperty(this, "_unRegisterEvents", () => {
       const {
         closeOnOutsideClick
       } = this.props;
-
       if (closeOnOutsideClick) {
         document.removeEventListener('click', this._handleClickOutSide);
       }
     });
-
     _defineProperty(this, "_handleClickOutSide", event => {
       const clickOutside = this.containerElement && !this.containerElement.contains(event.target);
-
       if (clickOutside && this.state.isOpening) {
         this._close();
       }
     });
-
     this.containerElement = null;
     this.refHandlers = {
       container: ref => {
@@ -2492,7 +2289,6 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isOpening: this.props.isOpening
     };
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpening !== prevProps.isOpening) {
       const {
@@ -2511,21 +2307,17 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }, 0);
     }
   }
-
   componentWillUnmount() {
     this._unRegisterEvents();
   }
-
   _registerEvents() {
     const {
       closeOnOutsideClick
     } = this.props;
-
     if (closeOnOutsideClick) {
       document.addEventListener('click', this._handleClickOutSide);
     }
   }
-
   _close() {
     const {
       onClose
@@ -2534,7 +2326,6 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       isOpening: false
     }, () => onClose && onClose());
   }
-
   render() {
     const {
       className,
@@ -2552,16 +2343,13 @@ class Overlay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       ref: this.refHandlers.container
     }, children);
   }
-
 }
-
 _defineProperty(Overlay, "propTypes", {
   closeOnOutsideClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   isOpening: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   onOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   onClose: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
 });
-
 _defineProperty(Overlay, "defaultProps", {
   closeOnOutsideClick: true,
   isOpening: false
@@ -2586,7 +2374,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const Popup = props => {
   const {
     title,
@@ -2598,7 +2385,6 @@ const Popup = props => {
     iframeUrl
   } = props;
   let content;
-
   if (iframeUrl) {
     content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
       frameBorder: "0",
@@ -2616,7 +2402,6 @@ const Popup = props => {
       className: "popup-content"
     }, children);
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: `popup-container ${isShow ? 'show' : 'hide'}`
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2640,7 +2425,6 @@ const Popup = props => {
     className: "icon-close"
   }))), content));
 };
-
 Popup.propTypes = {
   width: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
   height: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
@@ -2754,12 +2538,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icon */ "./www/js/source/reactpages/components/sweet-alert/icon.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+const _excluded = ["text"],
+  _excluded2 = ["buttons", "children"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
 
 
 
@@ -2774,29 +2557,25 @@ class SweetAlert extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component 
   constructor(props) {
     super(props);
   }
-
   _buildButtonGroup(buttons) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "al-button-container"
     }, buttons.map((btnItem, index) => {
       const {
-        text
-      } = btnItem,
-            attrs = _objectWithoutProperties(btnItem, ["text"]);
-
+          text
+        } = btnItem,
+        attrs = _objectWithoutProperties(btnItem, _excluded);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
         key: index,
         type: "button"
       }, attrs), text);
     }));
   }
-
   _buildIcon() {
     const {
       icon
     } = this.props;
     const className = `${_icon__WEBPACK_IMPORTED_MODULE_3__["ICON"]} ${_icon__WEBPACK_IMPORTED_MODULE_3__["ICON"]}--${icon}`;
-
     if (PREDEFINED_ICONS.includes(icon)) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: className,
@@ -2805,23 +2584,19 @@ class SweetAlert extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component 
         }
       });
     }
-
     return null;
   }
-
   render() {
     const _this$props = this.props,
-          {
-      buttons,
-      children
-    } = _this$props,
-          props = _objectWithoutProperties(_this$props, ["buttons", "children"]);
-
+      {
+        buttons,
+        children
+      } = _this$props,
+      props = _objectWithoutProperties(_this$props, _excluded2);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "sweet-alert"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_popup__WEBPACK_IMPORTED_MODULE_1__["default"], props, this._buildIcon(), children, this._buildButtonGroup(buttons)));
   }
-
 }
 SweetAlert.propTypes = {
   width: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
@@ -2878,14 +2653,12 @@ class AppLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
   }
-
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "container",
       className: `container-fluid ${this.props.className || ''}`
     }, this.props.children);
   }
-
 }
 
 /***/ }),
@@ -2917,8 +2690,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -2928,7 +2702,6 @@ class DataService {
     const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
     return proxyUrl;
   }
-
   static getData(url, params) {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__["default"].setParams(url, params);
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
@@ -2938,7 +2711,6 @@ class DataService {
       }
     });
   }
-
   static postData(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       headers: {
@@ -2947,7 +2719,6 @@ class DataService {
       }
     });
   }
-
   static getFile(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       responseType: 'blob',
@@ -2957,44 +2728,34 @@ class DataService {
       }
     });
   }
-
   static postProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.postData(proxyUrl, params);
   }
-
   static postReportData(url, params) {
     return this.postProxyData(this.apiKeys.report, url, params);
   }
-
   static postBetListData(url, params) {
     return this.postProxyData(this.apiKeys.betlist, url, params);
   }
-
   static getProxyFile(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getFile(proxyUrl, params);
   }
-
   static getReportFile(url, params) {
     return this.getProxyFile(this.apiKeys.report, url, params);
   }
-
   static getBetListFile(url, params) {
     return this.getProxyFile(this.apiKeys.betlist, url, params);
   }
-
   static getProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
     return this.getData(proxyUrl, params);
   }
-
   static getReportData(url, params) {
     return this.getProxyData(this.apiKeys.report, url, params);
   }
-
 }
-
 _defineProperty(DataService, "apiKeys", {
   report: 'reportApi',
   betlist: 'betlistApi'
@@ -3016,10 +2777,8 @@ class QueryString {
   static _parseQueryString(queryString) {
     let args = queryString.split('&');
     let argsList = {};
-
     for (let i = 0; i < args.length; i++) {
       let arg = unescape(args[i]);
-
       if (arg.length > 0) {
         if (arg.indexOf('=') === -1) {
           argsList[arg.toLowerCase().trim()] = null;
@@ -3029,84 +2788,66 @@ class QueryString {
         }
       }
     }
-
     return argsList;
   }
-
   static _getQueryString(url) {
     var index = url.indexOf("?");
     return index < 0 ? "" : url.substring(index + 1, url.length);
   }
-
   static _getRawUrl(url) {
     var index = url.indexOf("?");
     return index < 0 ? url : url.substring(0, index);
   }
-
   static setParam(url, name, value) {
     var rawUrl = QueryString._getRawUrl(url);
-
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     if (!name) {
       return url;
-    } // Update value
+    }
 
-
+    // Update value
     var found = false;
-
     for (var key in args) {
       if (key && key.toLowerCase() === name.toLowerCase()) {
         // Does not update data if value = undefined
         if (value !== undefined) {
           args[key] = value;
         }
-
         found = true;
       }
     }
-
     if (!found) {
       args[name.toLowerCase()] = value;
     }
+    var queryArray = [];
 
-    var queryArray = []; // Rebuild query string, ignore null value
-
+    // Rebuild query string, ignore null value
     for (var key1 in args) {
       if (args[key1] != null && args[key1] !== undefined) {
         queryArray.push(key1.toLowerCase() + "=" + args[key1]);
       }
     }
-
     return rawUrl + "?" + queryArray.join("&");
   }
-
   static setParams(url, parameters) {
     for (var property in parameters) {
       if (parameters.hasOwnProperty(property)) {
         url = QueryString.setParam(url, property, parameters[property]);
       }
     }
-
     return url;
   }
-
   static getParam(url, name) {
     var queryString = QueryString._getQueryString(url);
-
     var args = QueryString._parseQueryString(queryString);
-
     for (var key in args) {
       if (key != null && key.toLowerCase() === name.toLowerCase()) {
         return args[key];
       }
     }
-
     return null;
   }
-
 }
 
 /***/ }),
@@ -3150,17 +2891,14 @@ class LangHelper {
   static get currentLanguage() {
     return langCode;
   }
-
   static getSingleResource(key) {
     var langHandler = window[resourceName];
     return langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key;
   }
-
   static getResources(keys) {
     var langHandler = window[resourceName];
     return keys.map(key => langHandler && langHandler[key] || window[DEFAULT_RESOURCE_NAME] && window[DEFAULT_RESOURCE_NAME][key] || key);
   }
-
 }
 
 /***/ }),
@@ -3181,8 +2919,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const isDev = "development" === "development";
-const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name; // middleware that logs actions
-
+const configName = _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].name;
+// middleware that logs actions
 const loggerMiddleware = Object(redux_logger__WEBPACK_IMPORTED_MODULE_0__["createLogger"])({
   predicate: (getState, action) => isDev || window[configName] && window[configName].env === _constants_config__WEBPACK_IMPORTED_MODULE_1__["debuggingConfig"].env && (!window[configName].actionFilter || window[configName].actionFilter === action.type)
 });
@@ -3190,7 +2928,6 @@ class Logger {
   static getLoggerMiddleware() {
     return loggerMiddleware;
   }
-
 }
 
 /***/ }),
@@ -3209,31 +2946,25 @@ class NumberFormat {
   static formatDecimal(value) {
     return this.format(value, 2);
   }
-
   static format(value, digits = 0) {
     if (!this.isNumber(value)) {
       return "";
     }
-
     const roundedValue = this.round(value, digits);
     return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
   static round(value, digits) {
     const sign = value < 0 ? -1 : 1;
     const absoluteValue = Math.abs(value);
     const rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
     return sign * rounded;
   }
-
   static isNumber(value) {
     return typeof value !== "number" || isNaN(value) ? false : true;
   }
-
   static parseToString(number) {
     return number.toString().replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
   }
-
 }
 
 /***/ }),
@@ -3249,41 +2980,32 @@ class NumberFormat {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Site; });
 const _rootUrl = window.rootUrl || "/";
-
 let _xsrfToken = null;
 class Site {
   static getXsrfToken() {
     if (!_xsrfToken) {
       _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
     }
-
     return _xsrfToken;
   }
-
   static resolveClientUrl(relativeUrl) {
     return _rootUrl + relativeUrl;
   }
-
   static convertDateToString(date) {
     return typeof date === "string" ? date : date.format("MM/DD/YYYY");
   }
-
   static isEmptyObject(obj = {}) {
     return Object.entries(obj).length === 0 && obj.constructor === Object;
   }
-
   static asNull(text) {
     if (text != null) {
       text = text.trim();
-
       if (text === '') {
         return null;
       }
     }
-
     return text;
   }
-
   static downloadFile(data, fileName) {
     const url = window.URL.createObjectURL(new Blob([data]));
     const link = document.createElement('a');
@@ -3294,21 +3016,16 @@ class Site {
     link.parentNode.removeChild(link);
     window.URL.revokeObjectURL(url);
   }
-
   static readAsJson(blob, callback) {
     const reader = new FileReader();
-
     reader.onload = function () {
       callback && callback(JSON.parse(reader.result));
     };
-
     reader.readAsText(blob);
   }
-
   static getRootUrl() {
     return _rootUrl;
   }
-
 }
 
 /***/ }),
@@ -3332,11 +3049,11 @@ __webpack_require__.r(__webpack_exports__);
 class Store {
   static createStore(reducer, initialState) {
     const loggerMiddleware = _logger__WEBPACK_IMPORTED_MODULE_2__["default"].getLoggerMiddleware();
-    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], // lets us dispatch() functions
+    const enhancer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"],
+    // lets us dispatch() functions
     loggerMiddleware));
     return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, initialState, enhancer);
   }
-
 }
 
 /***/ }),
@@ -3359,7 +3076,6 @@ const isLoading = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["def
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["TOGGLE_LOADER"]](state, action) {
     return action.data;
   }
-
 });
 
 /***/ }),
@@ -3376,19 +3092,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestParam", function() { return requestParam; });
 /* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./www/js/source/reactpages/actions/types.js");
 /* harmony import */ var _lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/createReducer.js */ "./www/js/source/reactpages/lib/createReducer.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 const requestParam = Object(_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
   [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_REQUEST_PARAM"]](state, action) {
     return _objectSpread({}, action.data);
   }
-
 });
 
 /***/ })

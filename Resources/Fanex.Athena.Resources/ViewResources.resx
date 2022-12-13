@@ -3243,4 +3243,52 @@
   <data name="ProductTIP" xml:space="preserve">
     <value>Player Tips</value>
   </data>
+  <data name="BasketballPinGoal" xml:space="preserve">
+    <value>Basketball PinGoal</value>
+  </data>
+  <data name="Saba" xml:space="preserve">
+    <value>Saba</value>
+  </data>
+  <data name="SoccerPinGoal" xml:space="preserve">
+    <value>Soccer PinGoal</value>
+  </data>
+  <data name="Basketball" xml:space="preserve">
+    <value>Basketball</value>
+  </data>
+  <data name="Cricket" xml:space="preserve">
+    <value>Cricket</value>
+  </data>
+  <data name="Futsal" xml:space="preserve">
+    <value>Futsal</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>Soccer</value>
+  </data>
+  <data name="IpSummary" xml:space="preserve">
+    <value>IP Summary</value>
+  </data>
+  <data name="SearchByExactlyIp" xml:space="preserve">
+    <value>Search by Exactly IP</value>
+  </data>
+  <data name="BetOn" xml:space="preserve">
+    <value>Bet On</value>
+  </data>
+  <data name="FinalScore" xml:space="preserve">
+    <value>Final Score</value>
+  </data>
+  <data name="KOTime" xml:space="preserve">
+    <value>K.O Time</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Ticket" xml:space="preserve">
+    <value>Ticket</value>
+  </data>
+  <data name="LeagueName" xml:space="preserve">
+    <value>League name</value>
+  </data>
 </root>

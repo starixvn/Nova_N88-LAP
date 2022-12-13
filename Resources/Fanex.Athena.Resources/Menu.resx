@@ -181,4 +181,7 @@
     <value>Extra Payout</value>
     <comment>153563</comment>
   </data>
+  <data name="AbnormalBetReport" xml:space="preserve">
+    <value>Abnormal Bet</value>
+  </data>
 </root>

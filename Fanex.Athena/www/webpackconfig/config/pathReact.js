@@ -19,7 +19,8 @@ var cssPaths = {
     winlossreport: "./www/css/source/reactpages/pages/report/winloss/index.scss",
     marketingreport: "./www/css/source/reactpages/pages/report/marketing/index.scss",
     bonusinforeport: "./www/css/source/reactpages/pages/report/bonusinfo/index.scss",
-    extrapayoutreport: "./www/css/source/reactpages/pages/report/extrapayout/index.scss"
+    extrapayoutreport: "./www/css/source/reactpages/pages/report/extrapayout/index.scss",
+    abnormalbetreport: "./www/css/source/reactpages/pages/report/abnormalbet/index.scss"
 };
 
 var scriptPaths = {
@@ -52,7 +53,8 @@ var scriptPaths = {
     marketingreport: "./www/js/source/reactpages/pages/report/marketing/index.js",
     marketingreport_performancehighlightdetail: "./www/js/source/reactpages/pages/report/marketing/components/widgets/PerformanceHighlightWidget/Details/index.js",
     bonusinforeport: "./www/js/source/reactpages/pages/report/bonusinfo/index.js",
-    extrapayoutreport: "./www/js/source/reactpages/pages/report/extrapayout/index.js"
+    extrapayoutreport: "./www/js/source/reactpages/pages/report/extrapayout/index.js",
+    abnormalbetreport: "./www/js/source/reactpages/pages/report/abnormalbet/components/index.jsx"
 };
 module.exports = {
     projectRoot: projectRoot,

@@ -10,7 +10,7 @@ export default class NumberFormat {
 
         const roundedValue = this.round(value, digits);
 
-        return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
+        return roundedValue.toFixed(digits);
     }
 
     static round(value, digits) {

@@ -12,8 +12,6 @@
         value = c.Value,
         label = c.Value
     }).ToList();
-
-    var selectedCurrency = string.Join(",", Model.CurrencyList.Select(x => x.Key).ToArray());
     var selectedReason = string.Join(",", Model.ReasonList.Select(x => x.Key).ToArray());
     var selectedStatus = string.Join(",", Model.LiveStatusList.Select(x => x.Key).ToArray());
     var selectedBettype = string.Join(",", Model.Bettypes.Select(x => x.Key).ToArray());
@@ -21,6 +19,14 @@
 
     var minDate = Model.ReportSetting.MinDateString;
     var maxDate = Model.ReportSetting.MaxDate;
+
+    var selectedCurrency = string.Join(",", Model.OwnBrand.TpCurrencyList.Select(x => x.Key).ToArray());
+
+    var brands = Model.Brands.Select(x => new
+    {
+        id = x.Id,
+        tpCurrencies = x.TpCurrencyList.Select(y => new { key = y.Key, value = y.Value })
+    });
 }
 
 @section pagecss {
@@ -34,11 +40,11 @@
 
 @section globaljscode{
     window.initialState = {
-    selectedCurrency:  '@(selectedCurrency)',
     selectedSport:  '@(selectedSport)',
     selectedReason:  '@(selectedReason)',
     selectedBettype:  '@(selectedBettype)',
     selectedStatus:  '@(selectedStatus)',
+    selectedCurrency: '@selectedCurrency',
     selectedBaseCurrency: '@(ViewBag.DefaultSelectedBaseCurrency)',
     dateRange: {fromDate: '@Model.FromDate.ToString("MM/dd/yyyy")', toDate: '@Model.ToDate.ToString("MM/dd/yyyy")'},
     isLoading: false,
@@ -46,7 +52,7 @@
     selectedBrand: @Model.OwnBrand.Id
     }
     window._AppData = {
-    currencyList: @Html.Raw(Model.CurrencyList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    brands: @Html.Raw(brands.ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
     sportList: @Html.Raw(Model.Sports.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
     bettypeList: @Html.Raw(Model.Bettypes.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
@@ -54,7 +60,6 @@
     reasonList: @Html.Raw(Model.ReasonList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
     dateConstraint: {minDate: '@minDate', maxDate: '@maxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 3},
     defaultBaseCurrency: '@(ViewBag.DefaultSelectedBaseCurrency)',
-    defaultCurrency: '@(selectedCurrency)',
     licenseeName: '@(ViewBag.LicenseeName)',
     isShowIpvn: '@(ViewBag.IsShowIpvn)',
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson())

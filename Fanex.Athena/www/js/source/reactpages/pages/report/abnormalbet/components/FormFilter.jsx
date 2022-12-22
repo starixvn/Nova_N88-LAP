@@ -16,6 +16,7 @@ import { ApiUrl, ViewInLevel } from '../common/constants'
 import Service from '../common/service'
 import DataService from '@jsroot/lib/DataService.js'
 import UserGuide from '@jsroot/components/UserGuide'
+import CurrencyHelper from '@jsroot/lib/currencyHelper'
 
 export const FormFilter = props => {
     const [isConvertAllToBaseCurrency, setConvertAllToBaseCurrency] = useState(true);
@@ -25,15 +26,15 @@ export const FormFilter = props => {
     const [viewIn, setViewIn] = useState(2);
     const [baseCurrencyList, setBaseCurrencyList] = useState(AppData.baseCurrencyList);
     const [username, setUsername] = useState('');
+    const {selectedBrand, setSelectedBaseCurrency, setSelectedCurrency} = props;
+
+    const currencyList = React.useMemo(() => CurrencyHelper.getTpCurrencyList(selectedBrand, AppData.brands), [selectedBrand]);  
+    const defaultCurrency = currencyList.map(_ => _.key).join(',');
 
     useEffect(() => {
-
-    }, []);
-
-    const isSingleDate = dateRange => {
-        const { fromDate, toDate } = dateRange || props.dateRange;
-        return moment(fromDate, "MM/DD/YYYY", true).isSame(moment(toDate, "MM/DD/YYYY", true), 'day');
-    }
+        const selectedCurrency = currencyList.map(_ => _.key).join(',');
+        onChangeCurrency(selectedCurrency)
+    }, [currencyList])
 
     const _onChangeDateRange = (range, isValid = true) => {
         if (isValid) {
@@ -113,15 +114,13 @@ export const FormFilter = props => {
 
 
     const _renderCurrencySelectList = () => {
-        const currencyList = AppData.currencyList;
-
         return currencyList && currencyList.length && (
             <MultipleSelect id="CurrencyList"
                 language={LangHelper.currentLanguage}
                 dataSource={currencyList}
-                keyField={"Id"}
-                valueField={"Value"}
-                statusField={"Status"}
+                keyField={"key"}
+                valueField={"value"}
+                statusField={"status"}
                 onChange={(currentItem, selectedItemsKey) => onChangeCurrency(selectedItemsKey)} />);
     }
 
@@ -137,7 +136,7 @@ export const FormFilter = props => {
             setBaseCurrencyList(newBaseCurrencyList);
         }
         else {
-            const currencyName = AppData.currencyList.find(x => x.Id == currencyIdList).Value;
+            const currencyName = currencyList.find(x => x.key == currencyIdList).value;
             baseCurrency = currencyName;
 
             if (!baseCurrencyList.find(x => x.label === currencyName)) {
@@ -150,16 +149,16 @@ export const FormFilter = props => {
             }
         }
 
-        props.setSelectedCurrency(currencyIdList);
-        props.setSelectedBaseCurrency(baseCurrency);
+        setSelectedCurrency(currencyIdList);
+        setSelectedBaseCurrency(baseCurrency);
     }
 
     const onChangeViewIn = (viewIn) => {
         setUsername("");
         setIp("");
         setRefNo("");
-        props.setSelectedCurrency(AppData.defaultCurrency);
-        props.setSelectedBaseCurrency(AppData.defaultBaseCurrency);
+        setSelectedCurrency(defaultCurrency);
+        setSelectedBaseCurrency(AppData.defaultBaseCurrency)
         setConvertAllToBaseCurrency(true);
         setViewIn(viewIn);
     }
@@ -200,7 +199,9 @@ export const FormFilter = props => {
             <Select instanceId="brandList"
                 value={props.selectedBrand}
                 options={AppData.brandOptions}
-                onChange={(item) => props.setSelectedBrand(item.value)} />
+                onChange={(item) => {
+                    props.setSelectedBrand(item.value);
+                    }} />
         );
     }
 
@@ -233,8 +234,8 @@ export const FormFilter = props => {
         const selectedReasonArray = props.selectedReason.split(',');
         const licensee = AppData.brandOptions.find(x => x.value === props.selectedBrand);
 
-        const currencyText = selectedCurrencyArray.length === AppData.currencyList.length ? 'All'
-            : AppData.currencyList.filter(item => selectedCurrencyArray.includes(item.Id.toString())).map(item => item.Value).join(',');
+        const currencyText = selectedCurrencyArray.length === currencyList.length ? 'All'
+            : currencyList.filter(item => selectedCurrencyArray.includes(item.key.toString())).map(item => item.value).join(',');
 
         const baseCurrency = baseCurrencyList.find(x => x.value === props.selectedBaseCurrency);
         return {

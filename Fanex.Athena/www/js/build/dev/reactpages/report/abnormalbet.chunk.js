@@ -3106,6 +3106,56 @@ function createReducer(initialState, handlers) {
 
 /***/ }),
 
+/***/ "./www/js/source/reactpages/lib/currencyHelper.js":
+/*!********************************************************!*\
+  !*** ./www/js/source/reactpages/lib/currencyHelper.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CurrencyHelper; });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+class CurrencyHelper {
+  static getTpCurrencyList(brandIds, brands) {
+    return this._getCurrencyList(brandIds, brands, 'tpCurrencies');
+  }
+  static getAgentCurrencyList(brandIds, brands) {
+    return this._getCurrencyList(brandIds, brands, 'currencies');
+  }
+  static _getCurrencyList(brandIds, brands, currencyProperty) {
+    const brandIdList = (brandIds + '').split(',');
+    const existKeys = {};
+    const currencyList = brandIdList.reduce((result, brandId) => {
+      const currencyListByBrand = this._getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty);
+      return [...result, ...currencyListByBrand];
+    }, []);
+    return currencyList;
+  }
+  static _getCurrencyListByBrandId(brandId, brands, existKeys, currencyProperty) {
+    var brandInfo = brands.find(_ => _.id === parseInt(brandId));
+    if (brandInfo) {
+      return brandInfo[currencyProperty].reduce((result, currentValue) => {
+        if (!existKeys[currentValue.key]) {
+          existKeys[currentValue.key] = true;
+          return [...result, _objectSpread(_objectSpread({}, currentValue), {}, {
+            status: true
+          })];
+        }
+        return result;
+      }, []);
+    }
+    return [];
+  }
+}
+
+/***/ }),
+
 /***/ "./www/js/source/reactpages/lib/langHelper.js":
 /*!****************************************************!*\
   !*** ./www/js/source/reactpages/lib/langHelper.js ***!
@@ -3183,7 +3233,7 @@ class NumberFormat {
       return "";
     }
     const roundedValue = this.round(value, digits);
-    return roundedValue.toFixed(digits);
+    return roundedValue.toFixed(digits).replace(/^[+-]?\d+/, int => int.replace(/(\d)(?=(\d{3})+$)/g, '$1,'));
   }
   static round(value, digits) {
     const sign = value < 0 ? -1 : 1;
@@ -3945,7 +3995,7 @@ const buildDetailDataRow = (dataItem, index) => {
     className: "right-align"
   }, _lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].format(dataItem.odds, 4)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "right-align"
-  }, _lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].formatDecimal(dataItem.stake)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+  }, _lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].format(dataItem.stake, 2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "right-align"
   }, _lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].format(dataItem.hdp, 4)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "center-align"
@@ -4252,6 +4302,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../common/service */ "./www/js/source/reactpages/pages/report/abnormalbet/common/service.js");
 /* harmony import */ var _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @jsroot/lib/DataService.js */ "./www/js/source/reactpages/lib/DataService.js");
 /* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
+/* harmony import */ var _jsroot_lib_currencyHelper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @jsroot/lib/currencyHelper */ "./www/js/source/reactpages/lib/currencyHelper.js");
+
 
 
 
@@ -4278,14 +4330,17 @@ const FormFilter = props => {
   const [viewIn, setViewIn] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(2);
   const [baseCurrencyList, setBaseCurrencyList] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].baseCurrencyList);
   const [username, setUsername] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {}, []);
-  const isSingleDate = dateRange => {
-    const {
-      fromDate,
-      toDate
-    } = dateRange || props.dateRange;
-    return moment__WEBPACK_IMPORTED_MODULE_11___default()(fromDate, "MM/DD/YYYY", true).isSame(moment__WEBPACK_IMPORTED_MODULE_11___default()(toDate, "MM/DD/YYYY", true), 'day');
-  };
+  const {
+    selectedBrand,
+    setSelectedBaseCurrency,
+    setSelectedCurrency
+  } = props;
+  const currencyList = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _jsroot_lib_currencyHelper__WEBPACK_IMPORTED_MODULE_18__["default"].getTpCurrencyList(selectedBrand, _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].brands), [selectedBrand]);
+  const defaultCurrency = currencyList.map(_ => _.key).join(',');
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const selectedCurrency = currencyList.map(_ => _.key).join(',');
+    onChangeCurrency(selectedCurrency);
+  }, [currencyList]);
   const _onChangeDateRange = (range, isValid = true) => {
     if (isValid) {
       props.setDateRange(range);
@@ -4355,14 +4410,13 @@ const FormFilter = props => {
     });
   };
   const _renderCurrencySelectList = () => {
-    const currencyList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].currencyList;
     return currencyList && currencyList.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
       id: "CurrencyList",
       language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].currentLanguage,
       dataSource: currencyList,
-      keyField: "Id",
-      valueField: "Value",
-      statusField: "Status",
+      keyField: "key",
+      valueField: "value",
+      statusField: "status",
       onChange: (currentItem, selectedItemsKey) => onChangeCurrency(selectedItemsKey)
     });
   };
@@ -4375,7 +4429,7 @@ const FormFilter = props => {
       baseCurrency = newBaseCurrencyList.find(x => x.label === props.selectedBaseCurrency) ? props.selectedBaseCurrency : _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].defaultBaseCurrency;
       setBaseCurrencyList(newBaseCurrencyList);
     } else {
-      const currencyName = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].currencyList.find(x => x.Id == currencyIdList).Value;
+      const currencyName = currencyList.find(x => x.key == currencyIdList).value;
       baseCurrency = currencyName;
       if (!baseCurrencyList.find(x => x.label === currencyName)) {
         newBaseCurrencyList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].baseCurrencyList.slice(0);
@@ -4388,15 +4442,15 @@ const FormFilter = props => {
         baseCurrency = currencyName;
       }
     }
-    props.setSelectedCurrency(currencyIdList);
-    props.setSelectedBaseCurrency(baseCurrency);
+    setSelectedCurrency(currencyIdList);
+    setSelectedBaseCurrency(baseCurrency);
   };
   const onChangeViewIn = viewIn => {
     setUsername("");
     setIp("");
     setRefNo("");
-    props.setSelectedCurrency(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].defaultCurrency);
-    props.setSelectedBaseCurrency(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].defaultBaseCurrency);
+    setSelectedCurrency(defaultCurrency);
+    setSelectedBaseCurrency(_jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].defaultBaseCurrency);
     setConvertAllToBaseCurrency(true);
     setViewIn(viewIn);
   };
@@ -4432,7 +4486,9 @@ const FormFilter = props => {
       instanceId: "brandList",
       value: props.selectedBrand,
       options: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].brandOptions,
-      onChange: item => props.setSelectedBrand(item.value)
+      onChange: item => {
+        props.setSelectedBrand(item.value);
+      }
     });
   };
   const onSubmit = event => {
@@ -4465,7 +4521,7 @@ const FormFilter = props => {
     const selectedBettypeArray = props.selectedBettype.split(',');
     const selectedReasonArray = props.selectedReason.split(',');
     const licensee = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].brandOptions.find(x => x.value === props.selectedBrand);
-    const currencyText = selectedCurrencyArray.length === _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].currencyList.length ? 'All' : _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].currencyList.filter(item => selectedCurrencyArray.includes(item.Id.toString())).map(item => item.Value).join(',');
+    const currencyText = selectedCurrencyArray.length === currencyList.length ? 'All' : currencyList.filter(item => selectedCurrencyArray.includes(item.key.toString())).map(item => item.value).join(',');
     const baseCurrency = baseCurrencyList.find(x => x.value === props.selectedBaseCurrency);
     return {
       FromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_7__["default"].convertDateToString(fromDate),

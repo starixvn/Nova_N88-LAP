@@ -59,6 +59,7 @@
         /*Notification*/
 
         public const string Resettlement = "Resettlement";
+        public const string Bell = "Bell";
 
         /*BetList*/
         public const string BetlistViewIpvn = "ViewIPfromVN";

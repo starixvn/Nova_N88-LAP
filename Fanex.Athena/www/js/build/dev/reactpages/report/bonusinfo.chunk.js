@@ -1478,7 +1478,6 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     this.styles = Object(_styles_js__WEBPACK_IMPORTED_MODULE_6__["default"])(theme);
     this.calendarSelectionStep = 0;
     this.locale = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].locale), props.locale);
-    this.ranges = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].ranges(props.today, props.minDate, props.maxDate, props.limitedMonthRange)), props.ranges);
     this.isValid = true;
     this.originalRange = {
       startDate,
@@ -1614,6 +1613,8 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const {
       styles
     } = this;
+    const today = moment__WEBPACK_IMPORTED_MODULE_2___default()().format("MM/DD/YYYY");
+    const ranges = _objectSpread(_objectSpread({}, _defaultOptions_js__WEBPACK_IMPORTED_MODULE_9__["default"].ranges(today, this.props.minDate, this.props.maxDate, this.props.limitedMonthRange)), this.props.ranges);
     const classes = _objectSpread(_objectSpread({}, _styles_js__WEBPACK_IMPORTED_MODULE_6__["defaultClasses"]), classNames);
     const calendarsCount = Number(calendars) - 1;
     const buttonHandlers = {
@@ -1637,13 +1638,14 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "icon icon-calendar"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_10__["default"], {
       isOpening: this.state.show,
-      onClose: this.handleCancel
+      onClose: this.handleCancel,
+      key: range.startDate.month().toString() + range.startDate.year().toString() + range.endDate.month().toString() + range.endDate.year().toString()
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: classes.dateRange,
       ref: element => this.dateRangeContainer = element
     }, showRange && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PredefinedRanges_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
       format: format,
-      ranges: this.ranges,
+      ranges: ranges,
       range: range,
       theme: styles,
       onSelect: range => this.handlePredefinedRangesSelect(range),
@@ -1660,7 +1662,7 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           shownDate: shownDate,
           disableDaysBeforeToday: disableDaysBeforeToday,
           lang: lang,
-          key: i,
+          key: i + shownDate.month().toString() + shownDate.year().toString(),
           link: linkedCalendars && link,
           linkCB: this.handleLinkChange.bind(this),
           range: range,

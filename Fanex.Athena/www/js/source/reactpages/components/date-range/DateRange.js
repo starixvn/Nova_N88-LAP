@@ -22,8 +22,6 @@ class DateRange extends Component {
     this.styles = getTheme(theme);
     this.calendarSelectionStep = 0;
     this.locale = { ...defaultOptions.locale, ...props.locale };
-    this.ranges = { ...defaultOptions.ranges(props.today, props.minDate, props.maxDate, props.limitedMonthRange), ...props.ranges };
-
     this.isValid = true;
     this.originalRange = { startDate, endDate };
 
@@ -168,6 +166,8 @@ class DateRange extends Component {
 
     const { range, link } = this.state;
     const { styles } = this;
+    const today = moment().format("MM/DD/YYYY");
+    const ranges = { ...defaultOptions.ranges(today, this.props.minDate, this.props.maxDate, this.props.limitedMonthRange), ...this.props.ranges };
 
     const classes = { ...defaultClasses, ...classNames };
     const calendarsCount = Number(calendars) - 1;
@@ -184,13 +184,16 @@ class DateRange extends Component {
           <i className="icon icon-calendar"></i>
         </div>
 
-        <Overlay isOpening={this.state.show} onClose={this.handleCancel}>
+        <Overlay 
+          isOpening={this.state.show} 
+          onClose={this.handleCancel} 
+          key={range.startDate.month().toString() + range.startDate.year().toString() + range.endDate.month().toString() + range.endDate.year().toString()} >
           <div className={classes.dateRange}
             ref={element => this.dateRangeContainer = element}>
             {showRange && (
               <PredefinedRanges
                 format={format}
-                ranges={this.ranges}
+                ranges={ranges}
                 range={range}
                 theme={styles}
                 onSelect={(range) => this.handlePredefinedRangesSelect(range)}
@@ -210,7 +213,7 @@ class DateRange extends Component {
                     shownDate={shownDate}
                     disableDaysBeforeToday={disableDaysBeforeToday}
                     lang={lang}
-                    key={i}
+                    key={i + shownDate.month().toString() + shownDate.year().toString() }
                     link={linkedCalendars && link}
                     linkCB={this.handleLinkChange.bind(this)}
                     range={range}

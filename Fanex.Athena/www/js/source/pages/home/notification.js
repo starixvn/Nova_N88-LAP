@@ -8,7 +8,8 @@ define(['common/site', 'moment', 'common/popup', 'extensions/jquery.extension'],
         const GET_NOTIFICATION_URL = 'NotificationReport/GetNotificationMessages';
         const MARK_NOTIFICATION = 'NotificationReport/MarkNotificationAsRead';
         const POPUP_ID = 'view-notification';
-        const POPUP_CONTENT_MIN_HEIGHT = 300;
+        const POPUP_CONTENT_MIN_HEIGHT = 100;
+        const NOTIFICATION_STYLE = { 'Amendment': "80%", 'AbnormalBet': '30%' };
 
         let $notificationDdl = '';
         let $notificationLabel = '';
@@ -24,7 +25,7 @@ define(['common/site', 'moment', 'common/popup', 'extensions/jquery.extension'],
             const options = {
                 modal: true,
                 title: Site.getSingleResource('ViewNotification'),
-                height: '80%',
+                height: NOTIFICATION_STYLE[message.Type],
                 id: POPUP_ID,
                 width: '55%',
                 onOpened: function () {
@@ -168,7 +169,9 @@ define(['common/site', 'moment', 'common/popup', 'extensions/jquery.extension'],
                         addNotificationItems(data);
                     },
                     statusCode: {
-                        403: function () { }
+                        400: function () { },
+                        403: function () { },
+                        500: function () { }
                     }
                 });
             };

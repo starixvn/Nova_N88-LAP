@@ -1,31 +1,39 @@
 ﻿namespace Fanex.Athena.Notification.Report
 {
     using Fanex.Athena.Controllers;
+    using Fanex.Athena.Excel.Base.Helpers;
+    using Fanex.Athena.Excel.Notification;
     using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Notification.Service.Interfaces;
+    using Fanex.Athena.Model.Notification.MetaModel;
     using Fanex.Athena.Model.Notification.ViewModel;
+    using Fanex.Athena.Notification.Service.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
-
+    using Fanex.Athena.Web.ResultExtension;
+    using Fanex.NVC.Authentication.Infrastructure;
     using ONEbook.UM.Filters;
-
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using Fanex.Athena.Model.Notification.MetaModel;
-    using Fanex.Athena.Excel.Notification;
-    using Fanex.Athena.Web.ResultExtension;
-    using Fanex.Athena.Excel.Base.Helpers;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]
-    [FunctionAuthorization(PermissionKeys.Resettlement)]
+    [FunctionAuthorization(PermissionKeys.Bell, PermissionKeys.Resettlement)]
     public class NotificationReportController : CultureBaseController
     {
         private readonly INotificationService _notificationService;
+
+        private readonly IDictionary<string, int> _notificationType = new Dictionary<string, int>
+        {
+            { PermissionKeys.Resettlement , 1 },
+            { PermissionKeys.ReportAbnormalBet , 2 }
+        };
+
         public NotificationReportController(
              INotificationService notificationService
             )
@@ -45,9 +53,9 @@
 
             return View("~/Views/Desktop/Notification/Notification.cshtml", model);
         }
-                                                                             
+
         [HttpGet]
-        public ActionResult GetNotificationMessages()
+        public async Task<ActionResult> GetNotificationMessages()
         {
             var maximumMonthDistance = NotificationMetaModel.MaximumMonthRange - 1;
 
@@ -62,9 +70,8 @@
             };
 
             UpdateMetaModel(metaModel);
-
-            return Json(
-                _notificationService.GetNotificationMessages(metaModel), JsonRequestBehavior.AllowGet);
+            var data = await _notificationService.GetNotificationMessages(metaModel);
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -83,12 +90,12 @@
         }
 
         [HttpPost]
-        public ActionResult MarkNotificationAsRead(NotificationMarkAsReadMetaModel metaModel)
+        public async Task<ActionResult> MarkNotificationAsRead(NotificationMarkAsReadMetaModel metaModel)
         {
             metaModel.UserName = SessionServiceInstance.UserSession.UserName;
             metaModel.LicenseeName = SessionServiceInstance.LicenseeSession.LicenseeName;
 
-            var result = _notificationService.MarkNotificationAsRead(metaModel);
+            var result = await _notificationService.MarkNotificationAsRead(metaModel);
 
             return Json(new
             {
@@ -135,13 +142,23 @@
             return File(ExcelHelper.ExportEmptyFile(), "application/vnd.ms-excel");
         }
 
-
         private void UpdateMetaModel(NotificationMetaModel metaModel)
         {
             var userSession = SessionServiceInstance.UserSession;
             metaModel.UserName = userSession.UserName;
             metaModel.LicenseeName = SessionServiceInstance.LicenseeSession.LicenseeName;
             metaModel.Language = Util.MapLanguages.GetValueOrDefault(userSession.Language, "en");
+            metaModel.MessageTypes = GetMessageTypesByPermission(userSession);
+        }
+
+        private string GetMessageTypesByPermission(NVCUserAuthInfo userSession)
+        {
+            var functionList = userSession.FunctionList ?? Enumerable.Empty<NVCFunctionAuthInfo>();
+            var messageTypes = functionList
+                .Where(x => _notificationType.ContainsKey(x.FunctionKey))
+                .Select(x => _notificationType[x.FunctionKey]);
+
+            return string.Join(",", messageTypes);
         }
     }
 }

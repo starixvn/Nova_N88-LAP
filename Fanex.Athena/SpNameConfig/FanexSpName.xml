@@ -31,7 +31,7 @@
 		<Setting Key="Lrf_Rpt_WinLoss" SpName="Lrf_Rpt_WinLoss" DbName="DBEXT.bodb02.bodbLicenseeNet"></Setting>
 		<Setting Key="Lrf_Rpt_CashoutWinloss" SpName="Lrf_Rpt_CashoutWinloss" DbName="DBEXT.bodb02.bodbLicenseeNet" />
 		<Setting Key="Lrf_Rpt_CashoutWinloss_Detail" SpName="Lrf_Rpt_CashoutWinloss_Detail" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_AbnormalBet_SubIssueSel" SpName="Lrf_AbnormalBet_SubIssueSel_xtest" DbName="DBWH.bodb_DWRS.bodbLicenseeNet" />
+		<Setting Key="Lrf_AbnormalBet_SubIssueSel" SpName="Lrf_AbnormalBet_SubIssueSel" DbName="DBWH.bodb_DWRS.bodbLicenseeNet" />
 	</Function>
 
 	<Function Name="CustomerInformation">
@@ -110,6 +110,8 @@
 
 	<Function Name="Notification">
 		<Setting Key="Lrf_AmendmentTicketListingSel" SpName="Lrf_AmendmentTicketListingSel" DbName="DBEXT.bodb02.bodbLicenseeNet" />
+		<Setting Key="N88_MessageListSel" SpName="N88_MessageListSel" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+		<Setting Key="N88_MessageUserIns" SpName="N88_MessageUserIns" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
 	</Function>
 </Functions>
 		

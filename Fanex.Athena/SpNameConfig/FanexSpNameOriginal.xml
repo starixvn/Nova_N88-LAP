@@ -110,5 +110,7 @@
 
 	<Function Name="Notification">
 		<Setting Key="Lrf_AmendmentTicketListingSel" SpName="Lrf_AmendmentTicketListingSel" DbName="DBEXT.bodb02.bodbLicenseeNet" />
+		<Setting Key="N88_MessageListSel" SpName="N88_MessageListSel" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+		<Setting Key="N88_MessageUserIns" SpName="N88_MessageUserIns" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
 	</Function>
 </Functions>

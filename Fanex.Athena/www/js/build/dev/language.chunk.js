@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 12/5/2022 3:44:19 PM
+﻿// Generated at: 12/13/2022 11:36:19 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -554,6 +554,7 @@ lbl1stOver_Under:"1st Over/Under",
 lbl3WayHandicap:"3-Way Handicap",
 lbl7Over:"7Over",
 League:"League",
+LeagueName:"League name",
 Level:"Level",
 Liability:"Liability",
 Licensee:"Licensee",
@@ -841,7 +842,7 @@ Save:"Save",
 SB:"SB",
 SBComm:"SB Comm",
 Score:"Score",
-SearchByExtractIp:"Search by Extract IP",
+SearchByExactlyIp:"Search by Exactly IP",
 SearchResult:"Search Result",
 SelectAtLeastOneCurrencyMsg:"Please select at least one currency!",
 SelectedItemCount:"# selected",

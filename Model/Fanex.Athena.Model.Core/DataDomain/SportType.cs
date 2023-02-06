@@ -313,6 +313,20 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         PP = 248,
 
-        AgCasino = 250
+        AgCasino = 250,
+
+        SabaSoccer = -1,
+
+        SabaBasketball = -2,
+
+        SabaCricket = -3,
+
+        Futsal = 49,
+
+        SabaFutsal = -4,
+
+        SabaSoccerPingoal = -5,
+
+        SabaBasketballPinGoal = -6,
     }
 }

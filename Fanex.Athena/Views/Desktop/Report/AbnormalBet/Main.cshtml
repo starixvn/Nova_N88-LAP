@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "LAP - " + ViewResources.Report +
+    " - " + ViewResources.AbnormalBet;
+    Layout = "~/Views/Desktop/Shared/_ReactPageLayout.cshtml";
+}
+@using Fanex.Athena.Model.Core.DataDomain;
+@using Fanex.Athena.Service.Core.Users.Interfaces
+@model Fanex.Athena.Model.Report.ViewModel.AbnormalBetViewModel
+@{
+    var baseCurrencyList = SystemConstants.BaseCurrencyList.Select(c => new
+    {
+        value = c.Value,
+        label = c.Value
+    }).ToList();
+    var selectedReason = string.Join(",", Model.ReasonList.Select(x => x.Key).ToArray());
+    var selectedStatus = string.Join(",", Model.LiveStatusList.Select(x => x.Key).ToArray());
+    var selectedBettype = string.Join(",", Model.Bettypes.Select(x => x.Key).ToArray());
+    var selectedSport = string.Join(",", Model.Sports.Select(x => x.Key).ToArray());
+
+    var minDate = Model.ReportSetting.MinDateString;
+    var maxDate = Model.ReportSetting.MaxDate;
+
+    var selectedCurrency = string.Join(",", Model.OwnBrand.TpCurrencyList.Select(x => x.Key).ToArray());
+
+    var brands = Model.Brands.Select(x => new
+    {
+        id = x.Id,
+        tpCurrencies = x.TpCurrencyList.Select(y => new { key = y.Key, value = y.Value })
+    });
+}
+
+@section pagecss {
+
+    <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/report/abnormalbet.css")" rel="stylesheet" type="text/css" />
+
+}
+@section pagejs {
+    <script src="@Url.ContentLinkByEnv("/www/js/build/reactpages/report/abnormalbet.chunk.js")"></script>
+}
+
+@section globaljscode{
+    window.initialState = {
+    selectedSport:  '@(selectedSport)',
+    selectedReason:  '@(selectedReason)',
+    selectedBettype:  '@(selectedBettype)',
+    selectedStatus:  '@(selectedStatus)',
+    selectedCurrency: '@selectedCurrency',
+    selectedBaseCurrency: '@(ViewBag.DefaultSelectedBaseCurrency)',
+    dateRange: {fromDate: '@Model.FromDate.ToString("MM/dd/yyyy")', toDate: '@Model.ToDate.ToString("MM/dd/yyyy")'},
+    isLoading: false,
+    reloadReport: false,
+    selectedBrand: @Model.OwnBrand.Id
+    }
+    window._AppData = {
+    brands: @Html.Raw(brands.ToJson()),
+    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+    sportList: @Html.Raw(Model.Sports.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    bettypeList: @Html.Raw(Model.Bettypes.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    statusList: @Html.Raw(Model.LiveStatusList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    reasonList: @Html.Raw(Model.ReasonList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
+    dateConstraint: {minDate: '@minDate', maxDate: '@maxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 3},
+    defaultBaseCurrency: '@(ViewBag.DefaultSelectedBaseCurrency)',
+    licenseeName: '@(ViewBag.LicenseeName)',
+    isShowIpvn: '@(ViewBag.IsShowIpvn)',
+    brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson())
+    };
+}
+<div id="app-container">
+</div>

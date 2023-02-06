@@ -23,7 +23,7 @@ namespace Fanex.Athena.Model.Core.DataDomain
         public static readonly ReadOnlyCollection<string> BaseCurrencyListOfSummaryTotalRow = new ReadOnlyCollection<string>(
          new List<string> { "EUR", "USD", "GBP" });
 
-        public static readonly IDictionary<int, string> BaseCurrencyList = new Dictionary<int, string> {
+        public static readonly IReadOnlyDictionary<int, string> BaseCurrencyList = new Dictionary<int, string> {
 
             { BaseCurrencyType.Eur,"EUR" },
             { BaseCurrencyType.Usd,"USD" },

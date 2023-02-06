@@ -283,6 +283,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="App_Data\UserGuide\AbnormalBet\en-US.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterRefno\en-US.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterRefno\zh-CN.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterRefno\zh-Hans.htm" />
@@ -699,6 +700,8 @@
     <Content Include="www\css\build\dev\reactpages\playeradmin\running-betlist.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\running-betlist.css" />
     <Content Include="www\css\build\dev\reactpages\playeradmin\statement.css" />
+    <Content Include="www\css\build\dev\reactpages\report\abnormalbet.chunk.js" />
+    <Content Include="www\css\build\dev\reactpages\report\abnormalbet.css" />
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.css" />
     <Content Include="www\css\build\dev\reactpages\report\extrapayout.chunk.js" />
@@ -780,6 +783,7 @@
     <Content Include="www\css\build\pro\reactpages\playeradmin\playerwinloss.css" />
     <Content Include="www\css\build\pro\reactpages\playeradmin\running-betlist.css" />
     <Content Include="www\css\build\pro\reactpages\playeradmin\statement.css" />
+    <Content Include="www\css\build\pro\reactpages\report\abnormalbet.css" />
     <Content Include="www\css\build\pro\reactpages\report\bonusinfo.css" />
     <Content Include="www\css\build\pro\reactpages\report\extrapayout.css" />
     <Content Include="www\css\build\pro\reactpages\report\marketing.css" />
@@ -904,6 +908,9 @@
     <Content Include="www\css\build\dev\reactpages\report\extrapayout.chunk.js.map" />
     <Content Include="www\css\build\dev\reactpages\report\extrapayout.css.map" />
     <Content Include="Views\Desktop\BetList\NewCashOutDetail\Main.cshtml" />
+    <Content Include="Views\Desktop\Report\AbnormalBet\Main.cshtml" />
+    <Content Include="www\css\build\dev\reactpages\report\abnormalbet.chunk.js.map" />
+    <Content Include="www\css\build\dev\reactpages\report\abnormalbet.css.map" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -942,6 +949,7 @@
     <Content Include="www\js\build\dev\reactpages\playeradmin\statement.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\notification\notification.chunk.js.map" />
+    <Content Include="www\js\build\dev\reactpages\report\abnormalbet.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\bonusinfo.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\extrapayout.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
@@ -971,6 +979,7 @@
     <Content Include="www\js\build\pro\reactpages\playeradmin\runningbetlist.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\playeradmin\single-customer.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\playeradmin\statement.chunk.js" />
+    <Content Include="www\js\build\pro\reactpages\report\abnormalbet.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\bonusinfo.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\extrapayout.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
@@ -2236,6 +2245,8 @@
     <Content Include="www\js\build\dev\reactpages\report\winloss-nonsports-betlist.chunk.js.map" />
     <Content Include="www\css\source\reactpages\pages\report\extrapayout\index.scss" />
     <Content Include="www\js\build\dev\reactpages\report\extrapayout.chunk.js.map" />
+    <Content Include="www\css\source\reactpages\pages\report\abnormalbet\index.scss" />
+    <Content Include="www\js\build\dev\reactpages\report\abnormalbet.chunk.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

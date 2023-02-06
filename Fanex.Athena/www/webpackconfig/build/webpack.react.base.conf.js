@@ -40,6 +40,7 @@ function generateConfig(environment) {
             [`${jsPath}/report/bonusinfo`]: pathConfig.scriptPaths.bonusinforeport,
             [`${jsPath}/report/extrapayout`]: pathConfig.scriptPaths.extrapayoutreport,
             [`${jsPath}/report/marketing-performancehighlightdetail`]: pathConfig.scriptPaths.marketingreport_performancehighlightdetail,
+            [`${jsPath}/report/abnormalbet`]: pathConfig.scriptPaths.abnormalbetreport,
 
             /*css*/
             [`${cssPath}/vendor`]: pathConfig.cssPaths.layout,
@@ -58,6 +59,7 @@ function generateConfig(environment) {
             [`${cssPath}/report/marketing`]: pathConfig.cssPaths.marketingreport,
             [`${cssPath}/report/bonusinfo`]: pathConfig.cssPaths.bonusinforeport,
             [`${cssPath}/report/extrapayout`]: pathConfig.cssPaths.extrapayoutreport,
+            [`${cssPath}/report/abnormalbet`]: pathConfig.cssPaths.abnormalbetreport
         },
         output: {
             path: pathConfig.projectRoot,

@@ -4154,6 +4154,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_actions_brandAction__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/actions/brandAction */ "./www/js/source/reactpages/actions/brandAction.js");
 /* harmony import */ var _jsroot_actions_settingDataAction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/actions/settingDataAction */ "./www/js/source/reactpages/actions/settingDataAction.js");
 /* harmony import */ var _libs_queryService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../libs/queryService */ "./www/js/source/reactpages/pages/report/winloss/libs/queryService.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+
 
 
 
@@ -4209,7 +4211,7 @@ const setSelectedTimezone = timezone => {
 const fetchSettingData = () => async dispatch => {
   const response = await _libs_queryService__WEBPACK_IMPORTED_MODULE_9__["default"].getSettingData();
   if (!response.isSuccess) {
-    alert(LangHelper.getSingleResource("ErrorProcessingMsg"));
+    alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_10__["default"].getSingleResource("ErrorProcessingMsg"));
   }
   dispatch(Object(_jsroot_actions_settingDataAction__WEBPACK_IMPORTED_MODULE_8__["setSettingData"])(response.data));
 };
@@ -4647,6 +4649,9 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       }));
       this.props.fetchReportData(newRequestParam, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_14__["default"].callBackToUpdateGridOption(_constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultPagingOption"].PageIndex, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultPagingOption"].PageSize, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultSortOption"].sortBy, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultSortOption"].sortType));
     });
+    _defineProperty(this, "isNotValid", () => {
+      return !this.props.selectedCurrency || !this.props.selectedProduct || !this.props.selectedGroupByOption || _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].isAllowedGroupByPlayerSingle && !this.props.username;
+    });
     this.currencyList = _jsroot_lib_currencyHelper__WEBPACK_IMPORTED_MODULE_10__["default"].getTpCurrencyList(this.props.selectedBrand, _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].brands);
   }
   componentDidMount() {
@@ -4721,9 +4726,10 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       setUserNameFilterOption
     } = this.props;
     const optionName = _constants_filterConsts__WEBPACK_IMPORTED_MODULE_16__["UserNameFilterOptions"].find(option => option.value === userNameFilterOption);
+    const icon = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].isAllowedGroupByPlayerSingle ? "*" : "";
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, optionName.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_filter_SelectOption__WEBPACK_IMPORTED_MODULE_18__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, optionName.label + icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_filter_SelectOption__WEBPACK_IMPORTED_MODULE_18__["default"], {
       name: 'userNameInputSearch',
       value: userNameFilterOption,
       onChange: value => setUserNameFilterOption(value),
@@ -4846,7 +4852,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       onChange: checked => this.props.setDrilldownInOriginalCurrency(checked),
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("DrilldownInOriginalCurrency")
     }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_GroupFilter__WEBPACK_IMPORTED_MODULE_13__["default"], {
-      isDisabledSubmit: !this.props.selectedCurrency || !this.props.selectedProduct,
+      isDisabledSubmit: this.isNotValid(),
       onSubmit: this._handleSubmit,
       onQuickDownload: this._handleQuickDownload
     }));
@@ -4956,16 +4962,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_components_radio_RadioGroup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/components/radio/RadioGroup */ "./www/js/source/reactpages/components/radio/RadioGroup.jsx");
 /* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
-/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
-/* harmony import */ var _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../libs/helpers/groupHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js");
-/* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
+/* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
+/* harmony import */ var _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../libs/helpers/groupHelper */ "./www/js/source/reactpages/pages/report/winloss/libs/helpers/groupHelper.js");
+/* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-
 
 
 
@@ -4990,8 +4994,8 @@ const GroupFilter = props => {
     setDisplayedColumns,
     getUserGuideContent
   } = props;
-  const allowedGroupByOptions = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _constants_filterConsts__WEBPACK_IMPORTED_MODULE_10__["GroupByOptions"].filter(_ => _.value !== _constants_filterConsts__WEBPACK_IMPORTED_MODULE_10__["GroupByOptionIds"].brand || _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_9__["default"].brandOptions && _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_9__["default"].brandOptions.length > 1), []);
-  const isDisabledQuickDownload = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => isDisabledSubmit || !_constants_filterConsts__WEBPACK_IMPORTED_MODULE_10__["GroupByOptionAllowQuickDownload"].some(_ => _ === selectedGroupByOption), [selectedGroupByOption, isDisabledSubmit]);
+  const allowedGroupByOptions = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => _constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__["GroupByOptionAllowByPermission"], []);
+  const isDisabledQuickDownload = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(() => isDisabledSubmit || !_constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__["GroupByOptionAllowQuickDownload"].some(_ => _ === selectedGroupByOption), [selectedGroupByOption, isDisabledSubmit]);
   const _handleChangeDisplayedColumn = (currentItem, selectedItemsKey) => {
     const selectedKeyList = selectedItemsKey.split(',');
     const newColumnList = displayedColumns.map(item => {
@@ -5015,7 +5019,7 @@ const GroupFilter = props => {
   };
   const _handleChangeGroupBy = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(selectedGroupBy => {
     setSelectedGroupByOption(selectedGroupBy);
-    const newDisplayedColumns = _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_12__["displayedColumns"], selectedGroupBy);
+    const newDisplayedColumns = _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_10__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_11__["displayedColumns"], selectedGroupBy);
     setDisplayedColumns(newDisplayedColumns);
   }, []);
   const showUserGuide = () => {
@@ -5056,7 +5060,7 @@ const GroupFilter = props => {
     className: "btn btn-submit",
     disabled: isDisabledSubmit,
     onClick: onSubmit
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("Submit")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("Submit")))), allowedGroupByOptions.some(_ => _constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__["GroupByOptionAllowQuickDownload"].includes(_.value)) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "button-group"
@@ -5526,6 +5530,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_gridContants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../constants/gridContants */ "./www/js/source/reactpages/pages/report/winloss/constants/gridContants.js");
 /* harmony import */ var _constants_filterConsts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../constants/filterConsts */ "./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js");
 /* harmony import */ var _libs_queryService__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../libs/queryService */ "./www/js/source/reactpages/pages/report/winloss/libs/queryService.js");
+/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
 const _excluded = ["rowData", "gridData", "requestParam", "setGridData", "setBetListParam", "toggleLoader"],
   _excluded2 = ["displayedColumns"];
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -5536,6 +5541,7 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typ
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 
 
 
@@ -5620,7 +5626,7 @@ const GroupCell = props => {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], _extends({
     key: `group-cell-${key}`
-  }, rest), rowData.custId && rowData.productId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, rest), rowData.custId && rowData.productId && _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_9__["default"].isAllowedReportBetlist ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
     onClick: _onViewBetList,
     className: "right right-align"
@@ -5660,7 +5666,7 @@ function mapStateToProps(state) {
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js ***!
   \*********************************************************************************/
-/*! exports provided: GroupByOptionIds, GroupByOptionAllowQuickDownload, GroupByOptions, DateFilterTypeOptions, UserNameFilterOptions, DefaultTimezone, OWSportsProductId, SupportClosingFromDate */
+/*! exports provided: GroupByOptionIds, GroupByOptionAllowQuickDownload, GroupByOptions, GroupByOptionAllowByPermission, DateFilterTypeOptions, UserNameFilterOptions, DefaultTimezone, OWSportsProductId, SupportClosingFromDate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5668,12 +5674,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptionIds", function() { return GroupByOptionIds; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptionAllowQuickDownload", function() { return GroupByOptionAllowQuickDownload; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptions", function() { return GroupByOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupByOptionAllowByPermission", function() { return GroupByOptionAllowByPermission; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFilterTypeOptions", function() { return DateFilterTypeOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserNameFilterOptions", function() { return UserNameFilterOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultTimezone", function() { return DefaultTimezone; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OWSportsProductId", function() { return OWSportsProductId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupportClosingFromDate", function() { return SupportClosingFromDate; });
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
+
 
 const GroupByOptionIds = {
   date: 1,
@@ -5703,6 +5712,25 @@ const GroupByOptions = [{
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("Brand"),
   value: GroupByOptionIds.brand
 }];
+const groupByFilter = option => {
+  const value = option.value;
+  if (value === GroupByOptionIds.brand) {
+    return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByBrand && _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].brandOptions && _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].brandOptions.length > 1;
+  } else if (value === GroupByOptionIds.date) {
+    return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByDate;
+  } else if (value === GroupByOptionIds.month) {
+    return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByMonth;
+  } else if (value === GroupByOptionIds.product) {
+    return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByProduct;
+  } else if (value === GroupByOptionIds.player) {
+    return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByPlayerSingle || _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByPlayerMultiple;
+  } else if (value === GroupByOptionIds.currency) {
+    return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByCurrency;
+  } else {
+    return true;
+  }
+};
+const GroupByOptionAllowByPermission = GroupByOptions.filter(groupByFilter);
 const DateFilterTypeOptions = [{
   value: 1,
   label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource('SettledDate')
@@ -6342,9 +6370,15 @@ _defineProperty(GridHelper, "getOrderCols", (displayedColumns, excludedCols) => 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GroupHelper; });
+/* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
+
 class GroupHelper {
   static getDislayedColumns(displayedColumns, groupBy) {
     const displayedAllowCols = displayedColumns.filter(col => {
+      const allowColumn = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_0__["default"].specialReportDataPermission[col.key];
+      if (allowColumn !== undefined && !allowColumn) {
+        return false;
+      }
       const allowGroups = col.allowGroups;
       if (!allowGroups) {
         return true;
@@ -6573,18 +6607,19 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
 
 
 
+const optionDefault = !_constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionAllowByPermission"] || _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionAllowByPermission"].length == 0 ? null : _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionAllowByPermission"][0].value;
 const defaultState = _objectSpread(_objectSpread({}, window.initialState), {
   isLoading: false,
   gridData: {},
   requestParam: {},
   pagingOption: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultPagingOption"],
   sortOption: _constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["defaultSortOption"],
-  selectedGroupByOption: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionIds"].date,
+  selectedGroupByOption: optionDefault,
   selectedTimezone: _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["DefaultTimezone"],
   settingData: {
     timezones: []
   },
-  displayedColumns: _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["displayedColumns"], _constants_filterConsts__WEBPACK_IMPORTED_MODULE_3__["GroupByOptionIds"].date)
+  displayedColumns: _libs_helpers_groupHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getDislayedColumns(_constants_gridContants__WEBPACK_IMPORTED_MODULE_2__["displayedColumns"], optionDefault)
 });
 const store = _jsroot_lib_store__WEBPACK_IMPORTED_MODULE_0__["default"].createStore(_reducers__WEBPACK_IMPORTED_MODULE_1__["default"], defaultState);
 /* harmony default export */ __webpack_exports__["default"] = (store);

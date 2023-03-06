@@ -7,6 +7,7 @@
     using Service.Core.Common.Interfaces;
     using Service.Core.Users.Interfaces;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using UnitTest.Common.Helpers;
 
@@ -32,7 +33,8 @@
         protected static readonly NVCLicenseeAuthInfo DefaultLicenseeSession = new NVCLicenseeAuthInfo
         {
             LicenseeId = 402,
-            LicenseeName = "N88"
+            LicenseeName = "N88",
+            OfferedSubProductList = Enumerable.Empty<string>()
         };
 
         protected UrlHelper Url { get; set; }

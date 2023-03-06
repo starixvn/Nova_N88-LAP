@@ -83,7 +83,7 @@
                         && x.LicenseeId == DefaultLicenseeSession.LicenseeId
                         && !x.IsShowSumStake
                         ),
-                    "RngCasinoDetail",
+                    "SabaCasinoDetail",
                     null);
             }
         }

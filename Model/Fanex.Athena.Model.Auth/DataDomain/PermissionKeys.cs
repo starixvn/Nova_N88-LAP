@@ -21,7 +21,6 @@
         public const string GroupAccountManagement = "ACCOUNTMANAGEMENT6";
 
         /* Report */
-
         public const string ReportMatchWinLoss = "MatchWinLoss31";
         public const string ReportWinLossByProduct = "WinLossByProducts32";
         public const string ReportCancelledBets = "CancelledBets36";
@@ -32,7 +31,6 @@
         public const string ReportExchangeWinLoss = "ExchangeWinloss77";
 
         /* Customer Info. */
-
         public const string CustomerInfoCustomerList = "CustomerList43";
         public const string CustomerInfoSpecialBA = "SpecialBA54";
         public const string CustomerInfoCommissionGroupList = "CommissionGroupList55";
@@ -57,11 +55,31 @@
         public const string AccountInfo = "pa_acc_Info";
 
         /*Notification*/
-
         public const string Resettlement = "Resettlement";
         public const string Bell = "Bell";
 
         /*BetList*/
         public const string BetlistViewIpvn = "ViewIPfromVN";
+
+        /*ReportWinLoss Data*/
+        public const string ReportWinLoss_GroupByDate = "ReportWinLoss_GroupByDate";
+        public const string ReportWinLoss_GroupByMonth = "ReportWinLoss_GroupByMonth";
+        public const string ReportWinLoss_GroupByPlayer_Single = "ReportWinLoss_GroupByPlayer_Single";
+        public const string ReportWinLoss_GroupByPlayer_Multiple = "ReportWinLoss_GroupByPlayer_Multiple";
+        public const string ReportWinLoss_GroupByCurrency = "ReportWinLoss_GroupByCurrency";
+        public const string ReportWinLoss_GroupByBrand = "ReportWinLoss_GroupByBrand";
+        public const string ReportWinLoss_GroupByProduct = "ReportWinLoss_GroupByProduct";
+        public const string ReportWinLoss_ReportBetlist = "ReportWinLoss_ReportBetlist";
+
+        /*Special Report Data*/
+        public const string SpecialReportData = "SpecialReportData";
+        public const string SpecialReportData_Turnover = "SpecialReportData_Turnover";
+        public const string SpecialReportData_ValidTurnover = "SpecialReportData_ValidTurnover";
+        public const string SpecialReportData_GGR = "SpecialReportData_GGR";
+        public const string SpecialReportData_PlayerWinLoss = "SpecialReportData_PlayerWinLoss";
+        public const string SpecialReportData_TotalDepositAmount = "SpecialReportData_TotalDepositAmount";
+        public const string SpecialReportData_TotalWithdrawalAmount = "SpecialReportData_TotalWithdrawalAmount";
+        public const string SpecialReportData_Margin = "SpecialReportData_Margin";
+        public const string SpecialReportData_AvgBetAmount = "SpecialReportData_AvgBetAmount";
     }
 }

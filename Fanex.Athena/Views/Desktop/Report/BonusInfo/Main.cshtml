@@ -47,6 +47,11 @@
     minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
     maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
     },
+    specialReportDataPermission: {
+    ggr: '@Model.IsAllowedGGR' === 'True',
+    totalDeposit: '@Model.IsAllowedTotalDepositAmount' === 'True',
+    totalWithdrawal: '@Model.IsAllowedTotalWithdrawalAmount' === 'True',
+    },
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
     today: '@Model.Today.ToString("MM/dd/yyyy")'

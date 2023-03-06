@@ -6,16 +6,40 @@
     using System.Collections.Generic;
 
     [CLSCompliant(false)]
-    public class WinLossViewModel
+    public class WinLossViewModel : SpecialReportDataViewModel
     {
         public string BaseCurrency { get; set; }
+
         public IEnumerable<TpProduct> TpProducts { get; set; }
+
         public Brand OwnBrand { get; set; }
+
         public IEnumerable<Brand> Brands { get; set; }
+
         public int LimitMonthRange { get; set; }
+
         public DateTime MaxDate { get; set; }
+
         public DateTime MinDate { get; set; }
+
         public DateTime FromDate => MaxDate;
+
         public DateTime ToDate => MaxDate;
+
+        public bool IsAllowedGroupByDate { get; set; }
+
+        public bool IsAllowedGroupByMonth { get; set; }
+
+        public bool IsAllowedGroupByProduct { get; set; }
+
+        public bool IsAllowedGroupByPlayerSingle { get; set; }
+
+        public bool IsAllowedGroupByPlayerMultiple { get; set; }
+
+        public bool IsAllowedGroupByCurrency { get; set; }
+
+        public bool IsAllowedGroupByBrand { get; set; }
+
+        public bool IsAllowedReportBetlist { get; set; }
     }
 }

@@ -45,19 +45,36 @@
     username: "",
     };
 
-        window._AppData = {
-            brands: @Html.Raw(brands.ToJson()),
+    window._AppData = {
+    brands: @Html.Raw(brands.ToJson()),
     dateConstraint: {
-                limitedMonthRange: @Model.LimitMonthRange,
+    limitedMonthRange: @Model.LimitMonthRange,
     minDate: '@Model.MinDate.ToString("MM/dd/yyyy")',
     maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")'
     },
-
+    isAllowedGroupByDate: '@Model.IsAllowedGroupByDate' === 'True',
+    isAllowedGroupByMonth: '@Model.IsAllowedGroupByMonth' === 'True',
+    isAllowedGroupByProduct: '@Model.IsAllowedGroupByProduct' === 'True',
+    isAllowedGroupByPlayerSingle: '@Model.IsAllowedGroupByPlayerSingle' === 'True',
+    isAllowedGroupByPlayerMultiple: '@Model.IsAllowedGroupByPlayerMultiple' === 'True',
+    isAllowedGroupByCurrency: '@Model.IsAllowedGroupByCurrency' === 'True',
+    isAllowedGroupByBrand: '@Model.IsAllowedGroupByBrand' === 'True',
+    isAllowedReportBetlist: '@Model.IsAllowedReportBetlist' === 'True',
+    specialReportDataPermission: {
+    turnover: '@Model.IsAllowedTurnover' === 'True',
+    netTurnover: '@Model.IsAllowedValidTurnover' === 'True',
+    ggr: '@Model.IsAllowedGGR' === 'True',
+    playerWinloss: '@Model.IsAllowedPlayerWinLoss' === 'True',
+    depositAmount: '@Model.IsAllowedTotalDepositAmount' === 'True',
+    withdrawalAmount: '@Model.IsAllowedTotalWithdrawalAmount' === 'True',
+    margin: '@Model.IsAllowedMargin' === 'True',
+    avgBetAmount: '@Model.IsAllowedAvgBetAmount' === 'True'
+    },
     productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { key = x.Id, value = x.Name, status = Model.OwnBrand.Id == x.Id }).ToJson()),
-    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson())
     }
 
-    }
+}
 <div id="app-container">
 </div>

@@ -31,6 +31,8 @@
 
         protected const string AgentListXml = "<ROOT></ROOT>";
 
+        protected List<string> SubProduct = new List<string> { "SLT", "BTC" };
+
         protected ISessionService SessionService { get; private set; }
 
         protected IProductService ProductService { get; private set; }
@@ -92,8 +94,8 @@
                 CurrencyList = new Dictionary<int, string> { { 1, "EUR" }, { 2, "USD" } },
                 Language = SessionLanguage,
                 CurrencyAgentList = new Dictionary<int, int[]>(),
-                BrandList = new List<Brand> 
-                { 
+                BrandList = new List<Brand>
+                {
                     new Brand { Id = 402, Name = "N88",
                         CurrencyList = new Dictionary<int, string> { { 1, "EUR" }, { 2, "USD" } },
                         CurrencyAgentList =  new Dictionary<int, int[]>()

@@ -9,6 +9,7 @@ import { changeIsExcludeTest } from '@jsroot/actions/excludeTestAction';
 import { setSelectedBrand } from '@jsroot/actions/brandAction';
 import { setSettingData } from '@jsroot/actions/settingDataAction';
 import QueryService from '../libs/queryService';
+import LangHelper from '@jsroot/lib/langHelper'
 
 const setNoDraw = isNoDraw => {
     return {

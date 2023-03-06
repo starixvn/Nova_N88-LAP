@@ -6,6 +6,7 @@
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -47,6 +48,7 @@
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportWinLoss, LicenseeName);
             var tpProducts = _tpService.GetListTpProduct();
+            var userSession = SessionServiceInstance.UserSession;
 
             var vm = new WinLossViewModel
             {
@@ -56,8 +58,19 @@
                 Brands = BrandList,
                 MaxDate = reportSetting.MaxDate,
                 MinDate = GetUserLimitDataRange(reportSetting.MinDate, TimeZone),
-                LimitMonthRange = reportSetting.LimitMonthRange
+                LimitMonthRange = reportSetting.LimitMonthRange,
+                IsAllowedGroupByDate = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByDate),
+                IsAllowedGroupByMonth = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByMonth),
+                IsAllowedGroupByProduct = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByProduct),
+                IsAllowedGroupByPlayerSingle = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByPlayer_Single),
+                IsAllowedGroupByPlayerMultiple = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByPlayer_Multiple),
+                IsAllowedGroupByCurrency = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByCurrency),
+                IsAllowedGroupByBrand = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByBrand),
+                IsAllowedReportBetlist = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_ReportBetlist)
             };
+
+            AssignSpecialReportDataPermission(vm);
+
             return vm;
         }
     }

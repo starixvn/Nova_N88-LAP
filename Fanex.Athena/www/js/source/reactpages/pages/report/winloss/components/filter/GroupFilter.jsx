@@ -7,8 +7,7 @@ import MultipleSelect from '@9softstudio/react-multiselect'
 import RadioGroup from '@jsroot/components/radio/RadioGroup';
 import UserGuide from '@jsroot/components/UserGuide';
 import LangHelper from '@jsroot/lib/langHelper';
-import AppData from '@jsroot/lib/AppData'
-import { GroupByOptions, GroupByOptionAllowQuickDownload, GroupByOptionIds, SupportClosingFromDate } from '../../constants/filterConsts';
+import { GroupByOptionAllowByPermission, GroupByOptionAllowQuickDownload } from '../../constants/filterConsts';
 import GroupHelper from '../../libs/helpers/groupHelper';
 import { displayedColumns as DefaultDisplayedColumns } from '../../constants/gridContants';
 
@@ -17,7 +16,7 @@ export const GroupFilter = props => {
     const { setSelectedGroupByOption, selectedGroupByOption, userGuideContent, onSubmit, onQuickDownload, isDisabledSubmit,
         displayedColumns, setDisplayedColumns, getUserGuideContent } = props;
 
-    const allowedGroupByOptions = React.useMemo(() => GroupByOptions.filter(_ => _.value !== GroupByOptionIds.brand || (AppData.brandOptions && AppData.brandOptions.length > 1)), []);
+    const allowedGroupByOptions = React.useMemo(() => GroupByOptionAllowByPermission, []);
     const isDisabledQuickDownload = React.useMemo(() => isDisabledSubmit || !GroupByOptionAllowQuickDownload.some(_ => _ === selectedGroupByOption), [selectedGroupByOption, isDisabledSubmit]);
 
     const _handleChangeDisplayedColumn = (currentItem, selectedItemsKey) => {
@@ -80,11 +79,11 @@ export const GroupFilter = props => {
                     <button type="button" className="btn btn-submit" disabled={isDisabledSubmit} onClick={onSubmit}>{LangHelper.getSingleResource("Submit")}</button>
                 </div>
             </div>
-            <div className="form-group">
+            {allowedGroupByOptions.some(_=>GroupByOptionAllowQuickDownload.includes(_.value)) && <div className="form-group">
                 <div className="button-group">
                     <button type="button" className="btn" disabled={isDisabledQuickDownload} onClick={onQuickDownload}>{LangHelper.getSingleResource("Download")}</button>
                 </div>
-            </div>
+            </div>}
         </CollapsiblePanel>
     )
 }

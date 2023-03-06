@@ -137,6 +137,7 @@ export const FormFilter = props => {
 
     const _onSubmit = () => {
         const { fromDate, toDate } = dateRange;
+        const {ggr, totalDeposit, totalWithdrawal} = AppData.specialReportDataPermission;
 
         const globalFilter = { 
             fromDate: Site.convertDateToString(fromDate),
@@ -148,7 +149,10 @@ export const FormFilter = props => {
             claimStatus: selectedClaimStatus, 
             bonusStatus: selectedBonusStatus, 
             bonusType: selectedBonusType ,
-            groupBy: selectedGroupByOption
+            groupBy: selectedGroupByOption,
+            isAllowedGGR : ggr,
+            isAllowedTotalDeposit : totalDeposit,
+            isAllowedTotalWithdrawal : totalWithdrawal
         };
 
         selectedGroupByOption === GroupByOptionIds.bonusCodeAndDate && setSummarySortInfo(DefaultSummarySortInfoGroupByDate) || setSummarySortInfo(DefaultSummarySortInfo)

@@ -105,6 +105,7 @@
     <Compile Include="ViewModel\LicenseeWinLossGridViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossViewModel.cs" />
     <Compile Include="ViewModel\MartketingViewModel.cs" />
+    <Compile Include="ViewModel\SpecialReportDataViewModel.cs" />
     <Compile Include="ViewModel\WinLossViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

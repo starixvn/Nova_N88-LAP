@@ -108,9 +108,10 @@ export class FormFilter extends PureComponent {
     _renderUserNameInputSearch() {
         const { userNameFilterOption, setUserNameFilterOption } = this.props;
         const optionName = UserNameFilterOptions.find(option => option.value === userNameFilterOption);
+        const icon = AppData.isAllowedGroupByPlayerSingle ? "*" : "";
         return <>
             <label className="label-text">
-                <span>{optionName.label}</span>
+                <span>{optionName.label + icon}</span>
                 {<SelectOption name={'userNameInputSearch'}
                     value={userNameFilterOption}
                     onChange={value => setUserNameFilterOption(value)}
@@ -201,6 +202,13 @@ export class FormFilter extends PureComponent {
              defaultSortOption.sortBy, defaultSortOption.sortType));
     }
 
+    isNotValid = () => {
+        return !this.props.selectedCurrency 
+            || !this.props.selectedProduct
+            || !this.props.selectedGroupByOption
+            || (AppData.isAllowedGroupByPlayerSingle && !this.props.username);
+    }
+
     render() {
         return (<React.Fragment>
             <CollapsiblePanel className="page-filter">
@@ -282,7 +290,7 @@ export class FormFilter extends PureComponent {
                 </div>
             </CollapsiblePanel>
             <GroupFilter
-                isDisabledSubmit={!this.props.selectedCurrency || !this.props.selectedProduct} onSubmit={this._handleSubmit}
+                isDisabledSubmit={this.isNotValid()} onSubmit={this._handleSubmit}
                 onQuickDownload={this._handleQuickDownload}
             />
         </React.Fragment>

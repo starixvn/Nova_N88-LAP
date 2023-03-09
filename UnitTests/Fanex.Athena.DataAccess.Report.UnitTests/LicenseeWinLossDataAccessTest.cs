@@ -9,7 +9,8 @@
     using Core.UnitTests.TestHelpers;
 
     using Data;
-
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.Helper;
     using Model.Core.DTO.Configuration;
     using Model.Core.MetaModel.Product;
     using Model.Report.MetaModel;
@@ -246,8 +247,7 @@
             ObjectDb.Received(1).SetParameterValue("fromdate", isDrilldown ? _metaModel.DrillDownFromDate : _metaModel.FromDate);
             ObjectDb.Received(1).SetParameterValue("todate", isDrilldown ? _metaModel.DrillDownToDate : _metaModel.ToDate);
             ObjectDb.Received(1).SetParameterValue("drawfilter", _metaModel.DrawFilter);
-            ObjectDb.Received(1).SetParameterValue("showSB", true);
-            ObjectDb.Received(1).SetParameterValue("showNG", false);
+            ObjectDb.Received(1).SetParameterValue("ProductList", _metaModel.ProductOptions.ToSelectedProductCodeList(_ => _.Code != Product.BA));
             ObjectDb.Received(1).SetParameterValue("BaseCurrency", _metaModel.BaseCurrency);
             ObjectDb.Received(1).SetParameterValue("DefaultBaseCurrency", _metaModel.DefaultBaseCurrency);
             ObjectDb.Received(1).SetParameterValue("CheckPromotionPrize", checkPromotionPrize);

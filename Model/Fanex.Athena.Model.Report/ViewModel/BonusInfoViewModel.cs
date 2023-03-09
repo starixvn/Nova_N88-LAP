@@ -6,7 +6,7 @@
     using System.Collections.Generic;
 
     [CLSCompliant(false)]
-    public class BonusInfoViewModel
+    public class BonusInfoViewModel : SpecialReportDataViewModel
     {
         public string BaseCurrency { get; set; }
 

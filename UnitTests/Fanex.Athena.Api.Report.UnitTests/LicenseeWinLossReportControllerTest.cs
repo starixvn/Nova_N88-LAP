@@ -110,7 +110,7 @@
                 Assert.That(result.Data, Is.Empty);
                 Assert.That(result.Total, Is.Empty);
                 Assert.That(result.SummaryTotal, Is.Empty);
-                Assert.That(result.ProductOptions, Is.EqualTo(model.ProductOptions.ToJson()));
+                Assert.That(result.ProductOptions, Is.EqualTo(model.OriginalProductOptions.ToJson()));
                 Assert.That(result.PromotionPrize, Is.EqualTo("0"));
             });
         }
@@ -143,7 +143,7 @@
                 Assert.That(result.Data, Is.Empty);
                 Assert.That(result.Total, Is.Empty);
                 Assert.That(result.SummaryTotal, Is.Empty);
-                Assert.That(result.ProductOptions, Is.EqualTo(model.ProductOptions.ToJson()));
+                Assert.That(result.ProductOptions, Is.EqualTo(model.OriginalProductOptions.ToJson()));
                 Assert.That(result.PromotionPrize, Is.EqualTo("0"));
             });
         }
@@ -225,6 +225,7 @@
             var expectedResult = resultModel.DataList.Select(x => x.LicenseeWL["SB"]).ToArray();
 
             SetUpForExportingExcel();
+            SetUpForSubProduct(metaModel);
 
             var actualExcelModel = new LicenseeWinLossExcelModel();
             _controller.When(x => x.CreateExcel(
@@ -251,6 +252,7 @@
             var expectedResult = resultModel.DataList.Select(x => x.TurnOver["SB"]).ToArray();
 
             SetUpForExportingExcel();
+            SetUpForSubProduct(metaModel);
 
             var actualExcelModel = new LicenseeWinLossExcelModel();
             _controller.When(x => x.CreateExcel(
@@ -274,6 +276,7 @@
             var expectedResult = SetUpForGettingData(metaModel, totalItem: 5);
 
             SetUpForExportingExcel();
+            SetUpForSubProduct(metaModel);
 
             var actualExcelModel = new LicenseeWinLossExcelModel();
             _controller.When(x => x.CreateExcel(
@@ -307,8 +310,8 @@
             metaModel.IsExportExcel = true;
 
             SetUpForGettingData(metaModel, level, 0);
-
             SetUpForExportingExcel();
+            SetUpForSubProduct(metaModel);
 
             var actualExcelModel = new LicenseeWinLossExcelModel();
             _controller.When(x => x.CreateExcel(
@@ -363,10 +366,23 @@
                         Code = "SB",
                         Status = true
                     }
-                }, 
+                },
+                OriginalProductOptions = new List<ProductOption>
+                {
+                    new ProductOption
+                    {
+                        Code = "SB",
+                        Status = true
+                    }
+                },
                 BrandOptions = new List<CheckedItem>()
             };
             return model;
+        }
+
+        private void SetUpForSubProduct(LicenseeWinLossMetaModel model)
+        {
+            ProductService.GetAllowedSubProductOptions(SubProduct, model.ProductOptions).Returns(model.ProductOptions);
         }
 
         private SortableReportResultModel<LicenseeWinLoss> SetUpForGettingData(LicenseeWinLossMetaModel metaModel, int level = 0, int totalItem = 0)

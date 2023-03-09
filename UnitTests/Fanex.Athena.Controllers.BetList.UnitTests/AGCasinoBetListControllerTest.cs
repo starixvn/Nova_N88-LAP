@@ -98,6 +98,7 @@
             controller.LicenseeSettingServiceInstance = LicenseeSettingService;
             controller.BalanceUpDataAccessInstance = BalanceUpDataAccess;
             controller.BetListApiClient = BetListApiClient;
+            controller.ProductService = ProductService;
 
             return controller;
         }

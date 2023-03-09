@@ -42,6 +42,8 @@
                 LimitMonthRange = reportSetting.LimitMonthRange
             };
 
+            AssignSpecialReportDataPermission(vm);
+
             return vm;
         }
     }

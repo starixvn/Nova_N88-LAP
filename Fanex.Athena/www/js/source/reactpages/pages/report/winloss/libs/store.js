@@ -1,8 +1,10 @@
 import Store from '@jsroot/lib/store';
 import reducers from '../reducers';
 import { displayedColumns, defaultPagingOption, defaultSortOption } from '../constants/gridContants';
-import { GroupByOptionIds, DefaultTimezone } from '../constants/filterConsts';
+import { GroupByOptionAllowByPermission, DefaultTimezone } from '../constants/filterConsts';
 import GroupHelper from '../libs/helpers/groupHelper';
+
+const optionDefault = (!GroupByOptionAllowByPermission || GroupByOptionAllowByPermission.length == 0) ? null : GroupByOptionAllowByPermission[0].value
 
 const defaultState = {
    ...window.initialState, 
@@ -12,10 +14,10 @@ const defaultState = {
      requestParam: {},
      pagingOption: defaultPagingOption,
      sortOption: defaultSortOption,
-     selectedGroupByOption: GroupByOptionIds.date,
+     selectedGroupByOption: optionDefault,
      selectedTimezone: DefaultTimezone,
      settingData: { timezones: [] },
-     displayedColumns: GroupHelper.getDislayedColumns(displayedColumns, GroupByOptionIds.date)
+     displayedColumns: GroupHelper.getDislayedColumns(displayedColumns, optionDefault)
    }
 }
 

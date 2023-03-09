@@ -10,6 +10,7 @@ import { BonusInfoSummaryGridColumns, BonusInfoSummaryGridConfig, StyleRow, Digi
 import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import NumberFormat from '@jsroot/lib/numberFormat';
 import { GroupByOptionIds } from '../../constants/filterConsts';
+import AppData from '@jsroot/lib/AppData'
 
 let countRender = 0;
 
@@ -105,6 +106,7 @@ export const BonusInfoSummaryWidget = props => {
             colSpan: claimStatusNumber,
             className: "center-align"
         };
+        const dataPermission = AppData.specialReportDataPermission;
 
         const gridHeader = [
             <HeaderRow style={StyleRow} key='header1'>
@@ -120,9 +122,9 @@ export const BonusInfoSummaryWidget = props => {
                 <HeaderCell {...claimStatusAtributes}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.claimStatus].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimants].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimants].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimedAmount].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimedAmount].name}</HeaderCell>
-                <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].name}</HeaderCell>
-                <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].name}</HeaderCell>
-                <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].name}</HeaderCell>
+                {dataPermission.ggr && <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].name}</HeaderCell>}
+                {dataPermission.totalDeposit && <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].name}</HeaderCell>}
+                {dataPermission.totalWithdrawal && <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].name}</HeaderCell>}
             </HeaderRow>,
             <HeaderRow style={StyleRow} key='header2' className='row2'>
             {
@@ -140,6 +142,8 @@ export const BonusInfoSummaryWidget = props => {
 
     const _renderBody = () => {
         const data =  [...bonusInfoSummaryData.dataList];
+        const dataPermission = AppData.specialReportDataPermission;
+        
         return data.map((item, index) => <Row style={StyleRow} key={item[BonusInfoSummaryGridColumns.bonusCode] + item[BonusInfoSummaryGridColumns.bonusType] + item[BonusInfoSummaryGridColumns.date] + index}>           
              {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate &&
                 <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.date].attributes}>                        
@@ -169,14 +173,15 @@ export const BonusInfoSummaryWidget = props => {
             }
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimants].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalClaimants], 0)}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimedAmount].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalClaimedAmount], DigitsAmount)}</Cell>
-            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.gGR], DigitsAmount)}</Cell>    
-            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalDeposit], DigitsAmount)}</Cell>
-            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalWithdrawal], DigitsAmount)}</Cell>
+            {dataPermission.ggr && <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.gGR], DigitsAmount)}</Cell>}    
+            {dataPermission.totalDeposit && <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalDeposit], DigitsAmount)}</Cell>}
+            {dataPermission.totalWithdrawal && <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes}>{NumberFormat.format(item[BonusInfoSummaryGridColumns.totalWithdrawal], DigitsAmount)}</Cell>}
         </Row>)
     }
 
     const _renderFooter = () => {
         const {totalData} =  bonusInfoSummaryData;
+        const dataPermission = AppData.specialReportDataPermission;
 
         const totalAtributes = {
             colSpan: globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate ? 7 : 6, 
@@ -194,9 +199,9 @@ export const BonusInfoSummaryWidget = props => {
             }
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimants].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalClaimants], 0)}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalClaimedAmount].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalClaimedAmount], DigitsAmount)}</Cell>
-            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.gGR], DigitsAmount)}</Cell>
-            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalDeposit], DigitsAmount)}</Cell>
-            <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalWithdrawal], DigitsAmount)}</Cell>
+            {dataPermission.ggr && <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.gGR].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.gGR], DigitsAmount)}</Cell>}
+            {dataPermission.totalDeposit && <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalDeposit].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalDeposit], DigitsAmount)}</Cell>}
+            {dataPermission.totalWithdrawal && <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.totalWithdrawal].attributes}>{NumberFormat.format(totalData[BonusInfoSummaryGridColumns.totalWithdrawal], DigitsAmount)}</Cell>}
         </Row>)
     }
 

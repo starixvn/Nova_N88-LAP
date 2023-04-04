@@ -26,6 +26,12 @@ export const bonusCodeList = createReducer({}, {
     }
 });
 
+export const bonusCodeDetailList = createReducer({}, {
+    [types.SET_BONUS_CODE_DETAIL_LIST](state, action) {
+        return action.data
+    }
+});
+
 export const selectedBonusCode = createReducer({}, {
     [types.SET_SELECTED_BONUS_CODE](state, action) {
         return action.data

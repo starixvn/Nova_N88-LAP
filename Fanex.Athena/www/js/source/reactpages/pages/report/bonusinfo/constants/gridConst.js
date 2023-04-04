@@ -6,6 +6,7 @@ export const BonusInfoSummaryGridColumns = {
     bonusName: 'bonusName',
     bonusCode: 'bonusCode',
     date: 'dateString',
+    month: 'monthString',
     gGR: 'ggr',
     bonusType: 'bonusTypeName',
     startDate: 'startDateString',
@@ -24,10 +25,12 @@ export const BonusInfoSummaryGridColumns = {
 
 export const BonusInfoDetailGridColumns = {
     userName: 'userName',
+    sabaId: 'sabaId',
+    currency: 'currency',
     brand: 'brandName',
-    bonusName: 'bonusName',
     bonusCode: 'bonusCode',
     bonusType: 'bonusType',
+    bonusName: 'bonusName',
     claimDate: 'claimDateString',
     bonusAmountClaimed: 'claimedAmount',
     transactionType: 'transactionType',
@@ -40,6 +43,7 @@ export const BonusInfoDetailGridColumns = {
 export const BonusInfoSummaryGridConfig = {
     [BonusInfoSummaryGridColumns.total]: { name: LangHelper.getSingleResource('Total'), attributes: { colSpan: 6, className: "left-align" } },
     [BonusInfoSummaryGridColumns.date]: { name: LangHelper.getSingleResource('Date'), attributes: { sortBy: 'Date', colWidth: 60, className: "center-align" } },
+    [BonusInfoSummaryGridColumns.month]: { name: LangHelper.getSingleResource('Month'), attributes: { sortBy: 'Date', colWidth: 60, className: "center-align" } },
     [BonusInfoSummaryGridColumns.bonusName]: { name: LangHelper.getSingleResource('BonusName'), attributes: { sortBy: 'bonusName', colWidth: 110, className: "left-align" } },
     [BonusInfoSummaryGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { sortBy: 'bonusCode', colWidth: 110, className: "left-align" } },
     [BonusInfoSummaryGridColumns.bonusType]: { name: LangHelper.getSingleResource('BonusType'), attributes: { sortBy: 'bonusTypeName', colWidth: 85, className: "left-align" } },
@@ -60,14 +64,18 @@ export const BonusInfoSummaryGridConfig = {
 
 export const BonusInfoDetailGridConfig = {
     [BonusInfoDetailGridColumns.userName]: { name: LangHelper.getSingleResource('UserName'), attributes: { sortBy: 1, colWidth: 100, className: "left-align" } },
-    [BonusInfoDetailGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { colWidth: 120, className: "left-align" } },
-    [BonusInfoDetailGridColumns.claimDate]: { name: LangHelper.getSingleResource('ClaimDate') },
-    [BonusInfoDetailGridColumns.bonusAmountClaimed]: { name: LangHelper.getSingleResource('BonusAmountClaimed'), attributes: { sortBy: 3, colWidth: 100, className: "right-align" } },
-    [BonusInfoDetailGridColumns.transactionType]: { name: LangHelper.getSingleResource('TransactionType'), attributes: { sortBy: 4, colWidth: 100, className: "center-align" } },
-    [BonusInfoDetailGridColumns.totalDeposit]: { name: LangHelper.getSingleResource('TotalDeposit'), attributes: { sortBy: 5, colWidth: 100, className: "right-align" } },
-    [BonusInfoDetailGridColumns.totalWithdrawal]: { name: LangHelper.getSingleResource('TotalWithdrawal'), attributes: { sortBy: 6, colWidth: 100, className: "right-align" } },
-    [BonusInfoDetailGridColumns.status]: { name: LangHelper.getSingleResource('ClaimStatus'), attributes: { sortBy: 7, colWidth: 80, className: "center-align" } },
-    [BonusInfoDetailGridColumns.completion]: { name: '% ' + LangHelper.getSingleResource('Completion'), attributes: { sortBy: 8, colWidth: 120, className: "center-align" } }
+    [BonusInfoDetailGridColumns.sabaId]: { name: LangHelper.getSingleResource('SabaId'), attributes: { sortBy: 2, colWidth: 100, className: "left-align" } },
+    [BonusInfoDetailGridColumns.currency]: { name: LangHelper.getSingleResource('Currency'), attributes: { sortBy: 3, colWidth: 60, className: "center-align" } },
+    [BonusInfoDetailGridColumns.bonusCode]: { name: LangHelper.getSingleResource('BonusCode'), attributes: { sortBy: 4, colWidth: 100, className: "left-align" } },
+    [BonusInfoDetailGridColumns.bonusType]: { name: LangHelper.getSingleResource('BonusType'), attributes: { sortBy: 5, colWidth: 100, className: "left-align" } },
+    [BonusInfoDetailGridColumns.bonusName]: { name: LangHelper.getSingleResource('BonusName'), attributes: { sortBy: 6, colWidth: 100, className: "left-align" } },
+    [BonusInfoDetailGridColumns.claimDate]: { name: LangHelper.getSingleResource('ClaimDate'), attributes: { sortBy: 7, colWidth: 80, className: "center-align" } },
+    [BonusInfoDetailGridColumns.bonusAmountClaimed]: { name: LangHelper.getSingleResource('BonusAmountClaimed'), attributes: { sortBy: 8, colWidth: 80, className: "right-align" } },
+    [BonusInfoDetailGridColumns.transactionType]: { name: LangHelper.getSingleResource('TransactionType'), attributes: { sortBy: 9, colWidth: 80, className: "center-align" } },
+    [BonusInfoDetailGridColumns.totalDeposit]: { name: LangHelper.getSingleResource('TotalDeposit'), attributes: { sortBy: 10, colWidth: 80, className: "right-align" } },
+    [BonusInfoDetailGridColumns.totalWithdrawal]: { name: LangHelper.getSingleResource('TotalWithdrawal'), attributes: { sortBy: 11, colWidth: 80, className: "right-align" } },
+    [BonusInfoDetailGridColumns.status]: { name: LangHelper.getSingleResource('ClaimStatus'), attributes: { sortBy: 12, colWidth: 80, className: "center-align" } },
+    [BonusInfoDetailGridColumns.completion]: { name: '% ' + LangHelper.getSingleResource('Completion'), attributes: { sortBy: 13, colWidth: 120, className: "center-align" } }
 }
 
 export const DefaultPagingOption = {
@@ -78,7 +86,7 @@ export const DefaultPagingOption = {
 }
 
 export const DefaultDetailSortInfo = {
-    sortbyId: 7,
+    sortbyId: 13,
     isSortAsc: false
 }
 

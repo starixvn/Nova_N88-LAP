@@ -28,6 +28,13 @@ export const setBonusCodeList = bonusCodeList => {
     }
 }
 
+export const setBonusCodeDetailList = bonusCodeDetailList => {
+    return {
+        type: types.SET_BONUS_CODE_DETAIL_LIST,
+        data: bonusCodeDetailList
+    }
+}
+
 export const setSelectedBonusCode = bonusCode => {
     return {
         type: types.SET_SELECTED_BONUS_CODE,

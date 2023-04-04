@@ -5,7 +5,6 @@ import parseInput from './utils/parseInput.js';
 import Calendar from './Calendar.js';
 import PredefinedRanges from './PredefinedRanges.js';
 import getTheme, { defaultClasses } from './styles.js';
-import joiningClassNames from 'classnames';
 import { MomentFormat } from './constants';
 import defaultOptions from './defaultOptions.js';
 import Overlay from '../Overlay';
@@ -54,6 +53,20 @@ class DateRange extends Component {
   componentDidMount() {
     const { onInit } = this.props;
     onInit && onInit(this.state.range);
+  }
+
+  componentDidUpdate(prevProps){
+    if (this.props.startDate != prevProps.startDate || this.props.endDate != prevProps.endDate){
+      const {format, linkedCalendars} = this.props;
+      const startDate = parseInput(this.props.startDate, format, 'startOf');
+      const endDate = parseInput(this.props.endDate, format, 'endOf');
+
+      this.setState({
+        range: { startDate, endDate },
+        link: linkedCalendars && endDate,
+        show: false
+      });
+    }
   }
 
   orderRange(range) {

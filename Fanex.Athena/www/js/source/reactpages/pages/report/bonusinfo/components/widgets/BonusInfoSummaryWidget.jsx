@@ -10,13 +10,14 @@ import { BonusInfoSummaryGridColumns, BonusInfoSummaryGridConfig, StyleRow, Digi
 import { Table, HeaderRow, HeaderCell, Row, Cell } from '@9softstudio/react-grid';
 import NumberFormat from '@jsroot/lib/numberFormat';
 import { GroupByOptionIds } from '../../constants/filterConsts';
-import AppData from '@jsroot/lib/AppData'
+import AppData from '@jsroot/lib/AppData';
+import moment from 'moment';
 
 let countRender = 0;
 
 export const BonusInfoSummaryWidget = props => {
-    const { globalFilter, bonusInfoSummaryData, fetchBonusInfoSummaryData, selectedSummarySortInfo, setSummarySortInfo, setDetailFilter, setBonusCodeList, setSelectedBonusCode, 
-        summaryGridHeight, setSummaryGridHeight, setSelectedSummaryDate, setBonusInfoDetailData } = props;   
+    const { globalFilter, bonusInfoSummaryData, fetchBonusInfoSummaryData, selectedSummarySortInfo, setSummarySortInfo, setDetailFilter, setBonusCodeList, setBonusCodeDetailList, setSelectedBonusCode, 
+        summaryGridHeight, setSummaryGridHeight, setSelectedSummaryDateRange, setBonusInfoDetailData } = props;   
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -41,9 +42,10 @@ export const BonusInfoSummaryWidget = props => {
         setLoading(true);
         fetchBonusInfoSummaryData(apiParams, sort !== null, (data, isSuccess) => 
         {
-            if(isSuccess && data.bonusCodeList)
+            if(isSuccess && data.bonusCodeList && data.bonusCodeInfoDetailList)
             {
                 setBonusCodeList(data.bonusCodeList);
+                setBonusCodeDetailList(data.bonusCodeInfoDetailList);
             }            
             setLoading(false);
         })
@@ -72,9 +74,11 @@ export const BonusInfoSummaryWidget = props => {
 
     const _dateClick = (e, date, bonusCode) => {
         e.preventDefault();
-      
-        const selectedDate = new Date(Date.parse(date));
-        const dateValue =  `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}`;
+
+        const dateRangeValue = { 
+            startDate: moment(date).format('MM/DD/YYYY'),
+            endDate: moment(date).format('MM/DD/YYYY')
+        };
 
         const detailFilter = { 
             ...globalFilter
@@ -95,7 +99,38 @@ export const BonusInfoSummaryWidget = props => {
         setBonusCodeList(uniqueBonusCodeList);      
         setBonusInfoDetailData(null);
         setDetailFilter(detailFilter);
-        setSelectedSummaryDate(dateValue);
+        setSelectedSummaryDateRange({...dateRangeValue});
+        setSummaryGridHeight(200);
+    }
+
+    const _monthClick = (e, date, bonusCode) => {
+        e.preventDefault();
+      
+        const dateRangeValue = { 
+            startDate: moment.max(moment(date).startOf('month'), moment(globalFilter.fromDate)).format('MM/DD/YYYY'),
+            endDate: moment.min(moment(date).endOf('month'), moment(globalFilter.toDate)).format('MM/DD/YYYY'),
+        };
+
+        const detailFilter = {
+            ...globalFilter
+        };
+
+        const bonusCodeList = bonusInfoSummaryData.dataList.filter(item => {
+            if(item.date === date && item.bonusCode)
+            {
+                return item;
+            }
+        }).map(item => {
+            return item.bonusCode;
+        });
+
+        const uniqueBonusCodeList = bonusCodeList.filter((v, i, a) => a.indexOf(v) === i);
+
+        setSelectedBonusCode(bonusCode);
+        setBonusCodeList(uniqueBonusCodeList);
+        setBonusInfoDetailData(null);
+        setDetailFilter(detailFilter);
+        setSelectedSummaryDateRange({...dateRangeValue});
         setSummaryGridHeight(200);
     }
 
@@ -112,6 +147,9 @@ export const BonusInfoSummaryWidget = props => {
             <HeaderRow style={StyleRow} key='header1'>
                 {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate &&
                     <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.date].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.date].name}</HeaderCell>
+                }
+                {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndMonth &&
+                    <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.month].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.month].name}</HeaderCell>
                 }
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusName].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusName].name}</HeaderCell>
                 <HeaderCell {...{...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusCode].attributes, rowSpan: 2}}>{BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusCode].name}</HeaderCell>
@@ -145,19 +183,27 @@ export const BonusInfoSummaryWidget = props => {
         const dataPermission = AppData.specialReportDataPermission;
         
         return data.map((item, index) => <Row style={StyleRow} key={item[BonusInfoSummaryGridColumns.bonusCode] + item[BonusInfoSummaryGridColumns.bonusType] + item[BonusInfoSummaryGridColumns.date] + index}>           
-             {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate &&
+            {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate &&
                 <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.date].attributes}>                        
                     <a href="#" onClick={(e)=> _dateClick(e, item.date, item.bonusCode)}>
                         {item[BonusInfoSummaryGridColumns.date]}
                     </a>
                 </Cell>
             }
+            {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndMonth &&
+                <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.month].attributes}>                        
+                    <a href="#" onClick={(e)=> _monthClick(e, item.date, item.bonusCode)}>
+                        {item[BonusInfoSummaryGridColumns.month]}
+                    </a>
+                </Cell>
+            }
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusName].attributes} >{item[BonusInfoSummaryGridColumns.bonusName]}</Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusCode].attributes}>
-                {globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate ? item[BonusInfoSummaryGridColumns.bonusCode] :
+                {globalFilter.groupBy === GroupByOptionIds.bonusCode ? 
                     <a href="#" onClick={(e)=> _bonusCodeClick(e, item.bonusCode)}>
                         {item[BonusInfoSummaryGridColumns.bonusCode]}
                     </a>
+                    : item[BonusInfoSummaryGridColumns.bonusCode]
                 }               
             </Cell>
             <Cell {...BonusInfoSummaryGridConfig[BonusInfoSummaryGridColumns.bonusType].attributes}>{item[BonusInfoSummaryGridColumns.bonusType]}</Cell>
@@ -227,13 +273,13 @@ export const BonusInfoSummaryWidget = props => {
 }
 
 function mapStateToProps(state) {
-    const { globalFilter, bonusInfoSummaryData, summaryGridHeight, selectedSummarySortInfo, selectedSummaryDate} = state;
-    return Object.assign({}, { globalFilter, bonusInfoSummaryData, summaryGridHeight,  selectedSummarySortInfo, selectedSummaryDate });
+    const { globalFilter, bonusInfoSummaryData, summaryGridHeight, selectedSummarySortInfo, selectedSummaryDateRange} = state;
+    return Object.assign({}, { globalFilter, bonusInfoSummaryData, summaryGridHeight,  selectedSummarySortInfo, selectedSummaryDateRange });
 }
 
 function mapDispatchToProps(dispatch) {
-    const { fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList, setSelectedBonusCode, setSummaryGridHeight, setSelectedSummaryDate, setSummarySortInfo, setBonusInfoDetailData } = ActionCreators;
-    return bindActionCreators({ fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList ,setSelectedBonusCode, setSummaryGridHeight, setSelectedSummaryDate, setSummarySortInfo, setBonusInfoDetailData }, dispatch);
+    const { fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList, setBonusCodeDetailList, setSelectedBonusCode, setSummaryGridHeight, setSelectedSummaryDateRange, setSummarySortInfo, setBonusInfoDetailData } = ActionCreators;
+    return bindActionCreators({ fetchBonusInfoSummaryData, setDetailFilter, setBonusCodeList, setBonusCodeDetailList, setSelectedBonusCode, setSummaryGridHeight, setSelectedSummaryDateRange, setSummarySortInfo, setBonusInfoDetailData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(BonusInfoSummaryWidget));

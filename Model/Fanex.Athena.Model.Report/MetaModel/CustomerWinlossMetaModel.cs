@@ -34,8 +34,6 @@ namespace Fanex.Athena.Model.Report.MetaModel
 
         public bool HasComm { get; set; }
 
-        public bool SystemIdVisible { get; set; }
-
         public string FunctionKey => FunctionNames.CustomerWinLoss;
     }
 }

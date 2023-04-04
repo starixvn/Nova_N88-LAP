@@ -53,14 +53,13 @@
             }
         }
 
-        [TestCase(1, "USD", null, "USD", true, "Test", "Test")]
-        [TestCase(1, "USD", "eur", "EUR", false, null, "SabaProductsWinLossBetList")]
+        [TestCase(1, "USD", null, "USD", "Test", "Test")]
+        [TestCase(1, "USD", "eur", "EUR", null, "SabaProductsWinLossBetList")]
         public async Task Index_ExportExcel_PassCorrectParam(
             int currencyId,
             string currency,
             string baseCurrency,
             string expCurrency,
-            bool isFakeLic,
             string fileName,
             string expFileName)
         {
@@ -80,10 +79,8 @@
                     ExcelFileName = fileName,
                 };
 
-                LicenseeSettingService.IsFakeLicensee(Arg.Any<string>()).Returns(isFakeLic);
-
                 var expectedTitle = $"{ViewResources.Customer} {ViewResources.BetList} - 11/1/2018 --> 12/2/2018 - "
-                    + $"External{(isFakeLic ? "" : "(System)")} - {string.Format(ViewResources.Viewin, expCurrency)}";
+                    + $"External{("(System)")} - {string.Format(ViewResources.Viewin, expCurrency)}";
 
                 controller.When(async x => await x.ProcessExportExcel(
                     Arg.Any<BetListExcelMetaModel>(),

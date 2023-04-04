@@ -20,8 +20,6 @@
     [CheckUMFilter]
     public class UserGuideController : CultureBaseController
     {
-        private const string CustomerListResourceName = "CustomerList";
-
         private readonly IProductService _productService;
         private readonly IFileSystem _fileSystem;
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
@@ -49,26 +47,6 @@
             content = AddBalanceUpDate(content);
 
             return View("~/Views/UserGuide/Index.cshtml", null, content);
-        }
-
-        [FunctionAuthorization(PermissionKeys.CustomerInfoCustomerList)]
-        public FilePathResult DownloadCustomerListPdf()
-        {
-            var language = SessionServiceInstance.UserSession.Language;
-            var fileName = SessionServiceInstance.LicenseeSession.IsEnableBA ? "Odds Group Feature_Licensee_BA.pdf" : "Odds Group Feature_Licensee.pdf";
-            var filePath = Server.MapPath(string.Format(@"~/App_Data/UserGuide/{0}/pdf/{1}/{2}", CustomerListResourceName, language, fileName));
-            filePath = GetDefaultFilePathIfNotExist(language, filePath);
-            return File(filePath, MediaTypeNames.Application.Pdf, Path.GetFileName(filePath));
-        }
-
-        [FunctionAuthorization(PermissionKeys.ReportCashOutWinLoss)]
-        public FilePathResult CashoutReportPdf()
-        {
-            var chineseCodes = new[] { "zh-CN", "zh-TW", "zh-Hans" };
-            var suffix = chineseCodes.Contains(SessionServiceInstance.UserSession.Language) ? "CN" : "EN";
-            var fileName = $"Cash Out WL Report guideline_{suffix}.pdf";
-            var filePath = Server.MapPath(string.Format(@"~/App_Data/UserGuide/CashOutWL/pdf/{0}", fileName));
-            return File(filePath, MediaTypeNames.Application.Pdf, Path.GetFileName(filePath));
         }
 
         private static string AddCasinoProducts(string content, IEnumerable<Product> products)

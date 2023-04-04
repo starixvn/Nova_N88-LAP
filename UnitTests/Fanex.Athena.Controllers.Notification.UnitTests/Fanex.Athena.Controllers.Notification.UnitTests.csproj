@@ -22,7 +22,11 @@
     <ProjectReference Include="..\..\DataAccess\Fanex.Athena.DataAccess.Core\Fanex.Athena.DataAccess.Core.csproj" />
     <ProjectReference Include="..\..\Fanex.Athena.Controllers.Notification\Fanex.Athena.Controllers.Notification.csproj" />
     <ProjectReference Include="..\..\Fanex.Athena.Extension\Fanex.Athena.Extension.csproj" />
+    <ProjectReference Include="..\..\Fanex.Athena.Model.Notification\Fanex.Athena.Model.Notification.csproj" />
+    <ProjectReference Include="..\..\Fanex.Athena.Service.Notification\Fanex.Athena.Service.Notification.csproj" />
+    <ProjectReference Include="..\..\Fanex.Athena.UnitTest.Common\Fanex.Athena.UnitTest.Common.csproj" />
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Core\Fanex.Athena.Model.Core.csproj" />
+    <ProjectReference Include="..\..\Service\Fanex.Athena.Service.Core\Fanex.Athena.Service.Core.csproj" />
     <ProjectReference Include="..\Fanex.Athena.Controllers.Base.UnitTests\Fanex.Athena.Controllers.Base.UnitTests.csproj" />
   </ItemGroup>
 

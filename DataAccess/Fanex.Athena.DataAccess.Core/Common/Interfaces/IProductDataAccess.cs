@@ -5,6 +5,6 @@
 
     public interface IProductDataAccess
     {
-        IList<Product> GetProductAccessList(int licenseeId, bool isActiveCustomerSummaryReport = false);
+        IList<Product> GetProductAccessList(int licenseeId);
     }
 }

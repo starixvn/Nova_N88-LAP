@@ -19,25 +19,9 @@
 
         public const string KN = "KN";
 
-        public const string AGC = "AGC";
-
-        public const string PTCS = "PTCS";
-
-        public const string GD = "GD";
-
-        public const string VG = "VG";
-
         public const string BT = "BT";
 
-        public const string VB = "VB";
-
-        public const string AB = "AB";
-
-        public const string FW = "FW";
-
         public const string CO = "CO";
-
-        public const string CB = "CB";
 
         public const string VS2 = "VS2";
 
@@ -45,21 +29,13 @@
 
         public const string PP = "PP";
 
-        public const string LC = "LC";
-
         public const string CC = "CC";
-
-        public const string SG = "SG";
 
         public const string VRG = "VRG";
 
         public const string TG = "TG";
 
         public const string I4D = "I4D";
-
-        public const string SXG = "SXG";
-
-        public const string SBC = "SBC";
 
         public const string SLT = "SLT";
 

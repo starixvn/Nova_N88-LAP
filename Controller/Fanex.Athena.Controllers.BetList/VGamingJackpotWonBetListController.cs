@@ -15,7 +15,7 @@ namespace Fanex.Athena.Controllers.BetList
         public async Task<ActionResult> Detail(BetListExcelMetaModel metaModel)
         {
             CreateDefaultMetaModel(metaModel);
-            return await ProcessDefaultRequest(metaModel, "~/Views/Desktop/BetList/SabaClubJackpotWonDetail/Main.cshtml", "Lrf_BetList_Jackpot_Detail").ConfigureAwait(false);
+            return await ProcessDefaultRequest(metaModel, "~/Views/Desktop/BetList/VGamingJackpotWonDetail/Main.cshtml", "Lrf_BetList_Jackpot_Detail").ConfigureAwait(false);
         }
 
         protected override async Task<ActionResult> ExportExcel(BetListExcelMetaModel metaModel)
@@ -28,7 +28,7 @@ namespace Fanex.Athena.Controllers.BetList
 
             metaModel.Title = $"{ViewResources.ProductVGA} - {ViewResources.JackpotWonDetails}";
 
-            return await ProcessExportExcel(metaModel, "SabaClub_JackpotWonDetails").ConfigureAwait(false);
+            return await ProcessExportExcel(metaModel, "VGaming_JackpotWonDetails").ConfigureAwait(false);
         }
     }
 }

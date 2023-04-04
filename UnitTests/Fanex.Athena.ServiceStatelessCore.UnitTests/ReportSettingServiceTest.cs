@@ -82,7 +82,6 @@
 
             _reportSettingService.GetSettingFileContent().Returns(jsonContent);
             _cache.Get<IEnumerable<ReportSetting>>(string.Empty).ReturnsForAnyArgs((IEnumerable<ReportSetting>)null);
-            _fakeLicenseeSettingService.GetFakeLicenseeSetting(Arg.Any<string>()).Returns(x => { return null; });
 
             // Action
             var result = _reportSettingService.GetSetting(reportKey, LicenseeName);
@@ -132,100 +131,6 @@
 
             // Assert
             Assert.That(result, Is.EqualTo(fakeData[0]));
-        }
-
-        [Test]
-        public void GetSetting_FakeLicenseeSettingExists_AssignSettingFromFakeLicensee()
-        {
-            // Arrange
-            var reportKey = FakeHelper.Create<string>();
-
-            var fakeData = new[]
-            {
-                new ReportSetting { ReportKey = reportKey }
-            };
-            var fakeLicenseeSetting = new FakeLicenseeSetting
-            {
-                MinDate = "2012/1/1",
-                MaxDate = "2013/2/2",
-                DisableBetList = true,
-                LimitRecentMonths = 0
-            };
-            _cache.Get<IEnumerable<ReportSetting>>(string.Empty).ReturnsForAnyArgs(fakeData);
-            _fakeLicenseeSettingService.GetFakeLicenseeSetting(Arg.Any<string>()).Returns(fakeLicenseeSetting);
-
-            // Action
-            var result = _reportSettingService.GetSetting(reportKey, LicenseeName);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(result.MinDateString, Is.EqualTo(fakeLicenseeSetting.MinDate));
-                Assert.That(result.MaxDateString, Is.EqualTo(fakeLicenseeSetting.MaxDate));
-                Assert.That(result.IsDisableBetList, Is.EqualTo(fakeLicenseeSetting.DisableBetList));
-                Assert.That(result.LimitRecentMonths, Is.EqualTo(fakeLicenseeSetting.LimitRecentMonths));
-            });
-        }
-
-        [Test]
-        public void GetSetting_FakeLicenseeSettingExists_MinDateMaxDateIsYesterdayAndToday_AssignCorrectDate()
-        {
-            // Arrange
-            var reportKey = FakeHelper.Create<string>();
-
-            var fakeData = new[]
-            {
-                new ReportSetting { ReportKey = reportKey }
-            };
-            var fakeLicenseeSetting = new FakeLicenseeSetting
-            {
-                MinDate = "yesterday",
-                MaxDate = "today",
-                DisableBetList = true,
-                LimitRecentMonths = 0
-            };
-            _cache.Get<IEnumerable<ReportSetting>>(string.Empty).ReturnsForAnyArgs(fakeData);
-            _fakeLicenseeSettingService.GetFakeLicenseeSetting(Arg.Any<string>()).Returns(fakeLicenseeSetting);
-
-            // Action
-            var result = _reportSettingService.GetSetting(reportKey, LicenseeName);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(result.MinDate, Is.EqualTo(DateTime.Today.AddDays(-1)));
-                Assert.That(result.MaxDate, Is.EqualTo(DateTime.Today));
-            });
-        }
-
-        [TestCase(1)]
-        [TestCase(2)]
-        [TestCase(3)]
-        [TestCase(4)]
-        public void GetSetting_FakeLicenseeHasLimitMinDate_MinDateIsLessThanLimit_ReAssignMinDate(byte limitRecentMonths)
-        {
-            // Arrange
-            var reportKey = FakeHelper.Create<string>();
-            var fakeData = new[]
-            {
-                new ReportSetting { ReportKey = reportKey }
-            };
-            var fakeLicenseeSetting = new FakeLicenseeSetting
-            {
-                SiteName = "123",
-                MinDate = DateTime.Today.AddMonths(-limitRecentMonths - 1).ToString("yyyy/M/d"),
-                LimitRecentMonths = limitRecentMonths
-            };
-            _cache.Get<IEnumerable<ReportSetting>>(string.Empty).ReturnsForAnyArgs(fakeData);
-            _fakeLicenseeSettingService.GetFakeLicenseeSetting(Arg.Any<string>()).Returns(fakeLicenseeSetting);
-
-            var expectedMinDate = DateTime.Today.AddMonths(-limitRecentMonths + 1).ToString("yyyy/M/1");
-
-            // Action
-            var result = _reportSettingService.GetSetting(reportKey, LicenseeName);
-
-            // Assert
-            Assert.That(result.MinDate.ToString("yyyy/M/d"), Is.EqualTo(expectedMinDate));
         }
     }
 }

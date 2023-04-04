@@ -18,7 +18,7 @@
             base.FixtureSetUp();
 
             ProductService.GetProductAccess(Arg.Any<int>(), Arg.Any<string>())
-                .Returns(new ProductAccess(new List<Product> { new Product { ProductCode = Product.AB } }));
+                .Returns(new ProductAccess(new List<Product> { new Product { ProductCode = Product.SB } }));
 
             SetUpDefaultFakeData();
         }

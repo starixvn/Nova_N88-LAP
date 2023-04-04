@@ -39,13 +39,9 @@ namespace Fanex.Athena.Service.Core.Utility
             return !items.Any(x => !int.TryParse(x, out int n) || !currencyList.ContainsKey(n));
         }
 
-        public bool IsValidCurrency(int currencyId, bool isIncludeKeanOcean = false)
+        public bool IsValidCurrency(int currencyId)
         {
             var currencyList = AuthParameterHelper.GetCurrencyList(_sessionService.UserSession.BrandList);
-            if (isIncludeKeanOcean)
-            {
-                return ValidateCurrencyWithKeanOceanOption(currencyId, currencyList, _appSettings.LicenseeId);
-            }
 
             return ValidateCurrency(currencyId, currencyList);
         }
@@ -54,16 +50,6 @@ namespace Fanex.Athena.Service.Core.Utility
         {
             return (currencyId < 0 && currencyId >= SystemConstants.MinBaseCurrencyType)
                || currencyId == BaseCurrencyType.All || currencyList.ContainsKey(currencyId);
-        }
-
-        private static bool VerifyKeanOceanCurrency(int currencyId, int licenseeId)
-        {
-            return licenseeId == LicenseeIdentity.KeenOcean && currencyId == CurrencyType.Cny;
-        }
-
-        private static bool ValidateCurrencyWithKeanOceanOption(int currencyId, IDictionary<int, string> currencyList, int licenseeId)
-        {
-            return ValidateCurrency(currencyId, currencyList) || VerifyKeanOceanCurrency(currencyId, licenseeId);
         }
     }
 }

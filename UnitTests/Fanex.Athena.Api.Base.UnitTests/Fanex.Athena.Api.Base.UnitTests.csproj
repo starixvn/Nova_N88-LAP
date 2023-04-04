@@ -95,7 +95,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Attributes\ApiBetListAuthorizationAttributeTest.cs" />
     <Compile Include="Attributes\ApiFunctionAuthorizationAttributeTest.cs" />
     <Compile Include="BaseApiControllerTest.cs" />
     <Compile Include="BaseApiControllerHelperTest.cs" />

@@ -16,7 +16,7 @@
     using Service.Core.Common.Interfaces;
     using Service.StatelessCore.Interfaces;
 
-    [ApiFunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss, PermissionKeys.ReportWinLossByProduct, PermissionKeys.ReportColossusBetsWinLoss)]
+    [ApiFunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss)]
     [ApiBetListAuthorization]
     public class LicenseeWinLossBetListController : ApiBetListBaseController
     {

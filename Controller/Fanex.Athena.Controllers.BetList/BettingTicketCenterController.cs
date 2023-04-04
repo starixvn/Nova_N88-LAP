@@ -168,14 +168,11 @@
                 Product.KN,
                 Product.LT,
                 Product.CS,
-                Product.AB,
                 Product.CC,
                 Product.PP,
                 Product.VRG,
                 Product.TG,
                 Product.I4D,
-                Product.SXG,
-                Product.SBC,
                 Product.VGA
             };
 

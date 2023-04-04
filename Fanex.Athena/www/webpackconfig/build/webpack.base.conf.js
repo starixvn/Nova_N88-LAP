@@ -18,13 +18,10 @@ function generateConfig(environment) {
             modules: [
                 path.join(__dirname, "www"),
                 "node_modules"
-           ]
+            ]
         },
         entry: {
             [`${jsPath}/language`]: pathConfig.scriptPaths.language,
-            [`${jsPath}/language-zh-CN`]: pathConfig.scriptPaths.languageCN,
-            [`${jsPath}/language-zh-TW`]: pathConfig.scriptPaths.languageTW,
-            [`${jsPath}/language-zh-Hans`]: pathConfig.scriptPaths.languageHans,
             [`${jsPath}/pages/home/home`]: pathConfig.scriptPaths.home,
             [`${jsPath}/pages/signin/signin`]: pathConfig.scriptPaths.signin,
             [`${jsPath}/pages/reports/licenseewinloss`]: [pathConfig.scriptPaths.licenseewinloss],
@@ -33,8 +30,6 @@ function generateConfig(environment) {
             [`${jsPath}/pages/betlist/betlistrunning`]: [pathConfig.scriptPaths.betlistrunning],
             [`${jsPath}/pages/betlist/betlistrunningmultiplebettypes`]: [pathConfig.scriptPaths.betlistrunningmultiplebettypes],
             [`${jsPath}/pages/betlist/betlistcorrectscore`]: [pathConfig.scriptPaths.betlistcorrectscore],
-            [`${jsPath}/pages/reports/result`]: [pathConfig.scriptPaths.result],
-            [`${jsPath}/pages/reports/cashoutwinloss`]: [pathConfig.scriptPaths.cashoutwinloss],
             [`${jsPath}/pages/betlist/customeroutstanding`]: [pathConfig.scriptPaths.customeroutstanding],
 
             [`${cssPath}/pages/reports/reportjqgridlayout`]: pathConfig.cssPaths.reportjqgridlayout,
@@ -48,11 +43,8 @@ function generateConfig(environment) {
             [`${cssPath}/pages/betlist/betlistLayout`]: pathConfig.cssPaths.betlistLayout,
             [`${cssPath}/pages/betlist/betlistSimpleLayout`]: pathConfig.cssPaths.betlistSimpleLayout,
             [`${cssPath}/pages/betlist/betlistResult`]: pathConfig.cssPaths.betlistResult,
-            [`${cssPath}/pages/betlist/colossusbetdetail`]: pathConfig.cssPaths.colossusbetdetail,
             [`${cssPath}/pages/betlist/systemparlaydetail`]: pathConfig.cssPaths.systemparlaydetail,
 
-            [`${cssPath}/pages/reports/result`]: pathConfig.cssPaths.result,
-            [`${cssPath}/pages/reports/cashoutwinloss`]: pathConfig.cssPaths.cashoutwinloss,
             [`${cssPath}/pages/betlist/cashouthistory`]: pathConfig.cssPaths.cashouthistory,
             [`${cssPath}/pages/customer/commgroupdetail`]: pathConfig.cssPaths.customercommgroupdetail,
             [`${jsPath}/pages/customer/loginlog`]: [pathConfig.scriptPaths.loginlog],
@@ -89,7 +81,7 @@ function generateConfig(environment) {
         },
         optimization: {
             minimizer: [
-             new UglifyJsPlugin({
+                new UglifyJsPlugin({
                     sourceMap: true
                 })
             ],
@@ -107,10 +99,10 @@ function generateConfig(environment) {
                     default: false,
                     vendors: false,
                     common: {
-                       name: `${jsPath}/pages/lib/common`,
-                       test: /(node_modules|www[\\/]js[\\/]source[\\/]vendors|www[\\/]js[\\/]source[\\/]common)/,
-                       minChunks: 2,
-                       priority: -10
+                        name: `${jsPath}/pages/lib/common`,
+                        test: /(node_modules|www[\\/]js[\\/]source[\\/]vendors|www[\\/]js[\\/]source[\\/]common)/,
+                        minChunks: 2,
+                        priority: -10
                     },
                     jqgrid: {
                         name: `${jsPath}/pages/lib/jqgrid`,

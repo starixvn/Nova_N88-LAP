@@ -10,13 +10,11 @@
 
     public class ProductDataAccess : BaseDataAccess, IProductDataAccess
     {
-        public IList<Product> GetProductAccessList(int licenseeId, bool isActiveCustomerSummaryReport = false)
+        public IList<Product> GetProductAccessList(int licenseeId)
         {
-            var uspName = isActiveCustomerSummaryReport ? "Lrf_LicenseeProduct3rdSel_active" : "Lrf_LicenseeProduct3rdSel";
-
             var allowedProducts = new List<Product> { new Product { IsOfferedSingleWallet = true, ProductCode = "SB", ProductName = ViewResources.Sportsbook } };
 
-            using (var db = this.GetObjectDb(uspName))
+            using (var db = this.GetObjectDb("Lrf_LicenseeProduct3rdSel"))
             {
                 db.SetParameterValue("licenseeid", licenseeId);
 

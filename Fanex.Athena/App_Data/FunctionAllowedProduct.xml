@@ -1,27 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Root>
-  <Group Name="Default">
-    <Function Name="_Default" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-  </Group>
+	<Group Name="Default">
+		<Function Name="_Default" Product="SB,BA,NG,VS,CS,KN,CO,VS2,LT,PP,CC,VRG,TG,I4D,VGA,VS3"></Function>
+	</Group>
 
-  <Group Name="Report">
-    <Function Name="LicenseeWinLoss" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-    <Function Name="SpecialLicenseeWinLoss" Product="SB,NG,CS"></Function>
-    <Function Name="CustomerBalance" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-    <Function Name="CustomerWinLoss" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-    <Function Name="ResultPage_GetNormalSports" Product="SB,BA,NG,VS,KN,LT,I4D"></Function>
-    <Function Name="ExtraPayout" Product="SPR,SBC,VGA,CC"></Function>
-  </Group>
+	<Group Name="Report">
+		<Function Name="LicenseeWinLoss" Product="SB,BA,NG,VS,CS,KN,CO,VS2,LT,PP,CC,VRG,TG,I4D,VGA,VS3"></Function>
+		<Function Name="CustomerWinLoss" Product="SB,BA,NG,VS,CS,KN,CO,VS2,LT,PP,CC,VRG,TG,I4D,VGA,VS3"></Function>
+		<Function Name="ResultPage_GetNormalSports" Product="SB,BA,NG,VS,KN,LT,I4D"></Function>
+		<Function Name="ExtraPayout" Product="SPR,VGA,CC"></Function>
+	</Group>
 
-  <Group Name="BetList">
-    <Function Name="BetList_CustomerOutstanding" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-    <Function Name="BetList_CustomerOutstandingRunning" Product="SB,BA,NG,VS,CS,KN,AB,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-    <Function Name="BettingTicketCenter" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-    <Function Name="BettingTicketCenter_Running" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-    <Function Name="BettingTicketCenter_AdvancedSearch" Product="SB,BA,NG,VS,CS,KN,AB,CO,VS2,LT,PP,CC,VRG,TG,I4D,SXG,SBC,VGA,VS3"></Function>
-  </Group>
-
-  <Group Name="API">
-    <Function Name="CustomerAPI_RemoveFromGroupCom" Product="SB,BA,NG,VS,CS,AB"></Function>
-  </Group>
+	<Group Name="BetList">
+		<Function Name="BettingTicketCenter" Product="SB,BA,NG,VS,CS,KN,CO,VS2,LT,PP,CC,VRG,TG,I4D,VGA,VS3"></Function>
+		<Function Name="BettingTicketCenter_Running" Product="SB,BA,NG,VS,CS,KN,CO,VS2,LT,PP,CC,VRG,TG,I4D,VGA,VS3"></Function>
+		<Function Name="BettingTicketCenter_AdvancedSearch" Product="SB,BA,NG,VS,CS,KN,CO,VS2,LT,PP,CC,VRG,TG,I4D,VGA,VS3"></Function>
+	</Group>
 </Root>

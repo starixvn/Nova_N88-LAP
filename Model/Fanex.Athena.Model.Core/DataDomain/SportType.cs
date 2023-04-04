@@ -299,12 +299,6 @@ namespace Fanex.Athena.Model.Core.DataDomain
         /// </summary>
         Keno = 202,
 
-        AllBet = 211,
-
-        Voidbridge = 212,
-
-        FishingWorld = 219,
-
         Lottery = 220,
 
         Exchange = 221,
@@ -312,8 +306,6 @@ namespace Fanex.Athena.Model.Core.DataDomain
         VirtualBasketball = 193,
 
         PP = 248,
-
-        AgCasino = 250,
 
         SabaSoccer = -1,
 

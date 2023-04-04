@@ -13,7 +13,7 @@
     var userCurrencies = userSession == null || userSession.CurrencyList == null ?
         new Dictionary<string, string>() :
         userSession.CurrencyList.ToDictionary(x => x.Key.ToString(), x => x.Value);
-    var isFakeLicensee = licenseeSettingService.IsFakeLicensee(licSession.LicenseeName);
+    var isFakeLicensee = false;
 }
 <!DOCTYPE html>
 <html>

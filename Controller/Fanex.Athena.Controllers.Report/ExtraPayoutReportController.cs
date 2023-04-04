@@ -89,20 +89,6 @@
             });
             }
 
-            if (productCodeList.IsPresent(_ => _ == Product.SBC))
-            {
-                promotionTypeList.AddRange(new List<CheckedItem>
-                {
-                    new CheckedItem { ID = ExtraPayoutMapType.SCBFreeBets,
-                        Name = $"{ViewResources.ResourceManager.GetString(productResource + Product.SBC)} - {ViewResources.FreeBets}", Checked = true },
-                    new CheckedItem { ID = ExtraPayoutMapType.SCBFreeBetsJackpotPrize,
-                        Name = $"{ViewResources.ResourceManager.GetString(productResource + Product.SBC)} - {_cacheRefAdapter.GetBettype((int)BetType.SCBFreeBetsJackpotPrize)}", Checked = true },
-                    new CheckedItem { ID = ExtraPayoutMapType.SCBFreeBetsJackpotContribution,
-                        Name = $"{ViewResources.ResourceManager.GetString(productResource + Product.SBC)} - {_cacheRefAdapter.GetBettype((int)BetType.SCBFreeBetsJackpotContribution)}",
-                        Checked = true }
-                });
-            }
-
             if (productCodeList.IsPresent(_ => _ == Product.CC))
             {
                 promotionTypeList.AddRange(new List<CheckedItem>

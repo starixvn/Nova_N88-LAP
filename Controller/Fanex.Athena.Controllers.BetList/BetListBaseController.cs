@@ -67,7 +67,7 @@
                  metaModel.FromDate.ToString(FormatKey.ShortDateFormat),
                  metaModel.ToDate.ToString(FormatKey.ShortDateFormat),
                  metaModel.ExternalId,
-                 metaModel.IsFakeLicensee ? string.Empty : $"({metaModel.SystemId})",
+                 $"({metaModel.SystemId})",
                  currencyTitle);
         }
 
@@ -94,7 +94,6 @@
             defaultMetaModel.FromDate = DateTime.SpecifyKind(defaultMetaModel.FromDate.Date, DateTimeKind.Unspecified);
             defaultMetaModel.ToDate = DateTime.SpecifyKind(defaultMetaModel.ToDate.Date, DateTimeKind.Unspecified);
             defaultMetaModel.Date = DateTime.SpecifyKind(defaultMetaModel.Date.Date, DateTimeKind.Unspecified);
-            defaultMetaModel.IsFakeLicensee = IsFakeLicensee(licenseeSession.LicenseeName);
             defaultMetaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, defaultMetaModel.CurrencyId);
             defaultMetaModel.IsShowIpvn = userSession.IsShowIpvn;
 

@@ -28,8 +28,6 @@
 
         public const int SCBFreeBetsJackpotContribution = 4203;
 
-        public const int EASexyLuckyDraw = 4501;
-
         public const int ArcadiaGamingBonus = 3401;
 
         public const int VgamingFreeBets = 6601;

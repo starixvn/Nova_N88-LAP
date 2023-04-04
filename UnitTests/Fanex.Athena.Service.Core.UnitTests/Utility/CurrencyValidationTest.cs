@@ -79,7 +79,7 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
 
             //Action
 
-            var result = _currencyValidation.IsValidCurrency(currencyId, true);
+            var result = _currencyValidation.IsValidCurrency(currencyId);
             //Assert
             Assert.AreEqual(result, expected);
         }

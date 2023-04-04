@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import CheckBox from '@jsroot/components/CheckBox';
 import AdvancedSearch from './filter/AdvancedSearch';
 import CollapsiblePanel from '@jsroot/components/collapsible-panel';
-import UserGuide from '@jsroot/components/UserGuide';
 import LangHelper from '@jsroot/lib/langHelper';
 import { searchOptions, baStatusList, specialLevelListWithColor, oddsGroupListWithStyle } from '../lib/constants';
 import QueryString from '@jsroot/lib/QueryString';
@@ -18,8 +17,6 @@ export class FormFilter extends PureComponent {
         this.allOddsGroupString = Object.keys(oddsGroupListWithStyle).join(',');
         this.allCurrencyString = props.currencyList.map(c => c.Id).join(',');
         this.allSpecialLevel = Object.keys(specialLevelListWithColor).map(item => item).join(',');
-
-        this.userGuide = this._renderUserGuide();
         this.userNameRef = React.createRef();
 
         this.state = {
@@ -124,16 +121,6 @@ export class FormFilter extends PureComponent {
         });
     }
 
-    _renderUserGuide() {
-        const userGuideContent = 'Player Admin User Guide';
-
-        return (<UserGuide
-            title={LangHelper.getSingleResource("UserGuide")}
-            contentTitle={LangHelper.getSingleResource("PlayerAdmin")}
-            onClick={this.showUserGuide}
-            content={userGuideContent} />)
-    }
-
     render() {
         const { bankAccountNumber, email, searchOption, isValidUserName, isValidsystemId, ...advancedSearchParam } = this.state;
         const { type, isAdvancedSearch, isFilterCollapsing, currencyList, hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission } = this.props;
@@ -146,7 +133,7 @@ export class FormFilter extends PureComponent {
         }
 
         return (
-            <CollapsiblePanel className="page-filter" iconToggle={iconToggle} stickyFooter={this.userGuide}
+            <CollapsiblePanel className="page-filter" iconToggle={iconToggle}
                 onCollapse={() => this.props.setCollapseFilter(true)} onExpand={() => this.props.setCollapseFilter(false)}>
                 <div className="row">
                     <div className="col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2">

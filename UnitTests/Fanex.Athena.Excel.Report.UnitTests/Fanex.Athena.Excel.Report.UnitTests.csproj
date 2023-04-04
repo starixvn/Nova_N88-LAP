@@ -62,9 +62,7 @@
     <Compile Include="LicenseeWinLossExcelTest.AssignHeader.cs" />
     <Compile Include="TestableClasses\LicenseeWinLossExcelTestable.cs" />
     <Compile Include="LicenseeWinLossExcelTest.cs" />
-    <Compile Include="CashOutWinLossExcelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestableClasses\CashOutWinLossExcelTestable.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Excel\Fanex.Athena.Excel.Base\Fanex.Athena.Excel.Base.csproj">

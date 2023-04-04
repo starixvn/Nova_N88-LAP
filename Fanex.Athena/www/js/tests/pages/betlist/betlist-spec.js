@@ -493,10 +493,10 @@
 
                 it("bindData should not be called when response is null", function () {
                     jasmine.Ajax
-                            .stubRequest("api/loadData")
-                            .andReturn({
-                                responseText: JSON.stringify(null)
-                            });
+                        .stubRequest("api/loadData")
+                        .andReturn({
+                            responseText: JSON.stringify(null)
+                        });
 
                     BetList.loadData({}, "api/loadData");
 
@@ -510,10 +510,10 @@
                         Main: {}
                     };
                     jasmine.Ajax
-                            .stubRequest("api/loadData")
-                            .andReturn({
-                                responseText: JSON.stringify(result)
-                            });
+                        .stubRequest("api/loadData")
+                        .andReturn({
+                            responseText: JSON.stringify(result)
+                        });
 
                     BetList.loadData("{}", "api/loadData");
 
@@ -626,7 +626,6 @@
                     expect(result).toBe('ResultReport/ResultPopup?matchid=1&bettype=221&raceno=3&sporttype=4&isoutright=6&handicap1=7&handicap2=8');
                 });
             });
-
 
             describe("viewResult(matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright, betid, betcheck, custid)", function () {
                 beforeEach(function () {
@@ -765,12 +764,12 @@
                         jasmine.Ajax.install();
 
                         jasmine.Ajax
-                        .stubRequest(/api\/MixParlayBetList\/Detail\?transId=0\&custId=0/)
-                        .andReturn({
-                            'status': 200,
-                            'contentType': 'application/json',
-                            'responseText': '["Choice1", "Choice2", "Choice3"]'
-                        });
+                            .stubRequest(/api\/MixParlayBetList\/Detail\?transId=0\&custId=0/)
+                            .andReturn({
+                                'status': 200,
+                                'contentType': 'application/json',
+                                'responseText': '["Choice1", "Choice2", "Choice3"]'
+                            });
 
                         BetList.showMixParlayDetail(0, $div, 0);
                         request = jasmine.Ajax.requests.mostRecent();
@@ -869,12 +868,12 @@
 
                 it("shows alert when response.Success is false", function () {
                     jasmine.Ajax
-                            .stubRequest("ResultReport/ShowRngCasinoSingleWalletResult")
-                            .andReturn({
-                                responseText: JSON.stringify({
-                                    Success: false
-                                })
-                            });
+                        .stubRequest("ResultReport/ShowRngCasinoSingleWalletResult")
+                        .andReturn({
+                            responseText: JSON.stringify({
+                                Success: false
+                            })
+                        });
                     spyOn(window, "alert");
 
                     BetList.viewRngCasinoResult("", 0);
@@ -884,13 +883,13 @@
 
                 it("shows showResultPopUp when response.Success is true and result is not empty", function () {
                     jasmine.Ajax
-                            .stubRequest("ResultReport/ShowRngCasinoSingleWalletResult")
-                            .andReturn({
-                                responseText: JSON.stringify({
-                                    Success: true,
-                                    Result: "Result"
-                                })
-                            });
+                        .stubRequest("ResultReport/ShowRngCasinoSingleWalletResult")
+                        .andReturn({
+                            responseText: JSON.stringify({
+                                Success: true,
+                                Result: "Result"
+                            })
+                        });
                     spyOn(Popup, "openPopupWithIframe");
 
                     BetList.viewRngCasinoResult("Rng Casino Result", 0);
@@ -900,13 +899,13 @@
 
                 it("does not show showResultPopUp when response.Success is true and result is not empty", function () {
                     jasmine.Ajax
-                            .stubRequest("ResultReport/ShowRngCasinoSingleWalletResult")
-                            .andReturn({
-                                responseText: JSON.stringify({
-                                    Success: true,
-                                    Result: ""
-                                })
-                            });
+                        .stubRequest("ResultReport/ShowRngCasinoSingleWalletResult")
+                        .andReturn({
+                            responseText: JSON.stringify({
+                                Success: true,
+                                Result: ""
+                            })
+                        });
                     spyOn(Popup, "openPopupWithIframe");
 
                     BetList.viewRngCasinoResult("Rng Casino Result", 0);
@@ -1199,51 +1198,6 @@
                     expect($("#divEvent_12").is(":hidden")).toEqual(false);
                     expect($("#divEvent_12").html()).toEqual(expectedContent);
                     expect($("#combinationOfferName_12").is(":hidden")).toEqual(true);
-                });
-            });
-
-            describe("showColossusBetsDetails(refNo, winlostDate, transId, custId, betCheck)", function () {
-                it("shows showResultPopUp with correct params", function () {
-                    spyOn(Popup, "openPopupWithIframe");
-                    spyOn($, "parseJSON").and.returnValue({
-                        BaseCurrency: "usd"
-                    });
-                    spyOn($.fn, "height").and.returnValue(700);
-                    var refNo = "refNo", winlostDate = "winlostDate", transId = "transId", custId = "custId", betCheck = "betCheck";
-                    var url = "ColossusBetBetList/Detail?refNo=" + refNo +
-                        "&date=" + winlostDate +
-                        "&transid=" + transId +
-                        "&custid=" + custId +
-                        "&betCheck=" + betCheck +
-                        "&BaseCurrency=usd";
-                    var expectedUrl = transformQueryParamNameToLowerCase(url);
-                    var title = "TicketDetailOf";
-
-                    BetList.showColossusBetsDetails(refNo, winlostDate, transId, custId, betCheck);
-
-                    expect(Popup.openPopupWithIframe).toHaveBeenCalledWith(expectedUrl, { width: 890, height: 600, title: title, id: "betlist-popup-detail" });
-                });
-            });
-
-            describe("showGlobalGamingDetails(transId, winlostDate, custId, transType)", function () {
-                it("shows showResultPopUp with correct params", function () {
-                    spyOn(Popup, "openPopupWithIframe");
-                    spyOn($, "parseJSON").and.returnValue({
-                        BaseCurrency: "usd"
-                    });
-                    spyOn($.fn, "height").and.returnValue(700);
-                    var transId = "transId", winlostDate = "06/01/2017", custId = "custId", transType = "transType";
-                    var url = "GlobalGamingBetList/Detail?transId=" + transId +
-                        "&date=" + winlostDate +
-                        "&custId=" + custId +
-                        "&transType=" + transType +
-                        "&BaseCurrency=usd";
-                    var expectedUrl = transformQueryParamNameToLowerCase(url);
-                    var title = "ProductFW - DetailedBetlist - 06/01/2017";
-
-                    BetList.showGlobalGamingDetails(transId, winlostDate, custId, transType);
-
-                    expect(Popup.openPopupWithIframe).toHaveBeenCalledWith(expectedUrl, { width: 890, height: 600, title: title, id: "betlist-popup-detail" });
                 });
             });
 

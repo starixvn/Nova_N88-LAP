@@ -65,7 +65,6 @@
     <Compile Include="DTO\CashoutHistoryDetail.cs" />
     <Compile Include="DTO\CashOutTicket.cs" />
     <Compile Include="DTO\CashOutTicketText.cs" />
-    <Compile Include="DTO\ColossusBetDetail.cs" />
     <Compile Include="DTO\CustomerCancelBetItem.cs" />
     <Compile Include="DTO\DailyStatement.cs" />
     <Compile Include="DTO\ExchangeBetList.cs" />
@@ -80,7 +79,6 @@
     <Compile Include="MetaModel\BetListShowingOption.cs" />
     <Compile Include="MetaModel\NewCashOutBetListDetailMetaModel.cs" />
     <Compile Include="MetaModel\CashOutBetListDetailMetaModel.cs" />
-    <Compile Include="MetaModel\ColossusBetDetailMetaModel.cs" />
     <Compile Include="MetaModel\ExchangeBetListDetailMetaModel.cs" />
     <Compile Include="MetaModel\ExchangeBetListMetaModel.cs" />
     <Compile Include="MetaModel\MixParlayDetailMetaModel.cs" />
@@ -96,7 +94,6 @@
     <Compile Include="ViewModel\CancelledBetsBetListViewModel.cs" />
     <Compile Include="ViewModel\NewCashOutBetListDetailViewModel.cs" />
     <Compile Include="ViewModel\CashOutBetListDetailViewModel.cs" />
-    <Compile Include="ViewModel\ColossusBetDetailViewModel.cs" />
     <Compile Include="ViewModel\ExchangeBetListViewModel.cs" />
     <Compile Include="ViewModel\LastBetsMonitoringViewModel.cs" />
     <Compile Include="ViewModel\SystemParlayDetailViewModel.cs" />

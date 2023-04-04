@@ -52,7 +52,6 @@
                new CurrencyValidationOption
                {
                    IsValidCurrency = IsValidCurrency,
-                   IsIncludeKeanOcean = IsIncludeKeanOcean,
                    IsValidCurrencyList = IsValidCurrencyList
                }, new ProductValidationOption
                {

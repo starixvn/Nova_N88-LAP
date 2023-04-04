@@ -126,9 +126,6 @@
   <data name="CustomerWinLoss" xml:space="preserve">
     <value>Customer Win Loss</value>
   </data>
-  <data name="CashOutWinLoss" xml:space="preserve">
-    <value>Cash Out Win Loss</value>
-  </data>
   <data name="ManageGroup" xml:space="preserve">
     <value>Manage Group</value>
   </data>

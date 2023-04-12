@@ -25,7 +25,7 @@
                 CustomerCommVisible = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm
             };
             metaModel.HiddenColumns = HiddenColumns;
-            metaModel.Title = GetBetListDetailTitle(ViewResources.ProductSBC, metaModel.Date);
+            metaModel.Title = GetBetListDetailTitle(ViewResources.ProductVGA, metaModel.Date);
 
             return await ProcessExportExcel(metaModel, "VGamingDetail").ConfigureAwait(false);
         }

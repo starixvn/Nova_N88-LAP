@@ -103,22 +103,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiBetListBaseController.cs" />
-    <Compile Include="AGCasinoBetListController.cs" />
     <Compile Include="BettingTicketCenterAdvancedSearchController.cs" />
     <Compile Include="BettingTicketCenterController.cs" />
     <Compile Include="BonusBetListController.cs" />
-    <Compile Include="GlobalGamingBetListController.cs" />
     <Compile Include="WinLossAnalysisBetListController.cs" />
     <Compile Include="MixParlayBetListController.cs" />
     <Compile Include="JackpotWonBetListController.cs" />
     <Compile Include="RNGCasinoBetListController.cs" />
-    <Compile Include="SexyGamingBetListController.cs" />
     <Compile Include="SingleMatchParlayBetListController.cs" />
-    <Compile Include="VoidbridgeBetListController.cs" />
-    <Compile Include="OutstandingDailyStatementBetListController.cs" />
     <Compile Include="LicenseeWinLossBetListController.cs" />
-    <Compile Include="CustomerWinLossBetListController.cs" />
-    <Compile Include="OutStandingCompletedBetListController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

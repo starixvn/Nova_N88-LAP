@@ -6,15 +6,9 @@
 
         public const string LicenseeWinLoss = "LicenseeWinLoss";
 
-        public const string MatchWinLoss = "MatchWinLoss";
-
-        public const string PlatformWinloss = "PlatformWinloss";
-
         public const string Turnover = "Turnover";
 
         public const string WinLossByProduct = "WinLossByProduct";
-
-        public const string SpecialLicenseeWinLoss = "SpecialLicenseeWinLoss";
 
         public const string BettingTicketCenter = "BettingTicketCenter";
 

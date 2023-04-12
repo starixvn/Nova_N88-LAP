@@ -14,16 +14,12 @@ var cssPaths = {
     betlistLayout: ["./www/css/source/pages/betlist/betlistcommon.main.scss"],
     betlistSimpleLayout: ["./www/css/source/pages/betlist/betlistcommon.main.scss", "./www/css/source/extensions/popup-ex.scss"],
 
-    colossusbetdetail: ["./www/css/source/pages/betlist/colossusbetdetail.scss"],
     systemparlaydetail: ["./www/css/source/pages/betlist/systemparlaydetail.scss"],
 
     betlistResult: ["./www/css/source/pages/betlist/result/betlist.result.scss"],
 
     login: ["./www/css/source/pages/login/login-ex.scss"],
     licenseewinloss: ["./www/css/source/pages/report/licenseewinloss.scss"],
-
-    result: ["./www/css/source/pages/report/result.scss"],
-    cashoutwinloss: ["./www/css/source/pages/report/cashoutwinloss.scss"],
     cashouthistory: ["./www/css/source/pages/betlist/cashouthistory.main.scss", "./www/css/source/extensions/popup-ex.scss"],
 
     customercommgrouplist: ["./www/css/source/pages/customer/commgrouplist.scss"],
@@ -43,9 +39,6 @@ var scriptPaths = {
     build: "www/js/build",
 
     language: "common/languages/ViewResources.js",
-    languageCN: "common/languages/ViewResources.zh-CN.js",
-    languageTW: "common/languages/ViewResources.zh-TW.js",
-    languageHans: "common/languages/ViewResources.zh-Hans.js",
     home: ["./www/js/source/components/navbar.js", "./www/js/source/components/sidebar.js", "malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js", "./www/js/source/pages/home/main.js"],
     signin: ["./www/js/source/pages/signin/main.js"],
 
@@ -59,9 +52,6 @@ var scriptPaths = {
     loginlog: "./www/js/source/pages/customer/customerlog/loginlog/main.js",
     customersetting: "./www/js/source/pages/customer/customerlog/customersetting/main.js",
     groupcommission: "./www/js/source/pages/customer/customerlog/groupcommission/main.js",
-
-    result: "./www/js/source/pages/report/result/main-result.js",
-    cashoutwinloss: "./www/js/source/pages/report/cashoutwinloss/main.js",
     customeroutstanding: "./www/js/source/pages/betlist/customer/main.js"
 };
 

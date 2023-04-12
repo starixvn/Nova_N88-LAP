@@ -141,64 +141,8 @@ class BetList {
         return url;
     }
 
-    getAGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-        let url = rootUrl + 'AGCasinoBetList/Detail';
-        url = QueryString.setParam(url, 'transid', transId);
-        url = QueryString.setParam(url, 'date', winlostDate);
-        url = QueryString.setParam(url, 'custid', custId);
-        url = QueryString.setParam(url, 'transType', transType);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
     getRnGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
         let url = rootUrl + 'RnGCasinoBetList/Detail';
-        url = QueryString.setParam(url, 'transId', transId);
-        url = QueryString.setParam(url, 'date', winlostDate);
-        url = QueryString.setParam(url, 'custId', custId);
-        url = QueryString.setParam(url, 'transType', transType);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
-    getVoidBridgeDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-        let url = rootUrl + 'VoidbridgeBetList/Detail';
-        url = QueryString.setParam(url, 'transId', transId);
-        url = QueryString.setParam(url, 'date', winlostDate);
-        url = QueryString.setParam(url, 'custId', custId);
-        url = QueryString.setParam(url, 'transType', transType);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
-    getAllBetDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-        let url = rootUrl + 'AllBetBetList/Detail';
-        url = QueryString.setParam(url, 'transid', transId);
-        url = QueryString.setParam(url, 'custid', custId);
-        url = QueryString.setParam(url, 'transType', transType);
-        url = QueryString.setParam(url, 'date', winlostDate);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
-    getColossusBetsDetailUrl(rootUrl, baseCurrency, refNo, winlostDate, transId, custId, betCheck) {
-        let url = rootUrl + 'ColossusBetBetList/Detail';
-        url = QueryString.setParam(url, 'refNo', refNo);
-        url = QueryString.setParam(url, 'date', winlostDate);
-        url = QueryString.setParam(url, 'transid', transId);
-        url = QueryString.setParam(url, 'custid', custId);
-        url = QueryString.setParam(url, 'betCheck', betCheck);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
-    getGlobalGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-        let url = rootUrl + 'GlobalGamingBetList/Detail';
         url = QueryString.setParam(url, 'transId', transId);
         url = QueryString.setParam(url, 'date', winlostDate);
         url = QueryString.setParam(url, 'custId', custId);
@@ -230,44 +174,11 @@ class BetList {
         return url;
     }
 
-    getSGDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-        let url = rootUrl + 'SGBetList/Detail';
-        url = QueryString.setParam(url, 'transId', transId);
-        url = QueryString.setParam(url, 'date', winlostDate);
-        url = QueryString.setParam(url, 'custId', custId);
-        url = QueryString.setParam(url, 'transType', transType);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
-    getSBCDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-        let url = rootUrl + 'SabaClubBetList/Detail';
-        url = QueryString.setParam(url, 'transId', transId);
-        url = QueryString.setParam(url, 'date', winlostDate);
-        url = QueryString.setParam(url, 'custId', custId);
-        url = QueryString.setParam(url, 'transType', transType);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
     getVRGResultUrl(rootUrl, gamePlayId, platform) {
         let url = rootUrl + 'VirtualGamesResultPopup/Index';
         console.log(gamePlayId)
         url = QueryString.setParam(url, 'gamePlayId', gamePlayId);
         url = QueryString.setParam(url, 'platform', platform);
-
-        return url;
-    }
-
-    getSexyGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-        let url = rootUrl + 'SexyGamingBetList/Detail';
-        url = QueryString.setParam(url, 'transId', transId);
-        url = QueryString.setParam(url, 'date', winlostDate);
-        url = QueryString.setParam(url, 'custId', custId);
-        url = QueryString.setParam(url, 'transType', transType);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
 
         return url;
     }
@@ -298,58 +209,12 @@ class BetList {
         return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
     }
 
-    getSabaClubResultUrl(rootUrl, custid, gameId, siteId, gameRoundId) {
-        let url = rootUrl + 'SabaClubResultPopup/Index';
-        url = QueryString.setParam(url, 'custid', custid);
-        url = QueryString.setParam(url, 'gameId', gameId);
-        url = QueryString.setParam(url, 'siteId', siteId);
-        url = QueryString.setParam(url, 'gameRoundId', gameRoundId);
-
-        return url;
-    }
-
-    getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
-        let url = rootUrl + 'SabaClubJackpotWonBetList/Detail';
-        url = QueryString.setParam(url, 'transId', transId);
-        url = QueryString.setParam(url, 'custId', custId);
-        url = QueryString.setParam(url, 'bettype', betTypeId);
-        url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
     getVGamingJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
         let url = rootUrl + 'VGamingJackpotWonBetList/Detail';
         url = QueryString.setParam(url, 'transId', transId);
         url = QueryString.setParam(url, 'custId', custId);
         url = QueryString.setParam(url, 'bettype', betTypeId);
         url = QueryString.setParam(url, 'BaseCurrency', baseCurrency);
-
-        return url;
-    }
-
-    getAllBetResultUrl(rootUrl, transdesc, betcheck, bettype) {
-        let url = rootUrl + 'ResultReport/AllBetResult';
-        url = QueryString.setParam(url, 'betcheck', betcheck);
-        url = QueryString.setParam(url, 'bettype', bettype);
-        url = QueryString.setParam(url, 'transdesc', encodeURIComponent(transdesc));
-
-        return url;
-    }
-
-    getSexyGamingResultUrl(rootUrl, transdesc, matchCode, bettype) {
-        let url = rootUrl + 'ResultReport/SexyGaming';
-        url = QueryString.setParam(url, 'matchCode', matchCode);
-        url = QueryString.setParam(url, 'bettype', bettype);
-        url = QueryString.setParam(url, 'transdesc', encodeURIComponent(transdesc));
-
-        return url;
-    }
-
-    getGlobalGamingResultUrl(rootUrl, custid, gameId) {
-        let url = rootUrl + 'ResultReport/GlobalGamingResult';
-        url = QueryString.setParam(url, 'custid', custid);
-        url = QueryString.setParam(url, 'gameId', gameId);
 
         return url;
     }

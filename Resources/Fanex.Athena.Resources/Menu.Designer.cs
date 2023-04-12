@@ -88,15 +88,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cash Out Win Loss.
-        /// </summary>
-        public static string CashOutWinLoss {
-            get {
-                return ResourceManager.GetString("CashOutWinLoss", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Customer Win Loss.
         /// </summary>
         public static string CustomerWinLoss {

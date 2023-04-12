@@ -64,9 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbnormalBetDataAcces.cs" />
-    <Compile Include="CashOutWinLossDataAccess.cs" />
     <Compile Include="Interfaces\IAbnormalBetDataAcces.cs" />
-    <Compile Include="Interfaces\ICashOutWinLossDataAccess.cs" />
     <Compile Include="Interfaces\ILicenseeWinLossDataAccess.cs" />
     <Compile Include="LicenseeWinLossDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

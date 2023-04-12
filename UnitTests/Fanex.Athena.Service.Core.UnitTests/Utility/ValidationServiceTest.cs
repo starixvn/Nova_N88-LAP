@@ -89,8 +89,6 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
             _currencyValidation.Received(1).IsValidCurrency(currencyId);
         }
 
-        [TestCase(CurrencyType.Cny, LicenseeIdentity.KeenOcean, true)]
-        [TestCase(CurrencyType.Cny, LicenseeIdentity.OneTwoBet, false)]
         [TestCase(100, 1, false)]
         [TestCase(2, 1, true)]
         public void IsValid_ByCurrencyValidationWithKeanOcean_ReturnExpectedResult(int currencyId,
@@ -98,16 +96,16 @@ namespace Fanex.Athena.Service.Core.UnitTests.Utility
         bool expected)
         {
             //Arrange
-            var option = new CurrencyValidationOption { IsValidCurrency = true, IsIncludeKeanOcean = true };
+            var option = new CurrencyValidationOption { IsValidCurrency = true };
             var model = new BaseMetaModel { CurrencyId = currencyId, BaseCurrency = "USD" };
-            _currencyValidation.IsValidCurrency(currencyId, true).Returns(expected);
+            _currencyValidation.IsValidCurrency(currencyId).Returns(expected);
 
             //Action
 
             var result = _validationService.IsValid(model, option);
             //Assert
             Assert.AreEqual(result, expected);
-            _currencyValidation.Received(1).IsValidCurrency(currencyId, true);
+            _currencyValidation.Received(1).IsValidCurrency(currencyId);
         }
 
         [Test]

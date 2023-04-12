@@ -80,14 +80,6 @@ namespace Fanex.Athena.Model.Core.DTO.Common
             }
         }
 
-        public bool IsAllowAB
-        {
-            get
-            {
-                return ProductList.Any(p => p.ProductCode == Product.AB);
-            }
-        }
-
         public bool IsAllowVRG
         {
             get
@@ -109,14 +101,6 @@ namespace Fanex.Athena.Model.Core.DTO.Common
             get
             {
                 return ProductList.Any(p => p.ProductCode == Product.I4D);
-            }
-        }
-
-        public bool IsAllowSBC
-        {
-            get
-            {
-                return ProductList.Any(p => p.ProductCode == Product.SBC);
             }
         }
 

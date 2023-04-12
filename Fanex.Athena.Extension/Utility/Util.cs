@@ -12,10 +12,7 @@
             {
                 return new Dictionary<string, string>
                     {
-                        { "en-US", "English" },
-                        { "zh-TW", "繁體中文" },
-                        { "zh-CN", "简体中文" },
-                        { "zh-Hans", "简体中文(新)" }
+                        { "en-US", "English" }
                     };
             }
         }
@@ -26,13 +23,7 @@
             {
                 return new Dictionary<string, string>
                 {
-                    { "en-US", "en" },
-                    { "zh-TW", "ch" },
-                    { "zh-CN", "cs" },
-                    { "zh-Hans", "zhcn" },
-                    { "ja-JP", "jp" },
-                    { "th-TH", "th" },
-                    { "vi-VN", "vn" }
+                    { "en-US", "en" }
                 };
             }
         }
@@ -43,13 +34,7 @@
             {
                 return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 {
-                    { "en", "en-US" },
-                    { "ch", "zh-TW" },
-                    { "cs", "zh-CN" },
-                    { "zhcn", "zh-Hans" },
-                    { "jp", "ja-JP" },
-                    { "th", "th-TH" },
-                    { "vn", "vi-VN" }
+                    { "en", "en-US" }
                 };
             }
         }
@@ -68,7 +53,7 @@
             var langsKey = SupportedLanguages.Keys;
             return langsKey.Contains(languageCode);
         }
-        
+
         public static bool IsPasswordValid(string password)
         {
             const string Pattern = @"^(?=.*[A-z].*[A-z])(?=.*\d.*\d).{6,}$";

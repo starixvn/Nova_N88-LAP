@@ -3,18 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
     using Base.UnitTests;
-    using Fanex.Athena.DataAccess.Core.Common.Interfaces;
-    using Fanex.Athena.DataAccess.Report.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.Core.DTO.Common;
-    using Fanex.Athena.Model.Report.DTO.AbnormalBet;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Athena.UnitTest.Common.Helpers;
-    using Fanex.Athena.UnitTest.Common.NUnitExtensions;
     using Fanex.Athena.VendorAdapter.Interfaces;
     using Model.Core.DTO.Configuration;
     using Model.Report.ViewModel;
@@ -72,11 +66,10 @@
             {
                 new Product {ProductCode = Product.VGA},
                 new Product {ProductCode = Product.CC},
-                new Product {ProductCode = Product.SBC},
                 new Product {ProductCode = Product.SPR}
             };
 
-            var productCode = "VGA,CC,SBC,SPR";
+            var productCode = "VGA,CC,SPR";
 
             using (var controller = CreateController(product))
             {

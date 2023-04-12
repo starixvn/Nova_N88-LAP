@@ -1023,11 +1023,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/components/CheckBox */ "./www/js/source/reactpages/components/CheckBox.jsx");
 /* harmony import */ var _filter_AdvancedSearch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./filter/AdvancedSearch */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/filter/AdvancedSearch.jsx");
 /* harmony import */ var _jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/components/collapsible-panel */ "./www/js/source/reactpages/components/collapsible-panel/index.jsx");
-/* harmony import */ var _jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/components/UserGuide */ "./www/js/source/reactpages/components/UserGuide.jsx");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-/* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
-/* harmony import */ var _jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/lib/htmlHelper */ "./www/js/source/reactpages/lib/htmlHelper.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
+/* harmony import */ var _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/lib/QueryString */ "./www/js/source/reactpages/lib/QueryString.js");
+/* harmony import */ var _jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @jsroot/lib/htmlHelper */ "./www/js/source/reactpages/lib/htmlHelper.js");
 const _excluded = ["specialLevel", "currencyIdList", "oddsGroup", "isValidUserName"],
   _excluded2 = ["bankAccountNumber", "email", "searchOption", "isValidUserName", "isValidsystemId"];
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -1037,7 +1036,6 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-
 
 
 
@@ -1095,10 +1093,9 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
         isValidsystemId: !!value
       });
     });
-    this.allOddsGroupString = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["oddsGroupListWithStyle"]).join(',');
+    this.allOddsGroupString = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_8__["oddsGroupListWithStyle"]).join(',');
     this.allCurrencyString = props.currencyList.map(c => c.Id).join(',');
-    this.allSpecialLevel = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_9__["specialLevelListWithColor"]).map(item => item).join(',');
-    this.userGuide = this._renderUserGuide();
+    this.allSpecialLevel = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_8__["specialLevelListWithColor"]).map(item => item).join(',');
     this.userNameRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     this.state = {
       isValidUserName: false,
@@ -1108,20 +1105,20 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       currencyIdList: this.allCurrencyString,
       oddsGroup: this.allOddsGroupString,
       specialLevel: this.allSpecialLevel,
-      baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["baStatusList"].All,
-      searchOption: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["searchOptions"].matchPrefix
+      baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["baStatusList"].All,
+      searchOption: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["searchOptions"].matchPrefix
     };
   }
   componentDidMount() {
-    const ibcCustId = Number(_jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__["default"].getParam(window.location.href, 'custId'));
-    const licenseeCustId = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__["default"].getParam(window.location.href, 'licenseeCustId');
+    const ibcCustId = Number(_jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_9__["default"].getParam(window.location.href, 'custId'));
+    const licenseeCustId = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_9__["default"].getParam(window.location.href, 'licenseeCustId');
     if (ibcCustId || licenseeCustId) {
       const param = {
         ibcCustId,
         licenseeCustId
       };
       this.props.getSinglePlayer(param);
-      const userName = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_10__["default"].getParam(window.location.href, 'userName');
+      const userName = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_9__["default"].getParam(window.location.href, 'userName');
       this.userNameRef.current.value = userName;
       this.setState({
         isValidUserName: !!userName
@@ -1144,7 +1141,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
         currencyIdList: this.allCurrencyString,
         oddsGroup: this.allOddsGroupString,
         specialLevel: this.allSpecialLevel,
-        baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_9__["baStatusList"].All
+        baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["baStatusList"].All
       });
     }
   }
@@ -1168,8 +1165,8 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     const actualSpecialLevel = specialLevel.trim();
     const isSelectAllCurrency = currencyIdList.trim().split(',').length === currencyList.length;
     const param = _objectSpread(_objectSpread({}, restParam), {}, {
-      userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(userName),
-      systemId: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_11__["encode"])(systemId),
+      userName: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_10__["encode"])(userName),
+      systemId: Object(_jsroot_lib_htmlHelper__WEBPACK_IMPORTED_MODULE_10__["encode"])(systemId),
       searchOption: isAdvancedSearch + 1,
       currencyIdList: isSelectAllCurrency ? '' : currencyIdList,
       oddsGroup: oddsGroup,
@@ -1178,15 +1175,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       pageIndex: 1
     });
     searchPlayer(param);
-  }
-  _renderUserGuide() {
-    const userGuideContent = 'Player Admin User Guide';
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_UserGuide__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("UserGuide"),
-      contentTitle: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("PlayerAdmin"),
-      onClick: this.showUserGuide,
-      content: userGuideContent
-    });
   }
   render() {
     const _this$state2 = this.state,
@@ -1216,7 +1204,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_6__["default"], {
       className: "page-filter",
       iconToggle: iconToggle,
-      stickyFooter: this.userGuide,
       onCollapse: () => this.props.setCollapseFilter(true),
       onExpand: () => this.props.setCollapseFilter(false)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1265,7 +1252,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       className: "btn btn-submit",
       disabled: !isValidParam,
       onClick: this.handleSubmit
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("Submit"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("Submit"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
@@ -1273,7 +1260,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       id: "isAdvancedSearch",
       checked: isAdvancedSearch,
       onChange: checked => this.props.setAdvancedSearch(checked),
-      label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("AdvancedSearch")
+      label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource("AdvancedSearch")
     })))));
   }
 }
@@ -5279,84 +5266,6 @@ const Switcher = props => {
   })));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Switcher);
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/components/UserGuide.jsx":
-/*!***********************************************************!*\
-  !*** ./www/js/source/reactpages/components/UserGuide.jsx ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserGuide; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _popup_Popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./popup/Popup */ "./www/js/source/reactpages/components/popup/Popup.jsx");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-
-
-
-
-class UserGuide extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
-  constructor(props) {
-    super(props);
-    _defineProperty(this, "onClickHandler", () => {
-      this.setState({
-        isShow: true
-      });
-      this.props.onClick && this.props.onClick();
-    });
-    _defineProperty(this, "onCloseHandler", () => {
-      this.setState({
-        isShow: false
-      });
-    });
-    this.state = {
-      isShow: false
-    };
-  }
-  render() {
-    const {
-      className,
-      title,
-      content,
-      contentTitle
-    } = this.props;
-    const isShow = this.state.isShow && content.length > 0;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: className,
-      onClick: this.onClickHandler,
-      title: title
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_popup_Popup__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      width: 640,
-      height: 480,
-      isShow: isShow,
-      title: contentTitle,
-      onClose: this.onCloseHandler,
-      isHtml: true
-    }, content));
-  }
-}
-_defineProperty(UserGuide, "propTypes", {
-  title: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
-  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
-  content: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
-  contentTitle: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string
-});
-_defineProperty(UserGuide, "defaultProps", {
-  className: 'icon-book right',
-  content: ''
-});
-;
 
 /***/ }),
 

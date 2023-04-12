@@ -49,8 +49,6 @@
             var reportSettingService = Substitute.For<IReportSettingService>();
             reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss, Arg.Any<string>()).Returns(new ReportSetting());
 
-            _licenseeSettingService.IsFakeLicensee(Arg.Any<string>()).Returns(false);
-
             using (var controller = CreateController(reportSettingService))
             {
                 // Action
@@ -74,7 +72,7 @@
             productService.GetSingleWalletProductAccess(
                 SessionService.LicenseeSession.LicenseeId,
                 SessionService.UserSession.Language,
-                Arg.Is<string>(x => x == FunctionNames.LicenseeWinLoss || x == FunctionNames.SpecialLicenseeWinLoss))
+                Arg.Is<string>(x => x == FunctionNames.LicenseeWinLoss))
                 .Returns(new ProductAccess(new List<Product>()));
             return new LicenseeWinLossReportController(reportSettingService)
             {

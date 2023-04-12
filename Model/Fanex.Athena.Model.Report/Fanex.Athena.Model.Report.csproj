@@ -69,7 +69,6 @@
   <ItemGroup>
     <Compile Include="Constants\ResultVendorProductTypes.cs" />
     <Compile Include="DTO\AbnormalBet\SubIssue.cs" />
-    <Compile Include="DTO\CashOutWinLoss.cs" />
     <Compile Include="DTO\Result\KenoExtendedToken.cs" />
     <Compile Include="DTO\ThirdPartyWinLoss.cs" />
     <Compile Include="DTO\CustTurnover.cs" />
@@ -83,9 +82,6 @@
     <Compile Include="MetaModel\ExtraPayoutDetailMetaModel.cs" />
     <Compile Include="MetaModel\ExtraPayoutMetaModel.cs" />
     <Compile Include="MetaModel\MarketingPerformanceHighlightDetailMetaModel.cs" />
-    <Compile Include="MetaModel\Result\GetSportResultMetaModel.cs" />
-    <Compile Include="MetaModel\Result\ResultMetaModel.cs" />
-    <Compile Include="MetaModel\SpecialLicenseeWinLossMetaModel.cs" />
     <Compile Include="MetaModel\ThirdPartyWinLossMetaModel.cs" />
     <Compile Include="MetaModel\ResultPopupMetalModel.cs" />
     <Compile Include="MetaModel\CustomerWinlossMetaModel.cs" />
@@ -93,13 +89,9 @@
     <Compile Include="MetaModel\WinLossNonSportsBetListMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AbnormalBetViewModel.cs" />
-    <Compile Include="ViewModel\CashOutWinLossViewModel.cs" />
     <Compile Include="ViewModel\CustomerWinlossViewModel.cs" />
     <Compile Include="ViewModel\BonusInfoViewModel.cs" />
     <Compile Include="ViewModel\ExtraPayoutViewModel.cs" />
-    <Compile Include="ViewModel\Result\ResultReportViewModel.cs" />
-    <Compile Include="ViewModel\SpecialLicenseeWinLossGridViewModel.cs" />
-    <Compile Include="ViewModel\SpecialLicenseeWinLossViewModel.cs" />
     <Compile Include="ViewModel\Note\NoteViewModel.cs" />
     <Compile Include="ViewModel\ThirdPartyWinLossViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossGridViewModel.cs" />
@@ -139,7 +131,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="MetaModel\Result\" />
     <Folder Include="ResultModel\" />
+    <Folder Include="ViewModel\Result\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

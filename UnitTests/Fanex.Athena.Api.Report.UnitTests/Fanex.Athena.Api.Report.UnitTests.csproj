@@ -91,7 +91,6 @@
   <ItemGroup>
     <Compile Include="LicenseeWinLossReportControllerTest_IsValidParams.cs" />
     <Compile Include="LicenseeWinLossReportControllerTest.cs" />
-    <Compile Include="CashOutWinLossReportControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

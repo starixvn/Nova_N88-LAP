@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* z-index */
 /* z-index */
 .page-title .title {
@@ -1602,18 +1601,6 @@ tr.ui-search-toolbar select {
     .betlist-container .single-match-parlay-detail .single-match-parlay-selection .status {
       color: #003399; }
 
-.ag-casino-bet-type {
-  color: #808080; }
-
-.ag-casino-game-name {
-  color: #000000; }
-
-.allbet-bet-id {
-  color: #bbb; }
-
-.allbet-bet-type-name {
-  color: #696969; }
-
 .betlist-container .status, .betlist-container .bettype {
   white-space: normal; }
 
@@ -1622,12 +1609,6 @@ tr.ui-search-toolbar select {
 
 .betlist-container .discount {
   white-space: normal; }
-
-﻿.sexygaming-bet-id {
-  color: #bbb; }
-
-.sexygaming-bet-type-name {
-  color: #696969; }
 
 
 /*# sourceMappingURL=betlistLayout.css.map*/

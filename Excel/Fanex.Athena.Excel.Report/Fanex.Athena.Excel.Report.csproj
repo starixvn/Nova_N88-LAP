@@ -93,7 +93,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CashOutWinLossExcel.cs" />
     <Compile Include="Helpers\ReportExcelHelper.cs" />
     <Compile Include="Models\LicenseeWinLossExcelModel.cs" />
     <Compile Include="LicenseeWinLossExcel.cs" />

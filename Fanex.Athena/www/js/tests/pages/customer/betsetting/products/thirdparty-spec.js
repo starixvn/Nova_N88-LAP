@@ -3,7 +3,6 @@ var modulePath = ["jquery", "common/site", basePath + "common/betsettingbase", b
 
 define(modulePath, function ($, Site, BetSettingBase, BetSettingStatus, ThirdPartyBetSetting) {
     var MACAU_PRODUCT = 12;
-    var COLOSSUSBETS_PRODUCT = 15;
     var BETTRADE_PRODUCT = 13;
     var CASHOUT_PRODUCT = 25;
 
@@ -88,12 +87,6 @@ define(modulePath, function ($, Site, BetSettingBase, BetSettingStatus, ThirdPar
             it("Product is Macau - BetSettingStatus.update() should be called with correct parameter", function () {
                 var expectedUrl = "ThirdPartyBetSetting/UpdateMacauStatus";
                 assertByProductAndUrl(MACAU_PRODUCT, expectedUrl);
-            });
-
-
-            it("Product is Colossusbets - BetSettingStatus.update() should be called with correct parameter", function () {
-                var expectedUrl = "ThirdPartyBetSetting/UpdateColossusBetsStatus";
-                assertByProductAndUrl(COLOSSUSBETS_PRODUCT, expectedUrl);
             });
 
             it("Product is BetTrade - BetSettingStatus.update() should be called with correct parameter", function () {

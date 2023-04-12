@@ -65,7 +65,7 @@
         public async Task GetSportsAndProducts_NotHiddenSport_AddToResult()
         {
             // Arrange
-            MapReaderData(new { ID = SportType.AllBet });
+            MapReaderData(new { ID = SportType.Soccer });
             Reader.Read().Returns(true, false);
 
             // Action

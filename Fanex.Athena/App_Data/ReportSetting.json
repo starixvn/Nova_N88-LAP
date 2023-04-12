@@ -1,50 +1,45 @@
 ﻿[
-    {
-        "ReportKey": "LicenseeWinLoss",
-        "MinDateString": "",
-        "MaxDateString": ""
-    },
-    {
-        "ReportKey": "ExchangeWinloss77",
-        "MinDateString": "",
-        "MaxDateString": ""
-    },
-    {
-        "ReportKey": "CustomerWinLoss",
-        "MinDateString": "",
-        "MaxDateString": "today",
-        "LimitRecentDays": 90
-    },
-    {
-        "ReportKey": "WinLossReport",
-        "MaxDateString": "today",
-        "LimitRecentMonths": 48,
-        "LimitMonthRange": 3,
-        "TimeZone": 8
-    },
-    {
-        "ReportKey": "MarketingReport",
-        "MaxDateString": "today",
-        "MinDateString": "01/01/2020",
-        "LimitMonthRange": 2,
-        "TimeZone": 8
-    },
-    {
-        "ReportKey": "BonusInfoReport",
-        "MaxDateString": "today",
-        "MinDateString": "01/01/2020",
-        "LimitMonthRange": 3,
-        "TimeZone": 8
-    },
-    {
-        "ReportKey": "ExtraPayoutReport",
-        "MinDateString": "",
-        "MaxDateString": "today"
-    },
-    {
-        "ReportKey": "AbnormalBetReport",
-        "MinDateString": "01/01/2021",
-        "MaxDateString": "today",
-        "LimitRecentDays": 90
-    }
+  {
+    "ReportKey": "LicenseeWinLoss",
+    "MinDateString": "",
+    "MaxDateString": ""
+  },
+  {
+    "ReportKey": "CustomerWinLoss",
+    "MinDateString": "",
+    "MaxDateString": "today",
+    "LimitRecentDays": 90
+  },
+  {
+    "ReportKey": "WinLossReport",
+    "MaxDateString": "today",
+    "LimitRecentMonths": 48,
+    "LimitMonthRange": 3,
+    "TimeZone": 8
+  },
+  {
+    "ReportKey": "MarketingReport",
+    "MaxDateString": "today",
+    "MinDateString": "01/01/2020",
+    "LimitMonthRange": 2,
+    "TimeZone": 8
+  },
+  {
+    "ReportKey": "BonusInfoReport",
+    "MaxDateString": "today",
+    "MinDateString": "01/01/2020",
+    "LimitMonthRange": 3,
+    "TimeZone": 8
+  },
+  {
+    "ReportKey": "ExtraPayoutReport",
+    "MinDateString": "",
+    "MaxDateString": "today"
+  },
+  {
+    "ReportKey": "AbnormalBetReport",
+    "MinDateString": "01/01/2021",
+    "MaxDateString": "today",
+    "LimitRecentDays": 90
+  }
 ]

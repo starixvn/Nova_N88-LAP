@@ -49,7 +49,6 @@
             var reportSetting = settings.FirstOrDefault(x => x.ReportKey.Equals(reportKey, StringComparison.OrdinalIgnoreCase));
             if (reportSetting != null)
             {
-                AssignFakeLicenseeSetting(reportSetting, licenseeName);
                 AssignDateRange(reportSetting, userDataRangeLimitation);
             }
 
@@ -98,20 +97,6 @@
             {
                 var supportedMinDate = reportSetting.MaxDate.Date.AddDays(-reportSetting.LimitRecentDays);
                 reportSetting.MinDate = DateTimeHelper.GetMaxDate(reportSetting.MinDate, supportedMinDate);
-            }
-        }
-
-        private void AssignFakeLicenseeSetting(ReportSetting reportSetting, string licenseeName)
-        {
-            var fakeLicenseeSetting = _licenseeSettingService.GetFakeLicenseeSetting(licenseeName);
-            if (fakeLicenseeSetting != null)
-            {
-                reportSetting.MinDateString = fakeLicenseeSetting.MinDate;
-                reportSetting.MaxDateString = fakeLicenseeSetting.MaxDate;
-                reportSetting.IsDisableBetList = fakeLicenseeSetting.DisableBetList;
-                reportSetting.BaseCurrencies = fakeLicenseeSetting.BaseCurrencies;
-                reportSetting.LimitRecentMonths = fakeLicenseeSetting.LimitRecentMonths;
-                reportSetting.TimeZone = fakeLicenseeSetting.TimeZone;
             }
         }
 

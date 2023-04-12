@@ -165,21 +165,14 @@
             licenseeWinLoss.LicenseeWLCS = licenseeWLProducts.GetValueOrDefault(Product.CS, 0);
             licenseeWinLoss.LicenseeWLKN = licenseeWLProducts.GetValueOrDefault(Product.KN, 0);
             licenseeWinLoss.LicenseeWLBT = licenseeWLProducts.GetValueOrDefault(Product.BT, 0);
-            licenseeWinLoss.LicenseeWLAGC = licenseeWLProducts.GetValueOrDefault(Product.AGC, 0);
-            licenseeWinLoss.LicenseeWLVB = licenseeWLProducts.GetValueOrDefault(Product.VB, 0);
-            licenseeWinLoss.LicenseeWLAB = licenseeWLProducts.GetValueOrDefault(Product.AB, 0);
-            licenseeWinLoss.LicenseeWLFW = licenseeWLProducts.GetValueOrDefault(Product.FW, 0);
             licenseeWinLoss.LicenseeWLCO = licenseeWLProducts.GetValueOrDefault(Product.CO, 0);
             licenseeWinLoss.LicenseeWLVS2 = licenseeWLProducts.GetValueOrDefault(Product.VS2, 0);
             licenseeWinLoss.LicenseeWLLT = licenseeWLProducts.GetValueOrDefault(Product.LT, 0);
             licenseeWinLoss.LicenseeWLPP = licenseeWLProducts.GetValueOrDefault(Product.PP, 0);
             licenseeWinLoss.LicenseeWLCC = licenseeWLProducts.GetValueOrDefault(Product.CC, 0);
-            licenseeWinLoss.LicenseeWLSG = licenseeWLProducts.GetValueOrDefault(Product.SG, 0);
             licenseeWinLoss.LicenseeWLVRG = licenseeWLProducts.GetValueOrDefault(Product.VRG, 0);
             licenseeWinLoss.LicenseeWLTG = licenseeWLProducts.GetValueOrDefault(Product.TG, 0);
             licenseeWinLoss.LicenseeWLI4D = licenseeWLProducts.GetValueOrDefault(Product.I4D, 0);
-            licenseeWinLoss.LicenseeWLSXG = licenseeWLProducts.GetValueOrDefault(Product.SXG, 0);
-            licenseeWinLoss.LicenseeWLSBC = licenseeWLProducts.GetValueOrDefault(Product.SBC, 0);
             licenseeWinLoss.LicenseeWLVGA = licenseeWLProducts.GetValueOrDefault(Product.VGA, 0);
             licenseeWinLoss.LicenseeWLVS3 = licenseeWLProducts.GetValueOrDefault(Product.VS3, 0);
         }
@@ -193,20 +186,13 @@
             licenseeWinLoss.TurnOverCS = turnOverProducts.GetValueOrDefault(Product.CS, 0);
             licenseeWinLoss.TurnOverKN = turnOverProducts.GetValueOrDefault(Product.KN, 0);
             licenseeWinLoss.TurnOverBT = turnOverProducts.GetValueOrDefault(Product.BT, 0);
-            licenseeWinLoss.TurnOverAGC = turnOverProducts.GetValueOrDefault(Product.AGC, 0);
-            licenseeWinLoss.TurnOverVB = turnOverProducts.GetValueOrDefault(Product.VB, 0);
-            licenseeWinLoss.TurnOverAB = turnOverProducts.GetValueOrDefault(Product.AB, 0);
-            licenseeWinLoss.TurnOverFW = turnOverProducts.GetValueOrDefault(Product.FW, 0);
             licenseeWinLoss.TurnOverVS2 = turnOverProducts.GetValueOrDefault(Product.VS2, 0);
             licenseeWinLoss.TurnOverLT = turnOverProducts.GetValueOrDefault(Product.LT, 0);
             licenseeWinLoss.TurnOverPP = turnOverProducts.GetValueOrDefault(Product.PP, 0);
             licenseeWinLoss.TurnOverCC = turnOverProducts.GetValueOrDefault(Product.CC, 0);
-            licenseeWinLoss.TurnOverSG = turnOverProducts.GetValueOrDefault(Product.SG, 0);
             licenseeWinLoss.TurnOverVRG = turnOverProducts.GetValueOrDefault(Product.VRG, 0);
             licenseeWinLoss.TurnOverTG = turnOverProducts.GetValueOrDefault(Product.TG, 0);
             licenseeWinLoss.TurnOverI4D = turnOverProducts.GetValueOrDefault(Product.I4D, 0);
-            licenseeWinLoss.TurnOverSXG = turnOverProducts.GetValueOrDefault(Product.SXG, 0);
-            licenseeWinLoss.TurnOverSBC = turnOverProducts.GetValueOrDefault(Product.SBC, 0);
             licenseeWinLoss.TurnOverVGA = turnOverProducts.GetValueOrDefault(Product.VGA, 0);
             licenseeWinLoss.TurnOverVS3 = turnOverProducts.GetValueOrDefault(Product.VS3, 0);
         }

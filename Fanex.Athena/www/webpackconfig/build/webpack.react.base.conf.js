@@ -16,9 +16,6 @@ function generateConfig(environment) {
             /*js*/
 
             [`${jsPath}/lib/langHelper`]: pathConfig.scriptPaths.languageResource,
-            [`${jsPath}/lib/lang-zh-CN`]: pathConfig.scriptPaths.langCN,
-            [`${jsPath}/lib/lang-zh-Hans`]: pathConfig.scriptPaths.langHans,
-            [`${jsPath}/lib/lang-zh-TW`]: pathConfig.scriptPaths.langTW,
 
             [`${jsPath}/notification/notification`]: pathConfig.scriptPaths.notification,
             [`${jsPath}/bettingticketscenter/advancedsearch`]: pathConfig.scriptPaths.bettingticketscenter_advancedsearch,
@@ -28,12 +25,10 @@ function generateConfig(environment) {
             [`${jsPath}/playeradmin/playerlist`]: pathConfig.scriptPaths.playerlist,
             [`${jsPath}/playeradmin/accountinfo`]: pathConfig.scriptPaths.accountinfo,
             [`${jsPath}/playeradmin/runningbetlist`]: pathConfig.scriptPaths.playerrunningbetlist,
-            [`${jsPath}/playeradmin/betlimit`]: pathConfig.scriptPaths.playerbetlimit,
             [`${jsPath}/playeradmin/single-customer`]: pathConfig.scriptPaths.singleCustomer,
             [`${jsPath}/playeradmin/playerwinloss`]: pathConfig.scriptPaths.playerwinloss,
             [`${jsPath}/playeradmin/statement`]: pathConfig.scriptPaths.statement,
 
-            [`${jsPath}/report/speciallicenseewl`]: pathConfig.scriptPaths.speciallicenseewl,
             [`${jsPath}/report/winloss`]: pathConfig.scriptPaths.winlossreport,
             [`${jsPath}/report/winloss-nonsports-betlist`]: pathConfig.scriptPaths.winloss_nonsports_betlist,
             [`${jsPath}/report/marketing`]: pathConfig.scriptPaths.marketingreport,
@@ -45,13 +40,11 @@ function generateConfig(environment) {
             /*css*/
             [`${cssPath}/vendor`]: pathConfig.cssPaths.layout,
             [`${cssPath}/notification/index`]: pathConfig.cssPaths.notification,
-            [`${cssPath}/speciallicenseewl/index`]: pathConfig.cssPaths.speciallicenseewl,
             [`${cssPath}/bettingticketscenter/index`]: pathConfig.cssPaths.bettingticketscenter,
             [`${cssPath}/betlist/index`]: pathConfig.cssPaths.betlist,
             [`${cssPath}/playeradmin/index`]: pathConfig.cssPaths.playeradmin,
             [`${cssPath}/playeradmin/account-info`]: pathConfig.cssPaths.accountInfo,
             [`${cssPath}/playeradmin/running-betlist`]: pathConfig.cssPaths.playerrunningbetlist,
-            [`${cssPath}/playeradmin/betlimit`]: pathConfig.cssPaths.playerbetlimit,
             [`${cssPath}/playeradmin/playerwinloss`]: pathConfig.cssPaths.playerwinloss,
             [`${cssPath}/playeradmin/statement`]: pathConfig.cssPaths.statement,
 

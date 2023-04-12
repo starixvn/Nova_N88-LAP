@@ -6,10 +6,7 @@
     using Model.BetList.MetaModel;
     using Web.ActionFilter;
 
-    [FunctionAuthorization(
-        PermissionKeys.ReportLicenseeWinLoss,
-        PermissionKeys.ReportWinLossByProduct,
-        PermissionKeys.ReportColossusBetsWinLoss)]
+    [FunctionAuthorization(PermissionKeys.ReportLicenseeWinLoss)]
     [BetListAuthorization]
     public class LicenseeWinLossBetListController : BetListBaseController
     {

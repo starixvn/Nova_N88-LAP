@@ -293,8 +293,6 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         SCBFreeBetsJackpotContribution = 1698,
 
-        EASexyLuckyDraw = 3150,
-
         ArcadiaGamingBonus = 1906,
 
         VgamingFreeBets = 173,

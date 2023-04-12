@@ -1782,12 +1782,8 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     window.ViewResult = (matchid, raceNo, bettype, sporttype, refno, currency, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid, transdecs, siteId) => {
       const title = this._getResource('Result');
       const rootUrl = this.props.rootUrl;
-      const defaultPlatform = 'd';
       if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_GAME || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_MINIGAME || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].RNG_MOBILE) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'RNGCasino');
-        this._showThirdPartyResult(url, title);
-      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VOIDBRIDGE) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'Voidbridge');
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].PP) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'PP');
@@ -1795,24 +1791,9 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].CARDCLUB) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'CardClub');
         this._showThirdPartyResult(url, title);
-      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SBC) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSabaClubResultUrl(rootUrl, custid, bettype, extension2, transdecs);
-        this._showThirdPartyResult(url, title);
-      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SG) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'SG');
-        this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VRG) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'VirtualGames');
         this._showThirdPartyResult(url, title);
-      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].ALLBET) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBetResultUrl(rootUrl, transdecs, extension2, bettype);
-        this._openPopup(url, title);
-      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].GLOBALGAMING) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getGlobalGamingResultUrl(rootUrl, custid, extension2);
-        this._showThirdPartyResult(url, title);
-      } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].SXG) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSexyGamingResultUrl(rootUrl, transdecs, extension2, bettype);
-        this._openPopup(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].Happy5LinkedGames) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, refno, extension2, extension1, siteId, bettype, 'Happy5LinkedGames');
         this._showThirdPartyResult(url, title);
@@ -1881,15 +1862,6 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       const title = this._getResource('TransactionDetail');
       this._openPopup(url, title);
     };
-    window.showAGCasinoDetails = (transId, winlostDate, custId, transType) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getAGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-      const title = this._getResource('AGCasino') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-      this._openPopup(url, title);
-    };
     window.showRnGCasinoDetails = (transId, winlostDate, custId, transType) => {
       const {
         rootUrl,
@@ -1897,42 +1869,6 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getRnGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
       const title = this._getResource('ProductCS') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-      this._openPopup(url, title);
-    };
-    window.showVoidBridgeDetails = (transId, winlostDate, custId, transType) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVoidBridgeDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-      const title = this._getResource('ProductVB') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-      this._openPopup(url, title);
-    };
-    window.showTodayRunningBetsDetails = (transId, winlostDate, custId, transType) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBetDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-      const title = this._getResource('ProductAB') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-      this._openPopup(url, title);
-    };
-    window.showColossusBetsDetails = (refNo, winlostDate, transId, custId, betCheck) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getColossusBetsDetailUrl(rootUrl, baseCurrency, refNo, winlostDate, transId, custId, betCheck);
-      const title = this._getResource('TicketDetailOf').replace('{0}', refNo);
-      this._openPopup(url, title);
-    };
-    window.showGlobalGaming = (transId, winlostDate, custId, transType) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getGlobalGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-      const title = this._getResource('ProductFW') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
       this._openPopup(url, title);
     };
     window.showPPDetails = (transId, winlostDate, custId, transType) => {
@@ -1951,42 +1887,6 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       } = this.props;
       const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVideoPokerGameDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
       const title = this._getResource('ProductCC') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-      this._openPopup(url, title);
-    };
-    window.showSGDetails = (transId, winlostDate, custId, transType) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSGDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-      const title = this._getResource('ProductSG') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-      this._openPopup(url, title);
-    };
-    window.showSexyGamingBetDetails = (transId, winlostDate, custId, transType) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSexyGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-      const title = this._getResource('ProductSXG') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-      this._openPopup(url, title);
-    };
-    window.showSabaClubDetails = (transId, winlostDate, custId, transType) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSBCDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType);
-      const title = this._getResource('ProductSBC') + ' - ' + this._getResource('DetailedBetlist') + ' - ' + this._formatDateString(winlostDate);
-      this._openPopup(url, title);
-    };
-    window.showSabaClubJackpotWonDetails = (transId, custId, betTypeId) => {
-      const {
-        rootUrl,
-        baseCurrency
-      } = this.props;
-      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId);
-      const title = this._getResource('ProductSBC') + ' - ' + this._getResource('JackpotWonDetails');
       this._openPopup(url, title);
     };
     window.showVGamingDetails = (transId, winlostDate, custId, transType) => {
@@ -2033,18 +1933,9 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     window.showCombMPDetail = undefined;
     window.ViewCashOutHistory = undefined;
     window.ShowBonusDetails = undefined;
-    window.showAGCasinoDetails = undefined;
     window.showRnGCasinoDetails = undefined;
-    window.showVoidBridgeDetails = undefined;
-    window.showTodayRunningBetsDetails = undefined;
-    window.showColossusBetsDetails = undefined;
-    window.showGlobalGaming = undefined;
     window.showPPDetails = undefined;
     window.showSingleMatchParlayDetail = undefined;
-    window.showSGDetails = undefined;
-    window.showSexyGamingBetDetails = undefined;
-    window.showSabaClubDetails = undefined;
-    window.showSabaClubJackpotWonDetails = undefined;
     window.showVGamingDetails = undefined;
     window.showVGamingJackpotWonDetails = undefined;
     window.showDetail = undefined;
@@ -2336,54 +2227,8 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-  getAGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-    let url = rootUrl + 'AGCasinoBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transid', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
   getRnGCasinoDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
     let url = rootUrl + 'RnGCasinoBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
-  getVoidBridgeDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-    let url = rootUrl + 'VoidbridgeBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
-  getAllBetDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-    let url = rootUrl + 'AllBetBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transid', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
-  getColossusBetsDetailUrl(rootUrl, baseCurrency, refNo, winlostDate, transId, custId, betCheck) {
-    let url = rootUrl + 'ColossusBetBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'refNo', refNo);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transid', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'betCheck', betCheck);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
-  getGlobalGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-    let url = rootUrl + 'GlobalGamingBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
@@ -2409,38 +2254,11 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
-  getSGDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-    let url = rootUrl + 'SGBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
-  getSBCDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-    let url = rootUrl + 'SabaClubBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
   getVRGResultUrl(rootUrl, gamePlayId, platform) {
     let url = rootUrl + 'VirtualGamesResultPopup/Index';
     console.log(gamePlayId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gamePlayId', gamePlayId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'platform', platform);
-    return url;
-  }
-  getSexyGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
-    let url = rootUrl + 'SexyGamingBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'date', winlostDate);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transType', transType);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
     return url;
   }
   getVGamingDetailUrl(rootUrl, baseCurrency, transId, winlostDate, custId, transType) {
@@ -2464,48 +2282,12 @@ class BetList {
   getRngCasinoResultUrl(rootUrl) {
     return rootUrl + 'ResultReport/ShowRngCasinoSingleWalletResult';
   }
-  getSabaClubResultUrl(rootUrl, custid, gameId, siteId, gameRoundId) {
-    let url = rootUrl + 'SabaClubResultPopup/Index';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameId', gameId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'siteId', siteId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameRoundId', gameRoundId);
-    return url;
-  }
-  getSabaClubJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
-    let url = rootUrl + 'SabaClubJackpotWonBetList/Detail';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'bettype', betTypeId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
   getVGamingJackpotWonDetailUrl(rootUrl, baseCurrency, transId, custId, betTypeId) {
     let url = rootUrl + 'VGamingJackpotWonBetList/Detail';
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transId', transId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'bettype', betTypeId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
-  getAllBetResultUrl(rootUrl, transdesc, betcheck, bettype) {
-    let url = rootUrl + 'ResultReport/AllBetResult';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'betcheck', betcheck);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'bettype', bettype);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transdesc', encodeURIComponent(transdesc));
-    return url;
-  }
-  getSexyGamingResultUrl(rootUrl, transdesc, matchCode, bettype) {
-    let url = rootUrl + 'ResultReport/SexyGaming';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'matchCode', matchCode);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'bettype', bettype);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'transdesc', encodeURIComponent(transdesc));
-    return url;
-  }
-  getGlobalGamingResultUrl(rootUrl, custid, gameId) {
-    let url = rootUrl + 'ResultReport/GlobalGamingResult';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameId', gameId);
     return url;
   }
   getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType, currencyName) {
@@ -2561,15 +2343,9 @@ const SportType = {
   RNG_GAME: 208,
   RNG_MINIGAME: 209,
   RNG_MOBILE: 210,
-  ALLBET: 211,
-  VOIDBRIDGE: 212,
   PP: 248,
-  GLOBALGAMING: 219,
   CARDCLUB: 165,
-  SG: 247,
   VRG: 245,
-  SXG: 243,
-  SBC: 200,
   Happy5LinkedGames: 168,
   SLT: 169,
   VGA: 171,

@@ -6,7 +6,6 @@
         public const string ManageUser = "ManageLicenseeUser";
         public const string ReportLicenseeWinLoss = "LicenseeWinLoss";
         public const string ReportCustomerWinLoss = "CustomerWinLoss";
-        public const string ReportCashOutWinLoss = "CashOutWinLoss";
         public const string ReportWinLoss = "WinLossReport";
         public const string ReportMarketing = "MarketingReport";
         public const string ReportBonusInfo = "BonusInfoReport";
@@ -20,22 +19,10 @@
         public const string GroupCustomerInformation = "CUSTOMERINFORMATION4";
         public const string GroupAccountManagement = "ACCOUNTMANAGEMENT6";
 
-        /* Report */
-        public const string ReportMatchWinLoss = "MatchWinLoss31";
-        public const string ReportWinLossByProduct = "WinLossByProducts32";
-        public const string ReportCancelledBets = "CancelledBets36";
-        public const string ReportDailyBetList = "DailyBetList37";
-        public const string ReportTurnover = "Turnover39";
-        public const string ReportResults = "Results41";
-        public const string ReportColossusBetsWinLoss = "ColossusBetsWinLoss71";
-        public const string ReportExchangeWinLoss = "ExchangeWinloss77";
-
         /* Customer Info. */
-        public const string CustomerInfoCustomerList = "CustomerList43";
         public const string CustomerInfoSpecialBA = "SpecialBA54";
         public const string CustomerInfoCommissionGroupList = "CommissionGroupList55";
         public const string CustomerInfoCustomerLog = "CustomerLog";
-        public const string CustomerInfoEditBetSetting = "EditBetSetting70";
 
         public const string BetHistory = "BetHistory";
         public const string BetHistorySingleCustomer = "BetHistory_SingleCustomer";

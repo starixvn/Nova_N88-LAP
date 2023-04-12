@@ -22,21 +22,7 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         public const int Keno = 8;
 
-        public const int AgCasino = 10;
-
-        public const int GoldDeluxe = 11;
-
-        public const int Macau = 12;
-
         public const int BetTrade = 13;
-
-        public const int ColossusBets = 15;
-
-        public const int AllBet = 21;
-
-        public const int Voidbridge = 22;
-
-        public const int FishingWorld = 24;
 
         public const int CashOut = 25;
 
@@ -57,7 +43,7 @@ namespace Fanex.Athena.Model.Core.DataDomain
         public const int VGA = 66;
 
         public const int VS3 = 49;
-        
+
         public const int BTC = 69;
     }
 }

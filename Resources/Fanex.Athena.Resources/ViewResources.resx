@@ -598,15 +598,6 @@
   <data name="MatchWinLossTitle" xml:space="preserve">
     <value>Match Win Loss, {0} - {1}</value>
   </data>
-  <data name="MaxBet" xml:space="preserve">
-    <value>Max Bet</value>
-  </data>
-  <data name="MaxPerBall" xml:space="preserve">
-    <value>Max Per Ball</value>
-  </data>
-  <data name="MaxPerMatch" xml:space="preserve">
-    <value>Max Per Match</value>
-  </data>
   <data name="May" xml:space="preserve">
     <value>May</value>
   </data>
@@ -968,12 +959,6 @@
   </data>
   <data name="UpdateAccountSuccessMsg" xml:space="preserve">
     <value>Update account successfully!</value>
-  </data>
-  <data name="UpdateNumberGameBetSettingSuccessMsg" xml:space="preserve">
-    <value>The Number Game bet setting of {0} was updated successfully</value>
-  </data>
-  <data name="UpdateSportsbookBetSettingSuccessMsg" xml:space="preserve">
-    <value>The Sportsbook bet setting of {0} was updated successfully</value>
   </data>
   <data name="UserInformation" xml:space="preserve">
     <value>User Information</value>
@@ -1360,32 +1345,11 @@
   <data name="IncorrectMinBet" xml:space="preserve">
     <value>Incorrect Min Bet</value>
   </data>
-  <data name="MaxBetCanNotGreaterThanMaxPerMatch" xml:space="preserve">
-    <value>Max Bet can not be greater than Max Per Match</value>
-  </data>
-  <data name="MaxBetLessThanOrEqual" xml:space="preserve">
-    <value>Max Bet must be less than or equal to</value>
-  </data>
-  <data name="MaxBetMatchLessThanOrEqual" xml:space="preserve">
-    <value>Max Per Match must be less than or equal to</value>
-  </data>
-  <data name="MaxBetMatchMoreThanOrEqual" xml:space="preserve">
-    <value>Max Per Match must be more than or equal to</value>
-  </data>
-  <data name="MaxPerBallLessThanOrEqual" xml:space="preserve">
-    <value>Max Per Ball must be less than or equal to</value>
-  </data>
   <data name="MinBetCanNotGreaterThanMaxBet" xml:space="preserve">
     <value>Min Bet cannot be greater than Max Bet</value>
   </data>
   <data name="MinBetGreaterThanOrEqual" xml:space="preserve">
     <value>Min Bet must be greater than or equal to</value>
-  </data>
-  <data name="UpdateNumberGameBetSettings" xml:space="preserve">
-    <value>Are you sure you want to update all Number Game bet settings?</value>
-  </data>
-  <data name="UpdateSportsbookBetSettings" xml:space="preserve">
-    <value>Are you sure you want to update all Sportsbook bet settings?</value>
   </data>
   <data name="Function" xml:space="preserve">
     <value>Function</value>
@@ -1529,15 +1493,6 @@
     <value>Columns</value>
     <comment>#7730</comment>
   </data>
-  <data name="UpdateRNGCasinoBetSettingFailMsg" xml:space="preserve">
-    <value>The RNG Casino bet setting of {0} updated is failed</value>
-  </data>
-  <data name="UpdateRNGCasinoBetSettings" xml:space="preserve">
-    <value>Are you sure you want to update RNG Casino bet settings?</value>
-  </data>
-  <data name="UpdateRNGCasinoBetSettingSuccessMsg" xml:space="preserve">
-    <value>The RNG Casino bet setting of {0} was updated successfully</value>
-  </data>
   <data name="CSComm" xml:space="preserve">
     <value>CS Comm</value>
     <comment>7463</comment>
@@ -1560,12 +1515,6 @@
     <value>RNG Keno</value>
     <comment>#49196</comment>
   </data>
-  <data name="UpdateKenoBetSettings" xml:space="preserve">
-    <value>Are you sure you want to update all RNG Keno bet settings?</value>
-  </data>
-  <data name="UpdateKenoBetSettingSuccessMsg" xml:space="preserve">
-    <value>The RNG Keno bet setting of {0} was updated successfully</value>
-  </data>
   <data name="InvalidParams" xml:space="preserve">
     <value>Invalid parameters</value>
   </data>
@@ -1574,10 +1523,6 @@
   </data>
   <data name="RB" xml:space="preserve">
     <value>RB</value>
-  </data>
-  <data name="ProductPTCS" xml:space="preserve">
-    <value>Playtech Casino</value>
-    <comment>14488, #49196</comment>
   </data>
   <data name="VirtualCycling" xml:space="preserve">
     <value>Virtual Cycling</value>
@@ -1594,12 +1539,6 @@
   <data name="TotalTurnover" xml:space="preserve">
     <value>Total Turnover</value>
   </data>
-  <data name="DisableRNGCasino" xml:space="preserve">
-    <value>Disable RNG Casino</value>
-  </data>
-  <data name="EnableRNGCasino" xml:space="preserve">
-    <value>Enable RNG Casino</value>
-  </data>
   <data name="Data" xml:space="preserve">
     <value> data</value>
   </data>
@@ -1609,19 +1548,9 @@
   <data name="MixSportsParlay" xml:space="preserve">
     <value>Mix Sports Parlay</value>
   </data>
-  <data name="ProductAGC" xml:space="preserve">
-    <value>AG Casino</value>
-    <comment>#19458, #49196</comment>
-  </data>
   <data name="BetSettingGroups" xml:space="preserve">
     <value>Bet Setting Groups</value>
     <comment>#19476 - AG Casino</comment>
-  </data>
-  <data name="DisableAgCasino" xml:space="preserve">
-    <value>Disable AG Casino</value>
-  </data>
-  <data name="EnableAgCasino" xml:space="preserve">
-    <value>Enable AG Casino</value>
   </data>
   <data name="UpdateAgCasinoBetSettings" xml:space="preserve">
     <value>Are you sure you want to update all AG Casino bet settings?</value>
@@ -1644,10 +1573,6 @@
   </data>
   <data name="EffectiveBettingValueNote" xml:space="preserve">
     <value>Effective Betting Value supports data from 09/01/2014</value>
-  </data>
-  <data name="MaxBetPerDraw" xml:space="preserve">
-    <value>Max Bet Per Draw</value>
-    <comment>#23194</comment>
   </data>
   <data name="UserGuide" xml:space="preserve">
     <value>User Guide</value>
@@ -1699,50 +1624,15 @@
     <value>Date range exceeds {0} months. Please try again!</value>
     <comment>#29219</comment>
   </data>
-  <data name="ProductGD" xml:space="preserve">
-    <value>Gold Deluxe</value>
-    <comment>#49196</comment>
-  </data>
-  <data name="GoldDeluxeNotOfferCurrency" xml:space="preserve">
-    <value>Gold Deluxe is not offered for this currency.</value>
-  </data>
-  <data name="DisableGoldDeluxe" xml:space="preserve">
-    <value>Disable Gold Deluxe</value>
-  </data>
-  <data name="EnableGoldDeluxe" xml:space="preserve">
-    <value>Enable Gold Deluxe</value>
-  </data>
-  <data name="UpdateGoldDeluxeBetSettings" xml:space="preserve">
-    <value>Are you sure you want to update all Gold Deluxe bet settings?</value>
-  </data>
   <data name="CannotUpdateBetLimitForProduct" xml:space="preserve">
     <value>You cannot update member bet limit for product {0}.</value>
     <comment>#32647</comment>
-  </data>
-  <data name="ProductBT" xml:space="preserve">
-    <value>Bet Trade</value>
-    <comment>#49196</comment>
-  </data>
-  <data name="DisableMacau" xml:space="preserve">
-    <value>Disable Macau</value>
-    <comment>#32647</comment>
-  </data>
-  <data name="EnableMacau" xml:space="preserve">
-    <value>Enable Macau</value>
-    <comment>#32647</comment>
-  </data>
-  <data name="ProductVG" xml:space="preserve">
-    <value>Macau</value>
-    <comment>#49196</comment>
   </data>
   <data name="MacauNotOfferCurrency" xml:space="preserve">
     <value>Macau is not offered for this currency.</value>
   </data>
   <data name="BetTradeNotOfferCurrency" xml:space="preserve">
     <value>BetTrade is not offered for this currency.</value>
-  </data>
-  <data name="EnableBetTrade" xml:space="preserve">
-    <value>Enable BetTrade</value>
   </data>
   <data name="AmtDueToBetTrade" xml:space="preserve">
     <value>Amt Due To Bet Trade</value>
@@ -1803,22 +1693,12 @@
     <value>This file exceeded 65535 entries. Please contact administrator for more details.</value>
     <comment>#52794</comment>
   </data>
-  <data name="ProductVB" xml:space="preserve">
-    <value>Macau Games</value>
-    <comment>#55057</comment>
-  </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
   </data>
   <data name="TurnoverPercent" xml:space="preserve">
     <value>%Turnover</value>
     <comment>#54751</comment>
-  </data>
-  <data name="DisableMacauGames" xml:space="preserve">
-    <value>Disable Macau Games</value>
-  </data>
-  <data name="EnableMacauGames" xml:space="preserve">
-    <value>Enable Macau Games</value>
   </data>
   <data name="WeeklyLiveMatches" xml:space="preserve">
     <value>Weekly Live Matches</value>
@@ -1827,28 +1707,6 @@
   <data name="ParlayComm" xml:space="preserve">
     <value>Parlay Comm</value>
     <comment>#61897</comment>
-  </data>
-  <data name="ProductAB" xml:space="preserve">
-    <value>AllBet</value>
-    <comment>#61066</comment>
-  </data>
-  <data name="DisableAllBet" xml:space="preserve">
-    <value>Disable AllBet</value>
-  </data>
-  <data name="EnableAllBet" xml:space="preserve">
-    <value>Enable AllBet</value>
-  </data>
-  <data name="ProductCB" xml:space="preserve">
-    <value>Colossus Bets</value>
-    <comment>#63785</comment>
-  </data>
-  <data name="DisableColossusBets" xml:space="preserve">
-    <value>Disable Colossus Bets</value>
-    <comment>#63785</comment>
-  </data>
-  <data name="EnableColossusBets" xml:space="preserve">
-    <value>Enable Colossus Bets</value>
-    <comment>#63785</comment>
   </data>
   <data name="AmountDueToCB" xml:space="preserve">
     <value>Amount Due To Colossus Bets</value>
@@ -1879,10 +1737,6 @@
   <data name="TransactionType" xml:space="preserve">
     <value>Transaction Type</value>
   </data>
-  <data name="ColossusBetBetListDetailMsg" xml:space="preserve">
-    <value>Member owned {0}% of this ticket&lt;br/&gt;Member sold {1}% of this ticket for {2}</value>
-    <comment>#63785</comment>
-  </data>
   <data name="TicketDetailOf" xml:space="preserve">
     <value>Ticket detail of {0}</value>
     <comment>#63785</comment>
@@ -1909,36 +1763,14 @@
   <data name="YouAreNotAllowToAccessThisPage" xml:space="preserve">
     <value>You are not allowed to access this page, please contact your administrator account.</value>
   </data>
-  <data name="ProductFW" xml:space="preserve">
-    <value>Fishing World</value>
-    <comment>#66737</comment>
-  </data>
-  <data name="DisableFishingWorld" xml:space="preserve">
-    <value>Disable Fishing World</value>
-    <comment>#66737</comment>
-  </data>
-  <data name="EnableFishingWorld" xml:space="preserve">
-    <value>Enable Fishing World</value>
-    <comment>#66737</comment>
-  </data>
-  <data name="GoldDeluxeWinLossGuidelineContent" xml:space="preserve">
-    <value>Any query before 4PM GMT-4 will return the data up to 4PM of the day before. You can filter data up to 3 months per query.</value>
-    <comment>#71725</comment>
-  </data>
   <data name="ProductCO" xml:space="preserve">
     <value>Cash Out</value>
-  </data>
-  <data name="EnableCashOut" xml:space="preserve">
-    <value>Enable Cash Out</value>
   </data>
   <data name="CashOutNotOfferCurrency" xml:space="preserve">
     <value>Cash Out is not offered for this currency.</value>
   </data>
   <data name="CashOutCommission" xml:space="preserve">
     <value>Cash Out Commission</value>
-  </data>
-  <data name="CashOutWinLoss" xml:space="preserve">
-    <value>Cash Out Win Loss</value>
   </data>
   <data name="BBAmtComm" xml:space="preserve">
     <value>BB Amt + Comm</value>
@@ -2023,22 +1855,6 @@
   </data>
   <data name="ProductLT" xml:space="preserve">
     <value>Lottery</value>
-    <comment>79997</comment>
-  </data>
-  <data name="DisableProduct" xml:space="preserve">
-    <value>Disable {0}</value>
-    <comment>79997</comment>
-  </data>
-  <data name="EnableProduct" xml:space="preserve">
-    <value>Enable {0}</value>
-    <comment>79997</comment>
-  </data>
-  <data name="UpdateProductBetSettings" xml:space="preserve">
-    <value>Are you sure you want to update all {0} bet settings?</value>
-    <comment>79997</comment>
-  </data>
-  <data name="UpdateProductBetSettingSuccessMsg" xml:space="preserve">
-    <value>The {0} bet setting of {1} was updated successfully</value>
     <comment>79997</comment>
   </data>
   <data name="Tablet" xml:space="preserve">
@@ -2361,10 +2177,6 @@
     <value>Pending</value>
     <comment>117729</comment>
   </data>
-  <data name="ProductLC" xml:space="preserve">
-    <value>Live Casino</value>
-    <comment>117900</comment>
-  </data>
   <data name="ProductCC" xml:space="preserve">
     <value>Arcadia Gaming</value>
     <comment>115449</comment>
@@ -2443,18 +2255,6 @@
   </data>
   <data name="IncorrectMaxBetPerDraw" xml:space="preserve">
     <value>Incorrect Max Bet Per Draw</value>
-    <comment>112658</comment>
-  </data>
-  <data name="MaxBetCanNotGreaterThanMaxBetPerDraw" xml:space="preserve">
-    <value>Max Bet can not be greater than Max Bet Per Draw</value>
-    <comment>112658</comment>
-  </data>
-  <data name="MaxBetPerDrawLessThanOrEqual" xml:space="preserve">
-    <value>Max Bet Per Draw must be less than or equal to</value>
-    <comment>112658</comment>
-  </data>
-  <data name="MaxBetPerDrawMoreThanOrEqual" xml:space="preserve">
-    <value>Max Bet Per Draw must be more than or equal to</value>
     <comment>112658</comment>
   </data>
   <data name="BettingStatement" xml:space="preserve">
@@ -2537,9 +2337,6 @@
   <data name="EventType" xml:space="preserve">
     <value>Event Type</value>
     <comment>124316</comment>
-  </data>
-  <data name="ProductSG" xml:space="preserve">
-    <value>SG</value>
   </data>
   <data name="BetfromOthers" xml:space="preserve">
     <value>Others</value>
@@ -2820,9 +2617,6 @@
   <data name="ProductSXG" xml:space="preserve">
     <value>AE Sexy</value>
     <comment>#141118</comment>
-  </data>
-  <data name="ProductSBC" xml:space="preserve">
-    <value>Saba.club</value>
   </data>
   <data name="AvgBetAmount" xml:space="preserve">
     <value>Avg. Bet Amount</value>

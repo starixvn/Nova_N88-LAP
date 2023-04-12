@@ -102,26 +102,15 @@
   <ItemGroup>
     <Compile Include="BettingTicketCenterController.cs" />
     <Compile Include="BonusBetListController.cs" />
-    <Compile Include="ColossusBetBetListController.cs" />
-    <Compile Include="AllBetBetListController.cs" />
     <Compile Include="BetListBaseController.cs" />
-    <Compile Include="AGCasinoBetListController.cs" />
-    <Compile Include="CustomerOutstandingBetListController.cs" />
-    <Compile Include="CustomerWinLossBetListController.cs" />
     <Compile Include="CashOutBetListController.cs" />
-    <Compile Include="GlobalGamingBetListController.cs" />
     <Compile Include="CardClubBetListController.cs" />
     <Compile Include="VGamingBetListController.cs" />
     <Compile Include="VGamingJackpotWonBetListController.cs" />
     <Compile Include="WinLossAnalysisBetListController.cs" />
-    <Compile Include="SabaClubJackpotWonBetListController.cs" />
-    <Compile Include="SexyGamingBetListController.cs" />
-    <Compile Include="SabaClubBetListController.cs" />
-    <Compile Include="SGBetListController.cs" />
     <Compile Include="PragmaticPlayBetListController.cs" />
     <Compile Include="RNGCasinoBetListController.cs" />
     <Compile Include="SystemParlayBetListController.cs" />
-    <Compile Include="VoidbridgeBetListController.cs" />
     <Compile Include="LicenseeWinLossBetListController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

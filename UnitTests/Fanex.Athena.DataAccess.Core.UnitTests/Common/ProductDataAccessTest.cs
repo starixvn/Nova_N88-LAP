@@ -13,30 +13,27 @@
     public class ProductDataAccessTest : BaseDataAccessHelperTest<ProductDataAccess>
     {
         private const string SpName = "Lrf_LicenseeProduct3rdSel";
-        private const string SpNameActive = "Lrf_LicenseeProduct3rdSel_active";
         private const int LicenseeId = 1;
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void GetProductAccessList_WhenCall_ParametersPassedCorrectly(bool isActiveCustomerSummaryReport)
+        [Test]
+        public void GetProductAccessList_WhenCall_ParametersPassedCorrectly()
         {
             // Arrange
-            var uspName = Arg.Is<string>(name => name == SpNameActive || name == SpName);
+            var uspName = Arg.Is<string>(name => name == SpName);
             DataAccess.GetObjectDb(uspName).Returns(ObjectDb);
 
             // Action
-            DataAccess.GetProductAccessList(LicenseeId, isActiveCustomerSummaryReport);
+            DataAccess.GetProductAccessList(LicenseeId);
 
             // Assert
             ObjectDb.Received(1).SetParameterValue("licenseeid", LicenseeId);
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void GetProductAccessList_WhenCall_DataReturnedCorrectly(bool isActiveCustomerSummaryReport)
+        [Test]
+        public void GetProductAccessList_WhenCall_DataReturnedCorrectly()
         {
             // Arrange
-            var uspName = Arg.Is<string>(name => name == SpNameActive || name == SpName);
+            var uspName = Arg.Is<string>(name => name == SpName);
             var expectedProductAccess = GetFakeProductAccess();
 
             DataAccess.GetObjectDb(uspName).Returns(ObjectDb);
@@ -50,7 +47,7 @@
             Reader.Read().Returns(true, false);
 
             // Action
-            var result = DataAccess.GetProductAccessList(LicenseeId, isActiveCustomerSummaryReport);
+            var result = DataAccess.GetProductAccessList(LicenseeId);
 
             // Assert
             Assert.Multiple(() =>

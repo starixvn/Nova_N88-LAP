@@ -155,7 +155,7 @@ export const FormFilter = props => {
             isAllowedTotalWithdrawal : totalWithdrawal
         };
 
-        selectedGroupByOption === GroupByOptionIds.bonusCodeAndDate && setSummarySortInfo(DefaultSummarySortInfoGroupByDate) || setSummarySortInfo(DefaultSummarySortInfo)
+        selectedGroupByOption === GroupByOptionIds.bonusCode && setSummarySortInfo(DefaultSummarySortInfo) || setSummarySortInfo(DefaultSummarySortInfoGroupByDate)
         setGlobalFilter(globalFilter);        
     }
 

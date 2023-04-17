@@ -1,8 +1,8 @@
-import { SET_GLOBAL_FILTER, SET_DETAIL_FILTER, SET_SUMMARY_GRID_HEIGHT, SET_DROPDOWN_OPTIONS_DATA, SET_SELECTED_GROUP_BY_OPTION, SET_SELECTED_SUMMARY_DATE, SET_SUMMARY_SORT_INFO } from './types';
+import { SET_GLOBAL_FILTER, SET_DETAIL_FILTER, SET_SUMMARY_GRID_HEIGHT, SET_DROPDOWN_OPTIONS_DATA, SET_SELECTED_GROUP_BY_OPTION, SET_SELECTED_SUMMARY_DATE_RANGE, SET_SUMMARY_SORT_INFO } from './types';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
 import { setSelectedCurrency } from '@jsroot/actions/currencyAction';
 import { setSelectedBrand } from '@jsroot/actions/brandAction';
-import { setSelectedBonusName, setSelectedBonusType, setSelectedBonusStatus, setBonusCodeList, setSelectedBonusCode } from '@jsroot/actions/bonusAction';
+import { setSelectedBonusName, setSelectedBonusType, setSelectedBonusStatus, setBonusCodeList, setSelectedBonusCode, setBonusCodeDetailList } from '@jsroot/actions/bonusAction';
 import { setSelectedClaimStatus } from '@jsroot/actions/claimAction';
 import { setDateRange } from '@jsroot/actions/dateRangeAction';
 
@@ -51,9 +51,9 @@ const setSelectedGroupByOption = groupByOption => {
     }
 }
 
-const setSelectedSummaryDate = data => {
+const setSelectedSummaryDateRange = data => {
     return {
-        type: SET_SELECTED_SUMMARY_DATE,
+        type: SET_SELECTED_SUMMARY_DATE_RANGE,
         data: data
     }
 }
@@ -71,12 +71,13 @@ export default {
     setSelectedCurrency,
     setSelectedBrand,
     setBonusCodeList,
+    setBonusCodeDetailList,
     setSelectedBonusName,
     setSelectedBonusType,
     setSelectedBonusStatus,
     setSelectedClaimStatus,
     setSelectedBonusCode,
-    setSelectedSummaryDate,
+    setSelectedSummaryDateRange,
     setSummarySortInfo,
     setGlobalFilter,
     setDetailFilter,

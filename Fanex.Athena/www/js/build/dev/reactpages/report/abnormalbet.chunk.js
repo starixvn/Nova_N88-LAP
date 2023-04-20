@@ -3799,8 +3799,6 @@ const summaryHeader = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].betType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
   colWidth: 75
 }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].choice), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-  colWidth: 80
-}, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].reason), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
   colWidth: 55
 }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].finalScore));
 const iPSummaryHeader = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
@@ -3910,9 +3908,7 @@ const detailHeader = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
   colWidth: 120
 }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].IP), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
   colWidth: 220
-}, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-  colWidth: 110
-}, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].reason)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
+}, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].location)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
   style: {
     height: 32,
     display: 'none'
@@ -3963,8 +3959,6 @@ const buildSummaryDataRow = dataItem => {
   }, dataItem.betType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "left-align"
   }, dataItem.choice), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: "left-align"
-  }, dataItem.reason), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "center-align"
   }, dataItem.finalScore));
 };
@@ -4042,9 +4036,7 @@ const buildDetailDataRow = (dataItem, index) => {
     className: "left-align"
   }, dataItem.ip), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "left-align"
-  }, dataItem.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: "left-align"
-  }, dataItem.reason));
+  }, dataItem.location));
 };
 const renderIPSummaryData = dataList => {
   const dataRows = [];
@@ -4232,7 +4224,7 @@ const DataGrid = props => {
     props.setRequestParam(newRequestParam);
     props.getReportData(_common_constants__WEBPACK_IMPORTED_MODULE_7__["ApiUrl"].REPORT_DATA_URL, newRequestParam);
   };
-  const tableWidth = requestParam.ViewIn === _common_constants__WEBPACK_IMPORTED_MODULE_7__["ViewInLevel"].DETAIL ? 2864 : undefined;
+  const tableWidth = requestParam.ViewIn === _common_constants__WEBPACK_IMPORTED_MODULE_7__["ViewInLevel"].DETAIL ? 2754 : undefined;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "result-content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_ReportTitle__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -4415,19 +4407,6 @@ const FormFilter = props => {
       onChange: (currentItem, selectedItemsKey) => props.setSelectedBettype(selectedItemsKey)
     });
   };
-  const _renderReasonList = () => {
-    const reasonList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].reasonList;
-    return reasonList && reasonList.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
-      id: "ReasonList",
-      hasSearchBox: true,
-      language: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].currentLanguage,
-      dataSource: reasonList,
-      keyField: "Id",
-      valueField: "Value",
-      statusField: "Status",
-      onChange: (currentItem, selectedItemsKey) => props.setReasonList(selectedItemsKey)
-    });
-  };
   const _renderCurrencySelectList = () => {
     return currencyList && currencyList.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_10___default.a, {
       id: "CurrencyList",
@@ -4538,7 +4517,6 @@ const FormFilter = props => {
     const selectedCurrencyArray = props.selectedCurrency.split(',');
     const selectedSportArray = props.selectedSport.split(',');
     const selectedBettypeArray = props.selectedBettype.split(',');
-    const selectedReasonArray = props.selectedReason.split(',');
     const licensee = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].brandOptions.find(x => x.value === props.selectedBrand);
     const currencyText = selectedCurrencyArray.length === currencyList.length ? 'All' : currencyList.filter(item => selectedCurrencyArray.includes(item.key.toString())).map(item => item.value).join(',');
     const baseCurrency = baseCurrencyList.find(x => x.value === props.selectedBaseCurrency);
@@ -4550,7 +4528,7 @@ const FormFilter = props => {
       StatusIdList: props.selectedStatus,
       SportIdList: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].sportList.length === selectedSportArray.length ? 'All' : props.selectedSport,
       BetTypeIdList: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].bettypeList.length === selectedBettypeArray.length ? 'All' : props.selectedBettype,
-      ReasonIdList: _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_6__["default"].reasonList.length === selectedReasonArray.length ? 'All' : props.selectedReason,
+      ReasonIdList: 'All',
       LeagueName: leagueName,
       UserName: username,
       RefNo: refNo === "" ? 0 : refNo,
@@ -4567,7 +4545,7 @@ const FormFilter = props => {
     };
   };
   const isValidModel = () => {
-    const result = !!props.selectedProduct && !!props.selectedStatus && !!props.selectedCurrency && !!props.selectedSport && !!props.selectedBettype && !!props.selectedReason && !!props.selectedBaseCurrency;
+    const result = !!props.selectedProduct && !!props.selectedStatus && !!props.selectedCurrency && !!props.selectedSport && !!props.selectedBettype && !!props.selectedBaseCurrency;
     return result;
   };
   const exportExcel = event => {
@@ -4653,15 +4631,7 @@ const FormFilter = props => {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "label-text"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("Live")), _renderStatusList()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "label-text"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("Reason")), _renderReasonList())), viewIn !== _common_constants__WEBPACK_IMPORTED_MODULE_14__["ViewInLevel"].SUMMARY && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("Live")), _renderStatusList())), viewIn !== _common_constants__WEBPACK_IMPORTED_MODULE_14__["ViewInLevel"].SUMMARY && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -4714,9 +4684,7 @@ const FormFilter = props => {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "label-text"
-  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("BaseCurrency")), _renderBaseCurrencySelectList())))), viewIn === _common_constants__WEBPACK_IMPORTED_MODULE_14__["ViewInLevel"].DETAIL && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("BaseCurrency")), _renderBaseCurrencySelectList()))), viewIn === _common_constants__WEBPACK_IMPORTED_MODULE_14__["ViewInLevel"].DETAIL && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -4791,7 +4759,6 @@ function mapStateToProps(state) {
     baseCurrencyList,
     selectedBaseCurrency,
     selectedStatus,
-    selectedReason,
     userGuideContent,
     selectedBrand
   } = state;
@@ -4807,7 +4774,6 @@ function mapStateToProps(state) {
     baseCurrencyList,
     selectedBaseCurrency,
     selectedStatus,
-    selectedReason,
     userGuideContent,
     selectedBrand
   });

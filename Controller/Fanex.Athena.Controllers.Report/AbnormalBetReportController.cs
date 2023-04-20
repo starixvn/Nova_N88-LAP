@@ -29,9 +29,6 @@ namespace Fanex.Athena.Controllers.Report
         private readonly IAbnormalBetDataAcces _abnormalBetDataAcces;
         private readonly IBetTypeService _betTypeService;
 
-        private readonly ConcurrentDictionary<string, AsyncLazy<IEnumerable<SubIssue>>> SubIssueListFromCache = new ConcurrentDictionary
-            <string, AsyncLazy<IEnumerable<SubIssue>>>(StringComparer.OrdinalIgnoreCase);
-
         public AbnormalBetReportController(
             IReportSettingService reportSettingService,
             ISportTypeDataAccess sportService,
@@ -57,9 +54,6 @@ namespace Fanex.Athena.Controllers.Report
 
             var bettypes = await _betTypeService.GetBettypesByProduct(licenseeSession.LicenseeId, Product.SB, userSession.Language).ConfigureAwait(true);
 
-            var lang = LangService.GetCurrentLanguage();
-            var reasonList = await GetReasonList(lang);
-
             var model = new AbnormalBetViewModel
             {
                 CurrencyList = userSession.CurrencyList,
@@ -68,7 +62,6 @@ namespace Fanex.Athena.Controllers.Report
                 Sports = sports.ToDictionary(x => x.ID, y => y.Name),
                 Bettypes = bettypes.ToDictionary(x => x.ID, y => y.Name),
                 LiveStatusList = GetLiveStatusList(),
-                ReasonList = reasonList.ToDictionary(_ => _.SubIssueTypeId, _ => _.SubIssueTypeName),
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
                 Brands = BrandList
             };
@@ -78,12 +71,6 @@ namespace Fanex.Athena.Controllers.Report
             ViewBag.IsShowIpvn = userSession.IsShowIpvn;
 
             return View("~/Views/Desktop/Report/AbnormalBet/Main.cshtml", model);
-        }
-
-        private Task<IEnumerable<SubIssue>> GetReasonList(string lang)
-        {
-            var lazyTask = SubIssueListFromCache.GetOrAdd(lang, langKey => new AsyncLazy<IEnumerable<SubIssue>>(() => _abnormalBetDataAcces.GetAbnormalSubIssue(langKey)));
-            return lazyTask.Value;
         }
 
         private static IDictionary<int, string> GetLiveStatusList()

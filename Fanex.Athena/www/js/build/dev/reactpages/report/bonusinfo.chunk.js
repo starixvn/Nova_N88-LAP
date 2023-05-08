@@ -4400,7 +4400,7 @@ const BonusInfoSummaryWidget = props => {
     } = bonusInfoSummaryData;
     const dataPermission = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_12__["default"].specialReportDataPermission;
     const totalAtributes = {
-      colSpan: globalFilter.groupBy === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__["GroupByOptionIds"].bonusCodeAndDate ? 7 : 6,
+      colSpan: globalFilter.groupBy === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__["GroupByOptionIds"].bonusCode ? 6 : 7,
       className: "left-align"
     };
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_9__["Row"], {

@@ -230,7 +230,7 @@ export const BonusInfoSummaryWidget = props => {
         const dataPermission = AppData.specialReportDataPermission;
 
         const totalAtributes = {
-            colSpan: globalFilter.groupBy === GroupByOptionIds.bonusCodeAndDate ? 7 : 6, 
+            colSpan: globalFilter.groupBy === GroupByOptionIds.bonusCode ? 6 : 7, 
             className: "left-align"
         };
 

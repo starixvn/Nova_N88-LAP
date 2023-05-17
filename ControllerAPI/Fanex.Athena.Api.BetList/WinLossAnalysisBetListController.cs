@@ -41,7 +41,6 @@
             {
                 return null;
             }
-            metaModel.ProductId = 1; //OW Sports
             metaModel.FromTpBetRecord = true;
             const string UspKey = "N88_BetList_WinLossAnalysis";
             return await GetBetListResult(metaModel, UspKey).ConfigureAwait(false);

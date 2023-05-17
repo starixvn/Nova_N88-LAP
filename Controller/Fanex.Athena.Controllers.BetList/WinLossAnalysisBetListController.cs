@@ -31,7 +31,6 @@
         public Task<ActionResult> Index(BetListExcelMetaModel metaModel)
         {
             CreateDefaultMetaModel(metaModel);
-            metaModel.ProductId = 1; //OW Sports
             metaModel.ProductName = _tpService.GetListTpProduct()
                 .FirstOrDefault(_ => _.Id.Equals(metaModel.ProductId.ToString()))?
                 .Name;
@@ -41,7 +40,7 @@
 
         protected override Task<ActionResult> ExportExcel(BetListExcelMetaModel metaModel)
         {
-            metaModel.Title = GetTitle(metaModel) ;
+            metaModel.Title = GetTitle(metaModel);
             metaModel.Note = string.Format(NoteFormat, ViewResources.Note, ViewResources.LatencySabaSideNote, ViewResources.TimezoneServerNote);
             metaModel.ShowingOption = new BetListShowingOption
             {

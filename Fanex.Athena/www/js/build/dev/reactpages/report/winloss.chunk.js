@@ -4497,6 +4497,7 @@ const Content = ({
   const _buildSportsBetListUrl = () => {
     const params = {
       custId: betListParam.custId,
+      productId: betListParam.productId,
       externalId: betListParam.username,
       systemId: betListParam.sabaSystemId,
       currencyName: betListParam.originalCurrency,
@@ -4518,7 +4519,7 @@ const Content = ({
     if (!custId || !productId) {
       return null;
     }
-    const betlistUrl = productId === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__["OWSportsProductId"] ? _buildSportsBetListUrl() : _buildNonSportsBetListUrl();
+    const betlistUrl = _constants_filterConsts__WEBPACK_IMPORTED_MODULE_11__["SportsOWBetListIds"].indexOf(productId) !== -1 ? _buildSportsBetListUrl() : _buildNonSportsBetListUrl();
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_popup__WEBPACK_IMPORTED_MODULE_4__["default"], {
       iframeUrl: betlistUrl,
       width: 1100,
@@ -5683,7 +5684,7 @@ function mapStateToProps(state) {
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/constants/filterConsts.js ***!
   \*********************************************************************************/
-/*! exports provided: GroupByOptionIds, GroupByOptionAllowQuickDownload, GroupByOptions, GroupByOptionAllowByPermission, DateFilterTypeOptions, UserNameFilterOptions, DefaultTimezone, OWSportsProductId, SupportClosingFromDate */
+/*! exports provided: GroupByOptionIds, GroupByOptionAllowQuickDownload, GroupByOptions, GroupByOptionAllowByPermission, DateFilterTypeOptions, UserNameFilterOptions, DefaultTimezone, OWSportsProductId, SBSWProductId, SportsOWBetListIds, SupportClosingFromDate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5696,6 +5697,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserNameFilterOptions", function() { return UserNameFilterOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultTimezone", function() { return DefaultTimezone; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OWSportsProductId", function() { return OWSportsProductId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SBSWProductId", function() { return SBSWProductId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SportsOWBetListIds", function() { return SportsOWBetListIds; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupportClosingFromDate", function() { return SupportClosingFromDate; });
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/AppData */ "./www/js/source/reactpages/lib/AppData.js");
@@ -5767,6 +5770,8 @@ const UserNameFilterOptions = [{
 }];
 const DefaultTimezone = 8;
 const OWSportsProductId = 1;
+const SBSWProductId = 69;
+const SportsOWBetListIds = [OWSportsProductId, SBSWProductId];
 const SupportClosingFromDate = '03/05/2021';
 
 /***/ }),

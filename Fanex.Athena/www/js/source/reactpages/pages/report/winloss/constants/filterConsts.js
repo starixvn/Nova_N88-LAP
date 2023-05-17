@@ -71,4 +71,8 @@ export const DefaultTimezone = 8;
 
 export const OWSportsProductId = 1;
 
+export const SBSWProductId = 69;
+
+export const SportsOWBetListIds = [OWSportsProductId, SBSWProductId];
+
 export const SupportClosingFromDate = '03/05/2021';

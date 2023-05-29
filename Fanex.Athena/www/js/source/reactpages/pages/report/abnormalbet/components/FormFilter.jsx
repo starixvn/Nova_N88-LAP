@@ -97,22 +97,6 @@ export const FormFilter = props => {
         );
     }
 
-    const _renderReasonList = () => {
-        const reasonList = AppData.reasonList;
-
-        return reasonList && reasonList.length && (
-            <MultipleSelect id="ReasonList"
-                hasSearchBox={true}
-                language={LangHelper.currentLanguage}
-                dataSource={reasonList}
-                keyField={"Id"}
-                valueField={"Value"}
-                statusField={"Status"}
-                onChange={(currentItem, selectedItemsKey) => props.setReasonList(selectedItemsKey)} />
-        );
-    }
-
-
     const _renderCurrencySelectList = () => {
         return currencyList && currencyList.length && (
             <MultipleSelect id="CurrencyList"
@@ -231,7 +215,6 @@ export const FormFilter = props => {
         const selectedCurrencyArray = props.selectedCurrency.split(',');
         const selectedSportArray = props.selectedSport.split(',');
         const selectedBettypeArray = props.selectedBettype.split(',');
-        const selectedReasonArray = props.selectedReason.split(',');
         const licensee = AppData.brandOptions.find(x => x.value === props.selectedBrand);
 
         const currencyText = selectedCurrencyArray.length === currencyList.length ? 'All'
@@ -246,7 +229,7 @@ export const FormFilter = props => {
             StatusIdList: props.selectedStatus,
             SportIdList: AppData.sportList.length === selectedSportArray.length ? 'All' : props.selectedSport,
             BetTypeIdList: AppData.bettypeList.length === selectedBettypeArray.length ? 'All' : props.selectedBettype,
-            ReasonIdList: AppData.reasonList.length === selectedReasonArray.length ? 'All' : props.selectedReason,
+            ReasonIdList: 'All',
             LeagueName: leagueName,
             UserName: username,
             RefNo: refNo === "" ? 0 : refNo,
@@ -270,7 +253,6 @@ export const FormFilter = props => {
             && !!props.selectedCurrency
             && !!props.selectedSport
             && !!props.selectedBettype
-            && !!props.selectedReason
             && !!props.selectedBaseCurrency;
 
         return result;
@@ -359,14 +341,6 @@ export const FormFilter = props => {
                             {_renderStatusList()}
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
-                        <div className="form-group">
-                            <label className="label-text">{LangHelper.getSingleResource("Reason")}</label>
-                            {_renderReasonList()}
-                        </div>
-                    </div>
                     {viewIn !== ViewInLevel.SUMMARY &&
                         <>
                             <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
@@ -406,20 +380,17 @@ export const FormFilter = props => {
                             </div>
                         </div>
                     </>}
+
+                    {viewIn === ViewInLevel.DETAIL &&                                           
+                        <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
+                            <div className="form-group">
+                                <CheckBox id="ConvertAllFiguresToBaseCurrency"
+                                    checked={isConvertAllToBaseCurrency}
+                                    onChange={(checked) => setConvertAllToBaseCurrency(checked)}
+                                    label={LangHelper.getSingleResource("ConvertAllFiguresToBaseCurrency")} />
+                            </div>
+                    </div>}
                 </div>
-
-                {viewIn === ViewInLevel.DETAIL && 
-                <div className="row">                                            
-                    <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
-                        <div className="form-group">
-                            <CheckBox id="ConvertAllFiguresToBaseCurrency"
-                                checked={isConvertAllToBaseCurrency}
-                                onChange={(checked) => setConvertAllToBaseCurrency(checked)}
-                                label={LangHelper.getSingleResource("ConvertAllFiguresToBaseCurrency")} />
-                        </div>
-                    </div>
-                </div>}
-
                 <div className="row" style={{ marginTop: "20px"}}>
                     <div className="col-12 col-md-4 col-sm-4 col-lg-3 col-xl-3">
                         <div className="form-group">
@@ -453,10 +424,10 @@ export const FormFilter = props => {
 
 
 function mapStateToProps(state) {
-    const { requestParam, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedReason, userGuideContent, selectedBrand } = state;
+    const { requestParam, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, userGuideContent, selectedBrand } = state;
 
     return Object.assign({}, {
-        requestParam, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedReason, userGuideContent, selectedBrand
+        requestParam, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, userGuideContent, selectedBrand
     });
 }
 

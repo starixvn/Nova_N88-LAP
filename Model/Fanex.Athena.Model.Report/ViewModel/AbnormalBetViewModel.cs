@@ -27,8 +27,6 @@
 
         public IDictionary<int, string> LiveStatusList { get; set; }
 
-        public IDictionary<int, string> ReasonList { get; set; }
-
         public Brand OwnBrand { get; set; }
 
         public IEnumerable<Brand> Brands { get; set; }

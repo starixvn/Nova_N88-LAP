@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 3/27/2023 5:35:28 PM
+// Generated at: 7/5/2023 2:56:53 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -846,6 +846,7 @@ window._language_en_US = {
   SystemParlayDetailNote: "Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts.",
   Tablet: "Tablet",
   Team: "Team",
+  Tennis: "Tennis",
   Th: "Th",
   ThelastXDaysRequiredValidationMsg: "The last X days is required field.",
   ThelastXDaysValidationMsg: "The last X days must be between 1 and 90. Please check again.",

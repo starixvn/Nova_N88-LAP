@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 7/5/2023 2:56:53 PM
+﻿// Generated at: 7/6/2023 4:52:28 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -384,6 +384,7 @@ ErrorProcessingMsg:"Sorry, an error occurred while processing your request.",
 ESportsApp:"E-Sports APP",
 ESportsDesktop:"E-Sports Desktop",
 ESportsMobile:"E-Sports Mobile",
+ESportsPinGoal:"E-Sports PinGoal",
 Euro:"Euro",
 Event:"Event",
 EventDate:"Event Date",

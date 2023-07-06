@@ -3088,4 +3088,7 @@
   <data name="Tennis" xml:space="preserve">
     <value>Tennis</value>
   </data>
+  <data name="ESportsPinGoal" xml:space="preserve">
+    <value>E-Sports PinGoal</value>
+  </data>
 </root>

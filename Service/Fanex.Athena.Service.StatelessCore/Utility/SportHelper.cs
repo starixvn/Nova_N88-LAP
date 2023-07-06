@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fanex.Athena.Model.Core.DataDomain;
+﻿using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.DTO.Common;
 using Fanex.Athena.Resources;
+using System.Collections.Generic;
 
 namespace Fanex.Athena.Service.StatelessCore.Utility
 {
@@ -19,7 +15,8 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
             { (int)SportType.SabaFutsal, ViewResources.Futsal },
             { (int)SportType.SabaTennis, ViewResources.Tennis },
             { (int)SportType.SabaSoccerPingoal, ViewResources.SoccerPinGoal },
-            { (int)SportType.SabaBasketballPinGoal, ViewResources.BasketballPinGoal }
+            { (int)SportType.SabaBasketballPinGoal, ViewResources.BasketballPinGoal },
+            { (int)SportType.SabaESportsPinGoal, ViewResources.ESportsPinGoal }
         };
 
         public static IEnumerable<SportProductItem> GetSabaSport(List<SportProductItem> sports)

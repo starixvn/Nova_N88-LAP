@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 3/27/2023 5:35:28 PM
+﻿// Generated at: 7/6/2023 4:52:28 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -384,6 +384,7 @@ ErrorProcessingMsg:"Sorry, an error occurred while processing your request.",
 ESportsApp:"E-Sports APP",
 ESportsDesktop:"E-Sports Desktop",
 ESportsMobile:"E-Sports Mobile",
+ESportsPinGoal:"E-Sports PinGoal",
 Euro:"Euro",
 Event:"Event",
 EventDate:"Event Date",
@@ -846,6 +847,7 @@ SystemParlay:"System Parlay",
 SystemParlayDetailNote:"Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts.",
 Tablet:"Tablet",
 Team:"Team",
+Tennis:"Tennis",
 Th:"Th",
 ThelastXDaysRequiredValidationMsg:"The last X days is required field.",
 ThelastXDaysValidationMsg:"The last X days must be between 1 and 90. Please check again.",

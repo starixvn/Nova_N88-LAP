@@ -2,8 +2,11 @@ import Site from '@jsroot/lib/site';
 import store from '../store';
 import { setPagingOption, setSortOption, setDisplayedColumns } from '../../actions/gridAction';
 export default class QueryHelper {
-    static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency,
+    static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency, selectedPlayerList,
          selectedProduct, selectedBrand, selectedDateType, isExcludeTest, includeFreeSpins, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption, selectedTimezone }) {
+        
+        var playerListParamList = selectedPlayerList.split('_').map(Number);
+
         return {
             ...requestParam,
             ...{
@@ -21,7 +24,10 @@ export default class QueryHelper {
                 fromDate: Site.convertDateToString(dateRange.fromDate),
                 toDate: Site.convertDateToString(dateRange.toDate),
                 groupBy: selectedGroupByOption,
-                timezone: selectedTimezone
+                timezone: selectedTimezone,
+                isDataLimitDesc: playerListParamList[0],
+                dataLimitBy: playerListParamList[1],
+                dataLimitValue: playerListParamList[2]
             }
         }
     }

@@ -140,6 +140,12 @@ input[type="checkbox"].checkbox {
   text-align: center;
   margin-bottom: 0.5rem; }
 
+.input-radio-inline {
+  width: 40px;
+  margin: 0 0.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem; }
+
 .date-limit-label {
   font-size: 12px !important; }
 

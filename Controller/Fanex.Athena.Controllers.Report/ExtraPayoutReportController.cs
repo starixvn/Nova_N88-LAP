@@ -33,8 +33,8 @@
         {
             var licenseeSession = SessionServiceInstance.LicenseeSession;
             var userSession = SessionServiceInstance.UserSession;
-            var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportExtraPayout,
-                licenseeSession.LicenseeName);
+            int.TryParse(userSession.SettingList?.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays)?.SettingValue, out int userDataRangeLimitation);
+            var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportExtraPayout, licenseeSession.LicenseeName, userDataRangeLimitation);
             var productAccess = ProductServiceInstance.GetSingleWalletProductAccess(
                licenseeSession.LicenseeId,
                userSession.Language,

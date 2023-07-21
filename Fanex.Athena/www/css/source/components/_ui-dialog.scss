@@ -14,7 +14,7 @@
     background: #fff;
     @include border-radius(0);
     @include box-shadow(0 3px 9px rgba(0, 0, 0, 0.5));
-    min-width: 400px;
+    min-width: 600px;
     z-index: 101;
 
     .ui-dialog-titlebar {

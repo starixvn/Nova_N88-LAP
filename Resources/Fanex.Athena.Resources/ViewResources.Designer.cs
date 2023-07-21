@@ -412,6 +412,24 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data for all reports will be limited to view last.
+        /// </summary>
+        public static string AllReportDataLimitsLabel {
+            get {
+                return ResourceManager.GetString("AllReportDataLimitsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All reports setting.
+        /// </summary>
+        public static string AllReportsSetting {
+            get {
+                return ResourceManager.GetString("AllReportsSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resettlement.
         /// </summary>
         public static string Amendment {
@@ -1083,6 +1101,24 @@ namespace Fanex.Athena.Resources {
         public static string BonusType {
             get {
                 return ResourceManager.GetString("BonusType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bottom X players.
+        /// </summary>
+        public static string bottom_X_players {
+            get {
+                return ResourceManager.GetString("bottom_X_players", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom {0} players based on {1}.
+        /// </summary>
+        public static string BottomXPlayerListBasedOn {
+            get {
+                return ResourceManager.GetString("BottomXPlayerListBasedOn", resourceCulture);
             }
         }
         
@@ -2145,6 +2181,15 @@ namespace Fanex.Athena.Resources {
         public static string DateTime {
             get {
                 return ResourceManager.GetString("DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to days.
+        /// </summary>
+        public static string Days {
+            get {
+                return ResourceManager.GetString("Days", resourceCulture);
             }
         }
         
@@ -3774,6 +3819,15 @@ namespace Fanex.Athena.Resources {
         public static string Last_Name {
             get {
                 return ResourceManager.GetString("Last_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to last X days.
+        /// </summary>
+        public static string last_X_days {
+            get {
+                return ResourceManager.GetString("last_X_days", resourceCulture);
             }
         }
         
@@ -5650,11 +5704,29 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player List.
+        /// </summary>
+        public static string PlayerList {
+            get {
+                return ResourceManager.GetString("PlayerList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Player Name.
         /// </summary>
         public static string PlayerName {
             get {
                 return ResourceManager.GetString("PlayerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to players.
+        /// </summary>
+        public static string Players {
+            get {
+                return ResourceManager.GetString("Players", resourceCulture);
             }
         }
         
@@ -6487,6 +6559,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set Data Limits.
+        /// </summary>
+        public static string SetDataLimits {
+            get {
+                return ResourceManager.GetString("SetDataLimits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settle Amount.
         /// </summary>
         public static string SettleAmount {
@@ -6847,20 +6928,20 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The last X days is required field..
+        ///   Looks up a localized string similar to The {0} is required field..
         /// </summary>
-        public static string ThelastXDaysRequiredValidationMsg {
+        public static string TheLimitRequiredValidationMsg {
             get {
-                return ResourceManager.GetString("ThelastXDaysRequiredValidationMsg", resourceCulture);
+                return ResourceManager.GetString("TheLimitRequiredValidationMsg", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The last X days must be between 1 and 90. Please check again..
+        ///   Looks up a localized string similar to The  {0} must be between {1} and {2}. Please check again..
         /// </summary>
-        public static string ThelastXDaysValidationMsg {
+        public static string TheLimitValidationMsg {
             get {
-                return ResourceManager.GetString("ThelastXDaysValidationMsg", resourceCulture);
+                return ResourceManager.GetString("TheLimitValidationMsg", resourceCulture);
             }
         }
         
@@ -7041,6 +7122,24 @@ namespace Fanex.Athena.Resources {
         public static string TooltipViewDetails {
             get {
                 return ResourceManager.GetString("TooltipViewDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to top X players.
+        /// </summary>
+        public static string top_X_players {
+            get {
+                return ResourceManager.GetString("top_X_players", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top {0} players based on {1}.
+        /// </summary>
+        public static string TopXPlayerListBasedOn {
+            get {
+                return ResourceManager.GetString("TopXPlayerListBasedOn", resourceCulture);
             }
         }
         
@@ -8094,6 +8193,42 @@ namespace Fanex.Athena.Resources {
         public static string WinLossAnalysis {
             get {
                 return ResourceManager.GetString("WinLossAnalysis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data for Win Loss Analysis report will be limited to view bottom.
+        /// </summary>
+        public static string WinLossAnalysisDataLimitsBottomLabel {
+            get {
+                return ResourceManager.GetString("WinLossAnalysisDataLimitsBottomLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data for Win Loss Analysis report will be limited to view top.
+        /// </summary>
+        public static string WinLossAnalysisDataLimitsTopLabel {
+            get {
+                return ResourceManager.GetString("WinLossAnalysisDataLimitsTopLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Win Loss Analysis report setting.
+        /// </summary>
+        public static string WinLossAnalysisSetting {
+            get {
+                return ResourceManager.GetString("WinLossAnalysisSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data for Win Loss Analysis report will be limited to view single player only.
+        /// </summary>
+        public static string WinLossAnalysisSinglePlayerSettingLabel {
+            get {
+                return ResourceManager.GetString("WinLossAnalysisSinglePlayerSettingLabel", resourceCulture);
             }
         }
         

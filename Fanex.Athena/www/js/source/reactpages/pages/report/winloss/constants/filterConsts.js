@@ -42,7 +42,7 @@ const groupByFilter =  option => {
     }
     else if(value === GroupByOptionIds.player)
     {
-        return (AppData.isAllowedGroupByPlayerSingle || AppData.isAllowedGroupByPlayerMultiple)
+        return AppData.isAllowedGroupByPlayer
     }
     else if(value === GroupByOptionIds.currency)
     {

@@ -4225,6 +4225,12 @@ const setSelectedTimezone = timezone => {
     data: timezone
   };
 };
+const setSelectedPlayerList = playerList => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_PLAYER_LIST"],
+    data: playerList
+  };
+};
 const fetchSettingData = () => async dispatch => {
   const response = await _libs_queryService__WEBPACK_IMPORTED_MODULE_9__["default"].getSettingData();
   if (!response.isSuccess) {
@@ -4242,6 +4248,7 @@ const fetchSettingData = () => async dispatch => {
   setUsername: _jsroot_actions_usernameAction__WEBPACK_IMPORTED_MODULE_4__["setUsername"],
   setSelectedCurrency: _jsroot_actions_currencyAction__WEBPACK_IMPORTED_MODULE_2__["setSelectedCurrency"],
   setSelectedBaseCurrency: _jsroot_actions_baseCurrencyAction__WEBPACK_IMPORTED_MODULE_3__["setSelectedBaseCurrency"],
+  setSelectedPlayerList,
   changeIsExcludeTest: _jsroot_actions_excludeTestAction__WEBPACK_IMPORTED_MODULE_6__["changeIsExcludeTest"],
   setNoDraw,
   setDrilldownInOriginalCurrency,
@@ -4357,7 +4364,7 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
 /*!************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/winloss/actions/types.js ***!
   \************************************************************************/
-/*! exports provided: SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION, SET_DISPLAYED_COLUMNS, SET_REPORT_DATA, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE, SET_BETLIST_PARAM, SET_INCLUDE_FREE_SPINS */
+/*! exports provided: SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION, SET_DISPLAYED_COLUMNS, SET_REPORT_DATA, DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE, SET_SELECTED_PLAYER_LIST, SET_BETLIST_PARAM, SET_INCLUDE_FREE_SPINS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4370,6 +4377,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DRILLDOWN_IN_ORIGINAL_CURRENCY", function() { return DRILLDOWN_IN_ORIGINAL_CURRENCY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USERNAME_FILTER_OPTION", function() { return USERNAME_FILTER_OPTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_TIMEZONE", function() { return SET_SELECTED_TIMEZONE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SELECTED_PLAYER_LIST", function() { return SET_SELECTED_PLAYER_LIST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_BETLIST_PARAM", function() { return SET_BETLIST_PARAM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_INCLUDE_FREE_SPINS", function() { return SET_INCLUDE_FREE_SPINS; });
 const SET_SELECTED_DATE_TYPE = 'SET_SELECTED_DATE_TYPE';
@@ -4380,6 +4388,7 @@ const SET_REPORT_DATA = 'SET_REPORT_DATA';
 const DRILLDOWN_IN_ORIGINAL_CURRENCY = 'DRILLDOWN_IN_ORIGINAL_CURRENCY';
 const USERNAME_FILTER_OPTION = 'USERNAME_FILTER_OPTION';
 const SET_SELECTED_TIMEZONE = 'SET_SELECTED_TIMEZONE';
+const SET_SELECTED_PLAYER_LIST = 'SET_SELECTED_PLAYER_LIST';
 const SET_BETLIST_PARAM = 'SET_BETLIST_PARAM';
 const SET_INCLUDE_FREE_SPINS = 'SET_INCLUDE_FREE_SPINS';
 
@@ -4668,7 +4677,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       this.props.fetchReportData(newRequestParam, _libs_helpers_queryHelper__WEBPACK_IMPORTED_MODULE_14__["default"].callBackToUpdateGridOption(_constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultPagingOption"].PageIndex, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultPagingOption"].PageSize, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultSortOption"].sortBy, _constants_gridContants__WEBPACK_IMPORTED_MODULE_17__["defaultSortOption"].sortType));
     });
     _defineProperty(this, "isNotValid", () => {
-      return !this.props.selectedCurrency || !this.props.selectedProduct || !this.props.selectedGroupByOption || _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].isAllowedGroupByPlayerSingle && !this.props.username;
+      return !this.props.selectedCurrency || !this.props.selectedProduct || !this.props.selectedGroupByOption || _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].isAllowedGroupByPlayerSingle && !this.props.username || _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].playerListOptions && _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].playerListOptions.length > 1 && !this.props.selectedPlayerList;
     });
     this.currencyList = _jsroot_lib_currencyHelper__WEBPACK_IMPORTED_MODULE_10__["default"].getTpCurrencyList(this.props.selectedBrand, _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].brands);
   }
@@ -4723,6 +4732,15 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       value: this.props.selectedTimezone,
       options: timezones,
       onChange: item => this.props.setSelectedTimezone(item.value)
+    });
+  }
+  _renderPlayerSelectList() {
+    const playerListOptions = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].playerListOptions;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      instanceId: "ddlPlayerList",
+      value: this.props.selectedPlayerList,
+      options: playerListOptions,
+      onChange: item => this.props.setSelectedPlayerList(item.value)
     });
   }
   _renderProductSelectList() {
@@ -4825,15 +4843,19 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("BaseCurrency")), this._renderBaseCurrencySelectList()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("BaseCurrency")), this._renderBaseCurrencySelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("DisplayTimezone")), this._renderTimezoneSelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("DisplayTimezone")), this._renderTimezoneSelectList())), _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].playerListOptions && _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_11__["default"].playerListOptions.length > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "label-text"
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("PlayerList")), this._renderPlayerSelectList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
@@ -4852,7 +4874,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       onChange: checked => this.props.setIncludeFreeSpins(checked),
       label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_9__["default"].getSingleResource("IncludeFreeSpins")
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2"
+      className: "col-12 col-md-1 col-sm-2 col-lg-1 col-xl-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_CheckBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -4894,6 +4916,7 @@ function mapDispatchToProps(dispatch) {
     setDrilldownInOriginalCurrency,
     setUserNameFilterOption,
     setSelectedTimezone,
+    setSelectedPlayerList,
     toggleLoader
   } = _actions__WEBPACK_IMPORTED_MODULE_12__["default"];
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(Object.assign({}, {
@@ -4913,6 +4936,7 @@ function mapDispatchToProps(dispatch) {
     setDrilldownInOriginalCurrency,
     setRequestParam,
     setSelectedTimezone,
+    setSelectedPlayerList,
     toggleLoader
   }), dispatch);
 }
@@ -4933,6 +4957,7 @@ function mapStateToProps(state) {
     drilldownInOriginalCurrency,
     userNameFilterOption,
     selectedTimezone,
+    selectedPlayerList,
     displayedColumns
   } = state;
   return Object.assign({}, {
@@ -4951,6 +4976,7 @@ function mapStateToProps(state) {
     selectedBaseCurrency,
     selectedGroupByOption,
     selectedTimezone,
+    selectedPlayerList,
     displayedColumns
   });
 }
@@ -5743,7 +5769,7 @@ const groupByFilter = option => {
   } else if (value === GroupByOptionIds.product) {
     return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByProduct;
   } else if (value === GroupByOptionIds.player) {
-    return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByPlayerSingle || _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByPlayerMultiple;
+    return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByPlayer;
   } else if (value === GroupByOptionIds.currency) {
     return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_1__["default"].isAllowedGroupByCurrency;
   } else {
@@ -6440,6 +6466,7 @@ class QueryHelper {
     username,
     selectedCurrency,
     selectedBaseCurrency,
+    selectedPlayerList,
     selectedProduct,
     selectedBrand,
     selectedDateType,
@@ -6452,6 +6479,7 @@ class QueryHelper {
     userNameFilterOption,
     selectedTimezone
   }) {
+    var playerListParamList = selectedPlayerList.split('_').map(Number);
     return _objectSpread(_objectSpread({}, requestParam), {
       userNameFilterId: userNameFilterOption,
       username,
@@ -6467,7 +6495,10 @@ class QueryHelper {
       fromDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__["default"].convertDateToString(dateRange.fromDate),
       toDate: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__["default"].convertDateToString(dateRange.toDate),
       groupBy: selectedGroupByOption,
-      timezone: selectedTimezone
+      timezone: selectedTimezone,
+      isDataLimitDesc: playerListParamList[0],
+      dataLimitBy: playerListParamList[1],
+      dataLimitValue: playerListParamList[2]
     });
   }
 }
@@ -6710,6 +6741,11 @@ const selectedTimezone = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_M
     return action.data;
   }
 });
+const selectedPlayerList = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, {
+  [_actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_SELECTED_PLAYER_LIST"]](state, action) {
+    return action.data;
+  }
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   selectedDateType,
   dateRange: _jsroot_reducers_dateRangeReducer__WEBPACK_IMPORTED_MODULE_2__["dateRange"],
@@ -6724,6 +6760,7 @@ const selectedTimezone = Object(_jsroot_lib_createReducer_js__WEBPACK_IMPORTED_M
   isExcludeTest: _jsroot_reducers_excludeTestReducer__WEBPACK_IMPORTED_MODULE_7__["isExcludeTest"],
   selectedGroupByOption,
   selectedTimezone,
+  selectedPlayerList,
   includeFreeSpins
 });
 

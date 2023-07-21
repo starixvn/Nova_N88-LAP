@@ -42,4 +42,9 @@
     {
         @Html.Action("N88GroupUpdateStatus", "Log", Model)
     }
+
+    if (Model.ActionId == (int)LogAction.N88_User_UpdateSetting)
+    {
+        @Html.Action("N88UserUpdateSetting", "Log", Model)
+    }
 }

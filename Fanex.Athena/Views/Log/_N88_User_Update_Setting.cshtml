@@ -1,0 +1,148 @@
+﻿@using Fanex.Athena.Model.UserManagement.Model;
+@using Fanex.NVC.Authentication.Infrastructure;
+@using Fanex.Athena.Model.Core.DataDomain;
+
+@{
+    var oldSettingList = ViewBag.ListOldData as List<NVCSettingAuthInfo> ?? new List<NVCSettingAuthInfo>();
+    var newSettingList = ViewBag.ListNewData as List<NVCSettingAuthInfo> ?? new List<NVCSettingAuthInfo>();
+}
+
+<div class="set-data-limit-detail">
+    <table class="grid">
+        <thead>
+            <tr>
+                <th>
+                    @ViewResources.Name
+                </th>
+                <th>
+                    @ViewResources.OldValue
+                </th>
+                <th>
+                    @ViewResources.NewValue
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>@ViewResources.AllReportsSetting</b></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                @{
+                    var oldLimitDaySetting = oldSettingList.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays) ?? new NVCSettingAuthInfo();
+                    var newLimitDaySetting = newSettingList.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays) ?? new NVCSettingAuthInfo();
+                    var oldLimitEnable = !string.IsNullOrEmpty(oldLimitDaySetting.SettingValue);
+                    var newLimitEnable = !string.IsNullOrEmpty(newLimitDaySetting.SettingValue);
+                }
+                <td>@IndentChildElement("Data for all reports will be limmited to view last x days", 1)</td>
+                <td>@oldLimitEnable</td>
+                <td>@newLimitEnable</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement("Last x days value", 2)</td>
+                <td>@oldLimitDaySetting.SettingValue</td>
+                <td>@newLimitDaySetting.SettingValue</td>
+            </tr>
+            <tr>
+                <td><b>@ViewResources.WinLossAnalysisSetting</b></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement("Data for Win Loss Analysis report will be limited to view single player only", 1)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_SinglePlayer)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_SinglePlayer)</td>
+            </tr>
+            <tr>
+                @{
+                    var oldTopXPlayerSetting = oldSettingList.FirstOrDefault(_ => _.SettingKey.Contains("WLAnalysis_Top")) ?? new NVCSettingAuthInfo();
+                    var newTopXPlayerSetting = newSettingList.FirstOrDefault(_ => _.SettingKey.Contains("WLAnalysis_Top")) ?? new NVCSettingAuthInfo();
+                    var oldTopXPlayerEnable = !string.IsNullOrEmpty(oldTopXPlayerSetting.SettingValue);
+                    var newTopXPlayerEnable = !string.IsNullOrEmpty(newTopXPlayerSetting.SettingValue);
+                }
+                <td>@IndentChildElement("Data for Win Loss Analysis report will be limited to view top x players", 1)</td>
+                <td>@oldTopXPlayerEnable</td>
+                <td>@newTopXPlayerEnable</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement("Top x player value", 1)</td>
+                <td>@oldTopXPlayerSetting.SettingValue</td>
+                <td>@newTopXPlayerSetting.SettingValue</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement(@ViewResources.Turnover, 2)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_TopTO)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_TopTO)</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement(@ViewResources.GGR, 2)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_TopGGR)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_TopGGR)</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement(@ViewResources.BetCount, 2)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_TopBetCount)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_TopBetCount)</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement(@ViewResources.AvgBetAmount, 2)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_TopAvgBetAmount)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_TopAvgBetAmount)</td>
+            </tr>
+            <tr>
+                @{
+                    var oldBottomXPlayerSetting = oldSettingList.FirstOrDefault(_ => _.SettingKey.Contains("WLAnalysis_Bottom")) ?? new NVCSettingAuthInfo();
+                    var newBottomXPlayerSetting = newSettingList.FirstOrDefault(_ => _.SettingKey.Contains("WLAnalysis_Bottom")) ?? new NVCSettingAuthInfo();
+                    var oldBottomXPlayerEnable = !string.IsNullOrEmpty(oldBottomXPlayerSetting.SettingValue);
+                    var newBottomXPlayerEnable = !string.IsNullOrEmpty(newBottomXPlayerSetting.SettingValue);
+                }
+                <td>@IndentChildElement("Data for Win Loss Analysis report will be limited to view bottom x players", 1)</td>
+                <td>@oldBottomXPlayerEnable</td>
+                <td>@newBottomXPlayerEnable</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement("Bottom x player value", 1)</td>
+                <td>@oldBottomXPlayerSetting.SettingValue</td>
+                <td>@newBottomXPlayerSetting.SettingValue</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement(@ViewResources.Turnover, 2)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_BottomTO)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_BottomTO)</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement(@ViewResources.GGR, 2)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_BottomGGR)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_BottomGGR)</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement(@ViewResources.BetCount, 2)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_BottomBetCount)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_BottomBetCount)</td>
+            </tr>
+            <tr>
+                <td>@IndentChildElement(@ViewResources.AvgBetAmount, 2)</td>
+                <td>@oldSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_BottomAvgBetAmount)</td>
+                <td>@newSettingList.Any(_ => _.SettingKey == SettingKey.WLAnalysis_BottomAvgBetAmount)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@helper IndentChildElement(string elementName, int level = 0)
+{
+    for (int i = 0; i < level; i++)
+    {
+        if (i == level - 1)
+        {
+            <span>&#9492;&#9472;&#9472;</span>
+        }
+        else
+        {
+            <span class="invisible">&#9492;&#9472;&#9472;</span>
+        }
+    }
+
+    @elementName
+}

@@ -59,7 +59,14 @@
                             CurrencyList = new Dictionary<int, string>(),
                             CurrencyAgentList =  new Dictionary<int, int[]>()
                         }
+                    },
+                SettingList = new List<NVCSettingAuthInfo> {
+                    new NVCSettingAuthInfo
+                    {
+                        SettingKey = "LimitDays",
+                        SettingValue = "90"
                     }
+                }
             });
             ProductService = Substitute.For<IProductService>();
             AppSetting = Substitute.For<IAppSettings>();
@@ -105,7 +112,14 @@
                         CurrencyAgentList =  new Dictionary<int, int[]>()
                     }
                 },
-                FunctionList = functionList
+                FunctionList = functionList,
+                SettingList = new List<NVCSettingAuthInfo> {
+                    new NVCSettingAuthInfo
+                    {
+                        SettingKey = "LimitDays",
+                        SettingValue = "90"
+                    }
+                }
             };
 
             var licenseeSession = new NVCLicenseeAuthInfo

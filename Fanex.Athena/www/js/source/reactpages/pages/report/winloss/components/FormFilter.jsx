@@ -90,6 +90,17 @@ export class FormFilter extends PureComponent {
         );
     }
 
+    _renderPlayerSelectList() {
+        const playerListOptions = AppData.playerListOptions;
+        return (
+            <Select instanceId="ddlPlayerList"
+                value={this.props.selectedPlayerList}
+                options={playerListOptions}
+                onChange={(item) => this.props.setSelectedPlayerList(item.value)} />
+        );
+    }
+
+
     _renderProductSelectList() {
         const productOptions = AppData.productOptions;
         return productOptions && productOptions.length ? (
@@ -206,7 +217,8 @@ export class FormFilter extends PureComponent {
         return !this.props.selectedCurrency 
             || !this.props.selectedProduct
             || !this.props.selectedGroupByOption
-            || (AppData.isAllowedGroupByPlayerSingle && !this.props.username);
+            || (AppData.isAllowedGroupByPlayerSingle && !this.props.username)
+            || (AppData.playerListOptions && AppData.playerListOptions.length > 1 && !this.props.selectedPlayerList);
     }
 
     render() {
@@ -247,14 +259,18 @@ export class FormFilter extends PureComponent {
                             {this._renderBaseCurrencySelectList()}
                         </div>
                     </div>
-                </div>
-                <div className="row">
                     <div className="col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("DisplayTimezone")}</label>
                             {this._renderTimezoneSelectList()}
                         </div>
                     </div>
+                    {AppData.playerListOptions && AppData.playerListOptions.length > 1 && <div className="col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2">
+                        <div className="form-group">
+                            <label className="label-text">{LangHelper.getSingleResource("PlayerList")}</label>
+                            {this._renderPlayerSelectList()}
+                        </div>
+                    </div>}
                     <div className="col-12 col-md-2 col-sm-3 col-lg-3 col-xl-2">
                         <div className="form-group">
                             <CheckBox id="ExcludeTestData"
@@ -271,7 +287,7 @@ export class FormFilter extends PureComponent {
                                 label={LangHelper.getSingleResource("IncludeFreeSpins")} />
                         </div>
                     </div>
-                    <div className="col-12 col-md-2 col-sm-2 col-lg-2 col-xl-2">
+                    <div className="col-12 col-md-1 col-sm-2 col-lg-1 col-xl-1">
                         <div className="form-group">
                             <CheckBox id="NoDraw"
                                 checked={this.props.noDraw}
@@ -300,7 +316,7 @@ export class FormFilter extends PureComponent {
 
 function mapDispatchToProps(dispatch) {
     const { fetchReportData, fetchSettingData, setSelectedDateType, setSelectedBrand, setDateRange, setSelectedProduct, setUsername, setSelectedCurrency, setSelectedBaseCurrency,
-        changeIsExcludeTest, setIncludeFreeSpins, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone, toggleLoader } = ActionCreators;
+        changeIsExcludeTest, setIncludeFreeSpins, setNoDraw, setRequestParam, setDrilldownInOriginalCurrency, setUserNameFilterOption, setSelectedTimezone, setSelectedPlayerList, toggleLoader } = ActionCreators;
     return bindActionCreators(Object.assign({}, {
         fetchReportData,
         fetchSettingData,
@@ -318,6 +334,7 @@ function mapDispatchToProps(dispatch) {
         setDrilldownInOriginalCurrency,
         setRequestParam,
         setSelectedTimezone,
+        setSelectedPlayerList,
         toggleLoader,
 
     }), dispatch);
@@ -325,7 +342,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     const { settingData, selectedDateType, dateRange, selectedBrand, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
-        isExcludeTest, includeFreeSpins,noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone, displayedColumns } = state;
+        isExcludeTest, includeFreeSpins,noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone, selectedPlayerList,
+        displayedColumns } = state;
     return Object.assign({}, {
         settingData,
         selectedDateType,
@@ -342,6 +360,7 @@ function mapStateToProps(state) {
         selectedBaseCurrency,
         selectedGroupByOption,
         selectedTimezone,
+        selectedPlayerList,
         displayedColumns
     });
 };

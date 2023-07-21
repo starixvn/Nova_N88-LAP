@@ -75,7 +75,8 @@
                 Brands = DefaultUserSession.BrandList,
                 MaxDate = fakeReportSetting.MaxDate,
                 MinDate = fakeReportSetting.MinDate,
-                LimitMonthRange = fakeReportSetting.LimitMonthRange
+                LimitMonthRange = fakeReportSetting.LimitMonthRange,
+                TopBottomPlayerList = new Dictionary<string, string>()
             };
 
             using (var controller = CreateController())

@@ -83,6 +83,7 @@
             var functions = GetUserFunction(napFunctions).ToList();
             var brandList = _brandService.GetAllowedBrands(_appSettings.LicenseeId, functions, BrandSetting.Setting?.Brands);
             var ownBrand = brandList.First(_ => _.Id == _appSettings.LicenseeId);
+            var settings = GetUserSetting(_userService.GetSettings(user.Id)).ToList();
 
             var userAuthInfo = new NVCUserAuthInfo
             {
@@ -97,8 +98,8 @@
                 DefaultBaseCurrency = string.IsNullOrEmpty(user.DefaultBaseCurrencyCode) ? _appSettings.DefaultBaseCurrency : user.DefaultBaseCurrencyCode,
                 SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
                 BrandList = brandList,
-                DataRangeLimitation = user.DataRangeLimitation,
-                IsShowIpvn = functions.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn)
+                IsShowIpvn = functions.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn),
+                SettingList = settings
             };
 
             _sessionStorage.User = userAuthInfo;
@@ -138,6 +139,15 @@
             });
 
             return functions;
+        }
+
+        private static IEnumerable<NVCSettingAuthInfo> GetUserSetting(IEnumerable<Setting> napSettings)
+        {
+            return napSettings.Select(_ => new NVCSettingAuthInfo
+            {
+                SettingKey = _.Key,
+                SettingValue = _.Value
+            });
         }
     }
 }

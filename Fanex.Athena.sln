@@ -153,7 +153,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Service.UserMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Excel.Notification", "Excel\Fanex.Athena.Excel.Notification\Fanex.Athena.Excel.Notification.csproj", "{123932EA-0B69-4A30-85BA-0EFB4C92AD68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Controllers.Notification.UnitTests", "UnitTests\Fanex.Athena.Controllers.Notification.UnitTests\Fanex.Athena.Controllers.Notification.UnitTests.csproj", "{04345BFB-8688-49C5-B6CB-26A46023EB72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Controllers.Notification.UnitTests", "UnitTests\Fanex.Athena.Controllers.Notification.UnitTests\Fanex.Athena.Controllers.Notification.UnitTests.csproj", "{04345BFB-8688-49C5-B6CB-26A46023EB72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -872,6 +872,7 @@ Global
 		{BEC66A01-FA27-4418-8F8A-C2B4388A7905} = {C2A60900-670D-47E6-8404-454D82AA2DF2}
 		{5653BC29-0843-4D75-9140-5B370DF2F88C} = {D72107B8-4765-4E3D-A86D-36BD7E0D9109}
 		{71F95E53-36D0-4091-828D-ED14C9939C35} = {993B45CC-7A78-4580-A389-3E451AA0D1F8}
+		{CE8FBEBC-3312-4881-8486-42C9F70DDADF} = {8A8161D6-261F-4B28-9CB8-71D83D5977E5}
 		{0C22899B-6CE0-4187-9BCF-7F503213F207} = {4D6B663E-04A8-4993-B33F-A445428FA349}
 		{DD931ADB-A994-49C0-95A3-72BCB6E22679} = {8A8161D6-261F-4B28-9CB8-71D83D5977E5}
 		{255E120A-83BF-4F72-9E31-6050D5704069} = {C2A60900-670D-47E6-8404-454D82AA2DF2}
@@ -935,8 +936,8 @@ Global
 		{04345BFB-8688-49C5-B6CB-26A46023EB72} = {62FD2471-9E6A-4BD1-9AB3-8C4C6FF658A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AF850210-126B-4E21-BADB-F5C02AD2CCEE}
-		RESX_ShowErrorsInErrorList = False
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35
+		RESX_ShowErrorsInErrorList = False
+		SolutionGuid = {AF850210-126B-4E21-BADB-F5C02AD2CCEE}
 	EndGlobalSection
 EndGlobal

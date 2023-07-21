@@ -25,8 +25,6 @@
 
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-horizontal" }))
     {
-        <input type="hidden" id="DataRangeLimitation" name="DataRangeLimitation" value="@Model.DataRangeLimitation">
-
         <div class="form-group">
             @Html.ValidationSummary()
         </div>
@@ -59,26 +57,6 @@
             @Html.DropDownListFor(c => c.DefaultBaseCurrencyId, (List<SelectListItem>)ViewBag.DefaultBaseCurencyList, new { @class = "input-text" })
         </div>
         <div class="form-group">
-            <div>
-                <div class="form-inline">
-                    <input type="radio" value="true" class="with-gap" @(Model.DataRangeLimitationRadio == true ? "checked=checked" : "") name="DataRangeLimitationRadio" id="DataRangeLimitationRadio0" />
-                    <label for="DataRangeLimitationRadio0" class="date-limit-label">
-                        No Limit
-                    </label>
-                </div>
-                <div class="form-inline" style="margin-left:50px;">
-                    <input type="radio" class="with-gap" value="false" @(Model.DataRangeLimitationRadio == false ? "checked=checked" : "") name="DataRangeLimitationRadio" id="DataRangeLimitationRadio1" />
-                    <label for="DataRangeLimitationRadio1" class="date-limit-label">
-                        Can view data from last
-                    </label>
-                    <input id="date-limit-input" type="number" class="input-text">
-                    <label id="date-limit-label" class="date-limit-label">
-                        days
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
             @if (!success)
             {
                 <input type="submit" class="btn btn-submit" value="@ViewResources.Save" />
@@ -99,36 +77,3 @@
         NAP.showSuccessMsg('@dialogMsg', url, 4000);
     </script>
 }
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        var dateLimitEnable = $('input[name="DataRangeLimitationRadio"]:checked').val();
-        if (dateLimitEnable === "true") {
-            $("#date-limit-input").prop('disabled', true);
-        }
-        else {
-            var dateLimit = parseInt($('#DataRangeLimitation').val());
-            $("#date-limit-input").val(dateLimit);
-        }
-
-        $('input[type=radio][name=DataRangeLimitationRadio]').change(function () {
-            if (this.value === "true") {
-                $("#date-limit-input").prop('disabled', true);
-            }
-            else if (this.value === "false") {
-                $("#date-limit-input").prop('disabled', false);
-            }
-        });
-
-        $("#date-limit-input").keyup(function () {
-            var dateLimit = this.value;
-            $("#DataRangeLimitation").val(dateLimit);
-        });
-
-        $("#date-limit-label").click(function () {
-            $('#DataRangeLimitationRadio1').trigger('click');
-        });
-
-    });
-</script>

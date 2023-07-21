@@ -46,8 +46,8 @@ namespace Fanex.Athena.Controllers.Report
         {
             var licenseeSession = SessionServiceInstance.LicenseeSession;
             var userSession = SessionServiceInstance.UserSession;
-            var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportAbnormalBet,
-                licenseeSession.LicenseeName);
+            int.TryParse(userSession.SettingList?.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays)?.SettingValue, out int userDataRangeLimitation);
+            var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportAbnormalBet, licenseeSession.LicenseeName, userDataRangeLimitation);
 
             var sports = SportHelper.GetSabaSport((await _sportService.GetSportsAndProducts(licenseeSession.LicenseeId, userSession.Language, Product.SB).ConfigureAwait(true))
                     .Where(x => x.ParentId >= 0).ToList());

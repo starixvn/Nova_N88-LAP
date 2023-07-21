@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Api.Base
 {
+    using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
@@ -100,7 +101,8 @@
 
         protected DateTime? GetUserLimitDataRange(DateTime? defaultDay, int? timeZone)
         {
-            var userDataRangeLimitation = SessionService.UserSession.DataRangeLimitation;
+            int.TryParse(SessionService.UserSession?.SettingList.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays)?.SettingValue, out int userDataRangeLimitation);
+
             if (userDataRangeLimitation > 0)
             {
                 var toDay = timeZone.HasValue ? DateTime.UtcNow.AddHours(timeZone.Value) : DateTime.Now;

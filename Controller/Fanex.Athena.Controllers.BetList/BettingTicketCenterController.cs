@@ -72,7 +72,7 @@
             var tabList = GetEnableTabList();
             var balanceUpday = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay;
             var minDate = GetUserLimitDataRange(balanceUpday, DefaultTimeZone);
-            minDate = minDate < balanceUpday ? balanceUpday : minDate;
+            minDate = DateTimeHelper.GetMaxDate(minDate, balanceUpday);
 
             var viewModel = new BettingTicketCenterViewModel
             {

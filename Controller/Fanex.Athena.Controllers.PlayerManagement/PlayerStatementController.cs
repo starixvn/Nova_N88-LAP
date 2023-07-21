@@ -8,6 +8,7 @@
     using System.Web.UI;
     using Fanex.Athena.Controllers;
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.MetaModel;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
     using Fanex.Athena.Service.PlayerManagement.Interfaces;
@@ -31,7 +32,7 @@
         [HttpGet]
         public ViewResult Index(int custId, int currencyId)
         {
-            var userLimitDataRange = SessionServiceInstance.UserSession.DataRangeLimitation;
+            int.TryParse(SessionServiceInstance.UserSession.SettingList?.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays)?.SettingValue, out int userLimitDataRange);
             var today = DateTime.Today;
             var startDayOfMonth = 1;
 

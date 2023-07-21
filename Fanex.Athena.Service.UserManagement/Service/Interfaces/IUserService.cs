@@ -12,6 +12,10 @@
 
         IEnumerable<UserLevel> SearchUser(SearchUserCriteria criteria);
 
+        IEnumerable<Setting> GetSetting(int id);
+
+        CommandResult UpdateSetting(SetDataLimitsCriteria criteria);
+
         CommandResult Insert(InsertCustCriteria criteria);
 
         CommandResult UpdateSite(UpdateSiteToUserCriteria criteria);

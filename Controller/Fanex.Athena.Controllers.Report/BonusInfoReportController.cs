@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
+    using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Report.Constants;
     using Fanex.Athena.Model.Report.ViewModel;
@@ -31,6 +32,9 @@
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportBonusInfo, LicenseeName);
 
+            var minDate = GetUserLimitDataRange(reportSetting.MinDate, TimeZone);
+            minDate = DateTimeHelper.GetMaxDate(minDate, reportSetting.MinDate);
+
             var vm = new BonusInfoViewModel
             {
                 BaseCurrency = DefaultBaseCurrency,
@@ -38,7 +42,7 @@
                 Brands = BrandList,
                 Today = reportSetting.MaxDate,
                 MaxDate = reportSetting.MaxDate,
-                MinDate = GetUserLimitDataRange(reportSetting.MinDate, TimeZone),
+                MinDate = minDate,
                 LimitMonthRange = reportSetting.LimitMonthRange
             };
 

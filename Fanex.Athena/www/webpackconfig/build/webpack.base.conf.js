@@ -57,6 +57,7 @@ function generateConfig(environment) {
 
             [`${cssPath}/pages/user/manageuser`]: pathConfig.cssPaths.manageuser,
             [`${cssPath}/pages/user/edituser`]: pathConfig.cssPaths.edituser,
+            [`${cssPath}/pages/user/setdatalimits`]: pathConfig.cssPaths.setdatalimits,
             [`${cssPath}/pages/user/assignpermission`]: pathConfig.cssPaths.assignpermission,
 
             [`${cssPath}/pages/log/logexecsp`]: pathConfig.cssPaths.logexecsp

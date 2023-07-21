@@ -29,6 +29,26 @@
             return this.userRepository.GetUsers(criteria);
         }
 
+        public IEnumerable<Setting> GetSetting(int id)
+        {
+            var criteria = new GetUserSettingCriteria
+            {
+                UserId = id
+            };
+
+            return this.userRepository.GetUserSetting(criteria);
+        }
+
+        public CommandResult UpdateSetting(SetDataLimitsCriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                return this.userRepository.ExecuteNonQueryAsync(criteria);
+            }
+
+            return new CommandResult { Error = 1, Message = ERROR_MSG };
+        }
+
         public CommandResult Insert(InsertCustCriteria criteria)
         {
             if (criteria.IsValid())

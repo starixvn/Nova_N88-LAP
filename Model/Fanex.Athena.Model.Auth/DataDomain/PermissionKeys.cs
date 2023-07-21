@@ -51,8 +51,7 @@
         /*ReportWinLoss Data*/
         public const string ReportWinLoss_GroupByDate = "ReportWinLoss_GroupByDate";
         public const string ReportWinLoss_GroupByMonth = "ReportWinLoss_GroupByMonth";
-        public const string ReportWinLoss_GroupByPlayer_Single = "ReportWinLoss_GroupByPlayer_Single";
-        public const string ReportWinLoss_GroupByPlayer_Multiple = "ReportWinLoss_GroupByPlayer_Multiple";
+        public const string ReportWinLoss_GroupByPlayer = "ReportWinLoss_GroupByPlayer_Multiple";
         public const string ReportWinLoss_GroupByCurrency = "ReportWinLoss_GroupByCurrency";
         public const string ReportWinLoss_GroupByBrand = "ReportWinLoss_GroupByBrand";
         public const string ReportWinLoss_GroupByProduct = "ReportWinLoss_GroupByProduct";

@@ -95,7 +95,7 @@
                 var result = controller.UpdateStatus(Arg.Any<int>(), Arg.Any<bool>()) as JsonResult;
 
                 // Assert
-                Assert.AreEqual(result.Data, Constant.Ok);
+                Assert.AreEqual(Constant.Ok, result.Data);
             }
         }
 

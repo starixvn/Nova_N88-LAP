@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Service.Core.Common.Interfaces;
@@ -40,7 +41,7 @@
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportMarketing, LicenseeName);
             var tpProducts = _tpService.GetListTpProduct();
-            var userLimitDataRange = SessionServiceInstance.UserSession.DataRangeLimitation;
+            int.TryParse(SessionServiceInstance.UserSession.SettingList?.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays)?.SettingValue, out int userLimitDataRange);
 
             var vm = new MarketingViewModel
             {

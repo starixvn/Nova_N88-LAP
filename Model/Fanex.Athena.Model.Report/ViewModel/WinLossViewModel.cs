@@ -26,6 +26,8 @@
 
         public DateTime ToDate => MaxDate;
 
+        public IDictionary<string, string> TopBottomPlayerList { get; set; }
+
         public bool IsAllowedGroupByDate { get; set; }
 
         public bool IsAllowedGroupByMonth { get; set; }
@@ -34,7 +36,7 @@
 
         public bool IsAllowedGroupByPlayerSingle { get; set; }
 
-        public bool IsAllowedGroupByPlayerMultiple { get; set; }
+        public bool IsAllowedGroupByPlayer { get; set; }
 
         public bool IsAllowedGroupByCurrency { get; set; }
 

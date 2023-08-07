@@ -43,7 +43,7 @@
         private ActionResult MapToView()
         {
             var userSession = SessionServiceInstance.UserSession;
-            var userDataRangeLimitation = userSession.DataRangeLimitation;
+            int.TryParse(userSession.SettingList?.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays)?.SettingValue, out int userDataRangeLimitation);
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss,
                 SessionServiceInstance.LicenseeSession.LicenseeName, userDataRangeLimitation);
             var selectedDate = GetSelectedDate(reportSetting);

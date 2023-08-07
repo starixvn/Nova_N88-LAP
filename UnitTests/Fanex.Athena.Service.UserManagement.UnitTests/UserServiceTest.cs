@@ -69,6 +69,43 @@
         }
 
         [Test]
+        public void GetSetting_ResturnListSetting()
+        {
+            // Arrange
+            var userId = 1;
+            IEnumerable<Setting> expectedResult = new List<Setting>() { new Setting { Key = "test", Value = "test" } };
+            _userRepository.GetUserSetting(Arg.Is<GetUserSettingCriteria>(_ => _.UserId == userId)).Returns(expectedResult);
+
+            // Action
+            var result = _userService.GetSetting(userId);
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        public void UpdateSetting_CommandResult()
+        {
+            // Arrange
+            CommandResult expectedResult = new CommandResult()
+            {
+                Error = 0,
+                Message = "expected"
+            };
+            _userRepository.ExecuteNonQueryAsync(Arg.Any<INonQueryCommand>()).Returns(expectedResult);
+
+            // Action
+            SetDataLimitsCriteria criteria = new SetDataLimitsCriteria
+            {
+                UserId = 1
+            };
+            var result = _userService.UpdateSetting(criteria);
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
         public void Insert_CommandResult()
         {
             // Arrange

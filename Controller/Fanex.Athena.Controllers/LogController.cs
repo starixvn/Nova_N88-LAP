@@ -11,6 +11,7 @@
     using Fanex.Athena.Resources;
     using Fanex.Athena.Service.UserManagement.Service.Interfaces;
     using Fanex.Athena.Web.HtmlExtension;
+    using Fanex.NVC.Authentication.Infrastructure;
     using MvcPaging;
 
     public class LogController : CultureBaseController
@@ -19,6 +20,7 @@
         private const string isActive = "IsActive";
         private const string xmlCloseRoot = "<ROOT/>";
         private const string groupName = "GroupName";
+        private const string userId = "UserId";
         private readonly IUserLogService userLogService;
         private readonly IFunctionService functionService;
 
@@ -131,18 +133,6 @@
                     {
                         FieldName = ViewResources.Group_Name,
                         NewValue = elementNew.Attribute(groupName).Value
-                    },
-
-                    new LogData
-                    {
-                        FieldName = ViewResources.DefaultBaseCurency,
-                        NewValue = elementNew.Attribute("DefaultBaseCurrencyCode").Value
-                    },
-
-                    new LogData
-                    {
-                        FieldName = ViewResources.DataRangeLimitation,
-                        NewValue = elementNew.Attribute("DataRangeLimitation").Value
                     }
                 };
 
@@ -157,7 +147,7 @@
             XElement newElement = XElement.Parse(log.Data);
             XElement oldElement = XElement.Parse(log.OldData ?? xmlCloseRoot);
 
-            if (oldElement.Attribute("UserId") != null)
+            if (oldElement.Attribute(userId) != null)
             {
                 var oldSite = new SiteLevel
                 {
@@ -178,7 +168,7 @@
                 ViewBag.oldSite = oldSite;
             }
 
-            if (newElement.Attribute("UserId") != null)
+            if (newElement.Attribute(userId) != null)
             {
                 var newSite = new SiteLevel
                 {
@@ -330,20 +320,6 @@
                         FieldName = ViewResources.Email,
                         OldValue = elementOld.Attribute("Email").Value,
                         NewValue = elementNew.Attribute("Email").Value
-                    },
-
-                    new LogData
-                    {
-                        FieldName = ViewResources.DefaultBaseCurency,
-                        OldValue = elementOld.Attribute("DefaultBaseCurrencyCode").Value,
-                        NewValue = elementNew.Attribute("DefaultBaseCurrencyCode").Value
-                    },
-
-                    new LogData
-                    {
-                        FieldName = ViewResources.DataRangeLimitation,
-                        OldValue = elementOld.Attribute("DataRangeLimitation").Value,
-                        NewValue = elementNew.Attribute("DataRangeLimitation").Value
                     }
                 };
 
@@ -438,6 +414,54 @@
             }
 
             return hashNewPolicy;
+        }
+
+        public PartialViewResult N88UserUpdateSetting(LogExecSp log)
+        {
+            XElement newElement = XElement.Parse(log.Data);
+            XElement oldElement = XElement.Parse(log.OldData ?? xmlCloseRoot);
+
+            if (oldElement.Attribute(userId) != null)
+            {
+                var oldStrSetting = oldElement.Attribute(strValue).Value.DecodeXMLValue();
+                if (!string.IsNullOrWhiteSpace(oldStrSetting))
+                {
+                    ViewBag.ListOldData = GetUserSettingList(oldStrSetting);
+                }
+            }
+
+            if (newElement.Attribute(userId) != null)
+            {
+                var newtrSetting = newElement.Attribute(strValue).Value.DecodeXMLValue();
+                if (!string.IsNullOrWhiteSpace(newtrSetting))
+                {
+                    ViewBag.ListNewData = GetUserSettingList(newtrSetting);
+                }
+            }
+
+            return PartialView("~/Views/Log/_N88_User_Update_Setting.cshtml");
+        }
+
+        private static List<NVCSettingAuthInfo> GetUserSettingList(string strSetting)
+        {
+            var listUserSetting = new List<NVCSettingAuthInfo>();
+
+            XDocument documentFunctionPolicy = XDocument.Parse(strSetting);
+            IEnumerable<XElement> functionPolicy = documentFunctionPolicy.Descendants("ITEM");
+
+            foreach (XElement item in functionPolicy)
+            {
+                string key = item.Attribute("SettingKey").Value;
+                string value = item.Attribute("SettingValue").Value;
+
+                listUserSetting.Add(new NVCSettingAuthInfo
+                {
+                    SettingKey = key,
+                    SettingValue = value
+                });
+            }
+
+            return listUserSetting;
         }
     }
 }

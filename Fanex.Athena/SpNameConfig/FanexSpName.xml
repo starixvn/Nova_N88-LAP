@@ -70,7 +70,7 @@
 	</Function>
 
 	<Function Name="Account">
-		<Setting Key="N88_User_Search" SpName="N88_User_Search" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+		<Setting Key="N88_User_Search" SpName="N88_User_Search_xpre" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
 		<Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
 		<Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
 		<Setting Key="N88_User_Insert" SpName="N88_User_Insert" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
@@ -85,6 +85,8 @@
 		<Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
 		<Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
 		<Setting Key="N88_User_UpdateSite" SpName="N88_User_UpdateSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+		<Setting Key="N88_Setting_GetByUser" SpName="N88_Setting_GetByUser_xpre" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+		<Setting Key="N88_Setting_UpdateByUser" SpName="N88_Setting_UpdateByUser_xpre" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
 	</Function>
 
 	<Function Name="Group">
@@ -100,7 +102,7 @@
 
 	<Function Name="Log">
 		<Setting Key="N88_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
-		<Setting Key="N88_Admin_LogExecSp_Search" SpName="N88_Admin_LogExecSp_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
+		<Setting Key="N88_Admin_LogExecSp_Search" SpName="N88_Admin_LogExecSp_Search_xpre" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
 		<Setting Key="N88_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
 	</Function>
 

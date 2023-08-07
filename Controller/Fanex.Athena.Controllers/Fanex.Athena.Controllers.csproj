@@ -70,10 +70,10 @@
       <HintPath>..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.N88.Core.Client, Version=1.2.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.2-alpha-3\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.4-alpha-2\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.7\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
+    <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.8\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="LAP.ONEBook.Security, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\LAP.ONEBook.Security.1.0.8\lib\net461\LAP.ONEBook.Security.dll</HintPath>

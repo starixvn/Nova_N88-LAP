@@ -82,6 +82,29 @@ namespace Fanex.Athena.Service.UserManagement.Repository
             }).OrderByDescending(user => user.CreatedDate);
         }
 
+        public IEnumerable<Setting> GetUserSetting(ICriteria criteria)
+        {
+            var data = FetchData<SettingData>(criteria);
+
+            return data.Select(_ => new Setting
+            {
+                Key = _.SettingKey,
+                Value = _.SettingValue,
+                CreatedDate = _.CreatedDate,
+                ModifiedDate = _.ModifiedDate,
+                Creator = new User
+                {
+                    Id = _.CreatorId,
+                    Username = _.CreatorUsername
+                },
+                Modifier = new User
+                {
+                    Id = _.ModifierId,
+                    Username = _.ModifierUsername
+                }
+            }).OrderByDescending(user => user.CreatedDate);
+        }
+
         public IEnumerable<T> FetchData<T>(ICriteria criteria)
         {
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))

@@ -11,6 +11,8 @@
 
         IEnumerable<UserLevel> GetUsers(ICriteria criteria);
 
+        IEnumerable<Setting> GetUserSetting(ICriteria criteria);
+
         IEnumerable<T> FetchData<T>(ICriteria criteria);
 
         CommandResult ExecuteNonQueryAsync(INonQueryCommand command);

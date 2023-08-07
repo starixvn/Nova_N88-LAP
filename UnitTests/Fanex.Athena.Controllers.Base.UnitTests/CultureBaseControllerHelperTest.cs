@@ -27,6 +27,13 @@
             BrandList = new List<Brand>
             {
                 new Brand { Id = 402, Name = "N88", CurrencyAgentList = new Dictionary<int, int[]>() }
+            },
+            SettingList = new List<NVCSettingAuthInfo> {
+                new NVCSettingAuthInfo
+                {
+                    SettingKey = "LimitDays",
+                    SettingValue = "0"
+                }
             }
         };
 

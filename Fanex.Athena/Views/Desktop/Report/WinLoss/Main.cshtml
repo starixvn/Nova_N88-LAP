@@ -41,6 +41,7 @@
     selectedCurrency: '@string.Join(",", Model.OwnBrand.TpCurrencyList.Select(x => x.Key))',
     selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
     selectedBrand: '@Model.OwnBrand.Id',
+    selectedPlayerList: '@Model.TopBottomPlayerList.FirstOrDefault().Key',
     userNameFilterOption: 1,
     username: "",
     };
@@ -56,7 +57,7 @@
     isAllowedGroupByMonth: '@Model.IsAllowedGroupByMonth' === 'True',
     isAllowedGroupByProduct: '@Model.IsAllowedGroupByProduct' === 'True',
     isAllowedGroupByPlayerSingle: '@Model.IsAllowedGroupByPlayerSingle' === 'True',
-    isAllowedGroupByPlayerMultiple: '@Model.IsAllowedGroupByPlayerMultiple' === 'True',
+    isAllowedGroupByPlayer: '@Model.IsAllowedGroupByPlayer' === 'True',
     isAllowedGroupByCurrency: '@Model.IsAllowedGroupByCurrency' === 'True',
     isAllowedGroupByBrand: '@Model.IsAllowedGroupByBrand' === 'True',
     isAllowedReportBetlist: '@Model.IsAllowedReportBetlist' === 'True',
@@ -72,6 +73,7 @@
     },
     productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { key = x.Id, value = x.Name, status = Model.OwnBrand.Id == x.Id }).ToJson()),
+    playerListOptions: @Html.Raw(Model.TopBottomPlayerList.Select(x => new { value = x.Key, label = x.Value}).ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson())
     }
 

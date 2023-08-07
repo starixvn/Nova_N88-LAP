@@ -65,12 +65,14 @@
     <Compile Include="Criteria\GetByUserAndSiteFunctionCriteria.cs" />
     <Compile Include="Criteria\GetByUserAndSiteIncludeGroupFunctionCriteria.cs" />
     <Compile Include="Criteria\GetByUsernameUserCriteria.cs" />
+    <Compile Include="Criteria\GetUserSettingCriteria.cs" />
     <Compile Include="Criteria\GetUserSiteLevelUserCriteria.cs" />
     <Compile Include="Criteria\InsertCustCriteria.cs" />
     <Compile Include="Criteria\InsertGroupCriteria.cs" />
     <Compile Include="Criteria\LogExecSpCriteria.cs" />
     <Compile Include="Criteria\ResetPasswordCustCriteria.cs" />
     <Compile Include="Criteria\SearchUserCriteria.cs" />
+    <Compile Include="Criteria\SetDataLimitsCriteria.cs" />
     <Compile Include="Criteria\UpdateCustCriteria.cs" />
     <Compile Include="Criteria\UpdateGroupCriteria.cs" />
     <Compile Include="Criteria\UpdateSiteToUserCriteria.cs" />
@@ -83,6 +85,8 @@
     <Compile Include="Model\GetAllGroupModal.cs" />
     <Compile Include="Model\LogData.cs" />
     <Compile Include="Model\LogExecSp.cs" />
+    <Compile Include="Model\SettingData.cs" />
+    <Compile Include="Model\Setting.cs" />
     <Compile Include="Model\SiteLevel.cs" />
     <Compile Include="Model\StartNameValidationAttribute.cs" />
     <Compile Include="Model\FunctionData.cs" />
@@ -103,6 +107,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Fanex.Athena.Model.Core\Fanex.Athena.Model.Core.csproj">
+      <Project>{5F410090-94C0-46A5-9FEC-B6C3B745B7A0}</Project>
+      <Name>Fanex.Athena.Model.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Resources\Fanex.Athena.Resources\Fanex.Athena.Resources.csproj">
       <Project>{17B0022C-4902-4C61-908A-5DB81568DC3A}</Project>
       <Name>Fanex.Athena.Resources</Name>

@@ -29,7 +29,7 @@
             _userService = Substitute.For<IUserService>();
             _functionService = Substitute.For<IFunctionService>();
             _sessionServiceInstance = Substitute.For<ISessionService>();
-         }
+        }
 
         [TearDown]
         public void TearDown()
@@ -119,7 +119,7 @@
                 // Arrange
                 var fakeRequest = Substitute.For<HttpRequestBase>();
                 var fakeContext = Substitute.For<HttpContextBase>();
-                fakeRequest.Headers.Returns(new WebHeaderCollection { {"X-Requested-With", "XMLHttpRequest"}});
+                fakeRequest.Headers.Returns(new WebHeaderCollection { { "X-Requested-With", "XMLHttpRequest" } });
                 fakeContext.Request.Returns(fakeRequest);
                 controller.ControllerContext = new ControllerContext(fakeContext, new RouteData(), controller);
                 SetUpDefaultFakeData();
@@ -129,7 +129,7 @@
                 var result = controller.Activate(1, true) as JsonResult;
 
                 //Assert
-                Assert.AreEqual(result.Data, Constant.Ok);
+                Assert.AreEqual(Constant.Ok, result.Data);
             }
         }
 

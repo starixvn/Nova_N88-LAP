@@ -2,6 +2,7 @@
 {
     using Fanex.Athena.Controllers.Account;
     using Fanex.Athena.Controllers.Base.UnitTests;
+    using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Service.Core.Common.Interfaces;
@@ -94,7 +95,7 @@
                 var result = controller.UpdateStatus(Arg.Any<int>(), Arg.Any<bool>()) as JsonResult;
 
                 // Assert
-                Assert.AreEqual(result.Data, Constant.Ok);
+                Assert.AreEqual(Constant.Ok, result.Data);
             }
         }
 
@@ -152,8 +153,7 @@
 
                 InsertCustCriteria criteria = new InsertCustCriteria()
                 {
-                    Username = "mark",
-                    DataRangeLimitationRadio = true
+                    Username = "mark"
                 };
                 _userService.CheckUsernameExist(Arg.Any<string>(), Arg.Any<bool>(), Arg.Any<int>()).Returns(true);
 
@@ -217,8 +217,7 @@
                 {
                     Username = "mark",
                     UserPwd = "123",
-                    UserId = 1,
-                    DataRangeLimitationRadio = true
+                    UserId = 1
                 };
                 _userService.CheckUsernameExist(Arg.Any<string>(), Arg.Any<bool>(), Arg.Any<int>()).Returns(false);
 
@@ -254,9 +253,7 @@
                 };
                 UpdateCustCriteria expectedResult = new UpdateCustCriteria
                 {
-                    Username = "mark",
-                    DataRangeLimitationRadio = true,
-                    DataRangeLimitation = 0
+                    Username = "mark"
                 };
                 _userService.GetById(Arg.Any<int>()).Returns(expectedUser);
 
@@ -277,8 +274,7 @@
                 SetUpDefaultFakeData();
                 UpdateCustCriteria criteria = new UpdateCustCriteria()
                 {
-                    Username = "mark",
-                    DataRangeLimitationRadio = true
+                    Username = "mark"
                 };
                 CommandResult expectedResult = new CommandResult()
                 {
@@ -474,6 +470,74 @@
                 // Assert
                 Assert.IsTrue(result.ViewBag.Success);
                 Assert.That(result.ViewName, Is.EqualTo("~/Views/Account/ResetPassword.cshtml"));
+            }
+        }
+
+        [Test]
+        public void SetDataLimits_WhenCall_ReturnViewResult()
+        {
+            using (var controller = CreateController())
+            {
+                // Arrange
+                SetUpDefaultFakeData();
+                User expectedUser = new User()
+                {
+                    Username = "mark",
+                    Password = "123"
+                };
+                SetDataLimitsCriteria expectedResult = new SetDataLimitsCriteria
+                {
+                    UserId = 1,
+                    Username = "mark",
+                    IsAllReportDataLimitsApplied = true,
+                    AllReportDataLimits = 12
+                };
+                var expectedUserSetting = new List<Setting>
+                {
+                    new Setting
+                    {
+                        Key = SettingKey.LimitDays,
+                        Value = "12"
+                    }
+                };
+                _userService.GetById(Arg.Any<int>()).Returns(expectedUser);
+                _userService.GetSetting(Arg.Any<int>()).Returns(expectedUserSetting);
+
+                // Action
+                var result = controller.SetDataLimits(1) as ViewResult;
+
+                // Assert
+                Assert.That(result.Model, Tobe.SameProperties(expectedResult));
+            }
+        }
+
+        [Test]
+        public void SetDataLimits_WhenCall_UpdateIsSuccessful_ReturnViewResult()
+        {
+            using (var controller = CreateController())
+            {
+                // Arrange
+                SetUpDefaultFakeData();
+                SetDataLimitsCriteria criteria = new SetDataLimitsCriteria
+                {
+                    UserId = 1,
+                    Username = "mark",
+                    IsAllReportDataLimitsApplied = true,
+                    AllReportDataLimits = 12
+                };
+                CommandResult expectedResult = new CommandResult()
+                {
+                    Error = 0,
+                    Message = ""
+                };
+                _userService.UpdateSetting(Arg.Any<SetDataLimitsCriteria>()).Returns(expectedResult);
+
+                // Action
+                var result = controller.SetDataLimits(criteria) as ViewResult;
+
+                // Assert
+                Assert.IsTrue(result.ViewBag.Success);
+                Assert.That(result.ViewName, Is.EqualTo("~/Views/Account/SetDataLimits.cshtml"));
             }
         }
 

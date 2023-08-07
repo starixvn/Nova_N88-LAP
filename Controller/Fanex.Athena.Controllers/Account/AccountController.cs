@@ -18,6 +18,7 @@
     using MvcPaging;
     using Newtonsoft.Json;
     using Fanex.Athena.Resources;
+    using Fanex.Athena.Model.Core.DataDomain;
 
     [FunctionAuthorization(PermissionKeys.ManageUser)]
     public class AccountController : CultureBaseController
@@ -101,7 +102,6 @@
             ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
             var criteria = new InsertCustCriteria();
             criteria.DefaultBaseCurrencyId = _MYRCurency;
-            criteria.DataRangeLimitationRadio = true;
             ViewBag.Success = false;
             return View("~/Views/Account/NewUser.cshtml", criteria);
         }
@@ -112,8 +112,6 @@
         {
             ViewBag.GroupSelectList = GetGroups();
             ViewBag.DefaultBaseCurencyList = GetDefaultBaseCurencyList();
-
-            DataRangeLimitationValid(criteria.DataRangeLimitationRadio, criteria.DataRangeLimitation);
 
             if (ModelState.IsValid)
             {
@@ -160,7 +158,6 @@
             criteria.Email = criteria.Email ?? string.Empty;
             criteria.IsLicenseeUser = true;
             criteria.SiteId = N88Settings.Settings.SiteId;
-            criteria.DataRangeLimitation = criteria.DataRangeLimitationRadio ? 0 : criteria.DataRangeLimitation;
         }
 
         [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
@@ -187,7 +184,6 @@
         public ActionResult Edit(UpdateCustCriteria criteria)
         {
             ViewBag.GroupSelectList = GetGroups();
-            DataRangeLimitationValid(criteria.DataRangeLimitationRadio, criteria.DataRangeLimitation);
 
             if (criteria.IsLicenseeUser)
             {
@@ -197,7 +193,6 @@
             if (ModelState.IsValid)
             {
                 UpdateUserInfoCriteria(criteria);
-                criteria.DataRangeLimitation = criteria.DataRangeLimitationRadio ? 0 : criteria.DataRangeLimitation;
                 CommandResult result = userService.Update(criteria);
 
                 if (result != null && result.IsSuccessful)
@@ -207,38 +202,6 @@
             }
 
             return View("~/Views/Account/EditUser.cshtml", criteria);
-        }
-
-        public void DataRangeLimitationValid(bool dataRangeLimitationRadio, int? dataRangeLimitation)
-        {
-            const int MinDay = 1;
-            const int MaxDay = 90;
-            string dataRangeLimitationMsg;
-
-            if (dataRangeLimitationRadio)
-            {
-                dataRangeLimitationMsg = "";
-            }
-            else
-            {
-                if (!dataRangeLimitation.HasValue)
-                {
-                    dataRangeLimitationMsg = ViewResources.ThelastXDaysRequiredValidationMsg;
-                }
-                else if (dataRangeLimitation < MinDay || dataRangeLimitation > MaxDay)
-                {
-                    dataRangeLimitationMsg = ViewResources.ThelastXDaysValidationMsg;
-                }
-                else
-                {
-                    dataRangeLimitationMsg = "";
-                }
-            }
-
-            if (!string.IsNullOrEmpty(dataRangeLimitationMsg))
-            {
-                ModelState.AddModelError("e", dataRangeLimitationMsg);
-            }
         }
 
         [HttpGet]
@@ -333,6 +296,121 @@
             return View("~/Views/Account/AssignPermission.cshtml", criteria);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult SetDataLimits(int id)
+        {
+            var user = userService.GetById(id);
+            var userSetting = userService.GetSetting(id);
+
+            var criteria = new SetDataLimitsCriteria
+            {
+                UserId = id,
+                Username = user.Username
+            };
+
+            AssignDataLimitsCriteria(criteria, userSetting);
+
+            return View("~/Views/Account/SetDataLimits.cshtml", criteria);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult SetDataLimits(SetDataLimitsCriteria criteria)
+        {
+            const int DataLimitMin = 1;
+            const int AllReportDataLimitMax = 90;
+            const int DataLimitsTopBottomMax = 500;
+
+            DataRangeLimitationValid(criteria.IsAllReportDataLimitsApplied,
+                criteria.AllReportDataLimits,
+                ViewResources.last_X_days,
+                DataLimitMin,
+                AllReportDataLimitMax);
+            DataRangeLimitationValid(criteria.WinLossAnalysisDataLimitsTop.IsApplied,
+                criteria.WinLossAnalysisDataLimitsTop.Value,
+                ViewResources.top_X_players,
+                DataLimitMin,
+                DataLimitsTopBottomMax);
+            DataRangeLimitationValid(criteria.WinLossAnalysisDataLimitsBottom.IsApplied,
+                criteria.WinLossAnalysisDataLimitsBottom.Value,
+                ViewResources.bottom_X_players,
+                DataLimitMin,
+                DataLimitsTopBottomMax);
+
+            if (ModelState.IsValid)
+            {
+                criteria.ModifiedBy = SessionServiceInstance.UserSession.UserId;
+                criteria.ModifiedDate = DateTime.Now;
+                UpdateCriteria(criteria);
+
+                var result = userService.UpdateSetting(criteria);
+
+                if (result != null && result.IsSuccessful)
+                {
+                    ViewBag.Success = true;
+                }
+            }
+
+            return View("~/Views/Account/SetDataLimits.cshtml", criteria);
+        }
+
+#pragma warning disable S1541 // Methods and properties should not be too complex
+
+        public void AssignDataLimitsCriteria(SetDataLimitsCriteria criteria, IEnumerable<Setting> userSetting)
+#pragma warning restore S1541 // Methods and properties should not be too complex
+        {
+            int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_SinglePlayer)?.Value, out int wlAnalysisSinglePlayer);
+
+            criteria.IsAllReportDataLimitsApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.LimitDays)?.Value, out int allReportDataLimits);
+            criteria.AllReportDataLimits = allReportDataLimits > 0 ? allReportDataLimits : default(int?);
+            criteria.IsWinLossAnalysisSinglePlayerApplied = wlAnalysisSinglePlayer == 1;
+            criteria.WinLossAnalysisDataLimitsTop = new GroupDataPermission
+            {
+                IsTurnoverApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_TopTO)?.Value, out int wlAnalysisTopTO),
+                IsGGRApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_TopGGR)?.Value, out int wlAnalysisTopGGR),
+                IsBetCountApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_TopBetCount)?.Value, out int wlAnalysisTopBetCount),
+                IsAvgBetAmountApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_TopAvgBetAmount)?.Value, out int wlAnalysisTopAvgBetAmount),
+                Value = GetDataLimitsValue(wlAnalysisTopTO, wlAnalysisTopGGR, wlAnalysisTopBetCount, wlAnalysisTopAvgBetAmount)
+            };
+            criteria.WinLossAnalysisDataLimitsBottom = new GroupDataPermission
+            {
+                IsTurnoverApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_BottomTO)?.Value, out int wlAnalysisBottomTO),
+                IsGGRApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_BottomGGR)?.Value, out int wlAnalysisBottomGGR),
+                IsBetCountApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_BottomBetCount)?.Value, out int wlAnalysisBottomBetCount),
+                IsAvgBetAmountApplied = int.TryParse(userSetting.FirstOrDefault(_ => _.Key == SettingKey.WLAnalysis_BottomAvgBetAmount)?.Value, out int wlAnalysisBottomAvgBetAmount),
+                Value = GetDataLimitsValue(wlAnalysisBottomTO, wlAnalysisBottomGGR, wlAnalysisBottomBetCount, wlAnalysisBottomAvgBetAmount)
+            };
+        }
+
+        public int? GetDataLimitsValue(params int?[] list)
+        {
+            return list.FirstOrDefault(_ => _ > 0);
+        }
+
+        public void DataRangeLimitationValid(bool isApplied, int? dataRangeLimitation, string displayName, int minDay, int maxDay)
+        {
+            var dataRangeLimitationMsg = "";
+
+            if (isApplied)
+            {
+                if (!dataRangeLimitation.HasValue)
+                {
+                    dataRangeLimitationMsg = string.Format(ViewResources.TheLimitRequiredValidationMsg, displayName);
+                }
+
+                if (dataRangeLimitation < minDay || dataRangeLimitation > maxDay)
+                {
+                    dataRangeLimitationMsg = string.Format(ViewResources.TheLimitValidationMsg, displayName, minDay, maxDay);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(dataRangeLimitationMsg))
+            {
+                ModelState.AddModelError("e", dataRangeLimitationMsg);
+            }
+        }
+
         [FunctionAuthorization(Policy.Host, PermissionKeys.ManageUser)]
         public ActionResult ResetPassword(int id)
         {
@@ -377,8 +455,6 @@
             criteria.Username = user.Username;
             criteria.IsLicenseeUser = user.IsLicenseeUser;
             criteria.GroupId = user.Group != null ? user.Group.Id : 0;
-            criteria.DataRangeLimitation = user.DataRangeLimitation;
-            criteria.DataRangeLimitationRadio = user.DataRangeLimitation == 0;
         }
 
         private void UpdateUserInfoCriteria(UpdateCustCriteria criteria)

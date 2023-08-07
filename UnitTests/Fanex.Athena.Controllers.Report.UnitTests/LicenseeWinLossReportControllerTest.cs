@@ -47,7 +47,7 @@
         {
             // Arrange
             var reportSettingService = Substitute.For<IReportSettingService>();
-            reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss, Arg.Any<string>()).Returns(new ReportSetting());
+            reportSettingService.GetSetting(PermissionKeys.ReportLicenseeWinLoss, Arg.Any<string>(), Arg.Any<int>()).Returns(new ReportSetting());
 
             using (var controller = CreateController(reportSettingService))
             {

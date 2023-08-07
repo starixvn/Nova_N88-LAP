@@ -932,7 +932,7 @@ footer {
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-    width: 400px !important;
+    width: 600px !important;
 }
 
     .ui-dialog .ui-dialog-titlebar {

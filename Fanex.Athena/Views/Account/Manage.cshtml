@@ -188,6 +188,10 @@
                                                 @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.EditPermission, item.User.Username), "AssignPermission",
                                                     new { id = item.User.Id })
                                             </li>
+                                            <li>
+                                                @Html.ActionLink(string.Format("{0} of '{1}'", ViewResources.SetDataLimits, item.User.Username), "SetDataLimits",
+                                                    new { id = item.User.Id })
+                                            </li>
                                         </ul>
                                     </div>
                                 }

@@ -46,7 +46,7 @@
             Task<HttpResponseMessage> result = _service.HandleRequest("key", "url/home", HttpContext.Current.Request);
 
             // Assert
-            Assert.AreEqual(result.Result.StatusCode, HttpStatusCode.OK);
+            Assert.AreEqual(HttpStatusCode.OK, result.Result.StatusCode);
         }
 
         [Test]
@@ -66,7 +66,7 @@
             Task<HttpResponseMessage> result = _service.HandleRequest("key", "url/home", HttpContext.Current.Request);
 
             // Assert
-            Assert.AreEqual(result.Result.StatusCode, HttpStatusCode.InternalServerError);
+            Assert.AreEqual(HttpStatusCode.InternalServerError, result.Result.StatusCode);
         }
 
         [Test]
@@ -86,7 +86,7 @@
             Task<HttpResponseMessage> result = _service.HandleRequest("key", "url/home");
 
             // Assert
-            Assert.AreEqual(result.Result.StatusCode, HttpStatusCode.InternalServerError);
+            Assert.AreEqual(HttpStatusCode.InternalServerError, result.Result.StatusCode);
         }
 
         [Test]
@@ -106,7 +106,7 @@
             Task<HttpResponseMessage> result = _service.HealthCheck("key");
 
             // Assert
-            Assert.AreEqual(result.Result.StatusCode, HttpStatusCode.InternalServerError);
+            Assert.AreEqual(HttpStatusCode.InternalServerError, result.Result.StatusCode);
         }
 
         [Test]
@@ -126,7 +126,7 @@
             Task<HttpResponseMessage> result = _service.HealthCheck("key");
 
             // Assert
-            Assert.AreEqual(result.Result.StatusCode, HttpStatusCode.OK);
+            Assert.AreEqual(HttpStatusCode.OK, result.Result.StatusCode);
         }
 
         private static HttpContext GetHttpContext()

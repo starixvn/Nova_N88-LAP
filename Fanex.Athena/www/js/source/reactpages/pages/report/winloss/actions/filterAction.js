@@ -1,5 +1,5 @@
 import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION, DRILLDOWN_IN_ORIGINAL_CURRENCY, 
-    USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE, SET_INCLUDE_FREE_SPINS } from './types';
+    USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE, SET_INCLUDE_FREE_SPINS, SET_SELECTED_PLAYER_LIST } from './types';
 import { setDateRange } from '@jsroot/actions/dateRangeAction';
 import { setSelectedCurrency } from '@jsroot/actions/currencyAction';
 import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
@@ -60,6 +60,13 @@ const setSelectedTimezone = timezone => {
     }
 }
 
+const setSelectedPlayerList = playerList => {
+    return {
+        type: SET_SELECTED_PLAYER_LIST,
+        data: playerList
+    }
+}
+
 export const fetchSettingData = () => async dispatch => {
     const response = await QueryService.getSettingData();
     if(!response.isSuccess) {
@@ -78,6 +85,7 @@ export default {
     setUsername,
     setSelectedCurrency,
     setSelectedBaseCurrency,
+    setSelectedPlayerList,
     changeIsExcludeTest,
     setNoDraw,
     setDrilldownInOriginalCurrency,

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 7/20/2023 10:01:48 AM
+// Generated at: 8/15/2023 2:26:20 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -249,6 +249,7 @@ window._language_en_US = {
   ChangeStatus: "Change {0}&apos;s status",
   ChangeStatusOfThisCustomerMsg: "Are you sure you want to change status of this customer?",
   ChargeCommission: "Charge Commission",
+  ChatRoom: "Chat Room",
   Checkavailability: "Check availability",
   Choice: "Choice",
   ChooseGroupMsg: "Please choose a group.",
@@ -350,6 +351,7 @@ window._language_en_US = {
   DepositUsers: "Deposit Users",
   Description: "Description",
   DesktopChina: "Desktop China",
+  DesktopGalaxy: "Desktop Galaxy",
   DesktopNewAsia: "Desktop New Asia",
   DesktopOthers: "Desktop Others",
   Detail: "Detail",
@@ -601,7 +603,7 @@ window._language_en_US = {
   Mo: "Mo",
   MobileApp: "Mobile APP",
   MobileCompact: "Mobile Compact",
-  MobileEuro: "Mobile Euro",
+  MobileGalaxy: "Mobile Galaxy",
   MobileOthers: "Mobile Others",
   MobileStandard: "Mobile Standard",
   Modified_Date: "Modified Date",

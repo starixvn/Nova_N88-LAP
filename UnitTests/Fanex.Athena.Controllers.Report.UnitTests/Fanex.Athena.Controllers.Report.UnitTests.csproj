@@ -46,7 +46,7 @@
     </Reference>
     <Reference Include="Fanex.Athena.VendorAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Fanex.Athena\Bin\Fanex.Athena.VendorAdapter.dll</HintPath>
+      <HintPath>..\..\Infrastructure\Fanex.Athena.VendorAdapter\bin\Debug\Fanex.Athena.VendorAdapter.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>

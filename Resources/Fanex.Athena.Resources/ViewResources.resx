@@ -2587,8 +2587,8 @@
   <data name="ESportsApp" xml:space="preserve">
     <value>E-Sports APP</value>
   </data>
-  <data name="MobileEuro" xml:space="preserve">
-    <value>Mobile Euro</value>
+  <data name="MobileGalaxy" xml:space="preserve">
+    <value>Mobile Galaxy</value>
   </data>
   <data name="ESportsDesktop" xml:space="preserve">
     <value>E-Sports Desktop</value>
@@ -3135,5 +3135,11 @@
   </data>
   <data name="ESportsPinGoal" xml:space="preserve">
     <value>E-Sports PinGoal</value>
+  </data>
+  <data name="ChatRoom" xml:space="preserve">
+    <value>Chat Room</value>
+  </data>
+  <data name="DesktopGalaxy" xml:space="preserve">
+    <value>Desktop Galaxy</value>
   </data>
 </root>

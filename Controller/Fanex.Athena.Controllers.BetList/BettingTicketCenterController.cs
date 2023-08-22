@@ -231,8 +231,9 @@
                 { PlatformType.DesktopNewAsia, ViewResources.DesktopNewAsia },
                 { PlatformType.DesktopChina, ViewResources.DesktopChina },
                 { PlatformType.DesktopOthers, ViewResources.DesktopOthers },
+                { PlatformType.DesktopGalaxy, ViewResources.DesktopGalaxy },
                 { PlatformType.MobileStandard, ViewResources.MobileStandard },
-                { PlatformType.MobileEuro, ViewResources.MobileEuro },
+                { PlatformType.MobileGalaxy, ViewResources.MobileGalaxy },
                 { PlatformType.MobileCompact, ViewResources.MobileCompact },
                 { PlatformType.MobileOthers, ViewResources.MobileOthers },
                 { PlatformType.ESportsDesktop, ViewResources.ESportsDesktop },
@@ -243,6 +244,7 @@
                 { PlatformType.Tablet, ViewResources.Tablet },
                 { PlatformType.DeepLink, ViewResources.DeepLink },
                 { PlatformType.WAP, ViewResources.Wap },
+                { PlatformType.ChatRoom, ViewResources.ChatRoom },
                 { PlatformType.BetfromOthers, ViewResources.BetfromOthers }
             };
         }

@@ -2588,7 +2588,8 @@
     <value>E-Sports APP</value>
   </data>
   <data name="MobileGalaxy" xml:space="preserve">
-    <value>Mobile Galaxy</value>
+    <value>Mobile Euro</value>
+    <comment>revert</comment>
   </data>
   <data name="ESportsDesktop" xml:space="preserve">
     <value>E-Sports Desktop</value>

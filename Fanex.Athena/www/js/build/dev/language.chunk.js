@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 8/15/2023 2:26:20 PM
+﻿// Generated at: 8/24/2023 2:05:03 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -603,7 +603,7 @@ MixSportsParlay:"Mix Sports Parlay",
 Mo:"Mo",
 MobileApp:"Mobile APP",
 MobileCompact:"Mobile Compact",
-MobileGalaxy:"Mobile Galaxy",
+MobileGalaxy:"Mobile Euro",
 MobileOthers:"Mobile Others",
 MobileStandard:"Mobile Standard",
 Modified_Date:"Modified Date",

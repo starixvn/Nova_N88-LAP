@@ -99,7 +99,8 @@
                 SupportMultiBrand = BrandSetting.Setting?.SupportMultiBrand ?? false,
                 BrandList = brandList,
                 IsShowIpvn = functions.Any(x => x.FunctionKey == PermissionKeys.BetlistViewIpvn),
-                SettingList = settings
+                SettingList = settings,
+                Level = user.Level
             };
 
             _sessionStorage.User = userAuthInfo;

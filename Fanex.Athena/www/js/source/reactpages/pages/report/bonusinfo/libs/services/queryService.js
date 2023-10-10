@@ -5,7 +5,7 @@ import { Url, FileNameExport, errorResponse, successResponse } from '../../const
 export default class QueryService {
 
     static fetchDropdownOptionsData = async callBack => {
-        var data = await this.fetchData(() => DataService.getReportData(Url.bonusInfoSetting));
+        var data = await this.fetchData(() => DataService.getReportData(Url.bonusInfoSetting, {time: new Date().getTime()}));
         callBack && callBack(data);
     }
 

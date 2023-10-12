@@ -19,7 +19,7 @@ export const GroupCell = props => {
 
     const _handleDrillDown = async () => {
         
-        const dataList = gridData.dataList;``
+        const dataList = gridData.dataList;
         const rowIndex = dataList.findIndex(_ => _.key === key);
         if (rowIndex === -1) {
             return;
@@ -84,11 +84,11 @@ export const GroupCell = props => {
         setBetListParam(rowData);
     }
 
-    return (<Cell key={`group-cell-${key}`} {...rest}>
+    return (<Cell key={`group-cell-${key}`} {...rest} {...(_isAllowedDrillDown && {onClick:_handleDrillDown, style:{cursor: 'pointer'}})}>
         {rowData.custId && rowData.productId && AppData.isAllowedReportBetlist ? <a href="#" onClick={_onViewBetList} className='right right-align'>
             {rowData[columnKeys.group]}
         </a> : rowData[columnKeys.group]}
-        {_isAllowedDrillDown && <i className={`icon-arrow right ${_isDrillDown ? 'arrow-down' : 'arrow-right'}`} onClick={_handleDrillDown}></i>}
+        {_isAllowedDrillDown && <i className={`icon-arrow right ${_isDrillDown ? 'arrow-down' : 'arrow-right'}`} ></i>}
     </Cell>)
 }
 

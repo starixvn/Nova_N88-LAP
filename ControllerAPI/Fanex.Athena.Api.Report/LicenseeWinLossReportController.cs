@@ -175,6 +175,7 @@
             licenseeWinLoss.LicenseeWLI4D = licenseeWLProducts.GetValueOrDefault(Product.I4D, 0);
             licenseeWinLoss.LicenseeWLVGA = licenseeWLProducts.GetValueOrDefault(Product.VGA, 0);
             licenseeWinLoss.LicenseeWLVS3 = licenseeWLProducts.GetValueOrDefault(Product.VS3, 0);
+            licenseeWinLoss.LicenseeWLLG = licenseeWLProducts.GetValueOrDefault(Product.LG, 0);
         }
 
         private static void SetTurnOverProductData(LicenseeWinLossGridViewModel licenseeWinLoss, IDictionary<string, decimal> turnOverProducts)
@@ -195,6 +196,7 @@
             licenseeWinLoss.TurnOverI4D = turnOverProducts.GetValueOrDefault(Product.I4D, 0);
             licenseeWinLoss.TurnOverVGA = turnOverProducts.GetValueOrDefault(Product.VGA, 0);
             licenseeWinLoss.TurnOverVS3 = turnOverProducts.GetValueOrDefault(Product.VS3, 0);
+            licenseeWinLoss.TurnOverLG = turnOverProducts.GetValueOrDefault(Product.LG, 0);
         }
 
         private static bool IsProductVisible(IEnumerable<ProductOption> productOptions, ProductAccess productAccess, string productCode)

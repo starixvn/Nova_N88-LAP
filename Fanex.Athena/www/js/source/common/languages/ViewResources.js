@@ -1,4 +1,4 @@
-﻿// Generated at: 9/14/2023 11:25:17 AM
+﻿// Generated at: 10/13/2023 4:48:24 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -649,6 +649,7 @@ ProductCO:"Cash Out",
 ProductCS:"Saba Casino",
 ProductI4D:"Togel 4D",
 ProductKN:"RNG Keno",
+ProductLG:"Virtual Sports 3",
 ProductLT:"Lottery",
 ProductNG:"Number Game",
 ProductPP:"PP",

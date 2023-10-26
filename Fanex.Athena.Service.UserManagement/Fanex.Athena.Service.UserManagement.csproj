@@ -68,6 +68,7 @@
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Fanex.Athena.Service.UserManagement.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>

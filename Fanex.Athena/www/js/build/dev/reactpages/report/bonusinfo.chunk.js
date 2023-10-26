@@ -4993,7 +4993,9 @@ class QueryService {
   }
 }
 _defineProperty(QueryService, "fetchDropdownOptionsData", async callBack => {
-  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusInfoSetting));
+  var data = await QueryService.fetchData(() => _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getReportData(_constants_queryConst__WEBPACK_IMPORTED_MODULE_2__["Url"].bonusInfoSetting, {
+    time: new Date().getTime()
+  }));
   callBack && callBack(data);
 });
 _defineProperty(QueryService, "fetchBonusInfoSummaryData", async params => {

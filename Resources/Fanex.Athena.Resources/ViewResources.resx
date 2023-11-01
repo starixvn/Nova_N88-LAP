@@ -2587,9 +2587,9 @@
   <data name="ESportsApp" xml:space="preserve">
     <value>E-Sports APP</value>
   </data>
-  <data name="MobileGalaxy" xml:space="preserve">
+  <data name="MobileEuro" xml:space="preserve">
     <value>Mobile Euro</value>
-    <comment>revert</comment>
+    <comment>Mobile Euro</comment>
   </data>
   <data name="ESportsDesktop" xml:space="preserve">
     <value>E-Sports Desktop</value>
@@ -3145,5 +3145,8 @@
   </data>
   <data name="ProductLG" xml:space="preserve">
     <value>Virtual Sports 3</value>
+  </data>
+  <data name="MobileGalaxy" xml:space="preserve">
+    <value>Mobile Galaxy</value>
   </data>
 </root>

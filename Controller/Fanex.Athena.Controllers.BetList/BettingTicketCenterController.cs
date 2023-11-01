@@ -233,6 +233,7 @@
                 { PlatformType.DesktopOthers, ViewResources.DesktopOthers },
                 { PlatformType.DesktopGalaxy, ViewResources.DesktopGalaxy },
                 { PlatformType.MobileStandard, ViewResources.MobileStandard },
+                { PlatformType.MobileEuro, ViewResources.MobileEuro },
                 { PlatformType.MobileGalaxy, ViewResources.MobileGalaxy },
                 { PlatformType.MobileCompact, ViewResources.MobileCompact },
                 { PlatformType.MobileOthers, ViewResources.MobileOthers },

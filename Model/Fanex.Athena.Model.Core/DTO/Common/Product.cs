@@ -49,6 +49,8 @@
 
         public const string TIP = "TIP";
 
+        public const string LG = "LG";
+
         #endregion Field
 
         #region Constructor

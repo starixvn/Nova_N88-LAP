@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 8/24/2023 2:05:03 PM
+// Generated at: 10/13/2023 4:48:24 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -744,6 +744,7 @@ window._language_en_US = {
   ProductCS: "Saba Casino",
   ProductI4D: "Togel 4D",
   ProductKN: "RNG Keno",
+  ProductLG: "Virtual Sports 3",
   ProductLT: "Lottery",
   ProductNG: "Number Game",
   ProductPP: "PP",
@@ -757,7 +758,7 @@ window._language_en_US = {
   ProductVRG: "Virtual Games",
   ProductVS: "Virtual Sports",
   ProductVS2: "Virtual Sports 2",
-  ProductVS3: "Virtual Sports 3",
+  ProductVS3: "Virtual Sports 3 ( Old)",
   ProgressiveBet: "Progressive Bet",
   ProgressiveWin: "Progressive Win",
   Promotion: "Promotion",

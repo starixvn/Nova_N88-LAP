@@ -20,30 +20,30 @@
         private const int ColumnCurrency = 4;
 
         private const int ColumnTurnoverSportBook = 5;
-        private const int ColumnTurnoverTotal = 22;
+        private const int ColumnTurnoverTotal = 23;
 
-        private const int ColumnActualStake = 23;
+        private const int ColumnActualStake = 24;
 
-        private const int ColumnBuyBackAmountSportsbook = 24;
-        private const int ColumnBuyBackAmountBA = 25;
-        private const int ColumnBuyBackAmountTotal = 26;
+        private const int ColumnBuyBackAmountSportsbook = 25;
+        private const int ColumnBuyBackAmountBA = 26;
+        private const int ColumnBuyBackAmountTotal = 27;
 
-        private const int ColumnTotalTransaction = 27;
+        private const int ColumnTotalTransaction = 28;
 
-        private const int ColumnCustomerWl = 28;
-        private const int ColumnCustomerComm = 29;
-        private const int ColumnCustomerTotal = 30;
+        private const int ColumnCustomerWl = 29;
+        private const int ColumnCustomerComm = 30;
+        private const int ColumnCustomerTotal = 31;
 
-        private const int ColumnLicenseeWlSportsBook = 31;
-        private const int ColumnLicenseeWlTotal = 48;
+        private const int ColumnLicenseeWlSportsBook = 32;
+        private const int ColumnLicenseeWlTotal = 50;
 
-        private const int ColumnBetTradeCommission = 49;
-        private const int ColumnCashOutCommission = 50;
-        private const int ColumnBaCommission = 51;
-        private const int ColumnAmtDueToBetTrade = 52;
-        private const int ColumnAmtDueToBa = 53;
+        private const int ColumnBetTradeCommission = 51;
+        private const int ColumnCashOutCommission = 52;
+        private const int ColumnBaCommission = 53;
+        private const int ColumnAmtDueToBetTrade = 54;
+        private const int ColumnAmtDueToBa = 55;
 
-        private const int ColumnTemplateCount = 54;
+        private const int ColumnTemplateCount = 56;
 
         private const int RowContentTemplate = 3;
         private const int RowGrantTotal = 6;
@@ -51,8 +51,8 @@
         private const int RowTotalNoSolidBorder = 5;
         private const int RowTotalSolidBorder = 4;
 
-        private const int TotalLicenseeWlProductColumn = 18;
-        private const int TotalTurnoverProductColumn = 18;
+        private const int TotalLicenseeWlProductColumn = 19;
+        private const int TotalTurnoverProductColumn = 19;
 
         private static readonly string[] IgnoredLicenseeWLProducts = new[] { Product.BA, Product.SLT, Product.BTC };
         private static readonly string[] IgnoredTurnoverProducts = new[] { Product.BT, Product.CO, Product.SLT, Product.BTC };
@@ -61,7 +61,7 @@
         {
             Product.SB,Product.BA, Product.BT, Product.KN, Product.NG, Product.CS,
             Product.VS, Product.CO, Product.VS2, Product.LT, Product.PP, Product.CC,
-            Product.VRG, Product.TG, Product.I4D, Product.VGA, Product.VS3
+            Product.VRG, Product.TG, Product.I4D, Product.VGA, Product.VS3, Product.LG
         };
 
         private readonly LicenseeWinLossExcelModel _excelModel;

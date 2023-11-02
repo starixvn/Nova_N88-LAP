@@ -490,7 +490,26 @@
                     UserId = 1,
                     Username = "mark",
                     IsAllReportDataLimitsApplied = true,
-                    AllReportDataLimits = 12
+                    AllReportDataLimits = 12,
+                    IsWinLossAnalysisSinglePlayerApplied = true,
+                    WinLossAnalysisDataLimitsTop = new GroupDataPermission
+                    {
+                        Value = 10,
+                        IsApplied = true,
+                        IsAvgBetAmountApplied = true,
+                        IsBetCountApplied = true,
+                        IsGGRApplied = true,
+                        IsTurnoverApplied = true
+                    },
+                    WinLossAnalysisDataLimitsBottom = new GroupDataPermission
+                    {
+                        Value = 10,
+                        IsApplied = true,
+                        IsAvgBetAmountApplied = true,
+                        IsBetCountApplied = true,
+                        IsGGRApplied = true,
+                        IsTurnoverApplied = true
+                    }
                 };
                 var expectedUserSetting = new List<Setting>
                 {
@@ -498,6 +517,42 @@
                     {
                         Key = SettingKey.LimitDays,
                         Value = "12"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_SinglePlayer,
+                        Value = "1"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_TopTO,
+                        Value = "10"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_TopGGR,
+                        Value = "10"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_TopBetCount,
+                        Value = "10"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_TopAvgBetAmount,
+                        Value = "10"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_BottomTO,
+                        Value = "10"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_BottomGGR,
+                        Value = "10"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_BottomBetCount,
+                        Value = "10"
+                    },new Setting
+                    {
+                        Key = SettingKey.WLAnalysis_BottomAvgBetAmount,
+                        Value = "10"
                     }
                 };
                 _userService.GetById(Arg.Any<int>()).Returns(expectedUser);

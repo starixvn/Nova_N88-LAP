@@ -301,6 +301,8 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         VgamingFreeBetsJackpotContribution = 3898,
 
-        TIPStreamerTips = 8700
+        TIPStreamerTips = 8700,
+
+        SabaCasinoRoyaleTournamentPrize = 17006
     }
 }

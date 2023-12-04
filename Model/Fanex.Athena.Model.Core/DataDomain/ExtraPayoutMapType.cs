@@ -37,5 +37,7 @@
         public const int VgamingFreeBetsJackpotContribution = 6603;
 
         public const int TIPStreamerTips = 7401;
+
+        public const int SabaCasinoRoyaleTournamentPrize = 3706;
     }
 }

@@ -3149,4 +3149,10 @@
   <data name="MobileGalaxy" xml:space="preserve">
     <value>Mobile Galaxy</value>
   </data>
+  <data name="CasinoPromotion" xml:space="preserve">
+    <value>Casino Promotion</value>
+  </data>
+  <data name="SBPromotion" xml:space="preserve">
+    <value>Sportsbook Promotion</value>
+  </data>
 </root>

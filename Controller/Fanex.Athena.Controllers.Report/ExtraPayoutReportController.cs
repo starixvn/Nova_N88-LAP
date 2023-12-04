@@ -79,15 +79,7 @@
             const string productResource = "Product";
             var productCodeList = productCode?.Split(',');
 
-            if (productCodeList.IsPresent(_ => _ == Product.SPR))
-            {
-                promotionTypeList.AddRange(new List<CheckedItem>
-            {
-                new CheckedItem { ID = ExtraPayoutMapType.SabaLuckySpin, Name = _cacheRefAdapter.GetBettype((int)BetType.SabaLuckySpin), Checked = true },
-                new CheckedItem { ID = ExtraPayoutMapType.SabaLoyaltyPointsExchange, Name = _cacheRefAdapter.GetBettype((int)BetType.SabaLoyaltyPointsExchange), Checked = true },
-                new CheckedItem { ID = ExtraPayoutMapType.SabaRedEnvelope, Name = _cacheRefAdapter.GetBettype((int)BetType.SabaRedEnvelope), Checked = true }
-            });
-            }
+            AddPromotionTypesForProductSPR(promotionTypeList, productCodeList);
 
             if (productCodeList.IsPresent(_ => _ == Product.CC))
             {
@@ -121,6 +113,24 @@
             }
 
             return promotionTypeList;
+        }
+
+        private void AddPromotionTypesForProductSPR(List<CheckedItem> promotionTypeList, IEnumerable<string> productCodeList)
+        {
+            if (productCodeList.IsPresent(_ => _ == Product.SPR))
+            {
+                promotionTypeList.AddRange(new List<CheckedItem>
+                {
+                    new CheckedItem { ID = ExtraPayoutMapType.SabaLuckySpin,
+                        Name = $"{ViewResources.SBPromotion} - {_cacheRefAdapter.GetBettype((int)BetType.SabaLuckySpin)}", Checked = true },
+                    new CheckedItem { ID = ExtraPayoutMapType.SabaLoyaltyPointsExchange,
+                        Name = $"{ViewResources.SBPromotion} - {_cacheRefAdapter.GetBettype((int)BetType.SabaLoyaltyPointsExchange)}", Checked = true },
+                    new CheckedItem { ID = ExtraPayoutMapType.SabaRedEnvelope,
+                        Name = $"{ViewResources.SBPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.SabaRedEnvelope)}", Checked = true },
+                    new CheckedItem { ID = ExtraPayoutMapType.SabaCasinoRoyaleTournamentPrize,
+                        Name = $"{ViewResources.CasinoPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.SabaCasinoRoyaleTournamentPrize)}", Checked = true }
+                });
+            }
         }
 
         private IList<ProductOption> AddPlayerTipsProDuct(IList<ProductOption> productList)

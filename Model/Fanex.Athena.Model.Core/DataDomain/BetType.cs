@@ -303,6 +303,8 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         TIPStreamerTips = 8700,
 
-        SabaCasinoRoyaleTournamentPrize = 17006
+        SabaCasinoRoyaleTournamentPrize = 17006,
+
+        SabaRewardRiskFreeRebate = 17007
     }
 }

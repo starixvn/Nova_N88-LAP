@@ -13,6 +13,7 @@ export const ApiUrl = {
 export const headerText = {
     date: LangHelper.getSingleResource('Date'),
     refno: LangHelper.getSingleResource('RefNo'),
+    betID: LangHelper.getSingleResource('BetID'),
     externalId: LangHelper.getSingleResource('ExternalId'),
     systemId: LangHelper.getSingleResource('SystemId'),
     currency: LangHelper.getSingleResource('Currency'),

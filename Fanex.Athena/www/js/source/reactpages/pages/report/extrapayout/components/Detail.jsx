@@ -63,7 +63,7 @@ export const Detail = (props) => {
                         <Table
                             autoWidth={false}
                             autoHeight={false}
-                            width={980}
+                            width={1080}
                             bodyHeight={430}
                             header={renderDetailHeader()}
                             body={renderDetailDataSection(data.data)}

@@ -39,5 +39,7 @@
         public const int TIPStreamerTips = 7401;
 
         public const int SabaCasinoRoyaleTournamentPrize = 3706;
+
+        public const int SabaRewardRiskFreeRebate = 3707;
     }
 }

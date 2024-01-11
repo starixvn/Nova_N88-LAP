@@ -3155,4 +3155,7 @@
   <data name="SBPromotion" xml:space="preserve">
     <value>Sportsbook Promotion</value>
   </data>
+  <data name="ExtraPayoutBetIDTooltip" xml:space="preserve">
+    <value>Data is available only for Sportsbook Promotion - Saba Reward Risk-free Rebate</value>
+  </data>
 </root>

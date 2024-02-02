@@ -1,15 +1,12 @@
 ﻿namespace Fanex.Athena.Controllers
 {
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
-    using System.Net.Mime;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using DataAccess.Core.Configuration.Interfaces;
     using Extension.Utility.Interfaces;
-    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
@@ -72,33 +69,7 @@
         private static string AddSpecialProducts(string content, IEnumerable<Product> products)
         {
             var customcontent = AddCasinoProducts(content, products);
-            customcontent = RemoveProductSection(customcontent, products, ProductTypes.VirtualSports, "VS");
-            customcontent = RemoveProductSection(customcontent, products, ProductTypes.VirtualSports2, "VS2");
-            customcontent = RemoveProductSection(customcontent, products, ProductTypes.VS3, "VS3");
             return customcontent;
-        }
-
-        private static string RemoveProductSection(string content, IEnumerable<Product> products, int productId, string productCode)
-        {
-            var openingTag = "{" + productCode + "-productlist-section}";
-
-            var customContent = content;
-            if (customContent.Contains(openingTag))
-            {
-                if (products.Any(x => x.ProductID == productId))
-                {
-                    var closingTag = "{/" + productCode + "-productlist-section}";
-                    customContent = customContent.Replace(openingTag, string.Empty);
-                    customContent = customContent.Replace(closingTag, string.Empty);
-                }
-                else
-                {
-                    var pattern = @"\{" + productCode + @"-productlist-section\}[\s\S]*{/" + productCode + @"-productlist-section\}";
-                    customContent = new Regex(pattern).Replace(customContent, string.Empty);
-                }
-            }
-
-            return customContent;
         }
 
         private string AddBalanceUpDate(string content)

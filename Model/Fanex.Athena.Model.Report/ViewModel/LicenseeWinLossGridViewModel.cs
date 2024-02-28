@@ -88,8 +88,6 @@ namespace Fanex.Athena.Model.Report.ViewModel
 
         public decimal LicenseeWLCO { get; set; }
 
-        public decimal LicenseeWLVS2 { get; set; }
-
         public decimal LicenseeWLLT { get; set; }
 
         public decimal LicenseeWLPP { get; set; }
@@ -106,19 +104,14 @@ namespace Fanex.Athena.Model.Report.ViewModel
 
         public decimal LicenseeWLVGA { get; set; }
 
-        public decimal LicenseeWLVS3 { get; set; }
-
-        public decimal LicenseeWLLG { get; set; }
-
         public virtual decimal TotalLicenseeWL
         {
             get
             {
                 return LicenseeWLBA + LicenseeWLNG + LicenseeWLSB + LicenseeWLVS + LicenseeWLCS +
-                    LicenseeWLKN + LicenseeWLBT +
-                    LicenseeWLCO + LicenseeWLVS2 + LicenseeWLLT + LicenseeWLPP +
-                    LicenseeWLCC + LicenseeWLVRG + LicenseeWLTG + LicenseeWLI4D +
-                    LicenseeWLSLT + LicenseeWLVGA + LicenseeWLVS3 + LicenseeWLLG;
+                    LicenseeWLKN + LicenseeWLBT + LicenseeWLCO + LicenseeWLLT + LicenseeWLPP +
+                    LicenseeWLCC + LicenseeWLVRG + LicenseeWLTG + LicenseeWLI4D + LicenseeWLSLT +
+                    LicenseeWLVGA;
             }
         }
 
@@ -145,8 +138,6 @@ namespace Fanex.Athena.Model.Report.ViewModel
 
         public decimal TurnOverBT { get; set; }
 
-        public decimal TurnOverVS2 { get; set; }
-
         public decimal TurnOverLT { get; set; }
 
         public decimal TurnOverPP { get; set; }
@@ -163,19 +154,13 @@ namespace Fanex.Athena.Model.Report.ViewModel
 
         public decimal TurnOverVGA { get; set; }
 
-        public decimal TurnOverVS3 { get; set; }
-
-        public decimal TurnOverLG { get; set; }
-
         public virtual decimal TotalTurnOver
         {
             get
             {
                 return TurnOverBA + TurnOverNG + TurnOverSB + TurnOverVS + TurnOverCS +
-                    TurnOverKN + TurnOverBT +
-                    TurnOverVS2 + TurnOverLT + TurnOverPP + TurnOverCC +
-                    TurnOverVRG + TurnOverTG + TurnOverI4D +
-                    TurnOverSLT + TurnOverVGA + TurnOverVS3 + TurnOverLG;
+                    TurnOverKN + TurnOverBT + TurnOverLT + TurnOverPP + TurnOverCC +
+                    TurnOverVRG + TurnOverTG + TurnOverI4D + TurnOverSLT + TurnOverVGA;
             }
         }
 

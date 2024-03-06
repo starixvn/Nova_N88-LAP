@@ -8,7 +8,7 @@
 		<Function Name="LicenseeWinLoss" Product="SB,BA,NG,VS,CS,KN,CO,LT,PP,CC,VRG,TG,I4D,VGA"></Function>
 		<Function Name="CustomerWinLoss" Product="SB,BA,NG,VS,CS,KN,CO,LT,PP,CC,VRG,TG,I4D,VGA"></Function>
 		<Function Name="ResultPage_GetNormalSports" Product="SB,BA,NG,VS,KN,LT,I4D"></Function>
-		<Function Name="ExtraPayout" Product="SPR,VGA,CC"></Function>
+		<Function Name="ExtraPayout" Product="SB,SPR,VGA,CC"></Function>
 	</Group>
 
 	<Group Name="BetList">

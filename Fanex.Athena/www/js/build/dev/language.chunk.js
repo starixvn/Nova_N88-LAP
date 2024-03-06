@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 11/7/2023 10:38:14 AM
+﻿// Generated at: 1/9/2024 9:27:38 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -243,6 +243,7 @@ CashOutTickets:"Cash Out Tickets",
 CashOutTicketsList:"Cash Out Ticket[s]",
 CashOutTimes:"Cash Out Times",
 CashOutValue:"Cash Out Value",
+CasinoPromotion:"Casino Promotion",
 CasinoTransfer:"Casino Transfer",
 ChangePassword:"Change Password",
 ChangePercent:"% Change",
@@ -405,6 +406,7 @@ ExportToExcel:"Export To Excel",
 ExternalId:"External ID",
 ExternalIdOrSystemId:"External ID or System ID",
 ExtraPayout:"Extra Payout",
+ExtraPayoutBetIDTooltip:"Data is available only for Sportsbook Promotion - Saba Reward Risk-free Rebate",
 Fail:"Fail",
 Feb:"Feb",
 February:"February",
@@ -806,6 +808,7 @@ Saturday:"Saturday",
 Save:"Save",
 SB:"SB",
 SBComm:"SB Comm",
+SBPromotion:"Sportsbook Promotion",
 Score:"Score",
 SearchByExactlyIp:"Search by Exactly IP",
 SearchResult:"Search Result",

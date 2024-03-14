@@ -795,7 +795,7 @@ const defaultDataSetItem = {
   backgroundColor: backgroundColorList
 };
 const defaultChartData = {
-  labels: [_jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__["default"].getText('Won'), _jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__["default"].getText('Lose'), _jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__["default"].getText('Draw'), _jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__["default"].getText('Cancelled')],
+  labels: [_jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__["default"].getText('Won'), _jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__["default"].getText('Lost'), _jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__["default"].getText('Draw'), _jsroot_lib_clientResourceManager__WEBPACK_IMPORTED_MODULE_6__["default"].getText('Cancelled')],
   datasets: [],
   borderWidth: 2,
   hoverBorderWidth: 10

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 1/9/2024 9:27:38 AM
+// Generated at: 3/14/2024 10:23:36 AM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -568,7 +568,7 @@ window._language_en_US = {
   Login: "Login",
   LogInfo: "Log Info",
   Logout: "Logout",
-  Lose: "Lose",
+  Lost: "Lost",
   LrfNotification: "LRF-Notification",
   MacauNotOfferCurrency: "Macau is not offered for this currency.",
   Main: "Main",

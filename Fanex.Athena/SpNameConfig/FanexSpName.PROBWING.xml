@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="31" SiteName="LRF">
 	<Function Name="Licensee">
-		<Setting Key="Lrf_LicenseeProduct3rdSel" SpName="Lrf_LicenseeProduct3rdSel" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-		<Setting Key="Lrf_SelBalanceUpDay" SpName="Lrf_SelBalanceUpDay" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_CheckBelonging_GetAgentInfo" SpName="Lrf_CheckBelonging_GetAgentInfo" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_LicenseeProductSel" SpName="Lrf_LicenseeProductSel" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-		<Setting Key="Lrf_LicenseeSelBySiteName" SpName="Lrf_LicenseeSelBySiteName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet">
+		<Setting Key="Lrf_LicenseeProduct3rdSel" SpName="Lrf_LicenseeProduct3rdSel" DbName="DBLIC.bodb_Licensee.wsv_lap" />
+		<Setting Key="Lrf_SelBalanceUpDay" SpName="Lrf_SelBalanceUpDay" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="Lrf_CheckBelonging_GetAgentInfo" SpName="Lrf_CheckBelonging_GetAgentInfo" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="Lrf_LicenseeProductSel" SpName="Lrf_LicenseeProductSel" DbName="DBLIC.bodb_Licensee.wsv_lap" />
+		<Setting Key="Lrf_LicenseeSelBySiteName" SpName="Lrf_LicenseeSelBySiteName" DbName="DBLIC.bodb_Licensee.wsv_lap">
 			<Mapping DataField="LicenseeID" ObjectProperty="Id" />
 			<Mapping DataField="LicenseeName" ObjectProperty="Name" />
 			<Mapping DataField="IsAllowedMemberComm" ObjectProperty="IsAllowedCustomerComm" />
 			<Mapping DataField="EnableBA" ObjectProperty="IsEnableBA" />
 		</Setting>
-		<Setting Key="N88_SelAgentListByLicensee" SpName="N88_SelAgentListByLicensee" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet">
+		<Setting Key="N88_SelAgentListByLicensee" SpName="N88_SelAgentListByLicensee" DbName="DBLIC.bodb_Licensee.wsv_lap">
 			<Mapping DataField="Currency" ObjectProperty="CurrencyId" />
 		</Setting>
-		<Setting Key="N88_SelLicenseeInfo" SpName="N88_SelLicenseeInfo" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet">
+		<Setting Key="N88_SelLicenseeInfo" SpName="N88_SelLicenseeInfo" DbName="DBLIC.bodb_Licensee.wsv_lap">
 			<Mapping DataField="LicenseeId" ObjectProperty="Id" />
 			<Mapping DataField="LicenseeName" ObjectProperty="Name" />
 			<Mapping DataField="IsAllowedMemberComm" ObjectProperty="IsAllowedCustomerComm" />
@@ -23,93 +23,93 @@
 	</Function>
 
 	<Function Name="Report">
-		<Setting Key="Lrf_Rpt_LicWinloss" SpName="Lrf_Rpt_LicWinloss" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_Rpt_LicWinlossDetail" SpName="Lrf_Rpt_LicWinlossDetail" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_Rpt_LicWinlossDetail_Ag" SpName="Lrf_Rpt_LicWinlossDetail_Ag" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_SportsGetAll" SpName="Lrf_SportsGetAll" DbName="DBEXT.bodb02.bodbLicenseeNet"></Setting>
-		<Setting Key="Lrf_Rpt_WinLoss" SpName="Lrf_Rpt_WinLoss" DbName="DBEXT.bodb02.bodbLicenseeNet"></Setting>
-		<Setting Key="Lrf_AbnormalBet_SubIssueSel" SpName="Lrf_AbnormalBet_SubIssueSel" DbName="DBWH.bodb_DWRS.bodbLicenseeNet" />
+		<Setting Key="Lrf_Rpt_LicWinloss" SpName="Lrf_Rpt_LicWinloss" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="Lrf_Rpt_LicWinlossDetail" SpName="Lrf_Rpt_LicWinlossDetail" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="Lrf_Rpt_LicWinlossDetail_Ag" SpName="Lrf_Rpt_LicWinlossDetail_Ag" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="Lrf_SportsGetAll" SpName="Lrf_SportsGetAll" DbName="DBEXT.bodb02.wsv_lap"></Setting>
+		<Setting Key="Lrf_Rpt_WinLoss" SpName="Lrf_Rpt_WinLoss" DbName="DBEXT.bodb02.wsv_lap"></Setting>
+		<Setting Key="Lrf_AbnormalBet_SubIssueSel" SpName="Lrf_AbnormalBet_SubIssueSel" DbName="DBWH.bodb_DWRS.wsv_lap" />
 	</Function>
 
 	<Function Name="CustomerInformation">
-		<Setting Key="Lrf_CustomerSelUserSearch" SpName="Lrf_CustomerSelUserSearch" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-		<Setting Key="Lrf_CheckBelonging_ValidateProduct" SpName="Lrf_CheckBelonging_ValidateProduct" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
+		<Setting Key="Lrf_CustomerSelUserSearch" SpName="Lrf_CustomerSelUserSearch" DbName="DBLIC.bodb_Licensee.wsv_lap" />
+		<Setting Key="Lrf_CheckBelonging_ValidateProduct" SpName="Lrf_CheckBelonging_ValidateProduct" DbName="DBLIC.bodb_Licensee.wsv_lap" />
 	</Function>
 
 	<Function Name="PlayerAdmin">
-		<Setting Key="N88_CustomerSelByUsername" SpName="N88_CustomerSelByUsername" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_CustomerSelByCustid" SpName="Lrf_CustomerSelByCustid" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_BATimeCheck" SpName="Lrf_BATimeCheck" DbName="DBCUST.CustDB.bodbLicenseeNet" />
-		<Setting Key="Lrf_CustomerUpdMemberBAStatus" SpName="Lrf_CustomerUpdMemberBAStatus" DbName="DBCUST.CustDB.bodbLicenseeNet" />
-		<Setting Key="Lrf_CustomerUpdSpecialLevel" SpName="Lrf_CustomerUpdSpecialLevel" DbName="DBCUST.CustDB.bodbLicenseeNet" />
-		<Setting Key="Lrf_CustomerUpdUgroup" SpName="Lrf_CustomerUpdUgroup" DbName="DBCUST.CustDB.bodbLicenseeNet" />
+		<Setting Key="N88_CustomerSelByUsername" SpName="N88_CustomerSelByUsername" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="Lrf_CustomerSelByCustid" SpName="Lrf_CustomerSelByCustid" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="Lrf_BATimeCheck" SpName="Lrf_BATimeCheck" DbName="DBCUST.CustDB.wsv_lap" />
+		<Setting Key="Lrf_CustomerUpdMemberBAStatus" SpName="Lrf_CustomerUpdMemberBAStatus" DbName="DBCUST.CustDB.wsv_lap" />
+		<Setting Key="Lrf_CustomerUpdSpecialLevel" SpName="Lrf_CustomerUpdSpecialLevel" DbName="DBCUST.CustDB.wsv_lap" />
+		<Setting Key="Lrf_CustomerUpdUgroup" SpName="Lrf_CustomerUpdUgroup" DbName="DBCUST.CustDB.wsv_lap" />
 	</Function>
 
 	<Function Name="Common">
-		<Setting Key="Lrf_SelBetTypeBySport" SpName="Lrf_SelBetTypeBySport" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-		<Setting Key="Lrf_SelLeagueBySport" SpName="Lrf_SelLeagueBySport" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-		<Setting Key="Lrf_SelMatchByLeague" SpName="Lrf_SelMatchByLeague" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-		<Setting Key="Lrf_SelSportDetail" SpName="Lrf_SelSportDetail" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-		<Setting Key="Lrf_SelBetTypesByProduct" SpName="Lrf_SelBetTypesByProduct" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" />
-		<Setting Key="N88_GetListGameType" SpName="N88_GetListGameType" DbName="DBN88.bodb_N88.bodbLicenseeNet">
+		<Setting Key="Lrf_SelBetTypeBySport" SpName="Lrf_SelBetTypeBySport" DbName="DBLIC.bodb_Licensee.wsv_lap" />
+		<Setting Key="Lrf_SelLeagueBySport" SpName="Lrf_SelLeagueBySport" DbName="DBLIC.bodb_Licensee.wsv_lap" />
+		<Setting Key="Lrf_SelMatchByLeague" SpName="Lrf_SelMatchByLeague" DbName="DBLIC.bodb_Licensee.wsv_lap" />
+		<Setting Key="Lrf_SelSportDetail" SpName="Lrf_SelSportDetail" DbName="DBLIC.bodb_Licensee.wsv_lap" />
+		<Setting Key="Lrf_SelBetTypesByProduct" SpName="Lrf_SelBetTypesByProduct" DbName="DBLIC.bodb_Licensee.wsv_lap" />
+		<Setting Key="N88_GetListGameType" SpName="N88_GetListGameType" DbName="DBN88.bodb_N88.wsv_lap">
 			<Mapping DataField="Type" ObjectProperty="Id" />
 			<Mapping DataField="TypeName" ObjectProperty="Name" />
 		</Setting>
-		<Setting Key="N88_SelCurrency" SpName="N88_SelCurrency" DbName="DBN88.bodb_N88.bodbLicenseeNet">
+		<Setting Key="N88_SelCurrency" SpName="N88_SelCurrency" DbName="DBN88.bodb_N88.wsv_lap">
 			<Mapping DataField="Currency" ObjectProperty="ID" />
 			<Mapping DataField="CurrencyName" ObjectProperty="Name" />
 		</Setting>
 	</Function>
 
 	<Function Name="CustomerLog">
-		<Setting Key="Lrf_UserLog_LoginSel" SpName="Lrf_UserLog_LoginSel" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="Lrf_CustomerSettingLog_Sel" SpName="Lrf_CustomerSettingLog_Sel" DbName="DBLOG.bodb_CustomerLog.bodbLicenseeNet" />
-		<Setting Key="Lrf_GroupCommLog_Sel" SpName="Lrf_GroupCommLog_Sel" DbName="DBLOG.bodb_CustomerLog.bodbLicenseeNet" />
+		<Setting Key="Lrf_UserLog_LoginSel" SpName="Lrf_UserLog_LoginSel" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="Lrf_CustomerSettingLog_Sel" SpName="Lrf_CustomerSettingLog_Sel" DbName="DBLOG.bodb_CustomerLog.wsv_lap" />
+		<Setting Key="Lrf_GroupCommLog_Sel" SpName="Lrf_GroupCommLog_Sel" DbName="DBLOG.bodb_CustomerLog.wsv_lap" />
 
-		<Setting Key="WriteLog_UserLog_UserControl" SpName="WriteLog_UserLog_UserControl" DbName="DBLOG.bodb_CustomerLog.bodbLicenseeNet" />
+		<Setting Key="WriteLog_UserLog_UserControl" SpName="WriteLog_UserLog_UserControl" DbName="DBLOG.bodb_CustomerLog.wsv_lap" />
 	</Function>
 
 	<Function Name="Account">
-		<Setting Key="N88_User_Search" SpName="N88_User_Search" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_User_Insert" SpName="N88_User_Insert" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_User_Update" SpName="N88_User_Update" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_User_GetById" SpName="N88_User_GetById" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_Site_GetById" SpName="N88_Site_GetById" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_User_AssignFunction" SpName="N88_User_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_Function_GetByGroupAndSite" SpName="N88_Function_GetByGroupAndSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
-		<Setting Key="N88_Function_GetBySite" SpName="N88_Function_GetBySite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
-		<Setting Key="N88_User_UpdatePassword" SpName="N88_User_UpdatePassword" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_User_UpdateSite" SpName="N88_User_UpdateSite" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_Setting_GetByUser" SpName="N88_Setting_GetByUser" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_Setting_UpdateByUser" SpName="N88_Setting_UpdateByUser" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+		<Setting Key="N88_User_Search" SpName="N88_User_Search" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_User_Insert" SpName="N88_User_Insert" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_User_Update" SpName="N88_User_Update" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_User_GetById" SpName="N88_User_GetById" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Site_GetById" SpName="N88_Site_GetById" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_User_AssignFunction" SpName="N88_User_AssignFunction" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Function_GetByGroupAndSite" SpName="N88_Function_GetByGroupAndSite" DbName="DBN88POL.N88_UserControl.wsv_lap"></Setting>
+		<Setting Key="N88_Function_GetBySite" SpName="N88_Function_GetBySite" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBN88POL.N88_UserControl.wsv_lap"></Setting>
+		<Setting Key="N88_User_UpdatePassword" SpName="N88_User_UpdatePassword" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_User_UpdateSite" SpName="N88_User_UpdateSite" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Setting_GetByUser" SpName="N88_Setting_GetByUser" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Setting_UpdateByUser" SpName="N88_Setting_UpdateByUser" DbName="DBN88POL.N88_UserControl.wsv_lap" />
 	</Function>
 
 	<Function Name="Group">
-		<Setting Key="N88_Group_GetAllWithNumOfUser" SpName="N88_Group_GetAllWithNumOfUser" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_Group_Insert" SpName="N88_Group_Insert" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
-		<Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
-		<Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
-		<Setting Key="N88_Group_GetById" SpName="N88_Group_GetById" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
-		<Setting Key="N88_Group_GetByName" SpName="N88_Group_GetByName" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
-		<Setting Key="N88_Function_GetByUserAndSiteIncludeGroup" SpName="N88_Function_GetByUserAndSiteIncludeGroup" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet"></Setting>
+		<Setting Key="N88_Group_GetAllWithNumOfUser" SpName="N88_Group_GetAllWithNumOfUser" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Group_Insert" SpName="N88_Group_Insert" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBN88POL.N88_UserControl.wsv_lap"></Setting>
+		<Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBN88POL.N88_UserControl.wsv_lap"></Setting>
+		<Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBN88POL.N88_UserControl.wsv_lap"></Setting>
+		<Setting Key="N88_Group_GetById" SpName="N88_Group_GetById" DbName="DBN88POL.N88_UserControl.wsv_lap"></Setting>
+		<Setting Key="N88_Group_GetByName" SpName="N88_Group_GetByName" DbName="DBN88POL.N88_UserControl.wsv_lap"></Setting>
+		<Setting Key="N88_Function_GetByUserAndSiteIncludeGroup" SpName="N88_Function_GetByUserAndSiteIncludeGroup" DbName="DBN88POL.N88_UserControl.wsv_lap"></Setting>
 	</Function>
 
 	<Function Name="Log">
-		<Setting Key="N88_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
-		<Setting Key="N88_Admin_LogExecSp_Search" SpName="N88_Admin_LogExecSp_Search" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
-		<Setting Key="N88_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88LOG.bodb_N88LOG.bodbLicenseeNet" />
+		<Setting Key="N88_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88LOG.bodb_N88LOG.wsv_lap" />
+		<Setting Key="N88_Admin_LogExecSp_Search" SpName="N88_Admin_LogExecSp_Search" DbName="DBN88LOG.bodb_N88LOG.wsv_lap" />
+		<Setting Key="N88_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88LOG.bodb_N88LOG.wsv_lap" />
 	</Function>
 
 	<Function Name="Notification">
-		<Setting Key="Lrf_AmendmentTicketListingSel" SpName="Lrf_AmendmentTicketListingSel" DbName="DBEXT.bodb02.bodbLicenseeNet" />
-		<Setting Key="N88_MessageListSel" SpName="N88_MessageListSel" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
-		<Setting Key="N88_MessageUserIns" SpName="N88_MessageUserIns" DbName="DBN88POL.N88_UserControl.bodbLicenseeNet" />
+		<Setting Key="Lrf_AmendmentTicketListingSel" SpName="Lrf_AmendmentTicketListingSel" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="N88_MessageListSel" SpName="N88_MessageListSel" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_MessageUserIns" SpName="N88_MessageUserIns" DbName="DBN88POL.N88_UserControl.wsv_lap" />
 	</Function>
 </Functions>
 		

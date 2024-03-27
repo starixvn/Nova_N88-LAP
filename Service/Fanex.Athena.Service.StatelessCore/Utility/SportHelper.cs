@@ -14,6 +14,7 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
             { (int)SportType.SabaCricket, ViewResources.Cricket },
             { (int)SportType.SabaFutsal, ViewResources.Futsal },
             { (int)SportType.SabaTennis, ViewResources.Tennis },
+            { (int)SportType.SabaIceHockey, ViewResources.IceHockey },
             { (int)SportType.SabaSoccerPingoal, ViewResources.SoccerPinGoal },
             { (int)SportType.SabaBasketballPinGoal, ViewResources.BasketballPinGoal },
             { (int)SportType.SabaESportsPinGoal, ViewResources.ESportsPinGoal }

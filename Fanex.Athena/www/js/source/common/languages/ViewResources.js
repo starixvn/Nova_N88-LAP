@@ -1,4 +1,4 @@
-﻿// Generated at: 3/14/2024 10:23:36 AM
+﻿// Generated at: 3/27/2024 3:03:49 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -386,6 +386,7 @@ HTFT:"HT/FT",
 HttpError_403:"Access denied",
 HttpError_404:"Page not found, please check the address",
 HttpError_Default:"Oops... you are here because of a system error, please notify the administrators",
+IceHockey:"Ice Hockey",
 Inactive:"Inactive",
 IncludeDrawData:"Include Draw data",
 IncludeFreeSpins:"Include Free Spins",

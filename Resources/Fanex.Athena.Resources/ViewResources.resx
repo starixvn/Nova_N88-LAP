@@ -3158,4 +3158,7 @@
   <data name="ExtraPayoutBetIDTooltip" xml:space="preserve">
     <value>Data is available only for Sportsbook Promotion - Saba Reward Risk-free Rebate</value>
   </data>
+  <data name="IceHockey" xml:space="preserve">
+    <value>Ice Hockey</value>
+  </data>
 </root>

@@ -219,18 +219,6 @@ class BetList {
         return url;
     }
 
-    getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType, currencyName) {
-        let url = rootUrl + 'ResultReport/VGaming';
-        url = QueryString.setParam(url, 'custid', custid);
-        url = QueryString.setParam(url, 'gameId', gameId);
-        url = QueryString.setParam(url, 'siteId', siteId);
-        url = QueryString.setParam(url, 'gameRoundId', gameRoundId);
-        url = QueryString.setParam(url, 'sportType', sportType);
-        url = QueryString.setParam(url, 'currencyName', currencyName);
-
-        return url;
-    }
-
     getThirdPartyProductResultUrl(rootUrl, custId, transId3rd, gameId3rd, currencyId, siteId, betTypeId, productPath) {
         let url = rootUrl + 'ThirdPartyResultPopup/Index';
         url = QueryString.setParam(url, 'custId', custId);

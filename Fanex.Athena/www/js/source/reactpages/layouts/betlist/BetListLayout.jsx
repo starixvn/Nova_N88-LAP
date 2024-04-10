@@ -51,7 +51,7 @@ class BetListLayout extends Component {
                 this._showThirdPartyResult(url, title);
             }
             else if (sporttype === SportType.VGA || sporttype === SportType.VGA_FreeBets) {
-                const url = BetList.getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype, currency);
+                const url = BetList.getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'VGaming');
                 this._showThirdPartyResult(url, title);
             }
             else if (sporttype === SportType.VS3) {

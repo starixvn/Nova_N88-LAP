@@ -3518,7 +3518,7 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'SportsLottery');
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA || sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VGA_FreeBets) {
-        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVGamingResultUrl(rootUrl, custid, bettype, extension2, transdecs, sporttype, currency);
+        const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getThirdPartyProductResultUrl(rootUrl, custid, transdecs, extension2, extension1, siteId, bettype, 'VGaming');
         this._showThirdPartyResult(url, title);
       } else if (sporttype === _lib_constants__WEBPACK_IMPORTED_MODULE_5__["SportType"].VS3) {
         const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getVS3ResultUrl(rootUrl, transdecs, sporttype);
@@ -4005,16 +4005,6 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'bettype', betTypeId);
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'BaseCurrency', baseCurrency);
-    return url;
-  }
-  getVGamingResultUrl(rootUrl, custid, gameId, siteId, gameRoundId, sportType, currencyName) {
-    let url = rootUrl + 'ResultReport/VGaming';
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custid', custid);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameId', gameId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'siteId', siteId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'gameRoundId', gameRoundId);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'sportType', sportType);
-    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'currencyName', currencyName);
     return url;
   }
   getThirdPartyProductResultUrl(rootUrl, custId, transId3rd, gameId3rd, currencyId, siteId, betTypeId, productPath) {

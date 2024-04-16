@@ -146,5 +146,11 @@
 
             return productCodes + "," + string.Join(",", offeredSubProductList);
         }
+
+        public bool IsOfferCashOutProduct(int licenseeId, string languageCode)
+        {
+            var originalProducts = GetProductList(licenseeId, languageCode);
+            return originalProducts.Any(_ => _.ProductCode == Product.CO);
+        }
     }
 }

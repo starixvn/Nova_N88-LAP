@@ -1,5 +1,14 @@
 ﻿namespace Fanex.Athena.Api.Base
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Web.Http;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users.Interfaces;
@@ -10,14 +19,6 @@
     using Newtonsoft.Json.Serialization;
     using NPOI.SS.UserModel;
     using ONEbook.UM.Filters;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Web.Http;
 
     [CheckUMFilter]
     [CLSCompliant(false)]
@@ -30,12 +31,22 @@
             _langService = languageService ?? throw new ArgumentNullException(nameof(languageService));
         }
 
+        protected virtual JsonSerializerSettings PascalCassJsonSetting { get; } = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            ContractResolver = new DefaultContractResolver()
+        };
+
         protected string Language => SessionService.UserSession.Language;
+
         protected IEnumerable<Brand> BrandList => SessionService.UserSession.BrandList;
+
         protected IDictionary<int, int[]> AgentList => AuthParameterHelper.GetAgentList(BrandList, BrandList.Select(_ => _.Id).ToArray());
+
         protected IDictionary<int, string> CurrencyList => AuthParameterHelper.GetCurrencyList(BrandList);
 
         public IProductService ProductService { get; set; }
+
         public ISessionService SessionService { get; set; }
 
         [CLSCompliant(false)]
@@ -98,6 +109,21 @@
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             ContractResolver = new CamelCasePropertyNamesContractResolver()
         };
+
+        protected internal JsonNetResult<T> JsonNetResult<T>(T content)
+        {
+            return JsonNetResult(content, PascalCassJsonSetting);
+        }
+
+        protected internal JsonNetResult<T> JsonNetResult<T>(T content, JsonSerializerSettings serializerSettings)
+        {
+            return JsonNetResult(content, serializerSettings, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true));
+        }
+
+        protected internal virtual JsonNetResult<T> JsonNetResult<T>(T content, JsonSerializerSettings serializerSettings, Encoding encoding)
+        {
+            return new JsonNetResult<T>(content, serializerSettings, encoding, this.Request);
+        }
 
         protected DateTime? GetUserLimitDataRange(DateTime? defaultDay, int? timeZone)
         {

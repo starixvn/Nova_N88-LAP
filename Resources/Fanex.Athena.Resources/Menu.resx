@@ -181,4 +181,7 @@
   <data name="AbnormalBetReport" xml:space="preserve">
     <value>Abnormal Bet</value>
   </data>
+  <data name="SabaWinLossAnalysis" xml:space="preserve">
+    <value>Saba Win Loss Analysis</value>
+  </data>
 </root>

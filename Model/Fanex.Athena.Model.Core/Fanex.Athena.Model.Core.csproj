@@ -86,6 +86,7 @@
     <Compile Include="Configuration\BrandSetting.cs" />
     <Compile Include="Configuration\BrandCollection.cs" />
     <Compile Include="Configuration\BrandElement.cs" />
+    <Compile Include="Constants\HardCodeSportType.cs" />
     <Compile Include="Constants\SystemEnvironment.cs" />
     <Compile Include="DataDomain\BaseCurrencyType.cs" />
     <Compile Include="DataDomain\ExtraPayoutMapType.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="DTO\Common\Licensee.cs" />
     <Compile Include="DTO\Common\Match.cs" />
     <Compile Include="DTO\Common\ResultInfoGeneric.cs" />
+    <Compile Include="DTO\Common\SportForTreeViewItem.cs" />
     <Compile Include="DTO\Common\TpProduct.cs" />
     <Compile Include="DTO\Configuration\MoveBetNotification.cs" />
     <Compile Include="DTO\Configuration\ReportSetting.cs" />

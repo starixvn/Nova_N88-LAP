@@ -3161,6 +3161,36 @@
   <data name="IceHockey" xml:space="preserve">
     <value>Ice Hockey</value>
   </data>
+  <data name="IsGroupInOriginalCurrency" xml:space="preserve">
+    <value>Display group breakdown in original currency</value>
+  </data>
+  <data name="N_A" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="VIPPlayerOnly" xml:space="preserve">
+    <value>VIP Player Only</value>
+  </data>
+  <data name="SabaWinLossAnalysis" xml:space="preserve">
+    <value>Saba Win Loss Analysis</value>
+  </data>
+  <data name="BothGroupByAndBreakdownLevelOption" xml:space="preserve">
+    <value>Both Group By and Breakdown By levels</value>
+  </data>
+  <data name="GroupByLevelOnlyOption" xml:space="preserve">
+    <value>Group By level only</value>
+  </data>
+  <data name="ChooseDataDisplayInExcelMsg" xml:space="preserve">
+    <value>Please choose the data shall display in the excel file:</value>
+  </data>
+  <data name="PlayerWL" xml:space="preserve">
+    <value>Player W/L</value>
+  </data>
+  <data name="PlayerComm" xml:space="preserve">
+    <value>Player Comm</value>
+  </data>
+  <data name="AmountDueToBA" xml:space="preserve">
+    <value>Amount Due To BA</value>
+  </data>
   <data name="BettingTicketCenter_BookedBetNote" xml:space="preserve">
     <value>Data is available within up to 7 days</value>
   </data>
@@ -3190,5 +3220,104 @@
   </data>
   <data name="Unsuccessful" xml:space="preserve">
     <value>Unsuccessful</value>
+  </data>
+  <data name="ProductAB" xml:space="preserve">
+    <value>AllBet</value>
+  </data>
+  <data name="ProductAGC" xml:space="preserve">
+    <value>AG Casino</value>
+    <comment>#19458, #49196</comment>
+  </data>
+  <data name="ProductAP" xml:space="preserve">
+    <value>AdvantPlay</value>
+  </data>
+  <data name="ProductAPM" xml:space="preserve">
+    <value>AdvantPlay Mini</value>
+  </data>
+  <data name="ProductBGG" xml:space="preserve">
+    <value>BG</value>
+  </data>
+  <data name="ProductBT" xml:space="preserve">
+    <value>Bet Trade</value>
+    <comment>#49196</comment>
+  </data>
+  <data name="ProductCG" xml:space="preserve">
+    <value>CG</value>
+  </data>
+  <data name="ProductFGGL" xml:space="preserve">
+    <value>FGG</value>
+  </data>
+  <data name="ProductHB" xml:space="preserve">
+    <value>Habanero</value>
+  </data>
+  <data name="ProductJIG" xml:space="preserve">
+    <value>Jili</value>
+  </data>
+  <data name="ProductJK" xml:space="preserve">
+    <value>Joker</value>
+    <comment>141408</comment>
+  </data>
+  <data name="ProductL22" xml:space="preserve">
+    <value>Live22</value>
+  </data>
+  <data name="ProductLC" xml:space="preserve">
+    <value>Live Casino</value>
+    <comment>117900</comment>
+  </data>
+  <data name="ProductMGRNG" xml:space="preserve">
+    <value>MG-RNG</value>
+  </data>
+  <data name="ProductMXG" xml:space="preserve">
+    <value>MaxGame</value>
+  </data>
+  <data name="ProductParlay" xml:space="preserve">
+    <value>Sportsbook Parlay</value>
+  </data>
+  <data name="ProductPGS" xml:space="preserve">
+    <value>PG Soft</value>
+  </data>
+  <data name="ProductPTCS" xml:space="preserve">
+    <value>Playtech Casino</value>
+    <comment>14488, #49196</comment>
+  </data>
+  <data name="ProductSAG" xml:space="preserve">
+    <value>SA Gaming</value>
+    <comment>128493</comment>
+  </data>
+  <data name="ProductSBC" xml:space="preserve">
+    <value>Saba.club</value>
+    <comment>132702</comment>
+  </data>
+  <data name="ProductSBVS" xml:space="preserve">
+    <value>Saba Virtual Sports</value>
+  </data>
+  <data name="ProductSB_BA" xml:space="preserve">
+    <value>Sportsbook &amp; BA</value>
+  </data>
+  <data name="ProductSEA" xml:space="preserve">
+    <value>SEAL Entertainment</value>
+  </data>
+  <data name="ProductSG" xml:space="preserve">
+    <value>SG</value>
+  </data>
+  <data name="ProductUUSL" xml:space="preserve">
+    <value>UU SLOTS</value>
+  </data>
+  <data name="ProductVB" xml:space="preserve">
+    <value>Macau Games</value>
+    <comment>#55057</comment>
+  </data>
+  <data name="ProductVG" xml:space="preserve">
+    <value>Macau</value>
+    <comment>#49196</comment>
+  </data>
+  <data name="ProductWE" xml:space="preserve">
+    <value>WE Live Casino</value>
+  </data>
+  <data name="ProductWM" xml:space="preserve">
+    <value>WM</value>
+  </data>
+  <data name="ProductYB" xml:space="preserve">
+    <value>YeeBet</value>
   </data>
 </root>

@@ -1,7 +1,12 @@
 ﻿namespace Fanex.Athena.Api.Common.UnitTests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Fanex.Athena.Api.Base;
     using Fanex.Athena.DataAccess.Core.Common.Interfaces;
+    using Fanex.Athena.Extension.Utility.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Athena.Model.Core.MetaModel.Common;
     using Fanex.Athena.Service.Core.Common.Interfaces;
@@ -10,15 +15,11 @@
     using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;
     using NUnit.Framework;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using UnitTest.Common.Helpers;
 
     public class CommonDataApiControllerTest
     {
-        private ISportTypeDataAccess _sportTypeDataAccess = Substitute.For<ISportTypeDataAccess>();
+        private ISportService _sportService = Substitute.For<ISportService>();
 
         private ISessionService _sessionService = Substitute.For<ISessionService>();
 
@@ -45,7 +46,7 @@
         [OneTimeTearDown]
         public void FixtureTearDown()
         {
-            _sportTypeDataAccess = null;
+            _sportService = null;
             _sessionService = null;
             _leagueDataAccess = null;
             _matchDataAccess = null;
@@ -63,7 +64,7 @@
                 var parent = new SportProductItem { ParentId = -1, ID = FakeHelper.Create<int>(), Name = FakeHelper.Create<string>() };
                 var child = new SportProductItem { ParentId = parent.ID, ID = FakeHelper.Create<int>(), Name = FakeHelper.Create<string>() };
 
-                _sportTypeDataAccess.GetSportsAndProducts(
+                _sportService.GetSportsAndProducts(
                  _sessionService.LicenseeSession.LicenseeId,
                  _sessionService.UserSession.Language,
                  productCode).Returns(new List<SportProductItem> { parent, child });
@@ -173,12 +174,13 @@
         {
             return new CommonDataApiController(
                 Substitute.For<ILanguageService>(),
-                _sportTypeDataAccess,
+                _sportService,
                 _sessionService,
                 _leagueDataAccess,
                 _matchDataAccess,
                 _betTypeService,
-                _productService);
+                _productService,
+                Substitute.For<ICustomMemoryCacheService>());
         }
     }
 }

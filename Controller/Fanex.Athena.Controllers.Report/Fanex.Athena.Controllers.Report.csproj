@@ -108,6 +108,7 @@
     <Compile Include="Result\ResultPopup\ThirdPartyResultPopupController.cs" />
     <Compile Include="Result\ResultPopup\VirtualGamesResultPopupController.cs" />
     <Compile Include="Result\ResultReportController.cs" />
+    <Compile Include="WinlossAnalysisReportController.cs" />
     <Compile Include="WinLossReportController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,10 @@
       <Project>{71f95e53-36d0-4091-828d-ed14c9939c35}</Project>
       <Name>Fanex.Athena.Extension</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Fanex.Athena.Service.Customer\Fanex.Athena.Service.Customer.csproj">
+      <Project>{877480BD-4D92-4C3C-B637-1A4CA33BB647}</Project>
+      <Name>Fanex.Athena.Service.Customer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Fanex.Athena.VendorAdapter\Fanex.Athena.VendorAdapter.csproj">
       <Project>{CE1F7641-A14D-4AF6-9BD3-CAD4873669B4}</Project>
       <Name>Fanex.Athena.VendorAdapter</Name>
@@ -148,6 +153,10 @@
     <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Auth\Fanex.Athena.Model.Auth.csproj">
       <Project>{794C0345-2DDD-4FFD-A605-BB96FBB37DE8}</Project>
       <Name>Fanex.Athena.Model.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Model\Fanex.Athena.Model.Customer\Fanex.Athena.Model.Customer.csproj">
+      <Project>{3B212F2F-4DEB-449B-9AE0-36F6E4F49F5F}</Project>
+      <Name>Fanex.Athena.Model.Customer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Service\Fanex.Athena.Service.StatelessCore\Fanex.Athena.Service.StatelessCore.csproj">
       <Project>{DA9A50E3-C62D-4F12-96C2-3AC289D423FE}</Project>

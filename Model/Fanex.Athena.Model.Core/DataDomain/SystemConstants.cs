@@ -8,6 +8,7 @@ namespace Fanex.Athena.Model.Core.DataDomain
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using Fanex.Athena.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -24,7 +25,6 @@ namespace Fanex.Athena.Model.Core.DataDomain
          new List<string> { "EUR", "USD", "GBP" });
 
         public static readonly IReadOnlyDictionary<int, string> BaseCurrencyList = new Dictionary<int, string> {
-
             { BaseCurrencyType.Eur,"EUR" },
             { BaseCurrencyType.Usd,"USD" },
             { BaseCurrencyType.Gbp,"GBP" },
@@ -33,8 +33,11 @@ namespace Fanex.Athena.Model.Core.DataDomain
             { BaseCurrencyType.THB,"THB" },
             { BaseCurrencyType.IDR,"IDR" },
             { BaseCurrencyType.INH,"INH" },
-
         };
 
+        public static IReadOnlyDictionary<int, string> VipOnyList => new Dictionary<int, string> {
+            { 0, ViewResources.No },
+            { 1, ViewResources.Yes },
+        };
     }
 }

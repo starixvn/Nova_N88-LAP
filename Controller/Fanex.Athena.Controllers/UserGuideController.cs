@@ -21,6 +21,8 @@
         private readonly IFileSystem _fileSystem;
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
 
+        private const string LICENSEE_SUFFIX_SECTION = "licensee-section";
+
         public UserGuideController(
             IFileSystem fileSystem,
             IProductService productService,
@@ -42,8 +44,40 @@
             content = content.Replace("{rooturl}", Url.Content("~"));
             content = AddSpecialProducts(content, products);
             content = AddBalanceUpDate(content);
+            content = AddLicenseeSection(content, SessionServiceInstance.LicenseeSession.LicenseeName);
 
             return View("~/Views/UserGuide/Index.cshtml", null, content);
+        }
+
+        private static string AddLicenseeSection(string content, string licenseeName)
+        {
+            var openingTag = $"{{{licenseeName}-{LICENSEE_SUFFIX_SECTION}}}";
+            var closingTag = $"{{/{licenseeName}-{LICENSEE_SUFFIX_SECTION}}}";
+            var customContent = content;
+            if (content.Contains(openingTag))
+            {
+                customContent = Replace(customContent, openingTag, closingTag, true);
+            }
+            return RemoveUnShowLicenseeSection(customContent);
+        }
+
+        private static string RemoveUnShowLicenseeSection(string content)
+        {
+            var customContent = content;
+            var linceseeTagPattern = $"{{[\\w\\d]+-{LICENSEE_SUFFIX_SECTION}}}";
+            var matchItems = new Regex(linceseeTagPattern).Matches(customContent)
+                .OfType<System.Text.RegularExpressions.Match>()
+                .Select(_ => _.Value);
+            foreach (var matchItem in matchItems)
+            {
+                var removeLicenseeNameSection = matchItem.Replace($"-{LICENSEE_SUFFIX_SECTION}}}", string.Empty)
+                    .Replace("{", string.Empty);
+                var openingTag = $"{{{removeLicenseeNameSection}-{LICENSEE_SUFFIX_SECTION}}}";
+                var closingTag = $"{{\\/{removeLicenseeNameSection}-{LICENSEE_SUFFIX_SECTION}}}";
+                var removePattern = $"{openingTag}([\\s\\S]*?){closingTag}";
+                customContent = new Regex(removePattern).Replace(customContent, string.Empty);
+            }
+            return customContent;
         }
 
         private static string AddCasinoProducts(string content, IEnumerable<Product> products)
@@ -69,7 +103,32 @@
         private static string AddSpecialProducts(string content, IEnumerable<Product> products)
         {
             var customcontent = AddCasinoProducts(content, products);
+            customcontent = RemoveProductSection(customcontent, products, ProductTypes.BA, Product.BA);
+            customcontent = RemoveProductSection(customcontent, products, ProductTypes.CashOut, Product.CO);
             return customcontent;
+        }
+
+        private static string RemoveProductSection(string content, IEnumerable<Product> products, int productId, string productCode)
+        {
+            var openingTag = "{" + productCode + "-productlist-section}";
+
+            var customContent = content;
+            if (customContent.Contains(openingTag))
+            {
+                if (products.Any(x => x.ProductID == productId))
+                {
+                    var closingTag = "{/" + productCode + "-productlist-section}";
+                    customContent = customContent.Replace(openingTag, string.Empty);
+                    customContent = customContent.Replace(closingTag, string.Empty);
+                }
+                else
+                {
+                    var pattern = @"\{" + productCode + @"-productlist-section\}([\s\S]*?){/" + productCode + @"-productlist-section\}";
+                    customContent = new Regex(pattern).Replace(customContent, string.Empty);
+                }
+            }
+
+            return customContent;
         }
 
         private string AddBalanceUpDate(string content)
@@ -102,6 +161,25 @@
             filePath = GetDefaultFilePathIfNotExist(language, filePath);
 
             return _fileSystem.ReadFile(filePath);
+        }
+
+        private static string Replace(string content, string openingSectionTag, string closingSectionTag, bool shouldKeepSection)
+        {
+            var result = content;
+            if (content.Contains(openingSectionTag))
+            {
+                if (shouldKeepSection)
+                {
+                    result = result.Replace(openingSectionTag, string.Empty);
+                    result = result.Replace(closingSectionTag, string.Empty);
+                }
+                else
+                {
+                    result = new Regex($@"{openingSectionTag}([\s\S]*?){closingSectionTag}").Replace(result, string.Empty);
+                }
+            }
+
+            return result;
         }
     }
 }

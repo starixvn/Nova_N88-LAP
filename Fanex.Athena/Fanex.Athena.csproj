@@ -315,6 +315,7 @@
     <Content Include="App_Data\UserGuide\BettingTicketCenterSingle\en-US.htm" />
     <Content Include="App_Data\UserGuide\CustomerLog\en-US.htm" />
     <Content Include="App_Data\UserGuide\ExtraPayout\en-US.htm" />
+    <Content Include="App_Data\UserGuide\SabaWinLossAnalysis\en-US.htm" />
     <Content Include="App_Data\UserGuide\WinLossAnalysis\en-US.htm" />
     <Content Include="Content\Account\AccountManagement.css" />
     <Content Include="Content\Account\msgbox-0.0.1.css" />
@@ -504,6 +505,9 @@
     <Content Include="www\css\build\dev\reactpages\vendor.chunk.js" />
     <Content Include="www\css\build\images\bar-chart-icon.svg" />
     <Content Include="www\css\build\images\BottomLine.png" />
+    <Content Include="www\css\build\images\excel-white-icon.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="www\css\build\images\FirstNodeSpan.png" />
     <Content Include="www\css\build\images\line-chart-icon.svg" />
     <Content Include="www\css\build\pro\home.chunk.js" />
@@ -695,6 +699,7 @@
     <Content Include="www\css\build\dev\pages\user\setdatalimits.css.map" />
     <Content Include="Views\Log\_N88_User_Update_Setting.cshtml" />
     <Content Include="Views\Desktop\BetList\BettingTicketCenter\BookedBet.cshtml" />
+    <Content Include="Views\Desktop\Report\WinlossAnalysis\Index.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -733,6 +738,9 @@
     <Content Include="www\js\build\dev\reactpages\report\winloss-nonsports-betlist.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing.chunk.js" />
+    <Content Include="www\js\build\dev\reactpages\report\winlossanalysis.chunk.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="www\js\build\pro\pages\lib\common.chunk.js" />
     <Content Include="www\js\build\pro\pages\lib\jqgrid.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\bettingticketscenter\advancedsearch.chunk.js" />
@@ -757,6 +765,9 @@
     <Content Include="www\js\build\pro\reactpages\report\winloss-nonsports-betlist.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\winloss.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\notification\notification.chunk.js" />
+    <Content Include="www\js\build\pro\reactpages\report\winlossanalysis.chunk.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="www\js\source\common\languages\ViewResources.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1069,6 +1080,36 @@
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\singlecustomer\reducers\index.js" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\running\actions\index.js" />
     <Content Include="www\js\source\reactpages\pages\bettingticketscenter\running\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\actions\dataAction.js" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\actions\index.js" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\components\AppContainer.jsx" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\components\BTCContainer.jsx" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\components\DataGrid.jsx" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\components\FormFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\components\index.jsx" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\components\Note.jsx" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\lib\constants.js" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\lib\gridUtils.js" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\lib\reportExcel.js" />
+    <Content Include="www\js\source\reactpages\pages\exchangevoided\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\actions\bettypeAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\actions\dataAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\actions\filterAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\actions\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\actions\sportAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\actions\types.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\common\constants.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\common\gridUtils.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\common\service.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\components\AppContainer.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\components\DataGrid.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\components\FormFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\components\index.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\reducers\bettypeReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\reducers\dataReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\reducers\filterReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\abnormalbet\reducers\sportReducer.js" />
     <Content Include="www\js\source\reactpages\pages\report\bonusinfo\actions\dataAction.js" />
     <Content Include="www\js\source\reactpages\pages\report\bonusinfo\actions\filterAction.js" />
     <Content Include="www\js\source\reactpages\pages\report\bonusinfo\actions\index.js" />
@@ -1087,6 +1128,23 @@
     <Content Include="www\js\source\reactpages\pages\report\bonusinfo\reducers\dataReducer.js" />
     <Content Include="www\js\source\reactpages\pages\report\bonusinfo\reducers\filterReducer.js" />
     <Content Include="www\js\source\reactpages\pages\report\bonusinfo\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\actions\dataAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\actions\filterAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\actions\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\actions\promotionTypeAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\actions\types.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\common\constants.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\common\gridUtils.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\common\service.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\components\AppContainer.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\components\DataGrid.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\components\Detail.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\components\FormFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\reducers\dataReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\reducers\filterReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\extrapayout\reducers\promotionTypeReducer.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\actions\dataAction.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\actions\filterAction.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\actions\index.js" />
@@ -1115,6 +1173,68 @@
     <Content Include="www\js\source\reactpages\pages\report\marketing\reducers\dataReducer.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\reducers\filterReducer.js" />
     <Content Include="www\js\source\reactpages\pages\report\marketing\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\actions\appDataAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\actions\bettypeAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\actions\dataAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\actions\filterAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\actions\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\actions\sportAction.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\actions\types.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\common\constants.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\common\gridUtils.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\common\grid\BreakdownRow.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\common\grid\TreeViewGridRowNode.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\common\Service.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\AppContainer.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\desktop\DataGrid.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\desktop\FormFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\desktop\GroupByFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\desktop\MainFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\ExcelPopUp.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\BaseCurrencyFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\BetTypeFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\BreakDownOptionFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\CurrencyFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\DateRangeFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\ExcludeTestDataCheckBoxFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\GroupByOptionsFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\GroupInOriginalCurrencyCheckBoxFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\LiveStatusFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\OddsGroupFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\PlatformFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\ProductFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\RiskLevelFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\SearchOption.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\SportFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\StatusFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\StickyIcon.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\SubsidiaryCheckBoxFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\SubsidiaryDropDownFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\UserNameFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\ViewCashOutOnlyFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\VipOnlyFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\hooks\useFilterAction.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\hooks\useFilterHandler.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\hooks\useGroupFilterHandler.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\hooks\useIsDisabledGroupInOriginalCurrency.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\hooks\useRenderRowOption.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\hooks\useValidParam.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\index.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\MobileBreakdownRow.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\MobileDataGrid.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\MobileExpandRowContent.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\MobileFormFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\MobileGroupByFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\MobileGroupByRow.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\MobileGroupByRowList.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\MobileMainFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\mobile\ReportTitleContent.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\reducers\appDataReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\reducers\bettypeReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\reducers\dataReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\reducers\filterReducer.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\reducers\index.js" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\reducers\sportReducer.js" />
     <Content Include="www\js\source\reactpages\pages\report\winloss\actions\filterAction.js" />
     <Content Include="www\js\source\reactpages\pages\report\winloss\actions\gridAction.js" />
     <Content Include="www\js\source\reactpages\pages\report\winloss\actions\index.js" />
@@ -1904,6 +2024,12 @@
     <Content Include="www\css\source\reactpages\pages\report\abnormalbet\index.scss" />
     <Content Include="www\js\build\dev\reactpages\report\abnormalbet.chunk.js.map" />
     <Content Include="www\js\build\dev\reactpages\bettingticketscenter\bookedbet.chunk.js.map" />
+    <Content Include="www\js\build\dev\reactpages\report\marketing.chunk.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\js\build\dev\reactpages\report\winlossanalysis.chunk.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

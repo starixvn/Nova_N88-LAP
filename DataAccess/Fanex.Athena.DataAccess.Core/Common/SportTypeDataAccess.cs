@@ -87,5 +87,15 @@
 
             return result;
         }
+
+        public async Task<IEnumerable<SportForTreeViewItem>> GetSportsForTreeView(int licenseeId, string productCodes)
+        {
+            const string UspName = "LAP_Rpt_WinlossAnalysis_SportSel";
+
+            using (var db = this.GetObjectDb(UspName))
+            {
+                return await db.QueryAsync<SportForTreeViewItem>(new { licenseeId, productCodes });
+            }
+        }
     }
 }

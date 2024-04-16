@@ -10,5 +10,7 @@
         Task<IList<CheckedItem>> GetBettypes(int licenseeId, IList<SportProductItem> sports, string languageCode);
 
         Task<IList<CheckedItem>> GetBettypesByProduct(int licenseeId, string productCode, string languageCode);
+
+        Task<IEnumerable<CheckedItem>> GetBetTypeForProducts(int licenseeId, string lang, string productCodes);
     }
 }

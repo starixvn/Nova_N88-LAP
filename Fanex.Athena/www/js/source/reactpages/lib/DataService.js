@@ -1,47 +1,51 @@
-import axios from 'axios'
-import Site from '@jsroot/lib/site'
-import QueryString from '@jsroot/lib/QueryString';
+import axios from "axios";
+import Site from "@jsroot/lib/site";
+import QueryString from "@jsroot/lib/QueryString";
 
 export default class DataService {
     static apiKeys = {
-        report: 'reportApi',
-        betlist: 'betlistApi'
-    }
+        report: "reportApi",
+        betlist: "betlistApi",
+    };
 
     static buildProxyUrl(apiKey, apiUrl) {
-        const encodeUrl = apiUrl.replace(new RegExp('/', 'g'), '_');
+        const encodeUrl = apiUrl.replace(new RegExp("/", "g"), "_");
         const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
         return proxyUrl;
     }
 
     static getData(url, params) {
-        url = QueryString.setParams(url, params);     
+        url = QueryString.setParams(url, params);
 
         return axios.get(url, {
             headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                '__RequestVerificationToken': Site.getXsrfToken()
-            }
+                "X-Requested-With": "XMLHttpRequest",
+                __RequestVerificationToken: Site.getXsrfToken(),
+            },
         });
     }
 
     static postData(url, params) {
         return axios.post(url, params, {
             headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                '__RequestVerificationToken': Site.getXsrfToken()
-            }
+                "X-Requested-With": "XMLHttpRequest",
+                __RequestVerificationToken: Site.getXsrfToken(),
+            },
         });
     }
 
     static getFile(url, params) {
         return axios.post(url, params, {
-            responseType: 'blob',
+            responseType: "blob",
             headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                '__RequestVerificationToken': Site.getXsrfToken()
-            }
+                "X-Requested-With": "XMLHttpRequest",
+                __RequestVerificationToken: Site.getXsrfToken(),
+            },
         });
+    }
+
+    static genCancellationToken() {
+        return axios.CancelToken.source();
     }
 
     static postProxyData(apiKey, apiUrl, params) {

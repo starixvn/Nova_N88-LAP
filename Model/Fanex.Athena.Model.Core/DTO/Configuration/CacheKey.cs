@@ -11,5 +11,8 @@
         public static readonly string MemorycacheSubsidiaryListByLicensee = "MemoryCache_SubsidiaryList_{0}";
         public static readonly string MemorycacheGroupSubsidiaryListByLicensee = "MemoryCache_GroupSubsidiaryList_{0}";
         public static readonly string MemorycacheSubProductsByLicensee = "MemoryCache_SubProductsList";
+        public static readonly string MemorycacheCustomerClassCategories = "MemoryCache_CustomerClassCategories";
+        public static readonly string MemorycacheSportListForTreeView = "MemoryCache_SportList_TreeView";
+        public static readonly string MemorycacheBetTypeForTreeView = "MemoryCache_Bettype_TreeView";
     }
 }

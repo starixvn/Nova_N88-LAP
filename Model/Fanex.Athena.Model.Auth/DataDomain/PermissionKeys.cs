@@ -46,6 +46,9 @@
         public const string Resettlement = "Resettlement";
         public const string Bell = "Bell";
 
+        /*Report*/
+        public const string ReportWinlossAnalysis = "SabaWinLossAnalysis";
+
         /*BetList*/
         public const string BetlistViewIpvn = "ViewIPfromVN";
 

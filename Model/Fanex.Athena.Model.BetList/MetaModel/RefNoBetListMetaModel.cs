@@ -6,10 +6,10 @@ namespace Fanex.Athena.Model.BetList.MetaModel
 {
     public class RefNoBetListMetaModel : BaseBettingTicketMetaModel, IMetaModelValidation
     {
-        public long RefNo { get; set; }
+        public string RefNo { get; set; }
 
         public DateTime? LastXDays { get; set; }
 
-        public override bool IsValid => RefNo > 0 && MetaModelHelper.ValidateBaseCurrency(BaseCurrency);
+        public override bool IsValid => !string.IsNullOrEmpty(RefNo) && MetaModelHelper.ValidateBaseCurrency(BaseCurrency);
     }
 }

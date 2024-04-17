@@ -27,7 +27,7 @@ input[type="checkbox"].checkbox {
         background-color: #fff;
         content: '';
         position: absolute;
-        top: 50%;
+        top: 11px;
         left: 0;
         width: 12px;
         height: 12px;
@@ -51,7 +51,7 @@ input[type="checkbox"].checkbox {
         transition: transform .1s ease-out;
         transition: transform .1s ease-out,-webkit-transform .1s ease-out;
         background-color: transparent;
-        top: 50%;
+        top: 11px;
         left: 2px;
         width: 8px;
         height: 3px;

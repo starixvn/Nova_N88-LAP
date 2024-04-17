@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { memo } from 'react';
 
 export const BrandFilter = (props) => {
-    const { onChange } = props;
+    const { onChange, isValid } = props;
     const _renderBrandSelectList = () => {
         return AppData.brandOptions?.length && (
             <MultipleSelect id="BrandList"
@@ -16,6 +16,7 @@ export const BrandFilter = (props) => {
                 valueField={"value"}
                 statusField={"status"}
                 onChange={onChange}
+                isValid={isValid}
             />
         );
     }
@@ -29,8 +30,15 @@ export const BrandFilter = (props) => {
 
 const propTypes = {
     onChange: PropTypes.func,
+    isValid: PropTypes.bool,
+};
+
+const defaultProps = {
+    isValid: true
 };
 
 BrandFilter.propTypes = propTypes;
+BrandFilter.defaultProps = defaultProps;
+
 
 export default memo(BrandFilter);

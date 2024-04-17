@@ -54,7 +54,7 @@ export const MainFilter = () => {
                     transition={Flip} />
 
                 {brandOptions && brandOptions.length > 1 && <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
-                    <BrandFilter key={`brand-${appUuid}`} onChange={onBrandChangeHandler} />
+                    <BrandFilter key={`brand-${appUuid}`} onChange={onBrandChangeHandler} isValid={!!selectedBrand} />
                 </div>}
 
                 <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">

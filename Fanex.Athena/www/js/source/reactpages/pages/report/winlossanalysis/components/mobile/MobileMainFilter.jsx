@@ -55,7 +55,7 @@ export const MobileMainFilter = (props) => {
                     transition={Flip} />
 
                 {brandOptions && brandOptions.length > 1 && <div className="col-12 col-xs-6 col-md-3">
-                    <BrandFilter key={`brand-${appUuid}`} onChange={onBrandChangeHandler} />
+                    <BrandFilter key={`brand-${appUuid}`} onChange={onBrandChangeHandler} isValid={!!selectedBrand} />
                 </div>}
 
                 <div className="col-12 col-xs-6 col-md-3">
@@ -87,7 +87,7 @@ export const MobileMainFilter = (props) => {
                 </div>
 
                 <div className="col-12 col-xs-6 col-md-3">
-                    <CurrencyFilter key={`currency-${appUuid}`} isValid={!!selectedCurrency} onChange={onCurrencyChangeHandler} />
+                    <CurrencyFilter key={`currency-${appUuid}`} isValid={!!selectedCurrency} selectedBrand={selectedBrand} onChange={onCurrencyChangeHandler} />
                 </div>
 
                 <div className="col-12 col-xs-6 col-md-3" style={collapsedStyle}>

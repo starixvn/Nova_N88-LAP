@@ -3320,4 +3320,13 @@
   <data name="ProductYB" xml:space="preserve">
     <value>YeeBet</value>
   </data>
+  <data name="RiskLevel" xml:space="preserve">
+    <value>Risk Level</value>
+  </data>
+  <data name="ViewCashOutOnly" xml:space="preserve">
+    <value>View Cash Out Only</value>
+  </data>
+  <data name="ClearAllFilters" xml:space="preserve">
+    <value>Clear All Filters</value>
+  </data>
 </root>

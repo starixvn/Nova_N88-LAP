@@ -12,7 +12,7 @@ export const CurrencyFilter = (props) => {
     const _renderCurrencySelectList = () => {
         const currencyList = useCallback(CurrencyHelper.getTpCurrencyList(selectedBrand, AppData.brands), [selectedBrand]);
 
-        return currencyList && currencyList.length && (
+        return currencyList && (
             <MultipleSelect
                 id="ddlCurrency"
                 language={LangHelper.currentLanguage}

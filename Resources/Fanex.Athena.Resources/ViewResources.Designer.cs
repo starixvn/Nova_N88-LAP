@@ -1627,6 +1627,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear All Filters.
+        /// </summary>
+        public static string ClearAllFilters {
+            get {
+                return ResourceManager.GetString("ClearAllFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear customer&apos;s commission.
         /// </summary>
         public static string ClearCurrentComm {
@@ -6775,6 +6784,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Risk Level.
+        /// </summary>
+        public static string RiskLevel {
+            get {
+                return ResourceManager.GetString("RiskLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RNG Casino and Bingo are not included in the report.
         /// </summary>
         public static string RngCasinoAndBingoExcludedNote {
@@ -8418,6 +8436,15 @@ namespace Fanex.Athena.Resources {
         public static string ViewBy {
             get {
                 return ResourceManager.GetString("ViewBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Cash Out Only.
+        /// </summary>
+        public static string ViewCashOutOnly {
+            get {
+                return ResourceManager.GetString("ViewCashOutOnly", resourceCulture);
             }
         }
         

@@ -48,7 +48,7 @@ export const useFilterAction = () => {
     const { setReportTitle, setRequestParam, toggleLoader, getReportData, setDateRange, setSelectedProduct, setSelectedCurrency,
         setSelectedPlatform, setSelectedStatus, setSelectedLiveStatus, setSelectedBaseCurrency, setSelectedVipOnly, setSelectedCustomerClass, setSelectedOddsGroup,
         setUsername, setSearchMode, setGroupInOriginalCurrency, setViewCashOutOnly, setExcludeTestData, setSelectedGroupByOption, setSelectedBreakDownByOption,
-        setSubsidiarySearch, setSubsidiaryList, setAppUuid, setProductList } = ActionCreators;
+        setAppUuid, setProductList } = ActionCreators;
 
     const _buildTitle = (params) => {
         const { FromDate, ToDate, ProductCodes, SearchUserName, CurrencyCodes, BaseCurrencyName } = params;
@@ -144,8 +144,8 @@ export const useFilterAction = () => {
             dispatch(setExcludeTestData(defaultState.isExcludeTestData));
             dispatch(setSelectedGroupByOption(defaultState.selectedGroupByOption));
             dispatch(setSelectedBreakDownByOption(defaultState.selectedBreakDownByOption));
-            dispatch(setSubsidiarySearch(false));
-            dispatch(setSubsidiaryList(""));
+            // dispatch(setSubsidiarySearch(false));
+            // dispatch(setSubsidiaryList(""));
             dispatch(setAppUuid(`${uuidv4()}`));
         })
 

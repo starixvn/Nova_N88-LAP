@@ -14,6 +14,14 @@
         label = c.Value
     }).ToList();
 
+    var selectedDataView = Model.IsAllowedDataView ? Model.DataView.FirstOrDefault().Id : 0;
+
+    var dataViewList = Model.DataView.Select(view => new
+    {
+        value = view.Id,
+        label = view.Name
+    }).ToList();
+
     var brands = Model.Brands.Select(x => new
     {
         id = x.Id,
@@ -38,6 +46,7 @@
     drilldownInOriginalCurrency: false,
     isLoading: false,
     selectedBaseCurrency: '@Model.BaseCurrency',
+    selectedDataView: @selectedDataView,
     selectedCurrency: '@string.Join(",", Model.OwnBrand.TpCurrencyList.Select(x => x.Key))',
     selectedProduct: '@string.Join(",", Model.TpProducts.Select(x => x.Id).ToArray())',
     selectedBrand: '@Model.OwnBrand.Id',
@@ -61,6 +70,7 @@
     isAllowedGroupByCurrency: '@Model.IsAllowedGroupByCurrency' === 'True',
     isAllowedGroupByBrand: '@Model.IsAllowedGroupByBrand' === 'True',
     isAllowedReportBetlist: '@Model.IsAllowedReportBetlist' === 'True',
+    dataView: '@Model.IsAllowedDataView' === 'True',
     specialReportDataPermission: {
     turnover: '@Model.IsAllowedTurnover' === 'True',
     netTurnover: '@Model.IsAllowedValidTurnover' === 'True',
@@ -73,8 +83,9 @@
     },
     productOptions: @Html.Raw(Model.TpProducts.Select(x => new { key = x.Id, value = x.Name, status = true }).ToJson()),
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { key = x.Id, value = x.Name, status = Model.OwnBrand.Id == x.Id }).ToJson()),
-    playerListOptions: @Html.Raw(Model.TopBottomPlayerList.Select(x => new { value = x.Key, label = x.Value}).ToJson()),
-    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson())
+    playerListOptions: @Html.Raw(Model.TopBottomPlayerList.Select(x => new { value = x.Key, label = x.Value }).ToJson()),
+    baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
+    dataViewList: @Html.Raw(dataViewList.ToJson())
     }
 
 }

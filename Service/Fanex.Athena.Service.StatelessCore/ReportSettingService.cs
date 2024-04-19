@@ -4,11 +4,12 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Hosting;
 
     using Extension.Helper;
     using Extension.Utility.Interfaces;
-
+    using Fanex.Athena.DataAccess.Core.Common.Interfaces;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Core.DTO.Configuration;
 
@@ -19,22 +20,23 @@
     public class ReportSettingService : IReportSettingService
     {
         private const string CacheKey = "LRF_ReportSettings";
+        private const string CacheViewKey = "LRF_ReportViewSettings_{0}";
 
         private readonly ICustomMemoryCacheService _cache;
 
         private readonly IAppSettings _appSettings;
 
-        private readonly ILicenseeSettingService _licenseeSettingService;
+        private readonly IReportViewSettingDataAccess _reportViewSettingDataAccess;
 
         public ReportSettingService(
             ICustomMemoryCacheService cache,
             IAppSettings appSettings,
-            ILicenseeSettingService licenseeSettingService
+            IReportViewSettingDataAccess reportViewSettingDataAccess
            )
         {
             _cache = cache;
             _appSettings = appSettings;
-            _licenseeSettingService = licenseeSettingService;
+            _reportViewSettingDataAccess = reportViewSettingDataAccess;
         }
 
         public ReportSetting GetSetting(string reportKey, string licenseeName, int userDataRangeLimitation = 0)
@@ -53,6 +55,20 @@
             }
 
             return reportSetting;
+        }
+
+        public async Task<IEnumerable<ReportViewSetting>> GetViewSetting(string viewType)
+        {
+            string key = string.Format(CacheViewKey, viewType);
+            var viewSettings = _cache.Get<IEnumerable<ReportViewSetting>>(key);
+
+            if (viewSettings == null)
+            {
+                viewSettings = await _reportViewSettingDataAccess.GetReportViewSetting(viewType);
+                _cache.Set(key, viewSettings);
+            }
+
+            return viewSettings;
         }
 
         private static DateTime GetNowByTimeZone(int? timeZone)

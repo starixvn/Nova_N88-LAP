@@ -61,6 +61,7 @@
 		</Setting>
 		<Setting Key="LAP_Rpt_WinlossAnalysis_SportSel" SpName="LAP_Rpt_WinlossAnalysis_SportSel" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="LAP_Rpt_WinlossAnalysis_BettypeSel" SpName="LAP_Rpt_WinlossAnalysis_BettypeSel" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="N88_ReportSettingType_Sel" SpName="N88_ReportSettingType_Sel" DbName="DBN88.bodb_N88.wsv_lap" />
 	</Function>
 
 	<Function Name="CustomerLog">

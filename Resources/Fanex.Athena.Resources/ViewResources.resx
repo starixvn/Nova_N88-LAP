@@ -3329,4 +3329,10 @@
   <data name="ClearAllFilters" xml:space="preserve">
     <value>Clear All Filters</value>
   </data>
+  <data name="DataView" xml:space="preserve">
+    <value>Data View</value>
+  </data>
+  <data name="HouseWinLossNote" xml:space="preserve">
+    <value>Bet Count, No. Deposit and No. Withdrawal always show Full 100%</value>
+  </data>
 </root>

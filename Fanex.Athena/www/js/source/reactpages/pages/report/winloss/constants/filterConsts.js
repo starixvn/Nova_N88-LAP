@@ -21,35 +21,28 @@ export const GroupByOptions = [
     { label: LangHelper.getSingleResource("Brand"), value: GroupByOptionIds.brand }
 ];
 
-const groupByFilter =  option => {
+const groupByFilter = option => {
     const value = option.value;
 
-    if(value === GroupByOptionIds.brand)
-    {
+    if (value === GroupByOptionIds.brand) {
         return AppData.isAllowedGroupByBrand && AppData.brandOptions && AppData.brandOptions.length > 1;
     }
-    else if(value === GroupByOptionIds.date)
-    {
+    else if (value === GroupByOptionIds.date) {
         return AppData.isAllowedGroupByDate
     }
-    else if(value === GroupByOptionIds.month)
-    {
+    else if (value === GroupByOptionIds.month) {
         return AppData.isAllowedGroupByMonth
     }
-    else if(value === GroupByOptionIds.product)
-    {
+    else if (value === GroupByOptionIds.product) {
         return AppData.isAllowedGroupByProduct
     }
-    else if(value === GroupByOptionIds.player)
-    {
+    else if (value === GroupByOptionIds.player) {
         return AppData.isAllowedGroupByPlayer
     }
-    else if(value === GroupByOptionIds.currency)
-    {
+    else if (value === GroupByOptionIds.currency) {
         return AppData.isAllowedGroupByCurrency
     }
-    else 
-    {
+    else {
         return true;
     }
 }
@@ -70,6 +63,8 @@ export const UserNameFilterOptions = [
 export const DefaultTimezone = 8;
 
 export const OWSportsProductId = 1;
+
+export const DefaultDataViewFull = 1;
 
 export const SBSWProductId = 69;
 

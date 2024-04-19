@@ -6,6 +6,7 @@ import LangHelper from '@jsroot/lib/langHelper';
 import ActionCreators from '../../actions';
 import QueryService from '../../libs/queryService';
 import GridHelper from '../../libs/helpers/gridHelper';
+import AppData from '@jsroot/lib/AppData'
 
 export class GridCaption extends React.Component {
     constructor(props) {
@@ -30,11 +31,11 @@ export class GridCaption extends React.Component {
     }
 
     _buildLeftPart() {
-        const { baseCurrency, fromDate, toDate } = this.props.requestParam;
+        const { baseCurrency, fromDate, toDate, dataView } = this.props.requestParam;
         return (<span key="searchResult">{`
-        ${LangHelper.getSingleResource('WinLossAnalysis')},
-         ${fromDate} - ${toDate},
-          ${LangHelper.getSingleResource('Viewin').replace('{0}', baseCurrency)}`}
+            ${LangHelper.getSingleResource('WinLossAnalysis')},
+            ${fromDate} - ${toDate},
+            ${LangHelper.getSingleResource('Viewin').replace('{0}', baseCurrency)}${AppData.dataView ? ", " + AppData.dataViewList.find(view => view.value === dataView).label : ''}`}
         </span>);
     }
 
@@ -66,6 +67,6 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     const { selectedBaseCurrency, gridData, requestParam, pagingOption, sortOption } = state;
     return Object.assign({}, { selectedBaseCurrency, gridData, requestParam, pagingOption, sortOption });
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridCaption);

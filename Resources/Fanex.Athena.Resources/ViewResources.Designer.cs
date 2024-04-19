@@ -2239,6 +2239,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data View.
+        /// </summary>
+        public static string DataView {
+            get {
+                return ResourceManager.GetString("DataView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -3594,6 +3603,15 @@ namespace Fanex.Athena.Resources {
         public static string Host {
             get {
                 return ResourceManager.GetString("Host", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Count, No. Deposit and No. Withdrawal always show Full 100%.
+        /// </summary>
+        public static string HouseWinLossNote {
+            get {
+                return ResourceManager.GetString("HouseWinLossNote", resourceCulture);
             }
         }
         

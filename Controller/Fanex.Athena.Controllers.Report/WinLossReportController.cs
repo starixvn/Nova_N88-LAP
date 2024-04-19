@@ -1,6 +1,11 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Core.Constants;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.Athena.Model.Report.ViewModel;
@@ -9,9 +14,6 @@
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.NVC.Authentication.Infrastructure;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
 
     [FunctionAuthorization(PermissionKeys.ReportWinLoss)]
     [RequireCurrencyPermission]
@@ -35,9 +37,9 @@
         }
 
         [HttpGet]
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
-            var viewModel = CreateViewModel();
+            var viewModel = await CreateViewModel();
             return View("~/Views/Desktop/Report/WinLoss/Main.cshtml", viewModel);
         }
 
@@ -54,9 +56,10 @@
             metaModel.ProductName = tpProducts.FirstOrDefault(_ => _.Id.Equals(metaModel.ProductId.ToString()))?.Name;
         }
 
-        private WinLossViewModel CreateViewModel()
+        private async Task<WinLossViewModel> CreateViewModel()
         {
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportWinLoss, LicenseeName);
+            var reportDataViewSetting = await _reportSettingService.GetViewSetting(ReportViewType.DataView);
             var tpProducts = _tpService.GetListTpProduct();
             var userSession = SessionServiceInstance.UserSession;
             int.TryParse(userSession.SettingList?.FirstOrDefault(_ => _.SettingKey == SettingKey.WLAnalysis_SinglePlayer)?.SettingValue, out int wlAnalysisSinglePlayer);
@@ -67,6 +70,7 @@
                 TpProducts = tpProducts,
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
                 Brands = BrandList,
+                DataView = reportDataViewSetting,
                 MaxDate = reportSetting.MaxDate,
                 MinDate = GetUserLimitDataRange(reportSetting.MinDate, TimeZone),
                 LimitMonthRange = reportSetting.LimitMonthRange,
@@ -78,6 +82,7 @@
                 IsAllowedGroupByCurrency = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByCurrency),
                 IsAllowedGroupByBrand = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_GroupByBrand),
                 IsAllowedReportBetlist = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportWinLoss_ReportBetlist),
+                IsAllowedDataView = userSession.FunctionList.Any(x => x.FunctionKey == PermissionKeys.ReportHouseWinLoss),
                 TopBottomPlayerList = BuildTopBottomPlayerList(userSession.SettingList)
             };
 

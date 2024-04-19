@@ -5,27 +5,27 @@ import { Cell } from '@9softstudio/react-grid';
 import LangHelper from '@jsroot/lib/langHelper';
 import ActionCreators from '../../actions';
 import { columnKeys } from '../../constants/gridContants';
-import { GroupByOptionIds } from '../../constants/filterConsts';
+import { GroupByOptionIds, DefaultDataViewFull } from '../../constants/filterConsts';
 import QueryService from '../../libs/queryService';
 import AppData from '@jsroot/lib/AppData'
 
 export const GroupCell = props => {
-    const { rowData,  gridData, requestParam, setGridData, setBetListParam, toggleLoader, ...rest } = props;
+    const { rowData, gridData, requestParam, setGridData, setBetListParam, toggleLoader, selectedDataView, ...rest } = props;
     const key = rowData.key;
-    const _isAllowedDrillDown = (rowData.drillDownData && rowData.drillDownData.length > 0) 
-    || (requestParam.groupBy === GroupByOptionIds.player && !!rowData.parent);
+    const _isAllowedDrillDown = (rowData.drillDownData && rowData.drillDownData.length > 0)
+        || (requestParam.groupBy === GroupByOptionIds.player && !!rowData.parent);
 
-    const _isDrillDown = !!rowData.isDrillDown; 
+    const _isDrillDown = !!rowData.isDrillDown;
 
     const _handleDrillDown = async () => {
-        
+
         const dataList = gridData.dataList;
         const rowIndex = dataList.findIndex(_ => _.key === key);
         if (rowIndex === -1) {
             return;
         }
 
-        if(!rowData.drillDownData) {
+        if (!rowData.drillDownData) {
             await _fetchDrillDownData();
         }
 
@@ -38,7 +38,7 @@ export const GroupCell = props => {
         }
 
         newDataList[rowIndex] = {
-            ...rowData, 
+            ...rowData,
             ...{ isDrillDown: !_isDrillDown }
         }
 
@@ -51,12 +51,12 @@ export const GroupCell = props => {
     }
 
     const _fetchDrillDownData = async () => {
-        const { displayedColumns: omitted, ...restRequestParam }  = requestParam;
+        const { displayedColumns: omitted, ...restRequestParam } = requestParam;
         const params = { ...restRequestParam, custId: rowData.custId, usernameParent: rowData.parentName, originalCurrency: rowData.group };
         toggleLoader(true);
-        const response  = await QueryService.getPlayerDetailData(params);
+        const response = await QueryService.getPlayerDetailData(params);
         toggleLoader(false);
-        if(!response.isSuccess) {
+        if (!response.isSuccess) {
             alert(LangHelper.getSingleResource("ErrorProcessingMsg"));
             return;
         }
@@ -66,7 +66,7 @@ export const GroupCell = props => {
     const _removeDrillDownData = (dataList, rowIndex) => {
         const currentRowData = dataList[rowIndex];
         const drillDownData = currentRowData.drillDownData;
-        if(!drillDownData) {
+        if (!drillDownData) {
             return;
         }
 
@@ -74,7 +74,7 @@ export const GroupCell = props => {
             const drillDownDataRowIndex = dataList.findIndex(_ => _.key === drillDownData[index].key);
             drillDownDataRowIndex !== -1 && _removeDrillDownData(dataList, drillDownDataRowIndex);
         }
-        
+
         currentRowData.isDrillDown && dataList.splice(rowIndex + 1, drillDownData.length);
         currentRowData.isDrillDown && (currentRowData.isDrillDown = false);
     }
@@ -84,10 +84,11 @@ export const GroupCell = props => {
         setBetListParam(rowData);
     }
 
-    return (<Cell key={`group-cell-${key}`} {...rest} {...(_isAllowedDrillDown && {onClick:_handleDrillDown, style:{cursor: 'pointer'}})}>
-        {rowData.custId && rowData.productId && AppData.isAllowedReportBetlist ? <a href="#" onClick={_onViewBetList} className='right right-align'>
-            {rowData[columnKeys.group]}
-        </a> : rowData[columnKeys.group]}
+    return (<Cell key={`group-cell-${key}`} {...rest} {...(_isAllowedDrillDown && { onClick: _handleDrillDown, style: { cursor: 'pointer' } })}>
+        {rowData.custId && rowData.productId && AppData.isAllowedReportBetlist
+            ? <a href="#" onClick={_onViewBetList} className={`right right-align ${(!AppData.dataView || requestParam.dataView === DefaultDataViewFull) ? "" : "disabled-link"}`}>
+                {rowData[columnKeys.group]}
+            </a> : rowData[columnKeys.group]}
         {_isAllowedDrillDown && <i className={`icon-arrow right ${_isDrillDown ? 'arrow-down' : 'arrow-right'}`} ></i>}
     </Cell>)
 }

@@ -1,5 +1,14 @@
-import { SET_SELECTED_DATE_TYPE, SET_NO_DRAW, SET_SELECTED_GROUP_BY_OPTION,
-     DRILLDOWN_IN_ORIGINAL_CURRENCY, USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE, SET_INCLUDE_FREE_SPINS, SET_SELECTED_PLAYER_LIST } from '../actions/types';
+import {
+    SET_SELECTED_DATE_TYPE,
+    SET_NO_DRAW,
+    SET_SELECTED_GROUP_BY_OPTION,
+    DRILLDOWN_IN_ORIGINAL_CURRENCY,
+    USERNAME_FILTER_OPTION,
+    SET_SELECTED_TIMEZONE,
+    SET_INCLUDE_FREE_SPINS,
+    SET_SELECTED_PLAYER_LIST,
+    SET_SELECTED_DATA_VIEW
+} from '../actions/types';
 import createReducer from '@jsroot/lib/createReducer.js';
 import { dateRange } from '@jsroot/reducers/dateRangeReducer';
 import { selectedCurrency } from '@jsroot/reducers/currencyReducer';
@@ -57,6 +66,12 @@ const selectedPlayerList = createReducer({}, {
     }
 });
 
+export const selectedDataView = createReducer({}, {
+    [SET_SELECTED_DATA_VIEW](state, action) {
+        return action.data
+    }
+});
+
 export default {
     selectedDateType,
     dateRange,
@@ -72,5 +87,6 @@ export default {
     selectedGroupByOption,
     selectedTimezone,
     selectedPlayerList,
-    includeFreeSpins
+    includeFreeSpins,
+    selectedDataView
 }

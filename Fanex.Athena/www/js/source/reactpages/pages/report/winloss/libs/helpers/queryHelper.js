@@ -1,23 +1,28 @@
 import Site from '@jsroot/lib/site';
 import store from '../store';
+import AppData from '@jsroot/lib/AppData'
 import { setPagingOption, setSortOption, setDisplayedColumns } from '../../actions/gridAction';
 export default class QueryHelper {
     static toAPIParams({ requestParam, username, selectedCurrency, selectedBaseCurrency, selectedPlayerList,
-         selectedProduct, selectedBrand, selectedDateType, isExcludeTest, includeFreeSpins, noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption, selectedTimezone }) {
-        
+        selectedProduct, selectedBrand, selectedDateType, isExcludeTest, includeFreeSpins,
+        noDraw, drilldownInOriginalCurrency, dateRange, selectedGroupByOption, userNameFilterOption,
+        selectedTimezone, selectedDataView }) {
+
         var playerListParamList = selectedPlayerList.split('_').map(Number);
 
         return {
             ...requestParam,
             ...{
                 userNameFilterId: userNameFilterOption,
-                username, 
+                username,
                 currencyIdList: selectedCurrency,
                 baseCurrency: selectedBaseCurrency,
                 productIds: selectedProduct,
                 brandIds: selectedBrand,
+                dataView: selectedDataView,
+                dataViewName: AppData.dataView ? AppData.dataViewList.find(view => view.value === selectedDataView).label : '',
                 dateType: selectedDateType,
-                isIncludedTestData: !isExcludeTest, 
+                isIncludedTestData: !isExcludeTest,
                 isIncludedFreeSpin: includeFreeSpins,
                 isNoDrawTicket: noDraw,
                 drilldownInOriginalCurrency: drilldownInOriginalCurrency,
@@ -38,7 +43,7 @@ export default class QueryHelper {
         const newPagingOption = {
             ...pagingOption,
             ...{
-                PageIndex: pageIndex,           
+                PageIndex: pageIndex,
                 PageSize: pageSize,
                 TotalItem: totalRows
             }

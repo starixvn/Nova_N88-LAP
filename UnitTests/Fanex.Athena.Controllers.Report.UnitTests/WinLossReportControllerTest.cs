@@ -1,7 +1,9 @@
 ﻿namespace Fanex.Athena.Controllers.Report.UnitTests
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Fanex.Athena.Controllers.Base.UnitTests;
-    using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Athena.Model.Core.DTO.Configuration;
     using Fanex.Athena.Model.Report.ViewModel;
@@ -11,8 +13,6 @@
     using Fanex.Athena.UnitTest.Common.NUnitExtensions;
     using NSubstitute;
     using NUnit.Framework;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public class WinLossReportControllerTest : CultureBaseControllerHelperTest
     {
@@ -41,7 +41,7 @@
         }
 
         [Test]
-        public void Index_WhenCall_ReturnCorrectViewLink()
+        public async Task Index_WhenCall_ReturnCorrectViewLink()
         {
             //Arrange
             _reportSettingService.GetSetting(Arg.Any<string>(), Arg.Any<string>()).Returns(FakeHelper.Create<ReportSetting>());
@@ -50,7 +50,7 @@
             using (var controller = CreateController())
             {
                 //Act
-                var actualResult = controller.Index();
+                var actualResult = await controller.Index();
 
                 //Assert
                 Assert.AreEqual(expectedResult, actualResult.ViewName);
@@ -58,7 +58,7 @@
         }
 
         [Test]
-        public void Index_WhenCall_ReturnCorrectViewModel()
+        public async Task Index_WhenCall_ReturnCorrectViewModel()
         {
             //Arrange
             var fakeTpProducts = FakeHelper.Create<IEnumerable<TpProduct>>();
@@ -82,7 +82,7 @@
             using (var controller = CreateController())
             {
                 //Act
-                var actualResult = controller.Index();
+                var actualResult = await controller.Index();
 
                 //Assert
                 Assert.That(actualResult.Model, Tobe.SameProperties(expectedResult));

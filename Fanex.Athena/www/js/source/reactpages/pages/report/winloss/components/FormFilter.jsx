@@ -343,7 +343,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     const { settingData, selectedDateType, dateRange, selectedBrand, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
         isExcludeTest, includeFreeSpins, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone, selectedPlayerList,
-        displayedColumns } = state;
+        selectedDataView, displayedColumns } = state;
     return Object.assign({}, {
         settingData,
         selectedDateType,
@@ -361,8 +361,9 @@ function mapStateToProps(state) {
         selectedGroupByOption,
         selectedTimezone,
         selectedPlayerList,
-        displayedColumns
+        displayedColumns,
+        selectedDataView
     });
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);

@@ -63,14 +63,17 @@
             //Arrange
             var fakeTpProducts = FakeHelper.Create<IEnumerable<TpProduct>>();
             var fakeReportSetting = FakeHelper.Create<ReportSetting>();
+            var fakeReportViewSetting = FakeHelper.Create<IEnumerable<ReportViewSetting>>();
 
             _reportSettingService.GetSetting(Arg.Any<string>(), Arg.Any<string>()).Returns(fakeReportSetting);
+            _reportSettingService.GetViewSetting(Arg.Any<string>()).Returns(fakeReportViewSetting);
             _tpService.GetListTpProduct().Returns(fakeTpProducts);
 
             var expectedResult = new WinLossViewModel
             {
                 BaseCurrency = DefaultUserSession.DefaultBaseCurrency,
                 TpProducts = fakeTpProducts,
+                DataView = fakeReportViewSetting,
                 OwnBrand = DefaultUserSession.BrandList.First(_ => _.Id == DefaultLicenseeSession.LicenseeId),
                 Brands = DefaultUserSession.BrandList,
                 MaxDate = fakeReportSetting.MaxDate,

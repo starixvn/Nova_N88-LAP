@@ -110,6 +110,9 @@ namespace Fanex.Athena.Controllers.Report
                 "D",
                 "E",
                 "F",
+                "I",
+                "M",
+                "Q",
             };
         }
 

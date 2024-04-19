@@ -21,7 +21,10 @@ export const oddsGroupListWithStyle = {
     C: null,
     D: null,
     E: null,
-    F: null
+    F: null,
+    I: null,
+    M: null,
+    Q: null,
 }
 
 export const licenseeType = {

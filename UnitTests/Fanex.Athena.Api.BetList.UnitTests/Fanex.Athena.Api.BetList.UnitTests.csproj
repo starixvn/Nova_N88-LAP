@@ -79,7 +79,6 @@
     <Compile Include="BettingTicketCenterAdvancedSearchControllerTest.cs" />
     <Compile Include="BonusBetListControllerTest.cs" />
     <Compile Include="FakeApiBetListBaseController.cs" />
-    <Compile Include="LicenseeWinLossBetListControllerTest.cs" />
     <Compile Include="MixParlayBetListControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JackpotWonBetListControllerTest.cs" />

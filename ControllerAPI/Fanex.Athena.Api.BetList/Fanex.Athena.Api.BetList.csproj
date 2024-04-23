@@ -109,7 +109,6 @@
     <Compile Include="JackpotWonBetListController.cs" />
     <Compile Include="RNGCasinoBetListController.cs" />
     <Compile Include="SingleMatchParlayBetListController.cs" />
-    <Compile Include="LicenseeWinLossBetListController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

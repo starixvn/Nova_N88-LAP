@@ -99,7 +99,6 @@
   <ItemGroup>
     <Compile Include="AbnormalBetReportController.cs" />
     <Compile Include="ExtraPayoutReportController.cs" />
-    <Compile Include="LicenseeWinLossReportController.cs" />
     <Compile Include="BonusInfoReportController.cs" />
     <Compile Include="MarketingReportController.cs" />
     <Compile Include="NoteController.cs" />

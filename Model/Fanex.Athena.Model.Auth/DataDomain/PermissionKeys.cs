@@ -4,7 +4,6 @@
     {
         /*NAP Menu Permission*/
         public const string ManageUser = "ManageLicenseeUser";
-        public const string ReportLicenseeWinLoss = "LicenseeWinLoss";
         public const string ReportCustomerWinLoss = "CustomerWinLoss";
         public const string ReportWinLoss = "WinLossReport";
         public const string ReportMarketing = "MarketingReport";

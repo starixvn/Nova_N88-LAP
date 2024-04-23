@@ -500,6 +500,12 @@
     <Content Include="www\css\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.css" />
     <Content Include="www\css\build\dev\reactpages\report\marketing.css" />
+    <Content Include="www\css\build\dev\reactpages\report\winlossanalysis.chunk.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\css\build\dev\reactpages\report\winlossanalysis.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="www\css\build\dev\reactpages\subsidiaryperformance\index.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\subsidiaryperformance\index.css" />
     <Content Include="www\css\build\dev\reactpages\vendor.chunk.js" />
@@ -537,7 +543,6 @@
     <Content Include="www\css\build\pro\pages\login\login.chunk.js" />
     <Content Include="www\css\build\pro\pages\log\logexecsp.chunk.js" />
     <Content Include="www\css\build\pro\pages\log\logexecsp.css" />
-    <Content Include="www\css\build\pro\pages\reports\licenseewinloss.chunk.js" />
     <Content Include="www\css\build\pro\pages\reports\reportjqgridlayout.chunk.js" />
     <Content Include="www\css\build\pro\pages\user\assignpermission.chunk.js" />
     <Content Include="www\css\build\pro\pages\user\assignpermission.css" />
@@ -578,6 +583,9 @@
     <Content Include="www\css\build\pro\reactpages\report\extrapayout.css" />
     <Content Include="www\css\build\pro\reactpages\report\marketing.css" />
     <Content Include="www\css\build\pro\reactpages\report\winloss.css" />
+    <Content Include="www\css\build\pro\reactpages\report\winlossanalysis.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="www\css\build\pro\reactpages\subsidiaryperformance\index.css" />
     <Content Include="Views\Desktop\BetList\CardClubDetail\Main.cshtml" />
     <Content Include="Views\Desktop\Module\PlayerAdmin\Main.cshtml" />
@@ -700,6 +708,12 @@
     <Content Include="Views\Log\_N88_User_Update_Setting.cshtml" />
     <Content Include="Views\Desktop\BetList\BettingTicketCenter\BookedBet.cshtml" />
     <Content Include="Views\Desktop\Report\WinlossAnalysis\Index.cshtml" />
+    <Content Include="www\css\build\dev\reactpages\report\winlossanalysis.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\css\build\dev\reactpages\report\winlossanalysis.chunk.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -1408,8 +1422,6 @@
     <Content Include="www\css\build\dev\pages\customer\customerlog.css" />
     <Content Include="www\css\build\dev\pages\login\login.chunk.js" />
     <Content Include="www\css\build\dev\pages\login\login.css" />
-    <Content Include="www\css\build\dev\pages\reports\licenseewinloss.chunk.js" />
-    <Content Include="www\css\build\dev\pages\reports\licenseewinloss.css" />
     <Content Include="www\css\build\dev\pages\reports\reportjqgridlayout.chunk.js" />
     <Content Include="www\css\build\dev\pages\reports\reportjqgridlayout.css" />
     <Content Include="www\css\build\dev\pages\utility\error.chunk.js" />
@@ -1478,7 +1490,6 @@
     <Content Include="www\css\build\pro\pages\betlist\images\tab_topbg.gif" />
     <Content Include="www\css\build\pro\pages\betlist\systemparlaydetail.css" />
     <Content Include="www\css\build\pro\pages\login\login.css" />
-    <Content Include="www\css\build\pro\pages\reports\licenseewinloss.css" />
     <Content Include="www\css\build\pro\pages\reports\reportjqgridlayout.css" />
     <Content Include="www\css\build\pro\pages\utility\error.css" />
     <Content Include="www\css\source\components\select2\select2.min.css" />
@@ -1516,7 +1527,6 @@
     <Content Include="www\js\build\dev\pages\betlist\betlistsimple.chunk.js" />
     <Content Include="www\js\build\dev\pages\betlist\customeroutstanding.chunk.js" />
     <Content Include="www\js\build\dev\pages\home\home.chunk.js" />
-    <Content Include="www\js\build\dev\pages\reports\licenseewinloss.chunk.js" />
     <Content Include="www\js\build\dev\pages\signin\signin.chunk.js" />
     <Content Include="www\js\build\pro\language.chunk.js" />
     <Content Include="www\js\build\pro\pages\betlist\betlist.chunk.js" />
@@ -1526,7 +1536,6 @@
     <Content Include="www\js\build\pro\pages\betlist\betlistsimple.chunk.js" />
     <Content Include="www\js\build\pro\pages\betlist\customeroutstanding.chunk.js" />
     <Content Include="www\js\build\pro\pages\home\home.chunk.js" />
-    <Content Include="www\js\build\pro\pages\reports\licenseewinloss.chunk.js" />
     <Content Include="www\js\build\pro\pages\signin\signin.chunk.js" />
     <Content Include="www\js\source\common\languages\ViewResources.js">
       <DependentUpon>ViewResources.tt</DependentUpon>
@@ -1588,9 +1597,6 @@
     <Content Include="www\js\source\pages\home\recheckin.js" />
     <Content Include="www\js\source\lib\jquery.cookie.js" />
     <Content Include="www\js\source\lib\jquery.jclock.js" />
-    <Content Include="www\js\source\pages\report\licenseewinloss\licenseewinloss.js" />
-    <Content Include="www\js\source\pages\report\licenseewinloss\licenseewinloss.option.js" />
-    <Content Include="www\js\source\pages\report\licenseewinloss\main.js" />
     <Content Include="www\js\source\pages\report\report.js" />
     <Content Include="www\js\source\pages\report\winlossbyleague\main.js" />
     <Content Include="www\js\source\pages\report\winlossbyleague\winlossbyleague.filter.js" />
@@ -1787,14 +1793,10 @@
     <Content Include="www\css\source\components\flatpopup\flatpopup.scss" />
     <Content Include="www\css\source\components\monthpicker\monpickr.scss" />
     <Content Include="www\css\source\pages\home\home.scss" />
-    <Content Include="Views\Desktop\Report\LicenseeWinLoss\Content.cshtml" />
-    <Content Include="Views\Desktop\Report\LicenseeWinLoss\Filter.cshtml" />
-    <Content Include="Views\Desktop\Report\LicenseeWinLoss\Main.cshtml" />
     <Content Include="Views\Desktop\Shared\_Report.jqGridLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="www\css\source\components\jqgrid\jqgrid-ex.scss" />
     <Content Include="www\css\source\extensions\report-ex.scss" />
-    <Content Include="www\css\source\pages\report\licenseewinloss.scss" />
     <Content Include="www\css\source\components\multiselect\multiselect-ex.scss" />
     <Content Include="www\js\tests\lib\jqgrid\jquery.jqgrid.additional-spec.js" />
     <Content Include="www\css\source\pages\common.scss" />
@@ -1865,8 +1867,6 @@
     <Content Include="www\css\build\dev\pages\betlist\systemparlaydetail.css.map" />
     <Content Include="www\css\build\dev\pages\login\login.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\login\login.css.map" />
-    <Content Include="www\css\build\dev\pages\reports\licenseewinloss.chunk.js.map" />
-    <Content Include="www\css\build\dev\pages\reports\licenseewinloss.css.map" />
     <Content Include="www\css\build\dev\pages\reports\reportjqgridlayout.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\reports\reportjqgridlayout.css.map" />
     <Content Include="www\css\build\dev\pages\utility\error.chunk.js.map" />
@@ -1947,7 +1947,6 @@
     <Content Include="www\css\source\vendors\materialize\_materialize-content.scss" />
     <Content Include="www\css\source\pages\common\reportcommon.main.scss" />
     <Content Include="www\css\source\pages\common\reportjqgridlayout.main.scss" />
-    <Content Include="www\js\build\dev\pages\reports\licenseewinloss.chunk.js.map" />
     <Content Include="www\css\source\scss\components\_radio-button.scss" />
     <Content Include="www\js\build\dev\pages\betlist\customeroutstanding.chunk.js.map" />
     <Content Include="www\webpackconfig\build\webpack.react.pro.conf.js" />
@@ -4884,7 +4883,6 @@
     <Content Include="App_Browsers\firefox.browser" />
     <Content Include="App_Data\Template\CustomerGroup\CustomerCommGroup.xls" />
     <Content Include="App_Data\Template\CustomerReports\CustomerWinLoss.xls" />
-    <Content Include="App_Data\Template\Reports\LicenseeWinLoss.xls" />
     <Content Include="Content\Web.config" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <Content Include="Views\Shared\_Report.jqGridLayout.cshtml" />
@@ -5013,11 +5011,14 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\Template\Reports\" />
     <Folder Include="Content\Fanex.Result\" />
     <Folder Include="Logs\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Report\" />
+    <Folder Include="www\js\build\dev\pages\reports\" />
     <Folder Include="www\js\build\dev\pages\user\" />
+    <Folder Include="www\js\build\pro\pages\reports\" />
     <Folder Include="www\js\build\pro\pages\user\" />
     <Folder Include="www\js\source\reactpages\pages\bettingticketscenter\common\components\__tests__\" />
     <Folder Include="www\js\tests\pages\report\thirdpartywinloss\reports\" />

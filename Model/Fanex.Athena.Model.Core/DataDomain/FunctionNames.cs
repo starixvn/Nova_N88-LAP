@@ -4,8 +4,6 @@
     {
         public const string CustomerWinLoss = "CustomerWinLoss";
 
-        public const string LicenseeWinLoss = "LicenseeWinLoss";
-
         public const string Turnover = "Turnover";
 
         public const string WinLossByProduct = "WinLossByProduct";

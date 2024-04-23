@@ -19,7 +19,6 @@ var cssPaths = {
     betlistResult: ["./www/css/source/pages/betlist/result/betlist.result.scss"],
 
     login: ["./www/css/source/pages/login/login-ex.scss"],
-    licenseewinloss: ["./www/css/source/pages/report/licenseewinloss.scss"],
     cashouthistory: ["./www/css/source/pages/betlist/cashouthistory.main.scss", "./www/css/source/extensions/popup-ex.scss"],
 
     customercommgrouplist: ["./www/css/source/pages/customer/commgrouplist.scss"],
@@ -43,7 +42,6 @@ var scriptPaths = {
     home: ["./www/js/source/components/navbar.js", "./www/js/source/components/sidebar.js", "malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js", "./www/js/source/pages/home/main.js"],
     signin: ["./www/js/source/pages/signin/main.js"],
 
-    licenseewinloss: "./www/js/source/pages/report/licenseewinloss/main.js",
     betlist: "./www/js/source/pages/betlist/betlist.js",
     betlistsimple: "./www/js/source/pages/betlist/main-simple.js",
     betlistrunning: "./www/js/source/pages/betlist/main-betlistrunning.js",

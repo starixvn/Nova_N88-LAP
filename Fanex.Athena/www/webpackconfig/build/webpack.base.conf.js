@@ -24,7 +24,6 @@ function generateConfig(environment) {
             [`${jsPath}/language`]: pathConfig.scriptPaths.language,
             [`${jsPath}/pages/home/home`]: pathConfig.scriptPaths.home,
             [`${jsPath}/pages/signin/signin`]: pathConfig.scriptPaths.signin,
-            [`${jsPath}/pages/reports/licenseewinloss`]: [pathConfig.scriptPaths.licenseewinloss],
             [`${jsPath}/pages/betlist/betlist`]: [pathConfig.scriptPaths.betlist],
             [`${jsPath}/pages/betlist/betlistsimple`]: [pathConfig.scriptPaths.betlistsimple],
             [`${jsPath}/pages/betlist/betlistrunning`]: [pathConfig.scriptPaths.betlistrunning],
@@ -38,7 +37,6 @@ function generateConfig(environment) {
             [`${cssPath}/home`]: pathConfig.cssPaths.home,
             [`${cssPath}/um`]: pathConfig.cssPaths.um,
             [`${cssPath}/pages/login/login`]: pathConfig.cssPaths.login,
-            [`${cssPath}/pages/reports/licenseewinloss`]: pathConfig.cssPaths.licenseewinloss,
 
             [`${cssPath}/pages/betlist/betlistLayout`]: pathConfig.cssPaths.betlistLayout,
             [`${cssPath}/pages/betlist/betlistSimpleLayout`]: pathConfig.cssPaths.betlistSimpleLayout,

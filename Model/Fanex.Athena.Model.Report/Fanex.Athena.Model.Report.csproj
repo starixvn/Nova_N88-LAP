@@ -85,7 +85,6 @@
     <Compile Include="MetaModel\ThirdPartyWinLossMetaModel.cs" />
     <Compile Include="MetaModel\ResultPopupMetalModel.cs" />
     <Compile Include="MetaModel\CustomerWinlossMetaModel.cs" />
-    <Compile Include="MetaModel\LicenseeWinLossMetaModel.cs" />
     <Compile Include="MetaModel\WinlossAnalysisReportViewModel.cs" />
     <Compile Include="MetaModel\WinLossNonSportsBetListMetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,7 +95,6 @@
     <Compile Include="ViewModel\Note\NoteViewModel.cs" />
     <Compile Include="ViewModel\ThirdPartyWinLossViewModel.cs" />
     <Compile Include="ViewModel\LicenseeWinLossGridViewModel.cs" />
-    <Compile Include="ViewModel\LicenseeWinLossViewModel.cs" />
     <Compile Include="ViewModel\MartketingViewModel.cs" />
     <Compile Include="ViewModel\SpecialReportDataViewModel.cs" />
     <Compile Include="ViewModel\WinLossViewModel.cs" />

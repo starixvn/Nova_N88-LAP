@@ -111,7 +111,6 @@
     <Compile Include="PragmaticPlayBetListController.cs" />
     <Compile Include="RNGCasinoBetListController.cs" />
     <Compile Include="SystemParlayBetListController.cs" />
-    <Compile Include="LicenseeWinLossBetListController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

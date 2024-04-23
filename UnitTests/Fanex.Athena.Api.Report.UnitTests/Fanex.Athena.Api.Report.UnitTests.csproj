@@ -89,8 +89,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="LicenseeWinLossReportControllerTest_IsValidParams.cs" />
-    <Compile Include="LicenseeWinLossReportControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

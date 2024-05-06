@@ -311,6 +311,7 @@
     <Content Include="App_Data\UserGuide\BettingTicketCenterRefno\en-US.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterAdvancedSearch\en-US.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterRunning\en-US.htm" />
+    <Content Include="App_Data\UserGuide\BettingTicketCenterBookedBet\en-US.htm" />
     <Content Include="App_Data\UserGuide\BettingTicketCenterSingle\en-US.htm" />
     <Content Include="App_Data\UserGuide\CustomerLog\en-US.htm" />
     <Content Include="App_Data\UserGuide\ExtraPayout\en-US.htm" />
@@ -693,6 +694,7 @@
     <Content Include="www\css\build\dev\pages\user\setdatalimits.chunk.js.map" />
     <Content Include="www\css\build\dev\pages\user\setdatalimits.css.map" />
     <Content Include="Views\Log\_N88_User_Update_Setting.cshtml" />
+    <Content Include="Views\Desktop\BetList\BettingTicketCenter\BookedBet.cshtml" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -707,6 +709,7 @@
     <Content Include="www\js\build\dev\pages\lib\common.chunk.js" />
     <Content Include="www\js\build\dev\pages\lib\jqgrid.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\bettingticketscenter\advancedsearch.chunk.js" />
+    <Content Include="www\js\build\dev\reactpages\bettingticketscenter\bookedbet.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\bettingticketscenter\refno.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\bettingticketscenter\running.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\bettingticketscenter\singlecustomer.chunk.js" />
@@ -733,6 +736,7 @@
     <Content Include="www\js\build\pro\pages\lib\common.chunk.js" />
     <Content Include="www\js\build\pro\pages\lib\jqgrid.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\bettingticketscenter\advancedsearch.chunk.js" />
+    <Content Include="www\js\build\pro\reactpages\bettingticketscenter\bookedbet.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\bettingticketscenter\refno.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\bettingticketscenter\running.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\bettingticketscenter\singlecustomer.chunk.js" />
@@ -1899,6 +1903,7 @@
     <Content Include="www\js\build\dev\reactpages\report\extrapayout.chunk.js.map" />
     <Content Include="www\css\source\reactpages\pages\report\abnormalbet\index.scss" />
     <Content Include="www\js\build\dev\reactpages\report\abnormalbet.chunk.js.map" />
+    <Content Include="www\js\build\dev\reactpages\bettingticketscenter\bookedbet.chunk.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

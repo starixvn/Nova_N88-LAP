@@ -6,7 +6,8 @@ export const ApiUrl = {
     RUNNING_DATA_URL: Site.resolveClientUrl('api/BettingTicketCenter/GetByRunning'),
     REFNO_DATA_URL: Site.resolveClientUrl('api/BettingTicketCenter/GetByRefNo'),
     SINGLECUSTOMER_DATA_URL: Site.resolveClientUrl('api/BettingTicketCenter/GetBySingleCustomer'),
-    ADVANCEDSEARCH_DATA_URL: Site.resolveClientUrl('api/BettingTicketCenterAdvancedSearch/GetData')
+    ADVANCEDSEARCH_DATA_URL: Site.resolveClientUrl('api/BettingTicketCenterAdvancedSearch/GetData'),
+    BOOKEDBET_DATA_URL: Site.resolveClientUrl('api/BettingTicketCenter/GetByBookedBet')
 }
 
 export const HeaderText = {
@@ -24,7 +25,13 @@ export const HeaderText = {
     LicenseeWL: LangHelper.getSingleResource("LicenseeWL"),
     Comm: LangHelper.getSingleResource("Comm"),
     Status: LangHelper.getSingleResource("Status"),
-    Live: LangHelper.getSingleResource("Live")
+    Live: LangHelper.getSingleResource("Live"),
+    Details: LangHelper.getSingleResource("Details"),
+    BookedId: LangHelper.getSingleResource("BookedId"),
+    BookedTime: LangHelper.getSingleResource("BookedTime"),
+    OddsLower: LangHelper.getSingleResource("OddsLower"),
+    OddsUpper: LangHelper.getSingleResource("OddsUpper"),
+    Icon: ""
 }
 
 export const DefaultPageSize = 50;
@@ -33,7 +40,8 @@ export const tabKeys = {
     advancedSearch: 'BetHistory_AdvancedSearch',
     singleCustomer: 'BetHistory_SingleCustomer',
     refNo: 'BetHistory_RefNo',
-    running: 'BetHistory_Running'
+    running: 'BetHistory_Running',
+    bookedBet: 'BetHistory_BookedBet'
 }
 
 export const tabList = [
@@ -60,5 +68,11 @@ export const tabList = [
         label: LangHelper.getSingleResource("AdvancedSearch"),
         url: Site.resolveClientUrl("BettingTicketCenter/AdvancedSearch"),
         displayOrder: 3
+    },
+    {
+        key: tabKeys.bookedBet,
+        label: LangHelper.getSingleResource("BookedBet"),
+        url: Site.resolveClientUrl("BettingTicketCenter/BookedBet"),
+        displayOrder: 4
     }
 ]

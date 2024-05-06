@@ -9,7 +9,8 @@ namespace Fanex.Athena.Model.Auth.DataDomain
             PermissionKeys.BetHistoryAdvancedSearch,
             PermissionKeys.BetHistorySingleCustomer,
             PermissionKeys.BetHistoryRefNo,
-            PermissionKeys.BetHistoryRunning
+            PermissionKeys.BetHistoryRunning,
+            PermissionKeys.BetHistoryBookedBet
         };
     }
 }

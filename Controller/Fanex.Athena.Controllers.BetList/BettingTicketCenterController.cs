@@ -3,15 +3,19 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.BetList.MetaModel;
     using Fanex.Athena.Model.BetList.ViewModel;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.Core.DTO.Common;
     using Fanex.Athena.Model.Core.MetaModel.Product;
     using Fanex.Athena.Resources;
+    using Fanex.Athena.Service.Core.Users;
+    using Fanex.Athena.Service.StatelessCore;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.N88.Core.Configuration;
@@ -58,6 +62,10 @@
             else if (tabList.Any(x => PermissionKeys.BetHistoryAdvancedSearch == x))
             {
                 return AdvancedSearch();
+            }
+            else if (tabList.Any(x => PermissionKeys.BetHistoryBookedBet == x))
+            {
+                return BookedBet();
             }
             else
             {
@@ -148,6 +156,28 @@
             return View("~/Views/Desktop/BetList/BettingTicketCenter/Running.cshtml", viewModel);
         }
 
+        [FunctionAuthorization(PermissionKeys.BetHistoryBookedBet)]
+        public ActionResult BookedBet()
+        {
+            var tabList = GetEnableTabList();
+            var userSession = SessionServiceInstance.UserSession;
+            var ownBrand = BrandList.First(_ => _.Id == LicenseeId);
+
+            var viewModel = new BettingTicketCenterViewModel
+            {
+                StatusList = GetBookedBetStatusList(),
+                CurrencyList = ownBrand.CurrencyList,
+                PlatformList = GetPlatformList(),
+                IsAllowedCustomerComm = SessionServiceInstance.LicenseeSession.IsAllowedCustomerComm,
+                SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
+                OwnBrand = ownBrand,
+                Brands = BrandList,
+                TabList = tabList
+            };
+
+            return View("~/Views/Desktop/BetList/BettingTicketCenter/BookedBet.cshtml", viewModel);
+        }
+
         private IEnumerable<string> GetEnableTabList()
         {
             var functionKeys = _userService.GetPermissions(
@@ -197,6 +227,17 @@
             }
 
             return string.Join(", ", licProductsRequireUseName);
+        }
+
+        private static IEnumerable<CheckedItem> GetBookedBetStatusList()
+        {
+            return new List<CheckedItem>
+            {
+                new CheckedItem { ID = StatusTypes.Booking, Name = ViewResources.Booking, Checked = true },
+                new CheckedItem { ID = StatusTypes.Successful, Name = ViewResources.Successful, Checked = true },
+                new CheckedItem { ID = StatusTypes.Unsuccessful, Name = ViewResources.Unsuccessful, Checked = true },
+                new CheckedItem { ID = StatusTypes.Cancelled, Name = ViewResources.Cancelled, Checked = true }
+            };
         }
 
         private static IEnumerable<CheckedItem> GetRunningStatusList()

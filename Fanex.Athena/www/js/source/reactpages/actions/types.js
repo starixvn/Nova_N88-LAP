@@ -13,6 +13,7 @@ export const SET_BASECURRENCY_LIST = "SET_BASECURRENCY_LIST";
 
 /* Currency */
 export const SET_SELECTED_CURRENCY = "SET_SELECTED_CURRENCY";
+export const SET_CURRENCY_LIST = "SET_CURRENCY_LIST";
 
 /* Loader */
 export const TOGGLE_LOADER = "TOGGLE_LOADER";

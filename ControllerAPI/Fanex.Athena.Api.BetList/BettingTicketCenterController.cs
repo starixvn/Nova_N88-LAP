@@ -65,5 +65,17 @@
                 metaModel,
                 SessionService.UserSession.Language);
         }
+
+        [HttpPost]
+        [ApiFunctionAuthorization(PermissionKeys.BetHistoryBookedBet)]
+        [ValidationApiRequest(IsValidBrandId = true)]
+        [ApiAutoBindMetaModel(BindAgent = true, BindShowingBetFromIP = true)]
+        public async Task<dynamic> GetByBookedBet(BookedBetBetListMetaModel metaModel)
+        {
+            return await _betListApiClient.PostAsync("/BettingTicketCenter/GetByBookedBet",
+                metaModel,
+                SessionService.UserSession.Language
+                ).ConfigureAwait(false);
+        }
     }
 }

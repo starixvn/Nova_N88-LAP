@@ -1,6 +1,13 @@
 ﻿@import "../../scss/abstracts/_variables.scss";
 @import '../../components/sortableheader/sortableheader';
 
+.booked-icon {
+    padding: 0px 10px;
+    background-color: #F27C06;
+    color: white;
+    border-radius: 2px;
+}
+
 .players-choice {
     color: #000000;
     font-weight: bold !important;

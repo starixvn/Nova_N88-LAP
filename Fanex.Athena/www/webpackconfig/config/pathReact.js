@@ -33,6 +33,7 @@ var scriptPaths = {
     bettingticketscenter_singlecustomer: "./www/js/source/reactpages/pages/bettingticketscenter/singlecustomer/components/index.jsx",
     bettingticketscenter_refno: "./www/js/source/reactpages/pages/bettingticketscenter/refno/components/index.jsx",
     bettingticketscenter_running: "./www/js/source/reactpages/pages/bettingticketscenter/running/components/index.jsx",
+    bettingticketscenter_bookedbet: "./www/js/source/reactpages/pages/bettingticketscenter/bookedbet/components/index.jsx",
 
     playerlist: "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/index.jsx",
     accountinfo: "./www/js/source/reactpages/Module/PlayerAdmin/account-info/components/index.jsx",

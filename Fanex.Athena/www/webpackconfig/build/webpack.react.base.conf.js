@@ -22,6 +22,7 @@ function generateConfig(environment) {
             [`${jsPath}/bettingticketscenter/singlecustomer`]: pathConfig.scriptPaths.bettingticketscenter_singlecustomer,
             [`${jsPath}/bettingticketscenter/refno`]: pathConfig.scriptPaths.bettingticketscenter_refno,
             [`${jsPath}/bettingticketscenter/running`]: pathConfig.scriptPaths.bettingticketscenter_running,
+            [`${jsPath}/bettingticketscenter/bookedbet`]: pathConfig.scriptPaths.bettingticketscenter_bookedbet,
             [`${jsPath}/playeradmin/playerlist`]: pathConfig.scriptPaths.playerlist,
             [`${jsPath}/playeradmin/accountinfo`]: pathConfig.scriptPaths.accountinfo,
             [`${jsPath}/playeradmin/runningbetlist`]: pathConfig.scriptPaths.playerrunningbetlist,

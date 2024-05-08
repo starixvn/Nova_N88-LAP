@@ -29,6 +29,7 @@
         public const string BetHistoryRefNo = "BetHistory_RefNo";
         public const string BetHistoryRunning = "BetHistory_Running";
         public const string BetHistoryAdvancedSearch = "BetHistory_AdvancedSearch";
+        public const string BetHistoryBookedBet = "BetHistory_BookedBet";
 
         /*External*/
         public const string PlayerAdmin = "PlayerAdmin";

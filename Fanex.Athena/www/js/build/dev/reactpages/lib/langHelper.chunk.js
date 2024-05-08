@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 3/27/2024 3:03:49 PM
+// Generated at: 4/22/2024 4:15:50 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -197,6 +197,7 @@ window._language_en_US = {
   BettingTicketCenter: "Betting Ticket Center",
   BettingTicketCenter_AdvancedSearchTabNote1: "All bettypes, League, and Match filter available only when 1 day is selected",
   BettingTicketCenter_AdvancedSearchTabNote2: "Data is available from {0}",
+  BettingTicketCenter_BookedBetNote: "Data is available within up to 7 days",
   BettingTicketCenter_RefnoTabNote1: "For Sportsbook, the search result includes the related Bonus/Cash tickets.",
   BettingTicketCenter_RefnoTabNote2: "For {0}: Please provide username also in order to search ticket later than {1}",
   BetTradeCommission: "Bet Trade Commission",
@@ -211,6 +212,10 @@ window._language_en_US = {
   BonusNameCode: "Bonus Name/ Code",
   BonusStatus: "Bonus Status",
   BonusType: "Bonus Type",
+  BookedBet: "Booked Bet",
+  BookedId: "Booked ID",
+  BookedTime: "Booked Time",
+  Booking: "Booking",
   bottom_X_players: "bottom X players",
   BottomXPlayerListBasedOn: "Bottom {0} players based on {1}",
   BoughtAmount: "Bought Amount",
@@ -228,6 +233,7 @@ window._language_en_US = {
   BySportsType: "By Sports Type",
   Cancel: "Cancel",
   Canceled: "Canceled",
+  Cancelled: "Cancelled",
   CannotUpdateBetLimitForProduct: "You cannot update member bet limit for product {0}.",
   CashOutAmount: "Cash Out Amount",
   CashOutAmt: "Cash-out Amt",
@@ -681,9 +687,11 @@ window._language_en_US = {
   Odds: "Odds",
   OddsAvg: "Odds Avg",
   OddsGroup: "Odds Group",
+  OddsLower: "Odds Lower",
   OddsMatched: "Odds Matched",
   OddsReq: "Odds Req",
   OddsType: "Odds Type",
+  OddsUpper: "Odds Upper",
   of: "of",
   Off: "Off",
   Offline: "Offline",
@@ -856,6 +864,7 @@ window._language_en_US = {
   Subsidiary: "Subsidiary",
   SubsidiarySearch: "Subsidiary Search",
   SubsidiaryWL: "Subsidiary W/L",
+  Successful: "Successful",
   Summary: "Summary",
   Sunday: "Sunday",
   Suspended: "Suspended",
@@ -937,6 +946,7 @@ window._language_en_US = {
   Unfreeze: "Unfreeze",
   UniquePlayers: "#Unique Players",
   Unknown: "Unknown",
+  Unsuccessful: "Unsuccessful",
   Update: "Update",
   Update_Group: "Update Group",
   Update_Password_Success: "&apos;{0}&apos; password has been reset successfully. You will be redirected in &lt;span class=&apos;msec&apos;&gt;{1}&lt;/span&gt; seconds.",

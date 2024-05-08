@@ -6,3 +6,10 @@ export const setSelectedCurrency = (item) => {
         data: item
     }
 }
+
+export const setCurrencyList = (item) => {
+    return {
+        type: types.SET_CURRENCY_LIST,
+        data: item
+    }
+}

@@ -1123,15 +1123,6 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Both Group By and Breakdown By levels.
-        /// </summary>
-        public static string BothGroupByAndBreakdownLevelOption {
-            get {
-                return ResourceManager.GetString("BothGroupByAndBreakdownLevelOption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Booked Bet.
         /// </summary>
         public static string BookedBet {
@@ -1164,6 +1155,15 @@ namespace Fanex.Athena.Resources {
         public static string Booking {
             get {
                 return ResourceManager.GetString("Booking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both Group By and Breakdown By levels.
+        /// </summary>
+        public static string BothGroupByAndBreakdownLevelOption {
+            get {
+                return ResourceManager.GetString("BothGroupByAndBreakdownLevelOption", resourceCulture);
             }
         }
         
@@ -3607,7 +3607,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bet Count, No. Deposit and No. Withdrawal always show Full 100%.
+        ///   Looks up a localized string similar to Bet Count, No. Deposit, No. Withdrawal and Closing Balance always show Full 100%.
         /// </summary>
         public static string HouseWinLossNote {
             get {

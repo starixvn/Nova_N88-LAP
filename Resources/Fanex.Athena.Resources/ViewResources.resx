@@ -3333,6 +3333,6 @@
     <value>Data View</value>
   </data>
   <data name="HouseWinLossNote" xml:space="preserve">
-    <value>Bet Count, No. Deposit and No. Withdrawal always show Full 100%</value>
+    <value>Bet Count, No. Deposit, No. Withdrawal and Closing Balance always show Full 100%</value>
   </data>
 </root>

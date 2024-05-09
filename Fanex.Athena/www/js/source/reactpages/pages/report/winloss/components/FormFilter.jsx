@@ -28,7 +28,7 @@ export class FormFilter extends PureComponent {
     }
 
     componentDidMount() {
-       this.props.fetchSettingData();
+        this.props.fetchSettingData();
     }
 
     currencyList = [];
@@ -170,7 +170,7 @@ export class FormFilter extends PureComponent {
 
     _validateDateRangeSupportQuickDownload = dateRange => {
         const { fromDate, toDate } = dateRange;
-        if(typeof fromDate === "string" || typeof toDate === "string") {
+        if (typeof fromDate === "string" || typeof toDate === "string") {
             return true;
         } else {
             const differentDays = toDate.diff(fromDate, 'days');
@@ -181,7 +181,7 @@ export class FormFilter extends PureComponent {
     _handleQuickDownload = event => {
         event.preventDefault();
         const { displayedColumns, dateRange, toggleLoader } = this.props;
-        if(!this._validateDateRangeSupportQuickDownload(dateRange)) {
+        if (!this._validateDateRangeSupportQuickDownload(dateRange)) {
             alert(LangHelper.getSingleResource('QuickDownloadDateRangeExceedMsg'))
             return;
         }
@@ -201,7 +201,7 @@ export class FormFilter extends PureComponent {
         }
         toggleLoader(true);
         QueryService.exportReportDetailData(params, () => toggleLoader(false));
-       
+
     }
 
     _handleSubmit = event => {
@@ -210,11 +210,11 @@ export class FormFilter extends PureComponent {
         const newRequestParam = QueryHelper.toAPIParams(this.props);
         this.props.setRequestParam({ ...newRequestParam, displayedColumns });
         this.props.fetchReportData(newRequestParam, QueryHelper.callBackToUpdateGridOption(defaultPagingOption.PageIndex, defaultPagingOption.PageSize,
-             defaultSortOption.sortBy, defaultSortOption.sortType));
+            defaultSortOption.sortBy, defaultSortOption.sortType));
     }
 
     isNotValid = () => {
-        return !this.props.selectedCurrency 
+        return !this.props.selectedCurrency
             || !this.props.selectedProduct
             || !this.props.selectedGroupByOption
             || (AppData.isAllowedGroupByPlayerSingle && !this.props.username)
@@ -342,8 +342,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     const { settingData, selectedDateType, dateRange, selectedBrand, username, selectedProduct, selectedCurrency, selectedBaseCurrency,
-        isExcludeTest, includeFreeSpins,noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone, selectedPlayerList,
-        displayedColumns } = state;
+        isExcludeTest, includeFreeSpins, noDraw, selectedGroupByOption, drilldownInOriginalCurrency, userNameFilterOption, selectedTimezone, selectedPlayerList,
+        selectedDataView, displayedColumns } = state;
     return Object.assign({}, {
         settingData,
         selectedDateType,
@@ -361,8 +361,9 @@ function mapStateToProps(state) {
         selectedGroupByOption,
         selectedTimezone,
         selectedPlayerList,
-        displayedColumns
+        displayedColumns,
+        selectedDataView
     });
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);

@@ -16,17 +16,32 @@
     .group-filter {
         .form-group {
             display: inline-block;
+
             .radio-group {
                 margin-left: 30px;
+
                 span {
                     margin-right: 30px;
                 }
             }
+
             #multiple-select-ddlViewColumn {
                 width: 200px;
             }
-            
+
+            .ddlDataView {
+                width: 200px;
+                height: 16px;
+                display: inline-block;
+            }
+
             margin-right: 20px;
+        }
+
+        .ddlDataViewNote {
+            color: red;
+            font-size: small;
+            margin-left: 0px;
         }
     }
 
@@ -42,28 +57,34 @@
                         }
                     }
                 }
-                
+
             }
         }
 
         .body-content {
-            .table > tbody tr td {
+            .table>tbody tr td {
                 padding: 8px 10px;
+            }
+            .disabled-link{
+                pointer-events: none;
+                cursor: default;
+                text-decoration: none;
+                color: black;
             }
         }
 
         .footer-content {
-            .fixed-table-grant-total > td {
+            .fixed-table-grant-total>td {
                 padding: 8px;
             }
         }
     }
-    
+
     .report-title-container {
         .caret-block {
             top: 8px;
             bottom: 0;
-    
+
             .icon-excel-wrapper {
                 margin-left: 10px;
                 background: $white;
@@ -79,7 +100,7 @@
         [type="radio"]:checked {
             position: relative;
             left: 0;
-            opacity: 1; 
+            opacity: 1;
         }
     }
 

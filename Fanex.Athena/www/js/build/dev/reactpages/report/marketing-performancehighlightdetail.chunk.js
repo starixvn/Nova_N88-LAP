@@ -220,7 +220,7 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
 
 class DataService {
   static buildProxyUrl(apiKey, apiUrl) {
-    const encodeUrl = apiUrl.replace(new RegExp('/', 'g'), '_');
+    const encodeUrl = apiUrl.replace(new RegExp("/", "g"), "_");
     const proxyUrl = `api/proxy/${apiKey}/${encodeUrl}`;
     return proxyUrl;
   }
@@ -228,27 +228,30 @@ class DataService {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_2__["default"].setParams(url, params);
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
       headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        '__RequestVerificationToken': _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].getXsrfToken()
+        "X-Requested-With": "XMLHttpRequest",
+        __RequestVerificationToken: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].getXsrfToken()
       }
     });
   }
   static postData(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
       headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        '__RequestVerificationToken': _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].getXsrfToken()
+        "X-Requested-With": "XMLHttpRequest",
+        __RequestVerificationToken: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].getXsrfToken()
       }
     });
   }
   static getFile(url, params) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params, {
-      responseType: 'blob',
+      responseType: "blob",
       headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        '__RequestVerificationToken': _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].getXsrfToken()
+        "X-Requested-With": "XMLHttpRequest",
+        __RequestVerificationToken: _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_1__["default"].getXsrfToken()
       }
     });
+  }
+  static genCancellationToken() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.CancelToken.source();
   }
   static postProxyData(apiKey, apiUrl, params) {
     const proxyUrl = this.buildProxyUrl(apiKey, apiUrl);
@@ -279,8 +282,8 @@ class DataService {
   }
 }
 _defineProperty(DataService, "apiKeys", {
-  report: 'reportApi',
-  betlist: 'betlistApi'
+  report: "reportApi",
+  betlist: "betlistApi"
 });
 
 /***/ }),

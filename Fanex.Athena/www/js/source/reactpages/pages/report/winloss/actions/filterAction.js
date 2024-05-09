@@ -1,79 +1,95 @@
-import { SET_NO_DRAW, SET_SELECTED_DATE_TYPE, SET_SELECTED_GROUP_BY_OPTION, DRILLDOWN_IN_ORIGINAL_CURRENCY, 
-    USERNAME_FILTER_OPTION, SET_SELECTED_TIMEZONE, SET_INCLUDE_FREE_SPINS, SET_SELECTED_PLAYER_LIST } from './types';
-import { setDateRange } from '@jsroot/actions/dateRangeAction';
-import { setSelectedCurrency } from '@jsroot/actions/currencyAction';
-import { setSelectedBaseCurrency } from '@jsroot/actions/baseCurrencyAction';
-import { setUsername } from '@jsroot/actions/usernameAction';
-import { setSelectedProduct } from '@jsroot/actions/productAction';
-import { changeIsExcludeTest } from '@jsroot/actions/excludeTestAction';
-import { setSelectedBrand } from '@jsroot/actions/brandAction';
-import { setSettingData } from '@jsroot/actions/settingDataAction';
-import QueryService from '../libs/queryService';
-import LangHelper from '@jsroot/lib/langHelper'
+import {
+    SET_NO_DRAW,
+    SET_SELECTED_DATE_TYPE,
+    SET_SELECTED_GROUP_BY_OPTION,
+    DRILLDOWN_IN_ORIGINAL_CURRENCY,
+    USERNAME_FILTER_OPTION,
+    SET_SELECTED_TIMEZONE,
+    SET_INCLUDE_FREE_SPINS,
+    SET_SELECTED_PLAYER_LIST,
+    SET_SELECTED_DATA_VIEW,
+} from "./types";
+import { setDateRange } from "@jsroot/actions/dateRangeAction";
+import { setSelectedCurrency } from "@jsroot/actions/currencyAction";
+import { setSelectedBaseCurrency } from "@jsroot/actions/baseCurrencyAction";
+import { setUsername } from "@jsroot/actions/usernameAction";
+import { setSelectedProduct } from "@jsroot/actions/productAction";
+import { changeIsExcludeTest } from "@jsroot/actions/excludeTestAction";
+import { setSelectedBrand } from "@jsroot/actions/brandAction";
+import { setSettingData } from "@jsroot/actions/settingDataAction";
+import QueryService from "../libs/queryService";
+import LangHelper from "@jsroot/lib/langHelper";
 
-const setNoDraw = isNoDraw => {
+const setNoDraw = (isNoDraw) => {
     return {
         type: SET_NO_DRAW,
-        data: isNoDraw
-    }
-}
+        data: isNoDraw,
+    };
+};
 
-const setIncludeFreeSpins = isIncludedFreeSpin => {
+const setIncludeFreeSpins = (isIncludedFreeSpin) => {
     return {
         type: SET_INCLUDE_FREE_SPINS,
-        data: isIncludedFreeSpin
-    }
-}
+        data: isIncludedFreeSpin,
+    };
+};
 
-const setDrilldownInOriginalCurrency = isOriginalCurrency => {
+const setDrilldownInOriginalCurrency = (isOriginalCurrency) => {
     return {
         type: DRILLDOWN_IN_ORIGINAL_CURRENCY,
-        data: isOriginalCurrency
-    }
-}
+        data: isOriginalCurrency,
+    };
+};
 
-const setUserNameFilterOption = userNameOption => {
+const setUserNameFilterOption = (userNameOption) => {
     return {
         type: USERNAME_FILTER_OPTION,
-        data: userNameOption
-    }
-}
+        data: userNameOption,
+    };
+};
 
-const setSelectedDateType = selectedDateType => {
+const setSelectedDateType = (selectedDateType) => {
     return {
         type: SET_SELECTED_DATE_TYPE,
-        data: selectedDateType
-    }
-}
+        data: selectedDateType,
+    };
+};
 
-const setSelectedGroupByOption = groupByOption => {
+const setSelectedGroupByOption = (groupByOption) => {
     return {
         type: SET_SELECTED_GROUP_BY_OPTION,
-        data: groupByOption
-    }
-}
+        data: groupByOption,
+    };
+};
 
-const setSelectedTimezone = timezone => {
+const setSelectedTimezone = (timezone) => {
     return {
         type: SET_SELECTED_TIMEZONE,
-        data: timezone
-    }
-}
+        data: timezone,
+    };
+};
 
-const setSelectedPlayerList = playerList => {
+const setSelectedPlayerList = (playerList) => {
     return {
         type: SET_SELECTED_PLAYER_LIST,
-        data: playerList
-    }
-}
+        data: playerList,
+    };
+};
 
-export const fetchSettingData = () => async dispatch => {
+const setSelectedDataView = (dataview) => {
+    return {
+        type: SET_SELECTED_DATA_VIEW,
+        data: dataview,
+    };
+};
+
+export const fetchSettingData = () => async (dispatch) => {
     const response = await QueryService.getSettingData();
-    if(!response.isSuccess) {
+    if (!response.isSuccess) {
         alert(LangHelper.getSingleResource("ErrorProcessingMsg"));
-    } 
+    }
     dispatch(setSettingData(response.data));
-}
+};
 
 export default {
     fetchSettingData,
@@ -91,5 +107,6 @@ export default {
     setDrilldownInOriginalCurrency,
     setSelectedGroupByOption,
     setSelectedTimezone,
-    setIncludeFreeSpins
-}
+    setIncludeFreeSpins,
+    setSelectedDataView,
+};

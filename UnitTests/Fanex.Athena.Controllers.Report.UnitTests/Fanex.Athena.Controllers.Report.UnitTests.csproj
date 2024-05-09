@@ -94,7 +94,6 @@
     <Compile Include="Result\ResultReportControllerTest.cs" />
     <Compile Include="Result\ResultReportControllerTest.ResultPopup.cs" />
     <Compile Include="NoteControllerTest.cs" />
-    <Compile Include="LicenseeWinLossReportControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,11 +4,11 @@
     {
         /*NAP Menu Permission*/
         public const string ManageUser = "ManageLicenseeUser";
-        public const string ReportLicenseeWinLoss = "LicenseeWinLoss";
         public const string ReportCustomerWinLoss = "CustomerWinLoss";
         public const string ReportWinLoss = "WinLossReport";
         public const string ReportMarketing = "MarketingReport";
         public const string ReportBonusInfo = "BonusInfoReport";
+        public const string ReportHouseWinLoss = "HouseWinLoss";
         public const string ReportExtraPayout = "ExtraPayoutReport";
         public const string ReportAbnormalBet = "AbnormalBetReport";
         public const string BtcAdvancedSearch = "BtcAdvancedSearch";
@@ -45,6 +45,9 @@
         /*Notification*/
         public const string Resettlement = "Resettlement";
         public const string Bell = "Bell";
+
+        /*Report*/
+        public const string ReportWinlossAnalysis = "SabaWinLossAnalysis";
 
         /*BetList*/
         public const string BetlistViewIpvn = "ViewIPfromVN";

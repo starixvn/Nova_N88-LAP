@@ -11,7 +11,7 @@ import ActionCreators from '../actions';
 import { Url } from '../constants/queryConsts';
 import { SportsOWBetListIds } from '../constants/filterConsts';
 
-export const Content = ({ betListParam, requestParam, setBetListParam }) => { 
+export const Content = ({ betListParam, requestParam, setBetListParam }) => {
 
     const _buildNonSportsBetListUrl = () => {
         const params = {
@@ -53,10 +53,10 @@ export const Content = ({ betListParam, requestParam, setBetListParam }) => {
 
     const _renderBetListPopup = () => {
         const { custId, productId } = betListParam || {};
-        if(!custId || !productId) {
+        if (!custId || !productId) {
             return null;
         }
-        const betlistUrl = SportsOWBetListIds.indexOf(productId) !== -1 ? _buildSportsBetListUrl() :  _buildNonSportsBetListUrl();
+        const betlistUrl = SportsOWBetListIds.indexOf(productId) !== -1 ? _buildSportsBetListUrl() : _buildNonSportsBetListUrl();
         return <Popup iframeUrl={betlistUrl} width={1100} height={700} isShow={true} title={LangHelper.getSingleResource('PlayerBetList')} onClose={() => setBetListParam({})}>
         </Popup>
     }

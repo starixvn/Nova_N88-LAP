@@ -6,7 +6,11 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using DataAccess.Core.Common.Interfaces;
+    using Fanex.Athena.Api.Base.Attributes;
+    using Fanex.Athena.Extension.Utility.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.DTO.Configuration;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.Athena.Web.ActionFilter;
@@ -14,36 +18,41 @@
     using ONEbook.UM.Filters;
     using Service.Core.Common.Interfaces;
     using Service.Core.Users.Interfaces;
+    using ServiceStack.Text;
 
     [CLSCompliant(false)]
     [CheckUMFilter]
     [FunctionAuthorization(PermissionKeys.BetHistory)]
-    public class CommonDataApiController : ApiController
+    public class CommonDataApiController : BaseApiController
     {
         private readonly ILanguageService _langService;
-        private readonly ISportTypeDataAccess _sportTypeDataAccess;
+        private readonly ISportService _sportService;
         private readonly ISessionService _sessionService;
         private readonly ILeagueDataAccess _leagueDataAccess;
         private readonly IMatchDataAccess _matchDataAccess;
         private readonly IBetTypeService _betTypeService;
         private readonly IProductService _productService;
+        private readonly ICustomMemoryCacheService _cacheService;
 
         public CommonDataApiController(
             ILanguageService langService,
-            ISportTypeDataAccess sportTypeDataAccess,
+            ISportService sportService,
             ISessionService sessionService,
             ILeagueDataAccess leagueDataAccess,
             IMatchDataAccess matchDataAccess,
             IBetTypeService betTypeService,
-            IProductService productService)
+            IProductService productService,
+            ICustomMemoryCacheService cacheService)
+            : base(langService)
         {
             _langService = langService;
-            _sportTypeDataAccess = sportTypeDataAccess;
+            _sportService = sportService;
             _sessionService = sessionService;
             _leagueDataAccess = leagueDataAccess;
             _matchDataAccess = matchDataAccess;
             _betTypeService = betTypeService;
             _productService = productService;
+            _cacheService = cacheService;
         }
 
         protected override void Initialize(System.Web.Http.Controllers.HttpControllerContext controllerContext)
@@ -60,7 +69,7 @@
                 _sessionService.LicenseeSession.OfferedSubProductList,
                 productCode);
 
-            var sports = await _sportTypeDataAccess.GetSportsAndProducts(
+            var sports = await _sportService.GetSportsAndProducts(
                  _sessionService.LicenseeSession.LicenseeId,
                  _sessionService.UserSession.Language,
                  productCode);
@@ -107,6 +116,40 @@
             var matches = await _matchDataAccess.GetMatchesByLeague(leagueid, fromDate, toDate, sportId);
 
             return matches.Select(x => new { value = x.MatchId, label = x.MatchName });
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<CheckedItem>> GetSportsForTreeView(string productCodes)
+        {
+            if (String.IsNullOrWhiteSpace(productCodes))
+            {
+                return new List<CheckedItem>();
+            }
+
+            return await _sportService.GetSportsForTreeView(_sessionService.LicenseeSession.LicenseeId, _sessionService.UserSession.Language, productCodes);
+        }
+
+        [HttpGet]
+        [CompressFilterAttribute(Order = 1)]
+        public async Task<IHttpActionResult> GetBetTypeInTreeList(string productCodes)
+        {
+            const int cacheTime = 60 * 60 * 12; //12 hour
+            var cacheKey = $"{CacheKey.MemorycacheBetTypeForTreeView}_{productCodes}_{_sessionService.LicenseeSession.LicenseeName}_{_sessionService.UserSession.Language}";
+            var jsonBetType = _cacheService.Get<string>(cacheKey);
+            if (!string.IsNullOrWhiteSpace(jsonBetType))
+            {
+                return JsonNetResult(jsonBetType);
+            }
+
+            if (string.IsNullOrEmpty(productCodes))
+            {
+                return JsonNetResult(new List<CheckedItem>());
+            }
+            JsConfig.ExcludeTypeInfo = true;
+            var betTypeList = await _betTypeService.GetBetTypeForProducts(_sessionService.LicenseeSession.LicenseeId, _sessionService.UserSession.Language, productCodes);
+            var jsonString = ServiceStack.Text.JsonSerializer.SerializeToString(betTypeList);
+            _cacheService.Set(cacheKey, jsonString, cacheTime);
+            return JsonNetResult(jsonString);
         }
     }
 }

@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using Fanex.Athena.Extension.Helper;
+using Fanex.Athena.Model.Core.DTO.Common;
+using Fanex.Athena.Model.Core.MetaModel.Product;
+using Fanex.Athena.Model.Customer.DTO;
+using Fanex.NVC.Authentication.Infrastructure;
+
+namespace Fanex.Athena.Model.Report.MetaModel
+{
+    [CLSCompliant(false)]
+    public class WinlossAnalysisReportViewModel
+    {
+        public WinlossAnalysisReportViewModel()
+        {
+            var toDay = DateTimeHelper.Today;
+            FromDate = toDay;
+            ToDate = toDay;
+        }
+
+        public DateTime FromDate { get; set; }
+
+        public DateTime ToDate { get; set; }
+
+        public DateTime MaxDate { get; set; }
+
+        public DateTime MinDate { get; set; }
+
+        public bool IsAllowedCustomerComm { get; set; }
+
+        public bool IsOfferCashOutProduct { get; set; }
+
+        public IEnumerable<ProductOption> ProductOptionList { get; set; }
+
+        public IEnumerable<CheckedItem> StatusList { get; set; }
+
+        public IDictionary<int, string> PlatformList { get; set; }
+
+        public IDictionary<bool, string> VipPlayerOptionList { get; set; }
+
+        public string SelectedBaseCurrency { get; set; }
+
+        public IDictionary<int, string> LiveStatusList { get; set; }
+
+        public IEnumerable<RiskLevel> RiskLevels { get; set; }
+
+        public IEnumerable<string> OddGroups { get; set; }
+
+        public IEnumerable<CheckedItem> SportList { get; set; }
+
+        public IEnumerable<CheckedItem> BetTypeList { get; set; }
+
+        public Brand OwnBrand { get; set; }
+
+        public IEnumerable<Brand> Brands { get; set; }
+    }
+}

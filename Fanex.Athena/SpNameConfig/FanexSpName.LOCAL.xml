@@ -59,6 +59,9 @@
 			<Mapping DataField="Currency" ObjectProperty="ID" />
 			<Mapping DataField="CurrencyName" ObjectProperty="Name" />
 		</Setting>
+		<Setting Key="LAP_Rpt_WinlossAnalysis_SportSel" SpName="LAP_Rpt_WinlossAnalysis_SportSel" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="LAP_Rpt_WinlossAnalysis_BettypeSel" SpName="LAP_Rpt_WinlossAnalysis_BettypeSel" DbName="DBEXT.bodb02.wsv_lap" />
+		<Setting Key="N88_ReportSettingType_Sel" SpName="N88_ReportSettingType_Sel" DbName="DBN88.bodb_N88.wsv_lap" />
 	</Function>
 
 	<Function Name="CustomerLog">
@@ -85,8 +88,8 @@
 		<Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.wsv_lap" />
 		<Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBN88POL.N88_UserControl.wsv_lap" />
 		<Setting Key="N88_User_UpdateSite" SpName="N88_User_UpdateSite" DbName="DBN88POL.N88_UserControl.wsv_lap" />
-		<Setting Key="N88_Setting_GetByUser" SpName="N88_Setting_GetByUser_xpre" DbName="DBN88POL.N88_UserControl.wsv_lap" />
-		<Setting Key="N88_Setting_UpdateByUser" SpName="N88_Setting_UpdateByUser_xpre" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Setting_GetByUser" SpName="N88_Setting_GetByUser" DbName="DBN88POL.N88_UserControl.wsv_lap" />
+		<Setting Key="N88_Setting_UpdateByUser" SpName="N88_Setting_UpdateByUser" DbName="DBN88POL.N88_UserControl.wsv_lap" />
 	</Function>
 
 	<Function Name="Group">

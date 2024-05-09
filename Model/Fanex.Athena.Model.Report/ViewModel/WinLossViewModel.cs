@@ -1,9 +1,10 @@
 ﻿namespace Fanex.Athena.Model.Report.ViewModel
 {
-    using Fanex.Athena.Model.Core.DTO.Common;
-    using Fanex.NVC.Authentication.Infrastructure;
     using System;
     using System.Collections.Generic;
+    using Fanex.Athena.Model.Core.DTO.Common;
+    using Fanex.Athena.Model.Core.DTO.Configuration;
+    using Fanex.NVC.Authentication.Infrastructure;
 
     [CLSCompliant(false)]
     public class WinLossViewModel : SpecialReportDataViewModel
@@ -15,6 +16,8 @@
         public Brand OwnBrand { get; set; }
 
         public IEnumerable<Brand> Brands { get; set; }
+
+        public IEnumerable<ReportViewSetting> DataView { get; set; }
 
         public int LimitMonthRange { get; set; }
 
@@ -43,5 +46,7 @@
         public bool IsAllowedGroupByBrand { get; set; }
 
         public bool IsAllowedReportBetlist { get; set; }
+
+        public bool IsAllowedDataView { get; set; }
     }
 }

@@ -60,3 +60,13 @@
         }
     }
 }
+
+input[type="checkbox"].checkbox {
+    & + label:before {
+        top: 50%;
+    }
+
+    & + label:after {
+        top: 50%;
+    }
+}

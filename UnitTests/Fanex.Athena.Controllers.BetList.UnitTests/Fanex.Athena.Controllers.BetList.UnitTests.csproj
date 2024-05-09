@@ -139,7 +139,6 @@
     <Compile Include="BonusBetListControllerTest.cs" />
     <Compile Include="CashOutBetListControllerTest.cs" />
     <Compile Include="WinLossAnalysisBetListControllerTest.cs" />
-    <Compile Include="LicenseeWinLossBetListControllerTest.cs" />
     <Compile Include="CardClubBetListtControllerTest.cs" />
     <Compile Include="PragmaticPlayBetListControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

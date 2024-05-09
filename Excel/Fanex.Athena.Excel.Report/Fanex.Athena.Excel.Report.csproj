@@ -94,8 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ReportExcelHelper.cs" />
-    <Compile Include="Models\LicenseeWinLossExcelModel.cs" />
-    <Compile Include="LicenseeWinLossExcel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +144,9 @@
     <None Include="Fanex.Athena.Excel.Report.Debug.ruleset" />
     <None Include="Fanex.Athena.Excel.Report.Release.ruleset" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

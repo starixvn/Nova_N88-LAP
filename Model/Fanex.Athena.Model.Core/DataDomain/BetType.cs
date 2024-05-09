@@ -305,6 +305,8 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         SabaCasinoRoyaleTournamentPrize = 17006,
 
-        SabaRewardRiskFreeRebate = 17007
+        SabaRewardRiskFreeRebate = 17007,
+
+        VirtualSportCorrectScoreTennis = 1235,
     }
 }

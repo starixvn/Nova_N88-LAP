@@ -58,7 +58,7 @@ input[type="checkbox"].checkbox {
     background-color: #fff;
     content: '';
     position: absolute;
-    top: 50%;
+    top: 11px;
     left: 0;
     width: 12px;
     height: 12px;
@@ -90,7 +90,7 @@ input[type="checkbox"].checkbox {
     transition: transform .1s ease-out;
     transition: transform .1s ease-out,-webkit-transform .1s ease-out;
     background-color: transparent;
-    top: 50%;
+    top: 11px;
     left: 2px;
     width: 8px;
     height: 3px;
@@ -192,6 +192,12 @@ input[type="checkbox"].checkbox {
       .form-horizontal .validation-summary-errors ul li {
         margin: 4px 0;
         list-style-type: disc; }
+
+input[type="checkbox"].checkbox + label:before {
+  top: 50%; }
+
+input[type="checkbox"].checkbox + label:after {
+  top: 50%; }
 
 
 /*# sourceMappingURL=setdatalimits.css.map*/

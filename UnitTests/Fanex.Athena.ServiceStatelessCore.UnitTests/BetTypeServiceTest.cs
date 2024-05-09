@@ -2,14 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using DataAccess.Core.Common.Interfaces;
 
     using Fanex.Athena.Service.StatelessCore;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
+    using Fanex.Athena.VendorAdapter.Interfaces;
     using Model.Core.DTO.Common;
 
     using NSubstitute;
@@ -25,11 +24,14 @@
 
         private IBetTypeService _betTypeService;
 
+        private ICacheRefAdapter _cacheRefAdapter;
+
         [OneTimeSetUp]
         public void SetUp()
         {
             _betTypeDataAccess = Substitute.For<IBetTypeDataAccess>();
-            _betTypeService = new BetTypeService(_betTypeDataAccess);
+            _cacheRefAdapter = Substitute.For<ICacheRefAdapter>();
+            _betTypeService = new BetTypeService(_betTypeDataAccess, _cacheRefAdapter);
         }
 
         [TearDown]

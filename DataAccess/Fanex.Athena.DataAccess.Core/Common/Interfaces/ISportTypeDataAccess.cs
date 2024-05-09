@@ -9,5 +9,7 @@
         Task<IDictionary<int, string>> GetAllSports();
 
         Task<IEnumerable<SportProductItem>> GetSportsAndProducts(int licenseeId, string languageCode, string productCodes = "");
+
+        Task<IEnumerable<SportForTreeViewItem>> GetSportsForTreeView(int licenseeId, string productCodes);
     }
 }

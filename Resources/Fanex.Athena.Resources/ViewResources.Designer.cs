@@ -3607,11 +3607,20 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bet Count, No. Deposit, No. Withdrawal and Closing Balance always show Full 100%.
+        ///   Looks up a localized string similar to Bet Count, No. Deposit and No. Withdrawal always show Full 100%.
         /// </summary>
         public static string HouseWinLossNote {
             get {
                 return ResourceManager.GetString("HouseWinLossNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Count, No. Deposit, No. Withdrawal and Closing Balance always show Full 100%.
+        /// </summary>
+        public static string HouseWinLossNote_Player {
+            get {
+                return ResourceManager.GetString("HouseWinLossNote_Player", resourceCulture);
             }
         }
         

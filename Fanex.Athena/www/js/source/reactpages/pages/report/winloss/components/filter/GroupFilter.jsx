@@ -11,6 +11,7 @@ import { GroupByOptionAllowByPermission, GroupByOptionAllowQuickDownload, Defaul
 import GroupHelper from '../../libs/helpers/groupHelper';
 import { displayedColumns as DefaultDisplayedColumns } from '../../constants/gridContants';
 import AppData from '@jsroot/lib/AppData'
+import { GroupByOptionIds } from '../../constants/filterConsts'
 import Select from 'react-select'
 
 export const GroupFilter = props => {
@@ -80,7 +81,10 @@ export const GroupFilter = props => {
 
     const _renderNote = () => {
         return (<div className="row ddlDataViewNote">
-            <p> {LangHelper.getSingleResource('Note')}: {LangHelper.getSingleResource('HouseWinLossNote')}</p>
+            <p> {LangHelper.getSingleResource('Note')}: {
+                selectedGroupByOption === GroupByOptionIds.player
+                    ? LangHelper.getSingleResource('HouseWinLossNote_Player')
+                    : LangHelper.getSingleResource('HouseWinLossNote')}</p>
         </div>
         )
     }

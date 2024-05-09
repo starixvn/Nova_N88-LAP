@@ -5049,6 +5049,7 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
 
 
 
+
 const GroupFilter = props => {
   const {
     setSelectedGroupByOption,
@@ -5119,7 +5120,7 @@ const GroupFilter = props => {
   const _renderNote = () => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row ddlDataViewNote"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('Note'), ": ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('HouseWinLossNote')));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('Note'), ": ", selectedGroupByOption === _constants_filterConsts__WEBPACK_IMPORTED_MODULE_9__["GroupByOptionIds"].player ? _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('HouseWinLossNote_Player') : _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource('HouseWinLossNote')));
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_collapsible_panel__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "group-filter page-filter",

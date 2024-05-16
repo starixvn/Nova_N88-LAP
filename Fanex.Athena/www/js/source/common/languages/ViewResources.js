@@ -1,4 +1,4 @@
-﻿// Generated at: 5/9/2024 8:45:57 AM
+﻿// Generated at: 5/16/2024 4:34:08 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -434,6 +434,7 @@ Jul:"Jul",
 July:"July",
 Jun:"Jun",
 June:"June",
+Kabaddi:"Kabaddi",
 KeepCurrentComm:"Keep current commission",
 KOTime:"K.O Time",
 Last:"Last",

@@ -3967,6 +3967,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kabaddi.
+        /// </summary>
+        public static string Kabaddi {
+            get {
+                return ResourceManager.GetString("Kabaddi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keep current commission.
         /// </summary>
         public static string KeepCurrentComm {

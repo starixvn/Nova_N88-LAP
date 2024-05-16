@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Generated at: 5/16/2024 4:34:08 PM
+// Generated at: 5/16/2024 5:12:37 PM
 window._language_en_US = {
   AA: "AA",
   AbnormalBet: "Abnormal Bet",
@@ -851,7 +851,7 @@ window._language_en_US = {
   RNGCasinoUpdateSettingUnAvailableMsg: "RNG Casino Database is not currently available. Please try again later.",
   Running: "Running",
   Sa: "Sa",
-  Saba: "Saba",
+  Saba: "Saba ",
   SabaId: "Saba Id",
   SabaProductsWinLoss: "Saba Products Win Loss",
   SabaProductsWL: "Saba Products WL",

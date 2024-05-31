@@ -5,13 +5,13 @@ import LangHelper from '@jsroot/lib/langHelper'
 import CurrencyHelper from '@jsroot/lib/currencyHelper'
 import Service from '../../common/Service'
 import { useCallback } from 'react'
-import { ProductCode } from '../../common/constants.js'
+import { ProductCode, CashOutMode } from '../../common/constants.js'
 
 export const useFilterHandler = () => {
     const dispatch = useDispatch();
 
     const { setUsername, setSubsidiaryList, setSelectedStatus, setSelectedProduct, getSportList,
-        getBetTypeList, setSelectedSport, setSelectedBettype, setDateRange, setViewCashOutOnly,
+        getBetTypeList, setSelectedSport, setSelectedBettype, setDateRange, setSelectedCashOutMode,
         setSelectedLiveStatus, setSelectedCustomerClass, setSelectedOddsGroup, setSelectedPlatform,
         setSelectedCurrency, setSelectedBaseCurrency, changeIsConvertAll, setSelectedBrand,
         setSelectedVipOnly, setSearchMode, setGroupInOriginalCurrency, setExcludeTestData, setProductList }
@@ -39,7 +39,7 @@ export const useFilterHandler = () => {
         batch(() => {
             dispatch(setSelectedProduct(selectedItemsKey));
             if (!Service.isContainProductSportBookOrBa(selectedItemsKey)) {
-                dispatch(setViewCashOutOnly(false));
+                dispatch(setSelectedCashOutMode(0));
             }
             dispatch(getSportList(selectedItemsKey));
             dispatch(getBetTypeList(selectedItemsKey));
@@ -72,17 +72,16 @@ export const useFilterHandler = () => {
 
     const onExcludeTextDataChangeHandler = useCallback((checked) => dispatch(setExcludeTestData(checked)), [])
 
-    const onCashOutOnlyChangeHandler = useCallback((checked) => {
-        if (checked) {
-            const seletctProduct = AppData.productList.filter(item => item.id == ProductCode.BA || item.id == ProductCode.SportsBook)
-                .map(item => item.id)
+    const onCashOutModeChangeHandler = useCallback((item) => {
+        if (item.value === CashOutMode.ViewCOOnly) {
+            const selectedProduct = AppData.productList.filter(product => product.id == ProductCode.BA || product.id == ProductCode.SportsBook)
+                .map(product => product.id)
                 .join(',');
-            const productList = AppData.productList.map(item => item.id == ProductCode.SportsBook || item.id == ProductCode.BA ? item : { ...item, status: false });
-            onProductChangeHandler(null, seletctProduct);
+            const productList = AppData.productList.map(product => product.id == ProductCode.SportsBook || product.id == ProductCode.BA ? product : { ...product, status: false });
+            onProductChangeHandler(null, selectedProduct);
             dispatch(setProductList(productList));
-
         }
-        dispatch(setViewCashOutOnly(checked));
+        dispatch(setSelectedCashOutMode(item.value));
     }, [])
 
     const onSearchModeChangeHandler = useCallback((event) => {
@@ -102,7 +101,7 @@ export const useFilterHandler = () => {
         onSportChangeHandler, onBetTypeChangeHandler, onLiveStatusChangeHandler, onDateRangeChangeHandler,
         onRiskLevelChangeHandler, onOddsGroupChangeHandler, onPlatformChangeHandler, onVipOnlyChangeHandler,
         onCurrencyChangeHandler, onBaseCurrencyChangeHandler, onConverAllChangeHandler,
-        onSearchModeChangeHandler, onGroupInOriginalCurrencyChangeHandler, onExcludeTextDataChangeHandler, onCashOutOnlyChangeHandler,
+        onSearchModeChangeHandler, onGroupInOriginalCurrencyChangeHandler, onExcludeTextDataChangeHandler, onCashOutModeChangeHandler,
         onBrandChangeHandler
     }
 }

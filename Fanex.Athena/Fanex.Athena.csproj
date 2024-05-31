@@ -1225,7 +1225,7 @@
     <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\SubsidiaryCheckBoxFilter.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\SubsidiaryDropDownFilter.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\UserNameFilter.jsx" />
-    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\ViewCashOutOnlyFilter.jsx" />
+    <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\CashOutModeFilter.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\filters\VipOnlyFilter.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\hooks\useFilterAction.jsx" />
     <Content Include="www\js\source\reactpages\pages\report\winlossanalysis\components\hooks\useFilterHandler.jsx" />

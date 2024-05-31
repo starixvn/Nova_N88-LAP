@@ -22,20 +22,20 @@ import OddsGroupFilter from '../filters/OddsGroupFilter.jsx';
 import UserNameFilter from '../filters/UserNameFilter.jsx';
 import GroupInOriginalCurrencyCheckBoxFilter from '../filters/GroupInOriginalCurrencyCheckBoxFilter.jsx';
 import ExcludeTestDataCheckBoxFilter from '../filters/ExcludeTestDataCheckBoxFilter.jsx';
-import ViewCashOutOnlyFilter from '../filters/ViewCashOutOnlyFilter.jsx';
+import CashOutModeFilter from '../filters/CashOutModeFilter.jsx';
 import StickyIcon from '../filters/StickyIcon.jsx';
 import CurrencyFilter from '../filters/CurrencyFilter.jsx';
 
 export const MainFilter = () => {
     const { appUuid, dateRange, selectedProduct, selectedSport, sportList, selectedBettype, bettypeList, selectedPlatform,
         selectedStatus, selectedLiveStatus, selectedBaseCurrency, selectedVipOnly, selectedCustomerClass, selectedOddsGroup,
-        searchMode, isGroupInOriginalCurrency, isExcludeTestData, isViewCashOutOnly, selectedCurrency, selectedBrand }
+        searchMode, isGroupInOriginalCurrency, isExcludeTestData, selectedCashOutMode, selectedCurrency, selectedBrand }
         = useSelector(state => state, shallowEqual)
     const { baseCurrencyList, selectedBaseCurrency: newBaseCurrency } = useBaseCurrencyForMultiSelectCurrency(selectedBaseCurrency, selectedBrand);
     const { onDateRangeChangeHandler, onProductChangeHandler, onSportChangeHandler, onBetTypeChangeHandler,
         onPlatformChangeHandler, onStatusChangeHandler, onLiveStatusChangeHandler, onBaseCurrencyChangeHandler, onVipOnlyChangeHandler, onRiskLevelChangeHandler,
         onOddsGroupChangeHandler, onSearchModeChangeHandler, onUserNameInputHandler, onGroupInOriginalCurrencyChangeHandler, onExcludeTextDataChangeHandler,
-        onCashOutOnlyChangeHandler, onCurrencyChangeHandler, onBrandChangeHandler
+        onCashOutModeChangeHandler, onCurrencyChangeHandler, onBrandChangeHandler
     } = useFilterHandler();
     const { isOfferCashOutProduct, brandOptions } = AppData;
     const isEnableCashOutFilter = Service.isContainProductSportBookOrBa(selectedProduct);
@@ -109,6 +109,12 @@ export const MainFilter = () => {
                     <UserNameFilter key={`username-${appUuid}`} onChangeSearchMode={onSearchModeChangeHandler} onChangeUserName={onUserNameInputHandler} searchMode={searchMode} />
                 </div>
 
+                {isOfferCashOutProduct &&
+                    <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
+                        <CashOutModeFilter onChange={onCashOutModeChangeHandler} disabled={!isEnableCashOutFilter} value={selectedCashOutMode} />
+                    </div>
+                }
+
                 <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
                     <GroupInOriginalCurrencyCheckBoxFilter disabled={isDisabledGroupInOriginalCurrency} checked={isGroupInOriginalCurrency} onChange={onGroupInOriginalCurrencyChangeHandler} />
                 </div>
@@ -116,12 +122,6 @@ export const MainFilter = () => {
                 <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
                     <ExcludeTestDataCheckBoxFilter checked={isExcludeTestData} onChange={onExcludeTextDataChangeHandler} />
                 </div>
-
-                {isOfferCashOutProduct &&
-                    <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
-                        <ViewCashOutOnlyFilter onChange={onCashOutOnlyChangeHandler} disabled={!isEnableCashOutFilter} checked={isViewCashOutOnly} />
-                    </div>
-                }
 
             </div>
         </CollapsiblePanel>

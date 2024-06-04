@@ -326,5 +326,9 @@ namespace Fanex.Athena.Model.Core.DataDomain
         SabaTennis = -8,
 
         SabaIceHockey = -9,
+
+        SabaKabaddi = -10,
+
+        Kabaddi = 47,
     }
 }

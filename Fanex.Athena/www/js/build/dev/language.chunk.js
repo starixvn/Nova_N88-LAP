@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-﻿// Generated at: 5/8/2024 11:22:08 AM
+﻿// Generated at: 5/16/2024 5:12:37 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -489,7 +489,8 @@ Home:"Home",
 HomeDrawAwayNoBet:"Home/Draw/Away No Bet",
 HomeNoBet:"Home No Bet",
 Host:"Host",
-HouseWinLossNote:"Bet Count, No. Deposit, No. Withdrawal and Closing Balance always show Full 100%",
+HouseWinLossNote:"Bet Count, No. Deposit and No. Withdrawal always show Full 100%",
+HouseWinLossNote_Player:"Bet Count, No. Deposit, No. Withdrawal and Closing Balance always show Full 100%",
 HTFT:"HT/FT",
 HttpError_403:"Access denied",
 HttpError_404:"Page not found, please check the address",
@@ -528,6 +529,7 @@ Jul:"Jul",
 July:"July",
 Jun:"Jun",
 June:"June",
+Kabaddi:"Kabaddi",
 KeepCurrentComm:"Keep current commission",
 KOTime:"K.O Time",
 Last:"Last",
@@ -849,7 +851,7 @@ RngCasinoAndBingoExcludedNote:"RNG Casino and Bingo are not included in the repo
 RNGCasinoUpdateSettingUnAvailableMsg:"RNG Casino Database is not currently available. Please try again later.",
 Running:"Running",
 Sa:"Sa",
-Saba:"Saba",
+Saba:"Saba ",
 SabaId:"Saba Id",
 SabaProductsWinLoss:"Saba Products Win Loss",
 SabaProductsWL:"Saba Products WL",

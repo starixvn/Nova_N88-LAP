@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Model.Core.DataDomain;
+﻿using System.Collections.Generic;
+using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.DTO.Common;
 using Fanex.Athena.Resources;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.Service.StatelessCore.Utility
 {
@@ -15,6 +15,7 @@ namespace Fanex.Athena.Service.StatelessCore.Utility
             { (int)SportType.SabaFutsal, ViewResources.Futsal },
             { (int)SportType.SabaTennis, ViewResources.Tennis },
             { (int)SportType.SabaIceHockey, ViewResources.IceHockey },
+            { (int)SportType.SabaKabaddi, ViewResources.Kabaddi },
             { (int)SportType.SabaSoccerPingoal, ViewResources.SoccerPinGoal },
             { (int)SportType.SabaBasketballPinGoal, ViewResources.BasketballPinGoal },
             { (int)SportType.SabaESportsPinGoal, ViewResources.ESportsPinGoal }

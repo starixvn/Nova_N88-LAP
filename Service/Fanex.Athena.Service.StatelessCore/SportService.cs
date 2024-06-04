@@ -128,6 +128,10 @@ namespace Fanex.Athena.Service.StatelessCore
                     sportName = _cacheRefAdapter.GetSportName((int)SportType.IceHockey);
                     break;
 
+                case HardCodeSportType.SabaKabaddi:
+                    sportName = _cacheRefAdapter.GetSportName((int)SportType.Kabaddi);
+                    break;
+
                 default:
                     _cacheRefAdapter.GetSportName(sportType);
                     break;

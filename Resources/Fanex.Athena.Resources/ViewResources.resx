@@ -3323,9 +3323,6 @@
   <data name="RiskLevel" xml:space="preserve">
     <value>Risk Level</value>
   </data>
-  <data name="ViewCashOutOnly" xml:space="preserve">
-    <value>View Cash Out Only</value>
-  </data>
   <data name="ClearAllFilters" xml:space="preserve">
     <value>Clear All Filters</value>
   </data>
@@ -3340,5 +3337,17 @@
   </data>
   <data name="Kabaddi" xml:space="preserve">
     <value>Kabaddi</value>
+  </data>
+  <data name="CashOut" xml:space="preserve">
+    <value>Cash Out</value>
+  </data>
+  <data name="ExcludeCOFromSB" xml:space="preserve">
+    <value>Exclude CO from Sportsbook</value>
+  </data>
+  <data name="IncludeCOFromSB" xml:space="preserve">
+    <value>Include CO into Sportsbook</value>
+  </data>
+  <data name="ViewCOOnly" xml:space="preserve">
+    <value>View CO only</value>
   </data>
 </root>

@@ -1339,6 +1339,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cash Out.
+        /// </summary>
+        public static string CashOut {
+            get {
+                return ResourceManager.GetString("CashOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cash Out Amount.
         /// </summary>
         public static string CashOutAmount {
@@ -2896,6 +2905,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclude CO from Sportsbook.
+        /// </summary>
+        public static string ExcludeCOFromSB {
+            get {
+                return ResourceManager.GetString("ExcludeCOFromSB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exclude Test Data.
         /// </summary>
         public static string ExcludeTestData {
@@ -3675,6 +3693,15 @@ namespace Fanex.Athena.Resources {
         public static string Inactive {
             get {
                 return ResourceManager.GetString("Inactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include CO into Sportsbook.
+        /// </summary>
+        public static string IncludeCOFromSB {
+            get {
+                return ResourceManager.GetString("IncludeCOFromSB", resourceCulture);
             }
         }
         
@@ -8476,20 +8503,20 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Cash Out Only.
-        /// </summary>
-        public static string ViewCashOutOnly {
-            get {
-                return ResourceManager.GetString("ViewCashOutOnly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to View Column.
         /// </summary>
         public static string ViewColumn {
             get {
                 return ResourceManager.GetString("ViewColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View CO only.
+        /// </summary>
+        public static string ViewCOOnly {
+            get {
+                return ResourceManager.GetString("ViewCOOnly", resourceCulture);
             }
         }
         

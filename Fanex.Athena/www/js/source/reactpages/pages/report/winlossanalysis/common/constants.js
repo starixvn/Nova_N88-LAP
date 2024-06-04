@@ -127,3 +127,9 @@ export const MobileGroupByHeaderDisplayType = {
     ExternalId: 1,
     SystemId: 2
 }
+
+export const CashOutMode = {
+    IncludeCOFromSB: 0,
+    ExcludeCOFromSB: 1,
+    ViewCOOnly: 2,
+}

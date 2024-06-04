@@ -36,7 +36,7 @@ export const useFilterAction = () => {
         selectedVipOnly,
         isGroupInOriginalCurrency,
         isExcludeTestData,
-        isViewCashOutOnly,
+        selectedCashOutMode,
         selectedGroupByOption,
         selectedBreakDownByOption,
         selectedBrand
@@ -47,7 +47,7 @@ export const useFilterAction = () => {
 
     const { setReportTitle, setRequestParam, toggleLoader, getReportData, setDateRange, setSelectedProduct, setSelectedCurrency,
         setSelectedPlatform, setSelectedStatus, setSelectedLiveStatus, setSelectedBaseCurrency, setSelectedVipOnly, setSelectedCustomerClass, setSelectedOddsGroup,
-        setUsername, setSearchMode, setGroupInOriginalCurrency, setViewCashOutOnly, setExcludeTestData, setSelectedGroupByOption, setSelectedBreakDownByOption,
+        setUsername, setSearchMode, setGroupInOriginalCurrency, setSelectedCashOutMode, setExcludeTestData, setSelectedGroupByOption, setSelectedBreakDownByOption,
         setAppUuid, setProductList } = ActionCreators;
 
     const _buildTitle = (params) => {
@@ -95,7 +95,7 @@ export const useFilterAction = () => {
             OddsGroup: Service.getNormalizedSelectedParamValueForMultiSelectFilter(selectedOddsGroup, oddsGroupList),
             IsShowInOrginalCurrency: isGroupInOriginalCurrency,
             IsExcludedTestData: isExcludeTestData,
-            IsViewCashOutOnly: isViewCashOutOnly,
+            CashOutMode: selectedCashOutMode,
             GroupMode: selectedGroupByOption,
             BreakdownMode: selectedBreakDownByOption,
             BaseCurrencyName: baseCurrency ? baseCurrency.label : '',
@@ -140,7 +140,7 @@ export const useFilterAction = () => {
             dispatch(setUsername(''));
             dispatch(setSearchMode(SearchMode.MatchPrecise));
             dispatch(setGroupInOriginalCurrency(defaultState.isGroupInOriginalCurrency));
-            dispatch(setViewCashOutOnly(defaultState.isViewCashOutOnly));
+            dispatch(setSelectedCashOutMode(defaultState.selectedCashOutMode));
             dispatch(setExcludeTestData(defaultState.isExcludeTestData));
             dispatch(setSelectedGroupByOption(defaultState.selectedGroupByOption));
             dispatch(setSelectedBreakDownByOption(defaultState.selectedBreakDownByOption));

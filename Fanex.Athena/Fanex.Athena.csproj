@@ -509,6 +509,7 @@
     <Content Include="www\css\build\dev\reactpages\subsidiaryperformance\index.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\subsidiaryperformance\index.css" />
     <Content Include="www\css\build\dev\reactpages\vendor.chunk.js" />
+    <Content Include="www\css\build\fonts\lap-icon\fonts\lapfont.svg" />
     <Content Include="www\css\build\images\bar-chart-icon.svg" />
     <Content Include="www\css\build\images\BottomLine.png" />
     <Content Include="www\css\build\images\excel-white-icon.svg">
@@ -714,6 +715,10 @@
     <Content Include="www\css\build\dev\reactpages\report\winlossanalysis.chunk.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="www\css\build\fonts\lap-icon\fonts\lapfont.eot" />
+    <Content Include="www\css\build\fonts\lap-icon\fonts\lapfont.ttf" />
+    <Content Include="www\css\build\fonts\lap-icon\fonts\lapfont.woff" />
+    <Content Include="www\css\build\fonts\lap-icon\selection.json" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -1378,6 +1383,7 @@
     <Content Include="www\css\source\reactpages\components\_pureicon.scss" />
     <Content Include="www\css\source\reactpages\components\_dropdownlabel.scss" />
     <Content Include="www\css\source\reactpages\components\_simple-pagingation.scss" />
+    <Content Include="www\css\source\reactpages\fonts\lap-icon\_style.scss" />
     <None Include="www\css\source\reactpages\main.scss" />
     <Content Include="www\css\build\dev\reactpages\vendor.css" />
     <Content Include="www\css\build\pro\reactpages\vendor.css" />

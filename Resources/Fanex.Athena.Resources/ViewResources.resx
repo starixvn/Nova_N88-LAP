@@ -3350,4 +3350,7 @@
   <data name="ViewCOOnly" xml:space="preserve">
     <value>View CO only</value>
   </data>
+  <data name="DesktopCompact" xml:space="preserve">
+    <value>Desktop Compact</value>
+  </data>
 </root>

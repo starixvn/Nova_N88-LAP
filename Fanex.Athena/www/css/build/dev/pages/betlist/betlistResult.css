@@ -82,6 +82,8 @@ body {
   /* Fast Markets */ }
   .result-container .fn-rs.popup .cl-league.sub {
     text-align: center; }
+  .result-container span.bl-league-name {
+    margin-left: 5px; }
   .result-container table a {
     color: #1c5fc3;
     text-decoration: none; }

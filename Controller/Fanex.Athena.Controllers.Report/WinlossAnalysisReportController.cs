@@ -82,7 +82,7 @@ namespace Fanex.Athena.Controllers.Report
                 { PlatformType.DesktopChina, ViewResources.DesktopChina },
                 { PlatformType.DesktopOthers, ViewResources.DesktopOthers },
                 { PlatformType.DesktopGalaxy, ViewResources.DesktopGalaxy },
-                { PlatformType.DesktopCompact, ViewResources.DesktopGalaxy },
+                { PlatformType.DesktopCompact, ViewResources.DesktopCompact },
                 { PlatformType.MobileStandard, ViewResources.MobileStandard },
                 { PlatformType.MobileEuro, ViewResources.MobileEuro },
                 { PlatformType.MobileGalaxy, ViewResources.MobileGalaxy },

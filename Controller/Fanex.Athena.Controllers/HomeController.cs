@@ -1,9 +1,7 @@
 ﻿namespace Fanex.Athena.Controllers
 {
-    using Fanex.Athena.Model.Auth.Enum;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using System.Web.Mvc;
-    using Web.ActionFilter;
 
     [CheckUMFilter]
     public class HomeController : CultureBaseController

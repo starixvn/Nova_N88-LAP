@@ -21,7 +21,6 @@
     using Fanex.N88.Core.Service.Interface;
     using Fanex.N88.Core.Web.Session;
     using ONEbook.UM.Services;
-    using ONEbook.UM.Services.Impl;
     using System;
     using System.Collections.Generic;
     using System.Configuration;
@@ -35,6 +34,11 @@
     using Fanex.Athena.Api.StatelessBase.Logger;
     using System.Web.Http.ExceptionHandling;
     using Fanex.NVC.Authentication.Infrastructure;
+    using ONEbook.UM.Configurations;
+    using ONEbook.UM.NETFramework;
+    using Fanex.Caching;
+    using ONEbook.UM.Helpers;
+    using ONEbook.UM.Transport;
 
     public static class DIConfig
     {
@@ -100,7 +104,14 @@
 
         private static void RegisterThirdpartyServices(ContainerBuilder builder)
         {
+            builder.RegisterInstance(new UMClientConfiguration().Initialize());
+            builder.RegisterInstance<ICacheService>(new CacheService());
+            builder.RegisterType<UMCacheService>().As<IUMCacheService>().SingleInstance();
+            builder.RegisterType<IPHelperImpl>().As<IPHelper>().SingleInstance();
+            builder.RegisterType<UMRestClient>().As<IUMRestClient>().SingleInstance();
+            builder.RegisterType<HttpContextHelper>().As<IHttpContextHelper>().SingleInstance(); // For WEB
             builder.RegisterType<MaintenanceService>().As<IMaintenanceService>().SingleInstance();
+
 
             builder.RegisterInstance(Logger.Log).As<ILogger>();
             builder.RegisterType<RestSharp.RestClient>().As<RestSharp.IRestClient>().InstancePerDependency();
@@ -113,7 +124,7 @@
                 .As<IBusinessLogBuilderFactory>()
                 .Keyed<IBusinessLogBuilderFactory>("PlayerAdminCommonCustomerSettingLogFactory");
 
-            builder.Register<PlayerStatementService>(x => new PlayerStatementService(x.Resolve<IAppSettings>(), x.ResolveNamed<HttpClient>("EXTServiceTokenClient")))
+            builder.Register(x => new PlayerStatementService(x.Resolve<IAppSettings>(), x.ResolveNamed<HttpClient>("EXTServiceTokenClient")))
                 .As<IPlayerStatementService>()
                 .InstancePerDependency();
 
@@ -179,11 +190,11 @@
             builder.RegisterType<BrandService>().As<IBrandService>().SingleInstance();
             builder.RegisterType<FileManagerService>().As<IFileManagerService>().SingleInstance();
 
-            builder.Register<BetListApiClient>(x => new BetListApiClient(
+            builder.Register(x => new BetListApiClient(
                  x.ResolveNamed<HttpClient>("BETLISTAPICLIENT")
                 )).As<IBetListApiClient>().SingleInstance();
 
-            builder.Register<LGAPIClient>(x => new LGAPIClient(
+            builder.Register(x => new LGAPIClient(
                  x.ResolveNamed<HttpClient>("LGAPICLIENT")
                 )).As<ILGAPIClient>().SingleInstance();
 

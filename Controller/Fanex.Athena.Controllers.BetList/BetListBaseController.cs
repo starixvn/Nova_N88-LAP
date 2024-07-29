@@ -14,7 +14,7 @@
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Model.BetList.MetaModel;
     using Model.Core.DTO.Configuration;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
     using VendorAdapter.Interfaces;
 

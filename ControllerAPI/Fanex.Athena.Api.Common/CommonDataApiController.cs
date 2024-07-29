@@ -15,7 +15,7 @@
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.Athena.Web.ActionFilter;
     using Model.Core.MetaModel.Common;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using Service.Core.Common.Interfaces;
     using Service.Core.Users.Interfaces;
     using ServiceStack.Text;

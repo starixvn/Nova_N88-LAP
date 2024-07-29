@@ -10,7 +10,7 @@
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using Web.ActionFilter;
 
     [SessionState(SessionStateBehavior.ReadOnly)]

@@ -747,6 +747,8 @@
     <Content Include="www\css\build\fonts\lap-icon\fonts\lapfont.ttf" />
     <Content Include="www\css\build\fonts\lap-icon\fonts\lapfont.woff" />
     <Content Include="www\css\build\fonts\lap-icon\selection.json" />
+    <Content Include="SiteConfig\Web.AppSettings.UATBWING.config" />
+    <Content Include="SiteConfig\Web.ConnectionStrings.UATBWING.config" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -1798,6 +1800,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SiteConfig\Web.UAT.config">
+      <DependentUpon>Web.config.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SiteConfig\Web.UATBWING.config">
       <DependentUpon>Web.config.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Content>

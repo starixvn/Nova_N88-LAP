@@ -13,7 +13,7 @@
     using Fanex.N88.Core.Models.ParameterObject;
     using Fanex.N88.Core.Service.Interface;
     using Fanex.N88.Core.Web.Auth;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using ONEbook.UM.Services;
     using Resources;
     using System;

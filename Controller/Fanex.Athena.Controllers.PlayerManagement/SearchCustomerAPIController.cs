@@ -7,7 +7,7 @@
     using Fanex.Athena.Service.PlayerManagement.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Fanex.Athena.Web.ActionFilter;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]

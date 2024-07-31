@@ -12,7 +12,7 @@
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Athena.Web.ResultExtension;
     using Fanex.NVC.Authentication.Infrastructure;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using System;
     using System.Collections.Generic;
     using System.Linq;

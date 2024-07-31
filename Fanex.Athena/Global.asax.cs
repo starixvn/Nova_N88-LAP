@@ -20,12 +20,18 @@ namespace Fanex.Athena
     using Fanex.Athena.Extension.Helpers;
     using Fanex.Athena.Web.ActionFilter;
     using Fanex.Athena.Web.RouterConfig;
+    using Fanex.Caching;
     using Fanex.Data.SqlServer;
     using Fanex.Logging.Sentry.RavenClient;
     using Logging;
     using MessagePack.Resolvers;
+    using ONEbook.UM.Configurations;
+    using ONEbook.UM.Helpers;
+    using ONEbook.UM.Transport;
+    using ONEbook.UM;
     using RemotingRef;
     using SharpRaven;
+    using ONEbook.UM.NETFramework;
 
     public class MvcApplication : HttpApplication
     {
@@ -62,6 +68,15 @@ namespace Fanex.Athena
             AreaRegistration.RegisterAllAreas();
             GlobalFilters.Filters.Add(new CustomAuthorizeAttribute());
             RouteTable.Routes.IgnoreRoute("favicon.ico");
+
+            var umConfig = new UMClientConfiguration().Initialize();
+
+            UMClientManager
+               .UseConfig(umConfig)
+               .UseCacheService(new UMCacheService(new CacheService()))
+               .UseRestClient(new UMRestClient(umConfig))
+               .UseHttpContext(new HttpContextHelper());
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -83,6 +98,8 @@ namespace Fanex.Athena
             .FromApplication("Fanex.LAP");
 
             DIConfig.Register();
+
+
             CompositeResolver.Create(
                    // resolver custom types first
                    NativeDateTimeResolver.Instance,

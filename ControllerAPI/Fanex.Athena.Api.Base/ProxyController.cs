@@ -2,7 +2,7 @@
 {
     using Fanex.Athena.Api.Base.Attributes;
     using Fanex.Athena.Service.Core.Proxy;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;

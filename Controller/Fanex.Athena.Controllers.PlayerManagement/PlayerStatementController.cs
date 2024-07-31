@@ -13,7 +13,7 @@
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
     using Fanex.Athena.Service.PlayerManagement.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     [CheckUMFilter]

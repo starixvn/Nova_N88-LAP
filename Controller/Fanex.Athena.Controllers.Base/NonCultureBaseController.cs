@@ -3,7 +3,7 @@
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Fanex.Athena.Service.Core.Users.Interfaces;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using Web.ActionFilter;
 
     [CustomAuthorize]

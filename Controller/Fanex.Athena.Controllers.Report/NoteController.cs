@@ -4,8 +4,7 @@
 
     using Fanex.Athena.Model.Report.ViewModel.Note;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
 
     using System.Web.Mvc;
     using System.Web.SessionState;

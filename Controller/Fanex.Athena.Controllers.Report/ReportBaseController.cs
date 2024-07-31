@@ -6,7 +6,7 @@
     using Fanex.Athena.Service.StatelessCore.Interfaces;
 
     using Model.Core.DTO.Common;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;

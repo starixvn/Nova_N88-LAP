@@ -297,6 +297,8 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         VgamingFreeBets = 173,
 
+        VgamingPromotionPrize = 3897,
+
         VgamingFreeBetsJackpotPrize = 3899,
 
         VgamingFreeBetsJackpotContribution = 3898,

@@ -9,7 +9,7 @@
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Extension.Utility.Internal;
     using Fanex.Athena.Service.Core.Proxy;
-	using Fanex.Athena.Service.Core.Common;
+    using Fanex.Athena.Service.Core.Common;
     using Fanex.Athena.Service.Core.Users;
     using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.Athena.Service.PlayerManagement;
@@ -39,6 +39,7 @@
     using Fanex.Caching;
     using ONEbook.UM.Helpers;
     using ONEbook.UM.Transport;
+    using ONEbook.UM;
 
     public static class DIConfig
     {
@@ -108,10 +109,9 @@
             builder.RegisterInstance<ICacheService>(new CacheService());
             builder.RegisterType<UMCacheService>().As<IUMCacheService>().SingleInstance();
             builder.RegisterType<IPHelperImpl>().As<IPHelper>().SingleInstance();
-            builder.RegisterType<UMRestClient>().As<IUMRestClient>().SingleInstance();
+            builder.RegisterInstance(UMClientManager.RestClient);
             builder.RegisterType<HttpContextHelper>().As<IHttpContextHelper>().SingleInstance(); // For WEB
             builder.RegisterType<MaintenanceService>().As<IMaintenanceService>().SingleInstance();
-
 
             builder.RegisterInstance(Logger.Log).As<ILogger>();
             builder.RegisterType<RestSharp.RestClient>().As<RestSharp.IRestClient>().InstancePerDependency();

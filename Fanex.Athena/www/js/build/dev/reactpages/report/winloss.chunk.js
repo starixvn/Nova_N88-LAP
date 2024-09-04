@@ -4771,7 +4771,8 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       keyField: "key",
       valueField: "value",
       statusField: "status",
-      onChange: (currentItem, selectedItemsKey) => this.props.setSelectedProduct(selectedItemsKey)
+      onChange: (currentItem, selectedItemsKey) => this.props.setSelectedProduct(selectedItemsKey),
+      hasCheckAllBasedOnSearch: true
     }) : null;
   }
   _renderUserNameInputSearch() {

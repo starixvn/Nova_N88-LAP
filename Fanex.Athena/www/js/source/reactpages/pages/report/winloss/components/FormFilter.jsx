@@ -112,6 +112,7 @@ export class FormFilter extends PureComponent {
                 valueField={"value"}
                 statusField={"status"}
                 onChange={(currentItem, selectedItemsKey) => this.props.setSelectedProduct(selectedItemsKey)}
+                hasCheckAllBasedOnSearch={true}
             />
         ) : null;
     }

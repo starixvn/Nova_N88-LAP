@@ -3575,7 +3575,7 @@ const SET_DETAIL_PARAMS = 'SET_DETAIL_PARAMS';
 /*!*******************************************************************************!*\
   !*** ./www/js/source/reactpages/pages/report/extrapayout/common/constants.js ***!
   \*******************************************************************************/
-/*! exports provided: DefaultPageSize, ApiUrl, headerText, BreadcrumbText, ReportLevel, DefaultPagingOption */
+/*! exports provided: DefaultPageSize, ApiUrl, headerText, BreadcrumbText, ReportLevel, DefaultPagingOption, PayoutPromotionType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3586,6 +3586,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BreadcrumbText", function() { return BreadcrumbText; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportLevel", function() { return ReportLevel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultPagingOption", function() { return DefaultPagingOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PayoutPromotionType", function() { return PayoutPromotionType; });
 /* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 
@@ -3624,6 +3625,9 @@ const DefaultPagingOption = {
   PageSize: 50,
   TotalItem: 0,
   PageList: [50, 100, 200, 300, 400, 500, 1000, 2000]
+};
+const PayoutPromotionType = {
+  OddsBoostAdjustment: 101
 };
 
 /***/ }),
@@ -3756,7 +3760,8 @@ const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldown
     promotionName,
     currency,
     currencyName,
-    productCode
+    productCode,
+    promotionType
   } = dataItem;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Row"], {
     key: `row-${Object(uuid__WEBPACK_IMPORTED_MODULE_5__["v4"])()}`
@@ -3766,19 +3771,7 @@ const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldown
   }, index), indexRowSpan > 0 && drilldownLevel === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "center-align",
     rowSpan: indexRowSpan
-  }, dateString), indexRowSpan > 0 && drilldownLevel === 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: "center-align",
-    rowSpan: indexRowSpan
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    onClick: e => handleDrilldownBetlist(e, custId, nickname, username)
-  }, nickname)), indexRowSpan > 0 && drilldownLevel === 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: "center-align",
-    rowSpan: indexRowSpan
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    onClick: e => handleDrilldownBetlist(e, custId, nickname, username)
-  }, username)), curencyRowSpan > 0 && drilldownLevel === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+  }, dateString), indexRowSpan > 0 && drilldownLevel === 1 && BuildAccountText(promotionType, nickname, indexRowSpan, e => handleDrilldownBetlist(e, custId, nickname, username)), indexRowSpan > 0 && drilldownLevel === 1 && BuildAccountText(promotionType, username, indexRowSpan, e => handleDrilldownBetlist(e, custId, nickname, username)), curencyRowSpan > 0 && drilldownLevel === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "center-align",
     rowSpan: curencyRowSpan
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -3794,6 +3787,16 @@ const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldown
     className: "left-align"
   }, promotionName), buildCommonRow(turnover, betCount, amount, sharingAmount, productCode));
 };
+const BuildAccountText = (promotionType, textValue, indexRowSpan, onClickFunc) => promotionType === _constants__WEBPACK_IMPORTED_MODULE_2__["PayoutPromotionType"].OddsBoostAdjustment && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+  className: "center-align",
+  rowSpan: indexRowSpan
+}, textValue) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+  className: "center-align",
+  rowSpan: indexRowSpan
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  href: "#",
+  onClick: onClickFunc
+}, textValue));
 const buildCommonRow = (turnover, betCount, amount, sharingAmount, productCode) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "right-align"

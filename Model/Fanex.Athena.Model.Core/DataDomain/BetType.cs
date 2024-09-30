@@ -310,5 +310,7 @@ namespace Fanex.Athena.Model.Core.DataDomain
         SabaRewardRiskFreeRebate = 17007,
 
         VirtualSportCorrectScoreTennis = 1235,
+
+        OddsBoostAdjustment = 997
     }
 }

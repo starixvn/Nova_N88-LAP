@@ -302,14 +302,12 @@ body {
     font-weight: bold;
     text-align: left; }
   .result-container table.racing .cl-win, .result-container table.racing .cl-place {
-    width: 100px; }
-  .result-container table.racing .cl-status {
-    width: 150px; }
-    .result-container table.racing .cl-status .official {
-      color: red;
-      font-weight: bold; }
+    width: 60px; }
+  .result-container table.racing .cl-status .official {
+    color: red;
+    font-weight: bold; }
   .result-container table.racing .cl-race-name {
-    width: 83px; }
+    width: 300px; }
   .result-container table.racing .cl-placing {
     width: 50px; }
   .result-container table.racing .cl-engine-no {

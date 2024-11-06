@@ -19,6 +19,7 @@
     using Newtonsoft.Json;
     using Fanex.Athena.Resources;
     using Fanex.Athena.Model.Core.DataDomain;
+    using Fanex.Athena.Extension.Helper;
 
     [FunctionAuthorization(PermissionKeys.ManageUser)]
     public class AccountController : CultureBaseController
@@ -508,7 +509,7 @@
         {
             criteria.CurrentUserId = SessionServiceInstance.UserSession.UserId;
             criteria.CurrentSiteId = N88Settings.Settings.SiteId;
-            criteria.LoginIp = HttpContext.Request.UserHostAddress;
+            criteria.LoginIp = ClientHelper.GetClientIp(HttpContext.Request);
             criteria.LogDate = DateTime.Now;
         }
 

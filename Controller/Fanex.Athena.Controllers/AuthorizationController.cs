@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Athena.Controllers
 {
     using Extension.Utility.Interfaces;
+    using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Extension.Utility;
     using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.Enum;
@@ -470,7 +471,7 @@
         {
             var secretCaptcha = AppSettingInstance.GetValue("SecretCaptcha");
             return !string.IsNullOrWhiteSpace(secretCaptcha) && inputCaptcha == secretCaptcha &&
-                 Regex.IsMatch(Request.UserHostAddress, AppSettingInstance.GetValue("CompanyIP"));
+                 Regex.IsMatch(ClientHelper.GetClientIp(Request), AppSettingInstance.GetValue("CompanyIP"));
         }
 
         private void CreateSession(User user, int onUserId)

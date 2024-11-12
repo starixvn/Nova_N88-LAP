@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Model.UserManagement.Criteria;
@@ -377,7 +378,7 @@
         {
             criteria.CurrentUserId = SessionServiceInstance.UserSession.UserId;
             criteria.CurrentSiteId = N88Settings.Settings.SiteId;
-            criteria.LoginIp = HttpContext.Request.UserHostAddress;
+            criteria.LoginIp = ClientHelper.GetClientIp(HttpContext.Request);
             criteria.LogDate = DateTime.Now;
         }
 

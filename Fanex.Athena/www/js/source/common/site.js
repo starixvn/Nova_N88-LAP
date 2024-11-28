@@ -2,7 +2,13 @@
 define(['jquery', 'common/querystring', 'common/popup', 'helpers/datahelper', 'extensions/prototype', 'components/selectlist'],
     function ($, QueryString, Popup, DataHelper) {// jshint ignore:line
         'use strict';
-        const BASE_CURRENCY = { 'eur': '-1', 'usd': '-2', 'gbp': '-3', 'myr': '-4', 'cny': '-5', 'thb': '-6', 'idr': '-7', 'inh': '-8' };
+        const BASE_CURRENCY = {
+            'eur': '-1', 'usd': '-2',
+            'gbp': '-3', 'myr': '-4',
+            'cny': '-5', 'thb': '-6',
+            'idr': '-7', 'inh': '-8',
+            'brl': '-9'
+        };
         let REQUEST_VERIFICATION_TOKEN;
         let _historyDate = null;
         let _rootUrl = null;

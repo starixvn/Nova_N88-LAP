@@ -8,10 +8,10 @@ namespace Fanex.Athena.Model.Core.DataDomain
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using Fanex.Athena.Resources;
+    using Resources;
 
     /// <summary>
-    /// TODO: Update summary.
+    ///     TODO: Update summary.
     /// </summary>
     public static class SystemConstants
     {
@@ -22,30 +22,34 @@ namespace Fanex.Athena.Model.Core.DataDomain
         public static readonly int MinBaseCurrencyType = BaseCurrencyType.INH;
 
         public static readonly ReadOnlyCollection<string> BaseCurrencyListOfSummaryTotalRow = new ReadOnlyCollection<string>(
-         new List<string> { "EUR", "USD", "GBP" });
+            new List<string> { "EUR", "USD", "GBP" });
 
-        public static readonly IReadOnlyDictionary<int, string> BaseCurrencyList = new Dictionary<int, string> {
-            { BaseCurrencyType.Eur,"EUR" },
-            { BaseCurrencyType.Usd,"USD" },
-            { BaseCurrencyType.Gbp,"GBP" },
-            { BaseCurrencyType.MYR,"MYR" },
-            { BaseCurrencyType.CNY,"CNY" },
-            { BaseCurrencyType.THB,"THB" },
-            { BaseCurrencyType.IDR,"IDR" },
-            { BaseCurrencyType.INH,"INH" },
+        public static readonly IReadOnlyDictionary<int, string> BaseCurrencyList = new Dictionary<int, string>
+        {
+            { BaseCurrencyType.Eur, "EUR" },
+            { BaseCurrencyType.Usd, "USD" },
+            { BaseCurrencyType.Gbp, "GBP" },
+            { BaseCurrencyType.MYR, "MYR" },
+            { BaseCurrencyType.CNY, "CNY" },
+            { BaseCurrencyType.THB, "THB" },
+            { BaseCurrencyType.IDR, "IDR" },
+            { BaseCurrencyType.INH, "INH" },
+            { BaseCurrencyType.BRL, "BRL" }
         };
 
-        public static IReadOnlyDictionary<int, string> VipOnyList => new Dictionary<int, string> {
+        public static IReadOnlyDictionary<int, string> VipOnyList => new Dictionary<int, string>
+        {
             { 0, ViewResources.No },
-            { 1, ViewResources.Yes },
+            { 1, ViewResources.Yes }
         };
 
 #pragma warning disable S109 // Magic numbers should not be used
 
-        public static IReadOnlyDictionary<int, string> CashOutModeList => new Dictionary<int, string> {
+        public static IReadOnlyDictionary<int, string> CashOutModeList => new Dictionary<int, string>
+        {
             { 0, ViewResources.IncludeCOFromSB },
             { 1, ViewResources.ExcludeCOFromSB },
-            { 2, ViewResources.ViewCOOnly },
+            { 2, ViewResources.ViewCOOnly }
         };
 
 #pragma warning restore S109 // Magic numbers should not be used

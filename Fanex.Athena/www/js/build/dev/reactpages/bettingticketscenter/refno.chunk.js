@@ -3309,7 +3309,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         if (response.status === NoContentStatusCode) {
           alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_8__["default"].getSingleResource("NoInfo"));
         } else {
-          _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_9__["default"].downloadFile(response.data, 'BetHistory_RefNo.xls');
+          _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_9__["default"].downloadFile(response.data, 'BetHistory_RefNo.xlsx');
         }
         this.props.toggleLoader(false);
       });

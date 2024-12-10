@@ -146,7 +146,7 @@ export class FormFilter extends Component {
                 }
                 else {
                     const fileName = "BetHistory_AdvancedSearch." +
-                        (response.headers["content-type"] === "application/zip" ? "zip" : "xls");
+                        (response.headers["content-type"] === "application/zip" ? "zip" : "xlsx");
 
                     Site.downloadFile(response.data, fileName);
                 }

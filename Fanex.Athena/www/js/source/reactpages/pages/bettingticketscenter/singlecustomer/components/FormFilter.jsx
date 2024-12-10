@@ -94,7 +94,7 @@ export class FormFilter extends Component {
             if (response.status === NoContentStatusCode) {
                 alert(LangHelper.getSingleResource("NoInfo"));
             } else {
-                Site.downloadFile(response.data, 'BetHistory_SingleCustomer.xls');
+                Site.downloadFile(response.data, 'BetHistory_SingleCustomer.xlsx');
             }
             this.props.toggleLoader(false);
         });

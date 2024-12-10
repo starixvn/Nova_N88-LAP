@@ -84,7 +84,7 @@ export const useFilterAction = () => {
             if (response.status === NoContentStatusCode) {
                 alert(LangHelper.getSingleResource("NoInfo"));
             } else {
-                Site.downloadFile(response.data, 'BettingTicketsCenter_BookedBet.xls');
+                Site.downloadFile(response.data, 'BettingTicketsCenter_BookedBet.xlsx');
             }
             dispatch(toggleLoader(false));
         });

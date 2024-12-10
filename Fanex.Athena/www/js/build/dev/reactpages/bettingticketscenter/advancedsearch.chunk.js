@@ -5603,7 +5603,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           if (response.status === NoContentStatusCode) {
             alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource("NoInfo"));
           } else {
-            const fileName = "BetHistory_AdvancedSearch." + (response.headers["content-type"] === "application/zip" ? "zip" : "xls");
+            const fileName = "BetHistory_AdvancedSearch." + (response.headers["content-type"] === "application/zip" ? "zip" : "xlsx");
             _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_15__["default"].downloadFile(response.data, fileName);
           }
         }

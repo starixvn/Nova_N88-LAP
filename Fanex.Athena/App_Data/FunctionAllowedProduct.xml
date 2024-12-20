@@ -13,7 +13,7 @@
 	</Group>
 
 	<Group Name="BetList">
-		<Function Name="BettingTicketCenter" Product="SB,BA,NG,VS,CS,KN,CO,LT,PP,CC,VRG,TG,I4D,VGA"></Function>
+		<Function Name="BettingTicketCenter" Product="SB,BA,NG,VS,CS,KN,LT,PP,CC,VRG,TG,I4D,VGA"></Function>
 		<Function Name="BettingTicketCenter_Running" Product="SB,BA,NG,VS,CS,KN,CO,LT,PP,CC,VRG,TG,I4D,VGA"></Function>
 		<Function Name="BettingTicketCenter_AdvancedSearch" Product="SB,BA,NG,VS,CS,KN,CO,LT,PP,CC,VRG,TG,I4D,VGA"></Function>
 	</Group>

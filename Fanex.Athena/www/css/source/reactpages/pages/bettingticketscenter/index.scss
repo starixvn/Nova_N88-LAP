@@ -9,6 +9,14 @@
 @import "../../components/_popup-content";
 @import "../../components/tab.scss";
 @import "../../components/custom3rd/react-toastify.scss";
+@import "../../components/alert/index";
+@import '../../components/popup';
+
+.popup-content {
+    p {
+        white-space: pre-line;
+    }
+}
 
 .datepicker-disabled {
     .daterange-container {

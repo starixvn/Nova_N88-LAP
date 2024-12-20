@@ -9,6 +9,7 @@
 
     using Extension.Utility;
     using Fanex.Athena.Model.Auth.DataDomain;
+    using Fanex.Athena.Service.StatelessCore;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Model.BetList.MetaModel;
     using Resources;
@@ -50,6 +51,7 @@
                 };
             }
 
+            metaModel.SportListXML = BettingTicketCenterSportService.BuildSportTypeXML(metaModel.SportIds);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
             var timeOutInSecond = int.Parse(_appSettings.GetValue("BetListApiOutInSecond"));
             return await _betListApiClient.PostAsync("/BettingTicketCenterAdvancedSearch/GetData",

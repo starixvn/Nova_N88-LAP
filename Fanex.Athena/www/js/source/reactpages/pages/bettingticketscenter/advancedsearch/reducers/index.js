@@ -1,5 +1,5 @@
 ﻿import { combineReducers } from 'redux';
-import * as gridDataReducer from '@jsroot/reducers/gridDataReducer.js'
+import * as gridDataReducer from './gridDataReducer'
 import * as productReducer from '@jsroot/reducers/productReducer'
 import * as currencyReducer from '@jsroot/reducers/currencyReducer'
 import * as baseCurrencyReducer from '@jsroot/reducers/baseCurrencyReducer'
@@ -18,6 +18,7 @@ import * as convertAllReducer from '@jsroot/reducers/convertAllReducer'
 import * as userGuideReducer from '@jsroot/reducers/userGuideReducer'
 import * as commonReducer from '../../common/components/reducer'
 import * as brandReducer from '@jsroot/reducers/brandReducer';
+import * as filterReducer from './filterReducer';
 
 export default combineReducers(Object.assign(
     gridDataReducer,
@@ -38,5 +39,6 @@ export default combineReducers(Object.assign(
     usernameReducer,
     convertAllReducer,
     userGuideReducer,
-    commonReducer
+    commonReducer,
+    filterReducer
 ));

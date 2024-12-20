@@ -6,7 +6,8 @@
 @using Fanex.Athena.Model.Core.DataDomain
 @model Fanex.Athena.Model.BetList.ViewModel.BettingTicketCenterViewModel
 @{
-    var productList = Model.ProductOptionList;
+    var selectedProductCode = string.Join(",", Model.ProductOptionList.Where(x => x.Status).Select(x => x.Code).ToArray());
+
     var selectedStatus = string.Join(",", Model.StatusList.Where(x => x.Checked).Select(x => x.ID).ToArray());
     var selectedLiveStatus = string.Join(",", Model.LiveStatusList.Select(x => x.Key).ToArray());
     var baseCurrencyList = SystemConstants.BaseCurrencyList.Select(c =>
@@ -19,6 +20,9 @@
         currencies = x.CurrencyList.Select(y => new { key = y.Key, value = y.Value })
     });
     var allowSelectBrand = Model.Brands.Count() > 1;
+
+    var cashOutModeList = SystemConstants.CashOutModeList
+        .Select(c => new { value = c.Key, label = c.Value }).ToList();
 }
 @section pagecss {
     <link href="@Url.ContentLinkByEnv("/www/css/build/reactpages/betlist/index.css")" rel="stylesheet" type="text/css" />
@@ -31,7 +35,7 @@
 @section globaljscode{
     window.initialState = {
     dateRange: { fromDate: '@Model.FromDate.ToString("MM/dd/yyyy")', toDate: '@Model.ToDate.ToString("MM/dd/yyyy")'},
-    selectedProduct: '@Html.Raw(productList.First().Code)',
+    selectedProduct: '@(selectedProductCode)',
     selectedCurrency:  '@(selectedCurrency)',
     selectedBaseCurrency: '@(Model.SelectedBaseCurrency)',
     selectedBrand: @Model.OwnBrand.Id,
@@ -39,22 +43,25 @@
     selectedStatus: '@(selectedStatus)',
     selectedLiveStatus: '@(selectedLiveStatus)',
     sportList: [],
+    selectedBettype: '',
     selectedSport: 0,
     selectedMatch: 0,
+    selectedCashOutMode: 0,
     selectedLeague: 0,
     bettypeList: [],
-    selectedBettype: 0,
     username: '',
     isConvertAll: true
     };
     window._AppData = {
-    allowSelectBrand: @allowSelectBrand.ToString().ToLowerInvariant(), 
+    allowSelectBrand: @allowSelectBrand.ToString().ToLowerInvariant(),
     brands: @Html.Raw(brands.ToJson()),
     baseCurrencyList: @Html.Raw(baseCurrencyList.ToJson()),
     liveStatusList: @Html.Raw(Model.LiveStatusList.Select(x => new { Id = x.Key, Value = x.Value, Status = true }).ToJson()),
     statusList: @Html.Raw(Model.StatusList.Select(x => new { Id = x.ID, Value = x.Name, Status = x.Checked }).ToJson()),
     isAllowedCustomerComm: @Model.IsAllowedCustomerComm.ToJson(),
-    productList: @Html.Raw(Model.ProductOptionList.Select(x => new { value = x.Code, label = x.Name }).ToJson()),
+    productList: @Html.Raw(Model.ProductOptionList.Select(x => new { id = x.Code, value = x.Name, status = true }).ToJson()),
+    isOfferCashOutProduct: '@Model.IsOfferCashOutProduct' === "True",
+    cashOutModeList: @Html.Raw(cashOutModeList.ToJson()),
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
     dateConstraint: { minDate: '@Model.MinDate.ToString("MM/dd/yyyy")', maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 3 },
     tabList: @Html.Raw(Model.TabList.ToJson())

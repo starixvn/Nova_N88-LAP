@@ -1,5 +1,4 @@
-﻿var path = require('path');
-var alias = require('../config/aliasReact');
+﻿var alias = require('../config/aliasReact');
 var pathConfig = require('../config/pathReact');
 var pluginGenerator = require('../config/pluginReact');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
@@ -56,7 +55,6 @@ function generateConfig(environment) {
             [`${cssPath}/report/extrapayout`]: pathConfig.cssPaths.extrapayoutreport,
             [`${cssPath}/report/abnormalbet`]: pathConfig.cssPaths.abnormalbetreport,
             [`${cssPath}/report/winlossanalysis`]: pathConfig.cssPaths.winlossanalysis,
-
         },
         output: {
             path: pathConfig.projectRoot,
@@ -109,7 +107,14 @@ function generateConfig(environment) {
                     vendors: false,
                     common: {
                         name: 'common',
-                        test: /(node_modules)/,
+                        test: (module) => {
+                            // Exclude CSS and SCSS files
+                            return (
+                                module.resource &&
+                                !module.resource.match(/\.(css|scss)$/) &&
+                                module.resource.includes('node_modules')
+                            );
+                        },
                         minChunks: 2,
                         priority: -10
                     }

@@ -76,6 +76,7 @@
         public ActionResult AdvancedSearch()
         {
             var tabList = GetEnableTabList();
+            var licenseeSession = SessionServiceInstance.LicenseeSession;
             var balanceUpday = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay;
             var minDate = GetUserLimitDataRange(balanceUpday, DefaultTimeZone);
             minDate = DateTimeHelper.GetMaxDate(minDate, balanceUpday);
@@ -90,6 +91,7 @@
                 SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency,
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
                 Brands = BrandList,
+                IsOfferCashOutProduct = _productService.IsOfferCashOutProduct(licenseeSession.LicenseeId, SessionServiceInstance.UserSession.Language),
                 TabList = tabList
             };
             return View("~/Views/Desktop/BetList/BettingTicketCenter/AdvancedSearch.cshtml", viewModel);

@@ -1,4 +1,4 @@
-﻿// Generated at: 12/24/2024 3:13:28 PM
+﻿// Generated at: 12/27/2024 11:46:13 AM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -101,7 +101,7 @@ BetTaken:"Bet Taken",
 BettingLimit:"Betting Limit",
 BettingStatement:"Betting Statement",
 BettingTicketCenter:"Betting Ticket Center",
-BettingTicketCenter_AdvancedSearchTabNote1:"All bettypes, League, and Match filter available only when 1 day is selected",
+BettingTicketCenter_AdvancedSearchTabNote1:"League and Match filters are only available for Sportsbook on a specific day",
 BettingTicketCenter_AdvancedSearchTabNote2:"Data is available from {0}",
 BettingTicketCenter_BookedBetNote:"Data is available within up to 7 days",
 BettingTicketCenter_RefnoTabNote1:"For Sportsbook, the search result includes the related Bonus/Cash tickets.",
@@ -133,6 +133,7 @@ Brand:"Brand",
 Browser_Name:"Browser Name",
 BTCExportExcelMsg1:"Your search result exceeds our set limits to get it downloaded.",
 BTCExportExcelMsg2:"Please try reducing date range, selecting individual currency/ bet type, etc.",
+BTCMaxTicketLimitMsg:"The number of tickets matching your filter exceeds the system&apos;s processing capacity. Please try filtering by fewer days or selecting a single option on the &quot;Bet type&quot;, the &quot;Product&quot; filter.",
 BusinessPerformanceHighlights:"Business Performance Highlights",
 BuyBackAmount:"Buy Back Amount",
 ByBetType:"By Bet Type",

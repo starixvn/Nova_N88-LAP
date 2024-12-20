@@ -90,6 +90,7 @@
     <Compile Include="Constants\ReportViewType.cs" />
     <Compile Include="Constants\SystemEnvironment.cs" />
     <Compile Include="DataDomain\BaseCurrencyType.cs" />
+    <Compile Include="DataDomain\BettingTicketCenterSportType.cs" />
     <Compile Include="DataDomain\ExtraPayoutMapType.cs" />
     <Compile Include="DataDomain\SettingNames.cs" />
     <Compile Include="DataDomain\MessageType.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="DTO\Common\Licensee.cs" />
     <Compile Include="DTO\Common\Match.cs" />
     <Compile Include="DTO\Common\ResultInfoGeneric.cs" />
+    <Compile Include="DTO\Common\SabaSport.cs" />
     <Compile Include="DTO\Common\SportForTreeViewItem.cs" />
     <Compile Include="DTO\Common\TpProduct.cs" />
     <Compile Include="DTO\Configuration\ReportViewSetting.cs" />

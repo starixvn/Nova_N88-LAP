@@ -1,4 +1,4 @@
-﻿// Generated at: 6/10/2024 9:16:31 AM
+﻿// Generated at: 12/24/2024 3:13:28 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -606,6 +606,7 @@ OddEven:"Odd/Even",
 OddEvenDND:"Odd/Even + 1 X 2 + DND",
 Odds:"Odds",
 OddsAvg:"Odds Avg",
+OddsBoostBonus:"Odds Boost Bonus",
 OddsGroup:"Odds Group",
 OddsLower:"Odds Lower",
 OddsMatched:"Odds Matched",
@@ -730,6 +731,7 @@ PromotionDetails:"Promotion Details",
 PromotionPrize:"Promotion Prize",
 PromotionType:"Promotion Type",
 PropertiesMustMatchErrMsg:"&apos;{0}&apos; and &apos;{1}&apos; do not match.",
+QuickBetWidget:"Quick Bet Widget",
 QuickDownloadDateRangeExceedMsg:"To download excel file, please select data range within 1 month.",
 RB:"RB",
 Read:"Read",

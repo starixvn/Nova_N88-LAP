@@ -1,5 +1,5 @@
 ﻿<#@ output extension=".txt" #>
-<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+<#@ include file="$(SolutionDir)\Fanex.Athena\T4.FileManager.VisualStudio.ttinclude" #>
 <#@ include file="SpNameConfiguration.ttinclude" #>
 <#
 	string path = SiteInfo.Host.ResolveAssemblyReference("$(SolutionDir)");
@@ -11,7 +11,7 @@
 	{
 		var x = site.SiteEnvironment.ToString();
 		var fileName = x == "DEV" ? "FanexSpName.xml" : string.Format("FanexSpName.{0}.xml", site.SiteEnvironment);
-		manager.StartNewFile(fileName);
+		manager.StartNewFile(fileName, "Fanex.Athena", "SpNameConfig");
 		#>
 <#=site.GenerateSpName(allSpName, listOfConfig)#>
 		<#

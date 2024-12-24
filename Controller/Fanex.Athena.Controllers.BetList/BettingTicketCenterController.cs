@@ -3,32 +3,28 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
-    using Fanex.Athena.Extension.Helper;
-    using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Model.BetList.MetaModel;
-    using Fanex.Athena.Model.BetList.ViewModel;
-    using Fanex.Athena.Model.Core.DataDomain;
-    using Fanex.Athena.Model.Core.DTO.Common;
-    using Fanex.Athena.Model.Core.MetaModel.Product;
-    using Fanex.Athena.Resources;
-    using Fanex.Athena.Service.Core.Users;
-    using Fanex.Athena.Service.StatelessCore;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.Athena.Web.ActionFilter;
-    using Fanex.N88.Core.Configuration;
-    using Fanex.N88.Core.Service.Interface;
-    using static Fanex.N88.Core.Business.Constant;
+    using DataAccess.Core.Configuration.Interfaces;
+    using Extension.Helper;
+    using Model.Auth.DataDomain;
+    using Model.BetList.ViewModel;
+    using Model.Core.DataDomain;
+    using Model.Core.DTO.Common;
+    using Model.Core.MetaModel.Product;
+    using N88.Core.Configuration;
+    using N88.Core.Service.Interface;
+    using Resources;
+    using Service.StatelessCore.Interfaces;
+    using Web.ActionFilter;
+    using static N88.Core.Business.Constant;
 
     [FunctionAuthorization(PermissionKeys.BetHistory)]
     public class BettingTicketCenterController : CultureBaseController
     {
-        private readonly IProductService _productService;
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
-        private readonly IUserService _userService;
         private readonly N88Settings _n88Settings;
+        private readonly IProductService _productService;
+        private readonly IUserService _userService;
 
         public BettingTicketCenterController(
             IProductService productService,
@@ -51,26 +47,28 @@
             {
                 return SingleCustomer();
             }
-            else if (tabList.Any(x => PermissionKeys.BetHistoryRefNo == x))
+
+            if (tabList.Any(x => PermissionKeys.BetHistoryRefNo == x))
             {
                 return RefNo();
             }
-            else if (tabList.Any(x => PermissionKeys.BetHistoryRunning == x))
+
+            if (tabList.Any(x => PermissionKeys.BetHistoryRunning == x))
             {
                 return Running();
             }
-            else if (tabList.Any(x => PermissionKeys.BetHistoryAdvancedSearch == x))
+
+            if (tabList.Any(x => PermissionKeys.BetHistoryAdvancedSearch == x))
             {
                 return AdvancedSearch();
             }
-            else if (tabList.Any(x => PermissionKeys.BetHistoryBookedBet == x))
+
+            if (tabList.Any(x => PermissionKeys.BetHistoryBookedBet == x))
             {
                 return BookedBet();
             }
-            else
-            {
-                return RedirectToAction("AccessDenied", "Utility");
-            }
+
+            return RedirectToAction("AccessDenied", "Utility");
         }
 
         [FunctionAuthorization(PermissionKeys.BetHistoryAdvancedSearch)]
@@ -181,12 +179,12 @@
         private IEnumerable<string> GetEnableTabList()
         {
             var functionKeys = _userService.GetPermissions(
-                SessionServiceInstance.UserSession.UserId,
-                _n88Settings.SiteId,
-                string.Empty,
-                _n88Settings.Environment)
-                    .Where(x => x.Policy == (byte)Policy.Read || x.Policy == (byte)Policy.Host)
-                    .Select(x => x.Function.Key);
+                    SessionServiceInstance.UserSession.UserId,
+                    _n88Settings.SiteId,
+                    string.Empty,
+                    _n88Settings.Environment)
+                .Where(x => x.Policy == (byte)Policy.Read || x.Policy == (byte)Policy.Host)
+                .Select(x => x.Function.Key);
 
             return BtcViewInfo.TabList.Intersect(functionKeys);
         }
@@ -287,6 +285,7 @@
                 { PlatformType.Tablet, ViewResources.Tablet },
                 { PlatformType.DeepLink, ViewResources.DeepLink },
                 { PlatformType.WAP, ViewResources.Wap },
+                { PlatformType.QuickBetWidget, ViewResources.QuickBetWidget },
                 { PlatformType.ChatRoom, ViewResources.ChatRoom },
                 { PlatformType.BetfromOthers, ViewResources.BetfromOthers }
             };

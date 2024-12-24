@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Athena.Model.Core.DataDomain
 {
-    using System.Collections.Generic;
-    using Fanex.Athena.Resources;
-
     public static class PlatformType
     {
         public const int All = 0;
@@ -44,6 +41,8 @@
         public const int MobileGalaxy = 18;
 
         public const int DesktopCompact = 19;
+
+        public const int QuickBetWidget = 20;
 
         public const int BetfromOthers = 88;
     }

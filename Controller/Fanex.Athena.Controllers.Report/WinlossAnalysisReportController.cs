@@ -1,28 +1,28 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using Fanex.Athena.Extension.Helper;
-using Fanex.Athena.Model.Auth.DataDomain;
-using Fanex.Athena.Model.Core.DataDomain;
-using Fanex.Athena.Model.Core.DTO.Common;
-using Fanex.Athena.Model.Core.MetaModel.Product;
-using Fanex.Athena.Model.Report.MetaModel;
-using Fanex.Athena.Resources;
-using Fanex.Athena.Service.Customer.Interfaces;
-using Fanex.Athena.Service.StatelessCore.Interfaces;
-using Fanex.Athena.Web.ActionFilter;
-
-namespace Fanex.Athena.Controllers.Report
+﻿namespace Fanex.Athena.Controllers.Report
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Extension.Helper;
+    using Model.Auth.DataDomain;
+    using Model.Core.DataDomain;
+    using Model.Core.DTO.Common;
+    using Model.Core.MetaModel.Product;
+    using Model.Report.MetaModel;
+    using Resources;
+    using Service.Customer.Interfaces;
+    using Service.StatelessCore.Interfaces;
+    using Web.ActionFilter;
+
     [FunctionAuthorization(PermissionKeys.ReportWinlossAnalysis)]
     public class WinlossAnalysisReportController : ReportBaseController
     {
         private const string ProductListFunctionKey = "WinlossAnalysis";
+        private readonly ICustomerClassService _customerClassService;
 
         private readonly IProductService _productService;
-        private readonly ICustomerClassService _customerClassService;
 
         public WinlossAnalysisReportController(
             IProductService productService,
@@ -49,7 +49,7 @@ namespace Fanex.Athena.Controllers.Report
                 IsOfferCashOutProduct = _productService.IsOfferCashOutProduct(LicenseeId, userSession.Language),
                 RiskLevels = await _customerClassService.GetAllRiskLevel(),
                 OwnBrand = BrandList.First(_ => _.Id == LicenseeId),
-                Brands = BrandList,
+                Brands = BrandList
             };
             return View("~/Views/Desktop/Report/WinlossAnalysis/Index.cshtml", viewModel);
         }
@@ -96,6 +96,7 @@ namespace Fanex.Athena.Controllers.Report
                 { PlatformType.Tablet, ViewResources.Tablet },
                 { PlatformType.DeepLink, ViewResources.DeepLink },
                 { PlatformType.WAP, ViewResources.Wap },
+                { PlatformType.QuickBetWidget, ViewResources.QuickBetWidget },
                 { PlatformType.ChatRoom, ViewResources.ChatRoom },
                 { PlatformType.BetfromOthers, ViewResources.BetfromOthers }
             };
@@ -113,7 +114,7 @@ namespace Fanex.Athena.Controllers.Report
                 "F",
                 "I",
                 "M",
-                "Q",
+                "Q"
             };
         }
 
@@ -144,6 +145,7 @@ namespace Fanex.Athena.Controllers.Report
                 list.Remove(baProduct);
                 list.Insert(list.IndexOf(sbProduct) + 1, baProduct);
             }
+
             return list;
         }
     }

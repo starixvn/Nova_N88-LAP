@@ -3356,4 +3356,7 @@
   <data name="OddsBoostBonus" xml:space="preserve">
     <value>Odds Boost Bonus</value>
   </data>
+  <data name="QuickBetWidget" xml:space="preserve">
+    <value>Quick Bet Widget</value>
+  </data>
 </root>

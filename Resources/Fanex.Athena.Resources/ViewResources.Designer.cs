@@ -6640,6 +6640,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick Bet Widget.
+        /// </summary>
+        public static string QuickBetWidget {
+            get {
+                return ResourceManager.GetString("QuickBetWidget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To download excel file, please select data range within 1 month..
         /// </summary>
         public static string QuickDownloadDateRangeExceedMsg {

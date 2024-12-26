@@ -1,12 +1,6 @@
 ﻿<#@ template debug="true" hostSpecific="true" #>
 <#@ output extension=".txt" #>
-<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
-<#@ Assembly Name="System.Core.dll" #>
-<#@ Assembly Name="System.Xml.Linq" #>
-<#@ assembly name="System.Xml" #>
-<#@ import namespace="System" #>
-<#@ import namespace="System.IO" #>
-<#@ import namespace="System.Security" #>
+<#@ include file="$(SolutionDir)\Fanex.Athena\T4.FileManager.VisualStudio.ttinclude" #>
 <#
 	string solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
 	Directory.SetCurrentDirectory(solutionPath);
@@ -15,7 +9,7 @@
 	foreach(var filePath in filePaths)
 	{        
 		var fileName = Path.GetFileName(filePath.Replace("resx", "js"));
-		manager.StartNewFile(fileName);
+		manager.StartNewFile(fileName, "Fanex.Athena", "www/js/source/common/languages");
 		using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                var xdoc = System.Xml.Linq.XDocument.Load(stream);

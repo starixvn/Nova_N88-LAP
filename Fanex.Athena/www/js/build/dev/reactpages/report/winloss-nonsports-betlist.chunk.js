@@ -462,6 +462,12 @@ class NumberFormat {
   static formatDecimal(value) {
     return this.format(value, 2);
   }
+  static formatInteger(value) {
+    if (typeof value !== "number" || isNaN(value)) {
+      return "";
+    }
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   static format(value, digits = 0) {
     if (!this.isNumber(value)) {
       return "";

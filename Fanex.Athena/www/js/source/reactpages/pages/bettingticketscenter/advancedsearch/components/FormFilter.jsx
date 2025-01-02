@@ -22,11 +22,12 @@ import DataService from '@jsroot/lib/DataService.js'
 import Service from '../../common/lib/Service'
 import { ApiUrl, CashOutMode, ProductCode } from '../../common/lib/constants'
 import { validateBaseCurrency } from '@jsroot/lib/validationHelper'
+import {decode} from '@jsroot/lib/htmlHelper';
+import NumberFormat from '@jsroot/lib/numberFormat'
 
-const ToastMsg = () => (
+const ToastMsg = props => (
     <div>
-        <div>{LangHelper.getSingleResource("BTCExportExcelMsg1")}</div>
-        <div>{LangHelper.getSingleResource("BTCExportExcelMsg2")}</div>
+        <div>{decode(LangHelper.getSingleResource("BTCMaxTicketLimitMsg")).replace("{0}", NumberFormat.formatInteger(props.limit))}</div>
     </div>
 )
 export class FormFilter extends Component {
@@ -41,8 +42,8 @@ export class FormFilter extends Component {
         this._onChangeProduct(null, this.props.selectedProduct);
     }
 
-    _showExportWarning = () => {
-        toast.success(<ToastMsg />);
+    _showExportWarning = limitRows => {
+        toast.success(<ToastMsg limit={limitRows}/>);
     }
 
     _isEnableLeagueMatch = () => {
@@ -131,7 +132,7 @@ export class FormFilter extends Component {
                 const RowsExceedLimitErrorCode = 1001;
                 Site.readAsJson(response.data, (result) => {
                     if (result.ErrorCode === RowsExceedLimitErrorCode) {
-                        this._showExportWarning();
+                        this._showExportWarning(result.LimitRows);
                     }
                     else {
                         const msg = result.ErrorMsg || LangHelper.getSingleResource("ErrorProcessingMsg");

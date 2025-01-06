@@ -28,6 +28,8 @@
 
         public bool IsAllowedCustomerComm { get; set; }
 
+        public bool IsOfferCashOutProduct { get; set; }
+
         public IEnumerable<ProductOption> ProductOptionList { get; set; }
 
         public IDictionary<int, string> CurrencyList { get; set; }

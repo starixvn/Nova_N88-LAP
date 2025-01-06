@@ -1,4 +1,6 @@
 ﻿import LangHelper from '@jsroot/lib/langHelper'
+import { ALL_SELECTED_TEXT, ProductCode } from './constants';
+import moment from 'moment'
 import Site from '@jsroot/lib/site'
 
 export default class Service {
@@ -8,5 +10,46 @@ export default class Service {
         const baseCurrencyText = baseCurrency ? `, ${LangHelper.getSingleResource("BaseCurrency")}: ${baseCurrency}` : '';
 
         return LangHelper.getSingleResource("BetHistory") + dateRangeText + baseCurrencyText;
+    }
+
+    static getSelectedItemFromTreeListItem(items) {
+        return items.reduce((accum, elem) => accum.concat(elem.Children), []).map(elem => elem.Value).join(",");
+    }
+
+    static getNormalizedSelectedParamValueForTreeListFilter(selectedValue, dataList) {
+        const allSelected = this.getSelectedItemFromTreeListItem(dataList);
+        return selectedValue === allSelected ? ALL_SELECTED_TEXT : selectedValue;
+    }
+
+    static getSelectedBettype = (selectedValue, dataList) => {
+        if (!selectedValue || selectedValue === ALL_SELECTED_TEXT || selectedValue === this.getSelectedItemFromTreeListItem(dataList)) {
+            return ALL_SELECTED_TEXT;
+        }
+
+        let betTypeList = selectedValue.split(",").map((elem) => ({
+            BetType: elem.substring(0, elem.indexOf("_")),
+            ProductPrefix: elem.substring(elem.indexOf("_") + 1)
+        }));
+
+        let betTypeGroupByProduct = Map.groupBy(betTypeList, (elem) => elem.ProductPrefix)
+
+        let xmlDoc = document.implementation.createDocument(null, "ROOT");
+        const keys = [...betTypeGroupByProduct.keys()]
+
+        keys.forEach(key => {
+            let node = xmlDoc.createElement("BetType");
+            let betTypes = betTypeGroupByProduct.get(key).map(x => x.BetType).join(",");
+
+            node.setAttribute('ProductPrefix', key);
+            node.setAttribute('BetTypes', betTypes);
+            xmlDoc.documentElement.appendChild(node);
+        });
+
+        return new XMLSerializer().serializeToString(xmlDoc);
+    }
+
+    static isContainProductSportBookOrBa = (selectedItemsKey) => {
+        var listSelectedProduct = selectedItemsKey.split(",");
+        return listSelectedProduct.indexOf(ProductCode.SportsBook) >= 0 || listSelectedProduct.indexOf(ProductCode.BA) >= 0
     }
 }

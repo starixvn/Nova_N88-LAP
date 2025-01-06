@@ -330,5 +330,7 @@ namespace Fanex.Athena.Model.Core.DataDomain
         SabaKabaddi = -10,
 
         Kabaddi = 47,
+
+        Parlay = 999
     }
 }

@@ -16,16 +16,18 @@ import { ActionCreators } from '../actions/index.js'
 import LangHelper from '@jsroot/lib/langHelper'
 import Site from '@jsroot/lib/site'
 import AppData from '@jsroot/lib/AppData'
-
+import { TreeViewOption } from '@jsroot/constants/report';
+import { TreeViewSelect } from '@legion-lib/react-multiselect'
 import DataService from '@jsroot/lib/DataService.js'
 import Service from '../../common/lib/Service'
-import { ApiUrl } from '../../common/lib/constants'
+import { ApiUrl, CashOutMode, ProductCode } from '../../common/lib/constants'
 import { validateBaseCurrency } from '@jsroot/lib/validationHelper'
+import {decode} from '@jsroot/lib/htmlHelper';
+import NumberFormat from '@jsroot/lib/numberFormat'
 
-const ToastMsg = () => (
+const ToastMsg = props => (
     <div>
-        <div>{LangHelper.getSingleResource("BTCExportExcelMsg1")}</div>
-        <div>{LangHelper.getSingleResource("BTCExportExcelMsg2")}</div>
+        <div>{decode(LangHelper.getSingleResource("BTCMaxTicketLimitMsg")).replace("{0}", NumberFormat.formatInteger(props.limit))}</div>
     </div>
 )
 export class FormFilter extends Component {
@@ -37,11 +39,11 @@ export class FormFilter extends Component {
     }
 
     componentDidMount() {
-        this._onChangeProduct(this.props.selectedProduct);
+        this._onChangeProduct(null, this.props.selectedProduct);
     }
 
-    _showExportWarning = () => {
-        toast.success(<ToastMsg />);
+    _showExportWarning = limitRows => {
+        toast.success(<ToastMsg limit={limitRows}/>);
     }
 
     _isEnableLeagueMatch = () => {
@@ -54,6 +56,8 @@ export class FormFilter extends Component {
             && !!this.props.selectedStatus
             && !!this.props.selectedLiveStatus
             && !!this.props.selectedCurrency
+            && !!this.props.selectedBettype
+            && !!this.props.selectedSport
             && validateBaseCurrency(this.props.selectedBaseCurrency);
     }
 
@@ -99,8 +103,9 @@ export class FormFilter extends Component {
             BaseCurrency: this.props.selectedBaseCurrency,
             Status: this.props.selectedStatus,
             LiveStatus: this.props.selectedLiveStatus,
-            SportId: this.props.selectedSport,
-            BetTypeId: this.props.selectedBettype,
+            SportIds: Service.getNormalizedSelectedParamValueForTreeListFilter(this.props.selectedSport, this.props.sportList),
+            BetTypeIds: Service.getSelectedBettype(this.props.selectedBettype, this.props.bettypeList),
+            CashOutMode: this.props.selectedCashOutMode,
             LeagueId: isEnableLeagueMatch ? this.props.selectedLeague : 0,
             MatchId: isEnableLeagueMatch ? this.props.selectedMatch : 0,
             SortBy: SortBy,
@@ -127,7 +132,7 @@ export class FormFilter extends Component {
                 const RowsExceedLimitErrorCode = 1001;
                 Site.readAsJson(response.data, (result) => {
                     if (result.ErrorCode === RowsExceedLimitErrorCode) {
-                        this._showExportWarning();
+                        this._showExportWarning(result.LimitRows);
                     }
                     else {
                         const msg = result.ErrorMsg || LangHelper.getSingleResource("ErrorProcessingMsg");
@@ -189,7 +194,7 @@ export class FormFilter extends Component {
             this.props.setDateRange(date);
             this.props.getBettypeList(this.props.selectedProduct, this.isSingleDate({ fromDate: date.startDate, toDate: date.endDate }));
             if (this._isEnableLeagueMatch()) {
-                this.props.getLeagueList(this.props.selectedSport.value, date.startDate);
+                this.props.getLeagueList(this.props.selectedSport, date.startDate);
             }
         }
         else {
@@ -199,48 +204,103 @@ export class FormFilter extends Component {
     }
 
     _renderProductSelectList() {
-        const productList = AppData.productList;
+        const productList = this.props.productList;
 
-        return productList && productList.length && (
-            <Select instanceId="ProductList"
-                value={this.props.selectedProduct}
-                options={productList}
-                onChange={(item) => this._onChangeProduct(item.value)} />
-        );
+        return productList && productList?.length ? (
+            <MultipleSelect id="ProductList"
+                hasSearchBox={true}
+                language={LangHelper.currentLanguage}
+                dataSource={productList}
+                valueField={"value"}
+                keyField={"id"}
+                statusField={"status"}
+                onChange={this._onChangeProduct}
+                isValid={!!this.props.selectedProduct} />
+        ) : null;
     }
 
-    _onChangeProduct = (productCode) => {
-        this.props.setSelectedProduct(productCode);
-        this.props.getSportList(productCode, this.isSingleDate() && this.props.dateRange.fromDate);
-        this.props.getBettypeList(productCode, this.isSingleDate());
+    _onChangeProduct = (currentItem, selectedItemsKey) => {
+        this.props.setSelectedProduct(selectedItemsKey);
+        this.props.getSportList(selectedItemsKey, this.isSingleDate() && this.props.dateRange.fromDate);
+        this.props.getBettypeList(selectedItemsKey);
     }
 
     _renderSportSelectList() {
         const sportList = this.props.sportList;
 
-        return sportList && sportList.length && (
-            <Select instanceId="SportList"
-                value={this.props.selectedSport}
-                options={sportList}
-                onChange={(item) => this._onChangeSport(item.value)} />
+        if(!sportList || !sportList.length){
+            return(
+            <TreeViewSelect
+                language={LangHelper.currentLanguage}
+                id="SportList"
+                dataSource={[]}
+                keyField="Value"
+                valueField="Name"
+                statusField="Checked"
+                texts={{ All: LangHelper.getSingleResource("N_A") }}
+                isAllTextShown={true}
+                hasSearchBox={true}
+                treeViewOption={TreeViewOption}
+                isValid={false} />
+            )
+        }
+
+        return (
+            <TreeViewSelect              
+                language={LangHelper.currentLanguage}
+                id="SportList"
+                dataSource={sportList}
+                keyField="Value"
+                valueField="Name"
+                statusField="Checked"
+                isAllTextShown={true}
+                hasSearchBox={true}
+                treeViewOption={TreeViewOption}
+                onChange={this._onChangeSport}
+                isValid={!!this.props.selectedSport}  />
         );
     }
 
-    _onChangeSport = (sportId) => {
-        this.props.setSelectedSport(sportId);
+    _onChangeSport = (currentItem, selectedItemsKey) => {
+        this.props.setSelectedSport(selectedItemsKey);
         if (this._isEnableLeagueMatch()) {
-            this.props.getLeagueList(sportId, this.props.dateRange.fromDate);
+            this.props.getLeagueList(selectedItemsKey, this.props.dateRange.fromDate);
         }
     }
+
 
     _renderBettypeSelectList() {
         const bettypeList = this.props.bettypeList;
 
-        return bettypeList && bettypeList.length && (
-            <Select instanceId="BettypeList"
-                value={this.props.selectedBettype}
-                options={bettypeList}
-                onChange={(item) => this.props.setSelectedBettype(item.value)} />
+        if(!bettypeList || !bettypeList.length){
+            return (
+                <TreeViewSelect
+                    language={LangHelper.currentLanguage}
+                    id="BetTypeList"
+                    dataSource={[]}
+                    keyField="Value"
+                    valueField="Name"
+                    statusField="Checked"
+                    texts={{ All: LangHelper.getSingleResource("N_A")  }}
+                    isAllTextShown={true}
+                    hasSearchBox={true}
+                    treeViewOption={TreeViewOption}
+                    isValid={false} />
+            );
+        }
+        return (
+            <TreeViewSelect                  
+                language={LangHelper.currentLanguage}
+                id="BetTypeList"
+                dataSource={bettypeList}
+                keyField="Value"
+                valueField="Name"
+                statusField="Checked"
+                isAllTextShown={true}
+                hasSearchBox={true}
+                treeViewOption={TreeViewOption}
+                onChange={(currentItem, selectedItemsKey) => this.props.setSelectedBettype(selectedItemsKey)}
+                isValid={!!this.props.selectedBettype}  />
         );
     }
 
@@ -364,6 +424,32 @@ export class FormFilter extends Component {
         );
     }
 
+    _renderCashOutMode() {
+        const cashOutModeList = AppData.cashOutModeList;
+        const isEnableCashOutFilter = Service.isContainProductSportBookOrBa(this.props.selectedProduct);
+
+        return cashOutModeList && cashOutModeList.length && (
+            <Select
+                instanceId="CashOutMode"
+                value={this.props.selectedCashOutMode}
+                options={cashOutModeList}
+                disabled={!isEnableCashOutFilter}
+                onChange={this._onChangeCashOutMode} />
+        );
+    }
+
+    _onChangeCashOutMode = item => {
+        if (item.value === CashOutMode.ViewCOOnly) {
+            const selectedProduct = AppData.productList.filter(product => product.id == ProductCode.BA || product.id == ProductCode.SportsBook)
+                .map(product => product.id)
+                .join(',');
+            const productList = AppData.productList.map(product => product.id == ProductCode.SportsBook || product.id == ProductCode.BA ? product : { ...product, status: false });
+            this.props.setSelectedProduct(selectedProduct);
+            this.props.setProductList(productList);
+        }
+        this.props.setSelectedCashOutMode(item.value);
+    }
+
     render() {
         const excelButton = <div>
             <i className="icon-excel right" onClick={this.exportExcel} title={LangHelper.getSingleResource("ExportToExcel")}></i>
@@ -376,10 +462,11 @@ export class FormFilter extends Component {
                     <ToastContainer
                         autoClose={10000}
                         pauseOnFocusLoss={false}
+                        position="top-left"
                         style={{ width: "500px" }}
                         transition={Flip} />
                     {AppData.allowSelectBrand &&
-                        <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-1">
+                        <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
                             <div className="form-group">
                                 <label className="label-text">{LangHelper.getSingleResource("Brand")}</label>
                                 {this._renderBrandSelectList()}
@@ -392,7 +479,7 @@ export class FormFilter extends Component {
                         </div>
                     </div>
 
-                    <div className={`col-12 col-md-3 col-sm-3 col-lg-4 col-xl-${AppData.allowSelectBrand ? 1 : 2}`}>
+                    <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Product")}</label>
                             {this._renderProductSelectList()}
@@ -427,9 +514,6 @@ export class FormFilter extends Component {
                         </div>
                     </div>
 
-                </div>
-                <div className="row">
-
                     <div className="col-12 col-md-3 col-sm-3 col-lg-4 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Username")}</label>
@@ -439,6 +523,16 @@ export class FormFilter extends Component {
                                 htmlAttributes={{ placeholder: LangHelper.getSingleResource("ExternalIdOrSystemId") }} />
                         </div>
                     </div>
+
+                    {AppData.isOfferCashOutProduct &&
+                        <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
+                            <div className="form-group">
+                                <label className="label-text">{LangHelper.getSingleResource("CashOut")}</label>
+                                {this._renderCashOutMode()}
+                            </div>
+                        </div>
+                    }
+
                     <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <label className="label-text">{LangHelper.getSingleResource("Currency")}</label>
@@ -506,11 +600,11 @@ function mapDispatchToProps(dispatch) {
 }
 function mapStateToProps(state) {
     const { requestParam, selectedBrand, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedLeague, leagueList, selectedMatch, matchList,
-        selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedLiveStatus, username, isConvertAll, userGuideContent } = state;
+        selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedLiveStatus, username, isConvertAll, userGuideContent, productList, selectedCashOutMode } = state;
 
     return Object.assign({}, {
         requestParam, selectedBrand, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedLeague, leagueList, selectedMatch, matchList,
-        selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedLiveStatus, username, isConvertAll, userGuideContent
+        selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedLiveStatus, username, isConvertAll, userGuideContent, productList, selectedCashOutMode
     });
 };
 

@@ -6,7 +6,7 @@ import CheckBox from '@jsroot/components/CheckBox';
 import AdvancedSearch from './filter/AdvancedSearch';
 import CollapsiblePanel from '@jsroot/components/collapsible-panel';
 import LangHelper from '@jsroot/lib/langHelper';
-import { searchOptions, baStatusList, specialLevelListWithColor, oddsGroupListWithStyle } from '../lib/constants';
+import { searchOptions, specialLevelListWithColor, oddsGroupListWithStyle } from '../lib/constants';
 import QueryString from '@jsroot/lib/QueryString';
 import { encode } from '@jsroot/lib/htmlHelper';
 
@@ -27,7 +27,6 @@ export class FormFilter extends PureComponent {
             currencyIdList: this.allCurrencyString,
             oddsGroup: this.allOddsGroupString,
             specialLevel: this.allSpecialLevel,
-            baFilter: baStatusList.All,
             searchOption: searchOptions.matchPrefix
         }
     }
@@ -54,8 +53,7 @@ export class FormFilter extends PureComponent {
             this.setState({
                 currencyIdList: this.allCurrencyString,
                 oddsGroup: this.allOddsGroupString,
-                specialLevel: this.allSpecialLevel,
-                baFilter: baStatusList.All
+                specialLevel: this.allSpecialLevel
             });
         }
     }
@@ -159,7 +157,6 @@ export class FormFilter extends PureComponent {
                     {isAdvancedSearch && <AdvancedSearch
                         currencyList={currencyList}
                         param={advancedSearchParam}
-                        isAllowedBA={hasBaPermission.isallowed}
                         isAllowedOddsGroup={hasOddsGroupPermission.isallowed}
                         isAllowedSpecialLevel={hasSpecialLevelPermission.isallowed}
                         onChange={this.handleSpecificInputChange} />

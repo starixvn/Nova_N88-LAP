@@ -39,7 +39,7 @@ export const MobileMainFilter = (props) => {
         onCashOutModeChangeHandler, onCurrencyChangeHandler, onBrandChangeHandler
     } = useFilterHandler();
     const { isOfferCashOutProduct, brandOptions } = AppData;
-    const isEnableCashOutFilter = Service.isContainProductSportBookOrBa(selectedProduct);
+    const isEnableCashOutFilter = Service.isContainProductSportBook(selectedProduct);
     const isDisabledGroupInOriginalCurrency = useDisabledGroupInOriginalCurrency();
 
     useEffect(() => { onProductChangeHandler(null, selectedProduct) }, [appUuid]);

@@ -29,9 +29,7 @@
 
             return new SiteSettingViewModel
             {
-                IsAllowedCustomerComm = licenseeInfo != null && licenseeInfo.IsAllowedCustomerComm,
-                IsAllowedBA = licenseeInfo != null && licenseeInfo.IsEnableBA &&
-                _authService.CheckProductBelongsTo(licenseeSession.LicenseeName, ProductTypes.BA)
+                IsAllowedCustomerComm = licenseeInfo != null && licenseeInfo.IsAllowedCustomerComm
             };
         }
     }

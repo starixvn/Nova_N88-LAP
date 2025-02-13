@@ -6,16 +6,16 @@ import { renderHeader, renderDataSection, renderFooter } from '../../common/grid
 import NoDataTitle from '@jsroot/components/NoDataTitle';
 import ReportTitle from '@jsroot/components/ReportTitle';
 import { BreakdownByMode, DefaultPagingOption, GroupByMode, SortOrder } from '../../common/constants.js';
-import Service from '../../common/Service.js'; 
+import Service from '../../common/Service.js';
 import ExcelPopUp from '../ExcelPopUp.jsx';
 
 export const DataGrid = () => {
-    const [requestParam, reportData, reportTitle, reloadReport, selectedProduct] 
+    const [requestParam, reportData, reportTitle, reloadReport, selectedProduct]
         = useSelector(state => [
-            state.requestParam, 
-            state.reportData, 
-            state.reportTitle, 
-            state.reloadReport, 
+            state.requestParam,
+            state.reportData,
+            state.reportTitle,
+            state.reloadReport,
             state.selectedProduct
         ], shallowEqual)
 
@@ -23,7 +23,6 @@ export const DataGrid = () => {
     const dispatch = useDispatch();
     const { data, sumTotal, totalRow } = reportData;
     const renderOption = {
-        isShowBAField: Service.isContainBAProduct(selectedProduct),
         isGroupByPlayerMode: requestParam.GroupMode == GroupByMode.Player,
         isBreakDownPlayerMode: requestParam.BreakdownMode == BreakdownByMode.Player
     }
@@ -56,7 +55,7 @@ export const DataGrid = () => {
         submitRequest(params);
     }
 
-    const reportTitleContent = (           
+    const reportTitleContent = (
         <>
             <span className='flex-auto'>{reportTitle}</span>
             <ExcelPopUp />

@@ -246,7 +246,7 @@ export class FormFilter extends Component {
         }
 
         return (
-            <TreeViewSelect              
+            <TreeViewSelect
                 language={LangHelper.currentLanguage}
                 id="SportList"
                 dataSource={sportList}
@@ -289,7 +289,7 @@ export class FormFilter extends Component {
             );
         }
         return (
-            <TreeViewSelect                  
+            <TreeViewSelect
                 language={LangHelper.currentLanguage}
                 id="BetTypeList"
                 dataSource={bettypeList}
@@ -426,7 +426,7 @@ export class FormFilter extends Component {
 
     _renderCashOutMode() {
         const cashOutModeList = AppData.cashOutModeList;
-        const isEnableCashOutFilter = Service.isContainProductSportBookOrBa(this.props.selectedProduct);
+        const isEnableCashOutFilter = Service.isContainProductSportBook(this.props.selectedProduct);
 
         return cashOutModeList && cashOutModeList.length && (
             <Select
@@ -440,10 +440,10 @@ export class FormFilter extends Component {
 
     _onChangeCashOutMode = item => {
         if (item.value === CashOutMode.ViewCOOnly) {
-            const selectedProduct = AppData.productList.filter(product => product.id == ProductCode.BA || product.id == ProductCode.SportsBook)
+            const selectedProduct = AppData.productList.filter(product => product.id == ProductCode.SportsBook)
                 .map(product => product.id)
                 .join(',');
-            const productList = AppData.productList.map(product => product.id == ProductCode.SportsBook || product.id == ProductCode.BA ? product : { ...product, status: false });
+            const productList = AppData.productList.map(product => product.id == ProductCode.SportsBook ? product : { ...product, status: false });
             this.props.setSelectedProduct(selectedProduct);
             this.props.setProductList(productList);
         }

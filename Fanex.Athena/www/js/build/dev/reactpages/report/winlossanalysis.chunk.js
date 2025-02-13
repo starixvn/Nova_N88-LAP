@@ -7972,9 +7972,9 @@ class Service {
 _defineProperty(Service, "isOneTwoBetLicensee", () => {
   return _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_2__["default"].licenseeName.toLowerCase() === _constants__WEBPACK_IMPORTED_MODULE_3__["OneTwoBetLicenseeName"].toLowerCase();
 });
-_defineProperty(Service, "isContainProductSportBookOrBa", selectedItemsKey => {
+_defineProperty(Service, "isContainProductSportBook", selectedItemsKey => {
   var listSelectedProduct = selectedItemsKey.split(",");
-  return listSelectedProduct.indexOf(_constants__WEBPACK_IMPORTED_MODULE_3__["ProductCode"].SportsBook) >= 0 || listSelectedProduct.indexOf(_constants__WEBPACK_IMPORTED_MODULE_3__["ProductCode"].BA) >= 0;
+  return listSelectedProduct.indexOf(_constants__WEBPACK_IMPORTED_MODULE_3__["ProductCode"].SportsBook) >= 0;
 });
 _defineProperty(Service, "getSelectedBettypeXML", seletedBetTypeIds => {
   var bettypeList = seletedBetTypeIds.split(",").map(elem => ({
@@ -8040,11 +8040,6 @@ _defineProperty(Service, "buildBreakDownOptionFromGroupByMode", groupByMode => {
     delete breakDownByOption.Player;
   }
   return Object.values(breakDownByOption);
-});
-_defineProperty(Service, "isContainBAProduct", selectedProductCodes => {
-  const baProductCode = "BA";
-  const listSelectedProductCodes = selectedProductCodes.split(",");
-  return listSelectedProductCodes.includes(baProductCode);
 });
 _defineProperty(Service, "getCurrencyCodes", (currencyListIds, currencyList) => {
   const normalizeText = Service.getNormalizedSelectedParamValueForMultiSelectFilter(currencyListIds, currencyList);
@@ -8138,7 +8133,6 @@ const HeaderText = {
   EffectiveBettingValue: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("EffectiveBettingValue"),
   PlayerComm: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("PlayerComm"),
   LicenseeComm: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("LicenseeComm"),
-  AmountDueToBA: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("AmountDueToBA"),
   Margin: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("Margin"),
   SystemId: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("SystemId"),
   LicenseeWL: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_0__["default"].getSingleResource("LicenseeW_L"),
@@ -8164,8 +8158,7 @@ const BreakdownByMode = {
 };
 const ALL_SELECTED_TEXT = 'ALL';
 const ProductCode = {
-  SportsBook: "SB",
-  BA: "BA"
+  SportsBook: "SB"
 };
 const GroupByList = [{
   value: GroupByMode.Player,
@@ -8348,7 +8341,6 @@ const BreakdownRow = props => {
     betEffective,
     licWinloss,
     licComm,
-    amtDueToBA,
     margin,
     breakBy,
     groupBy,
@@ -8357,7 +8349,6 @@ const BreakdownRow = props => {
   } = data;
   const {
     isGroupByPlayerMode,
-    isShowBAField,
     isBreakDownPlayerMode
   } = option;
   const colSpan = isGroupByPlayerMode ? 2 : 1;
@@ -8385,9 +8376,7 @@ const BreakdownRow = props => {
     className: `right-align ${licWinloss < 0 ? "negative" : ""}`
   }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(licWinloss)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "right-align"
-  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(licComm)), isShowBAField && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: "right-align"
-  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(amtDueToBA)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(licComm)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: `right-align ${margin < 0 ? "negative" : ""}`
   }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(margin * 100), "%"));
 };
@@ -8423,7 +8412,6 @@ const TreeViewGridRowNode = props => {
   } = props;
   const {
     isGroupByPlayerMode,
-    isShowBAField,
     isBreakDownPlayerMode
   } = option;
   if (!data) {
@@ -8464,7 +8452,6 @@ const TreeViewGridRowNode = props => {
     betEffective,
     licWinloss,
     licComm,
-    amtDueToBA,
     margin,
     externalId
   } = parentData;
@@ -8493,9 +8480,7 @@ const TreeViewGridRowNode = props => {
     className: `right-align ${licWinloss < 0 ? "negative" : ""}`
   }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(licWinloss)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "right-align"
-  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(licComm)), isShowBAField && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: "right-align"
-  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(amtDueToBA)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(licComm)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: `right-align ${margin < 0 ? "negative" : ""}`
   }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_2__["default"].formatDecimal(margin * 100), "%")), isBreakdown && (children === null || children === void 0 ? void 0 : children.length) && children.length > 0 && children.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BreakdownRow__WEBPACK_IMPORTED_MODULE_3__["default"], {
     key: `break-down-row-${item.groupBy}-${item.breakBy}`,
@@ -8536,7 +8521,6 @@ __webpack_require__.r(__webpack_exports__);
 const renderHeader = option => {
   const {
     isGroupByPlayerMode,
-    isShowBAField,
     isBreakDownPlayerMode
   } = option;
   const _renderDefaultHeader = () => {
@@ -8613,12 +8597,7 @@ const renderHeader = option => {
       sortBy: _constants__WEBPACK_IMPORTED_MODULE_2__["SortBy"].LicComm,
       rowSpan: rowSpan,
       colWidth: 110
-    }, _constants__WEBPACK_IMPORTED_MODULE_2__["HeaderText"].LicenseeComm), isShowBAField && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-      key: `${prefixKey}-${_constants__WEBPACK_IMPORTED_MODULE_2__["HeaderText"].AmountDueToBA}`,
-      sortBy: _constants__WEBPACK_IMPORTED_MODULE_2__["SortBy"].AmtDueToBA,
-      rowSpan: rowSpan,
-      colWidth: 110
-    }, _constants__WEBPACK_IMPORTED_MODULE_2__["HeaderText"].AmountDueToBA), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
+    }, _constants__WEBPACK_IMPORTED_MODULE_2__["HeaderText"].LicenseeComm), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
       key: `${prefixKey}-${_constants__WEBPACK_IMPORTED_MODULE_2__["HeaderText"].Margin}`,
       sortBy: _constants__WEBPACK_IMPORTED_MODULE_2__["SortBy"].Margin,
       rowSpan: rowSpan,
@@ -8649,7 +8628,6 @@ const renderFooter = (dataItem, option) => {
   }
   const {
     isGroupByPlayerMode,
-    isShowBAField,
     isBreakDownPlayerMode
   } = option;
   const {
@@ -8661,7 +8639,6 @@ const renderFooter = (dataItem, option) => {
     betEffective,
     licWinloss,
     licComm,
-    amtDueToBA,
     margin
   } = dataItem;
   const totalCellColSpan = isGroupByPlayerMode || isBreakDownPlayerMode ? 3 : 2;
@@ -8687,9 +8664,7 @@ const renderFooter = (dataItem, option) => {
     className: `right-align ${licWinloss < 0 ? "negative" : ""}`
   }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].formatDecimal(licWinloss)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "right-align"
-  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].formatDecimal(licComm)), isShowBAField && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-    className: "right-align"
-  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].formatDecimal(amtDueToBA)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+  }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].formatDecimal(licComm)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: `right-align ${margin < 0 ? "negative" : ""}`
   }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_3__["default"].formatDecimal(margin * 100), "%"));
 };
@@ -8903,7 +8878,6 @@ const DataGrid = () => {
     totalRow
   } = reportData;
   const renderOption = {
-    isShowBAField: _common_Service_js__WEBPACK_IMPORTED_MODULE_8__["default"].isContainBAProduct(selectedProduct),
     isGroupByPlayerMode: requestParam.GroupMode == _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["GroupByMode"].Player,
     isBreakDownPlayerMode: requestParam.BreakdownMode == _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["BreakdownByMode"].Player
   };
@@ -9181,7 +9155,7 @@ const MainFilter = () => {
     isOfferCashOutProduct,
     brandOptions
   } = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_4__["default"];
-  const isEnableCashOutFilter = _common_Service_js__WEBPACK_IMPORTED_MODULE_10__["default"].isContainProductSportBookOrBa(selectedProduct);
+  const isEnableCashOutFilter = _common_Service_js__WEBPACK_IMPORTED_MODULE_10__["default"].isContainProductSportBook(selectedProduct);
   const isDisabledGroupInOriginalCurrency = Object(_hooks_useIsDisabledGroupInOriginalCurrency__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     onProductChangeHandler(null, selectedProduct);
@@ -10849,7 +10823,7 @@ const useFilterHandler = () => {
   const onProductChangeHandler = Object(react__WEBPACK_IMPORTED_MODULE_6__["useCallback"])((currentItem, selectedItemsKey) => {
     Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["batch"])(() => {
       dispatch(setSelectedProduct(selectedItemsKey));
-      if (!_common_Service__WEBPACK_IMPORTED_MODULE_5__["default"].isContainProductSportBookOrBa(selectedItemsKey)) {
+      if (!_common_Service__WEBPACK_IMPORTED_MODULE_5__["default"].isContainProductSportBook(selectedItemsKey)) {
         dispatch(setSelectedCashOutMode(0));
       }
       dispatch(getSportList(selectedItemsKey));
@@ -10873,8 +10847,8 @@ const useFilterHandler = () => {
   const onCashOutModeChangeHandler = Object(react__WEBPACK_IMPORTED_MODULE_6__["useCallback"])(item => {
     Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["batch"])(() => {
       if (item.value === _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["CashOutMode"].ViewCOOnly) {
-        const selectedProduct = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_2__["default"].productList.filter(product => product.id == _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["ProductCode"].BA || product.id == _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["ProductCode"].SportsBook).map(product => product.id).join(',');
-        const productList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_2__["default"].productList.map(product => product.id == _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["ProductCode"].SportsBook || product.id == _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["ProductCode"].BA ? product : _objectSpread(_objectSpread({}, product), {}, {
+        const selectedProduct = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_2__["default"].productList.filter(product.id == _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["ProductCode"].SportsBook).map(product => product.id).join(',');
+        const productList = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_2__["default"].productList.map(product => product.id == _common_constants_js__WEBPACK_IMPORTED_MODULE_7__["ProductCode"].SportsBook ? product : _objectSpread(_objectSpread({}, product), {}, {
           status: false
         }));
         onProductChangeHandler(null, selectedProduct);
@@ -11014,19 +10988,15 @@ const useIsDisabledGroupInOriginalCurrency = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useRenderRowOption", function() { return useRenderRowOption; });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _common_Service_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/Service.js */ "./www/js/source/reactpages/pages/report/winlossanalysis/common/Service.js");
-/* harmony import */ var _common_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../common/constants.js */ "./www/js/source/reactpages/pages/report/winlossanalysis/common/constants.js");
-
+/* harmony import */ var _common_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/constants.js */ "./www/js/source/reactpages/pages/report/winlossanalysis/common/constants.js");
 
 
 const useRenderRowOption = () => {
   const [requestParam, selectedProduct] = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useSelector"])(state => [state.requestParam, state.selectedProduct]);
-  const isShowBAField = _common_Service_js__WEBPACK_IMPORTED_MODULE_1__["default"].isContainBAProduct(selectedProduct);
-  const isGroupByPlayerMode = requestParam.GroupMode == _common_constants_js__WEBPACK_IMPORTED_MODULE_2__["GroupByMode"].Player;
+  const isGroupByPlayerMode = requestParam.GroupMode == _common_constants_js__WEBPACK_IMPORTED_MODULE_1__["GroupByMode"].Player;
   const isShowBetEffectiveField = isGroupByPlayerMode;
-  const isBreakDownPlayerMode = requestParam.BreakdownMode == _common_constants_js__WEBPACK_IMPORTED_MODULE_2__["BreakdownByMode"].Player;
+  const isBreakDownPlayerMode = requestParam.BreakdownMode == _common_constants_js__WEBPACK_IMPORTED_MODULE_1__["BreakdownByMode"].Player;
   return {
-    isShowBAField,
     isGroupByPlayerMode,
     isBreakDownPlayerMode,
     isShowBetEffectiveField
@@ -11137,7 +11107,6 @@ const MobileBreakdownRow = props => {
     selectedDisplayTypeId
   } = props;
   const {
-    isShowBAField,
     isShowBetEffectiveField,
     isBreakDownPlayerMode
   } = Object(_hooks_useRenderRowOption__WEBPACK_IMPORTED_MODULE_5__["default"])();
@@ -11150,7 +11119,6 @@ const MobileBreakdownRow = props => {
     betEffective,
     licWinloss,
     licComm,
-    amtDueToBA,
     margin,
     groupBy,
     breakBy,
@@ -11186,12 +11154,6 @@ const MobileBreakdownRow = props => {
     text: _common_constants__WEBPACK_IMPORTED_MODULE_3__["HeaderText"].LicenseeComm,
     value: _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].formatDecimal(licComm)
   }));
-  {
-    isShowBAField && expandRows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MobileExpandRowContent__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      text: _common_constants__WEBPACK_IMPORTED_MODULE_3__["HeaderText"].AmountDueToBA,
-      value: _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].formatDecimal(amtDueToBA)
-    }));
-  }
   expandRows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MobileExpandRowContent__WEBPACK_IMPORTED_MODULE_2__["default"], {
     text: _common_constants__WEBPACK_IMPORTED_MODULE_3__["HeaderText"].Margin,
     value: `${_jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].formatDecimal(margin * 100)}%`,
@@ -11671,7 +11633,6 @@ const MobileGroupByRow = props => {
     selectedDisplayTypeId
   } = props;
   const {
-    isShowBAField,
     isShowBetEffectiveField,
     isGroupByPlayerMode
   } = Object(_hooks_useRenderRowOption__WEBPACK_IMPORTED_MODULE_5__["default"])();
@@ -11729,12 +11690,6 @@ const MobileGroupByRow = props => {
       text: _common_constants__WEBPACK_IMPORTED_MODULE_3__["HeaderText"].LicenseeComm,
       value: _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].formatDecimal(licComm)
     }));
-    {
-      isShowBAField && detailRows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MobileExpandRowContent__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        text: _common_constants__WEBPACK_IMPORTED_MODULE_3__["HeaderText"].AmountDueToBA,
-        value: _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].formatDecimal(amtDueToBA)
-      }));
-    }
     detailRows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MobileExpandRowContent__WEBPACK_IMPORTED_MODULE_2__["default"], {
       text: _common_constants__WEBPACK_IMPORTED_MODULE_3__["HeaderText"].Margin,
       value: `${_jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_4__["default"].formatDecimal(margin * 100)}%`,
@@ -11742,7 +11697,7 @@ const MobileGroupByRow = props => {
     }));
     return detailRows;
   };
-  const detailRows = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _getDetailRows(), [parentData, isShowBetEffectiveField, isShowBAField]);
+  const detailRows = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => _getDetailRows(), [parentData, isShowBetEffectiveField]);
   const breakDownRowList = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => children.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MobileBreakdownRow__WEBPACK_IMPORTED_MODULE_8__["default"], {
     key: `${item.groupBy}-${item.breakBy}`,
     data: item,
@@ -11961,7 +11916,7 @@ const MobileMainFilter = props => {
     isOfferCashOutProduct,
     brandOptions
   } = _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_4__["default"];
-  const isEnableCashOutFilter = _common_Service_js__WEBPACK_IMPORTED_MODULE_9__["default"].isContainProductSportBookOrBa(selectedProduct);
+  const isEnableCashOutFilter = _common_Service_js__WEBPACK_IMPORTED_MODULE_9__["default"].isContainProductSportBook(selectedProduct);
   const isDisabledGroupInOriginalCurrency = Object(_hooks_useIsDisabledGroupInOriginalCurrency_jsx__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     onProductChangeHandler(null, selectedProduct);

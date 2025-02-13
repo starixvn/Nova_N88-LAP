@@ -9,7 +9,6 @@
 			<Mapping DataField="LicenseeID" ObjectProperty="Id" />
 			<Mapping DataField="LicenseeName" ObjectProperty="Name" />
 			<Mapping DataField="IsAllowedMemberComm" ObjectProperty="IsAllowedCustomerComm" />
-			<Mapping DataField="EnableBA" ObjectProperty="IsEnableBA" />
 		</Setting>
 		<Setting Key="N88_SelAgentListByLicensee" SpName="N88_SelAgentListByLicensee" DbName="DBLIC.bodb_Licensee.wsv_lap">
 			<Mapping DataField="Currency" ObjectProperty="CurrencyId" />
@@ -18,7 +17,6 @@
 			<Mapping DataField="LicenseeId" ObjectProperty="Id" />
 			<Mapping DataField="LicenseeName" ObjectProperty="Name" />
 			<Mapping DataField="IsAllowedMemberComm" ObjectProperty="IsAllowedCustomerComm" />
-			<Mapping DataField="EnableBA" ObjectProperty="IsEnableBA" />
 		</Setting>
 	</Function>
 

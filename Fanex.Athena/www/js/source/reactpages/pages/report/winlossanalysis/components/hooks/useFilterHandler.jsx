@@ -38,7 +38,7 @@ export const useFilterHandler = () => {
     const onProductChangeHandler = useCallback((currentItem, selectedItemsKey) => {
         batch(() => {
             dispatch(setSelectedProduct(selectedItemsKey));
-            if (!Service.isContainProductSportBookOrBa(selectedItemsKey)) {
+            if (!Service.isContainProductSportBook(selectedItemsKey)) {
                 dispatch(setSelectedCashOutMode(0));
             }
             dispatch(getSportList(selectedItemsKey));
@@ -75,10 +75,10 @@ export const useFilterHandler = () => {
     const onCashOutModeChangeHandler = useCallback((item) => {
         batch(() => {
             if (item.value === CashOutMode.ViewCOOnly) {
-                const selectedProduct = AppData.productList.filter(product => product.id == ProductCode.BA || product.id == ProductCode.SportsBook)
+                const selectedProduct = AppData.productList.filter(product.id == ProductCode.SportsBook)
                     .map(product => product.id)
                     .join(',');
-                const productList = AppData.productList.map(product => product.id == ProductCode.SportsBook || product.id == ProductCode.BA ? product : { ...product, status: false });
+                const productList = AppData.productList.map(product => product.id == ProductCode.SportsBook ? product : { ...product, status: false });
                 onProductChangeHandler(null, selectedProduct);
                 dispatch(setProductList(productList));
             }

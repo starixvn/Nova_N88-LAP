@@ -1105,7 +1105,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       currencyIdList: this.allCurrencyString,
       oddsGroup: this.allOddsGroupString,
       specialLevel: this.allSpecialLevel,
-      baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["baStatusList"].All,
       searchOption: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["searchOptions"].matchPrefix
     };
   }
@@ -1140,8 +1139,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
       this.setState({
         currencyIdList: this.allCurrencyString,
         oddsGroup: this.allOddsGroupString,
-        specialLevel: this.allSpecialLevel,
-        baFilter: _lib_constants__WEBPACK_IMPORTED_MODULE_8__["baStatusList"].All
+        specialLevel: this.allSpecialLevel
       });
     }
   }
@@ -1237,7 +1235,6 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
     }))), isAdvancedSearch && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_AdvancedSearch__WEBPACK_IMPORTED_MODULE_5__["default"], {
       currencyList: currencyList,
       param: advancedSearchParam,
-      isAllowedBA: hasBaPermission.isallowed,
       isAllowedOddsGroup: hasOddsGroupPermission.isallowed,
       isAllowedSpecialLevel: hasSpecialLevelPermission.isallowed,
       onChange: this.handleSpecificInputChange
@@ -1652,14 +1649,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.es.js");
-/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
+/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-
 
 
 
@@ -1675,19 +1670,15 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
     _defineProperty(this, "handleChangeSingleDropdown", (name, item) => {
       this.props.onChange(name, item.value);
     });
-    this.oddsGroupList = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_4__["oddsGroupListWithStyle"]).map(item => ({
+    this.oddsGroupList = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_3__["oddsGroupListWithStyle"]).map(item => ({
       Id: item,
       Value: item,
       Status: true
     }));
-    this.specialLevelList = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_4__["specialLevelListWithColor"]).map(item => ({
+    this.specialLevelList = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_3__["specialLevelListWithColor"]).map(item => ({
       Id: item,
-      Value: Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_6__["getSpecialLevelText"])(item),
+      Value: Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_5__["getSpecialLevelText"])(item),
       Status: true
-    }));
-    this.baStatusList = Object.keys(_lib_constants__WEBPACK_IMPORTED_MODULE_4__["baStatusList"]).map(item => ({
-      value: _lib_constants__WEBPACK_IMPORTED_MODULE_4__["baStatusList"][item],
-      label: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource(item)
     }));
   }
   _createSelectData(originalList, selectedItemString) {
@@ -1708,27 +1699,24 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
     const {
       currencyList,
       param,
-      isAllowedBA,
       isAllowedOddsGroup,
       isAllowedSpecialLevel
     } = this.props;
     const {
       currencyIdList,
       oddsGroup,
-      specialLevel,
-      baFilter
+      specialLevel
     } = param;
     const convertedCurrencyList = this._createSelectData(currencyList, currencyIdList);
     const oddsGroupList = this._createSelectData(this.oddsGroupList, oddsGroup);
     const specialLevelList = this._createSelectData(this.specialLevelList, specialLevel);
-    const selectedBaStatus = isAllowedBA ? this.baStatusList.find(x => x.value === baFilter) : null;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("Currency")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource("Currency")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a, {
       id: "currency",
       dataSource: convertedCurrencyList,
       keyField: "Id",
@@ -1741,7 +1729,7 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("OddsGroup")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource("OddsGroup")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a, {
       id: "oddsGroup",
       dataSource: oddsGroupList,
       keyField: "Id",
@@ -1754,25 +1742,13 @@ class AdvancedSearch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
       className: "form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "label-text"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("SpecialLevel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource("SpecialLevel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a, {
       id: "specialLevel",
       dataSource: specialLevelList,
       keyField: "Id",
       valueField: "Value",
       statusField: "Status",
       onChange: (currentItem, selectedItemsKey) => this.handleChange('specialLevel', selectedItemsKey)
-    }))), selectedBaStatus !== null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-      className: "label-text"
-    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_5__["default"].getSingleResource("BA")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      instanceId: "ddlBaStatus",
-      name: "form-field-name",
-      value: selectedBaStatus,
-      options: this.baStatusList,
-      onChange: item => this.handleChangeSingleDropdown('baFilter', item)
     }))));
   }
 }
@@ -1780,151 +1756,12 @@ const propTypes = {
   param: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.shape({
     currencyIdList: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired,
     oddsGroup: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired,
-    specialLevel: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired,
-    baFilter: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number.isRequired
+    specialLevel: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired
   }).isRequired,
   onChange: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func.isRequired
 };
 AdvancedSearch.propTypes = propTypes;
 /* harmony default export */ __webpack_exports__["default"] = (AdvancedSearch);
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/BaStatusCell.jsx":
-/*!*************************************************************************************************!*\
-  !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/BaStatusCell.jsx ***!
-  \*************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/index.js");
-/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
-/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _jsroot_components_Switcher__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @jsroot/components/Switcher */ "./www/js/source/reactpages/components/Switcher.jsx");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-/* harmony import */ var _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib/services/gridInteractionService */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/gridInteractionService.js");
-/* harmony import */ var _lib_helpers_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../lib/helpers/utils */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/utils.js");
-/* harmony import */ var _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../lib/sweetAlert */ "./www/js/source/reactpages/lib/sweetAlert.js");
-
-
-
-
-
-
-
-
-
-
-const BaStatusCell = props => {
-  const {
-    dataItem,
-    setPlayerList,
-    toggleLoader,
-    updateBaStatus,
-    setSweetAlertOption,
-    playerList,
-    hasBaPermission
-  } = props;
-  const {
-    IbcCustId,
-    BaStatus,
-    OddsGroup,
-    IsArchived,
-    LicenseeCustId
-  } = dataItem;
-  const canView = hasBaPermission.isallowed;
-  const canUpdate = canView && hasBaPermission.policy == 2;
-  const handleChangeBaStatus = event => {
-    event.preventDefault();
-    if (!canUpdate) {
-      return;
-    }
-    const handleCloseAlert = () => {
-      setSweetAlertOption(null);
-    };
-    const isBa = event.target.checked;
-    const resourceName = isBa ? 'AlertTurnOnBAMsg' : 'AlertTurnOffBAMsg';
-    const confirmMessage = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource(resourceName);
-    const cancelProps = {
-      onClick: handleCloseAlert
-    };
-    const confirmProps = {
-      onClick: () => {
-        const param = {
-          custId: IbcCustId,
-          isBa,
-          LicenseeCustId
-        };
-        toggleLoader(true);
-        updateBaStatus(param).then(response => {
-          const {
-            Success,
-            Message,
-            ErrorMessage,
-            ExtendedData
-          } = response.data;
-          if (Success) {
-            const oddsGroup = ExtendedData || OddsGroup;
-            const newPlayerList = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_7__["default"].updatePlayerWithBaStatus(playerList, IbcCustId, isBa, oddsGroup);
-            setPlayerList(newPlayerList);
-          }
-          const resultMessage = Success ? _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('UpdateSuccess') : Message || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource(ErrorMessage);
-          const displayIcon = Success ? _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].success : _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].error;
-          const alertOpt = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultAlertOption"])(resultMessage, handleCloseAlert, null, displayIcon);
-          setSweetAlertOption(alertOpt);
-          toggleLoader(false);
-        }).catch(error => {
-          console.log(error.message);
-          const message = Object(_lib_helpers_utils__WEBPACK_IMPORTED_MODULE_8__["getErrorMessageForUpdating"])(error);
-          const alertOpt = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultAlertOption"])(message, handleCloseAlert, null, _lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["predefinedIcons"].error);
-          setSweetAlertOption(alertOpt);
-          toggleLoader(false);
-        });
-      }
-    };
-    const confirmOption = Object(_lib_sweetAlert__WEBPACK_IMPORTED_MODULE_9__["generateDefaultConfirmOption"])(confirmMessage, handleCloseAlert, confirmProps, cancelProps);
-    setSweetAlertOption(confirmOption);
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
-    className: "center-align" + `${!canUpdate ? ' ba-disabled' : ''}`
-  }, !IsArchived && BaStatus !== undefined && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_Switcher__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    disabled: !canUpdate,
-    checked: BaStatus,
-    onChange: handleChangeBaStatus
-  }));
-};
-function mapDispatchToProps(dispatch) {
-  const {
-    setPlayerList,
-    toggleLoader,
-    updateBaStatus,
-    setSweetAlertOption
-  } = _actions__WEBPACK_IMPORTED_MODULE_3__["ActionCreators"];
-  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
-    setPlayerList,
-    toggleLoader,
-    updateBaStatus,
-    setSweetAlertOption
-  }, dispatch);
-}
-function mapStateToProps(state) {
-  const {
-    playerList,
-    hasBaPermission
-  } = state;
-  return Object.assign({}, {
-    playerList,
-    hasBaPermission
-  });
-}
-;
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(BaStatusCell));
 
 /***/ }),
 
@@ -2087,7 +1924,7 @@ const OddsGroupCell = props => {
   const value = dataItem.OddsGroup;
   const style = _lib_constants__WEBPACK_IMPORTED_MODULE_3__["oddsGroupListWithStyle"][value];
   const canView = hasOddsGroupPermission.isallowed;
-  const canUpdate = canView && hasOddsGroupPermission.policy == 2 && !dataItem.BaStatus;
+  const canUpdate = canView && hasOddsGroupPermission.policy == 2;
   const handleToggleOddsGroup = event => {
     if (!canUpdate) {
       return;
@@ -2308,10 +2145,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UserNameCell__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./UserNameCell */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/UserNameCell.jsx");
 /* harmony import */ var _OddsGroupCell__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./OddsGroupCell */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/OddsGroupCell.jsx");
 /* harmony import */ var _SpecialLevelCell__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./SpecialLevelCell */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/SpecialLevelCell.jsx");
-/* harmony import */ var _StatusCell__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./StatusCell */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/StatusCell.jsx");
-/* harmony import */ var _BaStatusCell__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./BaStatusCell */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/BaStatusCell.jsx");
-
-
 
 
 
@@ -2350,9 +2183,7 @@ const PlayerRow = props => {
     className: "center-align"
   }, OddsGroup !== undefined && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OddsGroupCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     dataItem: dataItem
-  })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].BaStatus] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaStatusCell__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    dataItem: dataItem
-  }), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].SpecialLevel] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
+  })), displayedColumn[_lib_constants__WEBPACK_IMPORTED_MODULE_4__["fields"].SpecialLevel] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_5__["Cell"], {
     className: "center-align"
   }, SpecialLevel !== undefined && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SpecialLevelCell__WEBPACK_IMPORTED_MODULE_9__["default"], {
     dataItem: dataItem
@@ -2610,99 +2441,6 @@ function mapStateToProps(state) {
 }
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(SpecialLevelDropdown));
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/StatusCell.jsx":
-/*!***********************************************************************************************!*\
-  !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/components/grid/StatusCell.jsx ***!
-  \***********************************************************************************************/
-/*! exports provided: StatusCell, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatusCell", function() { return StatusCell; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../lib/constants */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/actions/index.js");
-/* harmony import */ var _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib/services/gridInteractionService */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/services/gridInteractionService.js");
-/* harmony import */ var _lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib/helpers/playerDataBuilder */ "./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/helpers/playerDataBuilder.js");
-/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
-
-
-
-
-
-
-
-
-const StatusCell = props => {
-  const {
-    dataItem,
-    statusDropdownPosition,
-    setCurrentActivePlayer,
-    setStatusDropdownPosition,
-    type
-  } = props;
-  const {
-    Status,
-    IsOnline,
-    IsDeposit,
-    IsArchived
-  } = dataItem;
-  const statusName = _lib_constants__WEBPACK_IMPORTED_MODULE_3__["playerStatus"][Status];
-  const classname = 'status-text status-' + Status;
-  const canUpdate = type === _lib_constants__WEBPACK_IMPORTED_MODULE_3__["licenseeType"].nonApi && !IsArchived && Status !== _lib_constants__WEBPACK_IMPORTED_MODULE_3__["playerStatusByName"].Closed;
-  const handleToggleStatus = event => {
-    const currentActivePlayer = Object(_lib_helpers_playerDataBuilder__WEBPACK_IMPORTED_MODULE_6__["buildCurrentActivePlayer"])(dataItem);
-    setCurrentActivePlayer(currentActivePlayer);
-    const dropdownName = 'statusDropdown';
-    const newPosition = _lib_services_gridInteractionService__WEBPACK_IMPORTED_MODULE_5__["default"].getNextDropdownPosition(event.target, statusDropdownPosition, dropdownName);
-    setStatusDropdownPosition(newPosition);
-  };
-  const shouldShowOnlineStatus = IsDeposit && Status === _lib_constants__WEBPACK_IMPORTED_MODULE_3__["playerStatusByName"].Active;
-  const onlineText = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('Online');
-  const offlineText = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('Offline');
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "status-cell"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: classname
-  }, statusName || _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_7__["default"].getSingleResource('Unknown')), shouldShowOnlineStatus && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "status-text"
-  }, IsOnline ? `(${onlineText})` : `(${offlineText})`), statusName && canUpdate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "btn-outline btn-status-menu",
-    onClick: handleToggleStatus
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "site-caret"
-  })));
-};
-function mapDispatchToProps(dispatch) {
-  const {
-    setCurrentActivePlayer,
-    setStatusDropdownPosition
-  } = _actions__WEBPACK_IMPORTED_MODULE_4__["ActionCreators"];
-  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
-    setCurrentActivePlayer,
-    setStatusDropdownPosition
-  }, dispatch);
-}
-function mapStateToProps(state) {
-  const {
-    statusDropdownPosition,
-    type
-  } = state;
-  return Object.assign({}, {
-    statusDropdownPosition,
-    type
-  });
-}
-;
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(StatusCell));
 
 /***/ }),
 
@@ -3056,7 +2794,7 @@ Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WE
 /*!*********************************************************************************!*\
   !*** ./www/js/source/reactpages/Module/PlayerAdmin/playerlist/lib/constants.js ***!
   \*********************************************************************************/
-/*! exports provided: specialLevelListWithColor, oddsGroupListWithStyle, licenseeType, fields, columnList, contextMenuKeys, tabNames, tabNameByContextMenu, excludedTabNameWithNonDepositAndArchived, contextMenuList, heightSlicing, searchOptions, defaultPagingOption, playerStatus, playerStatusByName, displayedPlayerStatusList, messageUpdateState, baStatusList, headerText, gridItemDropdownHeight, stringTypeFields, apiInfo, apiUpdateInfo, apiSiteSetting, apiSuggestion, excludedContextMenuWithNonDeposit, excludedContextMenuWithClosed, excludedContextMenuWithArchived, excludedContextMenuWithApiLicensee, playerTypes, emailPattern */
+/*! exports provided: specialLevelListWithColor, oddsGroupListWithStyle, licenseeType, fields, columnList, contextMenuKeys, tabNames, tabNameByContextMenu, excludedTabNameWithNonDepositAndArchived, contextMenuList, heightSlicing, searchOptions, defaultPagingOption, playerStatus, playerStatusByName, displayedPlayerStatusList, messageUpdateState, headerText, gridItemDropdownHeight, stringTypeFields, apiInfo, apiUpdateInfo, apiSiteSetting, apiSuggestion, excludedContextMenuWithNonDeposit, excludedContextMenuWithClosed, excludedContextMenuWithArchived, excludedContextMenuWithApiLicensee, playerTypes, emailPattern */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3078,7 +2816,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "playerStatusByName", function() { return playerStatusByName; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "displayedPlayerStatusList", function() { return displayedPlayerStatusList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "messageUpdateState", function() { return messageUpdateState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "baStatusList", function() { return baStatusList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "headerText", function() { return headerText; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "gridItemDropdownHeight", function() { return gridItemDropdownHeight; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringTypeFields", function() { return stringTypeFields; });
@@ -3137,7 +2874,6 @@ const fields = {
   CurrentBalance: 'CurrentBalance',
   OutstandingBalance: 'OutstandingBalance',
   OddsGroup: 'OddsGroup',
-  BaStatus: 'BaStatus',
   SpecialLevel: 'SpecialLevel'
 };
 const columnList = [{
@@ -3163,10 +2899,6 @@ const columnList = [{
 }, {
   key: fields.OddsGroup,
   value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OddsGroup'),
-  show: true
-}, {
-  key: fields.BaStatus,
-  value: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BAStatus'),
   show: true
 }, {
   key: fields.SpecialLevel,
@@ -3259,11 +2991,6 @@ const messageUpdateState = {
   [playerStatusByName.Closed]: [_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('UpdateToClosedConfirmMsg'), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('WarningToClosedMsg')],
   [playerStatusByName.Active]: [_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('UpdateToActiveConfirmMsg'), _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('WarningToActiveMsg')]
 };
-const baStatusList = {
-  'All': 0,
-  'On': 1,
-  'Off': 2
-};
 const headerText = {
   Status: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Status'),
   UserName: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Username'),
@@ -3272,7 +2999,6 @@ const headerText = {
   CurrentBalance: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('CurrentBalance'),
   OutstandingBalance: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OutstandingBalance'),
   OddsGroup: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('OddsGroup'),
-  BaStatus: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('BAStatus'),
   SpecialLevel: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('SpecialLevel')
 };
 const gridItemDropdownHeight = {
@@ -3304,10 +3030,6 @@ const apiInfo = {
   }
 };
 const apiUpdateInfo = {
-  updateBaStatus: {
-    action: 'api/PlayerBaStatus/Update',
-    type: _constants_configInfo__WEBPACK_IMPORTED_MODULE_0__["systemType"].lrf
-  },
   updateOddsGroup: {
     action: 'api/PlayerOddsGroup/Update',
     type: _constants_configInfo__WEBPACK_IMPORTED_MODULE_0__["systemType"].lrf
@@ -3401,11 +3123,8 @@ function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key i
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
-const buildDefaultColumnList = (hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission) => {
+const buildDefaultColumnList = (hasOddsGroupPermission, hasSpecialLevelPermission) => {
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(item => {
-    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
-      return hasBaPermission.isallowed;
-    }
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].OddsGroup) {
       return hasOddsGroupPermission.isallowed;
     }
@@ -3416,12 +3135,9 @@ const buildDefaultColumnList = (hasBaPermission, hasOddsGroupPermission, hasSpec
     }
   }).map(item => _objectSpread({}, item));
 };
-const buildColumnList = (hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission, isAllowedBA) => {
+const buildColumnList = (hasOddsGroupPermission, hasSpecialLevelPermission) => {
   console.log(hasBaPermission, hasOddsGroupPermission, hasSpecialLevelPermission);
   return _constants__WEBPACK_IMPORTED_MODULE_0__["columnList"].filter(item => {
-    if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].BaStatus) {
-      return isAllowedBA && hasBaPermission.isallowed;
-    }
     if (item.key === _constants__WEBPACK_IMPORTED_MODULE_0__["fields"].OddsGroup) {
       return hasOddsGroupPermission.isallowed;
     }
@@ -3462,7 +3178,6 @@ class GridHelper {
       CurrentBalance,
       OutstandingBalance,
       OddsGroup,
-      BaStatus,
       SpecialLevel
     } = _constants__WEBPACK_IMPORTED_MODULE_2__["fields"];
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderRow"], {
@@ -3486,10 +3201,7 @@ class GridHelper {
     }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].OutstandingBalance), displayedColumn[OddsGroup] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
       colWidth: 50,
       sortBy: OddsGroup
-    }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].OddsGroup), displayedColumn[BaStatus] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
-      colWidth: 50,
-      sortBy: BaStatus
-    }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].BaStatus), displayedColumn[SpecialLevel] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
+    }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].OddsGroup), displayedColumn[SpecialLevel] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["HeaderCell"], {
       colWidth: 50,
       sortBy: SpecialLevel
     }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].SpecialLevel));
@@ -3635,7 +3347,6 @@ class PlayerListDataHelper {
   static mergePlayerItem(lrfItem, lapItem) {
     const {
       OddsGroup,
-      BaStatus,
       SpecialLevel
     } = lrfItem;
     const {
@@ -3660,7 +3371,6 @@ class PlayerListDataHelper {
       CurrentBalance: lapItem.CurrentBalance,
       OutstandingBalance: OutBalance,
       OddsGroup,
-      BaStatus,
       SpecialLevel,
       Status,
       RealName,
@@ -3790,10 +3500,8 @@ const DATA_ROW_INDEX = 1;
 const MAIN_SECTION_STYLE = 'mainSectionStyle';
 const displayedTextByField = {
   [_constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel]: value => Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_3__["getSpecialLevelText"])(value),
-  [_constants__WEBPACK_IMPORTED_MODULE_2__["fields"].BaStatus]: value => Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_3__["getBaStatusText"])(value),
   [_constants__WEBPACK_IMPORTED_MODULE_2__["fields"].Status]: value => Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_3__["getPlayerStatus"])(value)
 };
-const fieldListWithEmptyValueByStatus = [_constants__WEBPACK_IMPORTED_MODULE_2__["fields"].CurrentBalance, _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OutstandingBalance, _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OddsGroup, _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].BaStatus, _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].SpecialLevel];
 class ReportExcel {
   constructor(data, displayedColumn, title) {
     this.data = data;
@@ -3896,10 +3604,6 @@ class ReportExcel {
       width: 130
     }, {
       field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].OddsGroup,
-      [MAIN_SECTION_STYLE]: _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center,
-      width: 70
-    }, {
-      field: _constants__WEBPACK_IMPORTED_MODULE_2__["fields"].BaStatus,
       [MAIN_SECTION_STYLE]: _jsroot_constants_excelStyle__WEBPACK_IMPORTED_MODULE_1__["bodyCellStyle"].center,
       width: 70
     }, {
@@ -5253,34 +4957,6 @@ const defaultProps = {
 ReportTitle.propTypes = propTypes;
 ReportTitle.defaultProps = defaultProps;
 /* harmony default export */ __webpack_exports__["default"] = (ReportTitle);
-
-/***/ }),
-
-/***/ "./www/js/source/reactpages/components/Switcher.jsx":
-/*!**********************************************************!*\
-  !*** ./www/js/source/reactpages/components/Switcher.jsx ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-const Switcher = props => {
-  const attributes = _extends({}, (_objectDestructuringEmpty(props), props));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "switch"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, attributes, {
-    type: "checkbox"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "lever"
-  })));
-};
-/* harmony default export */ __webpack_exports__["default"] = (Switcher);
 
 /***/ }),
 

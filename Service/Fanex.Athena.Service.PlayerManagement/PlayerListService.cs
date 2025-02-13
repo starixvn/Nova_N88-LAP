@@ -63,7 +63,6 @@
             objectDb.SetParameterValue("UserName", metaModel.SystemId);
             objectDb.SetParameterValue("UserName2", metaModel.UserName);
             objectDb.SetParameterValue("SearchOption", metaModel.SearchOption);
-            objectDb.SetParameterValue("BaFilter", metaModel.BaFilter);
             objectDb.SetParameterValue("SpecialLevel", metaModel.SpecialLevel);
             objectDb.SetParameterValue("OddsGroups", metaModel.OddsGroup);
             objectDb.SetParameterValue("PageSize", metaModel.PageSize);
@@ -75,7 +74,6 @@
         private static void AssignParamByCustId(IObjectDb objectDb, PlayerListByIdMetaModel metaModel)
         {
             objectDb.SetParameterValue("CustIds", metaModel.IdList);
-            objectDb.SetParameterValue("BaFilter", metaModel.BaFilter);
             objectDb.SetParameterValue("SpecialLevel", metaModel.SpecialLevel);
             objectDb.SetParameterValue("OddsGroups", metaModel.OddsGroup);
             objectDb.SetParameterValue("PageSize", metaModel.PageSize);
@@ -99,7 +97,6 @@
                         Currency = reader["Currency"].ToString(),
                         SystemId = reader["UserName"].ToString(),
                         UserName = reader["NickName"].ToString(),
-                        BaStatus = Convert.ToBoolean(reader["BAStatus"]),
                         SpecialLevel = Convert.ToInt32(reader["SpecialLevel"]),
                         OddsGroup = reader["OddsGroup"].ToString(),
                         CurrentBalance = Convert.ToDecimal(reader["TotalBalance"]),

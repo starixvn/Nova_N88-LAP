@@ -14,8 +14,6 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         public const int NumberGame = 2;
 
-        public const int BA = 3;
-
         public const int VirtualSports = 5;
 
         public const int SabaCasino = 6;

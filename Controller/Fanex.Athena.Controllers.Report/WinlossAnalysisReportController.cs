@@ -125,28 +125,12 @@
                 SessionServiceInstance.UserSession.Language,
                 ProductListFunctionKey);
 
-            var list = MoveBaProductToBelowSportBook(productAccess.ProductList);
-
-            return list.Select(i => new ProductOption
+            return productAccess.ProductList.Select(i => new ProductOption
             {
                 Code = i.ProductCode,
                 Name = i.ProductName,
                 Status = true
             }).ToList();
-        }
-
-        private static IEnumerable<Product> MoveBaProductToBelowSportBook(ReadOnlyCollection<Product> productList)
-        {
-            var list = productList.ToList();
-            var baProduct = list.FirstOrDefault(c => c.ProductID == ProductTypes.BA);
-            var sbProduct = list.FirstOrDefault(c => c.ProductID == ProductTypes.Sportsbook);
-            if (baProduct != null && sbProduct != null)
-            {
-                list.Remove(baProduct);
-                list.Insert(list.IndexOf(sbProduct) + 1, baProduct);
-            }
-
-            return list;
         }
     }
 }

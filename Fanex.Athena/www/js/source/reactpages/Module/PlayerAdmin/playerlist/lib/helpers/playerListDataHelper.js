@@ -14,7 +14,7 @@ export default class PlayerListDataHelper {
     }
 
     static mergePlayerItem(lrfItem, lapItem) {
-        const { OddsGroup, BaStatus, SpecialLevel } = lrfItem;
+        const { OddsGroup, SpecialLevel } = lrfItem;
         const { Status, RealName, email, isOnline, IBCCustId, isArchived, LastTransaction, CurrencyCode, OutBalance, IBCUserName, CreatedDateString } = lapItem;
 
         return {
@@ -26,7 +26,6 @@ export default class PlayerListDataHelper {
             CurrentBalance: lapItem.CurrentBalance,
             OutstandingBalance: OutBalance,
             OddsGroup,
-            BaStatus,
             SpecialLevel,
             Status,
             RealName,

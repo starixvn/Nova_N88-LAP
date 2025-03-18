@@ -1,8 +1,7 @@
 import React from 'react';
 import MultipleSelect from '@9softstudio/react-multiselect';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
-import { baStatusList, specialLevelListWithColor, oddsGroupListWithStyle } from '../../lib/constants';
+import { specialLevelListWithColor, oddsGroupListWithStyle } from '../../lib/constants';
 import LangHelper from '@jsroot/lib/langHelper';
 import { getSpecialLevelText } from '../../lib/helpers/utils';
 
@@ -12,7 +11,6 @@ export class AdvancedSearch extends React.Component {
 
         this.oddsGroupList = Object.keys(oddsGroupListWithStyle).map(item => ({ Id: item, Value: item, Status: true }));
         this.specialLevelList = Object.keys(specialLevelListWithColor).map(item => ({ Id: item, Value: getSpecialLevelText(item), Status: true }));
-        this.baStatusList = Object.keys(baStatusList).map(item => ({ value: baStatusList[item], label: LangHelper.getSingleResource(item) }));
     }
 
     _createSelectData(originalList, selectedItemString) {
@@ -38,12 +36,11 @@ export class AdvancedSearch extends React.Component {
     }
 
     render() {
-        const { currencyList, param, isAllowedBA, isAllowedOddsGroup, isAllowedSpecialLevel } = this.props;
-        const { currencyIdList, oddsGroup, specialLevel, baFilter } = param;
+        const { currencyList, param, isAllowedOddsGroup, isAllowedSpecialLevel } = this.props;
+        const { currencyIdList, oddsGroup, specialLevel } = param;
         const convertedCurrencyList = this._createSelectData(currencyList, currencyIdList);
         const oddsGroupList = this._createSelectData(this.oddsGroupList, oddsGroup);
         const specialLevelList = this._createSelectData(this.specialLevelList, specialLevel);
-        const selectedBaStatus = isAllowedBA ? this.baStatusList.find(x => x.value === baFilter) : null;
 
         return (
             <>
@@ -89,22 +86,6 @@ export class AdvancedSearch extends React.Component {
                         </div>
                     </div>
                 }
-
-                {
-                    selectedBaStatus !== null &&
-                    (
-                        <div className="col-12 col-md-3 col-sm-3 col-lg-2 col-xl-2">
-                            <div className="form-group">
-                                <label className="label-text">{LangHelper.getSingleResource("BA")}</label>
-                                <Select instanceId='ddlBaStatus'
-                                    name='form-field-name'
-                                    value={selectedBaStatus}
-                                    options={this.baStatusList}
-                                    onChange={(item) => this.handleChangeSingleDropdown('baFilter', item)} />
-                            </div>
-                        </div>
-                    )
-                }
             </>
         );
     }
@@ -115,7 +96,6 @@ const propTypes = {
         currencyIdList: PropTypes.string.isRequired,
         oddsGroup: PropTypes.string.isRequired,
         specialLevel: PropTypes.string.isRequired,
-        baFilter: PropTypes.number.isRequired
     }).isRequired,
     onChange: PropTypes.func.isRequired
 };

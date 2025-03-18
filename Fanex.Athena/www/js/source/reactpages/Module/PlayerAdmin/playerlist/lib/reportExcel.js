@@ -1,7 +1,7 @@
 import Excel from '@jsroot/lib/excel';
 import { headerCellStyle, bodyCellStyle } from '@jsroot/constants/excelStyle';
 import { fields, headerText } from './constants';
-import { getSpecialLevelText, getBaStatusText, getPlayerStatus } from './helpers/utils';
+import { getSpecialLevelText, getPlayerStatus } from './helpers/utils';
 
 const HEADER_ROW_INDEX = 0;
 const DATA_ROW_INDEX = 1;
@@ -10,11 +10,8 @@ const MAIN_SECTION_STYLE = 'mainSectionStyle';
 
 const displayedTextByField = {
     [fields.SpecialLevel]: (value) => getSpecialLevelText(value),
-    [fields.BaStatus]: (value) => getBaStatusText(value),
     [fields.Status]: (value) => getPlayerStatus(value)
 }
-
-const fieldListWithEmptyValueByStatus = [fields.CurrentBalance, fields.OutstandingBalance, fields.OddsGroup, fields.BaStatus, fields.SpecialLevel];
 
 export default class ReportExcel {
     constructor(data, displayedColumn, title) {
@@ -75,11 +72,11 @@ export default class ReportExcel {
     _buildDataRow(item, colIndex) {
         const columnConfig = this.columnConfigs[colIndex];
         const value = item[columnConfig.field];
-        
+
         const displayedTextFunc = displayedTextByField[columnConfig.field];
         const displayedValue = this._shouldSetEmpty(value) ? '' :
             (displayedTextFunc ? displayedTextFunc(value) : value);
-        
+
         return {
             t: Excel.getCellType(displayedValue),
             v: displayedValue,
@@ -132,10 +129,6 @@ export default class ReportExcel {
             width: 130
         }, {
             field: fields.OddsGroup,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
-            width: 70
-        }, {
-            field: fields.BaStatus,
             [MAIN_SECTION_STYLE]: bodyCellStyle.center,
             width: 70
         }, {

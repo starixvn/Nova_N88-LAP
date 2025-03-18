@@ -34,7 +34,6 @@ export default class LapPlayerQueryService {
             idList: idList.join(','),
             specialLevel: param.specialLevel,
             oddsGroup: param.oddsGroup,
-            baFilter: param.baFilter,
             pageSize: param.pageSize,
             pageIndex: 1
         }

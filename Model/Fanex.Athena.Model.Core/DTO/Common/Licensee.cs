@@ -14,8 +14,7 @@ namespace Fanex.Athena.Model.Core.DTO.Common
         public int Id { get; set; }
 
         public string Name { get; set; }
-        public bool IsAllowedCustomerComm { get; set; }
 
-        public bool IsEnableBA { get; set; }
+        public bool IsAllowedCustomerComm { get; set; }
     }
 }

@@ -39,7 +39,6 @@ export const fields = {
     CurrentBalance: 'CurrentBalance',
     OutstandingBalance: 'OutstandingBalance',
     OddsGroup: 'OddsGroup',
-    BaStatus: 'BaStatus',
     SpecialLevel: 'SpecialLevel',
 }
 
@@ -50,7 +49,6 @@ export const columnList = [
     { key: fields.CurrentBalance, value: LangHelper.getSingleResource('CurrentBalance'), show: true },
     { key: fields.OutstandingBalance, value: LangHelper.getSingleResource('OutstandingBalance'), show: true },
     { key: fields.OddsGroup, value: LangHelper.getSingleResource('OddsGroup'), show: true },
-    { key: fields.BaStatus, value: LangHelper.getSingleResource('BAStatus'), show: true },
     { key: fields.SpecialLevel, value: LangHelper.getSingleResource('SpecialLevel'), show: true },
 ];
 
@@ -131,12 +129,6 @@ export const messageUpdateState = {
     [playerStatusByName.Active]: [LangHelper.getSingleResource('UpdateToActiveConfirmMsg'), LangHelper.getSingleResource('WarningToActiveMsg')]
 }
 
-export const baStatusList = {
-    'All': 0,
-    'On': 1,
-    'Off': 2
-}
-
 export const headerText = {
     Status: LangHelper.getSingleResource('Status'),
     UserName: LangHelper.getSingleResource('Username'),
@@ -145,7 +137,6 @@ export const headerText = {
     CurrentBalance: LangHelper.getSingleResource('CurrentBalance'),
     OutstandingBalance: LangHelper.getSingleResource('OutstandingBalance'),
     OddsGroup: LangHelper.getSingleResource('OddsGroup'),
-    BaStatus: LangHelper.getSingleResource('BAStatus'),
     SpecialLevel: LangHelper.getSingleResource('SpecialLevel'),
 }
 
@@ -166,7 +157,6 @@ export const apiInfo = {
 }
 
 export const apiUpdateInfo = {
-    updateBaStatus: { action: 'api/PlayerBaStatus/Update', type: systemType.lrf },
     updateOddsGroup: { action: 'api/PlayerOddsGroup/Update', type: systemType.lrf },
     updateSpecialLevel: { action: 'api/PlayerSpecialLevel/Update', type: systemType.lrf },
     updatePlayerStatus: { action: 'PlayerAdminContainer/UpdatePlayerStatus', type: systemType.newAdmin }

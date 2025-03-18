@@ -21,11 +21,10 @@ export default class Service {
         );
     };
 
-    static isContainProductSportBookOrBa = (selectedItemsKey) => {
+    static isContainProductSportBook = (selectedItemsKey) => {
         var listSelectedProduct = selectedItemsKey.split(",");
         return (
-            listSelectedProduct.indexOf(ProductCode.SportsBook) >= 0 ||
-            listSelectedProduct.indexOf(ProductCode.BA) >= 0
+            listSelectedProduct.indexOf(ProductCode.SportsBook) >= 0
         );
     };
 
@@ -145,12 +144,6 @@ export default class Service {
             ? ALL_SELECTED_TEXT
             : selectedValue;
     }
-
-    static isContainBAProduct = (selectedProductCodes) => {
-        const baProductCode = "BA";
-        const listSelectedProductCodes = selectedProductCodes.split(",");
-        return listSelectedProductCodes.includes(baProductCode);
-    };
 
     static getCurrencyCodes = (currencyListIds, currencyList) => {
         const normalizeText =

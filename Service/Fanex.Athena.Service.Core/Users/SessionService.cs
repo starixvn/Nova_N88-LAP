@@ -114,7 +114,6 @@
                 LicenseeId = licensee.Id,
                 LicenseeName = licensee.Name,
                 IsAllowedCustomerComm = licensee.IsAllowedCustomerComm,
-                IsEnableBA = licensee.IsEnableBA,
                 OfferedSubProductList = _productService.GetOfferedSubProducts(_appSettings.LicenseeId)
             };
 

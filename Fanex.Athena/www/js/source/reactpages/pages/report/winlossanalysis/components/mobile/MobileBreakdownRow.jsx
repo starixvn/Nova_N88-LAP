@@ -10,9 +10,9 @@ import { Cell } from '@9softstudio/react-grid';
 
 export const MobileBreakdownRow = (props) => {
     const { data, selectedDisplayTypeId } = props;
-    const { isShowBAField, isShowBetEffectiveField, isBreakDownPlayerMode } = useRenderRowOption();
-    const { betCount, turnover, netTurnover, playerWinloss, playerComm, betEffective, 
-        licWinloss, licComm, amtDueToBA, margin, groupBy, breakBy, externalId, systemId, breakDownFieldText} = data;
+    const { isShowBetEffectiveField, isBreakDownPlayerMode } = useRenderRowOption();
+    const { betCount, turnover, netTurnover, playerWinloss, playerComm, betEffective,
+        licWinloss, licComm, margin, groupBy, breakBy, externalId, systemId, breakDownFieldText} = data;
     const expandRows = []
     expandRows.push(<MobileExpandRowContent text={HeaderText.BetCount} value={NumberFormat.format(betCount)} />)
     expandRows.push(<MobileExpandRowContent text={HeaderText.NetTurnOver} value={NumberFormat.formatDecimal(netTurnover)} />)
@@ -20,7 +20,6 @@ export const MobileBreakdownRow = (props) => {
     expandRows.push(<MobileExpandRowContent text={HeaderText.PlayerComm} value={NumberFormat.formatDecimal(playerComm)} />)
     expandRows.push(<MobileExpandRowContent text={HeaderText.LicenseeWL} value={NumberFormat.formatDecimal(licWinloss)} valueClass={licWinloss < 0 ? "negative" : ""} />)
     expandRows.push(<MobileExpandRowContent text={HeaderText.LicenseeComm} value={NumberFormat.formatDecimal(licComm)} />)
-    { isShowBAField && expandRows.push(<MobileExpandRowContent text={HeaderText.AmountDueToBA} value={NumberFormat.formatDecimal(amtDueToBA)} />) }
     expandRows.push(<MobileExpandRowContent text={HeaderText.Margin} value={`${NumberFormat.formatDecimal(margin*100)}%`} valueClass={margin < 0 ? "negative" : ""} />)
 
     const idColumnText = selectedDisplayTypeId == MobileGroupByHeaderDisplayType.ExternalId ? externalId : systemId;

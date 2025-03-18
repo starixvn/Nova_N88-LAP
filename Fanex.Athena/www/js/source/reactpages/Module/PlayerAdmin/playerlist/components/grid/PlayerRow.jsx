@@ -10,8 +10,6 @@ import NumberFormat from '@jsroot/lib/numberFormat';
 import UserNameCell from './UserNameCell';
 import OddsGroupCell from './OddsGroupCell';
 import SpecialLevelCell from './SpecialLevelCell';
-import StatusCell from './StatusCell';
-import BaStatusCell from './BaStatusCell';
 
 export const PlayerRow = (props) => {
     const {
@@ -19,13 +17,13 @@ export const PlayerRow = (props) => {
         displayedColumn
     } = props;
 
-    const { 
-        LicenseeCustId, 
-        SystemId, 
-        Currency, 
-        CurrentBalance, 
+    const {
+        LicenseeCustId,
+        SystemId,
+        Currency,
+        CurrentBalance,
         OutstandingBalance,
-        OddsGroup, 
+        OddsGroup,
         SpecialLevel,
     } = dataItem;
 
@@ -37,7 +35,6 @@ export const PlayerRow = (props) => {
             {displayedColumn[fields.CurrentBalance] && <Cell className="right-align">{NumberFormat.formatDecimal(CurrentBalance)}</Cell>}
             {displayedColumn[fields.OutstandingBalance] && <Cell className="right-align">{NumberFormat.formatDecimal(OutstandingBalance)}</Cell>}
             {displayedColumn[fields.OddsGroup] && <Cell className="center-align">{OddsGroup !== undefined && <OddsGroupCell dataItem={dataItem} />}</Cell>}
-            {displayedColumn[fields.BaStatus] && <BaStatusCell dataItem={dataItem} />}
             {displayedColumn[fields.SpecialLevel] && <Cell className="center-align">{SpecialLevel !== undefined && <SpecialLevelCell dataItem={dataItem} />}</Cell>}
         </Row>
     )

@@ -38,7 +38,7 @@ class BetList {
     getResultUrl(rootUrl, matchid, raceNo, bettype, sporttype, winlostdate, refnoMixParlay, league, isOutright, extension1, extension2, custid) {
         bettype = Number(bettype);
 
-        let isParlay = bettype === BetType.MIXPARLAY || bettype === BetType.SYSTEMPARLAY || bettype === BetType.MIXPARLAY_BETRADAR || bettype === BetType.MIXPARLAY_VS4;
+        let isParlay = bettype === BetType.MIXPARLAY || bettype === BetType.SYSTEMPARLAY || bettype === BetType.MIXPARLAY_BETRADAR || bettype === BetType.MIXPARLAY_VS4 || bettype === BetType.MIXPARLAY_VS5;
         let url = isParlay
             ? this._getMixParlayResultUrl(rootUrl, refnoMixParlay, winlostdate, bettype)
             : this._getSportBookResultUrl(rootUrl, matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2, custid);

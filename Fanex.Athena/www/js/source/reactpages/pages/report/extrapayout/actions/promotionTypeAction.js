@@ -18,12 +18,12 @@ const setPromotionTypeList = (list) => {
     };
 }
 
-const getPromotionTypeList = (productCode) => {
+const getPromotionTypeList = (productCodeList) => {
     return (dispatch) => {
-        DataService.getData(Url, { productCode: productCode})
+        DataService.getData(Url, { productCodeList })
             .then(response => {
                 let data = response.data;
-                
+
                 var promotionTypeList = data.map(item => item.value).join(',');
                 dispatch(setPromotionTypeList(data));
                 dispatch(setSelectedPromotionTypes(promotionTypeList));

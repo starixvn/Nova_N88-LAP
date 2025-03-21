@@ -3531,10 +3531,10 @@ const setPromotionTypeList = list => {
     data: list
   };
 };
-const getPromotionTypeList = productCode => {
+const getPromotionTypeList = productCodeList => {
   return dispatch => {
     _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_0__["default"].getData(Url, {
-      productCode: productCode
+      productCodeList
     }).then(response => {
       let data = response.data;
       var promotionTypeList = data.map(item => item.value).join(',');

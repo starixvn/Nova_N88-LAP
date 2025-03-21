@@ -45,5 +45,7 @@
         public const int SabaRewardRiskFreeRebate = 3707;
 
         public const int OddsBoostAdjustment = 101;
+
+        public const int NumberGameLuckyDrawPromotion = 3711;
     }
 }

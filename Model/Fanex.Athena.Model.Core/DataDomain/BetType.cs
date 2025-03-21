@@ -311,6 +311,8 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         VirtualSportCorrectScoreTennis = 1235,
 
-        OddsBoostAdjustment = 997
+        OddsBoostAdjustment = 997,
+
+        NumberGameLuckyDrawPromotion = 17031
     }
 }

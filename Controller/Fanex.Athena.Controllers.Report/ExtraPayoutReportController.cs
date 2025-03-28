@@ -114,7 +114,11 @@
                 new CheckedItem { ID = ExtraPayoutMapType.SabaCasinoRoyaleTournamentPrize,
                     Name = $"{ViewResources.CasinoPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.SabaCasinoRoyaleTournamentPrize)}", Checked = true },
                 new CheckedItem { ID = ExtraPayoutMapType.NumberGameLuckyDrawPromotion,
-                    Name = $"{ViewResources.NGPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.NumberGameLuckyDrawPromotion)}", Checked = true }
+                    Name = $"{ViewResources.NGPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.NumberGameLuckyDrawPromotion)}", Checked = true },
+                new CheckedItem { ID = ExtraPayoutMapType.NBAPlayoffsLotteryPromotion,
+                    Name = $"{ViewResources.SBPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.NBAPlayoffsLotteryPromotion)}", Checked = true },
+                new CheckedItem { ID = ExtraPayoutMapType.NBABalanceAdjustment,
+                    Name = $"{ViewResources.SBPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.NBABalanceAdjustment)}", Checked = true },
             };
         }
 

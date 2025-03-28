@@ -5146,6 +5146,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number Game Promotion.
+        /// </summary>
+        public static string NGPromotion {
+            get {
+                return ResourceManager.GetString("NGPromotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {

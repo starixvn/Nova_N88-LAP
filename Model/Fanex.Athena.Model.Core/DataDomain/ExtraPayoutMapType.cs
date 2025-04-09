@@ -47,5 +47,9 @@
         public const int OddsBoostAdjustment = 101;
 
         public const int NumberGameLuckyDrawPromotion = 3711;
+
+        public const int NBAPlayoffsLotteryPromotion = 3712;
+
+        public const int NBABalanceAdjustment = 3713;
     }
 }

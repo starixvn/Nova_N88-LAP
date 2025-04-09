@@ -313,6 +313,10 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         OddsBoostAdjustment = 997,
 
-        NumberGameLuckyDrawPromotion = 17031
+        NumberGameLuckyDrawPromotion = 17031,
+
+        NBAPlayoffsLotteryPromotion = 17011,
+
+        NBABalanceAdjustment = 17012
     }
 }

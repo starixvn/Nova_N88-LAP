@@ -6630,13 +6630,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 return url;
             },
 
-            getSportBookResultUrl: function (matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2) {
+            getSportBookResultUrl: function (matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2, custid, winlostdate) {
                 let url = Site.resolveClientUrl('ResultReport/ResultPopup');
                 url = QueryString.setParam(url, 'matchid', matchid);
                 url = QueryString.setParam(url, 'bettype', bettype);
                 url = QueryString.setParam(url, 'raceno', raceNo);
                 url = QueryString.setParam(url, 'sporttype', sporttype);
                 url = QueryString.setParam(url, 'isoutright', isOutright);
+                url = QueryString.setParam(url, 'winLossdate', winlostdate);
 
                 if (isFastMarket(bettype)) {
                     url = QueryString.setParam(url, 'handicap1', extension1);
@@ -6767,7 +6768,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     const isParlay = numberBettype === BETTYPE_MIXPARLAY || numberBettype === BETTYPE_SYSTEMPARLAY || numberBettype === BETTYPE_MIXPARLAY_BETRADAR;
                     const url = isParlay
                         ? _me.getMixParlayResultUrl(refnoMixParlay, winlostdate, numberBettype)
-                        : _me.getSportBookResultUrl(matchid, numberBettype, raceNo, sporttype, league, isOutright, extension1, extension2, custid);
+                        : _me.getSportBookResultUrl(matchid, numberBettype, raceNo, sporttype, league, isOutright, extension1, extension2, custid, winlostdate);
 
                     const height = 450;
                     const width = 750;

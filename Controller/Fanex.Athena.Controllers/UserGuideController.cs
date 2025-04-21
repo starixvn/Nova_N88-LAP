@@ -3,10 +3,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Web.Http.Results;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using DataAccess.Core.Configuration.Interfaces;
     using Extension.Utility.Interfaces;
+    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Model.Core.DataDomain;
     using Model.Core.DTO.Common;
@@ -45,8 +47,32 @@
             content = AddSpecialProducts(content, products);
             content = AddBalanceUpDate(content);
             content = AddLicenseeSection(content, SessionServiceInstance.LicenseeSession.LicenseeName);
+            content = AddSabaCoinsSection(content);
 
             return View("~/Views/UserGuide/Index.cshtml", null, content);
+        }
+
+        private string AddSabaCoinsSection(string content)
+        {
+            var result = content;
+
+            if (content.Contains("{refno-saba-coins-section}"))
+            {
+                var IsAllowSabaCoins = SessionServiceInstance.UserSession.FunctionList
+                    .Any(x => x.FunctionKey == PermissionKeys.BetHistory_RefNo_SabaCoinsView);
+
+                if (IsAllowSabaCoins)
+                {
+                    result = result.Replace("{refno-saba-coins-section}", string.Empty);
+                    result = result.Replace("{/refno-saba-coins-section}", string.Empty);
+                }
+                else
+                {
+                    result = new Regex(@"\{refno-saba-coins-section\}[\s\S]*{/refno-saba-coins-section\}").Replace(result, string.Empty);
+                }
+            }
+
+            return result;
         }
 
         private static string AddLicenseeSection(string content, string licenseeName)

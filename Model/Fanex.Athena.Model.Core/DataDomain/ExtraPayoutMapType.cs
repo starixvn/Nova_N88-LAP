@@ -20,6 +20,12 @@
 
         public const int SabaRedEnvelope = 3705;
 
+        public const int PayoutSabaCoinsCashExchange = 3708;
+
+        public const int PayoutPromotionJackpotPrize = 3709;
+
+        public const int PayoutPromotionCashPrize = 3710;
+
         public const int SAGamingTip = 3901;
 
         public const int SCBFreeBets = 4201;

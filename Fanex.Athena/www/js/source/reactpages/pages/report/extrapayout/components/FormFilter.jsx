@@ -147,8 +147,8 @@ export const FormFilter = props => {
     const _renderUserGuide = () => {
         const userGuideContent = props.userGuideContent;
 
-        return (<UserGuide 
-                title={LangHelper.getSingleResource("UserGuide")} 
+        return (<UserGuide
+                title={LangHelper.getSingleResource("UserGuide")}
                 contentTitle={LangHelper.getSingleResource("ExtraPayout")}
                 onClick={showUserGuide}
                 content={userGuideContent} />)
@@ -188,8 +188,8 @@ export const FormFilter = props => {
 
         const selectedCurrencyArray = props.selectedCurrency.split(',');
 
-        const currencyText = selectedCurrencyArray.length === AppData.currencyList.length ? 'All' 
-            : AppData.currencyList.filter(item => selectedCurrencyArray.includes(item.Id.toString())).map(item => item.Value).join(',');        
+        const currencyText = selectedCurrencyArray.length === AppData.currencyList.length ? 'All'
+            : AppData.currencyList.filter(item => selectedCurrencyArray.includes(item.Id.toString())).map(item => item.Value).join(',');
 
         const baseCurrency = baseCurrencyList.find(x => x.value === props.selectedBaseCurrency);
         return {
@@ -197,7 +197,7 @@ export const FormFilter = props => {
             PageIndex: 1,
             FromDate: Site.convertDateToString(fromDate),
             ToDate: Site.convertDateToString(toDate),
-            ProductCodeList: props.selectedProduct, 
+            ProductCodeList: props.selectedProduct,
             CurrencyIdList: props.selectedCurrency,
             BaseCurrency: props.selectedBaseCurrency,
             ReportBy: reportBy,
@@ -214,7 +214,7 @@ export const FormFilter = props => {
         }
     }
 
-    
+
     const isValidModel = () => {
         const result = !!props.selectedProduct
             && !!props.selectedCurrency
@@ -224,7 +224,7 @@ export const FormFilter = props => {
         return result;
     }
 
-    
+
     const exportExcel = (event) => {
         event.preventDefault();
         let exportParam = props.requestParam;
@@ -233,7 +233,7 @@ export const FormFilter = props => {
              exportParam = getParams();
         }
 
-        const exportRequestParam = { 
+        const exportRequestParam = {
             ...exportParam,
             IsExportExcel : true
         };
@@ -248,7 +248,7 @@ export const FormFilter = props => {
             else {
                 const fileName = "ExtraPayout.xls";
                 Site.downloadFile(response.data, fileName);
-            } 
+            }
             props.toggleLoader(false);
         }).catch(error => {
             alert(LangHelper.getSingleResource("ErrorProcessingMsg"));
@@ -277,7 +277,7 @@ export const FormFilter = props => {
                         {_renderBrandSelectList()}
                     </div>
                 </div>}
-                
+
                 <div className="col-12 col-md-3 col-sm-6 col-lg-4 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("Date")}</label>
@@ -314,7 +314,7 @@ export const FormFilter = props => {
                         {_renderBaseCurrencySelectList()}
                     </div>
                 </div>
-                
+
                 <div className="col-12 col-md-3 col-sm-3 col-lg-3 col-xl-2">
                     <div className="form-group">
                         <label className="label-text">{LangHelper.getSingleResource("Username")}</label>
@@ -364,8 +364,8 @@ export const FormFilter = props => {
 
         </CollapsiblePanel>
         </>);
-}     
-    
+}
+
 
 function mapStateToProps(state) {
     const { requestParam, dateRange, selectedProduct, promotionTypeList, selectedPromotionTypes, selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, userGuideContent, selectedBrand } = state;

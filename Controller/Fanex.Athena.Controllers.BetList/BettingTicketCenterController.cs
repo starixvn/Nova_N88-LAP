@@ -130,6 +130,8 @@
                 GetProductsRequireUseName(),
                 _balanceUpDataAccess.GetBalanceUp().BalanceUpDay.ToString(FormatKey.DateFormat));
             ViewBag.SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency;
+            ViewBag.IsAllowSabaCoins = SessionServiceInstance.UserSession.FunctionList
+                .Any(x => x.FunctionKey == PermissionKeys.BetHistory_RefNo_SabaCoinsView);
             ViewBag.TabList = tabList;
 
             return View(
@@ -160,7 +162,6 @@
         public ActionResult BookedBet()
         {
             var tabList = GetEnableTabList();
-            var userSession = SessionServiceInstance.UserSession;
             var ownBrand = BrandList.First(_ => _.Id == LicenseeId);
 
             var viewModel = new BettingTicketCenterViewModel

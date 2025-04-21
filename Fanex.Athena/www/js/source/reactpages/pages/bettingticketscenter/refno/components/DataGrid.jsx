@@ -1,6 +1,8 @@
 ﻿import React from 'react';
+import { connect } from 'react-redux';
 import { ApiUrl } from '../../common/lib/constants';
 import BaseDataGrid from '../../common/components/BaseDataGrid';
+import AppData from '@jsroot/lib/AppData';
 
 const Columns = [
     'Index', 'ExternalId', 'SystemId', 'RefNo', 'TransTime', 'Choice', 'Odds',
@@ -16,6 +18,14 @@ const ColumnAlignments = [
 ];
 
 const DataGrid = (props) => {
+    const { requestParam } = props;
+
+    if (AppData.isAllowSabaCoins && requestParam?.ViewSabaCoins && Columns.includes('LicenseeWL')) {
+        Columns.splice(10, 1);
+        ColumnWidths.splice(10, 1);
+        ColumnAlignments.splice(10, 1);
+    }
+
     return (
         <BaseDataGrid
             dataUrl={ApiUrl.REFNO_DATA_URL}
@@ -30,4 +40,10 @@ const DataGrid = (props) => {
     );
 }
 
-export default DataGrid;
+function mapStateToProps(state) {
+    return {
+        requestParam: state.requestParam
+    };
+}
+
+export default connect(mapStateToProps)(DataGrid);

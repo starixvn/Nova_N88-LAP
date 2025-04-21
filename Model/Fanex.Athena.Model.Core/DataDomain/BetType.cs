@@ -285,6 +285,12 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         SabaRedEnvelope = 17004,
 
+        SabaCoinsCashExchange = 17008,
+
+        PromotionJackpotPrize = 17009,
+
+        PromotionCashPrize = 17010,
+
         SAGamingTip = 3007,
 
         SCBFreeBets = 150,

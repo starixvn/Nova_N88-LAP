@@ -71,5 +71,9 @@
         public const string SpecialReportData_TotalWithdrawalAmount = "SpecialReportData_TotalWithdrawalAmount";
         public const string SpecialReportData_Margin = "SpecialReportData_Margin";
         public const string SpecialReportData_AvgBetAmount = "SpecialReportData_AvgBetAmount";
+
+        /*Saba Coins*/
+        public const string BetHistory_RefNo_SabaCoinsView = "BetHistory_RefNo_SabaCoinsView";
+        public const string PlayerSabaCoins = "PlayerSabaCoins";
     }
 }

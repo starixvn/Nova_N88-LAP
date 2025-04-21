@@ -187,6 +187,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player Saba Coins.
+        /// </summary>
+        public static string PlayerSabaCoinsReport {
+            get {
+                return ResourceManager.GetString("PlayerSabaCoinsReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Report.
         /// </summary>
         public static string Report {

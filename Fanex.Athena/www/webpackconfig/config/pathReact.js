@@ -30,6 +30,8 @@ var cssPaths = {
         "./www/css/source/reactpages/pages/report/abnormalbet/index.scss",
     winlossanalysis:
         "./www/css/source/reactpages/pages/report/winlossanalysis/index.scss",
+    playersabacoins:
+        "./www/css/source/reactpages/pages/report/playersabacoins/index.scss",
 };
 
 var scriptPaths = {
@@ -80,6 +82,8 @@ var scriptPaths = {
         "./www/js/source/reactpages/pages/report/abnormalbet/components/index.jsx",
     winlossanalysis:
         "./www/js/source/reactpages/pages/report/winlossanalysis/components/index.jsx",
+    playersabacoins:
+        "./www/js/source/reactpages/pages/report/playersabacoins/components/index.jsx",
 };
 module.exports = {
     projectRoot: projectRoot,

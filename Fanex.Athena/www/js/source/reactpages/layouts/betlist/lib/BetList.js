@@ -16,13 +16,14 @@ class BetList {
         return url;
     }
 
-    _getSportBookResultUrl(rootUrl, matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2) {
+    _getSportBookResultUrl(rootUrl, matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2, custid, winlostdate) {
         let url = rootUrl + 'ResultReport/ResultPopup';
         url = QueryString.setParam(url, 'matchid', matchid);
         url = QueryString.setParam(url, 'bettype', bettype);
         url = QueryString.setParam(url, 'raceno', raceNo);
         url = QueryString.setParam(url, 'sporttype', sporttype);
         url = QueryString.setParam(url, 'isoutright', isOutright);
+        url = QueryString.setParam(url, 'winLossdate', winlostdate);
 
         if (this._isFastMarket(bettype)) {
             url = QueryString.setParam(url, 'handicap1', extension1);
@@ -41,7 +42,7 @@ class BetList {
         let isParlay = bettype === BetType.MIXPARLAY || bettype === BetType.SYSTEMPARLAY || bettype === BetType.MIXPARLAY_BETRADAR || bettype === BetType.MIXPARLAY_VS4 || bettype === BetType.MIXPARLAY_VS5;
         let url = isParlay
             ? this._getMixParlayResultUrl(rootUrl, refnoMixParlay, winlostdate, bettype)
-            : this._getSportBookResultUrl(rootUrl, matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2, custid);
+            : this._getSportBookResultUrl(rootUrl, matchid, bettype, raceNo, sporttype, league, isOutright, extension1, extension2, custid, winlostdate);
 
         return url;
     }

@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using Fanex.Athena.DataAccess.Report.Interfaces;
+using Fanex.Athena.Model.Auth.DataDomain;
+using Fanex.Athena.Model.Core.DataDomain;
+using Fanex.Athena.Model.Core.DTO.Common;
+using Fanex.Athena.Model.Report.ViewModel;
+using Fanex.Athena.Resources;
+using Fanex.Athena.Service.StatelessCore.Interfaces;
+using Fanex.Athena.Web.ActionFilter;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Fanex.Athena.DataAccess.Core.Common.Interfaces;
-using Fanex.Athena.DataAccess.Report.Interfaces;
-using Fanex.Athena.Extension.Utility.Internal;
-using Fanex.Athena.Model.Auth.DataDomain;
-using Fanex.Athena.Model.Core.DataDomain;
-using Fanex.Athena.Model.Core.DTO.Common;
-using Fanex.Athena.Model.Report.DTO;
-using Fanex.Athena.Model.Report.DTO.AbnormalBet;
-using Fanex.Athena.Model.Report.ViewModel;
-using Fanex.Athena.Resources;
-using Fanex.Athena.Service.StatelessCore.Interfaces;
-using Fanex.Athena.Service.StatelessCore.Utility;
-using Fanex.Athena.VendorAdapter.Interfaces;
-using Fanex.Athena.Web.ActionFilter;
 
 namespace Fanex.Athena.Controllers.Report
 {
@@ -25,13 +17,13 @@ namespace Fanex.Athena.Controllers.Report
     public class AbnormalBetReportController : ReportBaseController
     {
         private readonly IReportSettingService _reportSettingService;
-        private readonly ISportTypeDataAccess _sportService;
+        private readonly ISportService _sportService;
         private readonly IAbnormalBetDataAcces _abnormalBetDataAcces;
         private readonly IBetTypeService _betTypeService;
 
         public AbnormalBetReportController(
             IReportSettingService reportSettingService,
-            ISportTypeDataAccess sportService,
+            ISportService sportService,
             IAbnormalBetDataAcces abnormalBetDataAcces,
             IBetTypeService betTypeService
             )
@@ -49,7 +41,7 @@ namespace Fanex.Athena.Controllers.Report
             int.TryParse(userSession.SettingList?.FirstOrDefault(_ => _.SettingKey == SettingKey.LimitDays)?.SettingValue, out int userDataRangeLimitation);
             var reportSetting = _reportSettingService.GetSetting(PermissionKeys.ReportAbnormalBet, licenseeSession.LicenseeName, userDataRangeLimitation);
 
-            var sports = SportHelper.GetSabaSport((await _sportService.GetSportsAndProducts(licenseeSession.LicenseeId, userSession.Language, Product.SB).ConfigureAwait(true))
+            var sports = _sportService.GetSabaSport((await _sportService.GetSportsAndProducts(licenseeSession.LicenseeId, userSession.Language, Product.SB).ConfigureAwait(true))
                     .Where(x => x.ParentId >= 0).ToList());
 
             var bettypes = await _betTypeService.GetBettypesByProduct(licenseeSession.LicenseeId, Product.SB, userSession.Language).ConfigureAwait(true);

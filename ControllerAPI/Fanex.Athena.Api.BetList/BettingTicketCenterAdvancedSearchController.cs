@@ -51,7 +51,7 @@
                 };
             }
 
-            metaModel.SportListXML = BettingTicketCenterSportService.BuildSportTypeXML(metaModel.SportIds);
+            metaModel.SportListXML = SportService.BuildSportTypeXML(metaModel.SportIds);
             metaModel.HasPlayerCom = SessionService.LicenseeSession.IsAllowedCustomerComm;
             var timeOutInSecond = int.Parse(_appSettings.GetValue("BetListApiOutInSecond"));
             return await _betListApiClient.PostAsync("/BettingTicketCenterAdvancedSearch/GetData",

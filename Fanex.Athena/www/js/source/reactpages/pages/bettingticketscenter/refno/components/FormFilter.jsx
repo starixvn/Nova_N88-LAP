@@ -1,28 +1,34 @@
-﻿import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+﻿import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import Select from 'react-select'
-import AutoComplete from '@jsroot/components/auto-complete'
-import CheckBox from '@jsroot/components/CheckBox'
-import CollapsiblePanel from '@jsroot/components/collapsible-panel'
-import { ActionCreators } from '../actions/index.js'
-import LangHelper from '@jsroot/lib/langHelper'
-import Site from '@jsroot/lib/site'
-import AppData from '@jsroot/lib/AppData'
-import DataService from '@jsroot/lib/DataService.js'
-import { ApiUrl } from '../../common/lib/constants'
-import Service from '../../common/lib/Service'
-import UserGuide from '@jsroot/components/UserGuide'
-import { validateBaseCurrency } from '@jsroot/lib/validationHelper'
+import Select from "react-select";
+import AutoComplete from "@jsroot/components/auto-complete";
+import CheckBox from "@jsroot/components/CheckBox";
+import CollapsiblePanel from "@jsroot/components/collapsible-panel";
+import { ActionCreators } from "../actions/index.js";
+import LangHelper from "@jsroot/lib/langHelper";
+import Site from "@jsroot/lib/site";
+import AppData from "@jsroot/lib/AppData";
+import DataService from "@jsroot/lib/DataService.js";
+import { ApiUrl } from "../../common/lib/constants";
+import Service from "../../common/lib/Service";
+import UserGuide from "@jsroot/components/UserGuide";
+import { validateBaseCurrency } from "@jsroot/lib/validationHelper";
 
 export class FormFilter extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            onViewSabaCoin: false,
+        };
     }
 
     get isValidModel() {
-        return this.props.refno !== "" && validateBaseCurrency(this.props.selectedBaseCurrency);
+        return (
+            this.props.refno !== "" &&
+            (this.state.onViewSabaCoin || validateBaseCurrency(this.props.selectedBaseCurrency))
+        );
     }
 
     submit = (event) => {
@@ -32,11 +38,13 @@ export class FormFilter extends Component {
             return;
         }
 
-        this.props.setReportTitle(Service.getTitle(null, null, params.BaseCurrency));
+        this.props.setReportTitle(
+            Service.getTitle(null, null, params.BaseCurrency, params.ViewSabaCoins)
+        );
         this.props.setRequestParam(params);
         this.props.toggleLoader(true);
         this.props.getGridData(ApiUrl.REFNO_DATA_URL, params);
-    }
+    };
 
     exportExcel = (event) => {
         event.preventDefault();
@@ -55,11 +63,11 @@ export class FormFilter extends Component {
             if (response.status === NoContentStatusCode) {
                 alert(LangHelper.getSingleResource("NoInfo"));
             } else {
-                Site.downloadFile(response.data, 'BetHistory_RefNo.xls');
+                Site.downloadFile(response.data, "BetHistory_RefNo.xls");
             }
             this.props.toggleLoader(false);
         });
-    }
+    };
 
     _getParams() {
         if (!this.isValidModel) {
@@ -73,106 +81,189 @@ export class FormFilter extends Component {
             PageIndex: 1,
             Refno: this.props.refno,
             Username: this.props.username,
-            BaseCurrency: this.props.isConvertAll ? this.props.selectedBaseCurrency : '',
+            BaseCurrency: this.props.isConvertAll
+                ? this.props.selectedBaseCurrency
+                : "",
             IsConvertAll: this.props.isConvertAll,
+            ViewSabaCoins: this.state.onViewSabaCoin,
             SortBy: SortBy,
-            SortOrder: SortOrder
-        }
+            SortOrder: SortOrder,
+        };
     }
 
     showUserGuide = () => {
         const userGuideContent = this.props.userGuideContent;
 
         if (!userGuideContent || userGuideContent.length === 0) {
-            this.props.getUserGuideContent('BettingTicketCenterRefno');
+            this.props.getUserGuideContent("BettingTicketCenterRefno");
         }
+    };
+
+    handleViewSabaCoinsChange = (value) => {
+        if(value)
+        {
+            this.props.changeIsConvertAll(false);
+            this.props.setSelectedBaseCurrency("All");
+        }
+        else
+        {
+            this.props.changeIsConvertAll(true);
+            this.props.setSelectedBaseCurrency(AppData.defaultSelectedBaseCurrency);
+        }
+        this.setState({onViewSabaCoin: value});
     }
 
     _renderUserGuide() {
         const userGuideContent = this.props.userGuideContent;
 
-        return (<UserGuide
-            title={LangHelper.getSingleResource("UserGuide")}
-            contentTitle={LangHelper.getSingleResource("BetHistory")}
-            onClick={this.showUserGuide}
-            content={userGuideContent} />)
+        return (
+            <UserGuide
+                title={LangHelper.getSingleResource("UserGuide")}
+                contentTitle={LangHelper.getSingleResource("BetHistory")}
+                onClick={this.showUserGuide}
+                content={userGuideContent}
+            />
+        );
     }
 
     _renderBaseCurrencySelectList() {
         const selectedBaseCurrency = this.props.selectedBaseCurrency;
-        const baseCurrencyList = AppData.baseCurrencyList;
+        let baseCurrencyList = [];
 
-        return baseCurrencyList && baseCurrencyList.length && (
-            <Select instanceId="ddlBased"
-                value={selectedBaseCurrency}
-                options={baseCurrencyList}
-                onChange={(item) => this.props.setSelectedBaseCurrency(item.value)} />
+        if (this.state.onViewSabaCoin)
+        {
+            baseCurrencyList = [{ value: "All", label: LangHelper.getSingleResource("All")}];
+        }
+        else
+        {
+            baseCurrencyList = [...AppData.baseCurrencyList];
+        }
+
+        return (
+            baseCurrencyList &&
+            baseCurrencyList.length && (
+                <Select
+                    instanceId="ddlBased"
+                    value={selectedBaseCurrency}
+                    options={baseCurrencyList}
+                    onChange={(item) => this.props.setSelectedBaseCurrency(item.value)}
+                    disabled={this.state.onViewSabaCoin}
+                />
+            )
         );
     }
 
     render() {
-        const excelButton = <div>
-            <i className="icon-excel right" onClick={this.exportExcel} title={LangHelper.getSingleResource("ExportToExcel")}></i>
-            {this._renderUserGuide()}
-        </div>;
+        const excelButton = (
+            <div>
+                <i
+                    className="icon-excel right"
+                    onClick={this.exportExcel}
+                    title={LangHelper.getSingleResource("ExportToExcel")}
+                ></i>
+                {this._renderUserGuide()}
+            </div>
+        );
 
         return (
             <CollapsiblePanel className="page-filter" stickyFooter={excelButton}>
                 <div className="row">
                     <div className="col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2">
                         <div className="form-group">
-                            <label className="label-text">{LangHelper.getSingleResource("RefNo")} *</label>
-                            <input className="input-text" id="RefNo" name="RefNo" type="number" value={this.props.refno} placeholder={LangHelper.getSingleResource("RefNo")}
-                                onChange={(event) => this.props.setRefno(event.target.value)} />
+                            <label className="label-text">
+                                {LangHelper.getSingleResource("RefNo")} *
+                            </label>
+                            <input
+                                className="input-text"
+                                id="RefNo"
+                                name="RefNo"
+                                type="number"
+                                value={this.props.refno}
+                                placeholder={LangHelper.getSingleResource("RefNo")}
+                                onChange={(event) => this.props.setRefno(event.target.value)}
+                            />
                         </div>
                     </div>
 
                     <div className="col-12 col-md-4 col-sm-4 col-lg-3 col-xl-2">
                         <div className="form-group">
-                            <label className="label-text">{LangHelper.getSingleResource("Username")}</label>
-                            <AutoComplete url={ApiUrl.CUSTOMER_SEARCH_URL}
+                            <label className="label-text">
+                                {LangHelper.getSingleResource("Username")}
+                            </label>
+                            <AutoComplete
+                                url={ApiUrl.CUSTOMER_SEARCH_URL}
                                 onSelect={(value) => this.props.setUsername(value)}
                                 onInput={(value) => this.props.setUsername(value)}
-                                htmlAttributes={{ placeholder: LangHelper.getSingleResource("ExternalIdOrSystemId") }} />
+                                htmlAttributes={{
+                                    placeholder: LangHelper.getSingleResource(
+                                        "ExternalIdOrSystemId"
+                                    ),
+                                }}
+                            />
                         </div>
                     </div>
 
                     <div className="col-12 col-md-3 col-sm-4 col-lg-2 col-xl-2">
                         <div className="form-group">
-                            <label className="label-text">{LangHelper.getSingleResource("BaseCurrency")}</label>
+                            <label className="label-text">
+                                {LangHelper.getSingleResource("BaseCurrency")}
+                            </label>
                             {this._renderBaseCurrencySelectList()}
                         </div>
                     </div>
 
                     <div className="col-12 col-md-4 col-sm-4 col-lg-2 col-xl-2">
                         <div className="form-group">
-                            <CheckBox id="IsConvertAll"
+                            <CheckBox
+                                id="IsConvertAll"
                                 checked={this.props.isConvertAll}
                                 onChange={(checked) => this.props.changeIsConvertAll(checked)}
-                                label={LangHelper.getSingleResource("ConvertAllFiguresToBaseCurrency")} />
+                                label={LangHelper.getSingleResource(
+                                    "ConvertAllFiguresToBaseCurrency"
+                                )}
+                                disabled={this.state.onViewSabaCoin}
+                            />
                         </div>
                     </div>
+
+                    {AppData.isAllowSabaCoins && <div className="col-12 col-md-4 col-sm-4 col-lg-2 col-xl-2">
+                        <div className="form-group">
+                            <CheckBox
+                                id="ViewSabaCoins"
+                                checked={this.state.onViewSabaCoin}
+                                onChange={this.handleViewSabaCoinsChange}
+                                label={LangHelper.getSingleResource("ViewSabaCoins")}
+                            />
+                        </div>
+                    </div>}
 
                     <div className="col-12 col-md-3 col-sm-4 col-lg-2 col-xl-2">
                         <div className="form-group">
                             <div className="button-group">
-                                <button type="button" disabled={!this.isValidModel} className="btn btn-submit" onClick={this.submit}>{LangHelper.getSingleResource("Submit")}</button>
+                                <button
+                                    type="button"
+                                    disabled={!this.isValidModel}
+                                    className="btn btn-submit"
+                                    onClick={this.submit}
+                                >
+                                    {LangHelper.getSingleResource("Submit")}
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-1" style={{ flex: "0 0 4%" }}>
-                        {LangHelper.getSingleResource('Note')}:
-                        </div>
+                        {LangHelper.getSingleResource("Note")}:
+                    </div>
                     <div className="col-9">
-                        * {LangHelper.getSingleResource('BettingTicketCenter_RefnoTabNote1')}
-                        <br />
-                        * {AppData.productsRequireUseNameNote}
+                        *{" "}
+                        {LangHelper.getSingleResource("BettingTicketCenter_RefnoTabNote1")}
+                        <br />* {AppData.productsRequireUseNameNote}
                     </div>
                 </div>
             </CollapsiblePanel>
-        )
+        );
     }
 }
 
@@ -180,8 +271,25 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(ActionCreators, dispatch);
 }
 function mapStateToProps(state) {
-    const { requestParam, refno, username, selectedBaseCurrency, isConvertAll, userGuideContent } = state;
-    return Object.assign({}, { requestParam, refno, username, selectedBaseCurrency, isConvertAll, userGuideContent });
-};
+    const {
+        requestParam,
+        refno,
+        username,
+        selectedBaseCurrency,
+        isConvertAll,
+        userGuideContent,
+    } = state;
+    return Object.assign(
+        {},
+        {
+            requestParam,
+            refno,
+            username,
+            selectedBaseCurrency,
+            isConvertAll,
+            userGuideContent,
+        }
+    );
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);

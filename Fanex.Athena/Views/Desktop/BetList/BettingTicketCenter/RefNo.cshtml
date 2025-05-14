@@ -27,8 +27,10 @@
     };
     window._AppData = {
     isAllowedCustomerComm: @Model.ToJson(),
+    isAllowSabaCoins: '@ViewBag.IsAllowSabaCoins' === "True",
     baseCurrencyList:@Html.Raw(baseCurrencyList.ToJson()),
     productsRequireUseNameNote: '@ViewBag.ProductsRequireUseNameNote',
+    defaultSelectedBaseCurrency: '@ViewBag.SelectedBaseCurrency',
     tabList: @Html.Raw((ViewBag.TabList as IEnumerable<string>).ToJson())
     };
 }

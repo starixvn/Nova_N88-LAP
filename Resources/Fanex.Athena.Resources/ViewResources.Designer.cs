@@ -2914,6 +2914,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exchange To Cash.
+        /// </summary>
+        public static string ExchangeToCash {
+            get {
+                return ResourceManager.GetString("ExchangeToCash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exchange Win Loss.
         /// </summary>
         public static string ExchangeWinLoss {
@@ -6028,6 +6037,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player Saba Coins.
+        /// </summary>
+        public static string PlayerSabaCoins {
+            get {
+                return ResourceManager.GetString("PlayerSabaCoins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Support data up to 18 months.
         /// </summary>
         public static string PlayerStatementSupportMonths {
@@ -6892,6 +6910,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reward/ Promotion.
+        /// </summary>
+        public static string Reward_Promotion {
+            get {
+                return ResourceManager.GetString("Reward_Promotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Risk Level.
         /// </summary>
         public static string RiskLevel {
@@ -6942,6 +6969,15 @@ namespace Fanex.Athena.Resources {
         public static string Saba {
             get {
                 return ResourceManager.GetString("Saba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saba Coins.
+        /// </summary>
+        public static string SabaCoins {
+            get {
+                return ResourceManager.GetString("SabaCoins", resourceCulture);
             }
         }
         
@@ -8589,6 +8625,15 @@ namespace Fanex.Athena.Resources {
         public static string ViewNotification {
             get {
                 return ResourceManager.GetString("ViewNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Saba Coins.
+        /// </summary>
+        public static string ViewSabaCoins {
+            get {
+                return ResourceManager.GetString("ViewSabaCoins", resourceCulture);
             }
         }
         

@@ -343,6 +343,7 @@
     <Content Include="App_Data\UserGuide\BettingTicketCenterSingle\en-US.htm" />
     <Content Include="App_Data\UserGuide\CustomerLog\en-US.htm" />
     <Content Include="App_Data\UserGuide\ExtraPayout\en-US.htm" />
+    <Content Include="App_Data\UserGuide\PlayerSabaCoins\en-US.htm" />
     <Content Include="App_Data\UserGuide\SabaWinLossAnalysis\en-US.htm" />
     <Content Include="App_Data\UserGuide\WinLossAnalysis\en-US.htm" />
     <Content Include="Content\Account\AccountManagement.css" />
@@ -527,6 +528,8 @@
     <Content Include="www\css\build\dev\reactpages\report\bonusinfo.css" />
     <Content Include="www\css\build\dev\reactpages\report\extrapayout.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\report\extrapayout.css" />
+    <Content Include="www\css\build\dev\reactpages\report\playersabacoins.chunk.js" />
+    <Content Include="www\css\build\dev\reactpages\report\playersabacoins.css" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\css\build\dev\reactpages\report\winloss.css" />
     <Content Include="www\css\build\dev\reactpages\report\marketing.css" />
@@ -615,6 +618,8 @@
     <Content Include="www\css\build\pro\reactpages\report\bonusinfo.css" />
     <Content Include="www\css\build\pro\reactpages\report\extrapayout.css" />
     <Content Include="www\css\build\pro\reactpages\report\marketing.css" />
+    <Content Include="www\css\build\pro\reactpages\report\playersabacoins.chunk.js" />
+    <Content Include="www\css\build\pro\reactpages\report\playersabacoins.css" />
     <Content Include="www\css\build\pro\reactpages\report\winloss.css" />
     <Content Include="www\css\build\pro\reactpages\report\winlossanalysis.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -754,6 +759,9 @@
     <Content Include="SiteConfig\Web.AppSettings.UATBWING.config" />
     <Content Include="SiteConfig\Web.ConnectionStrings.UATBWING.config" />
     <Content Include="T4.FileManager.VisualStudio.ttinclude" />
+    <Content Include="Views\Desktop\Report\PlayerSabaCoins\Main.cshtml" />
+    <Content Include="www\css\build\dev\reactpages\report\playersabacoins.chunk.js.map" />
+    <Content Include="www\css\build\dev\reactpages\report\playersabacoins.css.map" />
     <None Include="www\css\source\reactpages\components\custom3rd\react-toastify.scss" />
     <None Include="www\css\source\pages\betlist\result\result.happy5.scss" />
     <None Include="www\css\source\reactpages\components\alert\icons\error.scss" />
@@ -790,6 +798,7 @@
     <Content Include="www\js\build\dev\reactpages\report\bonusinfo.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\extrapayout.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
+    <Content Include="www\js\build\dev\reactpages\report\playersabacoins.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\winloss-nonsports-betlist.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\winloss.chunk.js" />
     <Content Include="www\js\build\dev\reactpages\report\marketing.chunk.js" />
@@ -817,6 +826,7 @@
     <Content Include="www\js\build\pro\reactpages\report\extrapayout.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\marketing-performancehighlightdetail.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\marketing.chunk.js" />
+    <Content Include="www\js\build\pro\reactpages\report\playersabacoins.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\winloss-nonsports-betlist.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\report\winloss.chunk.js" />
     <Content Include="www\js\build\pro\reactpages\notification\notification.chunk.js" />
@@ -2075,6 +2085,8 @@
     <Content Include="www\js\build\dev\reactpages\report\winlossanalysis.chunk.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="www\css\source\reactpages\pages\report\playersabacoins\index.scss" />
+    <Content Include="www\js\build\dev\reactpages\report\playersabacoins.chunk.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteConfig\WebConfigTransforms\SIT.config">

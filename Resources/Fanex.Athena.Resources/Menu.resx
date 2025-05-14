@@ -184,4 +184,7 @@
   <data name="SabaWinLossAnalysis" xml:space="preserve">
     <value>Saba Win Loss Analysis</value>
   </data>
+  <data name="PlayerSabaCoinsReport" xml:space="preserve">
+    <value>Player Saba Coins</value>
+  </data>
 </root>

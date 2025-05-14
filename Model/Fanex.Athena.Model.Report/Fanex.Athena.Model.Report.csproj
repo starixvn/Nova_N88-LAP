@@ -75,6 +75,7 @@
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModel\PlayerSabaCoinsViewModel.cs" />
     <Compile Include="Constants\ResultVendorProductTypes.cs" />
     <Compile Include="DTO\AbnormalBet\SubIssue.cs" />
     <Compile Include="DTO\Result\KenoExtendedToken.cs" />

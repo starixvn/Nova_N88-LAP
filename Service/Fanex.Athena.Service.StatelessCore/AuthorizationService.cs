@@ -5,9 +5,11 @@
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
+    using Fanex.Logging;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Service.Interface;
     using Fanex.NVC.Authentication.Infrastructure;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -20,13 +22,15 @@
         private readonly ICustomMemoryCacheService _cache;
         private readonly IUserService _userService;
         private readonly N88Settings _n88Settings;
+        private readonly ILogger _logger;
 
-        public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache, IUserService userService, N88Settings n88Settings = null)
+        public AuthorizationService(IAthorizationDataAccess authorizationDataAccess, ICustomMemoryCacheService cache, IUserService userService, ILogger logger, N88Settings n88Settings = null)
         {
             _authorizationDataAccess = authorizationDataAccess;
             _cache = cache;
             _userService = userService;
             _n88Settings = n88Settings ?? N88Settings.Settings;
+            _logger = logger;
         }
 
         public bool HasPermissions(int userId, params string[] permissionKeys)
@@ -88,6 +92,8 @@
             }
 
             var item = _authorizationDataAccess.IsCustomerBelonging(custId, transId);
+
+            _logger.Info($"cusid {custId.ToString()}, transid {transId.ToString()}, currencyAgents {JsonConvert.SerializeObject(currencyAgents)}, data belonging{JsonConvert.SerializeObject(item)}");
 
             return currencyAgents.Any(i => i.Key == item.Item1 && i.Value.Contains(item.Item2));
         }

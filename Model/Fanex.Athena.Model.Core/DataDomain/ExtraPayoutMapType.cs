@@ -57,5 +57,7 @@
         public const int NBAPlayoffsLotteryPromotion = 3712;
 
         public const int NBABalanceAdjustment = 3713;
+
+        public const int FIFACWCScoreChallenge = 3714;
     }
 }

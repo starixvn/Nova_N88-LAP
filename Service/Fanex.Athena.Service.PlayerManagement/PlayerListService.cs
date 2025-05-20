@@ -93,7 +93,7 @@
                     playerList.Add(new Player
                     {
                         IbcCustId = Convert.ToInt32(reader["CustId"]),
-                        CurrencyId = Convert.ToByte(reader["ExchangeId"]),
+                        CurrencyId = Convert.ToInt32(reader["ExchangeId"]),
                         Currency = reader["Currency"].ToString(),
                         SystemId = reader["UserName"].ToString(),
                         UserName = reader["NickName"].ToString(),

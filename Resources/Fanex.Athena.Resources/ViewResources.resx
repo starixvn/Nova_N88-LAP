@@ -3368,6 +3368,9 @@
    <data name="ViewSabaCoins" xml:space="preserve">
     <value>View Saba Coins</value>
   </data>
+  <data name="SoccerMarble" xml:space="preserve">
+    <value>Soccer Marble</value>
+  </data>
   <data name="SabaCoins" xml:space="preserve">
     <value>Saba Coins</value>
   </data>

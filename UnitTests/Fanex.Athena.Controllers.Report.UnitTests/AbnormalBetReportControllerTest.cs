@@ -23,7 +23,7 @@
     public class AbnormalBetReportControllerTest : CultureBaseControllerHelperTest
     {
         private IReportSettingService _reportSettingService;
-        private ISportTypeDataAccess _sportService;
+        private ISportService _sportService;
         private IAbnormalBetDataAcces _abnormalBetDataAcces;
         private IBetTypeService _betTypeService;
 
@@ -31,7 +31,7 @@
         public void SetUp()
         {
             _reportSettingService = Substitute.For<IReportSettingService>();
-            _sportService = Substitute.For<ISportTypeDataAccess>();
+            _sportService = Substitute.For<ISportService>();
             _abnormalBetDataAcces = Substitute.For<IAbnormalBetDataAcces>();
             _betTypeService = Substitute.For<IBetTypeService>();
         }

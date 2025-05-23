@@ -307,27 +307,31 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         PP = 248,
 
-        SabaSoccer = -1,
+        ParlayTreeView = -1,
 
-        SabaBasketball = -2,
+        SabaSoccer = -2,
 
-        SabaCricket = -3,
+        SabaFutsal = -3,
 
-        Futsal = 49,
+        SabaSoccerPingoal = -4,
 
-        SabaFutsal = -4,
-
-        SabaSoccerPingoal = -5,
+        SabaBasketball = -5,
 
         SabaBasketballPinGoal = -6,
 
         SabaESportsPinGoal = -7,
 
-        SabaTennis = -8,
+        SabaCricket = -8,
 
-        SabaIceHockey = -9,
+        SabaTennis = -9,
 
-        SabaKabaddi = -10,
+        SabaIceHockey = -10,
+
+        SabaKabaddi = -11,
+
+        SabaSoccerMarble = -12,
+
+        Futsal = 49,
 
         Kabaddi = 47,
 

@@ -323,6 +323,8 @@ namespace Fanex.Athena.Model.Core.DataDomain
 
         NBAPlayoffsLotteryPromotion = 17011,
 
-        NBABalanceAdjustment = 17012
+        NBABalanceAdjustment = 17012,
+
+        FIFACWCScoreChallenge = 17013
     }
 }

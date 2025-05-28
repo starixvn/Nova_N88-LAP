@@ -125,6 +125,8 @@
                     Name = $"{ViewResources.SBPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.NBAPlayoffsLotteryPromotion)}", Checked = true },
                 new CheckedItem { ID = ExtraPayoutMapType.NBABalanceAdjustment,
                     Name = $"{ViewResources.SBPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.NBABalanceAdjustment)}", Checked = true },
+                new CheckedItem { ID = ExtraPayoutMapType.FIFACWCScoreChallenge,
+                    Name = $"{ViewResources.SBPromotion} - {_cacheRefAdapter.GetBettype((int) BetType.FIFACWCScoreChallenge)}", Checked = true },
             };
         }
 

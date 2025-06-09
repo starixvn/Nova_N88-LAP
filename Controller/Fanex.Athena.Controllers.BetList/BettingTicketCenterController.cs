@@ -77,9 +77,9 @@
         {
             var tabList = GetEnableTabList();
             var licenseeSession = SessionServiceInstance.LicenseeSession;
-            var balanceUpday = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay;
-            var minDate = GetUserLimitDataRange(balanceUpday, DefaultTimeZone);
-            minDate = DateTimeHelper.GetMaxDate(minDate, balanceUpday);
+            var defaultMinDay = DateTimeHelper.Today.AddYears(-3);
+            var minDate = GetUserLimitDataRange(defaultMinDay, DefaultTimeZone);
+            minDate = DateTimeHelper.GetMaxDate(minDate, defaultMinDay);
 
             var viewModel = new BettingTicketCenterViewModel
             {

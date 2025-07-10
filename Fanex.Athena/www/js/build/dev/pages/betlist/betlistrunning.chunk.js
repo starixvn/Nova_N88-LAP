@@ -6758,7 +6758,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     _me.viewThirdPartyProductResult(custid, transdecs, extension2, extension1, siteId, bettype, 'SportsLottery', title);
                 }
                 else if (sporttype === SPORT_VGA || sporttype === SPORT_VGA_FreeBets) {
-                    _me.viewVGamingResult(custid, bettype, extension2, transdecs, title, sporttype, currency);
+                    _me.viewThirdPartyProductResult(custid, transdecs, extension2, extension1, siteId, bettype, 'VGaming', title);
                 }
                 else if (sporttype === SPORT_VS3) {
                     _me.viewVS3Result(transdecs, sporttype, title);

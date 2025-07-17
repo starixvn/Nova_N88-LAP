@@ -52,8 +52,8 @@ export const BaseDataGrid = (props) => {
         setRequestParam(param);
     }
 
-    const onSort = (sortBy, sortOrder) =>{
-        const param = Object.assign({}, requestParam, { SortBy: sortBy === 'WinLoss' ? 'WinLost' : sortBy, SortOrder: sortOrder });
+    const onSort = (sortType, sortOrder) =>{
+        const param = Object.assign({}, requestParam, { sortType, sortOrder });
 
         getData(param);
     }

@@ -9,6 +9,8 @@
     {
         private const int DefaultPageSize = 50;
 
+        private const int DefaultSortOrder = 1;
+
         private string _baseCurrency = string.Empty;
 
         private string _userName;
@@ -17,6 +19,7 @@
         {
             PageIndex = 1;
             PageSize = DefaultPageSize;
+            SortOrder = DefaultSortOrder;
         }
 
         public string CurrencyIdList { get; set; }
@@ -71,9 +74,9 @@
 
         public bool IsExport { get; set; }
 
-        public string SortBy { get; set; }
+        public byte SortType { get; set; }
 
-        public string SortOrder { get; set; }
+        public byte SortOrder { get; set; }
 
         public virtual bool IsValid => FromDate <= ToDate
             && !string.IsNullOrWhiteSpace(ProductCodeList)

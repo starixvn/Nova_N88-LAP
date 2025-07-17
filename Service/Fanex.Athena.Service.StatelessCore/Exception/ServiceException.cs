@@ -28,7 +28,7 @@
         {
             get
             {
-                return $"Exception when call Service: {_serviceName}. Exception Message: {base.Message}";
+                return $"Exception when call Service: {_serviceName}. Exception Message: {base.Message}. Detail Exception Message: {base.InnerException}";
             }
         }
 

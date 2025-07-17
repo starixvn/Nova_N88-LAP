@@ -56,7 +56,7 @@
       <HintPath>..\..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.N88.Core.Client, Version=1.2.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.4-alpha-6\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.N88.Core.Client.1.0.4-alpha-9\lib\net461\Fanex.N88.Core.Client.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.NVC.Authentication.Infrastructure, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.NVC.Authentication.Infrastructure.1.0.9\lib\net461\Fanex.NVC.Authentication.Infrastructure.dll</HintPath>

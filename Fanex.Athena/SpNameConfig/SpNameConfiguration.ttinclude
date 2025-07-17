@@ -40,7 +40,19 @@
 		new SiteInfo
         {
             SiteEnvironment = SiteEnvironment.MNL
-        }
+        },
+		new SiteInfo
+        {
+            SiteEnvironment = SiteEnvironment.KLDR
+        },
+		new SiteInfo
+        {
+            SiteEnvironment = SiteEnvironment.KLDRBWING
+        },
+		new SiteInfo
+        {
+            SiteEnvironment = SiteEnvironment.KLDRGOAL123
+        },
     };
 #>
 <#+
@@ -54,7 +66,10 @@
         PRO,
 		PROBWING,
 		PROGOAL123,
-		MNL
+		MNL,
+		KLDR,
+		KLDRBWING,
+		KLDRGOAL123,
     }
 
 	class SiteInfo

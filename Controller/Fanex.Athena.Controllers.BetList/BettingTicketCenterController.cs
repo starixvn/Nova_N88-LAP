@@ -77,9 +77,9 @@
         {
             var tabList = GetEnableTabList();
             var licenseeSession = SessionServiceInstance.LicenseeSession;
-            var balanceUpday = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay;
-            var minDate = GetUserLimitDataRange(balanceUpday, DefaultTimeZone);
-            minDate = DateTimeHelper.GetMaxDate(minDate, balanceUpday);
+            var defaultMinDay = DateTimeHelper.Today.AddYears(-3);
+            var minDate = GetUserLimitDataRange(defaultMinDay, DefaultTimeZone);
+            minDate = DateTimeHelper.GetMaxDate(minDate, defaultMinDay);
 
             var viewModel = new BettingTicketCenterViewModel
             {
@@ -124,15 +124,14 @@
         public ActionResult RefNo()
         {
             var tabList = GetEnableTabList();
+            var balanceUpDay = _balanceUpDataAccess.GetBalanceUp().BalanceUpDay.ToString(FormatKey.DateFormat);
 
-            ViewBag.ProductsRequireUseNameNote = string.Format(
-                ViewResources.BettingTicketCenter_RefnoTabNote2,
-                GetProductsRequireUseName(),
-                _balanceUpDataAccess.GetBalanceUp().BalanceUpDay.ToString(FormatKey.DateFormat));
+            ViewBag.ProductsRequireUseNameNote = GetProductsRequireUseName();
             ViewBag.SelectedBaseCurrency = SessionServiceInstance.UserSession.DefaultBaseCurrency;
             ViewBag.IsAllowSabaCoins = SessionServiceInstance.UserSession.FunctionList
                 .Any(x => x.FunctionKey == PermissionKeys.BetHistory_RefNo_SabaCoinsView);
             ViewBag.TabList = tabList;
+            ViewBag.BalanceUpDay = balanceUpDay;
 
             return View(
                 "~/Views/Desktop/BetList/BettingTicketCenter/RefNo.cshtml",

@@ -63,7 +63,7 @@
     isOfferCashOutProduct: '@Model.IsOfferCashOutProduct' === "True",
     cashOutModeList: @Html.Raw(cashOutModeList.ToJson()),
     brandOptions: @Html.Raw(Model.Brands.Select(x => new { value = x.Id, label = x.Name }).ToJson()),
-    dateConstraint: { minDate: '@Model.MinDate.ToString("MM/dd/yyyy")', maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 3 },
+    dateConstraint: { minDate: '@Model.MinDate.ToString("MM/dd/yyyy")', maxDate: '@Model.MaxDate.ToString("MM/dd/yyyy")', limitedMonthRange: 1 },
     tabList: @Html.Raw(Model.TabList.ToJson())
     };
 }

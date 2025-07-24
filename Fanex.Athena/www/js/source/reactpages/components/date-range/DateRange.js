@@ -55,9 +55,9 @@ class DateRange extends Component {
     onInit && onInit(this.state.range);
   }
 
-  componentDidUpdate(prevProps){
-    if (this.props.startDate != prevProps.startDate || this.props.endDate != prevProps.endDate){
-      const {format, linkedCalendars} = this.props;
+  componentDidUpdate(prevProps) {
+    if (this.props.startDate != prevProps.startDate || this.props.endDate != prevProps.endDate) {
+      const { format, linkedCalendars } = this.props;
       const startDate = parseInput(this.props.startDate, format, 'startOf');
       const endDate = parseInput(this.props.endDate, format, 'endOf');
 
@@ -80,28 +80,27 @@ class DateRange extends Component {
       endDate: startDate
     }
   }
-  
+
   setRange(dateRange, show) {
     let range = this.orderRange(dateRange);
     this.isValid = this.isValidMonthRange(range);
 
     if (this.isValid) {
-       const newState = show === undefined ? { range } : { range, show };
+      const newState = show === undefined ? { range } : { range, show };
       this.setState(newState);
     }
-    else
-    {
-        const { onChange } = this.props
-        onChange && onChange(range, false);
+    else {
+      const { onChange } = this.props
+      onChange && onChange(range, false);
     }
   }
 
-  handlePredefinedRangesSelect(range){
-      this.setRange(range, false);
-      
-      this.originalRange = Object.assign({}, range);
-      const { onChange } = this.props;
-      onChange && onChange(range, true);
+  handlePredefinedRangesSelect(range) {
+    this.setRange(range, false);
+
+    this.originalRange = Object.assign({}, range);
+    const { onChange } = this.props;
+    onChange && onChange(range, true);
   }
 
   handleCalendarSelect(date) {
@@ -134,9 +133,8 @@ class DateRange extends Component {
     if (limitedMonthRange) {
       const startDate = date.startDate;
       const endDate = date.endDate;
-      const diffMonth = (12 * (endDate.year() - startDate.year())) + endDate.month() - startDate.month() + 1;
-
-      return diffMonth <= limitedMonthRange;
+      const adjustedStart = startDate.clone().add(limitedMonthRange, 'month');
+      return !endDate.isAfter(adjustedStart, 'day');
     }
 
     return true;
@@ -158,7 +156,7 @@ class DateRange extends Component {
   }
 
   handleCancel = () => {
-      this.setRange(this.originalRange, false);
+    this.setRange(this.originalRange, false);
   }
 
   render() {
@@ -197,9 +195,9 @@ class DateRange extends Component {
           <i className="icon icon-calendar"></i>
         </div>
 
-        <Overlay 
-          isOpening={this.state.show} 
-          onClose={this.handleCancel} 
+        <Overlay
+          isOpening={this.state.show}
+          onClose={this.handleCancel}
           key={range.startDate.month().toString() + range.startDate.year().toString() + range.endDate.month().toString() + range.endDate.year().toString()} >
           <div className={classes.dateRange}
             ref={element => this.dateRangeContainer = element}>
@@ -226,7 +224,7 @@ class DateRange extends Component {
                     shownDate={shownDate}
                     disableDaysBeforeToday={disableDaysBeforeToday}
                     lang={lang}
-                    key={i + shownDate.month().toString() + shownDate.year().toString() }
+                    key={i + shownDate.month().toString() + shownDate.year().toString()}
                     link={linkedCalendars && link}
                     linkCB={this.handleLinkChange.bind(this)}
                     range={range}

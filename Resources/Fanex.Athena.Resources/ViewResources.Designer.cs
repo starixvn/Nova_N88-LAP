@@ -979,7 +979,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data is available from {0}.
+        ///   Looks up a localized string similar to Maximum search range is {0} month(s)..
         /// </summary>
         public static string BettingTicketCenter_AdvancedSearchTabNote2 {
             get {
@@ -2284,7 +2284,7 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date range exceeds {0} months. Please try again!.
+        ///   Looks up a localized string similar to Date range exceeds {0} month(s). Please try again!.
         /// </summary>
         public static string DateRangeExceedMsg {
             get {
@@ -2316,6 +2316,15 @@ namespace Fanex.Athena.Resources {
         public static string DateTime {
             get {
                 return ResourceManager.GetString("DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date range exceeds {0} day(s). Please try again!.
+        /// </summary>
+        public static string DayRangeExceedMsg {
+            get {
+                return ResourceManager.GetString("DayRangeExceedMsg", resourceCulture);
             }
         }
         

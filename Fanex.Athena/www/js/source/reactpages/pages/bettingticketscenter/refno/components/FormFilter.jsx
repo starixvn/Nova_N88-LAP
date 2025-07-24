@@ -259,7 +259,12 @@ export class FormFilter extends Component {
                     <div className="col-9">
                         *{" "}
                         {LangHelper.getSingleResource("BettingTicketCenter_RefnoTabNote1")}
-                        <br />* {AppData.productsRequireUseNameNote}
+                        <br />
+                        {AppData.productsRequireUseNameNote && <>
+                            * {LangHelper.getSingleResource('BettingTicketCenter_RefnoTabNote2')
+                                .replace('{0}', AppData.productsRequireUseNameNote)
+                                .replace('{1}', AppData.balanceupDay)}
+                        </>}
                     </div>
                 </div>
             </CollapsiblePanel>

@@ -31,6 +31,7 @@
     baseCurrencyList:@Html.Raw(baseCurrencyList.ToJson()),
     productsRequireUseNameNote: '@ViewBag.ProductsRequireUseNameNote',
     defaultSelectedBaseCurrency: '@ViewBag.SelectedBaseCurrency',
+    balanceupDay: '@ViewBag.BalanceUpDay',
     tabList: @Html.Raw((ViewBag.TabList as IEnumerable<string>).ToJson())
     };
 }

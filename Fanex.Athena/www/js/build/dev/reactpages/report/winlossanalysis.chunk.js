@@ -4977,8 +4977,8 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     if (limitedMonthRange) {
       const startDate = date.startDate;
       const endDate = date.endDate;
-      const diffMonth = 12 * (endDate.year() - startDate.year()) + endDate.month() - startDate.month() + 1;
-      return diffMonth <= limitedMonthRange;
+      const adjustedStart = startDate.clone().add(limitedMonthRange, 'month');
+      return !endDate.isAfter(adjustedStart, 'day');
     }
     return true;
   }

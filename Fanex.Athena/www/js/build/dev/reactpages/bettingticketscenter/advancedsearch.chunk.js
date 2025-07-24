@@ -2415,8 +2415,8 @@ class DateRange extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     if (limitedMonthRange) {
       const startDate = date.startDate;
       const endDate = date.endDate;
-      const diffMonth = 12 * (endDate.year() - startDate.year()) + endDate.month() - startDate.month() + 1;
-      return diffMonth <= limitedMonthRange;
+      const adjustedStart = startDate.clone().add(limitedMonthRange, 'month');
+      return !endDate.isAfter(adjustedStart, 'day');
     }
     return true;
   }
@@ -6059,7 +6059,7 @@ class FormFilter extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }
     }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource('Note'), ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-9"
-    }, "* ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource('BettingTicketCenter_AdvancedSearchTabNote1'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "* ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource('BettingTicketCenter_AdvancedSearchTabNote2').replace("{0}", _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_16__["default"].dateConstraint.minDate))));
+    }, "* ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource('BettingTicketCenter_AdvancedSearchTabNote1'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "* ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_14__["default"].getSingleResource('BettingTicketCenter_AdvancedSearchTabNote2').replace("{0}", _jsroot_lib_AppData__WEBPACK_IMPORTED_MODULE_16__["default"].dateConstraint.limitedMonthRange))));
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -6115,7 +6115,6 @@ function mapStateToProps(state) {
     selectedCashOutMode
   });
 }
-;
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(FormFilter));
 
 /***/ }),

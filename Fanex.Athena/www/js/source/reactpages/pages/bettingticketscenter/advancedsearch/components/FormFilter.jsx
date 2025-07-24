@@ -586,7 +586,7 @@ export class FormFilter extends Component {
                     <div className="col-9">
                         * {LangHelper.getSingleResource('BettingTicketCenter_AdvancedSearchTabNote1')}
                         <br />
-                        * {LangHelper.getSingleResource('BettingTicketCenter_AdvancedSearchTabNote2').replace("{0}", AppData.dateConstraint.minDate)}
+                        * {LangHelper.getSingleResource('BettingTicketCenter_AdvancedSearchTabNote2').replace("{0}", AppData.dateConstraint.limitedMonthRange)}
                     </div>
                 </div>
 
@@ -606,6 +606,6 @@ function mapStateToProps(state) {
         requestParam, selectedBrand, dateRange, selectedProduct, sportList, selectedSport, selectedBettype, bettypeList, selectedLeague, leagueList, selectedMatch, matchList,
         selectedCurrency, baseCurrencyList, selectedBaseCurrency, selectedStatus, selectedLiveStatus, username, isConvertAll, userGuideContent, productList, selectedCashOutMode
     });
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);

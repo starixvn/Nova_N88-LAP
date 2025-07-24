@@ -1621,7 +1621,7 @@
     <comment>#29219</comment>
   </data>
   <data name="DateRangeExceedMsg" xml:space="preserve">
-    <value>Date range exceeds {0} months. Please try again!</value>
+    <value>Date range exceeds {0} month(s). Please try again!</value>
     <comment>#29219</comment>
   </data>
   <data name="CannotUpdateBetLimitForProduct" xml:space="preserve">
@@ -2085,7 +2085,7 @@
     <comment>105409</comment>
   </data>
   <data name="BettingTicketCenter_AdvancedSearchTabNote2" xml:space="preserve">
-    <value>Data is available from {0}</value>
+    <value>Maximum search range is {0} month(s).</value>
     <comment>103046</comment>
   </data>
   <data name="MultiCustomers" xml:space="preserve">
@@ -3365,7 +3365,7 @@
   <data name="NGPromotion" xml:space="preserve">
     <value>Number Game Promotion</value>
   </data>
-   <data name="ViewSabaCoins" xml:space="preserve">
+  <data name="ViewSabaCoins" xml:space="preserve">
     <value>View Saba Coins</value>
   </data>
   <data name="SoccerMarble" xml:space="preserve">
@@ -3382,5 +3382,8 @@
   </data>
   <data name="Reward_Promotion" xml:space="preserve">
     <value>Reward/ Promotion</value>
+  </data>
+  <data name="DayRangeExceedMsg" xml:space="preserve">
+    <value>Date range exceeds {0} day(s). Please try again!</value>
   </data>
 </root>

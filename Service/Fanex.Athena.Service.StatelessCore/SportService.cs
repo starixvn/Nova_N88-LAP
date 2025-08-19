@@ -124,11 +124,6 @@ namespace Fanex.Athena.Service.StatelessCore
                 Int32.TryParse(sport, out int sportId);
                 var leagueGroupIds = "0";
 
-                if (sportId == Parlay)
-                {
-                    sportId = (int)SportType.Parlay;
-                }
-
                 if (SabaVirtualSports.Any(_ => _.Id == sportId))
                 {
                     var (Id, SportTypeId, LeagueGroupIds) = SabaVirtualSports.FirstOrDefault(_ => _.Id == sportId);

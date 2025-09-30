@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Text;
     using System.Xml.Linq;
-    using Fanex.Athena.Model.Auth;
     using Model.Core.DTO.Common;
     using Model.Core.DTO.Configuration;
 

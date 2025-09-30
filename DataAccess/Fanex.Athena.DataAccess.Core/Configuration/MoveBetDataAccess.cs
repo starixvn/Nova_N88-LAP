@@ -8,7 +8,6 @@ namespace Fanex.Athena.DataAccess.Core.Configuration
 {
     using System;
     using System.Threading.Tasks;
-    using Fanex.Athena.DataAccess.Core;
     using Fanex.Athena.DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Configuration;
     using Fanex.Common.Extensions;

@@ -6,7 +6,6 @@
     using System.Web.Mvc;
     using Base.UnitTests;
     using Extension.Utility.Interfaces;
-    using Fanex.Athena.Service.Core.Users.Interfaces;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Models;
     using Fanex.N88.Core.Service.Interface;

@@ -14,12 +14,10 @@ namespace Fanex.Athena.Service.Core.Utility
     public class CurrencyValidation : ICurrencyValidation
     {
         private readonly ISessionService _sessionService;
-        private readonly IAppSettings _appSettings;
 
         public CurrencyValidation(ISessionService sessionService, IAppSettings appSettings)
         {
             _sessionService = sessionService;
-            _appSettings = appSettings;
         }
 
         public bool IsValidBaseCurrency(string baseCurrency, bool isAllowEmpty = true)

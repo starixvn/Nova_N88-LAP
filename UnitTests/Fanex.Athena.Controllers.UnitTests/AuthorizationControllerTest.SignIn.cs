@@ -2,16 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
     using System.Web.Mvc;
 
     using Fanex.Athena.Model.Auth.MetaModel;
     using Fanex.N88.Core.Models;
-    using Fanex.N88.Core.Models.ParameterObject;
     using Fanex.N88.Core.Models.ValueObject;
-    using Fanex.N88.Core.Service.Interface;
     using NSubstitute;
 
     using NUnit.Framework;
@@ -254,7 +251,7 @@
                 HashAlgorithm _hashAlgorithm = new SHA256Managed();
                 var crypPassword = _hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes("password"));
 
-                SiteLevel siteLevel = new SiteLevel() { IsActive = true, Site = new Site() { Id = 0} };
+                SiteLevel siteLevel = new SiteLevel() { IsActive = true, Site = new Site() { Id = 0 } };
                 List<SiteLevel> listSiteLevel = new List<SiteLevel>() { siteLevel };
 
                 _userService.GetSiteLevel(Arg.Any<int>(), Arg.Any<string>()).Returns(listSiteLevel);

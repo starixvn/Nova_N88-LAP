@@ -104,7 +104,7 @@ namespace Fanex.Athena.Api.Base.Attributes
             }
             else if (MetaModelHelper.IsMetaModel(actionArgument, out IBrandIdListMetaModel brandIdListMetaModel))
             {
-                brandIds = string.IsNullOrWhiteSpace(brandIdListMetaModel.BrandIds) ? 
+                brandIds = string.IsNullOrWhiteSpace(brandIdListMetaModel.BrandIds) ?
                     userSession.BrandList.Select(_ => _.Id).ToArray() : AuthParameterHelper.ParseIdList(brandIdListMetaModel.BrandIds).ToArray();
             }
             else

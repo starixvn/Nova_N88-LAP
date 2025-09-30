@@ -18,7 +18,7 @@
         private readonly IBusinessLogService _businessLogService;
 
         public PlayerBaStatusService(IDbFactory dbFactory,
-            [KeyFilter("PlayerAdminCommonCustomerSettingLogService")]IBusinessLogService businessLogService)
+            [KeyFilter("PlayerAdminCommonCustomerSettingLogService")] IBusinessLogService businessLogService)
         {
             _dbFactory = dbFactory;
             _businessLogService = businessLogService;

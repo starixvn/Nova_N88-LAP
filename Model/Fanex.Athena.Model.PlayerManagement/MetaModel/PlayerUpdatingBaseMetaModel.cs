@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Fanex.Athena.Model.Auth;
-using Fanex.Athena.Model.Core.MetaModel;
+﻿using Fanex.Athena.Model.Core.MetaModel;
 
 namespace Fanex.Athena.Model.PlayerManagement.MetaModel
 {

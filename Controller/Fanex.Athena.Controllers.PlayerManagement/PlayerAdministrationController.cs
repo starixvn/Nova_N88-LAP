@@ -1,12 +1,9 @@
 ﻿namespace Fanex.Athena.Controllers.PlayerManagement
 {
     using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.PlayerManagement.Constants;
     using Fanex.Athena.Model.PlayerManagement.ViewModel;
-    using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
-    using Fanex.NVC.Authentication.Infrastructure;
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Linq;
@@ -15,12 +12,6 @@
     [FunctionAuthorization(PermissionKeys.PlayerAdmin)]
     public class PlayerAdministrationController : CultureBaseController
     {
-        private readonly IAuthorizationService _authService;
-
-        public PlayerAdministrationController(IAuthorizationService authService)
-        {
-            _authService = authService;
-        }
 
         [HttpGet]
         [RequireCurrencyPermission(OnlyOwnBrand = true)]

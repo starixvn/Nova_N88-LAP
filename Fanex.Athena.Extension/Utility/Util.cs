@@ -39,14 +39,7 @@
             }
         }
 
-        [Obsolete]
-        public static string RootPath
-        {
-            get
-            {
-                return System.Web.VirtualPathUtility.ToAbsolute("~/");
-            }
-        }
+
 
         public static bool IsValidLanguage(string languageCode)
         {

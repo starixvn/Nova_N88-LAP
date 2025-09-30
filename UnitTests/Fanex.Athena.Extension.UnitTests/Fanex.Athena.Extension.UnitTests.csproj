@@ -68,6 +68,7 @@
     <Compile Include="Utility\UtilTest.cs" />
     <Compile Include="Utility\DictionaryPropertyComparerTest.cs" />
     <Compile Include="Utility\PropertyComparerTest.cs" />
+    <Compile Include="Utility\RandomNumberTest.cs" />
     <Compile Include="Utility\SortableListTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +95,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.10.1\build\NUnit.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

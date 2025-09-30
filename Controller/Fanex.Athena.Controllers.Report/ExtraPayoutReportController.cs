@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
-    using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Model.Core.DTO.Common;

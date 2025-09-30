@@ -1,19 +1,10 @@
 ﻿namespace Fanex.Athena.Service.StatelessCore
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Web.Hosting;
-
     using Extension.Utility.Interfaces;
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
     using Fanex.Athena.Model.Core.DTO.Common;
-    using Fanex.Athena.Model.Core.DTO.Configuration;
 
     using Interfaces;
-
-    using Newtonsoft.Json;
 
     public class LicenseeSettingService : ILicenseeSettingService
     {

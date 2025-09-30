@@ -1,25 +1,20 @@
 namespace Fanex.Athena.Controllers.Report.Result
 {
     using System.Threading.Tasks;
-    using System.Web;
     using System.Web.Mvc;
-    using DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;
     using Model.Report.MetaModel;
 
     public class ResultReportController : ReportBaseController
     {
-        private readonly IBalanceUpDataAccess _balanceUpDataAccess;
         private readonly IBetListApiClient _betListApiClient;
 
         #region Result-Page
 
         public ResultReportController(
-            IBalanceUpDataAccess balanceUpDataAccess,
             IBetListApiClient betListApiClient)
         {
-            _balanceUpDataAccess = balanceUpDataAccess;
             _betListApiClient = betListApiClient;
         }
 

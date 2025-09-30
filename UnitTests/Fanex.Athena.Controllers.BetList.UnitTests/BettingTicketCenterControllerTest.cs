@@ -8,9 +8,9 @@
     using Base.UnitTests;
 
     using DataAccess.Core.Configuration.Interfaces;
+    using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Auth.Enum;
-    using Fanex.Athena.Resources;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.N88.Core.Configuration;
     using Fanex.N88.Core.Models;
@@ -143,10 +143,7 @@
                     DefaultLicenseeSession.LicenseeId,
                     DefaultUserSession.Language).Returns(offerProducts);
 
-                var expectedProductsNote = string.Format(
-                    ViewResources.BettingTicketCenter_RefnoTabNote2,
-                    productKN.ProductName + ", " + productLT.ProductName,
-                    BalanceUpDate.ToString(FormatKey.DateFormat));
+                var expectedProductsNote = productKN.ProductName + ", " + productLT.ProductName;
 
                 // Action
                 var result = controller.RefNo() as ViewResult;
@@ -196,7 +193,8 @@
                 Assert.Multiple(() =>
                 {
                     Assert.That(viewModel.Brands, Is.EqualTo(DefaultUserSession.BrandList));
-                    Assert.That(viewModel.OwnBrand, Is.EqualTo(DefaultUserSession.BrandList.FirstOrDefault(_ => _.Id == DefaultLicenseeSession.LicenseeId))); Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
+                    Assert.That(viewModel.OwnBrand, Is.EqualTo(DefaultUserSession.BrandList.FirstOrDefault(_ => _.Id == DefaultLicenseeSession.LicenseeId)));
+                    Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
                 });
             }
@@ -265,14 +263,13 @@
             }
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void AdvancedSearch_WhenCall_ReturnCorrectViewModel(bool hasExchangePermission)
+        [Test]
+        public void AdvancedSearch_WhenCall_ReturnCorrectViewModel()
         {
             using (var controller = CreateController())
             {
                 // Arrange
-                CreateAndStubUserSession(PermissionKeys.BtcAdvancedSearch);
+                CreateAndStubUserSession(PermissionKeys.BetHistoryAdvancedSearch);
                 var productCodes = MockProductService();
 
                 // Action
@@ -287,7 +284,7 @@
                     Assert.That(viewModel.LiveStatusList, Is.Not.Empty);
                     Assert.That(viewModel.StatusList, Is.Not.Empty);
                     Assert.That(viewModel.ProductOptionList.Count(), Is.EqualTo(productCodes.Count()));
-                    Assert.That(viewModel.MinDate, Is.EqualTo(BalanceUpDate));
+                    Assert.That(viewModel.MinDate, Is.EqualTo(DateTimeHelper.Today.AddYears(-3)));
                     Assert.That(viewModel.IsAllowedCustomerComm, Is.EqualTo(DefaultLicenseeSession.IsAllowedCustomerComm));
                 });
             }

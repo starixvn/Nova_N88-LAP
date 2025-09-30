@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.Model.Report.ViewModel
 {
-    using System;
-
     public class SpecialReportDataViewModel
     {
         public bool IsAllowedTurnover { get; set; }

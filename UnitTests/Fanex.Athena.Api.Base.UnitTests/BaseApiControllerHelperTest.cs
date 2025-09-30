@@ -3,8 +3,6 @@
     using System.Collections.Generic;
 
     using Extension.Utility;
-
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.NVC.Authentication.Infrastructure;

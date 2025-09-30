@@ -29,7 +29,7 @@
         [CLSCompliant(false)]
         [AcceptVerbs("Get", "Post")]
         [ApiValidateAntiForgery]
-        public async Task<HttpResponseMessage> Forward([FromUri]string apiKey, [FromUri]string apiUrl)
+        public async Task<HttpResponseMessage> Forward([FromUri] string apiKey, [FromUri] string apiUrl)
         {
             var result = await _proxyService.HandleRequest(apiKey, apiUrl).ConfigureAwait(false);
             return result;

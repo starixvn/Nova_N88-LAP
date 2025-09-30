@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Athena.DataAccess.Core.Users
 {
     using System;
-    using Fanex.Athena.DataAccess.Core;
     using Fanex.Athena.DataAccess.Core.Users.Interfaces;
 
     public class AuthorizationDataAccess : BaseDataAccess, IAthorizationDataAccess

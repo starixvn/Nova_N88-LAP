@@ -11,6 +11,6 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 
         public DateTime LogDate { get; set; }
 
-        public string LoginIp { get; set; }      
+        public string LoginIp { get; set; }
     }
 }

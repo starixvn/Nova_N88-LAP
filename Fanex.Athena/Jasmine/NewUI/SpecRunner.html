@@ -6,12 +6,13 @@
     <link rel="shortcut icon" type="image/png" href="/Content/jasmine/jasmine_favicon.png">
     <link rel="stylesheet" type="text/css" href="/node_modules/jasmine-core/lib/jasmine-core/jasmine.css">
     <script type="text/javascript">
-        _page = { lang: 'en-US' };
-        _language_en_US = {};
+        var _page = { lang: 'en-US' };
+        var _language_en_US = {};
     </script>
-    
+
     <script src="/node_modules/requirejs/require.js"></script>
     <script>
+        /* global requirejs, require, window */
         requirejs.config({
             baseUrl: '/www/js/source',
             paths: {
@@ -33,12 +34,14 @@
             }
         });
 
-        var requiredModules = ['jasmine-boot'];
-        require(requiredModules, function () {
-            require(['/www/js/tests/common/querystring-spec.js'], function () {
-                window.onload();
+        (function() {
+            var requiredModules = ['jasmine-boot'];
+            require(requiredModules, function () {
+                require(['/www/js/tests/common/querystring-spec.js'], function () {
+                    window.onload();
+                });
             });
-        });
+        })();
     </script>
 </head>
 <body>

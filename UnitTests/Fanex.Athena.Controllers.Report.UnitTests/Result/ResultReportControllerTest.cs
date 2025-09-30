@@ -5,10 +5,8 @@
     using System.Linq;
     using System.Web.Mvc;
     using Base.UnitTests;
-    using DataAccess.Core.Configuration.Interfaces;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Model.Core.DTO.Common;
-    using Model.Core.DTO.Configuration;
     using NSubstitute;
     using NUnit.Framework;
     using Report.Result;
@@ -19,20 +17,12 @@
     {
         private static readonly DateTime BalanceUpDate = new DateTime(2017, 3, 4);
 
-        private IBalanceUpDataAccess _balanceUpDataAccess;
-
         private IBetListApiClient _betListApiClient;
 
         [OneTimeSetUp]
         public override void FixtureSetUp()
         {
             base.FixtureSetUp();
-            _balanceUpDataAccess = Substitute.For<IBalanceUpDataAccess>();
-
-            _balanceUpDataAccess.GetBalanceUp().Returns(new BalanceUp
-            {
-                BalanceUpDay = BalanceUpDate
-            });
 
             SetUpDefaultFakeData();
         }
@@ -134,7 +124,7 @@
                 SessionService.UserSession.Language,
                 Arg.Any<string>()).Returns(new ProductAccess(productList.ToList()));
 
-            var controller = new ResultReportController(_balanceUpDataAccess, _betListApiClient)
+            var controller = new ResultReportController(_betListApiClient)
             {
                 ControllerContext = ControllerContext,
                 LangService = LangService,

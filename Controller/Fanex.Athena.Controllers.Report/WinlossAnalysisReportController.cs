@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Athena.Controllers.Report
 {
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;

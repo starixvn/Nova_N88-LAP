@@ -28,7 +28,7 @@
                 propAscending ? ListSortDirection.Ascending : ListSortDirection.Descending);
             this.Sort(comparer);
         }
-        
+
         public void Sort(string propertyName, bool ascending)
         {
             UpdateSortingData(propertyName, ascending);

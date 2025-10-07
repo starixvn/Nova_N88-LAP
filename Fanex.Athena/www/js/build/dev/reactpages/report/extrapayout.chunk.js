@@ -3602,7 +3602,9 @@ const ApiUrl = {
   REPORT_DATA_URL: "Api/ExtraPayout/GetData",
   REPORT_DETAIL_DATA_URL: "Api/ExtraPayout/GetDetailData",
   EXPORT_REPORT_DATA_URL: "Api/ExtraPayout/ExportExcel",
-  EXPORT_REPORT_DETAIL_DATA_URL: "Api/ExtraPayout/ExportDetailExcel"
+  EXPORT_REPORT_DETAIL_DATA_URL: "Api/ExtraPayout/ExportDetailExcel",
+  ODDS_BOOST_BONUS_DETAIL_DATA_URL: 'Api/ExtraPayout/GetOddsBoostBonusDetailData',
+  EXPORT_ODDS_BOOST_BONUS_DETAIL_DATA_URL: 'Api/ExtraPayout/ExportOddsBoostBonusDetailExcel'
 };
 const headerText = {
   date: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_1__["default"].getSingleResource('Date'),
@@ -3698,10 +3700,10 @@ const renderHeader = drilldownLevel => {
     colWidth: 120
   }, _constants__WEBPACK_IMPORTED_MODULE_2__["headerText"].licSharingAmount));
 };
-const renderDataSection = (dataList, drilldownLevel, handleDrilldown, handleDrilldownBetlist, index) => {
+const renderDataSection = (dataList, drilldownLevel, handleDrilldown, handleDrilldownBetlist, handleOddsBoostBonusDetail, index) => {
   const dataRows = [];
   for (let i = 0; i < dataList.length; i++) {
-    dataRows.push(buildDataRow(dataList[i], drilldownLevel, handleDrilldown, handleDrilldownBetlist));
+    dataRows.push(buildDataRow(dataList[i], drilldownLevel, handleDrilldown, handleDrilldownBetlist, handleOddsBoostBonusDetail));
   }
   return {
     bodyData: dataRows,
@@ -3747,7 +3749,7 @@ const renderFooter = (data, drilldownLevel) => {
   }, `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('Totalin')} ${dataSummary.currencyName}`), buildCommonRow(dataSummary.turnover, dataSummary.betCount, dataSummary.amount, dataSummary.sharingAmount)));
   return totalRows;
 };
-const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldownBetlist) => {
+const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldownBetlist, handleOddsBoostBonusDetail) => {
   const {
     index,
     indexRowSpan,
@@ -3777,7 +3779,7 @@ const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldown
   }, index), indexRowSpan > 0 && drilldownLevel === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "center-align",
     rowSpan: indexRowSpan
-  }, dateString), indexRowSpan > 0 && drilldownLevel === 1 && BuildAccountText(promotionType, nickname, indexRowSpan, e => handleDrilldownBetlist(e, custId, nickname, username)), indexRowSpan > 0 && drilldownLevel === 1 && BuildAccountText(promotionType, username, indexRowSpan, e => handleDrilldownBetlist(e, custId, nickname, username)), curencyRowSpan > 0 && drilldownLevel === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+  }, dateString), indexRowSpan > 0 && drilldownLevel === 1 && BuildAccountText(promotionType, nickname, indexRowSpan, e => handleDrilldownBetlist(e, custId, nickname, username, currencyName), e => handleOddsBoostBonusDetail(e, currencyName)), indexRowSpan > 0 && drilldownLevel === 1 && BuildAccountText(promotionType, username, indexRowSpan, e => handleDrilldownBetlist(e, custId, nickname, username, currencyName), e => handleOddsBoostBonusDetail(e, currencyName)), curencyRowSpan > 0 && drilldownLevel === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "center-align",
     rowSpan: curencyRowSpan
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -3793,16 +3795,25 @@ const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldown
     className: "left-align"
   }, promotionName), buildCommonRow(turnover, betCount, amount, sharingAmount, productCode));
 };
-const BuildAccountText = (promotionType, textValue, indexRowSpan, onClickFunc) => promotionType === _constants__WEBPACK_IMPORTED_MODULE_2__["PayoutPromotionType"].OddsBoostAdjustment && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-  className: "center-align",
-  rowSpan: indexRowSpan
-}, textValue) || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
-  className: "center-align",
-  rowSpan: indexRowSpan
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-  href: "#",
-  onClick: onClickFunc
-}, textValue));
+const BuildAccountText = (promotionType, textValue, indexRowSpan, onClickFunc, onOddsBoostClickFunc) => {
+  if (promotionType === _constants__WEBPACK_IMPORTED_MODULE_2__["PayoutPromotionType"].OddsBoostAdjustment) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+      className: "center-align",
+      rowSpan: indexRowSpan
+    }, textValue && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#",
+      onClick: onOddsBoostClickFunc
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_4__["default"].getSingleResource('OddsBoostBonus')));
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+      className: "center-align",
+      rowSpan: indexRowSpan
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#",
+      onClick: onClickFunc
+    }, textValue));
+  }
+};
 const buildCommonRow = (turnover, betCount, amount, sharingAmount, productCode) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
     className: "right-align"
@@ -4015,9 +4026,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../common/service */ "./www/js/source/reactpages/pages/report/extrapayout/common/service.js");
 /* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
 /* harmony import */ var _Detail__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Detail */ "./www/js/source/reactpages/pages/report/extrapayout/components/Detail.jsx");
-/* harmony import */ var _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @jsroot/lib/DataService.js */ "./www/js/source/reactpages/lib/DataService.js");
-/* harmony import */ var _9softstudio_react_breadcrumb__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @9softstudio/react-breadcrumb */ "./node_modules/@9softstudio/react-breadcrumb/dist/index.js");
-/* harmony import */ var _9softstudio_react_breadcrumb__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_breadcrumb__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _OddsBoostBonusDetail__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./OddsBoostBonusDetail */ "./www/js/source/reactpages/pages/report/extrapayout/components/OddsBoostBonusDetail.jsx");
+/* harmony import */ var _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @jsroot/lib/DataService.js */ "./www/js/source/reactpages/lib/DataService.js");
+/* harmony import */ var _9softstudio_react_breadcrumb__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @9softstudio/react-breadcrumb */ "./node_modules/@9softstudio/react-breadcrumb/dist/index.js");
+/* harmony import */ var _9softstudio_react_breadcrumb__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_breadcrumb__WEBPACK_IMPORTED_MODULE_15__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -4038,10 +4050,13 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
 
 
 
+
 const DataGrid = props => {
   const [showBetList, setShowBetList] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [betListData, setBetListData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
   const [betlistTitle, setBetlistTitle] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  const [showOddsBoostBonus, setShowOddsBoostBonus] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [oddsBoostBonusParams, setOddsBoostBonusParams] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
   const [pagingOption, setPagingOption] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_common_constants__WEBPACK_IMPORTED_MODULE_9__["DefaultPagingOption"]);
   const breadcrumbItems = [{
     label: _common_constants__WEBPACK_IMPORTED_MODULE_9__["BreadcrumbText"].main,
@@ -4106,7 +4121,7 @@ const DataGrid = props => {
     setBetlistTitle(betlistTitle);
     props.setDetailParams(detailParams);
     props.toggleLoader(true);
-    _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_13__["default"].postReportData(_common_constants__WEBPACK_IMPORTED_MODULE_9__["ApiUrl"].REPORT_DETAIL_DATA_URL, detailParams).then(response => {
+    _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_14__["default"].postReportData(_common_constants__WEBPACK_IMPORTED_MODULE_9__["ApiUrl"].REPORT_DETAIL_DATA_URL, detailParams).then(response => {
       setShowBetList(true);
       setBetListData(response.data);
       props.toggleLoader(false);
@@ -4135,6 +4150,20 @@ const DataGrid = props => {
     setShowBetList(false);
     setBetListData(null);
     props.setDetailParams(null);
+  };
+  const _handleOddsBoostBonusDetail = (e, currencyName) => {
+    e.preventDefault();
+    const newBaseCurrency = currencyName && !requestParam.IsConvertAllToBaseCurrency ? currencyName : requestParam.BaseCurrencyName;
+    const oddsBoostParams = _objectSpread(_objectSpread({}, requestParam), {}, {
+      CurrencyName: newBaseCurrency,
+      IsExportExcel: false
+    });
+    setOddsBoostBonusParams(oddsBoostParams);
+    setShowOddsBoostBonus(true);
+  };
+  const closeOddsBoostBonusPopup = () => {
+    setShowOddsBoostBonus(false);
+    setOddsBoostBonusParams(null);
   };
   const drillDownData = level => {
     const currentLevel = requestParam.DrillDownLevel;
@@ -4171,7 +4200,7 @@ const DataGrid = props => {
   var {
     bodyData,
     index
-  } = Object(_common_gridUtils__WEBPACK_IMPORTED_MODULE_5__["renderDataSection"])(data, requestParam.DrillDownLevel, _handleDrilldown, _handleDrilldownBetlist, lastIndex);
+  } = Object(_common_gridUtils__WEBPACK_IMPORTED_MODULE_5__["renderDataSection"])(data, requestParam.DrillDownLevel, _handleDrilldown, _handleDrilldownBetlist, _handleOddsBoostBonusDetail, lastIndex);
   var currenPagingOption = {
     PageIndex: requestParam.PageIndex,
     PageSize: requestParam.PageSize,
@@ -4180,7 +4209,7 @@ const DataGrid = props => {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "result-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_breadcrumb__WEBPACK_IMPORTED_MODULE_14__["Breadcrumb"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_breadcrumb__WEBPACK_IMPORTED_MODULE_15__["Breadcrumb"], {
     items: breadcrumbItems,
     value: requestParam.DrillDownLevel,
     onChange: item => drillDownData(item.value)
@@ -4213,6 +4242,14 @@ const DataGrid = props => {
     data: betListData,
     title: betlistTitle,
     param: detailParams
+  })), requestParam.DrillDownLevel === _common_constants__WEBPACK_IMPORTED_MODULE_9__["ReportLevel"].CUSTOMER && showOddsBoostBonus && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jsroot_components_popup__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    isShow: showOddsBoostBonus,
+    title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_11__["default"].getSingleResource('PromotionDetails'),
+    width: 1100,
+    height: 600,
+    onClose: closeOddsBoostBonusPopup
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OddsBoostBonusDetail__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    param: oddsBoostBonusParams
   })));
 };
 function mapDispatchToProps(dispatch) {
@@ -4777,6 +4814,213 @@ function mapDispatchToProps(dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_actions__WEBPACK_IMPORTED_MODULE_8__["default"], dispatch);
 }
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(FormFilter));
+
+/***/ }),
+
+/***/ "./www/js/source/reactpages/pages/report/extrapayout/components/OddsBoostBonusDetail.jsx":
+/*!***********************************************************************************************!*\
+  !*** ./www/js/source/reactpages/pages/report/extrapayout/components/OddsBoostBonusDetail.jsx ***!
+  \***********************************************************************************************/
+/*! exports provided: OddsBoostBonusDetail, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OddsBoostBonusDetail", function() { return OddsBoostBonusDetail; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @9softstudio/react-grid */ "./node_modules/@9softstudio/react-grid/dist/index.js");
+/* harmony import */ var _9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions */ "./www/js/source/reactpages/pages/report/extrapayout/actions/index.js");
+/* harmony import */ var _components_NoDataTitle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/NoDataTitle */ "./www/js/source/reactpages/components/NoDataTitle.jsx");
+/* harmony import */ var _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @jsroot/lib/langHelper */ "./www/js/source/reactpages/lib/langHelper.js");
+/* harmony import */ var _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @jsroot/lib/DataService.js */ "./www/js/source/reactpages/lib/DataService.js");
+/* harmony import */ var _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @jsroot/lib/site */ "./www/js/source/reactpages/lib/site.js");
+/* harmony import */ var _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @jsroot/lib/numberFormat */ "./www/js/source/reactpages/lib/numberFormat.js");
+/* harmony import */ var _common_constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../common/constants */ "./www/js/source/reactpages/pages/report/extrapayout/common/constants.js");
+/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../common/service */ "./www/js/source/reactpages/pages/report/extrapayout/common/service.js");
+/* harmony import */ var _layouts_BetListPopupLayout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../layouts/BetListPopupLayout */ "./www/js/source/reactpages/layouts/BetListPopupLayout.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const OddsBoostBonusDetail = props => {
+  const {
+    param
+  } = props;
+  const [data, setData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  const [title, setTitle] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (param) {
+      fetchData();
+      generateTitle();
+    }
+  }, [param]);
+  const fetchData = () => {
+    if (!param) return;
+    props.toggleLoader(true);
+    _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_7__["default"].postReportData(_common_constants__WEBPACK_IMPORTED_MODULE_10__["ApiUrl"].ODDS_BOOST_BONUS_DETAIL_DATA_URL, param).then(response => {
+      setData(response.data);
+      props.toggleLoader(false);
+    }).catch(error => {
+      _common_service__WEBPACK_IMPORTED_MODULE_11__["default"].showErrorMsg();
+      props.toggleLoader(false);
+    });
+  };
+  const generateTitle = () => {
+    if (!param) return;
+    const viewIn = _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('Viewin').replace('{0}', param.CurrencyName);
+    const fromDate = new Date(param.DrillDownFromDate);
+    const fromDateValue = _common_service__WEBPACK_IMPORTED_MODULE_11__["default"].getFormattedDate(fromDate);
+    const toDate = new Date(param.DrillDownToDate);
+    const toDateValue = _common_service__WEBPACK_IMPORTED_MODULE_11__["default"].getFormattedDate(toDate);
+    const generatedTitle = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('PromotionDetails'), ', ', fromDateValue, " \u2192 ", toDateValue, " - ", _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('OddsBoostBonus'), " - ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "base-currency-title"
+    }, viewIn));
+    setTitle(generatedTitle);
+  };
+  const exportDetailExcel = () => {
+    if (!param) {
+      return;
+    }
+    const exportRequestParam = _objectSpread({}, param);
+    props.toggleLoader(true);
+    _jsroot_lib_DataService_js__WEBPACK_IMPORTED_MODULE_7__["default"].getReportFile(_common_constants__WEBPACK_IMPORTED_MODULE_10__["ApiUrl"].EXPORT_ODDS_BOOST_BONUS_DETAIL_DATA_URL, exportRequestParam).then(response => {
+      const NoContentStatusCode = 204;
+      if (response.status === NoContentStatusCode) {
+        alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('NoInfo'));
+      } else {
+        const fileName = 'OddsBoostBonusDetails.xls';
+        _jsroot_lib_site__WEBPACK_IMPORTED_MODULE_8__["default"].downloadFile(response.data, fileName);
+      }
+      props.toggleLoader(false);
+    }).catch(error => {
+      alert(_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('ErrorProcessingMsg'));
+      props.toggleLoader(false);
+    });
+  };
+  const renderOddsBoostHeader = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderRow"], {
+      style: {
+        height: 32
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderCell"], {
+      colWidth: 50
+    }, "#"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderCell"], {
+      colWidth: 100
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('Date')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderCell"], {
+      colWidth: 120
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('ExternalId')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderCell"], {
+      colWidth: 120
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('SystemId')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderCell"], {
+      colWidth: 200
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('RefNo')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderCell"], {
+      colWidth: 120
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('Product')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderCell"], {
+      colWidth: 200
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('PromotionType')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["HeaderCell"], {
+      colWidth: 120
+    }, _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('CustomerAmount')));
+  };
+  const renderOddsBoostDataSection = dataList => {
+    const dataRows = [];
+    for (let i = 0; i < dataList.length; i++) {
+      dataRows.push(buildOddsBoostDataRow(dataList[i], i));
+    }
+    return dataRows;
+  };
+  const buildOddsBoostDataRow = (dataItem, index) => {
+    const {
+      dateString,
+      externalId,
+      systemId,
+      refNo,
+      productName,
+      promotionType,
+      customerAmount
+    } = dataItem;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Row"], {
+      key: `odds-boost-row-${index}`
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: "center-align"
+    }, ++index), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: "center-align"
+    }, dateString), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: "center-align"
+    }, externalId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: "center-align"
+    }, systemId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: "center-align"
+    }, refNo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: "left-align"
+    }, productName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: "left-align"
+    }, promotionType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: `right-align ${customerAmount < 0 ? 'negative' : ''}`
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_9__["default"].formatDecimal(customerAmount)));
+  };
+  const renderOddsBoostFooter = (data, baseCurrency) => {
+    if (!data || !data.totalSummary) {
+      return null;
+    }
+    const dataSummary = data.totalSummary;
+    const summaryColSpan = 7;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Row"], {
+      key: "odds-boost-total",
+      className: "light-footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: "center-align",
+      colSpan: summaryColSpan
+    }, `${_jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource('TotalIn')} ${baseCurrency}`), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Cell"], {
+      className: `right-align ${dataSummary.customerAmount < 0 ? 'negative' : ''}`
+    }, _jsroot_lib_numberFormat__WEBPACK_IMPORTED_MODULE_9__["default"].formatDecimal(dataSummary.customerAmount)));
+  };
+  const oddsBoostTitle = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon-excel right",
+    onClick: exportDetailExcel,
+    title: _jsroot_lib_langHelper__WEBPACK_IMPORTED_MODULE_6__["default"].getSingleResource("ExportToExcel")
+  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_layouts_BetListPopupLayout__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    title: oddsBoostTitle
+  }, data && data.data && data.data.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_9softstudio_react_grid__WEBPACK_IMPORTED_MODULE_3__["Table"], {
+    autoWidth: false,
+    autoHeight: false,
+    width: 1050,
+    bodyHeight: 430,
+    header: renderOddsBoostHeader(),
+    body: renderOddsBoostDataSection(data.data),
+    footer: renderOddsBoostFooter(data, param === null || param === void 0 ? void 0 : param.BaseCurrency)
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NoDataTitle__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+};
+function mapDispatchToProps(dispatch) {
+  const {
+    toggleLoader
+  } = _actions__WEBPACK_IMPORTED_MODULE_4__["default"];
+  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
+    toggleLoader
+  }, dispatch);
+}
+function mapStateToProps(state) {
+  return {};
+}
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(OddsBoostBonusDetail));
 
 /***/ }),
 

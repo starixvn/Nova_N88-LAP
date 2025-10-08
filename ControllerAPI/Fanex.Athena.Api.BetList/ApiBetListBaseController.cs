@@ -1,12 +1,9 @@
 ﻿namespace Fanex.Athena.Api.BetList
 {
     using System;
-    using System.Linq;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Base;
     using DataAccess.Core.Configuration.Interfaces;
-    using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Service.StatelessCore.Utility;
     using Model.BetList.MetaModel;
     using Model.Core.DTO.Configuration;

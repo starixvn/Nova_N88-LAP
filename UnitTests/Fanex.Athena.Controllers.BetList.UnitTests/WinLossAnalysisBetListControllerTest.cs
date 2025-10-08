@@ -84,7 +84,7 @@
                     ProductId = 1
                 };
 
-                controller.When(async x => x.ProcessExportExcel(
+                controller.When(x => x.ProcessExportExcel(
                     Arg.Any<BetListExcelMetaModel>(),
                     Arg.Any<string>())).DoNotCallBase();
 

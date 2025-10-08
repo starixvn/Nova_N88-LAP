@@ -7,9 +7,6 @@ namespace Fanex.Athena.Api.Base.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class CompressFilterAttribute : ActionFilterAttribute
     {
-        public CompressFilterAttribute()
-        { }
-
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var encodingsAccepted = filterContext.HttpContext.Request.Headers["Accept-Encoding"];

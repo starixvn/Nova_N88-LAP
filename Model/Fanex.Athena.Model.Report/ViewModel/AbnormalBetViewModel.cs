@@ -2,7 +2,6 @@
 {
     using Fanex.Athena.Model.Core.DTO.Configuration;
     using Fanex.Athena.Model.Core.ViewModel;
-    using Fanex.Athena.Model.Report.MetaModel;
     using Fanex.NVC.Authentication.Infrastructure;
     using System;
     using System.Collections.Generic;

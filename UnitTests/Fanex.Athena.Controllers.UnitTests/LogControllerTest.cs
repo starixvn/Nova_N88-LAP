@@ -5,7 +5,6 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using Base.UnitTests;
-    using Fanex.Athena.Model.UserManagement.Criteria;
     using Fanex.Athena.Model.UserManagement.Enum;
     using Fanex.Athena.Model.UserManagement.Model;
     using Fanex.Athena.Service.UserManagement.Service.Interfaces;

@@ -10,8 +10,6 @@
     using Base.Attributes;
 
     using DataAccess.Customer.Interfaces;
-
-    using Extension.Utility;
     using Extension.Utility.Interfaces;
     using Fanex.Athena.Model.Auth.DataDomain;
     using Fanex.Athena.Model.Customer.DTO.CustomerLog;
@@ -46,7 +44,6 @@
 
         private readonly ILogInLogDataAccess _logInLogDataAccess;
 
-        private readonly IAppSettings _appSettings;
 
         private readonly IFileSystem _fileSystem;
 
@@ -54,13 +51,11 @@
             ILanguageService languageService,
             ICustomerLogDataAccess customerLogDataAccess,
             ILogInLogDataAccess logInLogDataAccess,
-            IAppSettings appSettings,
             IFileSystem fileSystem)
         : base(languageService)
         {
             _customerLogDataAccess = customerLogDataAccess;
             _logInLogDataAccess = logInLogDataAccess;
-            _appSettings = appSettings;
             _fileSystem = fileSystem;
         }
 

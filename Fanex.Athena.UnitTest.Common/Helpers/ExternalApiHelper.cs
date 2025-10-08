@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web;
-using System.Web.Http.Controllers;
-using Fanex.Athena.Model.Auth;
+﻿using System.Web;
 using NSubstitute;
 
 namespace Fanex.Athena.UnitTest.Common.Helpers

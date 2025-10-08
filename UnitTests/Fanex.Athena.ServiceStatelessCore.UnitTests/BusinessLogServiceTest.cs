@@ -42,7 +42,7 @@ namespace Fanex.Athena.ServiceStatelessCore.UnitTests
             logService.Write(Model.Core.DataDomain.BusinessLogType.CustomerUpdateBA, itemToBuild);
 
             // Assert
-            _logDataAccess.DidNotReceiveWithAnyArgs();
+            _logDataAccess.DidNotReceiveWithAnyArgs().Write(Arg.Any<BusinessLogItem>());
         }
 
         [Test]

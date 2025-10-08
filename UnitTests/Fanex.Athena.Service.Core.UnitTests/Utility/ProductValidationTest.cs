@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 
 using AutoFixture;
-
-using Fanex.Athena.Model.Auth;
 using Fanex.Athena.Model.Core.DTO.Common;
 using Fanex.Athena.Model.Core.MetaModel;
 using Fanex.Athena.Model.Report.MetaModel;

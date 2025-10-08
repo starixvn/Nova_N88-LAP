@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.DataAccess.Report.Interfaces;
-using Fanex.Athena.Model.Auth.DataDomain;
+﻿using Fanex.Athena.Model.Auth.DataDomain;
 using Fanex.Athena.Model.Core.DataDomain;
 using Fanex.Athena.Model.Core.DTO.Common;
 using Fanex.Athena.Model.Report.ViewModel;
@@ -18,19 +17,16 @@ namespace Fanex.Athena.Controllers.Report
     {
         private readonly IReportSettingService _reportSettingService;
         private readonly ISportService _sportService;
-        private readonly IAbnormalBetDataAcces _abnormalBetDataAcces;
         private readonly IBetTypeService _betTypeService;
 
         public AbnormalBetReportController(
             IReportSettingService reportSettingService,
             ISportService sportService,
-            IAbnormalBetDataAcces abnormalBetDataAcces,
             IBetTypeService betTypeService
             )
         {
             _reportSettingService = reportSettingService;
             _sportService = sportService;
-            _abnormalBetDataAcces = abnormalBetDataAcces;
             _betTypeService = betTypeService;
         }
 

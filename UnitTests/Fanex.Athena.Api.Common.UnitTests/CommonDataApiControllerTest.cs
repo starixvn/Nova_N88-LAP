@@ -75,7 +75,8 @@
                     .Returns(productCode);
 
                 // action
-                var result = (await controller.GetSports(productCode).ConfigureAwait(false)).ElementAt(0);
+                var sports = await controller.GetSports(productCode).ConfigureAwait(false);
+                var result = sports.First();
 
                 // assert
                 Assert.Multiple(() =>
@@ -107,7 +108,8 @@
                    .Returns(productCode);
 
                 // action
-                var result = (await controller.GetBetTypes(productCode)).ElementAt(0);
+                var betTypes = await controller.GetBetTypes(productCode);
+                var result = betTypes.First();
 
                 // assert
                 Assert.Multiple(() =>
@@ -130,10 +132,11 @@
                     .Returns(new List<League> { league });
 
                 // action
-                var result = (await controller.GetLeagues(
+                var leagues = await controller.GetLeagues(
                     FakeHelper.Create<DateTime>(),
                     FakeHelper.Create<DateTime>(),
-                    FakeHelper.Create<int>())).ElementAt(0);
+                    FakeHelper.Create<int>());
+                var result = leagues.First();
 
                 // assert
                 Assert.Multiple(() =>
@@ -159,7 +162,8 @@
                     .Returns(new List<Match> { match });
 
                 // action
-                var result = (await controller.GetMatches(fromDate, toDate, leagueId)).ElementAt(0);
+                var matches = await controller.GetMatches(fromDate, toDate, leagueId);
+                var result = matches.First();
 
                 // assert
                 Assert.Multiple(() =>

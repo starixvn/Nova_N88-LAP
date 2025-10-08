@@ -1,17 +1,12 @@
 ﻿namespace Fanex.Athena.Controllers.Report.UnitTests
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Base.UnitTests;
-    using Fanex.Athena.DataAccess.Core.Common.Interfaces;
     using Fanex.Athena.DataAccess.Report.Interfaces;
-    using Fanex.Athena.Model.Core.DTO.Common;
-    using Fanex.Athena.Model.Report.DTO.AbnormalBet;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.UnitTest.Common.Helpers;
-    using Fanex.Athena.UnitTest.Common.NUnitExtensions;
     using Model.Core.DTO.Configuration;
     using Model.Report.ViewModel;
 
@@ -102,7 +97,7 @@
 
         private AbnormalBetReportController CreateController()
         {
-            return new AbnormalBetReportController(_reportSettingService, _sportService, _abnormalBetDataAcces, _betTypeService)
+            return new AbnormalBetReportController(_reportSettingService, _sportService, _betTypeService)
             {
                 LangService = LangService,
                 SessionServiceInstance = SessionService

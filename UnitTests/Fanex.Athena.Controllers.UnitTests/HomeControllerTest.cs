@@ -2,7 +2,6 @@
 {
     using System.Web.Mvc;
     using Base.UnitTests;
-    using Fanex.Athena.Model.Auth;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.NVC.Authentication.Infrastructure;
     using NSubstitute;

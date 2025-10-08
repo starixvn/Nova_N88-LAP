@@ -1,11 +1,9 @@
 ﻿namespace Fanex.Athena.Controllers.UnitTests
 {
-    using System.Collections.Generic;
     using System.Web.Mvc;
 
     using Base.UnitTests;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
-    using Fanex.N88.Core.Models;
 
     using NSubstitute;
 

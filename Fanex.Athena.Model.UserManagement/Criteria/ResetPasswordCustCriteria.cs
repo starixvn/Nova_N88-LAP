@@ -41,7 +41,7 @@ namespace Fanex.Athena.Model.UserManagement.Criteria
 
         [SpParam(Ignored = true)]
         public string Token { get; set; }
-        
+
         public override string GetSettingKey()
         {
             return "N88_User_UpdatePassword";

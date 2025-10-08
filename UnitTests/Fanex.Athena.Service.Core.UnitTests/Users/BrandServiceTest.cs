@@ -6,7 +6,6 @@
     using Fanex.Athena.Model.Core.DataDomain;
     using Fanex.Athena.Service.Core.Common.Interfaces;
     using Fanex.Athena.Service.Core.Users;
-    using Fanex.Athena.UnitTest.Common.NUnitExtensions;
     using Fanex.NVC.Authentication.Infrastructure;
     using Newtonsoft.Json;
     using NSubstitute;
@@ -56,8 +55,8 @@
             };
 
             _tpService.GetListTpCurrency(licenseeId).Returns(new List<Currency> { new Currency { ID = 1, Name = "USD" } });
-            _currencyDataAccess.GetCurrenciesByBrand(licenseeId).Returns(new List<CurrencyUser> 
-            { 
+            _currencyDataAccess.GetCurrenciesByBrand(licenseeId).Returns(new List<CurrencyUser>
+            {
                 new CurrencyUser { AgentId = 100, CurrencyId = 2, CurrencyName = "EUR" }
             });
 

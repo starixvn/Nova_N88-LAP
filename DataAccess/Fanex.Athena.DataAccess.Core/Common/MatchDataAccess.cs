@@ -58,9 +58,9 @@
 
         private string GetMatchName(Match match)
         {
-            return _cacheRefAdapter.GetTeamName(match.HomeId) 
+            return _cacheRefAdapter.GetTeamName(match.HomeId)
                 + (match.IsNeutral ? " (N)" : string.Empty)
-                + " -vs- " 
+                + " -vs- "
                 + _cacheRefAdapter.GetTeamName(match.AwayId);
         }
     }

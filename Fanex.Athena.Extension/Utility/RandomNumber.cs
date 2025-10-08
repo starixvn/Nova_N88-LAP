@@ -2,7 +2,7 @@
 {
     using System;
     using System.Security.Cryptography;
-   
+
     public static class RandomNumber
     {
         private static int GenerateRandomSeed()
@@ -25,7 +25,7 @@
                 return seed;
             }
         }
-      
+
         public static int GenerateRandomInt32(int minValue, int maxValue)
         {
             var randomClass = new Random(GenerateRandomSeed());

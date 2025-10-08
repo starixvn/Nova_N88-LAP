@@ -49,7 +49,7 @@ namespace Fanex.Athena.Excel.Notification
             for (var rowIndex = 0; rowIndex < TotalRows; rowIndex++)
             {
                 var rowExcel = sheet.CopyRow(TemplateSheet, RowContentTemplate, rowIndex + RowContentTemplate);
-                AssignRowData(rowExcel, _data.Data.ElementAt(rowIndex), rowIndex + 1);
+                AssignRowData(rowExcel, _data.Data[rowIndex], rowIndex + 1);
             }
         }
 

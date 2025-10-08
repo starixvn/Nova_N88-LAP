@@ -2,7 +2,6 @@
 {
     using Fanex.Athena.Extension.Helper;
     using Fanex.Athena.Model.Auth.DataDomain;
-    using Fanex.Athena.Model.Report.Constants;
     using Fanex.Athena.Model.Report.ViewModel;
     using Fanex.Athena.Service.StatelessCore.Interfaces;
     using Fanex.Athena.Web.ActionFilter;

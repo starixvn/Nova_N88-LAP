@@ -11,6 +11,7 @@ import { ApiUrl, ReportLevel, BreadcrumbText, DefaultPagingOption } from '../com
 import Service from '../common/service';
 import LangHelper from '@jsroot/lib/langHelper';
 import Detail from './Detail'
+import OddsBoostBonusDetail from './OddsBoostBonusDetail'
 import DataService from '@jsroot/lib/DataService.js'
 import { Breadcrumb } from '@9softstudio/react-breadcrumb'
 
@@ -18,6 +19,8 @@ export const DataGrid = (props) => {
     const [showBetList, setShowBetList] = useState(false);
     const [betListData, setBetListData] = useState(null);
     const [betlistTitle, setBetlistTitle] = useState('');
+    const [showOddsBoostBonus, setShowOddsBoostBonus] = useState(false);
+    const [oddsBoostBonusParams, setOddsBoostBonusParams] = useState(null);
     const [pagingOption, setPagingOption] = useState(DefaultPagingOption);
 
     const breadcrumbItems = [{
@@ -43,7 +46,7 @@ export const DataGrid = (props) => {
 
     const { requestParam, detailParams } = props;
 
-    
+
     const _handleDrilldown = (e, currency, currencyName, drilldownDate) => {
         e.preventDefault();
 
@@ -98,7 +101,7 @@ export const DataGrid = (props) => {
                 {LangHelper.getSingleResource("PromotionDetails")}{", "}
                 {fromDateValue} → {toDateValue} - {nickname}({username}) -{" "}
                 <span className="base-currency-title">{viewIn}</span>
-            </>         
+            </>
         )
 
         setBetlistTitle(betlistTitle);
@@ -115,7 +118,7 @@ export const DataGrid = (props) => {
         .catch(error => {
             Service.showErrorMsg();
             props.toggleLoader(false);
-        })        
+        })
     }
 
     const getDrilldownToDate = (selectedDate, toDate) => {
@@ -125,7 +128,7 @@ export const DataGrid = (props) => {
         }
         else {
             return new Date(selectedDate.getFullYear(), selectedDate.getMonth() +1, 0);
-        }        
+        }
     }
 
     const getDrilldownFromDate = (selectedDate, fromDate) => {
@@ -135,14 +138,34 @@ export const DataGrid = (props) => {
         }
         else {
             return selectedDate;
-        }        
+        }
     }
 
     const closeBetListPopup = () => {
         setShowBetList(false);
-        setBetListData(null); 
+        setBetListData(null);
         props.setDetailParams(null);
     }
+
+    const _handleOddsBoostBonusDetail = (e, currencyName) => {
+        e.preventDefault();
+
+        const newBaseCurrency = currencyName && !requestParam.IsConvertAllToBaseCurrency ? currencyName : requestParam.BaseCurrencyName;
+
+        const oddsBoostParams = {
+            ...requestParam,
+            CurrencyName: newBaseCurrency,
+            IsExportExcel: false
+        };
+
+        setOddsBoostBonusParams(oddsBoostParams);
+        setShowOddsBoostBonus(true);
+    };
+
+    const closeOddsBoostBonusPopup = () => {
+        setShowOddsBoostBonus(false);
+        setOddsBoostBonusParams(null);
+    };
 
     const drillDownData = (level) => {
         const currentLevel = requestParam.DrillDownLevel;
@@ -152,7 +175,7 @@ export const DataGrid = (props) => {
         }
 
         props.toggleLoader(true);
-        const newRequestParam = { 
+        const newRequestParam = {
             ...requestParam,
             PageSize: 50,
             PageIndex: 1,
@@ -162,7 +185,7 @@ export const DataGrid = (props) => {
 
         const title = Service.getTitle(newRequestParam.FromDate, newRequestParam.ToDate, newRequestParam.CurrencyName, newRequestParam.BaseCurrencyName, newRequestParam.ProductCodeList, newRequestParam.Username);
         props.setReportTitle(title);
-        props.setRequestParam(newRequestParam);     
+        props.setRequestParam(newRequestParam);
         props.getReportData(ApiUrl.REPORT_DATA_URL, newRequestParam);
     }
 
@@ -170,7 +193,7 @@ export const DataGrid = (props) => {
 
         props.toggleLoader(true);
 
-        const newRequestParam = { 
+        const newRequestParam = {
             ...requestParam,
             PageIndex: pageIndex,
             PageSize: pageSize
@@ -183,12 +206,12 @@ export const DataGrid = (props) => {
         });
 
         props.setRequestParam(newRequestParam);
-        props.getReportData(ApiUrl.REPORT_DATA_URL, newRequestParam);        
+        props.getReportData(ApiUrl.REPORT_DATA_URL, newRequestParam);
 
     }
 
     var lastIndex = requestParam.DrillDownLevel === ReportLevel.CUSTOMER && pagingOption.PageIndex > 1 ? pagingOption.LastIndex : 0;
-    var {bodyData, index} = renderDataSection(data, requestParam.DrillDownLevel, _handleDrilldown, _handleDrilldownBetlist, lastIndex);
+    var {bodyData, index} = renderDataSection(data, requestParam.DrillDownLevel, _handleDrilldown, _handleDrilldownBetlist, _handleOddsBoostBonusDetail, lastIndex);
     var currenPagingOption = {
         PageIndex: requestParam.PageIndex,
         PageSize: requestParam.PageSize,
@@ -218,6 +241,11 @@ export const DataGrid = (props) => {
                     <Detail data={betListData} title={betlistTitle} param={detailParams}/>
                 </Popup>
             }
+            {requestParam.DrillDownLevel === ReportLevel.CUSTOMER && showOddsBoostBonus && (
+                <Popup isShow={showOddsBoostBonus} title={LangHelper.getSingleResource('PromotionDetails')} width={1100} height={600} onClose={closeOddsBoostBonusPopup}>
+                    <OddsBoostBonusDetail param={oddsBoostBonusParams} />
+                </Popup>
+            )}
     </div>
 
     );

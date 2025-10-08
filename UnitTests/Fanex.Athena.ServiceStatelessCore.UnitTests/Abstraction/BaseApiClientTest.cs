@@ -1,16 +1,12 @@
 ﻿using Fanex.Athena.Model.Core.DataDomain;
-using Fanex.Athena.Service.StatelessCore;
-using Fanex.Athena.Service.StatelessCore.Abstraction;
 using Fanex.Athena.Service.StatelessCore.CustomException;
 using Fanex.Athena.ServiceStatelessCore.UnitTests.MockHelper;
 using NSubstitute;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.ServiceStatelessCore.UnitTests.Abstraction

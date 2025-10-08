@@ -1,6 +1,5 @@
 ﻿using Fanex.Athena.Model.Core.Helper;
 using Fanex.Athena.Model.Core.MetaModel;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.Model.BetList.MetaModel
 {

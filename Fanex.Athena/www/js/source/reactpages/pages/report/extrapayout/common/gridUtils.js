@@ -18,18 +18,18 @@ export const renderHeader = (drilldownLevel) => {
             <HeaderCell colWidth={150}>{headerText.product}</HeaderCell>
             {drilldownLevel === 1 &&<HeaderCell colWidth={270}>{headerText.promotionType}</HeaderCell>}
             <HeaderCell colWidth={110}>{headerText.turnover}</HeaderCell>
-            <HeaderCell colWidth={100}>{headerText.totalTransaction}</HeaderCell>            
+            <HeaderCell colWidth={100}>{headerText.totalTransaction}</HeaderCell>
             <HeaderCell colWidth={110}>{headerText.customerAmount}</HeaderCell>
             <HeaderCell colWidth={120}>{headerText.licSharingAmount}</HeaderCell>
         </HeaderRow>
     )
 }
 
-export const renderDataSection = (dataList, drilldownLevel, handleDrilldown, handleDrilldownBetlist, index) => {
+export const renderDataSection = (dataList, drilldownLevel, handleDrilldown, handleDrilldownBetlist, handleOddsBoostBonusDetail, index) => {
     const dataRows = [];
 
     for (let i = 0; i < dataList.length; i++) {
-        dataRows.push(buildDataRow(dataList[i], drilldownLevel, handleDrilldown, handleDrilldownBetlist));
+        dataRows.push(buildDataRow(dataList[i], drilldownLevel, handleDrilldown, handleDrilldownBetlist, handleOddsBoostBonusDetail));
     }
 
     return {bodyData: dataRows, index};
@@ -68,22 +68,22 @@ export const renderFooter = (data, drilldownLevel) => {
     return totalRows;
 }
 
-const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldownBetlist) => {
-    const { index, indexRowSpan, curencyRowSpan, productRowSpan, date, dateString, productName, betCount, turnover, amount, sharingAmount, custId, username, nickname, 
+const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldownBetlist, handleOddsBoostBonusDetail) => {
+    const { index, indexRowSpan, curencyRowSpan, productRowSpan, date, dateString, productName, betCount, turnover, amount, sharingAmount, custId, username, nickname,
         promotionName, currency, currencyName, productCode, promotionType} = dataItem;
 
     return (
         <Row key={`row-${uuidv4()}`}>
-            {indexRowSpan > 0  && <Cell className="center-align" rowSpan={indexRowSpan}>{index}</Cell>}       
+            {indexRowSpan > 0  && <Cell className="center-align" rowSpan={indexRowSpan}>{index}</Cell>}
             {indexRowSpan > 0 && drilldownLevel === 0 && <Cell className="center-align" rowSpan={indexRowSpan}>{dateString}</Cell>}
-            {indexRowSpan > 0  && drilldownLevel === 1 && BuildAccountText(promotionType, nickname, indexRowSpan, (e)=> handleDrilldownBetlist(e, custId, nickname, username))}
-            {indexRowSpan > 0  && drilldownLevel === 1 && BuildAccountText(promotionType, username, indexRowSpan, (e)=> handleDrilldownBetlist(e, custId, nickname, username))}
+            {indexRowSpan > 0  && drilldownLevel === 1 && BuildAccountText(promotionType, nickname, indexRowSpan, (e)=> handleDrilldownBetlist(e, custId, nickname, username, currencyName), (e)=> handleOddsBoostBonusDetail(e, currencyName))}
+            {indexRowSpan > 0  && drilldownLevel === 1 && BuildAccountText(promotionType, username, indexRowSpan, (e)=> handleDrilldownBetlist(e, custId, nickname, username, currencyName), (e)=> handleOddsBoostBonusDetail(e, currencyName))}
             {curencyRowSpan > 0  && drilldownLevel === 0 && <Cell className="center-align" rowSpan={curencyRowSpan}>
                 <a href="#" onClick={(e)=> handleDrilldown(e, currency, currencyName, date)}>
-                    {currencyName}  
+                    {currencyName}
                 </a>
             </Cell>}
-            {curencyRowSpan > 0  && drilldownLevel === 1 && <Cell className="center-align" rowSpan={curencyRowSpan}>{currencyName}</Cell>}        
+            {curencyRowSpan > 0  && drilldownLevel === 1 && <Cell className="center-align" rowSpan={curencyRowSpan}>{currencyName}</Cell>}
             {productRowSpan > 0 && <Cell className="left-align" rowSpan={productRowSpan}>{productName}</Cell>}
             {drilldownLevel === 1 && <Cell className="left-align">{promotionName}</Cell>}
             {buildCommonRow(turnover, betCount, amount, sharingAmount, productCode)}
@@ -91,21 +91,30 @@ const buildDataRow = (dataItem, drilldownLevel, handleDrilldown, handleDrilldown
     )
 }
 
-const BuildAccountText = (promotionType, textValue, indexRowSpan, onClickFunc) =>
-    promotionType === PayoutPromotionType.OddsBoostAdjustment 
-        && <Cell className="center-align" rowSpan={indexRowSpan}>
-                {textValue}
-            </Cell> 
-        || <Cell className="center-align" rowSpan={indexRowSpan}>
+const BuildAccountText = (promotionType, textValue, indexRowSpan, onClickFunc, onOddsBoostClickFunc) => {
+    if (promotionType === PayoutPromotionType.OddsBoostAdjustment) {
+        return (
+            <Cell className="center-align" rowSpan={indexRowSpan}>
+                {textValue && <a href="#" onClick={onOddsBoostClickFunc}>
+                    {LangHelper.getSingleResource('OddsBoostBonus')}
+                </a>}
+            </Cell>
+        );
+    } else {
+        return (
+            <Cell className="center-align" rowSpan={indexRowSpan}>
                 <a href="#" onClick={onClickFunc}>
                     {textValue}
                 </a>
             </Cell>
+        );
+    }
+}
 
 const buildCommonRow = (turnover, betCount, amount, sharingAmount, productCode) => {
     return <>
-        <Cell className="right-align">{NumberFormat.formatDecimal(turnover)}</Cell>  
-        <Cell className="right-align">{NumberFormat.format(betCount)}</Cell>              
+        <Cell className="right-align">{NumberFormat.formatDecimal(turnover)}</Cell>
+        <Cell className="right-align">{NumberFormat.format(betCount)}</Cell>
         <Cell className={`right-align ${amount < 0 ? "negative" : ""}`}>{NumberFormat.formatDecimal(amount)}</Cell>
         <Cell className={`right-align ${sharingAmount < 0 ? "negative" : ""}`}>{productCode === ProductTIP ? "-" : NumberFormat.formatDecimal(sharingAmount)}</Cell>
     </>
@@ -141,13 +150,13 @@ const buildDetailDataRow = (dataItem, index) => {
 
     return (
         <Row key={`row-${uuidv4()}`}>
-            <Cell className="center-align">{++index}</Cell>            
+            <Cell className="center-align">{++index}</Cell>
             <Cell className="center-align">{dateString}</Cell>
             <Cell className="center-align">{refno}</Cell>
             <Cell className="center-align">{betID}</Cell>
             <Cell className="left-align">{productName}</Cell>
             <Cell className="left-align">{promotionName}</Cell>
-            <Cell className="right-align">{NumberFormat.formatDecimal(turnover)}</Cell>        
+            <Cell className="right-align">{NumberFormat.formatDecimal(turnover)}</Cell>
             <Cell className={`right-align ${amount < 0 ? "negative" : ""}`}>{NumberFormat.formatDecimal(amount)}</Cell>
             <Cell className={`right-align ${sharingAmount < 0 ? "negative" : ""}`}>{productCode === ProductTIP ? "-" : NumberFormat.formatDecimal(sharingAmount)}</Cell>
         </Row>
@@ -161,7 +170,7 @@ export const renderDetailFooter = (data) => {
     return (
         <Row key={`tr-grandtotal`} className='fixed-table-total'>
             <Cell className='center-align' colSpan={summaryColSpan}>{LangHelper.getSingleResource('Total')}</Cell>
-            <Cell className="right-align">{NumberFormat.formatDecimal(dataSummary.turnover)}</Cell>        
+            <Cell className="right-align">{NumberFormat.formatDecimal(dataSummary.turnover)}</Cell>
             <Cell className={`right-align ${dataSummary.amount < 0 ? "negative" : ""}`}>{NumberFormat.formatDecimal(dataSummary.amount)}</Cell>
             <Cell className={`right-align ${dataSummary.sharingAmount < 0 ? "negative" : ""}`}>{NumberFormat.formatDecimal(dataSummary.sharingAmount)}</Cell>
         </Row>

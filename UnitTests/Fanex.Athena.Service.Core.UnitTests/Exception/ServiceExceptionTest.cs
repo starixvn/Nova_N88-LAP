@@ -15,7 +15,7 @@
             const string Message = "Test Message";
 
             var serviceException = new ServiceException(Message, ServiceName);
-            var expectedMessage = $"Exception when call Service: {ServiceName}. Exception Message: {Message}";
+            var expectedMessage = $"Exception when call Service: {ServiceName}. Exception Message: {Message}. Detail Exception Message: ";
 
             // Action
             var result = serviceException.Message;

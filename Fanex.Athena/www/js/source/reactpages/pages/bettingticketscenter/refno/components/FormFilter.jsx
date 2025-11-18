@@ -265,6 +265,9 @@ export class FormFilter extends Component {
                                 .replace('{0}', AppData.productsRequireUseNameNote)
                                 .replace('{1}', AppData.balanceupDay)}
                         </>}
+                        <br />
+                        * {LangHelper.getSingleResource('BettingTicketCenter_RefnoTabNote3')
+                            .replace('{0}', AppData.balanceupDay)}
                     </div>
                 </div>
             </CollapsiblePanel>

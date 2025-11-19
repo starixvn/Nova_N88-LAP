@@ -1,4 +1,4 @@
-﻿// Generated at: 11/18/2025 3:52:55 PM
+﻿// Generated at: 11/19/2025 1:06:31 PM
 window._language_en_US = {
 AA:"AA",
 AbnormalBet:"Abnormal Bet",
@@ -160,6 +160,7 @@ CashOutTicketsList:"Cash Out Ticket[s]",
 CashOutTimes:"Cash Out Times",
 CashOutValue:"Cash Out Value",
 CasinoPromotion:"Casino Promotion",
+CasinoRoyale:"Casino Royale",
 CasinoTransfer:"Casino Transfer",
 ChangePassword:"Change Password",
 ChangePercent:"% Change",

@@ -92,6 +92,7 @@
     <Compile Include="MetaModel\ExchangeBetListMetaModel.cs" />
     <Compile Include="MetaModel\MixParlayDetailMetaModel.cs" />
     <Compile Include="MetaModel\AdvancedSearchBetListMetaModel.cs" />
+    <Compile Include="MetaModel\BetBuilderPlusDetailMetaModel.cs" />
     <Compile Include="MetaModel\NewParlayDetailMetaModel.cs" />
     <Compile Include="MetaModel\RefNoBetListMetaModel.cs" />
     <Compile Include="MetaModel\SingleCustomersBetListMetaModel.cs" />

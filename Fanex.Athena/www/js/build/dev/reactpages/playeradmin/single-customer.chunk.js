@@ -1145,8 +1145,11 @@ const Popup = props => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "popup-title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "txt-title"
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "txt-title",
+    dangerouslySetInnerHTML: {
+      __html: title
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "popup-close",
     onClick: () => {
       props.onClose && props.onClose();
@@ -1376,6 +1379,11 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     };
 
     // expand choice content
+    window.showBetBuilderPlus = (...args) => {
+      this._showBetBuilderPlusDetail.apply(this, [this.props.rootUrl, ...args]);
+    };
+
+    // expand choice content
     window.showSingleMatchParlayDetail = (...args) => {
       this._showSingleMatchParlayDetail.apply(this, [this.props.rootUrl, ...args]);
     };
@@ -1553,6 +1561,30 @@ class BetListLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       nameDiv.style.display = 'block';
     }
   }
+  _showBetBuilderPlusDetail(rootUrl, transId, transIndex, refNo, custId, transDesc, handicap1, handicap2, betcheck, betteam, currency, stake) {
+    let divEvent = document.querySelector('#divEvent_' + transId + '' + transIndex);
+    let nameDiv = document.querySelector('#combinationOfferName_' + transId + transIndex);
+    divEvent.classList.add('mx-parlay'); //to make line-through for void-parlay-ticket
+
+    if (divEvent.style.display == 'none') {
+      const url = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].getChoiceBuilderPlusDetailUrl(rootUrl, transId, refNo, custId, transDesc, handicap1, handicap2, betcheck, betteam, currency, stake);
+      this._beforeShow();
+      _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].getData(url).then(result => {
+        const choice = _lib_BetList__WEBPACK_IMPORTED_MODULE_2__["default"].buildChoiceBetBuilderPlusDetail(result.data);
+        divEvent.innerHTML = choice;
+        divEvent.style.display = 'block';
+        nameDiv.style.display = 'none';
+        this._afterShow();
+      }).catch(error => {
+        this._afterShow();
+        console.log(error);
+      });
+    } else {
+      divEvent.style.display = 'none';
+      divEvent.innerHTML = '';
+      nameDiv.style.display = 'block';
+    }
+  }
   _showThirdPartyResult(url, title) {
     this._beforeShow(); //this.props.toggleLoader(true);
     _jsroot_lib_DataService__WEBPACK_IMPORTED_MODULE_1__["default"].getData(url).then(result => {
@@ -1705,6 +1737,20 @@ class BetList {
     url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'custId', custId);
     return url;
   }
+  getChoiceBuilderPlusDetailUrl(rootUrl, transId, refNo, custId, transDesc, handicap1, handicap2, betcheck, betteam, currency, stake) {
+    var url = rootUrl + 'api/BetBuilderPlusBetList/Detail';
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'TransId', transId);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'RefNo', refNo);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'TransDesc', JSON.stringify(transDesc));
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'Handicap1', handicap1);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'Handicap2', handicap2);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'Betcheck', betcheck);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'Betteam', betteam);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'Currency', currency);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'Stake', stake);
+    url = _jsroot_lib_QueryString__WEBPACK_IMPORTED_MODULE_0__["default"].setParam(url, 'CustId', custId);
+    return url;
+  }
   buildChoiceParlayDetail(response) {
     let choice = '';
     let length = response.Data === null ? 0 : response.Data.length;
@@ -1719,6 +1765,17 @@ class BetList {
         if (i < length - 1) {
           choice += '<div class="line"></div>';
         }
+      }
+    }
+    return choice;
+  }
+  buildChoiceBetBuilderPlusDetail(response) {
+    let choice = '';
+    let length = response.Data === null ? 0 : response.Data.length;
+    if (length > 0) {
+      for (let i = 0; i < response.Data.length; i++) {
+        let item = response.Data[i];
+        choice += item;
       }
     }
     return choice;

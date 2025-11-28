@@ -6866,6 +6866,57 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                 }
             },
 
+            showBetBuilderPlus: function (transId, transIndex, refNo, custId, transDesc, handicap1, handicap2, betcheck, betteam, currency, stake) {
+                const $divEvent = $('#divEvent_' + transId + '' + transIndex);
+                const $nameDiv = $('#combinationOfferName_' + transId + transIndex);
+                $divEvent.addClass('mx-parlay'); //to make line-through for void-parlay-ticket
+
+                if ($divEvent.is(':hidden')) {
+                    let url = Site.resolveClientUrl('api/BetBuilderPlusBetList/Detail');
+                    url = QueryString.setParam(url, 'TransId', transId);
+                    url = QueryString.setParam(url, 'RefNo', refNo);
+                    url = QueryString.setParam(url, 'TransDesc', JSON.stringify(transDesc));
+                    url = QueryString.setParam(url, 'Handicap1', handicap1);
+                    url = QueryString.setParam(url, 'Handicap2', handicap2);
+                    url = QueryString.setParam(url, 'Betcheck', betcheck);
+                    url = QueryString.setParam(url, 'Betteam', betteam);
+                    url = QueryString.setParam(url, 'Currency', currency);
+                    url = QueryString.setParam(url, 'Stake', stake);
+                    url = QueryString.setParam(url, 'CustId', custId);
+
+                    $.ajax({
+                        type: 'GET',
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        cache: false,
+                        url: url,
+                        success: function (response) {
+                            let length = response.Data === null ? 0 : response.Data.length;
+                            if (length > 0) {
+                                let choice = '';
+
+                                $.each(response.Data, function (index, item) {
+                                    choice += item;
+                                    if (index < length - 1) {
+                                        choice += '<div class="line"></div>';
+                                    }
+                                });
+
+                                $divEvent.html(choice).show();
+                                $nameDiv.hide();
+                            }
+                        },
+                        beforeSend: Site.blockUI,
+                        complete: Site.unBlockUI
+                    });
+                }
+                else {
+                    $divEvent.hide().html('');
+                    $nameDiv.show();
+                    $('.ui-jqgrid-bdiv').css('height', 'auto');
+                }
+            },
+
             showSingleMatchParlayDetail: function (transId, custId, status, transIndex) {
                 const $divEvent = $('#divEvent_' + transId + '' + transIndex);
 
@@ -7078,6 +7129,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;﻿!(__WEBPACK_A
                     _me.showMixParlayDetail(transId, divEvent, custId);
                 };
 
+                window.showBetBuilderPlus = _me.showBetBuilderPlus;
                 window.showNewCombMP = _me.showNewParlayDetail;
                 window.showCombMPDetail = _me.showSystemParlayDetail;
                 window.showRnGCasinoDetails = _me.showRnGCasinoDetails;

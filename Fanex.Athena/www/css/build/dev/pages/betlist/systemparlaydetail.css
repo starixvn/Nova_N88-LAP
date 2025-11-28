@@ -608,6 +608,10 @@ body {
     background-color: #FFE7C5; }
   .system-parlay-detail-container .system-parlay-total td {
     background-color: #B1E0AC; }
+  .system-parlay-detail-container span.strikethrough {
+    text-decoration: line-through;
+    color: #bbb;
+    font-weight: bold !important; }
 
 .note-block {
   margin-top: 5px; }

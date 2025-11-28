@@ -60,6 +60,22 @@ class BetList {
         return url;
     }
 
+    getChoiceBuilderPlusDetailUrl(rootUrl, transId, refNo, custId, transDesc, handicap1, handicap2, betcheck, betteam, currency, stake) {
+        var url = rootUrl + 'api/BetBuilderPlusBetList/Detail';
+        url = QueryString.setParam(url, 'TransId', transId);
+        url = QueryString.setParam(url, 'RefNo', refNo);
+        url = QueryString.setParam(url, 'TransDesc', JSON.stringify(transDesc));
+        url = QueryString.setParam(url, 'Handicap1', handicap1);
+        url = QueryString.setParam(url, 'Handicap2', handicap2);
+        url = QueryString.setParam(url, 'Betcheck', betcheck);
+        url = QueryString.setParam(url, 'Betteam', betteam);
+        url = QueryString.setParam(url, 'Currency', currency);
+        url = QueryString.setParam(url, 'Stake', stake);
+        url = QueryString.setParam(url, 'CustId', custId);
+
+        return url;
+    }
+
     buildChoiceParlayDetail(response) {
         let choice = '';
         let length = response.Data === null ? 0 : response.Data.length;
@@ -76,6 +92,19 @@ class BetList {
                 if (i < length - 1) {
                     choice += '<div class="line"></div>';
                 }
+            }
+        }
+
+        return choice;
+    }
+
+    buildChoiceBetBuilderPlusDetail(response) {
+        let choice = '';
+        let length = response.Data === null ? 0 : response.Data.length;
+        if (length > 0) {
+            for (let i = 0; i < response.Data.length; i++) {
+                let item = response.Data[i];
+                choice += item;
             }
         }
 

@@ -142,6 +142,7 @@
     <Compile Include="BettingTicketCenterAdvancedSearchController.cs" />
     <Compile Include="BettingTicketCenterController.cs" />
     <Compile Include="BonusBetListController.cs" />
+    <Compile Include="BetBuilderPlusBetListController.cs" />
     <Compile Include="WinLossAnalysisBetListController.cs" />
     <Compile Include="MixParlayBetListController.cs" />
     <Compile Include="JackpotWonBetListController.cs" />

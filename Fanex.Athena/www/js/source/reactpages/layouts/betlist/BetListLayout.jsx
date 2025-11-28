@@ -83,6 +83,11 @@ class BetListLayout extends Component {
         };
 
         // expand choice content
+        window.showBetBuilderPlus = (...args) => {
+            this._showBetBuilderPlusDetail.apply(this, [this.props.rootUrl, ...args]);
+        };
+
+        // expand choice content
         window.showSingleMatchParlayDetail = (...args) => {
             this._showSingleMatchParlayDetail.apply(this, [this.props.rootUrl, ...args]);
         };
@@ -260,6 +265,36 @@ class BetListLayout extends Component {
             DataService.getData(url)
                 .then((result) => {
                     let choice = BetList.buildChoiceParlayDetail(result.data);
+
+                    divEvent.innerHTML = choice;
+                    divEvent.style.display = 'block';
+                    nameDiv.style.display = 'none';
+
+                    this._afterShow();
+                }).catch((error) => {
+                    this._afterShow();
+                    console.log(error);
+                });
+        }
+        else {
+            divEvent.style.display = 'none';
+            divEvent.innerHTML = '';
+            nameDiv.style.display = 'block';
+        }
+    }
+
+    _showBetBuilderPlusDetail(rootUrl, transId, transIndex, refNo, custId, transDesc, handicap1, handicap2, betcheck, betteam, currency, stake) {
+        let divEvent = document.querySelector('#divEvent_' + transId + '' + transIndex);
+        let nameDiv = document.querySelector('#combinationOfferName_' + transId + transIndex);
+
+        divEvent.classList.add('mx-parlay'); //to make line-through for void-parlay-ticket
+
+        if (divEvent.style.display == 'none') {
+            const url = BetList.getChoiceBuilderPlusDetailUrl(rootUrl, transId, refNo, custId, transDesc, handicap1, handicap2, betcheck, betteam, currency, stake);
+            this._beforeShow();
+            DataService.getData(url)
+                .then((result) => {
+                    const choice = BetList.buildChoiceBetBuilderPlusDetail(result.data);
 
                     divEvent.innerHTML = choice;
                     divEvent.style.display = 'block';
